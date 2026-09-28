@@ -1,4 +1,10 @@
 import type { NextConfig } from 'next';
+import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare';
+
+// Only initialize Cloudflare context proxy during development
+if (process.env.NODE_ENV === 'development' || process.argv.includes('dev')) {
+  initOpenNextCloudflareForDev();
+}
 
 /**
  * Content Security Policy directive set.
@@ -25,9 +31,9 @@ const csp = [
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com data:",
   "img-src 'self' data: blob: https:",
-  "media-src 'self' https://*.supabase.co",
-  "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com https://maps.google.com https://vercel.com",
-  "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://www.googleapis.com https://api.whatsapp.com https://www.youtube.com https://www.instagram.com https://*.googleusercontent.com",
+  "media-src 'self'",
+  "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com https://maps.google.com",
+  "connect-src 'self' https://www.googleapis.com https://api.whatsapp.com https://www.youtube.com https://www.instagram.com https://*.googleusercontent.com https://*.r2.dev https://api.cloudflare.com",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -45,11 +51,7 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   images: {
-    // Serve AVIF first (smallest), then WebP, then original. Browsers
-    // negotiate via Accept header; non-supporting clients get the original
-    // JPEG/PNG from public/. Sibling AVIF/WebP files are pre-built by
-    // scripts/optimize-images.mjs for static assets — runtime <Image>
-    // components use Next.js automatic transcoding with these priorities.
+    unoptimized: true,
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
@@ -62,11 +64,21 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'azgyihsukmatsggppxuz.supabase.co',
+        hostname: 'drive.google.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.r2.dev',
       },
     ],
-    // Cache optimized images for 30 days — they're content-addressable
-    // (hash in URL), so safe to cache aggressively.
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },
   async redirects() {

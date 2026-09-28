@@ -1,48 +1,37 @@
 import { ImageResponse } from 'next/og';
-import { supabaseAdmin, isSupabaseAdminConfigured } from '@/lib/supabaseAdmin';
+import { queryAll } from '@/lib/d1';
 
 /**
  * Dynamic Open Graph image for /info page.
- *
- * Next.js convention: any opengraph-image.tsx in a route segment is auto-picked
- * up by the metadata system. Image is rendered on-demand, cached at edge.
- *
- * Composition: branded chrome + first 3 upcoming warta titles + countdown
- * to nearest event. Color palette follows DESIGN.md (Sacred Crimson / Warm Cream).
- *
- * No external fonts — uses platform default (system-ui) for maximum compat
- * with image-rendering pipeline (edge runtime + OG scrapers).
+ * Rendered on-demand, cached at edge.
  */
 
-export const runtime = 'edge';
+export const dynamic = 'force-dynamic';
 export const alt = 'GIA Deliksari Semarang — Papan Warta & Jadwal Pelayanan';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
 async function fetchUpcoming() {
-  if (!isSupabaseAdminConfigured() || !supabaseAdmin) {
+  try {
+    const today = new Date().toISOString().slice(0, 10);
+    const [announcements, roster] = await Promise.all([
+      queryAll<any>(
+        'SELECT title, category, event_date FROM announcements WHERE is_published = 1 AND event_date >= ? ORDER BY event_date ASC LIMIT 3',
+        [today],
+      ),
+      queryAll<any>(
+        'SELECT service_date, service_category FROM servant_rosters WHERE service_date >= ? ORDER BY service_date ASC LIMIT 1',
+        [today],
+      ),
+    ]);
+    return {
+      announcements: announcements ?? [],
+      nextEvent: roster?.[0] ?? null,
+    };
+  } catch (err) {
+    console.warn('[opengraph-image] fetch error:', err);
     return { announcements: [], nextEvent: null };
   }
-  const today = new Date().toISOString().slice(0, 10);
-  const [{ data: announcements }, { data: roster }] = await Promise.all([
-    supabaseAdmin
-      .from('announcements')
-      .select('title, category, event_date')
-      .eq('is_published', true)
-      .gte('event_date', today)
-      .order('event_date', { ascending: true })
-      .limit(3),
-    supabaseAdmin
-      .from('servant_rosters')
-      .select('service_date, service_category')
-      .gte('service_date', today)
-      .order('service_date', { ascending: true })
-      .limit(1),
-  ]);
-  return {
-    announcements: announcements ?? [],
-    nextEvent: roster?.[0] ?? null,
-  };
 }
 
 const CATEGORY_LABEL: Record<string, string> = {
@@ -114,10 +103,10 @@ export default async function Image() {
             G
           </div>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <div style={{ fontSize: 32, fontWeight: 900, color: '#1F1617', letterSpacing: '-1px' }}>
+            <div style={{ display: 'flex', fontSize: 32, fontWeight: 900, color: '#1F1617', letterSpacing: '-1px' }}>
               GIA DELIKSARI
             </div>
-            <div style={{ fontSize: 18, color: '#6E5D5F', fontWeight: 600, marginTop: 4 }}>
+            <div style={{ display: 'flex', fontSize: 18, color: '#6E5D5F', fontWeight: 600, marginTop: 4 }}>
               Semarang · Growing Church!
             </div>
           </div>
@@ -125,13 +114,12 @@ export default async function Image() {
 
         {/* Title */}
         <div style={{ display: 'flex', flexDirection: 'column', marginBottom: 36 }}>
-          <div style={{ fontSize: 22, color: '#9A1620', fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase' }}>
+          <div style={{ display: 'flex', fontSize: 22, color: '#9A1620', fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase' }}>
             📋 Papan Warta & Jadwal Pelayanan
           </div>
-          <div style={{ fontSize: 52, color: '#1F1617', fontWeight: 900, lineHeight: 1.1, marginTop: 12 }}>
-            Warta Jemaat
-            <br />
-            <span style={{ color: '#C5222E' }}>Minggu Ini</span>
+          <div style={{ display: 'flex', flexDirection: 'column', fontSize: 52, color: '#1F1617', fontWeight: 900, lineHeight: 1.1, marginTop: 12 }}>
+            <div style={{ display: 'flex' }}>Warta Jemaat</div>
+            <div style={{ display: 'flex', color: '#C5222E' }}>Minggu Ini</div>
           </div>
         </div>
 
@@ -149,13 +137,13 @@ export default async function Image() {
                 border: '2px solid #EBDDCF',
               }}
             >
-              <div style={{ fontSize: 28 }}>📅</div>
-              <div style={{ fontSize: 22, color: '#6E5D5F', fontStyle: 'italic' }}>
+              <div style={{ display: 'flex', fontSize: 28 }}>📅</div>
+              <div style={{ display: 'flex', fontSize: 22, color: '#6E5D5F', fontStyle: 'italic' }}>
                 Warta jemaat akan tampil di sini setelah pengurus menginputnya.
               </div>
             </div>
           ) : (
-            announcements.map((a, idx) => (
+            announcements.map((a: any, idx: number) => (
               <div
                 key={idx}
                 style={{
@@ -189,6 +177,7 @@ export default async function Image() {
                 <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
                   <div
                     style={{
+                      display: 'flex',
                       fontSize: 22,
                       fontWeight: 800,
                       color: '#1F1617',
@@ -201,7 +190,7 @@ export default async function Image() {
                   >
                     {a.title}
                   </div>
-                  <div style={{ fontSize: 16, color: '#6E5D5F', marginTop: 4 }}>
+                  <div style={{ display: 'flex', fontSize: 16, color: '#6E5D5F', marginTop: 4 }}>
                     📅 {fmtDate(a.event_date)}
                   </div>
                 </div>
@@ -222,18 +211,19 @@ export default async function Image() {
           }}
         >
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <div style={{ fontSize: 16, color: '#5A4D4E', fontWeight: 600 }}>
-              gia-deliksari-web.vercel.app/info
+            <div style={{ display: 'flex', fontSize: 16, color: '#5A4D4E', fontWeight: 600 }}>
+              GIA Deliksari Web Portal · /info
             </div>
-            {nextEvent && (
-              <div style={{ fontSize: 14, color: '#B87A14', marginTop: 4 }}>
+            {nextEvent ? (
+              <div style={{ display: 'flex', fontSize: 14, color: '#B87A14', marginTop: 4 }}>
                 ⏰ Ibadah terdekat: {fmtDate(nextEvent.service_date)} —{' '}
                 {CATEGORY_LABEL[nextEvent.service_category] || nextEvent.service_category}
               </div>
-            )}
+            ) : null}
           </div>
           <div
             style={{
+              display: 'flex',
               fontSize: 14,
               color: '#9A1620',
               fontWeight: 800,

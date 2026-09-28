@@ -1,14 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireRole } from '@/lib/auth';
-import { getSupabaseAdmin, isSupabaseAdminConfigured } from '@/lib/supabaseAdmin';
+import { getDb, queryAll, execute } from '@/lib/d1';
 
 /**
- * Server-side mutation gateway for the admin portal.
+ * Server-side mutation gateway for the admin portal backed by Cloudflare D1.
  *
- * Multi-role auth (Phase 3): requires session cookie with role in
- * ['super', 'admin']. Uses the new gia_session cookie + bcrypt user table
- * (see src/lib/auth.ts). Legacy ADMIN_SESSION_COOKIE cookie is no longer
- * accepted.
+ * Multi-role auth: requires session cookie with role in ['super', 'admin'].
  */
 
 const TABLE_WHITELIST = [
@@ -28,57 +25,27 @@ function isValidTable(value: unknown): value is TableName {
   return typeof value === 'string' && (TABLE_WHITELIST as readonly string[]).includes(value);
 }
 
-function getClientOrError(): { client: ReturnType<typeof getSupabaseAdmin>; error?: NextResponse } {
-  if (!isSupabaseAdminConfigured()) {
-    return {
-      client: null,
-      error: NextResponse.json(
-        {
-          error:
-            'Supabase service role not configured di server. ' +
-            'Pastikan NEXT_PUBLIC_SUPABASE_URL dan SUPABASE_SERVICE_ROLE_KEY sudah di-set di Vercel env (Production).',
-        },
-        { status: 503 },
-      ),
-    };
-  }
-  const client = getSupabaseAdmin();
-  if (!client) {
-    return {
-      client: null,
-      error: NextResponse.json({ error: 'Supabase admin client gagal diinisialisasi' }, { status: 503 }),
-    };
-  }
-  return { client };
-}
-
 export async function GET(req: NextRequest) {
   const guard = await requireRole(req, ['super', 'admin']);
   if (guard instanceof Response) return guard;
-
-  const { client, error } = getClientOrError();
-  if (error || !client) return error!;
 
   const table = req.nextUrl.searchParams.get('table');
   if (!isValidTable(table)) {
     return NextResponse.json({ error: 'Tabel tidak dikenal' }, { status: 400 });
   }
 
-  const { data, error: dbError } = await client.from(table).select('*');
-  if (dbError) {
-    console.error(`[admin/data] GET ${table} failed:`, dbError.message, dbError);
-    return NextResponse.json({ error: dbError.message }, { status: 500 });
+  try {
+    const data = await queryAll(`SELECT * FROM ${table}`);
+    return NextResponse.json({ table, items: data });
+  } catch (err: any) {
+    console.error(`[admin/data] GET ${table} failed:`, err);
+    return NextResponse.json({ error: err.message }, { status: 500 });
   }
-
-  return NextResponse.json({ table, items: data ?? [] });
 }
 
 export async function POST(req: NextRequest) {
   const guard = await requireRole(req, ['super', 'admin']);
   if (guard instanceof Response) return guard;
-
-  const { client, error } = getClientOrError();
-  if (error || !client) return error!;
 
   let body: { table?: unknown; items?: unknown };
   try {
@@ -101,21 +68,50 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Setiap item harus objek' }, { status: 400 });
   }
 
-  const { error: dbError } = await client.from(table).upsert(items);
-  if (dbError) {
-    console.error(`[admin/data] POST ${table} failed:`, dbError.message, dbError);
-    return NextResponse.json({ error: dbError.message }, { status: 500 });
-  }
+  try {
+    const db = await getDb();
+    const statements = items.map((item: Record<string, unknown>) => {
+      const record = { ...item };
+      if (!record.id) {
+        record.id = crypto.randomUUID();
+      }
 
-  return NextResponse.json({ success: true, table, count: items.length });
+      // SQLite booleans coercion
+      for (const [k, v] of Object.entries(record)) {
+        if (typeof v === 'boolean') {
+          record[k] = v ? 1 : 0;
+        }
+      }
+
+      const keys = Object.keys(record);
+      const cols = keys.join(', ');
+      const placeholders = keys.map(() => '?').join(', ');
+      const updates = keys
+        .filter((k) => k !== 'id' && k !== 'created_at')
+        .map((k) => `${k} = excluded.${k}`)
+        .join(', ');
+
+      const values = Object.values(record);
+
+      const sql = updates.length > 0
+        ? `INSERT INTO ${table} (${cols}) VALUES (${placeholders}) ON CONFLICT(id) DO UPDATE SET ${updates}`
+        : `INSERT OR IGNORE INTO ${table} (${cols}) VALUES (${placeholders})`;
+
+      return db.prepare(sql).bind(...values);
+    });
+
+    await db.batch(statements);
+
+    return NextResponse.json({ success: true, table, count: items.length });
+  } catch (err: any) {
+    console.error(`[admin/data] POST ${table} failed:`, err);
+    return NextResponse.json({ error: err.message }, { status: 500 });
+  }
 }
 
 export async function DELETE(req: NextRequest) {
   const guard = await requireRole(req, ['super', 'admin']);
   if (guard instanceof Response) return guard;
-
-  const { client, error } = getClientOrError();
-  if (error || !client) return error!;
 
   const table = req.nextUrl.searchParams.get('table');
   const id = req.nextUrl.searchParams.get('id');
@@ -127,11 +123,11 @@ export async function DELETE(req: NextRequest) {
     return NextResponse.json({ error: 'ID wajib diisi' }, { status: 400 });
   }
 
-  const { error: dbError } = await client.from(table).delete().eq('id', id);
-  if (dbError) {
-    console.error(`[admin/data] DELETE ${table} failed:`, dbError.message, dbError);
-    return NextResponse.json({ error: dbError.message }, { status: 500 });
+  try {
+    await execute(`DELETE FROM ${table} WHERE id = ?`, [id]);
+    return NextResponse.json({ success: true, table, id });
+  } catch (err: any) {
+    console.error(`[admin/data] DELETE ${table} failed:`, err);
+    return NextResponse.json({ error: err.message }, { status: 500 });
   }
-
-  return NextResponse.json({ success: true, table, id });
 }

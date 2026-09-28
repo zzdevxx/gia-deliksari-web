@@ -1,12 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireRole } from '@/lib/auth';
-import { supabaseAdmin, isSupabaseAdminConfigured } from '@/lib/supabaseAdmin';
+import { queryFirst, execute } from '@/lib/d1';
 import { logAudit, auditContextFromRequest } from '@/lib/auditLog';
 
 /**
  * PATCH /api/youth-treasury/[id] — update a transaction.
- * Body (subset): { transaction_date?, type?, category?, amount?, description? }
- * Auth: treasurer | super
  */
 export async function PATCH(
   req: NextRequest,
@@ -14,9 +12,6 @@ export async function PATCH(
 ) {
   const guard = await requireRole(req, ['super', 'treasurer']);
   if (guard instanceof Response) return guard;
-  if (!isSupabaseAdminConfigured() || !supabaseAdmin) {
-    return NextResponse.json({ error: 'Supabase admin not configured' }, { status: 503 });
-  }
 
   const { id } = await params;
 
@@ -48,38 +43,41 @@ export async function PATCH(
     return NextResponse.json({ error: 'Tidak ada field yang diupdate' }, { status: 400 });
   }
 
-  const { data, error } = await supabaseAdmin
-    .from('youth_treasury_transactions')
-    .update(patch)
-    .eq('id', id)
-    .select('id, transaction_date, type, category, amount, description, created_by, created_at, updated_at')
-    .single();
+  try {
+    const updates = Object.keys(patch).map((k) => `${k} = ?`).join(', ');
+    const values = [...Object.values(patch), id];
 
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    await execute(`UPDATE youth_treasury_transactions SET ${updates} WHERE id = ?`, values);
 
-  const changes: Record<string, unknown> = {};
-  for (const k of Object.keys(patch)) {
-    if (k === 'updated_at') continue;
-    changes[k] = patch[k];
+    const transaction = await queryFirst<any>(
+      'SELECT id, transaction_date, type, category, amount, description, created_by, created_at, updated_at FROM youth_treasury_transactions WHERE id = ?',
+      [id],
+    );
+
+    const changes: Record<string, unknown> = {};
+    for (const k of Object.keys(patch)) {
+      if (k === 'updated_at') continue;
+      changes[k] = patch[k];
+    }
+
+    await logAudit({
+      actor: { id: guard.id, username: guard.username, roles: guard.roles },
+      action: 'kas.update',
+      target: { table: 'youth_treasury_transactions', id },
+      summary: `Update transaksi kas (${Object.keys(changes).join(', ')})`,
+      meta: { changes },
+      ctx: auditContextFromRequest(req),
+    });
+
+    return NextResponse.json({ success: true, transaction });
+  } catch (err: any) {
+    console.error('[youth-treasury/patch] failed:', err);
+    return NextResponse.json({ error: err.message }, { status: 500 });
   }
-  await logAudit({
-    actor: { id: guard.id, username: guard.username, roles: guard.roles },
-    action: 'kas.update',
-    target: { table: 'youth_treasury_transactions', id },
-    summary: `Update transaksi kas (${Object.keys(changes).join(', ')})`,
-    meta: { changes },
-    ctx: auditContextFromRequest(req),
-  });
-
-  return NextResponse.json({ success: true, transaction: data });
 }
 
 /**
  * DELETE /api/youth-treasury/[id] — hard-delete a transaction.
- *
- * Treasury transactions are reversible corrections, not audit records —
- * hard delete is the right semantics here. (Unlike users which we
- * soft-deactivate for audit trail.)
  */
 export async function DELETE(
   req: NextRequest,
@@ -87,36 +85,31 @@ export async function DELETE(
 ) {
   const guard = await requireRole(req, ['super', 'treasurer']);
   if (guard instanceof Response) return guard;
-  if (!isSupabaseAdminConfigured() || !supabaseAdmin) {
-    return NextResponse.json({ error: 'Supabase admin not configured' }, { status: 503 });
-  }
 
   const { id } = await params;
 
-  // Capture summary BEFORE delete so we can log it.
-  const { data: snapshot } = await supabaseAdmin
-    .from('youth_treasury_transactions')
-    .select('transaction_date, type, category, amount')
-    .eq('id', id)
-    .maybeSingle();
+  try {
+    const snapshot = await queryFirst<any>(
+      'SELECT transaction_date, type, category, amount FROM youth_treasury_transactions WHERE id = ?',
+      [id],
+    );
 
-  const { error } = await supabaseAdmin
-    .from('youth_treasury_transactions')
-    .delete()
-    .eq('id', id);
+    await execute('DELETE FROM youth_treasury_transactions WHERE id = ?', [id]);
 
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    await logAudit({
+      actor: { id: guard.id, username: guard.username, roles: guard.roles },
+      action: 'kas.delete',
+      target: { table: 'youth_treasury_transactions', id },
+      summary: snapshot
+        ? `Hapus transaksi ${snapshot.type} Rp ${Number(snapshot.amount).toLocaleString('id-ID')} (${snapshot.category}, ${snapshot.transaction_date})`
+        : `Hapus transaksi kas ${id}`,
+      meta: snapshot ?? undefined,
+      ctx: auditContextFromRequest(req),
+    });
 
-  await logAudit({
-    actor: { id: guard.id, username: guard.username, roles: guard.roles },
-    action: 'kas.delete',
-    target: { table: 'youth_treasury_transactions', id },
-    summary: snapshot
-      ? `Hapus transaksi ${snapshot.type} Rp ${Number(snapshot.amount).toLocaleString('id-ID')} (${snapshot.category}, ${snapshot.transaction_date})`
-      : `Hapus transaksi kas ${id}`,
-    meta: snapshot ?? undefined,
-    ctx: auditContextFromRequest(req),
-  });
-
-  return NextResponse.json({ success: true, id });
+    return NextResponse.json({ success: true, id });
+  } catch (err: any) {
+    console.error('[youth-treasury/delete] failed:', err);
+    return NextResponse.json({ error: err.message }, { status: 500 });
+  }
 }

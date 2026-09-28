@@ -18,7 +18,7 @@ export default defineConfig({
   reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : 'list',
 
   use: {
-    baseURL: process.env.BASE_URL ?? 'https://gia-deliksari-web.vercel.app',
+    baseURL: process.env.BASE_URL ?? 'https://gia-deliksari-web.zzdree.workers.dev',
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',

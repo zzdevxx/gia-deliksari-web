@@ -11,6 +11,8 @@ dist/
 build/
 .next/
 out/
+.open-next/
+.wrangler/
 
 # Misc
 .DS_Store
@@ -61,3 +63,6 @@ tests/**/test-results/
 test-results/
 playwright-report/
 playwright/.cache/
+
+.dev.vars
+.dev.vars.*

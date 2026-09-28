@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "gia-deliksari-web",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2024-12-30",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "gia-deliksari-db",
+      "database_id": "0f8a9e42-0a14-4a45-9cbb-55f7d8b2f5f1"
+    }
+  ],
+  "vars": {
+    "R2_PUBLIC_URL": "https://gallery.giadeliksari.org",
+    "ADMIN_SESSION_SECRET": "",
+    "YOUTUBE_API_KEY": "",
+    "YOUTUBE_CHANNEL_ID": "UCDh3ojx9ne3HOPoBuuoKlrg",
+    "GOOGLE_DRIVE_PUBLIC_FOLDER_ID": "",
+    "GOOGLE_OAUTH_CLIENT_ID": "",
+    "GOOGLE_OAUTH_CLIENT_SECRET": "",
+    "GOOGLE_OAUTH_REFRESH_TOKEN": ""
+  }
+}

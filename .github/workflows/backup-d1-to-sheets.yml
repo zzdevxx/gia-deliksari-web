@@ -1,0 +1,62 @@
+name: D1 Backup and Google Sheets Sync
+
+on:
+  schedule:
+    # Berjalan tiap hari jam 20:00 UTC (= 03:00 WIB)
+    - cron: '0 20 * * *'
+  workflow_dispatch:
+    inputs:
+      sync_sheets:
+        description: 'Sinkronisasi ke Google Sheets?'
+        required: true
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: backup-d1-sheets
+  cancel-in-progress: true
+
+jobs:
+  backup-and-sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Jalankan D1 Backup & Sheets Dispatch Script
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_D1_DATABASE_ID: ${{ secrets.CLOUDFLARE_D1_DATABASE_ID || '0f8a9e42-0a14-4a45-9cbb-55f7d8b2f5f1' }}
+          GOOGLE_SHEETS_WEBHOOK_URL: ${{ secrets.GOOGLE_SHEETS_WEBHOOK_URL }}
+          GOOGLE_SHEETS_WEBHOOK_SECRET: ${{ secrets.GOOGLE_SHEETS_WEBHOOK_SECRET }}
+          SYNC_SHEETS: ${{ github.event.inputs.sync_sheets || 'true' }}
+        run: node scripts/backup-d1-to-sheets.mjs
+
+      - name: Commit & push local D1 snapshot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add backups/d1/
+          if git diff --staged --quiet; then
+            echo "Tidak ada perubahan snapshot untuk di-commit."
+          else
+            git commit -m "chore(backup): d1 snapshot $(date -u +%Y-%m-%d_%H%M%S)"
+            git pull --rebase origin main || true
+            git push || true
+          fi
+
+      - name: Prune snapshot lokal yang lebih dari 30 hari
+        run: |
+          find backups/d1/ -name "*.json" -type f -mtime +30 -delete 2>/dev/null || true

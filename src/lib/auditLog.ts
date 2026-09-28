@@ -1,4 +1,4 @@
-import { getSupabaseAdmin, isSupabaseAdminConfigured } from './supabaseAdmin';
+import { execute } from './d1';
 import type { Role } from './auth';
 
 /**
@@ -102,30 +102,30 @@ interface AuditLogRow {
  * underlying action. Returns true on success, false on any failure.
  */
 export async function logAudit(entry: AuditEntry): Promise<boolean> {
-  if (!isSupabaseAdminConfigured()) return false;
-  const admin = getSupabaseAdmin();
-  if (!admin) return false;
-
-  const row: AuditLogRow = {
-    actor_id: entry.actor?.id ?? null,
-    actor_username: entry.actor?.username ?? null,
-    actor_roles: entry.actor?.roles ?? null,
-    action: entry.action,
-    target_table: entry.target?.table ?? null,
-    target_id: entry.target?.id ?? null,
-    summary: entry.summary.slice(0, 500), // hard cap
-    meta: entry.meta ?? null,
-    ip: entry.ctx?.ip ?? null,
-    user_agent: entry.ctx?.userAgent ? entry.ctx.userAgent.slice(0, 500) : null,
-    source: entry.ctx?.source ?? 'api',
-  };
-
   try {
-    const { error } = await admin.from('audit_log').insert(row);
-    if (error) {
-      console.error('[auditLog] insert failed:', error.message);
-      return false;
-    }
+    const id = crypto.randomUUID();
+    const now = new Date().toISOString();
+    await execute(
+      `INSERT INTO audit_log (
+        id, actor_id, actor_username, actor_roles, action,
+        target_table, target_id, summary, meta, ip, user_agent, source, created_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        id,
+        entry.actor?.id ?? null,
+        entry.actor?.username ?? null,
+        entry.actor?.roles ? JSON.stringify(entry.actor.roles) : null,
+        entry.action,
+        entry.target?.table ?? null,
+        entry.target?.id ?? null,
+        entry.summary.slice(0, 500),
+        entry.meta ? JSON.stringify(entry.meta) : null,
+        entry.ctx?.ip ?? null,
+        entry.ctx?.userAgent ? entry.ctx.userAgent.slice(0, 500) : null,
+        entry.ctx?.source ?? 'api',
+        now,
+      ],
+    );
     return true;
   } catch (err) {
     console.error('[auditLog] unexpected error:', err instanceof Error ? err.message : err);

@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabaseAdmin, isSupabaseAdminConfigured } from '@/lib/supabaseAdmin';
+import { execute } from '@/lib/d1';
 
 /**
  * Public submission endpoint for prayer / sacrament / komsel / volunteer
- * requests. Validates and rate-limits before writing via service role.
+ * requests backed by Cloudflare D1.
  */
 
 const ALLOWED_TYPES = new Set(['prayer', 'sacrament', 'komsel', 'volunteer']);
@@ -11,7 +11,6 @@ const MAX_LENGTHS = { name: 120, phone: 32, message: 2000, subType: 80 };
 const RATE_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
 const RATE_MAX = 5; // submissions per IP per window
 
-// Simple in-memory sliding window (per serverless instance; good-enough abuse brake)
 const hits = new Map<string, number[]>();
 
 function rateLimited(ip: string): boolean {
@@ -23,7 +22,6 @@ function rateLimited(ip: string): boolean {
   list.push(now);
   hits.set(ip, list);
   if (hits.size > 5000) {
-    // Prevent unbounded growth: drop oldest half
     const keys = [...hits.keys()].slice(0, 2500);
     keys.forEach((k) => hits.delete(k));
   }
@@ -67,28 +65,29 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Nomor WhatsApp wajib diisi' }, { status: 400 });
   }
 
-  if (!isSupabaseAdminConfigured() || !supabaseAdmin) {
-    // Still acknowledge locally-queued items gracefully
-    console.warn('[public/ministry-requests] Supabase not configured; request dropped');
-    return NextResponse.json({ success: true, persisted: false });
-  }
+  try {
+    const id = crypto.randomUUID();
+    const now = new Date().toISOString();
 
-  const { error } = await supabaseAdmin.from('ministry_requests').insert([
-    {
-      type,
-      name,
-      phone,
-      sub_type: subType || null,
-      message: message || null,
-      need_pastoral_visit: needPastoralVisit,
-      status: 'new',
-    },
-  ]);
+    await execute(
+      `INSERT INTO ministry_requests (
+        id, type, name, phone, sub_type, message, need_pastoral_visit, status, created_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, 'new', ?)`,
+      [
+        id,
+        type,
+        name,
+        phone,
+        subType || null,
+        message || null,
+        needPastoralVisit ? 1 : 0,
+        now,
+      ],
+    );
 
-  if (error) {
-    console.error('[public/ministry-requests] insert failed:', error.message);
+    return NextResponse.json({ success: true, persisted: true });
+  } catch (err: any) {
+    console.error('[public/ministry-requests] insert failed:', err);
     return NextResponse.json({ error: 'Gagal menyimpan permohonan' }, { status: 500 });
   }
-
-  return NextResponse.json({ success: true, persisted: true });
 }

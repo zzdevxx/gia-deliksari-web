@@ -30,7 +30,7 @@
 
 import { createHmac, timingSafeEqual } from 'node:crypto';
 import bcrypt from 'bcryptjs';
-import { supabaseAdmin, isSupabaseAdminConfigured } from './supabaseAdmin';
+import { queryFirst, execute } from './d1';
 
 export type Role = 'super' | 'admin' | 'treasurer';
 
@@ -162,26 +162,36 @@ const CACHE_TTL_MS = 60_000; // 1 minute
 async function fetchUserById(userId: string): Promise<User | null> {
   const cached = userCache.get(userId);
   if (cached && cached.expiresAt > Date.now()) return cached.user;
-  if (!isSupabaseAdminConfigured() || !supabaseAdmin) return null;
 
-  const { data, error } = await supabaseAdmin
-    .from('users')
-    .select('id, username, roles, display_name, active, last_login_at, created_at')
-    .eq('id', userId)
-    .eq('active', true)
-    .maybeSingle();
-  if (error || !data) return null;
+  try {
+    const data = await queryFirst<any>(
+      'SELECT id, username, roles, display_name, active, last_login_at, created_at FROM users WHERE id = ? AND active = 1',
+      [userId],
+    );
+    if (!data) return null;
 
-  const user: User = normalizeUser(data);
-  userCache.set(userId, { user, expiresAt: Date.now() + CACHE_TTL_MS });
-  return user;
+    const user: User = normalizeUser(data);
+    userCache.set(userId, { user, expiresAt: Date.now() + CACHE_TTL_MS });
+    return user;
+  } catch (err) {
+    console.error('[auth] fetchUserById error:', err);
+    return null;
+  }
 }
 
 function normalizeUser(row: any): User {
-  // Handle both old schema (role) and new schema (roles[]) for safety
   let roles: Role[] = [];
-  if (Array.isArray(row.roles) && row.roles.length > 0) {
-    roles = row.roles.filter((r: string) =>
+  let rawRoles = row.roles;
+  if (typeof rawRoles === 'string') {
+    try {
+      rawRoles = JSON.parse(rawRoles);
+    } catch {
+      rawRoles = [rawRoles];
+    }
+  }
+
+  if (Array.isArray(rawRoles) && rawRoles.length > 0) {
+    roles = rawRoles.filter((r: string) =>
       r === 'super' || r === 'admin' || r === 'treasurer',
     );
   } else if (typeof row.role === 'string') {
@@ -195,40 +205,32 @@ function normalizeUser(row: any): User {
     username: row.username,
     roles,
     display_name: row.display_name,
-    active: row.active,
+    active: Boolean(row.active),
     last_login_at: row.last_login_at,
     created_at: row.created_at,
   };
 }
 
 async function fetchUserByCredential(username: string, plainPassword: string): Promise<User | null> {
-  if (!isSupabaseAdminConfigured() || !supabaseAdmin) {
-    console.error('[auth] supabase admin NOT configured');
+  try {
+    const data = await queryFirst<any>(
+      'SELECT id, username, password_hash, roles, display_name, active, last_login_at, created_at FROM users WHERE lower(username) = lower(?) AND active = 1',
+      [username],
+    );
+    if (!data) {
+      console.warn('[auth] no user found for', username);
+      return null;
+    }
+    const ok = await verifyPassword(plainPassword, data.password_hash);
+    if (!ok) {
+      console.warn('[auth] bcrypt mismatch for', username);
+      return null;
+    }
+    return normalizeUser(data);
+  } catch (err) {
+    console.error('[auth] fetchUserByCredential error:', err);
     return null;
   }
-  const { data, error } = await supabaseAdmin
-    .from('users')
-    .select('id, username, password_hash, roles, display_name, active, last_login_at, created_at')
-    .eq('username', username)
-    .eq('active', true)
-    .maybeSingle();
-  if (error) {
-    console.error('[auth] supabase query error for', username, ':', error.message);
-    return null;
-  }
-  if (!data) {
-    console.error('[auth] no user found for', username, '(active=true filter)');
-    return null;
-  }
-  const ok = await verifyPassword(plainPassword, data.password_hash);
-  if (!ok) {
-    // NOTE: deliberately NOT logging hash prefix to avoid leaking partial
-    // bcrypt state into Vercel function logs. Caller receives null and
-    // audit_log records the failure with IP + username.
-    console.warn('[auth] bcrypt mismatch for', username);
-    return null;
-  }
-  return normalizeUser(data);
 }
 
 // ---------------------------------------------------------------------------
@@ -293,12 +295,14 @@ export async function login(
   };
   const token = encodeSession(payload);
 
-  if (isSupabaseAdminConfigured() && supabaseAdmin) {
-    await supabaseAdmin
-      .from('users')
-      .update({ last_login_at: new Date().toISOString() })
-      .eq('id', user.id);
+  try {
+    await execute('UPDATE users SET last_login_at = ? WHERE id = ?', [
+      new Date().toISOString(),
+      user.id,
+    ]);
     userCache.delete(user.id);
+  } catch (err) {
+    console.warn('[auth] could not update last_login_at:', err);
   }
 
   return { user, token };
@@ -316,9 +320,6 @@ export interface CreateUserInput {
 }
 
 export async function createUser(input: CreateUserInput): Promise<{ ok: true; id: string } | { ok: false; error: string }> {
-  if (!isSupabaseAdminConfigured() || !supabaseAdmin) {
-    return { ok: false, error: 'Supabase admin not configured' };
-  }
   const username = input.username.trim();
   const trimmed = input.password.trim();
 
@@ -342,29 +343,37 @@ export async function createUser(input: CreateUserInput): Promise<{ ok: true; id
     return { ok: false, error: 'Role tidak valid' };
   }
   // Check duplicate
-  const { data: existing } = await supabaseAdmin
-    .from('users')
-    .select('id')
-    .eq('username', username)
-    .maybeSingle();
-  if (existing) {
-    return { ok: false, error: `Username '${username}' sudah dipakai` };
+  try {
+    const existing = await queryFirst<{ id: string }>(
+      'SELECT id FROM users WHERE lower(username) = lower(?)',
+      [username],
+    );
+    if (existing) {
+      return { ok: false, error: `Username '${username}' sudah dipakai` };
+    }
+
+    // Insert
+    const password_hash = await hashPassword(pwCheck.value);
+    const id = crypto.randomUUID();
+    const now = new Date().toISOString();
+
+    await execute(
+      'INSERT INTO users (id, username, password_hash, roles, display_name, active, created_at) VALUES (?, ?, ?, ?, ?, 1, ?)',
+      [
+        id,
+        username,
+        password_hash,
+        JSON.stringify(roles),
+        input.display_name?.trim() || null,
+        now,
+      ],
+    );
+
+    return { ok: true, id };
+  } catch (err: any) {
+    console.error('[auth] createUser error:', err);
+    return { ok: false, error: err.message || 'Gagal membuat user' };
   }
-  // Insert
-  const password_hash = await hashPassword(pwCheck.value);
-  const { data, error } = await supabaseAdmin
-    .from('users')
-    .insert({
-      username,
-      password_hash,
-      roles,
-      display_name: input.display_name?.trim() || null,
-      active: true,
-    })
-    .select('id')
-    .single();
-  if (error) return { ok: false, error: error.message };
-  return { ok: true, id: data.id };
 }
 
 export const SESSION_COOKIE_NAME = COOKIE_NAME;

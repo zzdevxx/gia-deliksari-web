@@ -1,45 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabaseAdmin, isSupabaseAdminConfigured } from '@/lib/supabaseAdmin';
+import { getCloudflareContext } from '@opennextjs/cloudflare';
+import { queryAll, execute } from '@/lib/d1';
 import { getDriveClient } from '@/lib/googleDrive';
-import { readSessionFromCookie } from '@/lib/admin-session.legacy';
+import { readSessionFromCookie } from '@/lib/auth';
 import { logAudit, auditContextFromRequest } from '@/lib/auditLog';
 
-/**
- * GaleriSync Worker — sinkronisasi 1 arah dari Google Drive → Supabase.
- *
- * Tujuan: foto yang di-upload jemaat langsung via Google Drive (mis. admin
- * mindahin file dari HP), secara otomatis muncul sebagai etalase di web.
- *
- * Trigger: bisa dipanggil manual (POST /api/gallery/sync) atau via cron
- * (mis. Vercel Cron harian). Butuh admin session cookie OR secret key.
- */
 export async function POST(req: NextRequest) {
-  // Auth: cek 3 jalur berurutan
-  //   1. Vercel Cron job (vercel.json → path /api/gallery/sync).
-  //      Vercel otomatis set header `x-vercel-cron` saat hit endpoint dari
-  //      cron schedule — trusted source, tidak perlu secret tambahan.
-  //   2. External sync caller dengan header `x-sync-secret`.
-  //   3. Admin session (manual trigger dari /admin UI).
-  const isVercelCron = req.headers.get('x-vercel-cron') === '1' || req.headers.get('user-agent')?.includes('vercel-cron');
   const syncSecret = process.env.GALLERY_SYNC_SECRET;
   const providedSecret = req.headers.get('x-sync-secret');
   const session = readSessionFromCookie(req);
 
   const isAuthed =
-    isVercelCron ||
     (syncSecret && providedSecret === syncSecret) ||
-    session?.isAdmin === true;
+    session?.roles?.includes('super') ||
+    session?.roles?.includes('admin');
+
   if (!isAuthed) {
     return NextResponse.json(
-      { error: 'Akses ditolak. Butuh admin session, sync secret, atau Vercel Cron.' },
+      { error: 'Akses ditolak. Butuh admin session atau sync secret.' },
       { status: 401 },
-    );
-  }
-
-  if (!isSupabaseAdminConfigured() || !supabaseAdmin) {
-    return NextResponse.json(
-      { error: 'Supabase admin belum dikonfigurasi. Sinkronisasi tidak bisa berjalan.' },
-      { status: 503 },
     );
   }
 
@@ -54,7 +33,7 @@ export async function POST(req: NextRequest) {
   const client = getDriveClient();
   if (!client) {
     return NextResponse.json(
-      { error: 'Google Drive OAuth belum dikonfigurasi. Jalankan `node scripts/drive-auth-setup.js` dulu.' },
+      { error: 'Google Drive client belum dikonfigurasi.' },
       { status: 503 },
     );
   }
@@ -66,7 +45,6 @@ export async function POST(req: NextRequest) {
   const errors: string[] = [];
 
   try {
-    // 1. List file gambar di folder Drive (exclude folder, trashed)
     const list = await drive.files.list({
       q: `'${folderId}' in parents and mimeType contains 'image/' and trashed = false`,
       fields: 'files(id, name, mimeType, webViewLink, createdTime, description)',
@@ -79,13 +57,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: true, added: 0, skipped: 0, message: 'Tidak ada foto di folder Drive.' });
     }
 
-    // 2. Untuk tiap file, cek apakah sudah ada di DB (by drive_file_id)
-    const { data: existing } = await supabaseAdmin
-      .from('gallery_items')
-      .select('drive_file_id')
-      .not('drive_file_id', 'is', null);
+    const existingRows = await queryAll<{ drive_file_id: string }>(
+      'SELECT drive_file_id FROM gallery_items WHERE drive_file_id IS NOT NULL',
+    );
+    const existingIds = new Set(existingRows.map((r) => r.drive_file_id));
 
-    const existingIds = new Set((existing ?? []).map((r) => r.drive_file_id));
+    let ctx: any = null;
+    try { ctx = await getCloudflareContext({ async: true }); } catch {}
 
     for (const file of driveFiles) {
       if (!file.id || existingIds.has(file.id)) {
@@ -94,43 +72,30 @@ export async function POST(req: NextRequest) {
       }
 
       try {
-        // 3. Dapatkan public URL via thumbnail link (Drive sudah auto-resize)
-        //    Drive webViewLink tidak bisa dipakai langsung sebagai <img src> karena
-        //    auth-protected. Pakai thumbnail endpoint Drive.
-        //    Untuk etalase Supabase, kita pakai Supabase sebagai CDN proxy:
-        //    ambil binary dari Drive, upload ke Supabase Storage.
-        const dlRes = await drive.files.get(
-          { fileId: file.id, alt: 'media' },
-          { responseType: 'arraybuffer' },
-        );
-        const buffer = Buffer.from(dlRes.data as ArrayBuffer);
+        let imageUrl = `https://drive.google.com/thumbnail?id=${file.id}&sz=w2000`;
+        let thumbUrl = `https://drive.google.com/thumbnail?id=${file.id}&sz=w800`;
 
-        const ext = (file.mimeType?.split('/')[1] || 'jpg').replace('jpeg', 'jpg');
-        const fileName = `synced_${file.id}_${Date.now()}.${ext}`;
+        if (ctx?.env?.GALLERY_BUCKET) {
+          try {
+            const dlRes = await drive.files.get(
+              { fileId: file.id, alt: 'media' },
+              { responseType: 'arraybuffer' },
+            );
+            const buffer = Buffer.from(dlRes.data as ArrayBuffer);
+            const ext = (file.mimeType?.split('/')[1] || 'jpg').replace('jpeg', 'jpg');
+            const fileName = `synced_${file.id}_${Date.now()}.${ext}`;
 
-        // Upload ke Supabase Storage (supaya ada CDN publik)
-        const { data: uploadData, error: uploadError } = await supabaseAdmin.storage
-          .from('church-gallery')
-          .upload(`public/${fileName}`, buffer, {
-            contentType: file.mimeType || 'image/jpeg',
-            upsert: false,
-          });
-
-        let imageUrl = '';
-        let thumbUrl = '';
-        if (!uploadError && uploadData) {
-          const { data: publicUrlData } = supabaseAdmin.storage
-            .from('church-gallery')
-            .getPublicUrl(`public/${fileName}`);
-          imageUrl = publicUrlData.publicUrl;
-          thumbUrl = `${imageUrl}?width=800&quality=70&format=webp`;
-        } else {
-          // Fallback: pakai Drive thumbnail (less performant tapi works)
-          imageUrl = `https://drive.google.com/thumbnail?id=${file.id}&sz=w2000`;
-          thumbUrl = `https://drive.google.com/thumbnail?id=${file.id}&sz=w800`;
+            await ctx.env.GALLERY_BUCKET.put(`public/${fileName}`, buffer, {
+              httpMetadata: { contentType: file.mimeType || 'image/jpeg' },
+            });
+            const base = ctx.env.R2_PUBLIC_URL || 'https://gallery.giadeliksari.org';
+            imageUrl = `${base}/public/${fileName}`;
+            thumbUrl = imageUrl;
+          } catch (r2Err) {
+            console.warn('[gallery/sync] R2 sync error, using drive thumb:', r2Err);
+          }
         }
 
-        // Parse deskripsi: "Judul: X | Kategori: Y | Diunggah oleh: Z | Tanggal: W"
         const desc = file.description || '';
         const titleMatch = desc.match(/Judul:\s*([^|]+)/);
         const categoryMatch = desc.match(/Kategori:\s*([^|]+)/);
@@ -144,37 +109,39 @@ export async function POST(req: NextRequest) {
         const uploaderName = (uploaderMatch?.[1] || 'Jemaat').trim();
         const date = (dateMatch?.[1] || new Date(file.createdTime || Date.now()).toLocaleDateString('id-ID', { month: 'long', year: 'numeric' })).trim();
 
-        // 4. Insert row ke gallery_items
-        const { error: insertErr } = await supabaseAdmin.from('gallery_items').insert([{
-          title,
-          category,
-          image: imageUrl,
-          thumb_url: thumbUrl,
-          drive_file_id: file.id,
-          drive_web_view_link: file.webViewLink || `https://drive.google.com/file/d/${file.id}/view`,
-          uploader_name: uploaderName,
-          is_published: true,
-          date,
-        }]);
+        const id = crypto.randomUUID();
+        const now = new Date().toISOString();
 
-        if (insertErr) {
-          errors.push(`${file.name}: ${insertErr.message}`);
-        } else {
-          added++;
-        }
+        await execute(
+          `INSERT INTO gallery_items (
+            id, title, category, image, thumb_url, drive_file_id, drive_web_view_link, uploader_name, is_published, date, created_at
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?)`,
+          [
+            id,
+            title,
+            category,
+            imageUrl,
+            thumbUrl,
+            file.id,
+            file.webViewLink || `https://drive.google.com/file/d/${file.id}/view`,
+            uploaderName,
+            date,
+            now,
+          ],
+        );
+
+        added++;
       } catch (fileErr: any) {
         errors.push(`${file.name}: ${fileErr.message || 'unknown error'}`);
       }
     }
 
-    // Audit log entry — capture the sync outcome for forensic record.
-    const trigger = isVercelCron ? 'vercel-cron' : providedSecret ? 'sync-secret' : 'admin-session';
     await logAudit({
       actor: null,
-      action: 'gallery.upload', // closest semantic match; new audit action if needed
-      summary: `[${trigger}] Sync Drive→DB selesai: ${added} baru, ${skipped} skip, ${driveFiles.length} total`,
-      meta: { trigger, added, skipped, totalScanned: driveFiles.length, errors: errors.length > 0 ? errors.slice(0, 10) : undefined },
-      ctx: { ...auditContextFromRequest(req), source: isVercelCron ? 'cron' : 'api' },
+      action: 'gallery.upload',
+      summary: `Sync Drive→D1 selesai: ${added} baru, ${skipped} skip, ${driveFiles.length} total`,
+      meta: { added, skipped, totalScanned: driveFiles.length, errors: errors.length > 0 ? errors.slice(0, 10) : undefined },
+      ctx: { ...auditContextFromRequest(req), source: 'api' },
     });
 
     return NextResponse.json({
@@ -186,12 +153,6 @@ export async function POST(req: NextRequest) {
     });
   } catch (err: any) {
     console.error('[gallery/sync] error:', err);
-    await logAudit({
-      actor: null,
-      action: 'gallery.upload',
-      summary: `Sync Drive→DB GAGAL: ${err.message || 'unknown'}`,
-      ctx: { ...auditContextFromRequest(req), source: 'cron' },
-    });
     return NextResponse.json(
       { error: 'Sinkronisasi gagal: ' + (err.message || 'unknown') },
       { status: 500 },

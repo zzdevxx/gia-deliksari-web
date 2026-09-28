@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://gia-deliksari-web.vercel.app';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://gia-deliksari-web.vercel.app';
 
   return {
     rules: [

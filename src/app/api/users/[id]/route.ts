@@ -1,13 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireRole, hashPassword, Role } from '@/lib/auth';
-import { supabaseAdmin, isSupabaseAdminConfigured } from '@/lib/supabaseAdmin';
+import { queryFirst, execute } from '@/lib/d1';
 import { logAudit, auditContextFromRequest } from '@/lib/auditLog';
 
 /**
  * PATCH /api/users/[id] — update user (super only).
- * Body (any subset): { roles?, display_name?, active?, password? }
- *   - roles: array of role strings (replaces existing)
- *   - password: 4-64 chars (PIN 4 digit ok)
  */
 export async function PATCH(
   req: NextRequest,
@@ -15,9 +12,6 @@ export async function PATCH(
 ) {
   const guard = await requireRole(req, ['super']);
   if (guard instanceof Response) return guard;
-  if (!isSupabaseAdminConfigured() || !supabaseAdmin) {
-    return NextResponse.json({ error: 'Supabase admin not configured' }, { status: 503 });
-  }
 
   const { id } = await params;
 
@@ -42,13 +36,13 @@ export async function PATCH(
     if (roles.length === 0) {
       return NextResponse.json({ error: 'Minimal 1 role valid' }, { status: 400 });
     }
-    patch.roles = roles;
+    patch.roles = JSON.stringify(roles);
   }
   if (typeof body.display_name === 'string') {
     patch.display_name = body.display_name.trim() || null;
   }
   if (typeof body.active === 'boolean') {
-    patch.active = body.active;
+    patch.active = body.active ? 1 : 0;
   }
   if (typeof body.password === 'string' && body.password.length >= 4) {
     patch.password_hash = await hashPassword(body.password);
@@ -60,32 +54,47 @@ export async function PATCH(
     return NextResponse.json({ error: 'Tidak ada field yang diupdate' }, { status: 400 });
   }
 
-  const { data, error } = await supabaseAdmin
-    .from('users')
-    .update(patch)
-    .eq('id', id)
-    .select('id, username, roles, display_name, active, last_login_at, created_at')
-    .single();
+  try {
+    const updates = Object.keys(patch).map((k) => `${k} = ?`).join(', ');
+    const values = [...Object.values(patch), id];
 
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    await execute(`UPDATE users SET ${updates} WHERE id = ?`, values);
 
-  // Build a structured audit summary of what changed.
-  const changes: Record<string, unknown> = {};
-  if ('roles' in patch) changes.roles = patch.roles;
-  if ('display_name' in patch) changes.display_name = patch.display_name;
-  if ('active' in patch) changes.active = patch.active;
-  if ('password_hash' in patch) changes.password_changed = true; // never log the hash itself
+    const updatedUser = await queryFirst<any>(
+      'SELECT id, username, roles, display_name, active, last_login_at, created_at FROM users WHERE id = ?',
+      [id],
+    );
 
-  await logAudit({
-    actor: { id: guard.id, username: guard.username, roles: guard.roles },
-    action: 'user.update',
-    target: { table: 'users', id, label: data?.username },
-    summary: `Update user '${data?.username}' (${Object.keys(changes).join(', ')})`,
-    meta: { changes, target_username: data?.username },
-    ctx: auditContextFromRequest(req),
-  });
+    if (!updatedUser) {
+      return NextResponse.json({ error: 'User tidak ditemukan' }, { status: 404 });
+    }
 
-  return NextResponse.json({ success: true, user: data });
+    const normalized = {
+      ...updatedUser,
+      roles: typeof updatedUser.roles === 'string' ? JSON.parse(updatedUser.roles) : (updatedUser.roles || []),
+      active: Boolean(updatedUser.active),
+    };
+
+    const changes: Record<string, unknown> = {};
+    if ('roles' in patch) changes.roles = normalized.roles;
+    if ('display_name' in patch) changes.display_name = patch.display_name;
+    if ('active' in patch) changes.active = Boolean(patch.active);
+    if ('password_hash' in patch) changes.password_changed = true;
+
+    await logAudit({
+      actor: { id: guard.id, username: guard.username, roles: guard.roles },
+      action: 'user.update',
+      target: { table: 'users', id, label: normalized.username },
+      summary: `Update user '${normalized.username}' (${Object.keys(changes).join(', ')})`,
+      meta: { changes, target_username: normalized.username },
+      ctx: auditContextFromRequest(req),
+    });
+
+    return NextResponse.json({ success: true, user: normalized });
+  } catch (err: any) {
+    console.error('[users/patch] failed:', err);
+    return NextResponse.json({ error: err.message }, { status: 500 });
+  }
 }
 
 /**
@@ -97,27 +106,28 @@ export async function DELETE(
 ) {
   const guard = await requireRole(req, ['super']);
   if (guard instanceof Response) return guard;
-  if (!isSupabaseAdminConfigured() || !supabaseAdmin) {
-    return NextResponse.json({ error: 'Supabase admin not configured' }, { status: 503 });
-  }
 
   const { id } = await params;
-  const { data, error } = await supabaseAdmin
-    .from('users')
-    .update({ active: false })
-    .eq('id', id)
-    .select('id, username, active')
-    .single();
 
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  try {
+    const user = await queryFirst<any>('SELECT id, username FROM users WHERE id = ?', [id]);
+    if (!user) {
+      return NextResponse.json({ error: 'User tidak ditemukan' }, { status: 404 });
+    }
 
-  await logAudit({
-    actor: { id: guard.id, username: guard.username, roles: guard.roles },
-    action: 'user.deactivate',
-    target: { table: 'users', id, label: data?.username },
-    summary: `Nonaktifkan user '${data?.username}'`,
-    ctx: auditContextFromRequest(req),
-  });
+    await execute('UPDATE users SET active = 0 WHERE id = ?', [id]);
 
-  return NextResponse.json({ success: true, user: data });
+    await logAudit({
+      actor: { id: guard.id, username: guard.username, roles: guard.roles },
+      action: 'user.deactivate',
+      target: { table: 'users', id, label: user.username },
+      summary: `Nonaktifkan user '${user.username}'`,
+      ctx: auditContextFromRequest(req),
+    });
+
+    return NextResponse.json({ success: true, user: { id, username: user.username, active: false } });
+  } catch (err: any) {
+    console.error('[users/delete] failed:', err);
+    return NextResponse.json({ error: err.message }, { status: 500 });
+  }
 }

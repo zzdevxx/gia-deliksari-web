@@ -17,7 +17,6 @@ import {
   MinistryRequestType
 } from '@/types';
 import { adminDataStore } from '@/lib/storage';
-import { isSupabaseConfigured } from '@/lib/supabase';
 import {
   Bell,
   Users,
@@ -688,7 +687,7 @@ export default function AdminDashboard() {
               </span>
               <div className="flex items-center gap-1.5 text-xs text-[#5A4D4E] dark:text-[#D5C2C4]">
                 <Database className="w-3.5 h-3.5 text-[#C5222E]" />
-                <span>{isSupabaseConfigured ? 'Supabase Database' : 'Local Storage Fallback'}</span>
+                <span>Cloudflare D1 Database</span>
               </div>
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1F1617] dark:text-white tracking-tight">

@@ -7,7 +7,6 @@ import {
   INITIAL_GALLERY,
   INITIAL_MINISTRY_REQUESTS
 } from './seedData';
-import { supabase, isSupabaseConfigured } from './supabase';
 
 const ANNOUNCEMENTS_KEY = 'gia_deliksari_announcements_v1';
 const ROSTER_KEY = 'gia_deliksari_roster_v1';
@@ -27,8 +26,8 @@ function toAnnouncementModel(db: any): Announcement {
     category: db.category,
     content: db.content,
     eventDate: db.event_date || db.eventDate,
-    isPinned: db.is_pinned ?? db.isPinned ?? false,
-    isPublished: db.is_published ?? db.isPublished ?? true,
+    isPinned: Boolean(db.is_pinned ?? db.isPinned),
+    isPublished: db.is_published === 1 || db.is_published === true || (db.is_published === undefined && db.isPublished !== false),
     badgeText: db.badge_text || db.badgeText,
     author: db.author || 'Sekretariat GIA Deliksari',
     createdAt: db.created_at || db.createdAt,
@@ -42,8 +41,8 @@ function toAnnouncementDB(model: Announcement) {
     category: model.category,
     content: model.content,
     event_date: model.eventDate,
-    is_pinned: model.isPinned,
-    is_published: model.isPublished,
+    is_pinned: model.isPinned ? 1 : 0,
+    is_published: model.isPublished ? 1 : 0,
     badge_text: model.badgeText,
     author: model.author,
   };
@@ -83,7 +82,7 @@ function toInventoryModel(db: any): InventoryItem {
     category: db.category,
     code: db.code,
     quantity: db.quantity ?? 1,
-    isChecked: db.is_checked ?? db.isChecked ?? true,
+    isChecked: db.is_checked === 1 || db.is_checked === true || (db.is_checked === undefined && db.isChecked !== false),
     condition: db.condition || 'good',
     location: db.location,
     notes: db.notes,
@@ -100,7 +99,7 @@ function toInventoryDB(model: InventoryItem) {
     category: model.category,
     code: model.code,
     quantity: model.quantity,
-    is_checked: model.isChecked,
+    is_checked: model.isChecked ? 1 : 0,
     condition: model.condition,
     location: model.location,
     notes: model.notes,
@@ -133,6 +132,7 @@ function toSermonDB(model: Sermon) {
     youtube_url: model.youtubeUrl,
     thumbnail: model.thumbnail,
     category: model.category,
+    is_published: 1,
   };
 }
 
@@ -146,7 +146,7 @@ function toGalleryModel(db: any): GalleryItem {
     driveFileId: db.drive_file_id || db.driveFileId,
     driveWebViewLink: db.drive_web_view_link || db.driveWebViewLink,
     uploaderName: db.uploader_name || db.uploaderName,
-    isPublished: db.is_published ?? db.isPublished ?? true,
+    isPublished: db.is_published === 1 || db.is_published === true || (db.is_published === undefined && db.isPublished !== false),
     date: db.date,
     createdAt: db.created_at || db.createdAt,
   };
@@ -162,7 +162,7 @@ function toGalleryDB(model: GalleryItem) {
     drive_file_id: model.driveFileId,
     drive_web_view_link: model.driveWebViewLink,
     uploader_name: model.uploaderName,
-    is_published: model.isPublished ?? true,
+    is_published: model.isPublished === false ? 0 : 1,
     date: model.date,
   };
 }
@@ -175,7 +175,7 @@ function toRequestModel(db: any): MinistryRequest {
     phone: db.phone,
     subType: db.sub_type || db.subType,
     message: db.message,
-    needPastoralVisit: db.need_pastoral_visit ?? db.needPastoralVisit ?? false,
+    needPastoralVisit: Boolean(db.need_pastoral_visit ?? db.needPastoralVisit),
     status: db.status || 'new',
     createdAt: db.created_at || db.createdAt || new Date().toISOString(),
   };
@@ -189,7 +189,7 @@ function toRequestDB(model: MinistryRequest) {
     phone: model.phone,
     sub_type: model.subType,
     message: model.message,
-    need_pastoral_visit: model.needPastoralVisit,
+    need_pastoral_visit: model.needPastoralVisit ? 1 : 0,
     status: model.status,
   };
 }
@@ -223,27 +223,7 @@ async function readViaApi<T>(
     console.warn(`Fetch ${endpoint} failed, falling back:`, err);
   }
 
-  // 2. Legacy direct-Supabase read (works while public RLS allows SELECT)
-  if (isSupabaseConfigured && supabase) {
-    try {
-      const table = new URL(endpoint, window.location.href).searchParams.get('table');
-      const orderCol = ORDER_COLUMNS[table as string];
-      if (table && orderCol) {
-        const { data, error } = await supabase.from(table).select('*').order(orderCol, { ascending: orderCol !== 'created_at' });
-        if (!error && data && data.length > 0) {
-          const list = data.map(mapper);
-          if (typeof window !== 'undefined') {
-            try { localStorage.setItem(cacheKey, JSON.stringify(list)); } catch {}
-          }
-          return list;
-        }
-      }
-    } catch (err) {
-      console.warn('Direct Supabase read failed, using local cache:', err);
-    }
-  }
-
-  // 3. Local cache, then bundled seed
+  // 2. Local cache, then bundled seed
   if (typeof window !== 'undefined') {
     const local = localStorage.getItem(cacheKey);
     if (local) {
@@ -253,15 +233,6 @@ async function readViaApi<T>(
   }
   return fallbackSeed;
 }
-
-const ORDER_COLUMNS: Record<string, string> = {
-  announcements: 'event_date',
-  servant_rosters: 'service_date',
-  inventory_items: 'category',
-  sermons: 'created_at',
-  gallery_items: 'created_at',
-  ministry_requests: 'created_at',
-};
 
 async function writeViaApi(table: string, items: any[]): Promise<boolean> {
   try {
