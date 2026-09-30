@@ -19,9 +19,8 @@ const FOOTER_NAV: { title: string; links: { name: string; href: string }[] }[] =
     links: [
       { name: 'Kunjungan Pertama', href: '/home#kunjungan' },
       { name: 'Visi & Nilai', href: '/home#tentang' },
-      { name: 'Sejarah 47 Tahun', href: '/home#sejarah' },
-      { name: 'Tim Pelayanan & Majelis', href: '/home#struktur' },
       { name: '4 Pilar Ibadah', href: '/home#pelayanan' },
+      { name: 'Lokasi & Kontak', href: '/home#kontak' },
     ],
   },
   {
