@@ -3,46 +3,47 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Menu, X, ShieldCheck, ChevronDown } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
 type NavItem = { name: string; href: string; description?: string };
 
-// UX Pro Max: max 5-7 primary nav items. The full 11 live in mobile sheet
-// (grouped under descriptive headers) + footer.
+// UX Pro Max: 5 clean primary nav items for desktop
 const PRIMARY_NAV: NavItem[] = [
-  { name: 'Beranda', href: '/home', description: 'Halaman utama jemaat' },
-  { name: 'Info', href: '/info', description: 'Warta & jadwal pelayanan' },
-  { name: 'Khotbah', href: '/home#khotbah', description: 'Renungan terbaru' },
-  { name: 'Layanan', href: '/home#layanan', description: 'Permohonan & doa' },
-  { name: 'Kontak', href: '/home#kontak', description: 'Lokasi & hubungi kami' },
+  { name: 'Beranda', href: '/home', description: 'Pengenalan & sejarah gereja' },
+  { name: 'Warta & Jadwal', href: '/info', description: 'Warta jemaat & roster' },
+  { name: 'Khotbah & Galeri', href: '/media', description: 'Video firman & foto ibadah' },
+  { name: 'Layanan Doa', href: '/layanan', description: 'Permohonan doa & sakramen' },
+  { name: 'Persembahan', href: '/persembahan', description: 'Transfer bank & QRIS' },
 ];
 
 // Grouped sections in mobile sheet for full discovery without nav clutter
 const MOBILE_GROUPS: { title: string; items: NavItem[] }[] = [
   {
-    title: 'Tentang',
+    title: 'Gereja & Pengenalan',
     items: [
-      { name: 'Kunjungan', href: '/home#kunjungan', description: 'Panduan untuk tamu' },
-      { name: 'Tentang Gereja', href: '/home#tentang', description: 'Sejarah & visi' },
-      { name: 'Tim Pelayanan', href: '/home#struktur', description: 'Hamba Tuhan & staf' },
-      { name: 'Pelayanan', href: '/home#pelayanan', description: '4 pilar ibadah' },
+      { name: 'Beranda', href: '/home', description: 'Halaman muka jemaat' },
+      { name: 'Panduan Tamu Onsite', href: '/home#kunjungan', description: 'Panduan untuk jemaat baru' },
+      { name: 'Visi & Nilai', href: '/home#tentang', description: 'Visi penggembalaan' },
+      { name: 'Sejarah 47 Tahun', href: '/home#sejarah', description: 'Milestone iman 1979 - 2026' },
+      { name: 'Tim Pelayanan & Majelis', href: '/home#struktur', description: 'Struktur pengerja gereja' },
+      { name: 'Lokasi & Kontak', href: '/home#kontak', description: 'Alamat & WhatsApp' },
     ],
   },
   {
-    title: 'Aktivitas',
+    title: 'Aktivitas & Pelayanan',
     items: [
-      { name: 'Khotbah Terbaru', href: '/home#khotbah', description: 'Arsip & streaming' },
-      { name: 'Warta Jemaat', href: '/info#warta', description: 'Pengumuman terbaru' },
-      { name: 'Jadwal Ibadah', href: '/info#jadwal', description: 'Minggu & youth' },
-      { name: 'Persembahan', href: '/home#persembahan', description: 'Donasi & dukungan' },
-      { name: 'Galeri', href: '/home#galeri', description: 'Foto kegiatan' },
-      { name: 'Kontak & Lokasi', href: '/home#kontak', description: 'Alamat & WhatsApp' },
+      { name: 'Warta & Jadwal Roster', href: '/info', description: 'Pengumuman & petugas ibadah' },
+      { name: 'Khotbah & Galeri Foto', href: '/media', description: 'YouTube streaming & foto' },
+      { name: 'Layanan Doa & Sakramen', href: '/layanan', description: 'Konseling, baptisan & komsel' },
+      { name: 'Persembahan Kasih (QRIS)', href: '/persembahan', description: 'Dukungan pekerjaan Tuhan' },
     ],
   },
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('');
@@ -56,14 +57,14 @@ export default function Navbar() {
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       setScrollProgress(docHeight > 0 ? Math.min(window.scrollY / docHeight, 1) : 0);
 
-      // Determine active section via IntersectionObserver
-      const sections = ['kunjungan', 'tentang', 'pelayanan', 'khotbah', 'warta', 'jadwal', 'struktur', 'layanan', 'persembahan', 'galeri', 'kontak'];
+      // Determine active section via scroll position for anchor links on home
+      const sections = ['kunjungan', 'tentang', 'sejarah', 'pelayanan', 'struktur', 'kontak'];
       let current = '';
       for (const id of sections) {
         const el = document.getElementById(id);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= 120 && rect.bottom > 120) {
+          if (rect.top <= 140 && rect.bottom > 140) {
             current = id;
             break;
           }
@@ -99,34 +100,30 @@ export default function Navbar() {
           : 'bg-[#FDFBF7]/85 dark:bg-[#150B0D]/85 backdrop-blur-sm border-b border-[#EBDDCF]/60 dark:border-[#3A1C20]/60'
       }`}
     >
-      {/* Scroll progress bar */}
-      <div
-        className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-[#C5222E] via-[#A81722] to-[#80141C] transition-[width] duration-150 ease-out"
-        style={{ width: `${scrollProgress * 100}%` }}
-        aria-hidden="true"
-      />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-
-          {/* Brand Logo & Church Name */}
-          <Link href="/home" className="flex items-center gap-3 group" aria-label="GIA Deliksari - Beranda">
-            <div className="relative w-11 h-11 rounded-2xl overflow-hidden border border-[#C5222E]/30 bg-white p-0.5 shadow-sm group-hover:scale-105 transition-transform duration-200">
+          {/* Brand Identity / Logo */}
+          <Link
+            href="/home"
+            className="flex items-center gap-3.5 group transition-transform active:scale-95"
+            aria-label="Gereja Isa Almasih Deliksari Semarang - Kembali ke Beranda"
+          >
+            <div className="relative w-11 h-11 rounded-2xl overflow-hidden shadow-sm border border-[#EBDDCF] dark:border-[#3A1C20] bg-white p-0.5 group-hover:border-[#C5222E] dark:group-hover:border-[#E03643] transition-colors">
               <Image
                 src="/images/logo.png"
-                alt="Logo GIA Deliksari"
+                alt="Logo Resmi GIA Deliksari Semarang"
                 fill
-                priority
                 sizes="44px"
-                className="object-cover rounded-xl"
+                className="object-contain"
+                priority
               />
             </div>
             <div className="flex flex-col">
-              <div className="flex items-center gap-2">
-                <span className="font-extrabold text-base sm:text-lg tracking-tight text-[#1F1617] dark:text-[#F5EFEB] group-hover:text-[#C5222E] dark:group-hover:text-[#E03643] transition-colors">
-                  GIA Deliksari
+              <div className="flex items-center gap-1.5">
+                <span className="font-extrabold text-base tracking-tight text-[#1F1617] dark:text-[#F5EFEB] group-hover:text-[#C5222E] dark:group-hover:text-[#E03643] transition-colors">
+                  GIA DELIKSARI
                 </span>
-                <span className="hidden sm:inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#FDF0F0] text-[#9A1620] border border-[#F5CDD0] dark:bg-[#331418] dark:text-[#F2828C] dark:border-[#521E25]">
+                <span className="text-[10px] font-bold text-[#80141C] dark:text-[#F2828C] bg-[#FDF0F0] dark:bg-[#331418] px-1.5 py-0.2 rounded border border-[#F5CDD0] dark:border-[#521E25] hidden sm:inline-block">
                   Semarang
                 </span>
               </div>
@@ -139,16 +136,19 @@ export default function Navbar() {
           {/* Desktop Navigation — 5 primary items, all visible on lg+ */}
           <nav className="hidden lg:flex items-center gap-1" aria-label="Navigasi utama">
             {PRIMARY_NAV.map((link) => {
+              const isCurrentPage =
+                pathname === link.href || (pathname === '/' && link.href === '/home');
               const sectionId = link.href.includes('#') ? link.href.split('#')[1] : '';
-              const isActive = sectionId === activeSection;
+              const isActive = isCurrentPage || (Boolean(sectionId) && sectionId === activeSection);
+
               return (
-                <a
+                <Link
                   key={link.name}
                   href={link.href}
                   aria-current={isActive ? 'page' : undefined}
-                  className={`relative px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
+                  className={`relative px-3.5 py-2 rounded-xl text-xs font-semibold transition-all ${
                     isActive
-                      ? 'text-[#C5222E] dark:text-[#E03643] bg-[#FDF0F0] dark:bg-[#331418]'
+                      ? 'text-[#C5222E] dark:text-[#E03643] bg-[#FDF0F0] dark:bg-[#331418] font-bold shadow-xs'
                       : 'text-[#5A4D4E] dark:text-[#D5C2C4] hover:text-[#C5222E] dark:hover:text-[#E03643] hover:bg-[#F7F2E8] dark:hover:bg-[#251317]'
                   }`}
                 >
@@ -156,7 +156,7 @@ export default function Navbar() {
                   {isActive && (
                     <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-[#C5222E] dark:bg-[#E03643]" />
                   )}
-                </a>
+                </Link>
               );
             })}
           </nav>
@@ -178,30 +178,34 @@ export default function Navbar() {
           {/* Mobile Menu Trigger & Theme Toggle */}
           <div className="flex items-center gap-2 lg:hidden">
             <ThemeToggle />
-
             <button
+              type="button"
               onClick={() => setIsOpen(!isOpen)}
-              aria-label={isOpen ? 'Tutup menu' : 'Buka menu'}
+              className="p-2.5 rounded-xl text-[#1F1617] dark:text-[#F5EFEB] hover:bg-[#F7F2E8] dark:hover:bg-[#251317] border border-[#EBDDCF] dark:border-[#3A1C20] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C5222E]"
+              aria-label={isOpen ? 'Tutup navigasi' : 'Buka navigasi'}
               aria-expanded={isOpen}
-              aria-controls="mobile-nav-sheet"
-              className="p-2 rounded-xl text-[#5A4D4E] dark:text-[#D5C2C4] hover:bg-[#F7F2E8] dark:hover:bg-[#251317] transition-colors"
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isOpen ? <X className="w-5 h-5 text-[#C5222E]" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
-
         </div>
       </div>
 
-      {/* Mobile Sheet — grouped full discovery without overwhelming */}
+      {/* Scroll Progress Bar at bottom of header */}
       <div
-        id="mobile-nav-sheet"
+        className="h-[2px] bg-gradient-to-r from-[#C5222E] via-[#D97706] to-[#C5222E] transition-all duration-150 origin-left"
+        style={{ transform: `scaleX(${scrollProgress})` }}
+        aria-hidden="true"
+      />
+
+      {/* Mobile Drawer Navigation */}
+      <div
         role="dialog"
         aria-label="Menu navigasi"
         aria-modal="true"
         hidden={!isOpen}
-        className={`lg:hidden bg-[#FDFBF7] dark:bg-[#150B0D] border-t border-[#EBDDCF] dark:border-[#3A1C20] shadow-2xl overflow-hidden transition-[max-height] duration-300 ease-out-expo ${
-          isOpen ? 'max-h-[80vh] overflow-y-auto' : 'max-h-0'
+        className={`lg:hidden bg-[#FDFBF7] dark:bg-[#150B0D] border-t border-[#EBDDCF] dark:border-[#3A1C20] shadow-2xl overflow-hidden transition-[max-height] duration-300 ease-out ${
+          isOpen ? 'max-h-[85vh] overflow-y-auto' : 'max-h-0'
         }`}
       >
         <div className="px-4 pt-3 pb-6 space-y-5">
@@ -213,7 +217,7 @@ export default function Navbar() {
               <ul className="space-y-1">
                 {group.items.map((link) => (
                   <li key={link.href}>
-                    <a
+                    <Link
                       href={link.href}
                       onClick={closeSheet}
                       className="flex items-start gap-3 px-4 py-2.5 rounded-xl hover:bg-[#F7F2E8] dark:hover:bg-[#251317] transition-colors group"
@@ -232,7 +236,7 @@ export default function Navbar() {
                         className="w-4 h-4 -rotate-90 text-[#BFB5A6] dark:text-[#5E574B] group-hover:text-[#C5222E] dark:group-hover:text-[#E03643] transition-colors shrink-0 mt-1"
                         aria-hidden="true"
                       />
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

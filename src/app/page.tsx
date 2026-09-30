@@ -3,14 +3,10 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import HospitalitySection from '@/components/HospitalitySection';
 import AboutSection from '@/components/AboutSection';
+import ChurchHistorySection from '@/components/ChurchHistorySection';
 import MinistriesSection from '@/components/MinistriesSection';
-import SermonsSection from '@/components/SermonsSection';
-import AnnouncementBoard from '@/components/AnnouncementBoard';
-import ScheduleSection from '@/components/ScheduleSection';
+import QuickExploreHub from '@/components/QuickExploreHub';
 import OrganizationSection from '@/components/OrganizationSection';
-import MinistryRegistrationSection from '@/components/MinistryRegistrationSection';
-import GivingSection from '@/components/GivingSection';
-import GallerySection from '@/components/GallerySection';
 import LocationContactSection from '@/components/LocationContactSection';
 import Footer from '@/components/Footer';
 
@@ -20,19 +16,15 @@ export default function Home() {
       {/* Top Sticky Header */}
       <Navbar />
 
-      {/* Main Page Flow */}
+      {/* Main Page Flow - Focused on Church Welcome, Identity & History */}
       <main className="flex-1">
         <Hero />
         <HospitalitySection />
         <AboutSection />
+        <ChurchHistorySection />
         <MinistriesSection />
-        <SermonsSection />
-        <AnnouncementBoard />
-        <ScheduleSection />
+        <QuickExploreHub />
         <OrganizationSection />
-        <MinistryRegistrationSection />
-        <GivingSection />
-        <GallerySection />
         <LocationContactSection />
       </main>
 

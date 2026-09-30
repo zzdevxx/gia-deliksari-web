@@ -125,7 +125,7 @@ export default function Hero() {
 
               <Button
                 as="link"
-                href="#jadwal"
+                href="/info"
                 variant="outline"
                 size="lg"
                 iconLeft={<Calendar className="w-4 h-4" />}
