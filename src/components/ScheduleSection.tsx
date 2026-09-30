@@ -13,8 +13,12 @@ import {
   Music,
   Car,
   ChevronRight,
-  ShieldCheck
+  ShieldCheck,
+  Share2,
+  Copy,
+  Check
 } from 'lucide-react';
+import { WhatsAppIcon } from './Icons';
 import { dataStore } from '@/lib/storage';
 import { INITIAL_ROSTER } from '@/lib/seedData';
 import { ServantRoster } from '@/types';
@@ -55,6 +59,50 @@ export default function ScheduleSection() {
   const [roster, setRoster] = useState<ServantRoster[]>(INITIAL_ROSTER);
   const [selectedRosterCategory, setSelectedRosterCategory] = useState<'all' | 'general' | 'youth' | 'kidz' | 'hana'>('all');
   const [loading, setLoading] = useState(true);
+  const [copiedWa, setCopiedWa] = useState(false);
+
+  const generateWhatsAppBroadcast = () => {
+    const categoryName = ROSTER_TABS.find((t) => t.id === selectedRosterCategory)?.label || 'Semua Komunitas';
+    const items = roster
+      .filter((item) => selectedRosterCategory === 'all' || item.serviceCategory === selectedRosterCategory)
+      .sort((a, b) => new Date(a.serviceDate).getTime() - new Date(b.serviceDate).getTime());
+
+    if (items.length === 0) {
+      return `🕊️ *JADWAL PELAYANAN GIA DELIKSARI SEMARANG*\nKategori: *${categoryName}*\n\nBelum ada jadwal yang dipublikasikan.`;
+    }
+
+    // Group by serviceDate
+    const dateMap = new Map<string, typeof items>();
+    items.forEach((item) => {
+      const existing = dateMap.get(item.serviceDate) || [];
+      existing.push(item);
+      dateMap.set(item.serviceDate, existing);
+    });
+
+    let text = `🕊️ *JADWAL PELAYANAN GIA DELIKSARI SEMARANG*\n`;
+    text += `📋 Kategori: *${categoryName}*\n`;
+    text += `━━━━━━━━━━━━━━━━━━━━━\n\n`;
+
+    dateMap.forEach((servants, dateStr) => {
+      text += `📅 *Tanggal: ${dateStr}*\n`;
+      servants.forEach((s) => {
+        text += `• *${s.role}*: ${s.servantName} ${s.status === 'replacement' ? '(Pengganti)' : ''}\n`;
+      });
+      text += `\n`;
+    });
+
+    text += `━━━━━━━━━━━━━━━━━━━━━\n`;
+    text += `_"Layanilah seorang akan yang lain, sesuai dengan karunia yang telah diperoleh tiap-tiap orang sebagai pengurus yang baik dari kasih karunia Allah." (1 Petrus 4:10)_\n\n`;
+    text += `Tuhan Yesus Memberkati pelayanan kita bersama! 🙏✨`;
+    return text;
+  };
+
+  const handleCopyWaBroadcast = () => {
+    const text = generateWhatsAppBroadcast();
+    navigator.clipboard.writeText(text);
+    setCopiedWa(true);
+    setTimeout(() => setCopiedWa(false), 2500);
+  };
 
   useEffect(() => {
     let cancelled = false;
@@ -296,12 +344,37 @@ export default function ScheduleSection() {
                 Susunan pelayan firman, musik, multimedia, dan usher untuk ibadah mendatang
               </p>
             </div>
-            <a
-              href="#layanan"
-              className="px-4 py-2 rounded-xl bg-[#F7F2E8] dark:bg-[#2A161A] text-[#C5222E] dark:text-[#E03643] hover:bg-[#FDF0F0] text-xs font-bold transition-colors self-start sm:self-auto"
-            >
-              Ajukan Jadwal Pelayanan
-            </a>
+            <div className="flex flex-wrap items-center gap-2.5 self-start sm:self-auto">
+              <button
+                type="button"
+                onClick={handleCopyWaBroadcast}
+                className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-xs ${
+                  copiedWa
+                    ? 'bg-emerald-600 text-white'
+                    : 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/40'
+                }`}
+                title="Salin Jadwal Petugas untuk Broadcast WhatsApp"
+              >
+                {copiedWa ? (
+                  <>
+                    <Check className="w-3.5 h-3.5" />
+                    <span>Format WA Tersalin!</span>
+                  </>
+                ) : (
+                  <>
+                    <WhatsAppIcon className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                    <span>Salin Format WA</span>
+                  </>
+                )}
+              </button>
+
+              <a
+                href="#layanan"
+                className="px-4 py-2 rounded-xl bg-[#F7F2E8] dark:bg-[#2A161A] text-[#C5222E] dark:text-[#E03643] hover:bg-[#FDF0F0] text-xs font-bold transition-colors"
+              >
+                Ajukan Jadwal Pelayanan
+              </a>
+            </div>
           </div>
 
           {/* Roster Category Filter Tabs */}

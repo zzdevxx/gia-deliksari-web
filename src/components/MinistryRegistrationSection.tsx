@@ -58,11 +58,18 @@ export default function MinistryRegistrationSection() {
       details = `Bidang Pelayanan: ${volunteerRole}\nPengalaman / Catatan: ${message || '-'}`;
     }
 
+    let normalizedPhone = phone.trim();
+    if (normalizedPhone.startsWith('0')) {
+      normalizedPhone = '62' + normalizedPhone.slice(1);
+    } else if (normalizedPhone.startsWith('+62')) {
+      normalizedPhone = normalizedPhone.slice(1);
+    }
+
     const newRequest: MinistryRequest = {
       id: `req-${Date.now()}`,
       type: activeTab,
       name,
-      phone,
+      phone: normalizedPhone,
       subType,
       message,
       needPastoralVisit: activeTab === 'prayer' ? needPastoralVisit : false,
@@ -70,16 +77,16 @@ export default function MinistryRegistrationSection() {
       createdAt: new Date().toISOString(),
     };
 
-    // Save to Supabase & LocalStorage
+    // Save to Cloudflare D1 & LocalStorage
     try {
       await dataStore.saveMinistryRequest(newRequest);
     } catch (err) {
       console.warn('Failed saving request to database, continuing WhatsApp redirect:', err);
     }
 
-    const fullMessage = `*Syalom GIA Deliksari Semarang*\n\n*${headerText}*\n\nNama: ${name}\nNo. WhatsApp: ${phone}\n${details}\n\nTerima kasih, Tuhan Yesus Memberkati.`;
+    const fullMessage = `*Syalom GIA Deliksari Semarang*\n\n*${headerText}*\n\nNama: ${name}\nNo. WhatsApp: ${normalizedPhone}\n${details}\n\nTerima kasih, Tuhan Yesus Memberkati.`;
 
-    const phoneTarget = process.env.NEXT_PUBLIC_CHURCH_WHATSAPP || '6281234567890';
+    const phoneTarget = process.env.NEXT_PUBLIC_CHURCH_WHATSAPP || '6289620961103';
     const waUrl = `https://api.whatsapp.com/send?phone=${phoneTarget}&text=${encodeURIComponent(fullMessage)}`;
 
     window.open(waUrl, '_blank');
@@ -174,15 +181,22 @@ export default function MinistryRegistrationSection() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">
-                    Nomor WhatsApp / HP <span className="text-[#C5222E]">*</span>
-                  </label>
+                  <div className="flex items-center justify-between">
+                    <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">
+                      Nomor WhatsApp / HP <span className="text-[#C5222E]">*</span>
+                    </label>
+                    <span className="text-[10px] text-[#6E5D5F] dark:text-[#B5A1A3]">
+                      Aktif WhatsApp
+                    </span>
+                  </div>
                   <input
                     type="tel"
                     required
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={(e) => setPhone(e.target.value.replace(/[^\d+]/g, ''))}
                     placeholder="Contoh: 081234567890"
+                    pattern="^(\+62|62|0)8[1-9][0-9]{6,11}$"
+                    title="Masukkan nomor WhatsApp Indonesia yang valid (contoh: 081234567890)"
                     className="w-full px-4 py-3.5 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] focus:ring-2 focus:ring-[#C5222E]/30 focus:border-[#C5222E] outline-none transition-all"
                   />
                 </div>
