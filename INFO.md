@@ -1,7 +1,7 @@
 # 📖 INFO — GIA Deliksari Web Portal
 
 > **Single Source of Truth** untuk semua informasi resmi Gereja Isa Almasih (GIA) Deliksari Semarang.
-> Dokumen ini selaras dengan data di Supabase (`announcements`, `servant_rosters`, `inventory_items`, `users`) yang ditampilkan via `/api/public/data` dan `/api/youth-treasury`.
+> Dokumen ini selaras dengan database Cloudflare D1 (`gia-deliksari-db`) yang ditampilkan via API dan portal operasional.
 
 ---
 
@@ -12,7 +12,7 @@
 | **Nama Resmi** | Gereja Isa Almasih (GIA) Deliksari Semarang |
 | **Nama Singkat** | GIA Deliksari |
 | **Slogan / Tagar** | **Growing Church!** 🔥 |
-| **URL Publik** | https://gia-deliksari-web.vercel.app |
+| **URL Publik** | https://gia-deliksari-web.zzdree.workers.dev |
 | **Hak Cipta** | Proprietary & Private (All Rights Reserved) |
 | **Pengelola Konten** | GIA Deliksari Creative Media Team |
 
@@ -251,15 +251,18 @@ Warta jemaat **diinput oleh admin melalui Portal Admin** (`/admin` → tab **War
 
 ## 10. Portal Akses (Multi-Role) 🛡️
 
-### 10.1 Ringkasan Portal
+### 10.1 Ringkasan Halaman & Portal
 
-| Portal | URL | Role yang dibutuhkan |
-|---|---|---|
-| **Beranda Jemaat** | `/home` | publik |
-| **Info Pelayanan** | `/info` | publik |
-| **Admin / Operator** | `/admin` | `super` \| `admin` |
-| **Superuser** | `/super` | `super` only |
-| **Kas Youth** | `/kas` | `super` \| `treasurer` |
+| Portal / Halaman | URL | Akses | Fungsi Utama |
+|---|---|---|---|
+| **Beranda Jemaat** | `/home` | publik | Pengenalan gereja, visi "Growing Church!", profil gembala, panduan tamu onsite, dan lokasi. |
+| **Warta & Jadwal** | `/info` | publik | Papan warta jemaat mingguan, jadwal roster ibadah, cetak buletin A4, dan salin format WhatsApp. |
+| **Khotbah & Galeri** | `/media` | publik | Video khotbah YouTube Data API v3 & arsip galeri foto dokumentasi. |
+| **Layanan Jemaat** | `/layanan` | publik | Formulir permohonan doa, konseling pastoral, pendaftaran sakramen, komsel, dan volunteer. |
+| **Persembahan Kasih** | `/persembahan` | publik | 4 pos persembahan, salin rekening BCA/BRI 1-klik, dan modal QRIS digital nasional. |
+| **Admin / Operator** | `/admin` | `super` \| `admin` | CMS warta, plotting roster pelayan, inventaris gereja, dan kelola khotbah. |
+| **Superuser** | `/super` | `super` only | Manajemen user multi-role (create, edit role, soft-delete). |
+| **Kas Youth** | `/kas` | `super` \| `treasurer` | Buku kas pemuda Grow Generation (transaksi pemasukan/pengeluaran & saldo realtime). |
 
 ### 10.2 Akun Production (per Agustus 2026)
 

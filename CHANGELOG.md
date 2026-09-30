@@ -5,7 +5,28 @@ All notable changes to GIA Deliksari Web will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.0.0] - 2026-10-01 — Cloudflare Native & Modular Architecture Overhaul
+
+### Cloudflare Migration
+- **Backend Migration**: Replaced Supabase and Vercel with **Cloudflare D1 (Serverless SQLite)** + **OpenNext Edge Runtime** (`@opennextjs/cloudflare`) deployed on Cloudflare Workers.
+- **Database Engine**: 9 tables + 1 view ported to SQLite with full parameter-binding prepared statements in `src/lib/d1.ts`. Zero downtime, 24/7 always active edge database in Singapore region (APAC - SIN).
+- **Cleanup & Purge**: 100% purged all legacy Supabase directories (`supabase/`), 11 deprecated scripts in `scripts/`, `vercel.json`, and deployment logs.
+- **Worker Cron Triggers**: Restored auto-sync cron (`0 3 * * *`) via Cloudflare Workers native cron triggers.
+- **Production Secrets**: Secured production secrets (`ADMIN_SESSION_SECRET`, `YOUTUBE_API_KEY`, Google OAuth tokens) encrypted via Wrangler Secret API.
+
+### Modular Page & UX Architecture (Anti-Slop Redesign)
+- **Eliminated 12.000px Endless Scroll on `/home`**: Streamlined home page from 12 bloated sections down to 5 focused sections (Hero, Hospitality, About & Gembala, 4 Pilar, Lokasi & Kontak). HTML payload reduced ~45%.
+- **Zero Hallucination / Fact-Checked Content**: Purged artificial history dates; grounded all content strictly in verified church data (Kawasan Sekaran, UNNES, Sanctuary & Bethel facilities, pastoral leadership).
+- **New Modular Routes**:
+  - `/layanan` — Dedicated portal for prayer requests, pastoral counseling, sacrament registrations, and volunteer sign-ups with auto-normalized Indonesian WhatsApp formatting (`08xx` -> `628xx`).
+  - `/media` — Dedicated hub for latest YouTube sermon archives and photo gallery with interactive lightbox.
+  - `/persembahan` — Dedicated giving experience with 4 category tabs, 1-click BCA/BRI account copying, high-res QRIS modal dialog, and dynamic WhatsApp confirmation generator.
+- **Navbar & Footer Refactor**: Desktop navigation and mobile drawer updated to 5 clear modular items with active route highlighting and scroll progress bar.
+- **Roster WA Broadcast Generator**: Added 1-click WhatsApp broadcast formatting with Scripture quote (`1 Petrus 4:10`) in `ScheduleSection` and `/info`.
+
+---
+
+## [1.1.0] - 2026-09-01
 
 ### Added
 - **UI primitives library** (`src/components/ui/`): Button, Badge, Card, LinkCard, Skeleton, EmptyState, Container primitives. Hybrid approach — added alongside existing components without breaking visual continuity.

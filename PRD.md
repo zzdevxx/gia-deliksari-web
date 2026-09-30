@@ -27,8 +27,11 @@ GIA Deliksari Web Portal adalah platform pelayanan digital terintegrasi untuk je
 | Route | Tipe | Auth | Deskripsi |
 |---|---|---|---|
 | `/` | server | — | 308 redirect ke `/home` |
-| `/home` | static | — | Landing publik jemaat (8+ section: Hero, About, Ministries, Sermons, Warta, Jadwal, Struktur, Persembahan, Galeri, Kontak) |
-| `/info` | static | — | Halaman publik fokus warta + jadwal pelayanan |
+| `/home` | static | — | Beranda jemaat: Hero, Hospitality, About & Gembala, 4 Pilar, Lokasi & Kontak |
+| `/info` | static | — | Papan warta jemaat mingguan, jadwal roster ibadah, cetak buletin A4, salin format WA |
+| `/media` | static | — | Arsip video khotbah YouTube Data API v3 & galeri foto dokumentasi |
+| `/layanan` | static | — | Formulir doa, konseling pastoral, pendaftaran sakramen, komsel, volunteer |
+| `/persembahan` | static | — | 4 pos persembahan, salin rekening bank BCA & BRI 1-klik, modal QRIS digital |
 | `/admin` | client | super / admin | Portal admin/operator (5 tab CRUD) |
 | `/super` | client | super only | Portal superuser (user management) |
 | `/kas` | client | super / treasurer | Portal kas youth (transaksi + saldo) |
@@ -37,15 +40,15 @@ GIA Deliksari Web Portal adalah platform pelayanan digital terintegrasi untuk je
 | `/api/auth/check` | GET | session | Return current authenticated user |
 | `/api/users` | GET / PATCH | super | List / create / update user |
 | `/api/users/[id]` | PATCH / DELETE | super | Update role/password/active |
-| `/api/admin/data` | GET / POST / DELETE | super / admin | CRUD tabel admin (warta, roster, inventaris, dll) |
-| `/api/public/data` | GET | — | Read publik (sanitized) |
+| `/api/admin/data` | GET / POST / DELETE | super / admin | CRUD tabel admin via Cloudflare D1 |
+| `/api/public/data` | GET | — | Read publik sanitized via Cloudflare D1 |
 | `/api/public/ministry-requests` | POST | — + rate limit | Submit permohonan jemaat |
-| `/api/youth-treasury` | GET / POST | super / treasurer | List + create transaksi kas |
-| `/api/youth-treasury/[id]` | PATCH / DELETE | super / treasurer | Update / delete transaksi |
-| `/api/gallery/upload` | POST | — (multipart) | Upload foto ke Drive + Supabase |
-| `/api/gallery/sync` | POST | session / secret | Sinkronisasi Drive → DB |
+| `/api/youth-treasury` | GET / POST | super / treasurer | List + create transaksi kas di D1 |
+| `/api/youth-treasury/[id]` | PATCH / DELETE | super / treasurer | Update / delete transaksi di D1 |
+| `/api/gallery/upload` | POST | — (multipart) | Upload foto ke Google Drive + D1 |
+| `/api/gallery/sync` | POST | session / secret | Sinkronisasi Drive → D1 |
 | `/api/youtube/latest` | GET | — | Fetch video khotbah terbaru YouTube Data API v3 |
-| `/api/debug/env` | GET | admin (di production) | Diagnostic env vars |
+| `/api/debug/env` | GET | admin (di production) | Diagnostic env vars & D1 binding |
 
 ### 2.2 Multi-Portal Authentication
 
