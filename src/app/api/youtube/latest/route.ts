@@ -20,7 +20,7 @@ export async function GET() {
     });
   }
 
-  // If no API key configured, gracefully fallback to seed/Supabase sermons
+  // If no API key configured, gracefully fallback to seed/D1 sermons
   if (!apiKey) {
     return NextResponse.json({
       source: 'fallback',

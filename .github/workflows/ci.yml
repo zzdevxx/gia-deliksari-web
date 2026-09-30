@@ -102,6 +102,7 @@ jobs:
       - name: Run mutation suite
         env:
           RUN_MUTATION_TESTS: '1'
+          BASE_URL: https://gia-deliksari-web.zzdree.workers.dev
           TEST_SUPER_USER: andreas
           # Use a GitHub Actions secret for the test super password.
           TEST_SUPER_PASS: ${{ secrets.TEST_SUPER_PASS }}

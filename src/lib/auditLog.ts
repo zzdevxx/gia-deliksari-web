@@ -4,8 +4,7 @@ import type { Role } from './auth';
 /**
  * Audit log writer for sensitive admin/super/kas actions.
  *
- * Logs go to the Supabase `audit_log` table (created by migration
- * `20260831_add_audit_log.sql`). Inserts are best-effort fire-and-forget:
+ * Logs go to the Cloudflare D1 `audit_log` table. Inserts are best-effort fire-and-forget:
  * the calling action MUST NOT be aborted by an audit failure — we swallow
  * errors after logging them.
  *
@@ -135,14 +134,15 @@ export async function logAudit(entry: AuditEntry): Promise<boolean> {
 
 /**
  * Extract a normalized AuditContext from a NextRequest.
- * Resolves IP from common proxy headers (Vercel sets x-forwarded-for).
+ * Resolves IP from Cloudflare cf-connecting-ip or standard proxy headers.
  */
 export function auditContextFromRequest(
   req: { headers: { get(name: string): string | null } },
   source: AuditContext['source'] = 'api',
 ): AuditContext {
+  const cfIp = req.headers.get('cf-connecting-ip');
   const fwd = req.headers.get('x-forwarded-for');
-  const ip = (fwd ? fwd.split(',')[0]?.trim() : null) ?? req.headers.get('x-real-ip');
+  const ip = cfIp ?? (fwd ? fwd.split(',')[0]?.trim() : null) ?? req.headers.get('x-real-ip');
   return {
     source,
     ip,

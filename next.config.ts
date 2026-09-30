@@ -78,6 +78,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: '*.r2.dev',
       },
+      {
+        protocol: 'https',
+        hostname: 'gallery.giadeliksari.org',
+      },
     ],
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },

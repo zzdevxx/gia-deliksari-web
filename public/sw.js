@@ -95,7 +95,7 @@ self.addEventListener('fetch', (event) => {
     urlObj.host.includes('drive.google.com')
     || urlObj.host.includes('youtube.com')
     || urlObj.host.includes('youtube-nocookie.com')
-    || urlObj.host.includes('supabase.co')
+    || urlObj.host.includes('r2.dev')
     || urlObj.host.includes('googleapis.com')
     || urlObj.host.includes('googlevideo.com')
   ) {

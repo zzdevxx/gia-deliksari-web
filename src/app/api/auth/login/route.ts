@@ -22,8 +22,9 @@ import { logAudit, auditContextFromRequest } from '@/lib/auditLog';
  * triggers a 1-minute lockout. Counter resets on successful login.
  */
 export async function POST(req: NextRequest) {
-  // Extract IP for rate limiting (Vercel provides x-forwarded-for)
+  // Extract client IP (Cloudflare cf-connecting-ip prioritized)
   const ip =
+    req.headers.get('cf-connecting-ip') ||
     req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
     req.headers.get('x-real-ip') ||
     'unknown';

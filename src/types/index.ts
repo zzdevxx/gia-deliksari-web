@@ -66,8 +66,8 @@ export interface GalleryItem {
   id: string;
   title: string;
   category: GalleryCategory;
-  image: string;            // URL utama (public Supabase Storage / public URL Drive)
-  thumbUrl?: string;        // NEW: URL thumbnail kompres (Supabase Image Transform)
+  image: string;            // URL utama (R2 / Drive public thumbnail)
+  thumbUrl?: string;        // URL thumbnail (R2 / Drive w800 thumbnail)
   driveFileId?: string;     // NEW: ID file di Google Drive (untuk sync & buka resolusi penuh)
   driveWebViewLink?: string;// NEW: Link "Lihat Resolusi Penuh" di Google Drive jemaat
   uploaderName?: string;    // NEW: Nama jemaat (kredit, mis. "Ibu Yuni")

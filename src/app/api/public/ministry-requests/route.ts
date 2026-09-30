@@ -33,7 +33,11 @@ function clean(value: unknown, maxLen: number): string {
 }
 
 export async function POST(req: NextRequest) {
-  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+  const ip =
+    req.headers.get('cf-connecting-ip') ||
+    req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+    req.headers.get('x-real-ip') ||
+    'unknown';
   if (rateLimited(ip)) {
     return NextResponse.json(
       { error: 'Terlalu banyak pengiriman. Coba lagi dalam beberapa menit.' },

@@ -2,16 +2,15 @@
  * Multi-role authentication for /super, /admin, /kas portals.
  *
  * Architecture:
- *   - User data is stored in the Supabase `users` table (see migration
- *     20260831100000_multi_role_users.sql).
- *   - Each user has a `roles` array (TEXT[]): ['super'], ['admin'],
+ *   - User data is stored in the Cloudflare D1 `users` table.
+ *   - Each user has a `roles` JSON array: ['super'], ['admin'],
  *     ['treasurer'], or multi-role like ['admin', 'treasurer'].
- *   - Passwords are bcrypt-hashed (cost 10). PIN must be exactly 4 digits
+ *   - Passwords are bcrypt-hashed (cost 10). PIN must be at least 4 digits
  *     (per user requirement). Longer passwords allowed for super.
  *   - Session is a signed cookie with HMAC-SHA256 over a JSON payload
  *     `{ userId, username, roles, expiresAt }`.
  *   - `getCurrentUser(req)` reads & verifies the cookie, then fetches
- *     the fresh user record from Supabase.
+ *     the fresh user record from D1.
  *   - `requireRole(req, allowed)` returns User if any of user.roles
  *     is in `allowed`.
  *

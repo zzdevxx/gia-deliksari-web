@@ -47,9 +47,9 @@ jobs:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
         run: |
           npx --yes @lhci/cli@0.14.x autorun \
-            --collect.url=https://gia-deliksari-web.vercel.app \
-            --collect.url=https://gia-deliksari-web.vercel.app/home \
-            --collect.url=https://gia-deliksari-web.vercel.app/info \
+            --collect.url=https://gia-deliksari-web.zzdree.workers.dev \
+            --collect.url=https://gia-deliksari-web.zzdree.workers.dev/home \
+            --collect.url=https://gia-deliksari-web.zzdree.workers.dev/info \
             --collect.settings.preset=desktop \
             --collect.settings.preset=mobile \
             --assert.assertions[0].metric=first-contentful-paint \

@@ -18,8 +18,10 @@ const plusJakarta = Plus_Jakarta_Sans({
   display: 'swap',
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://gia-deliksari-web.zzdree.workers.dev';
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://gia-deliksari-web.vercel.app'),
+  metadataBase: new URL(siteUrl),
   title: {
     default: 'GIA Deliksari Semarang - Growing Church!',
     template: '%s | GIA Deliksari Semarang',
@@ -50,13 +52,13 @@ export const metadata: Metadata = {
     telephone: false,
   },
   alternates: {
-    canonical: 'https://gia-deliksari-web.vercel.app',
+    canonical: siteUrl,
   },
   openGraph: {
     title: 'GIA Deliksari Semarang - Growing Church!',
     description:
       'Gereja Isa Almasih Deliksari Semarang - Tempat Persekutuan, Pertumbuhan Iman, dan Pelayanan Generasi.',
-    url: 'https://gia-deliksari-web.vercel.app',
+    url: siteUrl,
     siteName: 'GIA Deliksari Semarang',
     images: [
       {
@@ -89,9 +91,9 @@ const churchSchema = {
   '@type': 'Church',
   name: 'Gereja Isa Almasih Deliksari Semarang',
   alternateName: ['GIA Deliksari', 'GIA Deliksari Growing Church'],
-  url: 'https://gia-deliksari-web.vercel.app',
-  logo: 'https://gia-deliksari-web.vercel.app/images/logo.png',
-  image: 'https://gia-deliksari-web.vercel.app/images/hero-church.jpg',
+  url: siteUrl,
+  logo: `${siteUrl}/images/logo.png`,
+  image: `${siteUrl}/images/hero-church.jpg`,
   description:
     'Gereja Isa Almasih (GIA) Deliksari adalah komunitas keluarga Allah di Semarang yang berakar dalam iman, kasih, dan pengharapan.',
   telephone: '+6281234567890',

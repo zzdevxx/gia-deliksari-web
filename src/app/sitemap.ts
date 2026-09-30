@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://gia-deliksari-web.vercel.app';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://gia-deliksari-web.zzdree.workers.dev';
   const lastModified = new Date();
 
   return [

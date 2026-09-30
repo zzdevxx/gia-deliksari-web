@@ -5,11 +5,11 @@
   # GIA DELIKSARI SEMARANG
   ### Portal Publik Jemaat & Sistem Informasi Operasional Gereja
   
-  [![Next.js](https://img.shields.io/badge/Next.js-15.5-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+  [![Next.js](https://img.shields.io/badge/Next.js-16.3-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
   [![React](https://img.shields.io/badge/React-19.0-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
   [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
   [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-  [![Supabase](https://img.shields.io/badge/Supabase-Database-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
+  [![Cloudflare D1](https://img.shields.io/badge/Cloudflare-D1_Database-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://developers.cloudflare.com/d1/)
   [![License: Private](https://img.shields.io/badge/License-Proprietary_Private-red?style=for-the-badge)](LICENSE)
 
   <p align="center">
@@ -23,8 +23,8 @@
 
 ## 🌐 Halaman & Akses Aplikasi (Live Deployment)
 
-Website telah resmi aktif dan ter-deploy secara langsung di **Vercel Production**:
-**[gia-deliksari-web.vercel.app](https://gia-deliksari-web.vercel.app)**
+Website telah resmi aktif dan ter-deploy secara langsung di **Cloudflare Workers (OpenNext)**:
+**[gia-deliksari-web.zzdree.workers.dev](https://gia-deliksari-web.zzdree.workers.dev)**
 
 | Portal | Path | Akses | Deskripsi singkat |
 |---|---|---|---|
@@ -82,20 +82,21 @@ graph TD
     SuperPortal --> APIs
     KasPortal --> APIs
     APIs --> AuthLib["src/lib/auth.ts (multi-role + bcrypt + rate-limit)"]
-    AuthLib --> SupabaseAdmin[(Supabase PostgreSQL + service_role)]
-    AdminPortal --> Drive[Google Drive + Service Account]
+    AuthLib --> D1Admin[(Cloudflare D1 SQLite - gia-deliksari-db)]
+    AdminPortal --> Drive[Google Drive + Service Account / OAuth]
     PublicHome --> YouTube[YouTube Data API v3]
-    Drive --> Cache[Supabase Storage rolling 30–50 foto]
+    D1Admin --> Sheets[Google Sheets Sync via GitHub Actions]
 ```
 
 - **Framework**: Next.js 16.3.3 (App Router, Server Components & Static Site Generation)
+- **Runtime**: Cloudflare Workers via OpenNext (`@opennextjs/cloudflare`)
 - **UI & Styling**: React 19, Tailwind CSS 3 (Custom Sacred Crimson & Warm Cream palette, Dark/Light mode)
-- **Database**: Supabase PostgreSQL 17 + 7 timestamped migrations + RLS lockdown
-- **Auth**: bcrypt (cost 10) + HMAC-SHA256 session cookie + in-memory rate limit
-- **Storage**: Google Drive master + Supabase rolling cache (30–50 foto) via Service Account OAuth
-- **Integrations**: YouTube Data API v3 (khotbah auto-sync)
+- **Database**: Cloudflare D1 (Serverless SQLite Edge) 9 tables + 1 view (24/7 Always Active)
+- **Auth**: bcrypt (cost 10) + HMAC-SHA256 signed session cookie + rate limit
+- **Storage**: Google Drive master archive + Cloudflare edge delivery
+- **Integrations**: YouTube Data API v3 (khotbah auto-sync), Google Sheets (transparansi pengurus)
 - **Icons & Assets**: Lucide React Icons & Custom Church Brand SVG Icons
-- **Optimization**: `next/image` modern AVIF/WebP image pipeline, edge caching via Vercel CDN
+- **Optimization**: `next/image` modern AVIF/WebP image pipeline, edge caching via Cloudflare CDN
 
 ---
 
@@ -136,28 +137,20 @@ gia-deliksari-web/
 │   │   ├── Hero.tsx, Navbar.tsx, Footer.tsx, ThemeToggle.tsx, …
 │   │   └── admin/              # useAdminAuth, useAdminData, useToast
 │   ├── lib/
-│   │   ├── auth.ts             # 🆕 Multi-role auth + bcrypt + rate limit
-│   │   ├── admin-session.legacy.ts  # ⚠️ Deprecated, kept for legacy routes
-│   │   ├── supabase.ts         # Anon client (client + server)
-│   │   ├── supabaseAdmin.ts    # Service-role client (server-only, RLS bypass)
+│   │   ├── auth.ts             # Multi-role auth + bcrypt + rate limit
+│   │   ├── d1.ts               # Cloudflare D1 unified client (edge/dev/test)
 │   │   ├── googleDrive.ts      # Drive OAuth + folder router
 │   │   ├── scheduleUtils.ts    # 4-week rotating schedule helpers
-│   │   └── seedData.ts         # 1-row placeholder per table (DB is SoT)
+│   │   └── seedData.ts         # Initial placeholder per table
 │   └── types/index.ts          # TypeScript interfaces
-├── supabase/
-│   ├── schema.sql              # Legacy baseline schema
-│   └── migrations/             # 7 timestamped migrations (chronological)
-│       ├── 001_gallery_drive_integration.sql
-│       ├── 20260823_cms_and_ministry_tables.sql
-│       ├── 20260825_lock_down_rls.sql
-│       ├── 20260828_add_is_published_and_normalize.sql
-│       ├── 20260830120000_create_users_table.sql
-│       ├── 20260830130000_create_youth_treasury.sql
-│       └── 20260831100000_multi_role_users.sql
-├── scripts/                    # Ops tooling (seed, backup, drive diagnostic)
+├── migrations/                 # Cloudflare D1 SQL migrations
+│   ├── 0001_initial_schema.sql # 9 tables + 1 view D1 schema
+│   └── 0002_initial_seed.sql   # Initial seed data
+├── scripts/                    # Ops tooling (D1 backup to sheets, drive diagnostic)
 ├── .github/workflows/
-│   └── daily-backup.yml        # GH Actions daily Supabase → JSON → repo
-├── backups/                    # Auto-generated daily JSON snapshots (30-day retention)
+│   ├── backup-d1-to-sheets.yml # GH Actions daily D1 → Google Sheets
+│   └── ci.yml                  # TypeScript + Vitest + Playwright CI
+├── backups/                    # Auto-generated SQL / JSON snapshots
 ├── INFO.md                     # Single source of truth (identitas, jadwal, struktur)
 ├── PRD.md                      # Product Requirements Document
 ├── DESIGN.md                   # Design System & Token Specification v3.4.0
@@ -167,9 +160,9 @@ gia-deliksari-web/
 
 ---
 
-## 🗄️ Skema Database Supabase
+## 🗄️ Skema Database Cloudflare D1
 
-Proyek ini menggunakan 9 tabel + 1 view di Supabase PostgreSQL (lihat `supabase/migrations/`):
+Proyek ini menggunakan 9 tabel + 1 view di Cloudflare D1 Serverless SQLite (lihat `migrations/`):
 
 | Tabel / View | Fungsi |
 |---|---|
@@ -177,13 +170,13 @@ Proyek ini menggunakan 9 tabel + 1 view di Supabase PostgreSQL (lihat `supabase/
 | `servant_rosters` | Plotting pelayan ibadah 4 komunitas + peran + WhatsApp. |
 | `inventory_items` | Inventaris alat gereja + checklist + kondisi. |
 | `sermons` | Khotbah + YouTube sync metadata. |
-| `gallery_items` | Foto galeri hybrid (Drive + Supabase rolling cache). |
+| `gallery_items` | Foto galeri hybrid (Drive master + D1 cache). |
 | `ministry_requests` | Permohonan jemaat (doa, baptisan, komsel, volunteer). |
 | `users` | Multi-role auth (super / admin / treasurer) + bcrypt hash. |
 | `youth_treasury_transactions` | Buku kas Grow Generation (income/expense). |
 | `youth_treasury_balance` (view) | Agregat saldo realtime (income, expense, balance, counts). |
 
-RLS lockdown: hanya published rows yang bisa di-SELECT publik, mutation hanya lewat service-role dari API routes yang sudah melewati `requireRole()`.
+Keamanan: Hanya published rows yang bisa diakses publik via API sanitized. Mutasi diproteksi autentikasi `requireRole(['super', 'admin', 'treasurer'])`.
 
 ---
 
@@ -201,13 +194,10 @@ npm install
 ```
 
 ### 3. Konfigurasi Environment Variables
-Buat file `.env.local` di root proyek (lihat `.env.example` untuk dokumentasi lengkap):
+Buat file `.env.local` dan `.dev.vars` di root proyek (lihat `.env.example` untuk dokumentasi lengkap):
 ```env
-# Supabase
-NEXT_PUBLIC_SUPABASE_URL=https://<your-project-ref>.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=<your-anon-key>
-SUPABASE_SERVICE_ROLE_KEY=<service-role-jwt>
-SUPABASE_ACCESS_TOKEN=<management-api-token>
+# URL Site
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
 # Admin / Auth
 ADMIN_SESSION_SECRET=<random-32-char-string>
@@ -216,26 +206,20 @@ ADMIN_SESSION_SECRET=<random-32-char-string>
 GOOGLE_OAUTH_CLIENT_ID=
 GOOGLE_OAUTH_CLIENT_SECRET=
 GOOGLE_OAUTH_REFRESH_TOKEN=
-GOOGLE_DRIVE_UPLOAD_FOLDER_ID=
 GOOGLE_DRIVE_PUBLIC_FOLDER_ID=
-GOOGLE_SERVICE_ACCOUNT_EMAIL=
-GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY=
 
 # YouTube Data API v3
 YOUTUBE_API_KEY=
-YOUTUBE_CHANNEL_ID=
+YOUTUBE_CHANNEL_ID=UCDh3ojx9ne3HOPoBuuoKlrg
 ```
 
-### 4. Setup Database (sekali saja per environment)
+### 4. Setup Database D1 Lokal
 ```bash
-# Link ke Supabase project kamu
-supabase link --project-ref <your-project-ref>
+# Migrasi skema lokal D1
+npm run d1:migrate:local
 
-# Apply semua migration
-supabase db push
-
-# Seed akun default (andreas / 5050)
-node scripts/seed-users.mjs
+# Seed data awal lokal
+npm run d1:seed:local
 ```
 
 ### 5. Jalankan Development Server

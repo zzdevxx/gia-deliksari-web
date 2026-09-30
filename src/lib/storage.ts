@@ -271,10 +271,10 @@ export const dataStore = {
     readViaApi<GalleryItem>('/api/public/data?table=gallery_items', GALLERY_KEY, toGalleryModel, INITIAL_GALLERY),
 
   /**
-   * Galeri etalase mode: hanya N foto acak (default 12) dari cache Supabase.
-   * Digunakan oleh GallerySection untuk etalase agar LCP tetap ringan & tidak
-   * meledakkan storage Supabase. Server melakukan Fisher-Yates shuffle deterministik
-   * (seeded by day) sehingga 1x refresh halaman = etalase baru stabil sepanjang hari.
+   * Galeri etalase mode: hanya N foto acak (default 12) dari cache database D1.
+   * Digunakan oleh GallerySection untuk etalase agar LCP tetap ringan.
+   * Server melakukan Fisher-Yates shuffle deterministik (seeded by day)
+   * sehingga 1x refresh halaman = etalase baru stabil sepanjang hari.
    */
   getRandomGallery: async (limit: number = 12): Promise<GalleryItem[]> => {
     try {
@@ -324,8 +324,7 @@ export const dataStore = {
 
 // ============================================================================
 // ADMIN DATA STORE — every operation flows through /api/admin/data, which
-// enforces the signed admin session cookie server-side and uses the SERVICE
-// ROLE key. The browser never holds elevated Supabase credentials.
+// enforces the signed admin session cookie server-side with Cloudflare D1.
 // ============================================================================
 export const adminDataStore = {
   getAnnouncements: async (): Promise<Announcement[]> => {
