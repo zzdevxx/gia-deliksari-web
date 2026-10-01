@@ -1,7 +1,7 @@
 # Product Requirements Document (PRD) — GIA Deliksari Web Portal
-**Versi:** 3.4.0 (Multi-Portal & Role-Based Access Edition)
-**Status:** Production Ready
-**Tanggal Diperbarui:** 31 Agustus 2026
+**Versi:** 4.0.0 (Cloudflare Native & Custom Domain Edition)
+**Status:** Production Live (https://giadeliksari.my.id)
+**Tanggal Diperbarui:** 1 Oktober 2026
 **Identitas Gereja:** Gereja Isa Almasih (GIA) Deliksari Semarang — *"Growing Church!"*
 
 ---

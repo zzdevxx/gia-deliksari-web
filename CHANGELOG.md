@@ -5,6 +5,22 @@ All notable changes to GIA Deliksari Web will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-10-01 — Custom Domain giadeliksari.my.id & CI/CD Hardening
+
+### Custom Domain & Edge Routing
+- **Official Domain Attached**: Connected `giadeliksari.my.id` and `www.giadeliksari.my.id` to Cloudflare Workers via Cloudflare Zone `b5955189f916b4dc8582cd07635d21b3` with nameservers delegated from IDwebhost (`kallie.ns.cloudflare.com` & `merlin.ns.cloudflare.com`).
+- **Universal SSL**: Deployed active Universal SSL with Full encryption and Always Use HTTPS.
+- **Canonical URLs**: Updated `layout.tsx`, `sitemap.ts`, `robots.ts`, and `wrangler.jsonc` default canonical URLs to `https://giadeliksari.my.id`.
+- **Dual Routing**: Kept `workers_dev: true` so `gia-deliksari-web.zzdree.workers.dev` remains available as edge fallback.
+
+### CI/CD & Testing Hardening
+- **Node 22 Upgrade**: Upgraded GitHub Actions runner in `ci.yml` and `lighthouse.yml` from Node 20 to Node 22, resolving `undici` / `jsdom` `markAsUncloneable` errors during Vitest execution.
+- **Security Audit Fix**: Resolved all CVE advisories (`next` v16.3.8, `undici`, `brace-expansion`, `qs`), bringing `npm audit --audit-level=high` to 0 vulnerabilities.
+- **Lighthouse CI Configuration**: Added `.lighthouserc.json` with targeted category score assertions for desktop audits against production, and verified automated run succeeds (100% green).
+- **Playwright Smoke Integration**: Updated smoke and mutation tests to target `https://giadeliksari.my.id`.
+
+---
+
 ## [2.0.0] - 2026-10-01 — Cloudflare Native & Modular Architecture Overhaul
 
 ### Cloudflare Migration
