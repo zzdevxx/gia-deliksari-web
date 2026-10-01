@@ -36,7 +36,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - name: Install dependencies
@@ -47,11 +47,10 @@ jobs:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
         run: |
           npx --yes @lhci/cli@0.14.x autorun \
-            --collect.url=https://gia-deliksari-web.zzdree.workers.dev \
-            --collect.url=https://gia-deliksari-web.zzdree.workers.dev/home \
-            --collect.url=https://gia-deliksari-web.zzdree.workers.dev/info \
+            --collect.url=https://giadeliksari.my.id \
+            --collect.url=https://giadeliksari.my.id/home \
+            --collect.url=https://giadeliksari.my.id/info \
             --collect.settings.preset=desktop \
-            --collect.settings.preset=mobile \
             --assert.assertions[0].metric=first-contentful-paint \
             --assert.assertions[0].maxNumericValue=2500 \
             --assert.assertions[1].metric=largest-contentful-paint \

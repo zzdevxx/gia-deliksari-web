@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://gia-deliksari-web.zzdree.workers.dev';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://giadeliksari.my.id';
 
   return {
     rules: [

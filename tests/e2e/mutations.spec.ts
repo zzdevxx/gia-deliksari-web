@@ -28,7 +28,7 @@ let authCookie = '';
 
 async function login(): Promise<string> {
   const ctx = await request.newContext({
-    baseURL: process.env.BASE_URL ?? 'https://gia-deliksari-web.zzdree.workers.dev',
+    baseURL: process.env.BASE_URL ?? 'https://giadeliksari.my.id',
   });
   const res = await ctx.post('/api/auth/login', {
     data: { username: SUPER_USER, password: SUPER_PASS },

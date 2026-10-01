@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "gia-deliksari-web",
+  "workers_dev": true,
   "main": ".open-next/worker.js",
   "compatibility_date": "2024-12-30",
   "compatibility_flags": ["nodejs_compat"],
@@ -15,11 +16,15 @@
       "database_id": "0f8a9e42-0a14-4a45-9cbb-55f7d8b2f5f1"
     }
   ],
+  "routes": [
+    { "pattern": "giadeliksari.my.id", "custom_domain": true },
+    { "pattern": "www.giadeliksari.my.id", "custom_domain": true }
+  ],
   "triggers": {
     "crons": ["0 3 * * *"]
   },
   "vars": {
-    "NEXT_PUBLIC_SITE_URL": "https://gia-deliksari-web.zzdree.workers.dev",
+    "NEXT_PUBLIC_SITE_URL": "https://giadeliksari.my.id",
     "R2_PUBLIC_URL": "https://gallery.giadeliksari.org",
     "YOUTUBE_CHANNEL_ID": "UCDh3ojx9ne3HOPoBuuoKlrg",
     "GOOGLE_DRIVE_PUBLIC_FOLDER_ID": "1T_ahqCtmOjdFl0L-MNu7bIQo-8Oz8y9h"

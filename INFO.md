@@ -12,7 +12,8 @@
 | **Nama Resmi** | Gereja Isa Almasih (GIA) Deliksari Semarang |
 | **Nama Singkat** | GIA Deliksari |
 | **Slogan / Tagar** | **Growing Church!** 🔥 |
-| **URL Publik** | https://gia-deliksari-web.zzdree.workers.dev |
+| **URL Publik** | https://giadeliksari.my.id |
+| **Worker Domain** | https://gia-deliksari-web.zzdree.workers.dev |
 | **Hak Cipta** | Proprietary & Private (All Rights Reserved) |
 | **Pengelola Konten** | GIA Deliksari Creative Media Team |
 

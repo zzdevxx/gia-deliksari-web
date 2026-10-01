@@ -3,9 +3,8 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * Playwright config for smoke tests.
  *
- * Targets the production deployment (gia-deliksari-web.vercel.app) by default,
- * so we exercise the real path through Vercel CDN + Supabase + Drive. Override
- * with `BASE_URL=http://localhost:3000` to test against local dev server.
+ * Targets the production deployment (https://giadeliksari.my.id) by default.
+ * Override with `BASE_URL=http://localhost:3000` to test against local dev server.
  *
  * Tests live in tests/e2e/. Add new spec files there as needed.
  */
@@ -18,7 +17,7 @@ export default defineConfig({
   reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : 'list',
 
   use: {
-    baseURL: process.env.BASE_URL ?? 'https://gia-deliksari-web.zzdree.workers.dev',
+    baseURL: process.env.BASE_URL ?? 'https://giadeliksari.my.id',
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',

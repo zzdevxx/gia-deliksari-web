@@ -24,7 +24,7 @@
 ## 🌐 Halaman & Akses Aplikasi (Live Deployment)
 
 Website telah resmi aktif dan ter-deploy secara langsung di **Cloudflare Workers (OpenNext)**:
-**[gia-deliksari-web.zzdree.workers.dev](https://gia-deliksari-web.zzdree.workers.dev)**
+**[giadeliksari.my.id](https://giadeliksari.my.id)** *(Edge Worker: [gia-deliksari-web.zzdree.workers.dev](https://gia-deliksari-web.zzdree.workers.dev))*
 
 | Portal | Path | Akses | Deskripsi singkat |
 |---|---|---|---|
