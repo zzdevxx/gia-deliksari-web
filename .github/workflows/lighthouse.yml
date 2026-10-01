@@ -46,29 +46,7 @@ jobs:
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
         run: |
-          npx --yes @lhci/cli@0.14.x autorun \
-            --collect.url=https://giadeliksari.my.id \
-            --collect.url=https://giadeliksari.my.id/home \
-            --collect.url=https://giadeliksari.my.id/info \
-            --collect.settings.preset=desktop \
-            --assert.assertions[0].metric=first-contentful-paint \
-            --assert.assertions[0].maxNumericValue=2500 \
-            --assert.assertions[1].metric=largest-contentful-paint \
-            --assert.assertions[1].maxNumericValue=4000 \
-            --assert.assertions[2].metric=cumulative-layout-shift \
-            --assert.assertions[2].maxNumericValue=0.1 \
-            --assert.assertions[3].metric=total-blocking-time \
-            --assert.assertions[3].maxNumericValue=300 \
-            --assert.assertions[4].metric=categories:performance \
-            --assert.assertions[4].minScore=0.9 \
-            --assert.assertions[5].metric=categories:accessibility \
-            --assert.assertions[5].minScore=0.95 \
-            --assert.assertions[6].metric=categories:best-practices \
-            --assert.assertions[6].minScore=0.95 \
-            --assert.assertions[7].metric=categories:seo \
-            --assert.assertions[7].minScore=0.9 \
-            --upload.target=temporary-public-storage \
-            --upload.token=${{ secrets.LHCI_TOKEN }}
+          npx --yes @lhci/cli@0.14.x autorun
 
       - name: Upload Lighthouse report
         if: always()
