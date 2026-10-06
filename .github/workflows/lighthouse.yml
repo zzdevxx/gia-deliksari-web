@@ -10,8 +10,14 @@ name: Lighthouse CI
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'backups/**'
+      - '**.md'
   pull_request:
     branches: [main]
+    paths-ignore:
+      - 'backups/**'
+      - '**.md'
   workflow_dispatch:
 
 concurrency:

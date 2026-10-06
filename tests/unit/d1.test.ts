@@ -79,3 +79,35 @@ describe('Authentication & Password Hashing', () => {
     expect(isWrong).toBe(false);
   });
 });
+
+describe('Admin Data Store Deletions', () => {
+  it('should call DELETE /api/admin/data with correct table and id', async () => {
+    const { adminDataStore } = await import('@/lib/storage');
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ success: true }),
+    });
+    global.fetch = mockFetch;
+
+    const res = await adminDataStore.deleteAnnouncement('ann-123');
+    expect(res).toBe(true);
+    expect(mockFetch).toHaveBeenCalledWith(
+      '/api/admin/data?table=announcements&id=ann-123',
+      expect.objectContaining({ method: 'DELETE' }),
+    );
+
+    const resRoster = await adminDataStore.deleteRoster('rst-456');
+    expect(resRoster).toBe(true);
+    expect(mockFetch).toHaveBeenCalledWith(
+      '/api/admin/data?table=servant_rosters&id=rst-456',
+      expect.objectContaining({ method: 'DELETE' }),
+    );
+
+    const resInv = await adminDataStore.deleteInventory('inv-789');
+    expect(resInv).toBe(true);
+    expect(mockFetch).toHaveBeenCalledWith(
+      '/api/admin/data?table=inventory_items&id=inv-789',
+      expect.objectContaining({ method: 'DELETE' }),
+    );
+  });
+});

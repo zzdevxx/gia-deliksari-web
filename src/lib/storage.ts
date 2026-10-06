@@ -36,7 +36,7 @@ function toAnnouncementModel(db: any): Announcement {
 
 function toAnnouncementDB(model: Announcement) {
   return {
-    id: model.id.startsWith('ann-') ? undefined : model.id,
+    id: model.id,
     title: model.title,
     category: model.category,
     content: model.content,
@@ -64,7 +64,7 @@ function toRosterModel(db: any): ServantRoster {
 
 function toRosterDB(model: ServantRoster) {
   return {
-    id: model.id.startsWith('rst-') ? undefined : model.id,
+    id: model.id,
     service_category: model.serviceCategory,
     service_date: model.serviceDate,
     role: model.role,
@@ -94,7 +94,7 @@ function toInventoryModel(db: any): InventoryItem {
 
 function toInventoryDB(model: InventoryItem) {
   return {
-    id: model.id.startsWith('inv-') ? undefined : model.id,
+    id: model.id,
     name: model.name,
     category: model.category,
     code: model.code,
@@ -124,7 +124,7 @@ function toSermonModel(db: any): Sermon {
 
 function toSermonDB(model: Sermon) {
   return {
-    id: model.id.startsWith('srm-') ? undefined : model.id,
+    id: model.id,
     title: model.title,
     speaker: model.speaker,
     passage: model.passage,
@@ -154,7 +154,7 @@ function toGalleryModel(db: any): GalleryItem {
 
 function toGalleryDB(model: GalleryItem) {
   return {
-    id: model.id.startsWith('gal-') ? undefined : model.id,
+    id: model.id,
     title: model.title,
     category: model.category,
     image: model.image,
@@ -183,7 +183,7 @@ function toRequestModel(db: any): MinistryRequest {
 
 function toRequestDB(model: MinistryRequest) {
   return {
-    id: typeof model.id === 'string' && model.id.startsWith('req-') ? undefined : model.id,
+    id: model.id,
     type: model.type,
     name: model.name,
     phone: model.phone,
@@ -211,7 +211,14 @@ async function readViaApi<T>(
     const res = await fetch(endpoint, { cache: 'no-store' });
     if (res.ok) {
       const json = await res.json();
-      if (Array.isArray(json.items) && json.items.length > 0) {
+      if (Array.isArray(json.items)) {
+        if (json.items.length === 0) {
+          // Table is intentionally empty in DB
+          if (typeof window !== 'undefined') {
+            try { localStorage.setItem(cacheKey, JSON.stringify([])); } catch {}
+          }
+          return [];
+        }
         const list = json.items.map(mapper);
         if (typeof window !== 'undefined') {
           try { localStorage.setItem(cacheKey, JSON.stringify(list)); } catch {}
@@ -248,6 +255,22 @@ async function writeViaApi(table: string, items: any[]): Promise<boolean> {
     return true;
   } catch (err) {
     console.error(`[adminDataStore] write ${table} network error:`, err);
+    return false;
+  }
+}
+
+async function deleteViaApi(table: string, id: string): Promise<boolean> {
+  try {
+    const res = await fetch(`/api/admin/data?table=${encodeURIComponent(table)}&id=${encodeURIComponent(id)}`, {
+      method: 'DELETE',
+    });
+    if (!res.ok) {
+      console.error(`[adminDataStore] delete ${table}/${id} rejected (${res.status}):`, await res.text().catch(() => ''));
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.error(`[adminDataStore] delete ${table}/${id} network error:`, err);
     return false;
   }
 }
@@ -339,6 +362,9 @@ export const adminDataStore = {
     await writeViaApi('announcements', items.map(toAnnouncementDB));
   },
 
+  deleteAnnouncement: (id: string): Promise<boolean> =>
+    deleteViaApi('announcements', id),
+
   getRoster: (): Promise<ServantRoster[]> =>
     readViaApi<ServantRoster>('/api/admin/data?table=servant_rosters', ROSTER_KEY, toRosterModel, INITIAL_ROSTER),
 
@@ -348,6 +374,9 @@ export const adminDataStore = {
     }
     await writeViaApi('servant_rosters', items.map(toRosterDB));
   },
+
+  deleteRoster: (id: string): Promise<boolean> =>
+    deleteViaApi('servant_rosters', id),
 
   getInventory: (): Promise<InventoryItem[]> =>
     readViaApi<InventoryItem>('/api/admin/data?table=inventory_items', INVENTORY_KEY, toInventoryModel, INITIAL_INVENTORY),
@@ -359,6 +388,9 @@ export const adminDataStore = {
     await writeViaApi('inventory_items', items.map(toInventoryDB));
   },
 
+  deleteInventory: (id: string): Promise<boolean> =>
+    deleteViaApi('inventory_items', id),
+
   getSermons: (): Promise<Sermon[]> =>
     readViaApi<Sermon>('/api/admin/data?table=sermons', SERMONS_KEY, toSermonModel, INITIAL_SERMONS),
 
@@ -368,6 +400,9 @@ export const adminDataStore = {
     }
     await writeViaApi('sermons', items.map(toSermonDB));
   },
+
+  deleteSermon: (id: string): Promise<boolean> =>
+    deleteViaApi('sermons', id),
 
   getGallery: (): Promise<GalleryItem[]> =>
     readViaApi<GalleryItem>('/api/admin/data?table=gallery_items', GALLERY_KEY, toGalleryModel, INITIAL_GALLERY),
@@ -379,6 +414,9 @@ export const adminDataStore = {
     await writeViaApi('gallery_items', items.map(toGalleryDB));
   },
 
+  deleteGallery: (id: string): Promise<boolean> =>
+    deleteViaApi('gallery_items', id),
+
   getMinistryRequests: (): Promise<MinistryRequest[]> =>
     readViaApi<MinistryRequest>('/api/admin/data?table=ministry_requests', REQUESTS_KEY, toRequestModel, INITIAL_MINISTRY_REQUESTS),
 
@@ -386,6 +424,9 @@ export const adminDataStore = {
     if (typeof window !== 'undefined') {
       try { localStorage.setItem(REQUESTS_KEY, JSON.stringify(items)); } catch {}
     }
-    await writeViaApi('ministry_requests', items.filter(r => !r.id.startsWith('req-')).map(toRequestDB));
+    await writeViaApi('ministry_requests', items.map(toRequestDB));
   },
+
+  deleteMinistryRequest: (id: string): Promise<boolean> =>
+    deleteViaApi('ministry_requests', id),
 };

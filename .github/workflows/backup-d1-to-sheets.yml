@@ -44,6 +44,10 @@ jobs:
           SYNC_SHEETS: ${{ github.event.inputs.sync_sheets || 'true' }}
         run: node scripts/backup-d1-to-sheets.mjs
 
+      - name: Prune snapshot lokal yang lebih dari 30 hari
+        run: |
+          find backups/d1/ -name "*.json" -type f -mtime +30 -delete 2>/dev/null || true
+
       - name: Commit & push local D1 snapshot
         run: |
           git config user.name "github-actions[bot]"
@@ -52,11 +56,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "Tidak ada perubahan snapshot untuk di-commit."
           else
-            git commit -m "chore(backup): d1 snapshot $(date -u +%Y-%m-%d_%H%M%S)"
+            git commit -m "chore(backup): d1 snapshot $(date -u +%Y-%m-%d_%H%M%S) [skip ci]"
             git pull --rebase origin main || true
             git push || true
           fi
-
-      - name: Prune snapshot lokal yang lebih dari 30 hari
-        run: |
-          find backups/d1/ -name "*.json" -type f -mtime +30 -delete 2>/dev/null || true

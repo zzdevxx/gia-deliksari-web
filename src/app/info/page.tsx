@@ -26,7 +26,6 @@ import {
 } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/Icons';
 import { dataStore } from '@/lib/storage';
-import PrintBulletin from '@/components/PrintBulletin';
 import RosterCalendar from '@/components/RosterCalendar';
 import { INITIAL_ANNOUNCEMENTS, INITIAL_ROSTER } from '@/lib/seedData';
 import { Announcement, ServantRoster, MinistryCategory } from '@/types';
@@ -57,6 +56,7 @@ export default function InfoPage() {
   const [rosterCat, setRosterCat] = useState<'all' | 'general' | 'youth' | 'kidz' | 'hana'>('all');
   const [rosterView, setRosterView] = useState<'list' | 'calendar'>('list');
   const [copiedWa, setCopiedWa] = useState(false);
+  const [copiedWartaWa, setCopiedWartaWa] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
@@ -147,6 +147,37 @@ export default function InfoPage() {
     setTimeout(() => setCopiedWa(false), 2500);
   };
 
+  const generateWartaWhatsAppBroadcast = () => {
+    const items = upcomingAnn;
+    if (items.length === 0) {
+      return `🕊️ *WARTA JEMAAT GIA DELIKSARI SEMARANG*\n\nBelum ada pengumuman warta aktif saat ini.`;
+    }
+
+    let text = `🕊️ *WARTA & PENGUMUMAN JEMAAT GIA DELIKSARI SEMARANG*\n`;
+    text += `🔥 _"A Growing Church in Faith, Love, and Hope"_\n`;
+    text += `━━━━━━━━━━━━━━━━━━━━━\n\n`;
+
+    items.forEach((a, i) => {
+      const pin = a.isPinned ? '📌 ' : '';
+      const badge = a.badgeText ? ` [${a.badgeText}]` : '';
+      text += `${i + 1}. ${pin}*${a.title.toUpperCase()}*${badge}\n`;
+      text += `📅 Tanggal: ${a.eventDate}\n`;
+      text += `📝 ${a.content}\n\n`;
+    });
+
+    text += `━━━━━━━━━━━━━━━━━━━━━\n`;
+    text += `🌐 Informasi lengkap & portal jemaat: https://giadeliksari.my.id/info\n\n`;
+    text += `Tuhan Yesus Memberkati kita semua! 🙏✨`;
+    return text;
+  };
+
+  const handleCopyWartaWa = () => {
+    const text = generateWartaWhatsAppBroadcast();
+    navigator.clipboard.writeText(text);
+    setCopiedWartaWa(true);
+    setTimeout(() => setCopiedWartaWa(false), 2500);
+  };
+
   return (
     <main className="min-h-screen flex flex-col bg-[#FDFBF7] dark:bg-[#150B0D] text-[#1F1617] dark:text-[#F5EFEB] transition-colors">
       <Navbar />
@@ -167,44 +198,16 @@ export default function InfoPage() {
             pengurus gereja melalui Portal Admin.
           </p>
           <div className="mt-6">
-            <button
-              onClick={() => {
-                const weekRange = (() => {
-                  const today = new Date();
-                  const startOfWeek = new Date(today);
-                  startOfWeek.setDate(today.getDate() - today.getDay() + 1);
-                  const endOfWeek = new Date(startOfWeek);
-                  endOfWeek.setDate(startOfWeek.getDate() + 6);
-                  const fmt = (d: Date) =>
-                    d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-                  return `${fmt(startOfWeek)} – ${fmt(endOfWeek)}`;
-                })();
-                const w = window.open('', 'gia-bulletin', 'width=900,height=1200,scrollbars=yes');
-                if (!w) {
-                  alert('Popup diblokir oleh browser. Izinkan popup untuk situs ini lalu coba lagi.');
-                  return;
-                }
-                // Render Bulletin into popup window
-                import('react-dom/client').then(({ createRoot }) => {
-                  import('react').then((React) => {
-                    const root = createRoot(w.document.body);
-                    root.render(
-                      React.createElement(PrintBulletin, {
-                        announcements: announcements.filter((a) => a.isPublished !== false),
-                        rosters: roster,
-                        weekLabel: weekRange,
-                      }),
-                    );
-                  });
-                });
-              }}
+            <Link
+              href="/info/print"
+              target="_blank"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-gradient-to-r from-[#C5222E] to-[#80141C] hover:opacity-95 text-white text-xs sm:text-sm font-bold shadow-md shadow-red-900/10"
             >
               <Printer className="w-4 h-4" />
-              Cetak Bulletin (A4 / PDF)
-            </button>
+              <span>Cetak Bulletin (A4 / PDF)</span>
+            </Link>
             <p className="text-[10px] text-[#6E5D5F] dark:text-[#B5A1A3] mt-2 max-w-2xl">
-              Buka window print-friendly A4. Pilih "Save as PDF" di dialog print browser untuk simpan sebagai PDF, atau cetak langsung ke printer fisik.
+              Buka tampilan print-friendly A4 formal. Pilih &quot;Save as PDF&quot; di dialog cetak browser untuk menyimpan PDF, atau cetak langsung ke printer fisik.
             </p>
           </div>
         </div>
@@ -213,7 +216,7 @@ export default function InfoPage() {
       {/* ============== SECTION 1: PAPAN WARTA ============== */}
       <section id="warta" className="py-16 bg-[#FDFBF7] dark:bg-[#150B0D]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
             <div className="space-y-1">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1F1617] dark:text-[#F5EFEB] flex items-center gap-3">
                 <Bell className="w-7 h-7 text-[#C5222E]" />
@@ -223,6 +226,29 @@ export default function InfoPage() {
                 Warta jemaat, pengumuman kegiatan, dan info terkini.
               </p>
             </div>
+
+            <button
+              type="button"
+              onClick={handleCopyWartaWa}
+              className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 shadow-xs self-start sm:self-auto ${
+                copiedWartaWa
+                  ? 'bg-emerald-600 text-white'
+                  : 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/40'
+              }`}
+              title="Salin Daftar Warta untuk Broadcast WhatsApp"
+            >
+              {copiedWartaWa ? (
+                <>
+                  <Check className="w-4 h-4" />
+                  <span>Format WA Tersalin!</span>
+                </>
+              ) : (
+                <>
+                  <WhatsAppIcon className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                  <span>Salin Format WA Warta</span>
+                </>
+              )}
+            </button>
           </div>
 
           {/* Filters */}

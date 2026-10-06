@@ -103,7 +103,8 @@ function useCurrentUser() {
         setAuthError(data.error || 'Login gagal');
         return;
       }
-      if (data.user?.role !== 'super' && data.user?.role !== 'admin') {
+      const roles: string[] = data.user?.roles || (data.user?.role ? [data.user.role] : []);
+      if (!roles.some((r) => r === 'super' || r === 'admin')) {
         setAuthError('Akses ditolak. Halaman ini khusus admin/operator.');
         return;
       }
@@ -328,9 +329,14 @@ export default function AdminDashboard() {
 
   const handleDeleteAnnouncement = async (id: string) => {
     if (confirm('Apakah Anda yakin ingin menghapus warta jemaat ini?')) {
+      const ok = await adminDataStore.deleteAnnouncement(id);
+      if (!ok) {
+        showToast('Gagal menghapus warta jemaat dari database');
+        return;
+      }
       const updated = announcements.filter((item) => item.id !== id);
       setAnnouncements(updated);
-      await adminDataStore.saveAnnouncements(updated);
+      try { localStorage.setItem('gia_deliksari_announcements_v1', JSON.stringify(updated)); } catch {}
       showToast('Warta Jemaat berhasil dihapus');
     }
   };
@@ -375,9 +381,14 @@ export default function AdminDashboard() {
 
   const handleDeleteRoster = async (id: string) => {
     if (confirm('Hapus petugas pelayan ini dari roster?')) {
+      const ok = await adminDataStore.deleteRoster(id);
+      if (!ok) {
+        showToast('Gagal menghapus petugas dari database');
+        return;
+      }
       const updated = roster.filter((item) => item.id !== id);
       setRoster(updated);
-      await adminDataStore.saveRoster(updated);
+      try { localStorage.setItem('gia_deliksari_roster_v1', JSON.stringify(updated)); } catch {}
       showToast('Petugas berhasil dihapus dari jadwal');
     }
   };
@@ -392,9 +403,14 @@ export default function AdminDashboard() {
 
   const handleDeleteRequest = async (id: string) => {
     if (confirm('Hapus riwayat permohonan jemaat ini?')) {
+      const ok = await adminDataStore.deleteMinistryRequest(id);
+      if (!ok) {
+        showToast('Gagal menghapus permohonan dari database');
+        return;
+      }
       const updated = requests.filter(r => r.id !== id);
       setRequests(updated);
-      await adminDataStore.updateMinistryRequests(updated);
+      try { localStorage.setItem('gia_deliksari_requests_v1', JSON.stringify(updated)); } catch {}
       showToast('Permohonan berhasil dihapus');
     }
   };
@@ -423,9 +439,14 @@ export default function AdminDashboard() {
 
   const handleDeleteSermon = async (id: string) => {
     if (confirm('Hapus arsip khotbah ini?')) {
+      const ok = await adminDataStore.deleteSermon(id);
+      if (!ok) {
+        showToast('Gagal menghapus khotbah dari database');
+        return;
+      }
       const updated = sermons.filter(s => s.id !== id);
       setSermons(updated);
-      await adminDataStore.saveSermons(updated);
+      try { localStorage.setItem('gia_deliksari_sermons_v1', JSON.stringify(updated)); } catch {}
       showToast('Khotbah berhasil dihapus');
     }
   };
@@ -482,9 +503,14 @@ export default function AdminDashboard() {
 
   const handleDeleteGallery = async (id: string) => {
     if (confirm('Hapus foto ini dari galeri?')) {
+      const ok = await adminDataStore.deleteGallery(id);
+      if (!ok) {
+        showToast('Gagal menghapus foto dari database');
+        return;
+      }
       const updated = gallery.filter(g => g.id !== id);
       setGallery(updated);
-      await adminDataStore.saveGallery(updated);
+      try { localStorage.setItem('gia_deliksari_gallery_v1', JSON.stringify(updated)); } catch {}
       showToast('Foto galeri berhasil dihapus');
     }
   };
@@ -538,9 +564,14 @@ export default function AdminDashboard() {
 
   const handleDeleteInventory = async (id: string) => {
     if (confirm('Hapus barang ini dari daftar inventaris gereja?')) {
+      const ok = await adminDataStore.deleteInventory(id);
+      if (!ok) {
+        showToast('Gagal menghapus barang inventaris dari database');
+        return;
+      }
       const updated = inventory.filter((inv) => inv.id !== id);
       setInventory(updated);
-      await adminDataStore.saveInventory(updated);
+      try { localStorage.setItem('gia_deliksari_inventory_v1', JSON.stringify(updated)); } catch {}
       showToast('Barang inventaris berhasil dihapus');
     }
   };

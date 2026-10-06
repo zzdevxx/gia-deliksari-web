@@ -16,7 +16,8 @@
     "d1:seed:remote": "wrangler d1 execute gia-deliksari-db --remote --file=./migrations/0002_initial_seed.sql",
     "d1:backup:local": "wrangler d1 export gia-deliksari-db --local --output=./backups/d1-local.sql",
     "d1:backup:remote": "wrangler d1 export gia-deliksari-db --remote --output=./backups/d1-remote.sql",
-    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit",
     "optimize:images": "node scripts/optimize-images.mjs",
     "mirror:b2": "node scripts/mirror-drive-to-b2.mjs",
     "test": "vitest run",
@@ -56,5 +57,8 @@
   },
   "optionalDependencies": {
     "@aws-sdk/client-s3": "^3.1121.0"
+  },
+  "overrides": {
+    "source-map-js": "^1.2.2"
   }
 }

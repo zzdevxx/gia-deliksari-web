@@ -401,7 +401,7 @@ export default function GivingSection() {
                 GIA DELIKSARI SEMARANG
               </h3>
               <p className="text-[11px] text-[#6E5D5F] dark:text-[#B5A1A3]">
-                NMID: ID102002151515 | Dicetak Resmi untuk Jemaat
+                Tersedia di Meja Penerimaan & Lobi Ibadah Gereja
               </p>
             </div>
 
@@ -452,21 +452,20 @@ export default function GivingSection() {
                 </svg>
               </div>
               <div className="text-[10px] font-bold text-slate-500 mt-2">
-                SATU QR CODE UNTUK SEMUA PEMBAYARAN
+                SCAN QRIS RESMI DI MEJA PENERIMAAN GEREJA
               </div>
             </div>
 
             {/* Instruction Steps */}
             <div className="w-full text-left p-3.5 rounded-xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-xs space-y-1.5">
               <div className="font-bold text-[#1F1617] dark:text-[#F5EFEB]">
-                Cara Melakukan Scan:
+                Informasi Persembahan Non-Tunai:
               </div>
-              <ol className="list-decimal pl-4 space-y-0.5 text-[11px] text-[#5A4D4E] dark:text-[#D5C2C4]">
-                <li>Buka aplikasi m-Banking (BCA, Mandiri, BRI, dll) atau E-Wallet (GoPay, OVO, Dana).</li>
-                <li>Pilih menu <strong>Scan QRIS</strong>.</li>
-                <li>Arahkan kamera ke layar atau simpan gambar ini.</li>
-                <li>Masukkan nominal persembahan & konfirmasi PIN.</li>
-              </ol>
+              <ul className="list-disc pl-4 space-y-0.5 text-[11px] text-[#5A4D4E] dark:text-[#D5C2C4]">
+                <li>Barcode QRIS fisik resmi terpasang di kotak persembahan dan lobi gereja.</li>
+                <li>Mendukung seluruh m-Banking (BCA, Mandiri, BRI, dll) dan dompet digital (GoPay, OVO, Dana).</li>
+                <li>Untuk info rekening gereja terkini, hubungi WhatsApp Pastoral: <strong>0896-2096-1103</strong>.</li>
+              </ul>
             </div>
 
             {/* Buttons */}

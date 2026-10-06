@@ -28,8 +28,8 @@ const PRECACHE_URLS = [
   '/',
   '/home',
   '/info',
-  '/favicon.ico',
   '/images/logo.png',
+  '/images/hero-church.jpg',
 ];
 
 self.addEventListener('install', (event) => {
@@ -72,12 +72,9 @@ function isStaticAsset(url) {
     || /\.(?:png|jpg|jpeg|webp|avif|svg|ico|css|js|woff2?|ttf|eot)$/.test(url.pathname);
 }
 
-function isAPIGET(req) {
-  return req.method === 'GET' && url.pathname.startsWith('/api/');
+function isAPIGET(req, urlObj) {
+  return req.method === 'GET' && urlObj.pathname.startsWith('/api/');
 }
-
-const url = new URL(self.location.href); // dummy, overwritten below
-// Workaround: real URL comes from event.request.url
 function u(req) {
   return new URL(req.url);
 }
@@ -128,7 +125,7 @@ self.addEventListener('fetch', (event) => {
   }
 
   // 2. API GET → stale-while-revalidate.
-  if (isAPIGET(req)) {
+  if (isAPIGET(req, urlObj)) {
     event.respondWith(
       (async () => {
         const cache = await caches.open(API_CACHE);

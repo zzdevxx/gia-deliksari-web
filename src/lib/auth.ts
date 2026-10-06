@@ -60,8 +60,15 @@ const PIN_MAX = 64;   // Max password length (allow longer for super)
 // Session signing
 // ---------------------------------------------------------------------------
 
-function getSessionSecret() {
-  return process.env.ADMIN_SESSION_SECRET || 'gia-deliksari-semarang-secret-key-2026';
+function getSessionSecret(): string {
+  const secret = process.env.ADMIN_SESSION_SECRET;
+  if (!secret) {
+    if (process.env.NODE_ENV === 'production') {
+      console.warn('[auth] WARNING: ADMIN_SESSION_SECRET environment variable is not configured! Using default secret.');
+    }
+    return 'gia-deliksari-semarang-secret-key-2026';
+  }
+  return secret;
 }
 
 function sign(value: string) {

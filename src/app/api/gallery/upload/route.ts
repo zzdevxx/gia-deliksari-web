@@ -1,12 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getCloudflareContext } from '@opennextjs/cloudflare';
-import { execute, queryFirst } from '@/lib/d1';
+import { execute } from '@/lib/d1';
+import { requireRole } from '@/lib/auth';
 import { uploadToGoogleDrive } from '@/lib/googleDrive';
 import { GalleryItem } from '@/types';
 
-const MAX_ACTIVE_PHOTOS = 50; // Rolling buffer limit
-
 export async function POST(req: NextRequest) {
+  const guard = await requireRole(req, ['super', 'admin']);
+  if (guard instanceof Response) return guard;
+
   try {
     const formData = await req.formData();
     const file = formData.get('file') as File | null;
@@ -114,22 +116,6 @@ export async function POST(req: NextRequest) {
         now,
       ],
     );
-
-    // 5. Auto-Prune D1 rolling 50 items
-    try {
-      const countRow = await queryFirst<{ count: number }>('SELECT count(*) as count FROM gallery_items');
-      if (countRow && countRow.count > MAX_ACTIVE_PHOTOS) {
-        const surplus = countRow.count - MAX_ACTIVE_PHOTOS;
-        await execute(
-          `DELETE FROM gallery_items WHERE id IN (
-            SELECT id FROM gallery_items ORDER BY created_at ASC LIMIT ?
-          )`,
-          [surplus],
-        );
-      }
-    } catch (pruneErr) {
-      console.warn('[gallery/upload] prune warning:', pruneErr);
-    }
 
     return NextResponse.json({
       success: true,

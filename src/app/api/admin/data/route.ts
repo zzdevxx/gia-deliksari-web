@@ -19,6 +19,33 @@ const TABLE_WHITELIST = [
 
 type TableName = (typeof TABLE_WHITELIST)[number];
 
+const TABLE_COLUMNS: Record<TableName, Set<string>> = {
+  announcements: new Set([
+    'id', 'title', 'category', 'content', 'event_date',
+    'is_pinned', 'is_published', 'badge_text', 'author', 'created_at',
+  ]),
+  servant_rosters: new Set([
+    'id', 'service_category', 'service_date', 'role', 'servant_name',
+    'phone', 'status', 'notes', 'created_at',
+  ]),
+  inventory_items: new Set([
+    'id', 'name', 'category', 'code', 'quantity', 'is_checked',
+    'condition', 'location', 'notes', 'last_checked_at', 'checked_by', 'created_at',
+  ]),
+  sermons: new Set([
+    'id', 'title', 'speaker', 'passage', 'date', 'youtube_url',
+    'thumbnail', 'category', 'is_published', 'created_at',
+  ]),
+  gallery_items: new Set([
+    'id', 'title', 'category', 'image', 'thumb_url', 'drive_file_id',
+    'drive_web_view_link', 'uploader_name', 'date', 'is_published', 'created_at',
+  ]),
+  ministry_requests: new Set([
+    'id', 'type', 'name', 'phone', 'sub_type', 'message',
+    'need_pastoral_visit', 'status', 'created_at',
+  ]),
+};
+
 const MAX_ITEMS_PER_SAVE = 500;
 
 function isValidTable(value: unknown): value is TableName {
@@ -70,28 +97,34 @@ export async function POST(req: NextRequest) {
 
   try {
     const db = await getDb();
-    const statements = items.map((item: Record<string, unknown>) => {
-      const record = { ...item };
-      if (!record.id) {
-        record.id = crypto.randomUUID();
-      }
+    const allowedCols = TABLE_COLUMNS[table];
 
-      // SQLite booleans coercion
-      for (const [k, v] of Object.entries(record)) {
+    const statements = items.map((item: Record<string, unknown>) => {
+      const sanitizedRecord: Record<string, unknown> = {};
+      const id = typeof item.id === 'string' && item.id.trim() ? item.id.trim() : crypto.randomUUID();
+      sanitizedRecord.id = id;
+
+      for (const [k, v] of Object.entries(item)) {
+        if (k === 'id') continue;
+        if (!allowedCols.has(k)) continue; // Whitelist security: skip unknown/injection keys
+
+        // SQLite booleans coercion
         if (typeof v === 'boolean') {
-          record[k] = v ? 1 : 0;
+          sanitizedRecord[k] = v ? 1 : 0;
+        } else {
+          sanitizedRecord[k] = v;
         }
       }
 
-      const keys = Object.keys(record);
-      const cols = keys.join(', ');
+      const keys = Object.keys(sanitizedRecord);
+      const cols = keys.map((k) => `"${k}"`).join(', ');
       const placeholders = keys.map(() => '?').join(', ');
       const updates = keys
         .filter((k) => k !== 'id' && k !== 'created_at')
-        .map((k) => `${k} = excluded.${k}`)
+        .map((k) => `"${k}" = excluded."${k}"`)
         .join(', ');
 
-      const values = Object.values(record);
+      const values = Object.values(sanitizedRecord);
 
       const sql = updates.length > 0
         ? `INSERT INTO ${table} (${cols}) VALUES (${placeholders}) ON CONFLICT(id) DO UPDATE SET ${updates}`
