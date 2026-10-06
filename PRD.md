@@ -70,25 +70,32 @@ API routes memakai helper `requireRole(req, ['super', 'admin'])` dari `src/lib/a
 - Caching in-memory 2 jam.
 - Fallback ke seedData lokal jika API key invalid / quota habis.
 
-### 3.2 Hybrid Rolling Gallery: Google Drive Master + Supabase Storage Cache
+### 3.2 Media & Gallery Archive
 - Google Drive = permanent master archive (resolusi asli).
-- Supabase Storage `church-gallery` = rolling cache 30–50 foto terkini.
-- Auto-prune ketika > 50 foto: hapus dari Supabase, file di Drive tetap aman.
-- UI: tombol "Buka Arsip Lengkap di Google Drive".
+- Cloudflare D1 `gallery_items` = database metadata & link streaming media.
+- UI: tombol "Buka Arsip Lengkap di Google Drive" & empty state template elegan siap foto riil.
 
 ---
 
-## 4. Spesifikasi Portal Publik (`/home` + `/info`)
+## 4. Spesifikasi Portal Publik (`/home`, `/info`, `/media`, `/layanan`, `/persembahan`)
 
-### 4.1 `/home` — Landing jemaat
-13 section visual: Hero, Hospitality, About, Ministries, Sermons, AnnouncementBoard, Schedule, Organization, MinistryRegistration, Giving, Gallery, LocationContact, Footer.
+### 4.1 `/home` — Beranda Jemaat
+6 section visual fokus (anti-slop, ringkas & hangat):
+1. **Hero**: Visual branding logo resmi GIA Deliksari, status ibadah, alamat Sekaran UNNES.
+2. **Hospitality**: Panduan jemaat baru & link WhatsApp pastoral resmi (`+62 896-2096-1103`).
+3. **About & Gembala**: Visi penggembalaan "Growing Church!" & kartu tim penggembalaan (monogram/initials resmi & link medsos).
+4. **4 Pilar Komunitas**: Ibadah Raya, Grow Generation Youth, COC Kidz, Wanita HANA.
+5. **Struktur Organisasi**: Bagan kepengurusan pelayanan (§4 di `INFO.md`): Youth, 5 Komsel Sel, Sekolah Minggu, Wanita HANA.
+6. **Lokasi & Kontak**: Peta Google Maps, alamat resmi, kontak, dan FAQ.
 
-### 4.2 `/info` — Halaman operasional
-2 section terfokus:
-- **Papan Warta** — dengan filter kategori (Semua/Ibadah Raya/Grow Youth/COC Kidz/Wanita Hana) + filter waktu (Akan Datang/Semua/Sudah Berlalu) + countdown.
-- **Jadwal Pelayanan** — roster ibadah dengan filter kategori komunitas (Semua/Ibadah Raya/Grow Youth/COC Kidz/Wanita Hana).
+### 4.2 `/info` — Warta & Jadwal Operasional
+3 section terfokus:
+- **Papan Warta** (`#warta`) — filter kategori + filter waktu + countdown + tombol "Salin Format WA Warta".
+- **Jadwal & Agenda Ibadah Rutin** (`#agenda`) — 4 pilar ibadah, Doa Pagi + tombol langsung Join Zoom, Latihan Musik, Jam Kantor Gereja.
+- **Jadwal Pelayan Ibadah** (`#roster`) — roster ibadah dengan toggle List / Kalender interaktif + tombol "Salin Format WA Roster".
+- **Cetak Buletin A4** (`/info/print`) — rute mandiri siap cetak A4 portrait standar Sinode GIA Deliksari.
 
-Data dibaca dari Supabase via `/api/public/data`. Statis (prerendered). Tidak butuh login.
+Data dibaca dari Cloudflare D1 via `/api/public/data`. Tidak butuh login.
 
 ---
 
@@ -97,7 +104,7 @@ Data dibaca dari Supabase via `/api/public/data`. Statis (prerendered). Tidak bu
 ### 5.1 Modul
 5 tab utama — dikontrol oleh operator gereja (role: super atau admin):
 
-| Tab | Modul | Tabel Supabase |
+| Tab | Modul | Tabel D1 |
 |---|---|---|
 | 🔔 Warta Jemaat | CRUD warta + pin/unpin + filter publish/draft | `announcements` |
 | 👥 Roster Pelayanan | Plotting petugas 4 komunitas + WhatsApp broadcast + cetak A4 | `servant_rosters` |
@@ -109,8 +116,8 @@ Data dibaca dari Supabase via `/api/public/data`. Statis (prerendered). Tidak bu
 1. Admin login ke `/admin` dengan username + password.
 2. Pilih tab (mis. Warta Jemaat).
 3. Klik "Tambah Warta Baru" → form modal → submit.
-4. Data terkirim ke `/api/admin/data` (POST).
-5. Server validasi session + tulis ke Supabase via service role.
+4. Data terkirim ke `/api/admin/data` (POST) dengan validasi whitelist kolom skema.
+5. Server validasi session + tulis ke Cloudflare D1 via prepared statements.
 6. UI refresh otomatis dari state lokal.
 7. Pengumuman tampil di `/home`, `/info`, dan `/api/public/data`.
 
