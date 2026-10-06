@@ -15,7 +15,7 @@ import { WhatsAppIcon } from './Icons';
 
 export default function HospitalitySection() {
   const whatsappUrl =
-    'https://api.whatsapp.com/send?phone=6281234567890&text=Syalom%20GIA%20Deliksari,%20saya%20jemaat%20baru%20dan%20ingin%20bertanya%20seputar%20ibadah.';
+    'https://api.whatsapp.com/send?phone=6289620961103&text=Syalom%20GIA%20Deliksari,%20saya%20jemaat%20baru%20dan%20ingin%20bertanya%20seputar%20ibadah.';
 
   const steps = [
     {

@@ -158,8 +158,8 @@ export default function Hero() {
                 <p className="text-[11px] sm:text-xs font-semibold text-[#6E5D5F] dark:text-[#B5A1A3]">WIB · Minggu</p>
               </div>
               <div className="space-y-1">
-                <span className="text-xl sm:text-2xl font-extrabold text-[#1F1617] dark:text-white font-mono">47</span>
-                <p className="text-[11px] sm:text-xs font-semibold text-[#6E5D5F] dark:text-[#B5A1A3]">Tahun Melayani</p>
+                <span className="text-xl sm:text-2xl font-extrabold text-[#1F1617] dark:text-white font-mono">UNNES</span>
+                <p className="text-[11px] sm:text-xs font-semibold text-[#6E5D5F] dark:text-[#B5A1A3]">Kawasan Sekaran</p>
               </div>
             </div>
 
@@ -168,29 +168,52 @@ export default function Hero() {
           {/* Right Column: Hero Visual Card */}
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none">
-              
-              {/* Main Image Container */}
-              <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border-2 border-white dark:border-[#3A1C20] shadow-xl bg-[#F7F2E8] dark:bg-[#221215]">
-                <Image
-                  src="/images/hero-church.jpg"
-                  alt="Gereja Isa Almasih Deliksari Semarang"
-                  fill
-                  priority
-                  className="object-cover"
-                />
-                
-                {/* Subtle Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#150B0D]/80 via-transparent to-transparent" />
 
-                {/* Bottom Overlay Text */}
-                <div className="absolute bottom-6 left-6 right-6 text-white space-y-2">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C5222E]/80 backdrop-blur-md text-[11px] font-bold border border-white/20">
+              {/* Main Visual Template Card */}
+              <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border-2 border-white dark:border-[#3A1C20] shadow-xl bg-gradient-to-br from-[#80141C] via-[#C5222E] to-[#520B11] p-6 sm:p-8 flex flex-col justify-between text-white">
+                {/* Top Badge & Status */}
+                <div className="flex items-center justify-between">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/15 backdrop-blur-md text-[11px] font-bold border border-white/20">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                     <span>Ibadah Onsite & Persekutuan</span>
                   </div>
-                  <h3 className="text-lg sm:text-xl font-extrabold text-white leading-snug">
-                    Jl. Kolonel HR Hadijanto, Sekaran, Kec. Gn. Pati, Kota Semarang, Jawa Tengah 50229
-                  </h3>
+                  <span className="text-[11px] font-bold text-red-200 tracking-wider">
+                    GIA DELIKSARI
+                  </span>
+                </div>
+
+                {/* Center: Clean Official Church Logo with soft glow */}
+                <div className="my-auto py-4 text-center space-y-4">
+                  <div className="relative w-28 h-28 sm:w-32 sm:h-32 mx-auto rounded-3xl overflow-hidden shadow-2xl border-2 border-white/30 bg-white">
+                    <Image
+                      src="/images/logo.png"
+                      alt="Logo Resmi GIA Deliksari"
+                      fill
+                      priority
+                      className="object-contain"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <h3 className="text-lg sm:text-xl font-black text-white tracking-tight leading-tight">
+                      GEREJA ISA ALMASIH DELIKSARI
+                    </h3>
+                    <p className="text-xs sm:text-sm font-medium text-red-100 italic">
+                      &ldquo;A Growing Church in Faith, Love, and Hope&rdquo;
+                    </p>
+                  </div>
+                  <div className="inline-block px-3 py-1 rounded-full bg-black/25 backdrop-blur-sm text-[10px] font-medium text-red-200 border border-white/10">
+                    📷 Dokumentasi Foto Gedung Segera Diperbarui
+                  </div>
+                </div>
+
+                {/* Bottom Overlay Text */}
+                <div className="pt-4 border-t border-white/20 space-y-1 text-left">
+                  <p className="text-xs sm:text-sm font-extrabold text-white">
+                    Jl. Kolonel HR Hadijanto, Sekaran, Gunungpati
+                  </p>
+                  <p className="text-[11px] text-red-200">
+                    Gedung Sanctuary Utama & Ruang Bethel · Kawasan UNNES Semarang
+                  </p>
                 </div>
               </div>
 

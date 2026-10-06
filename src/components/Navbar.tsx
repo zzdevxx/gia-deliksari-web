@@ -27,6 +27,7 @@ const MOBILE_GROUPS: { title: string; items: NavItem[] }[] = [
       { name: 'Panduan Tamu Onsite', href: '/home#kunjungan', description: 'Panduan untuk jemaat baru' },
       { name: 'Visi & Nilai', href: '/home#tentang', description: 'Visi penggembalaan' },
       { name: '4 Pilar Komunitas', href: '/home#pelayanan', description: 'Ibadah Raya, Youth, Kidz, Hana' },
+      { name: 'Struktur Pelayanan', href: '/home#struktur', description: 'Tim pelayanan & pengurus' },
       { name: 'Lokasi & Kontak', href: '/home#kontak', description: 'Alamat & WhatsApp' },
     ],
   },
@@ -57,7 +58,7 @@ export default function Navbar() {
       setScrollProgress(docHeight > 0 ? Math.min(window.scrollY / docHeight, 1) : 0);
 
       // Determine active section via scroll position for anchor links on home
-      const sections = ['kunjungan', 'tentang', 'pelayanan', 'kontak'];
+      const sections = ['kunjungan', 'tentang', 'pelayanan', 'struktur', 'kontak'];
       let current = '';
       for (const id of sections) {
         const el = document.getElementById(id);

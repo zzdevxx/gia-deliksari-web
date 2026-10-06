@@ -250,7 +250,7 @@ export default function AdminDashboard() {
     passage: '',
     date: 'Minggu, 30 Agustus 2026',
     youtubeUrl: 'https://www.youtube.com/@GIADeliksariSemarang',
-    thumbnail: '/images/gallery-2.jpg',
+    thumbnail: '/images/logo.png',
     category: 'Ibadah Raya',
   });
 
@@ -267,7 +267,7 @@ export default function AdminDashboard() {
   }>({
     title: '',
     category: 'ibadah',
-    image: '/images/gallery-1.jpg',
+    image: '/images/logo.png',
     date: 'Agustus 2026',
   });
 
@@ -1188,7 +1188,7 @@ export default function AdminDashboard() {
                         passage: '',
                         date: 'Minggu, 30 Agustus 2026',
                         youtubeUrl: 'https://www.youtube.com/@GIADeliksariSemarang',
-                        thumbnail: '/images/gallery-2.jpg',
+                        thumbnail: '/images/logo.png',
                         category: 'Ibadah Raya',
                       });
                       setIsSermonModalOpen(true);
@@ -1306,7 +1306,7 @@ export default function AdminDashboard() {
                   >
                     <div className="relative aspect-[16/10] w-full bg-[#F7F2E8] dark:bg-[#2A161A]">
                       <Image
-                        src={item.image || '/images/gallery-1.jpg'}
+                        src={item.image || '/images/logo.png'}
                         alt={item.title}
                         fill
                         className="object-cover"
@@ -2062,7 +2062,7 @@ export default function AdminDashboard() {
                   required
                   value={galleryForm.image}
                   onChange={(e) => setGalleryForm({ ...galleryForm, image: e.target.value })}
-                  placeholder="/images/gallery-1.jpg atau https://..."
+                  placeholder="https://... atau /images/logo.png"
                   className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
                 />
               </div>

@@ -29,7 +29,6 @@ const PRECACHE_URLS = [
   '/home',
   '/info',
   '/images/logo.png',
-  '/images/hero-church.jpg',
 ];
 
 self.addEventListener('install', (event) => {

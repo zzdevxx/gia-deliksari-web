@@ -35,7 +35,7 @@ export async function GET() {
           passage: s.passage,
           date: s.date,
           youtubeUrl: s.youtube_url || s.youtubeUrl,
-          thumbnail: s.thumbnail || '/images/gallery-2.jpg',
+          thumbnail: s.thumbnail || '/images/logo.png',
           category: s.category || 'Ibadah Raya',
           createdAt: s.created_at || s.createdAt,
         }));
@@ -102,7 +102,7 @@ export async function GET() {
         item.snippet.thumbnails?.high?.url ||
         item.snippet.thumbnails?.medium?.url ||
         item.snippet.thumbnails?.default?.url ||
-        '/images/gallery-2.jpg';
+        '/images/logo.png';
 
       return {
         id: `yt-${videoId || idx}`,

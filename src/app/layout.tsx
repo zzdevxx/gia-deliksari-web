@@ -62,10 +62,10 @@ export const metadata: Metadata = {
     siteName: 'GIA Deliksari Semarang',
     images: [
       {
-        url: '/images/hero-church.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Gedung Fisik GIA Deliksari Semarang',
+        url: '/images/logo.png',
+        width: 1080,
+        height: 1080,
+        alt: 'Logo Resmi GIA Deliksari Semarang - Growing Church',
       },
     ],
     locale: 'id_ID',
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     title: 'GIA Deliksari Semarang - Growing Church!',
     description:
       'Gereja Isa Almasih Deliksari Semarang. Jadwal Ibadah, Warta Jemaat, dan Pusat Pelayanan.',
-    images: ['/images/hero-church.jpg'],
+    images: ['/images/logo.png'],
   },
   icons: {
     icon: '/images/logo.png',
@@ -93,10 +93,10 @@ const churchSchema = {
   alternateName: ['GIA Deliksari', 'GIA Deliksari Growing Church'],
   url: siteUrl,
   logo: `${siteUrl}/images/logo.png`,
-  image: `${siteUrl}/images/hero-church.jpg`,
+  image: `${siteUrl}/images/logo.png`,
   description:
     'Gereja Isa Almasih (GIA) Deliksari adalah komunitas keluarga Allah di Semarang yang berakar dalam iman, kasih, dan pengharapan.',
-  telephone: '+6281234567890',
+  telephone: '+6289620961103',
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Jl. Kolonel Hadijanto, Deliksari',

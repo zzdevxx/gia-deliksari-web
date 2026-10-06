@@ -315,7 +315,7 @@ export const INITIAL_SERMONS: Sermon[] = [
     passage: 'Kolose 2:6-7 & Mazmur 1:1-3',
     date: 'Minggu, 16 Agustus 2026',
     youtubeUrl: 'https://www.youtube.com/@GIADeliksariSemarang',
-    thumbnail: '/images/gallery-2.jpg',
+    thumbnail: '/images/logo.png',
     category: 'Ibadah Raya',
     createdAt: '2026-08-16T10:00:00Z',
   },
@@ -326,7 +326,7 @@ export const INITIAL_SERMONS: Sermon[] = [
     passage: '1 Timotius 4:12',
     date: 'Sabtu, 15 Agustus 2026',
     youtubeUrl: 'https://www.youtube.com/@GIADeliksariSemarang',
-    thumbnail: '/images/gallery-6.jpg',
+    thumbnail: '/images/logo.png',
     category: 'Grow Generation Youth',
     createdAt: '2026-08-15T19:00:00Z',
   },
@@ -337,62 +337,13 @@ export const INITIAL_SERMONS: Sermon[] = [
     passage: 'Yosua 24:15 & Efesus 5:1-2',
     date: 'Minggu, 9 Agustus 2026',
     youtubeUrl: 'https://www.youtube.com/@GIADeliksariSemarang',
-    thumbnail: '/images/gallery-5.jpg',
+    thumbnail: '/images/logo.png',
     category: 'Ibadah Raya',
     createdAt: '2026-08-09T10:00:00Z',
   }
 ];
 
-export const INITIAL_GALLERY: GalleryItem[] = [
-  {
-    id: 'gal-1',
-    title: 'Gedung Sanctuary GIA Deliksari Semarang',
-    category: 'ibadah',
-    image: '/images/gallery-1.jpg',
-    date: 'Agustus 2026',
-    createdAt: '2026-08-01T00:00:00Z',
-  },
-  {
-    id: 'gal-2',
-    title: 'Pemberitaan Firman & Penggembalaan Jemaat',
-    category: 'ibadah',
-    image: '/images/gallery-2.jpg',
-    date: 'Agustus 2026',
-    createdAt: '2026-08-01T00:00:00Z',
-  },
-  {
-    id: 'gal-3',
-    title: 'Praise & Worship DS Worship Team',
-    category: 'worship',
-    image: '/images/gallery-3.jpg',
-    date: 'Juli 2026',
-    createdAt: '2026-07-15T00:00:00Z',
-  },
-  {
-    id: 'gal-4',
-    title: 'Keceriaan Ibadah Anak Sekolah Minggu COC Kidz',
-    category: 'komunitas',
-    image: '/images/gallery-4.jpg',
-    date: 'Juli 2026',
-    createdAt: '2026-07-15T00:00:00Z',
-  },
-  {
-    id: 'gal-5',
-    title: 'Persekutuan & Doa Bersama Jemaat',
-    category: 'komunitas',
-    image: '/images/gallery-5.jpg',
-    date: 'Juni 2026',
-    createdAt: '2026-06-20T00:00:00Z',
-  },
-  {
-    id: 'gal-6',
-    title: 'Fellowship Pemuda Grow Generation PRBK',
-    category: 'youth',
-    image: '/images/gallery-6.jpg',
-    date: 'Juni 2026',
-    createdAt: '2026-06-20T00:00:00Z',
-  },
-];
+export const INITIAL_GALLERY: GalleryItem[] = [];
 
 export const INITIAL_MINISTRY_REQUESTS: MinistryRequest[] = [
   {

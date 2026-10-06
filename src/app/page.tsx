@@ -4,6 +4,7 @@ import Hero from '@/components/Hero';
 import HospitalitySection from '@/components/HospitalitySection';
 import AboutSection from '@/components/AboutSection';
 import MinistriesSection from '@/components/MinistriesSection';
+import OrganizationSection from '@/components/OrganizationSection';
 import LocationContactSection from '@/components/LocationContactSection';
 import Footer from '@/components/Footer';
 
@@ -19,6 +20,7 @@ export default function Home() {
         <HospitalitySection />
         <AboutSection />
         <MinistriesSection />
+        <OrganizationSection />
         <LocationContactSection />
       </main>
 

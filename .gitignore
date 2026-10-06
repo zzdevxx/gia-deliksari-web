@@ -40,6 +40,7 @@ tsconfig.tsbuildinfo
 # Backup / log artifacts (do not commit)
 /backups/*.json
 !/backups/README.md
+backups/old-images-backup/
 *.log
 sync-env.log
 prod-deploy-final.log

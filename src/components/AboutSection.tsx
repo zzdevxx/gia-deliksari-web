@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import {
   Heart,
   Sparkles,
@@ -19,24 +18,30 @@ export default function AboutSection() {
     {
       name: 'Pdt. Yohanes Sutono, S.Th., M.Ag.',
       role: 'Gembala Sidang',
+      initials: 'YS',
+      icon: BookOpen,
+      gradient: 'from-[#80141C] via-[#C5222E] to-[#520B11]',
       desc: 'Memimpin dan menggembalakan jemaat GIA Deliksari dengan keteladanan firman Tuhan, kerendahan hati, dan doa penggembalaan.',
-      image: '/images/pastor-yohanes.jpg',
       badge: 'Gembala Sidang',
       instagram: 'https://www.instagram.com/ps.yohanessutono/',
     },
     {
       name: 'Ibu Santini Lidyawati',
       role: 'Pendamping Gembala',
+      initials: 'SL',
+      icon: Heart,
+      gradient: 'from-[#A6264A] via-[#C5222E] to-[#7B0F17]',
       desc: 'Mendampingi penggembalaan jemaat serta memimpin persekutuan kaum wanita Hana dengan kehangatan kasih dan keteladanan hidup.',
-      image: '/images/pastor-yohanes.jpg',
       badge: 'Pendamping Gembala',
       instagram: 'https://www.instagram.com/santinilidyawati/',
     },
     {
       name: 'Sdr. Noel Yosan Loveano, S.Th.',
       role: 'Youth Pastor',
+      initials: 'NL',
+      icon: Sparkles,
+      gradient: 'from-[#C83E20] via-[#E05333] to-[#80141C]',
       desc: 'Membimbing generasi muda Grow Generation dan melayani pengajaran firman yang kontekstual bagi pemuda dan mahasiswa perantauan.',
-      image: '/images/pastor-yohanes.jpg',
       badge: 'Youth Pastor',
       instagram: 'https://www.instagram.com/noelloveano_/',
     },
@@ -156,54 +161,67 @@ export default function AboutSection() {
 
         {/* 3 Pastoral Leaders Centered */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {pastoralTeam.map((leader) => (
-            <div
-              key={leader.name}
-              className="p-6 rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-5 group"
-            >
-              <div className="space-y-4">
-                <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-[#F7F2E8] dark:bg-[#2A161A]">
-                  <Image
-                    src={leader.image}
-                    alt={leader.name}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute top-2.5 right-2.5">
-                    <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-[#FDF0F0] text-[#9A1620] border border-[#F5CDD0] dark:bg-[#331418] dark:text-[#F2828C] dark:border-[#521E25]">
-                      {leader.badge}
-                    </span>
-                  </div>
-                </div>
+          {pastoralTeam.map((leader) => {
+            const LeaderIcon = leader.icon;
+            return (
+              <div
+                key={leader.name}
+                className="p-6 rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-5 group"
+              >
+                <div className="space-y-4">
+                  {/* Clean Monogram / Avatar Visual Card */}
+                  <div className={`relative aspect-square w-full rounded-2xl overflow-hidden bg-gradient-to-br ${leader.gradient} p-6 flex flex-col justify-between text-white shadow-inner`}>
+                    <div className="flex items-center justify-between">
+                      <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/25">
+                        <LeaderIcon className="w-5 h-5" />
+                      </div>
+                      <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-black/30 backdrop-blur-md text-white border border-white/20">
+                        {leader.badge}
+                      </span>
+                    </div>
 
-                <div>
-                  <h4 className="font-extrabold text-base text-[#1F1617] dark:text-[#F5EFEB] group-hover:text-[#C5222E] dark:group-hover:text-[#E03643] transition-colors">
-                    {leader.name}
-                  </h4>
-                  <p className="text-xs font-semibold text-[#C5222E] dark:text-[#E03643]">
-                    {leader.role}
+                    <div className="text-center my-auto py-2">
+                      <span className="text-4xl sm:text-5xl font-black tracking-tight text-white/95 font-serif drop-shadow-md">
+                        {leader.initials}
+                      </span>
+                    </div>
+
+                    <div className="text-center">
+                      <span className="inline-block px-3 py-1 rounded-full bg-black/25 backdrop-blur-sm text-[10px] font-medium text-red-100 border border-white/10">
+                        📷 Foto Resmi Segera Diperbarui
+                      </span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-extrabold text-base text-[#1F1617] dark:text-[#F5EFEB] group-hover:text-[#C5222E] dark:group-hover:text-[#E03643] transition-colors">
+                      {leader.name}
+                    </h4>
+                    <p className="text-xs font-semibold text-[#C5222E] dark:text-[#E03643]">
+                      {leader.role}
+                    </p>
+                  </div>
+
+                  <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4] leading-relaxed">
+                    {leader.desc}
                   </p>
                 </div>
 
-                <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4] leading-relaxed">
-                  {leader.desc}
-                </p>
+                <div className="pt-3 border-t border-[#EBDDCF]/60 dark:border-[#3A1C20]/60">
+                  <a
+                    href={leader.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#5A4D4E] dark:text-[#D5C2C4] hover:text-[#C5222E] dark:hover:text-[#E03643] transition-colors"
+                  >
+                    <InstagramIcon className="w-3.5 h-3.5 text-[#C5222E]" />
+                    <span>Media Sosial</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
               </div>
-
-              <div className="pt-3 border-t border-[#EBDDCF]/60 dark:border-[#3A1C20]/60">
-                <a
-                  href={leader.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#5A4D4E] dark:text-[#D5C2C4] hover:text-[#C5222E] dark:hover:text-[#E03643] transition-colors"
-                >
-                  <InstagramIcon className="w-3.5 h-3.5 text-[#C5222E]" />
-                  <span>Media Sosial</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>

@@ -201,10 +201,38 @@ export default function GallerySection() {
 
         {/* Gallery Grid - 12 foto random, 2/3/4 cols responsif */}
         {displayed.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-20 text-center text-stone-500">
-            <Images className="w-12 h-12 mb-3 opacity-40" />
-            <p className="text-sm">Belum ada foto untuk kategori ini.</p>
-            <p className="text-xs mt-1">Jadilah yang pertama mengunggah momen!</p>
+          <div className="p-12 sm:p-16 rounded-[2.5rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm text-center max-w-2xl mx-auto space-y-5">
+            <div className="w-16 h-16 rounded-3xl bg-[#FDF0F0] dark:bg-[#331418] border border-[#F5CDD0] dark:border-[#521E25] flex items-center justify-center text-[#C5222E] mx-auto shadow-sm">
+              <Camera className="w-8 h-8" />
+            </div>
+            <div className="space-y-2">
+              <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold bg-[#F7F2E8] dark:bg-[#2A161A] text-[#6E5D5F] dark:text-[#B5A1A3] border border-[#EBDDCF] dark:border-[#3A1C20] uppercase tracking-wider">
+                Dokumentasi Kegiatan
+              </span>
+              <h3 className="text-xl sm:text-2xl font-extrabold text-[#1F1617] dark:text-[#F5EFEB]">
+                Arsip Foto Sedang Dipersiapkan
+              </h3>
+              <p className="text-xs sm:text-sm text-[#5A4D4E] dark:text-[#D5C2C4] leading-relaxed max-w-lg mx-auto">
+                Dokumentasi resmi ibadah raya, persekutuan pemuda, sekolah minggu, dan kegiatan jemaat GIA Deliksari akan segera diunggah oleh tim media gereja.
+              </p>
+            </div>
+            <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
+              <a
+                href="#khotbah"
+                className="px-5 py-2.5 rounded-xl bg-[#C5222E] text-white text-xs font-bold hover:bg-[#80141C] shadow-sm transition-all"
+              >
+                Tonton Video Khotbah
+              </a>
+              <a
+                href={googleDriveFolderUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2.5 rounded-xl bg-white dark:bg-[#2A161A] text-[#1F1617] dark:text-[#F5EFEB] border border-[#EBDDCF] dark:border-[#3A1C20] text-xs font-bold hover:bg-[#F7F2E8] transition-all flex items-center gap-2"
+              >
+                <FolderOpen className="w-3.5 h-3.5 text-[#C5222E]" />
+                <span>Google Drive Master</span>
+              </a>
+            </div>
           </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
@@ -215,7 +243,7 @@ export default function GallerySection() {
                 className="group relative aspect-square rounded-2xl sm:rounded-[1.75rem] overflow-hidden bg-[#F7F2E8] dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm hover:shadow-md cursor-pointer transition-all"
               >
                 <Image
-                  src={item.thumbUrl || item.image || '/images/gallery-1.jpg'}
+                  src={item.thumbUrl || item.image || '/images/logo.png'}
                   alt={item.title}
                   fill
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
@@ -305,7 +333,7 @@ export default function GallerySection() {
             {/* Main Lightbox Image */}
             <div className="relative aspect-[16/10] w-full rounded-[2rem] overflow-hidden bg-black shadow-2xl border border-white/10">
               <Image
-                src={selectedItem.image || selectedItem.thumbUrl || '/images/gallery-1.jpg'}
+                src={selectedItem.image || selectedItem.thumbUrl || '/images/logo.png'}
                 alt={selectedItem.title}
                 fill
                 className="object-contain"

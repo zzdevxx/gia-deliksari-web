@@ -23,6 +23,10 @@ import {
   Printer,
   Filter,
   Check,
+  Music,
+  Video,
+  Building,
+  ExternalLink,
 } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/Icons';
 import { dataStore } from '@/lib/storage';
@@ -370,7 +374,190 @@ export default function InfoPage() {
         </div>
       </section>
 
-      {/* ============== SECTION 2: JADWAL PELAYANAN ============== */}
+      {/* ============== SECTION 2: JADWAL & AGENDA IBADAH RUTIN ============== */}
+      <section id="agenda" className="py-16 bg-[#FDFBF7] dark:bg-[#150B0D] border-t border-[#EBDDCF] dark:border-[#3A1C20]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FDF0F0] dark:bg-[#331418] border border-[#F5CDD0] dark:border-[#521E25] text-[#9A1620] dark:text-[#F2828C] text-xs font-bold uppercase tracking-wider">
+              <Clock className="w-3.5 h-3.5 text-[#C5222E]" />
+              <span>Agenda Ibadah & Kegiatan Sepekan</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1F1617] dark:text-[#F5EFEB]">
+              Jadwal Ibadah Rutin GIA Deliksari
+            </h2>
+            <p className="text-xs sm:text-sm text-[#5A4D4E] dark:text-[#D5C2C4]">
+              Ibadah onsite di Gedung Utama / Ruang Bethel serta doa pagi online via Zoom.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* 1. Ibadah Raya Minggu */}
+            <div className="p-6 rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm flex flex-col justify-between space-y-4 border-t-4 border-t-[#C5222E]">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[#FDF0F0] text-[#9A1620] dark:bg-[#331418] dark:text-[#F2828C] border border-[#F5CDD0] dark:border-[#521E25]">
+                    Ibadah Raya Umum
+                  </span>
+                  <span className="text-xs font-bold text-[#C5222E]">Minggu</span>
+                </div>
+                <h3 className="text-lg font-black text-[#1F1617] dark:text-[#F5EFEB]">
+                  Ibadah Raya Minggu
+                </h3>
+                <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4] leading-relaxed">
+                  Ibadah persekutuan seluruh jemaat dan keluarga dengan firman penggembalaan dan perjamuan kudus.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-[#EBDDCF]/60 dark:border-[#3A1C20]/60 flex items-center justify-between text-xs font-semibold text-[#6E5D5F] dark:text-[#B5A1A3]">
+                <span className="flex items-center gap-1 font-mono text-[#C5222E] font-bold">
+                  <Clock className="w-3.5 h-3.5" /> 09.00 - 11.00 WIB
+                </span>
+                <span className="flex items-center gap-1">
+                  <MapPin className="w-3.5 h-3.5 text-[#C5222E]" /> Gedung Utama
+                </span>
+              </div>
+            </div>
+
+            {/* 2. COC Kidz (Sekolah Minggu) */}
+            <div className="p-6 rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm flex flex-col justify-between space-y-4 border-t-4 border-t-[#B87A14]">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[#FEF9EC] text-[#B87A14] dark:bg-[#332612] dark:text-[#F0BE5E] border border-[#F8E3B5] dark:border-[#543E19]">
+                    Sekolah Minggu (KAA)
+                  </span>
+                  <span className="text-xs font-bold text-[#B87A14]">Minggu</span>
+                </div>
+                <h3 className="text-lg font-black text-[#1F1617] dark:text-[#F5EFEB]">
+                  COC Kidz
+                </h3>
+                <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4] leading-relaxed">
+                  Ibadah anak-anak (Balita - SD) dengan pujian sukacita dan aktivitas firman kreatif.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-[#EBDDCF]/60 dark:border-[#3A1C20]/60 flex items-center justify-between text-xs font-semibold text-[#6E5D5F] dark:text-[#B5A1A3]">
+                <span className="flex items-center gap-1 font-mono text-[#B87A14] font-bold">
+                  <Clock className="w-3.5 h-3.5" /> 09.30 - 10.30 WIB
+                </span>
+                <span className="flex items-center gap-1">
+                  <MapPin className="w-3.5 h-3.5 text-[#B87A14]" /> Ruang Bethel
+                </span>
+              </div>
+            </div>
+
+            {/* 3. Grow Generation Youth / PRBK */}
+            <div className="p-6 rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm flex flex-col justify-between space-y-4 border-t-4 border-t-[#C83E20]">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[#FFF2EE] text-[#C83E20] dark:bg-[#331812] dark:text-[#F88B72] border border-[#FCD2C7] dark:border-[#57241A]">
+                    Pemuda & Komsel (4-Minggu)
+                  </span>
+                  <span className="text-xs font-bold text-[#C83E20]">Sabtu</span>
+                </div>
+                <h3 className="text-lg font-black text-[#1F1617] dark:text-[#F5EFEB]">
+                  Grow Generation Youth
+                </h3>
+                <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4] leading-relaxed">
+                  Pola selang-seling 4 minggu: M1 & M3 Ibadah Youth, M2 & M4 Ibadah Komsel Sel.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-[#EBDDCF]/60 dark:border-[#3A1C20]/60 flex items-center justify-between text-xs font-semibold text-[#6E5D5F] dark:text-[#B5A1A3]">
+                <span className="flex items-center gap-1 font-mono text-[#C83E20] font-bold">
+                  <Clock className="w-3.5 h-3.5" /> 18.00 - 20.00 WIB
+                </span>
+                <span className="flex items-center gap-1">
+                  <MapPin className="w-3.5 h-3.5 text-[#C83E20]" /> Sanctuary / Bethel
+                </span>
+              </div>
+            </div>
+
+            {/* 4. Wanita HANA & Komsel Ekklesia */}
+            <div className="p-6 rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm flex flex-col justify-between space-y-4 border-t-4 border-t-[#A6264A]">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[#FDF0F4] text-[#A6264A] dark:bg-[#33121E] dark:text-[#EA7FA0] border border-[#F7C6D5] dark:border-[#541D30]">
+                    Wanita & Komsel
+                  </span>
+                  <span className="text-xs font-bold text-[#A6264A]">Jumat & Selasa</span>
+                </div>
+                <h3 className="text-lg font-black text-[#1F1617] dark:text-[#F5EFEB]">
+                  Wanita HANA & Komsel
+                </h3>
+                <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4] leading-relaxed">
+                  Ibadah HANA Jumat 17.30 WIB (Pola 4-minggu: M1 & M3 HANA, M2 & M4 Komsel). Komsel Ekklesia Selasa 18.30 WIB.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-[#EBDDCF]/60 dark:border-[#3A1C20]/60 flex items-center justify-between text-xs font-semibold text-[#6E5D5F] dark:text-[#B5A1A3]">
+                <span className="flex items-center gap-1 font-mono text-[#A6264A] font-bold">
+                  <Clock className="w-3.5 h-3.5" /> 17.30 / 18.30 WIB
+                </span>
+                <span className="flex items-center gap-1">
+                  <MapPin className="w-3.5 h-3.5 text-[#A6264A]" /> Gedung Utama
+                </span>
+              </div>
+            </div>
+
+            {/* 5. Ibadah Doa Pagi (Onsite + Zoom) */}
+            <div className="p-6 rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm flex flex-col justify-between space-y-4 border-t-4 border-t-blue-600">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
+                    Doa Harian & Online
+                  </span>
+                  <span className="text-xs font-bold text-blue-600">Selasa – Jumat</span>
+                </div>
+                <h3 className="text-lg font-black text-[#1F1617] dark:text-[#F5EFEB]">
+                  Ibadah Doa Pagi
+                </h3>
+                <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4] leading-relaxed">
+                  Mencari hadirat Tuhan di awal hari. Dapat diikuti onsite di gedung gereja atau online via Zoom.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-[#EBDDCF]/60 dark:border-[#3A1C20]/60 flex items-center justify-between gap-2">
+                <span className="font-mono text-xs font-bold text-blue-600 flex items-center gap-1">
+                  <Clock className="w-3.5 h-3.5" /> 05.00 - 05.30 WIB
+                </span>
+                <a
+                  href="https://us06web.zoom.us/j/83715591277?pwd=Qc52Xla9k68ZjD3rViMRIaDiXgaWkf.1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-bold flex items-center gap-1 transition-colors shadow-xs"
+                >
+                  <Video className="w-3 h-3" />
+                  <span>Join Zoom</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+
+            {/* 6. Latihan Musik & Jam Pelayanan Kantor */}
+            <div className="p-6 rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm flex flex-col justify-between space-y-4 border-t-4 border-t-emerald-600">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                    Pelayanan Musik & Kantor
+                  </span>
+                  <span className="text-xs font-bold text-emerald-600">Selasa – Sabtu</span>
+                </div>
+                <h3 className="text-lg font-black text-[#1F1617] dark:text-[#F5EFEB]">
+                  Latihan Musik & Kantor Gereja
+                </h3>
+                <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4] leading-relaxed">
+                  Latihan Musik: Sabtu (10.00-12.00 & 20.00-22.00). Jam Kantor: Selasa–Sabtu 08.00–15.00 WIB di Ruang Gembala.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-[#EBDDCF]/60 dark:border-[#3A1C20]/60 flex items-center justify-between text-xs text-[#6E5D5F] dark:text-[#B5A1A3]">
+                <span className="flex items-center gap-1">
+                  <Music className="w-3.5 h-3.5 text-emerald-600" /> Tim Musik
+                </span>
+                <span className="flex items-center gap-1">
+                  <Building className="w-3.5 h-3.5 text-emerald-600" /> Ruang Gembala
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============== SECTION 3: JADWAL PELAYANAN ============== */}
       <section id="jadwal" className="py-16 bg-[#F7F2E8]/40 dark:bg-[#1A0E10] border-y border-[#EBDDCF] dark:border-[#3A1C20]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">

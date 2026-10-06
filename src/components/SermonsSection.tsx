@@ -112,7 +112,7 @@ export default function SermonsSection() {
                 {/* Thumbnail Container */}
                 <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#1A0E10]">
                   <Image
-                    src={sermon.thumbnail || '/images/gallery-2.jpg'}
+                    src={sermon.thumbnail && !sermon.thumbnail.includes('gallery-') ? sermon.thumbnail : '/images/logo.png'}
                     alt={sermon.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
