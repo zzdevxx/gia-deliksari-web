@@ -76,9 +76,12 @@ jobs:
 
       - name: Run smoke tests against production
         # Don't enable mutation tests in CI by default — those mutate
-        # production DB. Override with `gh workflow run ci.yml -f enable_mutations=true`
-        # when you need a one-off full-suite run.
+        # production DB. Enable via commit message suffix '[mutations]'.
+        # Credentials come from repo secrets, never from the test files.
         run: npx playwright test tests/e2e/smoke.spec.ts --project=chromium
+        env:
+          TEST_SUPER_USER: ${{ secrets.TEST_SUPER_USER }}
+          TEST_SUPER_PASS: ${{ secrets.TEST_SUPER_PASS }}
 
       - name: Upload Playwright report on failure
         if: failure()
@@ -109,8 +112,7 @@ jobs:
         env:
           RUN_MUTATION_TESTS: '1'
           BASE_URL: https://giadeliksari.my.id
-          TEST_SUPER_USER: andreas
-          # Use a GitHub Actions secret for the test super password.
+          TEST_SUPER_USER: ${{ secrets.TEST_SUPER_USER }}
           TEST_SUPER_PASS: ${{ secrets.TEST_SUPER_PASS }}
         run: npx playwright test tests/e2e/mutations.spec.ts --project=chromium
 

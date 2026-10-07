@@ -135,7 +135,7 @@ Data dibaca dari Cloudflare D1 via `/api/public/data`. Tidak butuh login.
 
 ### 6.2 Akses
 - Hanya role `super` yang bisa akses `/super`.
-- Default superuser: `andreas` / `5050` (seeded via `scripts/seed-users.mjs`).
+- Akun superuser awal di-seed ke D1 via `migrations/0002_initial_seed.sql`; kredensial ada di vault pengurus, tidak di dokumen ini.
 - Endpoint `/api/users` & `/api/users/[id]` dilindungi `requireRole(['super'])`.
 
 ---
@@ -184,10 +184,9 @@ View: `youth_treasury_balance` (total_income, total_expense, balance, income_cou
    ```bash
    node scripts/seed-users.mjs
    ```
-   Ini insert akun default:
-   - `andreas` / `5050` (super)
-   - `noel` / `1515` (admin)
-   - `mara` / `1234` (treasurer)
+   Ini insert akun default (bcrypt hash saja — PIN plaintext tidak
+   disimpan di repo; lihat vault pengurus):
+   - `andreas` (super), `noel` (admin), `mara` (treasurer), `zzdree` (admin+treasurer)
 
 ### 9.2 Environment Variables (Vercel Production)
 Set di Vercel dashboard → Settings → Environment Variables:
@@ -215,8 +214,7 @@ SUPABASE_SERVICE_ROLE_KEY=<service-role-jwt>
 SUPABASE_ACCESS_TOKEN=<management-api-token>
 
 # === Admin / Auth ===
-NEXT_PUBLIC_ADMIN_PASSWORD=1515                # legacy fallback (informational only)
-ADMIN_SESSION_SECRET=<random-32-char>            # HMAC key untuk gia_session cookie
+ADMIN_SESSION_SECRET=<random-32-char>            # HMAC key untuk gia_session cookie (wajib)
 
 # === Google Drive (OAuth) ===
 GOOGLE_OAUTH_CLIENT_ID=

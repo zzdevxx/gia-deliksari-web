@@ -34,9 +34,7 @@ Website telah resmi aktif dan ter-deploy secara langsung di **Cloudflare Workers
 | 👑 **Superuser** | [`/super`](/super) | `super` only | User management (create, edit roles, soft-delete). |
 | 💰 **Kas Youth** | [`/kas`](/kas) | `super` / `treasurer` | Catat pemasukan/pengeluaran kas Grow Generation + saldo realtime. |
 
-Akun production saat ini (lihat INFO.md §10.2 untuk detail):
-- `andreas` / `5050` → `super` (akses semua portal)
-- `zzdree` / `9090` → `admin` + `treasurer` (akses `/admin` & `/kas`)
+Akun & kredensial production **tidak didokumentasikan di repo ini** — dikelola via `/super` dan disimpan di vault pengurus (detail: INFO.md §10.2).
 
 ---
 
@@ -60,7 +58,7 @@ Akun production saat ini (lihat INFO.md §10.2 untuk detail):
 - **Dark Mode & Light Mode**: Dukungan pergantian tema dinamis (*persisted*).
 
 ### 2. Admin Operational Portal (`/admin`)
-- 🔒 **Security Gate**: Terproteksi password session-based (`1515`).
+- 🔒 **Security Gate**: Autentikasi multi-role (bcrypt + session cookie HMAC 12 jam) dengan rate-limit login per-IP.
 - 📢 **Manajemen Warta & Pengumuman**: Tambah, edit, hapus, pin warta prioritas, dan filter status publikasi.
 - 👥 **Plotting Jadwal Pelayan Ibadah**: Tab khusus untuk 4 kategori (General, Youth, Kidz, Hana) dengan input peran (WL, Singer, Pemusik, Multimedia, Usher, dll), nomor telepon, dan status konfirmasi.
 - 📦 **Checklist & Audit Inventaris**: Daftar inventaris alat gereja (Sound System, Multimedia, Musik, Kursi & Gedung) dengan fitur centang/uncentang realtime, filter status kondisi (*Good / Maintenance / Broken*), dan reset checklist sebelum ibadah.

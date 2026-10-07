@@ -85,19 +85,26 @@ test.describe('Public surface', () => {
 });
 
 test.describe('Admin / Super auth flow', () => {
+  // Production credentials come from GitHub Actions secrets (TEST_SUPER_USER /
+  // TEST_SUPER_PASS) — never hardcode them in this file.
+  const SUPER_USER = process.env.TEST_SUPER_USER;
+  const SUPER_PASS = process.env.TEST_SUPER_PASS;
+  const HAVE_CREDS = Boolean(SUPER_USER && SUPER_PASS);
+
   // Wait for the login form to be ready (page checks /api/auth/check on mount
   // and only renders the form after authChecked=true with no session).
   // Uses placeholder text since the login inputs don't have associated <label>s.
   const waitForLoginForm = async (page: import('@playwright/test').Page) => {
     await page.goto('/super');
     await page.getByRole('heading', { name: /Superuser Portal/i }).waitFor({ timeout: 10_000 });
-    await page.getByPlaceholder('andreas').waitFor({ timeout: 5_000 });
+    await page.getByPlaceholder('namapengurus').waitFor({ timeout: 5_000 });
   };
 
   test('super login with correct password succeeds', async ({ page }) => {
+    test.skip(!HAVE_CREDS, 'TEST_SUPER_USER / TEST_SUPER_PASS not set');
     await waitForLoginForm(page);
-    await page.getByPlaceholder('andreas').fill('andreas');
-    await page.getByPlaceholder('••••').fill('5050');
+    await page.getByPlaceholder('namapengurus').fill(SUPER_USER!);
+    await page.getByPlaceholder('••••').fill(SUPER_PASS!);
     await page.getByRole('button', { name: /Masuk Superuser Portal/i }).click();
     // Dashboard heading should appear
     await expect(page.getByRole('heading', { name: /Manajemen Akun/i })).toBeVisible({
@@ -108,8 +115,9 @@ test.describe('Admin / Super auth flow', () => {
   });
 
   test('super login with wrong password shows error', async ({ page }) => {
+    test.skip(!HAVE_CREDS, 'TEST_SUPER_USER / TEST_SUPER_PASS not set');
     await waitForLoginForm(page);
-    await page.getByPlaceholder('andreas').fill('andreas');
+    await page.getByPlaceholder('namapengurus').fill(SUPER_USER!);
     await page.getByPlaceholder('••••').fill('0000');
     await page.getByRole('button', { name: /Masuk Superuser Portal/i }).click();
     await expect(page.getByText(/salah|gagal/i).first()).toBeVisible({ timeout: 5_000 });
@@ -123,15 +131,15 @@ test.describe('Admin / Super auth flow', () => {
   test.skip('rate-limit kicks in after 3 failed attempts', async ({ page }) => {
     await waitForLoginForm(page);
     for (let i = 0; i < 3; i++) {
-      await page.getByPlaceholder('andreas').fill('andreas');
+      await page.getByPlaceholder('namapengurus').fill(SUPER_USER ?? 'testuser');
       await page.getByPlaceholder('••••').fill(`wrong${i}`);
       await page.getByRole('button', { name: /Masuk Superuser Portal/i }).click();
       await page.waitForTimeout(800);
     }
     await page.reload();
     await waitForLoginForm(page);
-    await page.getByPlaceholder('andreas').fill('andreas');
-    await page.getByPlaceholder('••••').fill('5050');
+    await page.getByPlaceholder('namapengurus').fill(SUPER_USER ?? 'testuser');
+    await page.getByPlaceholder('••••').fill(SUPER_PASS ?? '0000');
     await page.getByRole('button', { name: /Masuk Superuser Portal/i }).click();
     await expect(page.getByText(/kunci sementara|terlalu banyak/i).first()).toBeVisible({
       timeout: 8_000,

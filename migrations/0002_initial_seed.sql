@@ -2,12 +2,10 @@
 -- SEED DATA FOR GIA DELIKSARI D1 DATABASE
 -- ============================================================================
 
--- 1. Seed Users (andreas/5050 super, noel/1515 admin, mara/1234 treasurer, zzdree/9090 operator)
--- Real Bcrypt cost 10 hashes:
--- '5050' -> $2b$10$LF1egf/mctHo2IhU.DavAOwm.xycPBVxFX4nDWqtlYUJxMHxvHQCa
--- '1515' -> $2b$10$3t7olvVg0/NBiBDy2NLl5OOt.IyjXwRGwMJr7KfmHNftkI/oqmNA2
--- '1234' -> $2b$10$dCJdQnSlMaercVUWEzh7Ru2Gru8UVGhMkLuhglBwTR8WW1fNMaSyu
--- '9090' -> $2b$10$Q1HMtmFSNdW.D/6ZIA1F5.jOBDr41yeHGavSvJYBE5RRgAmkOHRR2
+-- 1. Seed Users (super / admin / treasurer / operator multi-role)
+-- Bcrypt cost 10 hashes. PIN plaintext TIDAK disimpan di repo —
+-- lihat vault pengurus. (Riwayat git lama mungkin masih memuat versi
+-- komentar lama; rotasi PIN disarankan.)
 INSERT OR IGNORE INTO users (id, username, password_hash, roles, display_name, active, created_at)
 VALUES
   ('usr-super-01', 'andreas', '$2b$10$LF1egf/mctHo2IhU.DavAOwm.xycPBVxFX4nDWqtlYUJxMHxvHQCa', '["super"]', 'Andreas (Superuser)', 1, '2026-08-30T12:00:00.000Z'),

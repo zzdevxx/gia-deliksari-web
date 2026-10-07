@@ -657,12 +657,28 @@ export default function AdminDashboard() {
             <form onSubmit={handleLogin} className="space-y-4">
               <div className="space-y-2">
                 <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF] uppercase tracking-wider">
+                  Nama Pengguna
+                </label>
+                <input
+                  type="text"
+                  required
+                  autoFocus
+                  autoComplete="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="nama pengurus"
+                  className="w-full px-4 py-3.5 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-[#1C1917] dark:text-[#F5F3EF] text-sm focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF] uppercase tracking-wider">
                   Kata Sandi Pengurus
                 </label>
                 <input
                   type="password"
                   required
-                  autoFocus
+                  autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Masukkan password admin..."

@@ -18,11 +18,14 @@ import { test, expect, request } from '@playwright/test';
  */
 
 const MUTATION_ENABLED = process.env.RUN_MUTATION_TESTS === '1';
-const describeIf = MUTATION_ENABLED ? test.describe : test.describe.skip;
+const SUPER_USER = process.env.TEST_SUPER_USER;
+const SUPER_PASS = process.env.TEST_SUPER_PASS;
+// Require both the run flag AND credentials from the environment (GitHub
+// Actions secrets) — no hardcoded production fallbacks in this file.
+const describeIf =
+  MUTATION_ENABLED && SUPER_USER && SUPER_PASS ? test.describe : test.describe.skip;
 
 const TEST_PREFIX = `playwright-test-${Date.now().toString(36)}`;
-const SUPER_USER = process.env.TEST_SUPER_USER ?? 'andreas';
-const SUPER_PASS = process.env.TEST_SUPER_PASS ?? '5050';
 
 let authCookie = '';
 
@@ -31,7 +34,7 @@ async function login(): Promise<string> {
     baseURL: process.env.BASE_URL ?? 'https://giadeliksari.my.id',
   });
   const res = await ctx.post('/api/auth/login', {
-    data: { username: SUPER_USER, password: SUPER_PASS },
+    data: { username: SUPER_USER!, password: SUPER_PASS! },
   });
   if (!res.ok()) {
     throw new Error(`Login failed: ${res.status()} ${await res.text()}`);
@@ -62,7 +65,7 @@ describeIf('Mutation: user CRUD via /api/users', () => {
     const createRes = await ctx.post('/api/users', {
       data: {
         username,
-        password: '9090',
+        password: `T-${TEST_PREFIX}`,
         roles: ['admin'],
         display_name: `${TEST_PREFIX} Test Admin`,
       },

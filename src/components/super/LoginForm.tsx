@@ -67,7 +67,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
             autoComplete="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="andreas"
+            placeholder="namapengurus"
             className="w-full px-4 py-3.5 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-[#1C1917] dark:text-[#F5F3EF] text-sm focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400"
           />
         </div>
@@ -105,10 +105,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Kembali ke Beranda Jemaat</span>
         </Link>
-        <div className="text-[11px] text-[#665E55] dark:text-[#A8A196] pt-2">
-          Default superuser: <code className="font-mono font-bold text-[#8B1E28] dark:text-[#E88086]">andreas</code> /
-          <code className="font-mono font-bold text-[#8B1E28] dark:text-[#E88086]">5050</code>
-        </div>
       </div>
     </div>
   );

@@ -265,14 +265,16 @@ Warta jemaat **diinput oleh admin melalui Portal Admin** (`/admin` → tab **War
 | **Superuser** | `/super` | `super` only | Manajemen user multi-role (create, edit role, soft-delete). |
 | **Kas Youth** | `/kas` | `super` \| `treasurer` | Buku kas pemuda Grow Generation (transaksi pemasukan/pengeluaran & saldo realtime). |
 
-### 10.2 Akun Production (per Agustus 2026)
+### 10.2 Akun Production
 
-| Username | Password | Role | Portal yang bisa diakses |
-|---|---|---|---|
-| `andreas` | `5050` | `super` | `/super`, `/admin`, `/kas` |
-| `zzdree` | `9090` | `admin` + `treasurer` (multi-role) | `/admin`, `/kas` |
+> 🔐 **Kredensial (username + PIN) TIDAK ditulis di dokumen ini maupun di repo** — tersimpan di vault pengurus (zz-vault) dan di GitHub Actions secrets (`TEST_SUPER_USER` / `TEST_SUPER_PASS`) untuk smoke test CI. Jangan pernah menaruh plaintext di README/PRD/komentar kode.
 
-> ⚠️ Kedua akun di atas adalah akun **sandbox/testing** untuk owner. Akun user baru (admin, treasurer, atau super tambahan) **hanya dibuat via `/super`** oleh superuser.
+| Role | Portal yang bisa diakses | Pembuatan akun |
+|---|---|---|
+| `super` | `/super`, `/admin`, `/kas` | akun awal owner (seed D1) |
+| `admin` + `treasurer` (multi-role) | `/admin`, `/kas` | dibuat via `/super` |
+
+> ⚠️ Akun user baru (admin, treasurer, atau super tambahan) **hanya dibuat via `/super`** oleh superuser.
 > Akun lama `noel` (admin) dan `mara` (treasurer) sudah di-nonaktifkan (soft-delete).
 
 ### 10.3 Skema Role & Multi-Role
@@ -369,11 +371,9 @@ SUPABASE_SERVICE_ROLE_KEY=<service-role-jwt>     # Server-only, bypass RLS
 SUPABASE_ACCESS_TOKEN=<management-api-token>      # opsional, untuk sync env
 
 # === Admin / Auth ===
-# Catatan: sejak refactor multi-role (Phase 3+), password login pakai
-# tabel users dengan bcrypt. ADMIN_PASSWORD masih dipakai untuk legacy
-# fallback jika tabel users belum ter-seed. Tidak wajib di-set di
-# production kalau akun sudah ada di DB.
-NEXT_PUBLIC_ADMIN_PASSWORD=1515                   # legacy fallback
+# Login memakai tabel users (bcrypt) di Cloudflare D1 — tidak ada
+# fallback password lagi. ADMIN_SESSION_SECRET WAJIB di-set di production
+# via `wrangler secret put ADMIN_SESSION_SECRET` (kode fail-fast tanpanya).
 ADMIN_SESSION_SECRET=<random-32-char-string>     # HMAC key untuk session cookie
 
 # === Google Drive (OAuth) ===
@@ -394,8 +394,8 @@ YOUTUBE_CHANNEL_ID=
 
 1. **Setiap perubahan informasi** di file ini (mis. nomor rekening baru, tambahan nama struktural, pergantian jadwal) → harus diupdate juga di data production melalui **Portal Admin** atau via migration SQL.
 2. **Jangan hardcode nomor rekening / data sensitif** di komponen publik — gunakan env var atau field DB.
-3. **Password default** di file ini (`1515`, `5050`, `1234`) hanya untuk setup awal. Production harus langsung diganti melalui `/super` setelah login pertama.
-4. **Link Zoom ibadah do'a pagi** masih sementara dan akan diperbarui — update via komponen `ScheduleSection.tsx` setelah link baru tersedia.
+3. **Kredensial akun tidak pernah ditulis di dokumen/repo** — simpan di vault pengurus; rotasi via `/super`. Smoke test CI memakai GitHub secrets, bukan nilai hard-coded.
+4. **Link Zoom ibadah do'a pagi** masih sementara dan akan diperbarui — update langsung di `src/app/info/page.tsx` (bagian kartu agenda) setelah link baru tersedia.
 5. **Struktur multi-portal**: `/` redirect ke `/home`, lalu navigasi internal via Navbar. Portal admin/super/kas adalah route terpisah yang masing-masing memerlukan login.
 6. **RBAC**: helper `requireRole(req, ['super', 'admin'])` di API routes memastikan role enforcement. Jangan bypass di route baru.
 7. **Akun user baru** dibuat via `/super` → bcrypt cost 10, disimpan di tabel `users`. Password tidak pernah di-log atau di-display plain.
