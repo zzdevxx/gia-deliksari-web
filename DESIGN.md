@@ -101,7 +101,7 @@ A warm neutral foundation supports a small number of intentional church identity
 - **Linen Text** (`{colors.linen}`): Primary dark-mode text.
 - **Mineral Text** (`{colors.linen-muted}`): Secondary dark-mode text; verify on each actual surface.
 
-**The Rare Wine Rule.** Crimson communicates identity and action. Ordinary categories, information badges, and structural borders remain neutral.
+**The Rare Wine Rule.** Sacred wine communicates identity and action. Ordinary categories, information badges, and structural borders remain neutral.
 
 ## Typography
 

@@ -1,7 +1,7 @@
 # Product Requirements Document (PRD) — GIA Deliksari Web Portal
-**Versi:** 4.0.0 (Cloudflare Native & Custom Domain Edition)
+**Versi:** 4.1.0 (Cloudflare Native, Custom Domain & Impeccable Design System Edition)
 **Status:** Production Live (https://giadeliksari.my.id)
-**Tanggal Diperbarui:** 1 Oktober 2026
+**Tanggal Diperbarui:** 7 Oktober 2026
 **Identitas Gereja:** Gereja Isa Almasih (GIA) Deliksari Semarang — *"Growing Church!"*
 
 ---
@@ -17,6 +17,8 @@ GIA Deliksari Web Portal adalah platform pelayanan digital terintegrasi untuk je
 3. **User Management Portal** — Portal superuser (`/super`) khusus untuk owner/pemilik akun mengelola akun multi-role (admin & treasurer).
 
 4. **Treasury Portal** — Portal kas (`/kas`) untuk bendahara youth Grow Generation mencatat pemasukan & pengeluaran kas.
+
+**Design System (sejak 7 Okt 2026, v4.1.0)** — Seluruh permukaan mengikuti sistem visual **Warm Alabaster & Sacred Wine** yang dijelaskan di `DESIGN.md` (token normatif) dan digrounding di `PRODUCT.md` (Impeccable). Aturan inti: kanvas netral hangat (light `#FAF7F2` / dark `#141312`), aksen Sacred Wine `#8B1E28` maksimal 10% hanya untuk CTA primer & nav aktif, semantik rose = bahaya/pengeluaran dan emerald = pemasukan, kategori komunitas memakai tone wine/terracotta/gold/plum yang diredam. Verifikasi wajib sebelum rilis: `npm run lint:design` (Impeccable, target 0 anti-pattern), `npm test`, `npm run typecheck`.
 
 ---
 

@@ -90,7 +90,7 @@ graph TD
 
 - **Framework**: Next.js 16.3.3 (App Router, Server Components & Static Site Generation)
 - **Runtime**: Cloudflare Workers via OpenNext (`@opennextjs/cloudflare`)
-- **UI & Styling**: React 19, Tailwind CSS 3 (Custom Sacred Crimson & Warm Cream palette, Dark/Light mode)
+- **UI & Styling**: React 19, Tailwind CSS 3 (Warm Alabaster & Sacred Wine palette + Impeccable design system, Dark/Light mode)
 - **Database**: Cloudflare D1 (Serverless SQLite Edge) 9 tables + 1 view (24/7 Always Active)
 - **Auth**: bcrypt (cost 10) + HMAC-SHA256 signed session cookie + rate limit
 - **Storage**: Google Drive master archive + Cloudflare edge delivery

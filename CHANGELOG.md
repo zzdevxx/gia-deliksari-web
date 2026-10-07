@@ -5,6 +5,34 @@ All notable changes to GIA Deliksari Web will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0] - 2026-10-07 — Impeccable Integration & Warm Alabaster / Sacred Wine Theme Overhaul
+
+### Design System (replaces the red-saturated "Sacred Crimson" theme)
+- **Motivasi**: tema lama terasa "terlalu merah" — kanvas gelap marun `#150B0D`, kartu `#221215`, border `#3A1C20`, dan badge pink `#FDF0F0` membuat seluruh antarmuka terlihat seperti melalui lensa merah, terutama di dark mode.
+- **Light mode baru**: Warm Alabaster canvas `#FAF7F2`, kartu putih, border hangat `#E5DFD5`, teks `#1C1917`.
+- **Dark mode baru**: Cathedral Slate `#141312` / kartu `#1D1B19` / elevated `#262421` / border `#332F2B` — netral hangat, tanpa lensa merah sama sekali.
+- **Aksen terkendali (<=10%)**: Sacred Wine `#8B1E28` (light) & `#B8323D` (dark) khusus CTA primer dan indikator nav aktif; Altar Gold `#8C6826`/`#C49B45` untuk penekanan liturgis.
+- **Semantik warna**: bahaya (error, hapus, saldo negatif, pengeluaran) = Tailwind **rose**; pemasukan = **emerald**; kategori komunitas = tone wine/terracotta/gold/plum yang diredam dengan varian dark lengkap.
+- **Default badge** berubah dari `maroon` (pink alert) menjadi `neutral` — menghilangkan alert fatigue pada informasi biasa.
+
+### Impeccable Design Framework
+- **`PRODUCT.md`** (impeccable product-schema 1) dan **`DESIGN.md`** (frontmatter token normatif) dibuat sebagai single source of truth visual.
+- **Design linter**: `npm run lint:design` memanggil CLI Impeccable secara read-only dari clone bersama di `/home/zzdree/ANDREAS/impeccable` (tidak pernah dimutasi — aman untuk sesi lain yang memakai clone yang sama).
+- **Anti-pattern remediation**: 20 → **0** anti-pattern (`side-tab`, `border-accent-on-rounded`, `gradient-text`, `bounce-easing`, kartu radius 40px).
+- `PRODUCT.md` / `.claude/skills/impeccable` symlink / `AGENTS.md` / `CLAUDE.md` ikut ter-version; symlink di-gitignore karena path absolut.
+
+### Bug fixes & cleanup
+- **SermonsSection** tidak lagi mengunci dark mode di light mode — mengikuti tema aktif; glow merah dekoratif dihapus.
+- **Semantik uang /kas**: kartu Total Pemasukan (tadinya latar pink) → emerald; Total Pengeluaran → rose; badge transaksi Pengeluaran → rose; tombol "Catat Pengeluaran" → solid rose.
+- **Nomor rekening bank** (BCA/BRI) di `/persembahan` menjadi arang netral, bukan merah (menghindari kesan "defisit").
+- Tombol hapus (Trash2) dan 7 event audit destruktif dipastikan rose (bukan wine).
+- Radius kartu `2.5rem`/`2rem` → `rounded-2xl` (16px); tombol gradien → solid; blob `blur-3xl` merah dihapus; warna manifest & OG image menyesuaikan palet baru.
+
+### Verified
+- `npm run lint:design` → 0 anti-patterns; `npm test` → 26/26; `npm run typecheck` → 0 error; `npm run build:cf` → OK.
+- Live di `https://giadeliksari.my.id` (worker version `db7ea3ce`), seluruh rute publik HTTP 200 dengan token palet baru terkonfirmasi di HTML/CSS produksi.
+- **Catatan**: verifikasi visual browser (screenshot light/dark/mobile) belum dijalankan — Playwright mencari Chrome di `/opt/google/chrome` yang tidak ada di mesin dev.
+
 ## [2.2.0] - 2026-10-07 — Clean Brand Logo, Image Purge, Template States & Full INFO.md Integration
 
 ### Logo & Clean Asset Pipeline
