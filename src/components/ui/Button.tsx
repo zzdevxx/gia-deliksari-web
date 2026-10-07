@@ -26,19 +26,19 @@ type Size = 'sm' | 'md' | 'lg';
 const BASE =
   'group/btn relative inline-flex items-center justify-center gap-2 rounded-full font-semibold ' +
   'transition-all duration-200 ease-out ' +
-  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C8A45C] focus-visible:ring-offset-2 ' +
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8C6826] dark:focus-visible:ring-[#C49B45] focus-visible:ring-offset-2 ' +
   'active:scale-[0.97] active:translate-y-0 ' +
   'disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:active:scale-100';
 
 const VARIANT_MAP: Record<Variant, string> = {
   gold:
-    'bg-gradient-to-r from-[#C8A45C] to-[#DCBA5C] text-[#1F1617] shadow-sm hover:-translate-y-0.5 hover:shadow-md',
+    'bg-[#8C6826] hover:bg-[#75561E] text-white shadow-sm hover:-translate-y-0.5 hover:shadow-md dark:bg-[#C49B45] dark:text-[#141312] dark:hover:bg-[#B38C38]',
   maroon:
-    'bg-gradient-to-r from-[#C5222E] to-[#80141C] text-white shadow-sm hover:-translate-y-0.5 hover:shadow-md',
+    'bg-[#8B1E28] hover:bg-[#731820] text-white shadow-sm hover:-translate-y-0.5 hover:shadow-md dark:bg-[#C04050] dark:hover:bg-[#AC3543]',
   outline:
-    'border-2 border-[#C5222E] text-[#C5222E] hover:bg-[#FDF0F0] dark:border-[#F2828C] dark:text-[#F2828C] dark:hover:bg-[#331418]',
+    'border border-[#E5DFD5] dark:border-[#332F2B] text-[#1C1917] dark:text-[#F5F3EF] hover:bg-[#F3EFE6] dark:hover:bg-[#262421]',
   ghost:
-    'text-[#1F1617] dark:text-[#F5EFEB] hover:bg-[#F7F2E8] dark:hover:bg-[#2A161A]',
+    'text-[#1C1917] dark:text-[#F5F3EF] hover:bg-[#F3EFE6] dark:hover:bg-[#262421]',
 };
 
 const SIZE_MAP: Record<Size, string> = {

@@ -55,34 +55,30 @@ export default function SermonsSection() {
   }, []);
 
   return (
-    <section id="khotbah" className="py-24 bg-[#150B0D] text-white transition-colors relative overflow-hidden">
-      {/* Subtle Warm Maroon Glow */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#C5222E]/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-10 w-96 h-96 bg-[#80141C]/20 rounded-full blur-3xl pointer-events-none" />
-
+    <section id="khotbah" className="py-24 bg-[#FAF7F2] dark:bg-[#141312] text-[#1C1917] dark:text-[#F5F3EF] transition-colors relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div className="space-y-4 max-w-2xl">
             <div className="flex flex-wrap items-center gap-2">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#331418] border border-[#521E25] text-[#F2828C] text-xs font-bold uppercase tracking-wider">
-                <Radio className="w-3.5 h-3.5 text-[#E03643]" />
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-[#665E55] dark:text-[#A8A196] text-xs font-bold uppercase tracking-wider">
+                <Radio className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#B8323D]" />
                 <span>Mimbar & Pengajaran Firman</span>
               </div>
 
               {isLiveSync && (
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-950/60 border border-red-800 text-red-300 text-xs font-bold animate-pulse">
-                  <Tv className="w-3 h-3 text-red-400" />
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-xs font-bold">
+                  <Tv className="w-3 h-3" />
                   <span>YouTube Data API v3 Live</span>
                 </div>
               )}
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1C1917] dark:text-[#F5F3EF] tracking-tight">
               Arsip Khotbah & Renungan Rohani
             </h2>
-            <p className="text-[#D5C2C4] text-base leading-relaxed">
+            <p className="text-[#665E55] dark:text-[#A8A196] text-base leading-relaxed">
               Dengarkan kembali firman kebenaran yang memberkati, menguatkan, dan menuntun langkah hidup Anda setiap hari.
             </p>
           </div>
@@ -92,7 +88,7 @@ export default function SermonsSection() {
               href="https://www.youtube.com/@GIADeliksariSemarang"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-[#C5222E] to-[#80141C] hover:opacity-95 text-white text-xs sm:text-sm font-bold shadow-md shadow-red-950/40 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white text-xs sm:text-sm font-bold shadow-xs transition-all"
             >
               <YouTubeIcon className="w-4 h-4 text-white" />
               <span>Channel YouTube GIA Deliksari</span>
@@ -106,18 +102,18 @@ export default function SermonsSection() {
           {sermons.map((sermon) => (
             <div
               key={sermon.id}
-              className="rounded-[2.5rem] bg-[#221215] border border-[#3A1C20] overflow-hidden shadow-lg hover:border-[#C5222E]/50 transition-all flex flex-col justify-between group"
+              className="rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] overflow-hidden shadow-xs hover:border-[#A37D35]/50 transition-all flex flex-col justify-between group"
             >
               <div>
                 {/* Thumbnail Container */}
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#1A0E10]">
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#F3EFE6] dark:bg-[#262421]">
                   <Image
                     src={sermon.thumbnail && !sermon.thumbnail.includes('gallery-') ? sermon.thumbnail : '/images/logo.png'}
                     alt={sermon.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#221215] via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                   
                   {/* Play Button Overlay */}
                   <a
@@ -127,14 +123,14 @@ export default function SermonsSection() {
                     className="absolute inset-0 flex items-center justify-center group/btn"
                     aria-label={`Tonton Khotbah: ${sermon.title}`}
                   >
-                    <div className="w-14 h-14 rounded-2xl bg-[#C5222E]/90 hover:bg-[#C5222E] text-white flex items-center justify-center shadow-lg backdrop-blur-sm group-hover/btn:scale-110 transition-transform">
+                    <div className="w-14 h-14 rounded-2xl bg-[#8B1E28]/90 hover:bg-[#8B1E28] text-white flex items-center justify-center shadow-md group-hover/btn:scale-110 transition-transform">
                       <Play className="w-6 h-6 fill-white ml-0.5" />
                     </div>
                   </a>
 
                   {/* Category Pill */}
                   <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 rounded-xl text-xs font-bold bg-[#150B0D]/80 backdrop-blur-md text-[#F2828C] border border-[#521E25]">
+                    <span className="px-3 py-1 rounded-xl text-xs font-bold bg-black/60 backdrop-blur-md text-white border border-white/20">
                       {sermon.category}
                     </span>
                   </div>
@@ -142,22 +138,22 @@ export default function SermonsSection() {
 
                 {/* Content Details */}
                 <div className="p-7 space-y-4">
-                  <div className="flex items-center gap-2 text-xs text-[#B5A1A3]">
-                    <Calendar className="w-3.5 h-3.5 text-[#E03643]" />
+                  <div className="flex items-center gap-2 text-xs text-[#665E55] dark:text-[#A8A196]">
+                    <Calendar className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#B8323D]" />
                     <span>{sermon.date}</span>
                   </div>
 
-                  <h3 className="text-xl font-extrabold text-white group-hover:text-[#E03643] transition-colors leading-snug line-clamp-2">
+                  <h3 className="text-xl font-extrabold text-[#1C1917] dark:text-[#F5F3EF] leading-snug line-clamp-2">
                     {sermon.title}
                   </h3>
 
                   <div className="space-y-1.5 pt-1 text-xs">
-                    <div className="flex items-center gap-2 text-[#D5C2C4]">
-                      <User className="w-3.5 h-3.5 text-[#E03643] shrink-0" />
+                    <div className="flex items-center gap-2 text-[#665E55] dark:text-[#A8A196]">
+                      <User className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#B8323D] shrink-0" />
                       <span className="font-semibold">{sermon.speaker}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-[#B5A1A3]">
-                      <BookOpen className="w-3.5 h-3.5 text-[#E03643] shrink-0" />
+                    <div className="flex items-center gap-2 text-[#665E55] dark:text-[#A8A196]">
+                      <BookOpen className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#B8323D] shrink-0" />
                       <span className="line-clamp-1">{sermon.passage}</span>
                     </div>
                   </div>
@@ -170,9 +166,9 @@ export default function SermonsSection() {
                   href={sermon.youtubeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3 rounded-xl bg-[#2A161A] hover:bg-[#381B21] border border-[#3A1C20] text-xs font-bold text-[#F5EFEB] flex items-center justify-center gap-2 transition-colors"
+                  className="w-full py-3 rounded-xl bg-[#F3EFE6] dark:bg-[#262421] hover:bg-[#EBE4D8] dark:hover:bg-[#332F2B] border border-[#E5DFD5] dark:border-[#332F2B] text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF] flex items-center justify-center gap-2 transition-colors"
                 >
-                  <YouTubeIcon className="w-3.5 h-3.5 text-[#E03643]" />
+                  <YouTubeIcon className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#B8323D]" />
                   <span>Tonton di YouTube</span>
                 </a>
               </div>

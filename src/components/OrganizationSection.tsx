@@ -30,7 +30,7 @@ const GROUPS: Group[] = [
     subtitle: 'Tim Penggembalaan & Pelayanan',
     icon: <Crown className="w-5 h-5" />,
     accentClass:
-      'border-[#F5CDD0] dark:border-[#521E25] bg-[#FDF0F0] dark:bg-[#331418] text-[#9A1620] dark:text-[#F2828C]',
+      'border-[#E5DFD5] dark:border-[#332F2B] bg-[#F3EFE6] dark:bg-[#262421] text-[#8B1E28] dark:text-[#B8323D]',
     members: [
       { name: 'Pdt. Yohanes Sutono, S.Th., M.Ag.', role: 'Bapak Gembala / Senior Pastor' },
       { name: 'Ibu Santini Lidyawati', role: 'Ibu Gembala' },
@@ -43,7 +43,7 @@ const GROUPS: Group[] = [
     subtitle: 'Pemuda & Remaja (PRBK)',
     icon: <Flame className="w-5 h-5" />,
     accentClass:
-      'border-[#FCD2C7] dark:border-[#57241A] bg-[#FFF2EE] dark:bg-[#331812] text-[#C83E20] dark:text-[#F88B72]',
+      'border-[#EAC9C0] dark:border-[#4D2820] bg-[#FAF0ED] dark:bg-[#281814] text-[#A0442C] dark:text-[#D96B4F]',
     members: [
       { name: 'Sdri. Lara Tampubolon', role: 'Ketua' },
       { name: 'Sdr. Ravael', role: 'Sekretaris' },
@@ -59,7 +59,7 @@ const GROUPS: Group[] = [
     subtitle: 'Komunitas Kecil Persekutuan',
     icon: <Users className="w-5 h-5" />,
     accentClass:
-      'border-[#F8E3B5] dark:border-[#543E19] bg-[#FEF9EC] dark:bg-[#332612] text-[#B87A14] dark:text-[#F0BE5E]',
+      'border-[#F5DFAB] dark:border-[#52411E] bg-[#FEF9EC] dark:bg-[#2D2517] text-[#8C6826] dark:text-[#E0B85C]',
     members: [
       { name: 'Bpk. Sidik', role: 'Ketua Komsel — Ekklesia Sel' },
       { name: 'Sdri. Yemima', role: 'Ketua Komsel — Amethyst' },
@@ -74,7 +74,7 @@ const GROUPS: Group[] = [
     subtitle: 'Pelayanan Anak-anak',
     icon: <Baby className="w-5 h-5" />,
     accentClass:
-      'border-[#F7C6D5] dark:border-[#541D30] bg-[#FDF0F4] dark:bg-[#33121E] text-[#A6264A] dark:text-[#EA7FA0]',
+      'border-[#E2C3D0] dark:border-[#4A2032] bg-[#F9EFF3] dark:bg-[#26161E] text-[#7A354A] dark:text-[#B0657C]',
     members: [
       { name: 'Sdri. Yemima Purnamasari', role: 'Ketua' },
       { name: 'Sdri. Kesya', role: 'Sekretaris' },
@@ -87,7 +87,7 @@ const GROUPS: Group[] = [
     subtitle: 'Persekutuan Kaum Wanita',
     icon: <HeartHandshake className="w-5 h-5" />,
     accentClass:
-      'border-[#EBDDCF] dark:border-[#3A1C20] bg-[#F7F2E8] dark:bg-[#2A161A] text-[#6E5D5F] dark:text-[#B5A1A3]',
+      'border-[#E5DFD5] dark:border-[#332F2B] bg-[#F3EFE6] dark:bg-[#262421] text-[#665E55] dark:text-[#A8A196]',
     members: [
       { name: 'Ibu Penskilla', role: 'Ketua' },
       { name: 'Ibu Siska', role: 'Sekretaris' },
@@ -100,19 +100,19 @@ export default function OrganizationSection() {
   return (
     <section
       id="struktur"
-      className="py-24 bg-[#FDFBF7] dark:bg-[#150B0D] transition-colors"
+      className="py-24 bg-[#FAF7F2] dark:bg-[#141312] transition-colors"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FDF0F0] dark:bg-[#331418] border border-[#F5CDD0] dark:border-[#521E25] text-[#9A1620] dark:text-[#F2828C] text-xs font-bold uppercase tracking-wider">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#C5222E]" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-[#665E55] dark:text-[#A8A196] text-xs font-bold uppercase tracking-wider">
+            <ShieldCheck className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#E88086]" />
             <span>Struktur Organisasi Pelayanan</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1F1617] dark:text-[#F5EFEB] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1C1917] dark:text-[#F5F3EF] tracking-tight">
             Tim Penggembalaan & Pelayanan
           </h2>
-          <p className="text-[#5A4D4E] dark:text-[#D5C2C4] text-base sm:text-lg leading-relaxed">
+          <p className="text-[#665E55] dark:text-[#A8A196] text-base sm:text-lg leading-relaxed">
             Mengenal para hamba Tuhan dan tim pelayanan komunitas GIA Deliksari
             Semarang. Berbeda karunia, satu tujuan: melayani jemaat dengan kasih
             Kristus.
@@ -124,7 +124,7 @@ export default function OrganizationSection() {
           {GROUPS.map((group) => (
             <div
               key={group.id}
-              className="p-6 sm:p-7 rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm hover:shadow-md transition-all space-y-5"
+              className="p-6 sm:p-7 rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] shadow-sm hover:shadow-md transition-all space-y-5"
             >
               <div
                 className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-bold border ${group.accentClass}`}
@@ -133,20 +133,20 @@ export default function OrganizationSection() {
                 <span>{group.title}</span>
               </div>
 
-              <p className="text-xs text-[#6E5D5F] dark:text-[#B5A1A3] font-semibold uppercase tracking-wider">
+              <p className="text-xs text-[#665E55] dark:text-[#A8A196] font-semibold uppercase tracking-wider">
                 {group.subtitle}
               </p>
 
-              <ul className="space-y-2.5 pt-2 border-t border-[#EBDDCF] dark:border-[#3A1C20]">
+              <ul className="space-y-2.5 pt-2 border-t border-[#E5DFD5] dark:border-[#332F2B]">
                 {group.members.map((m, idx) => (
                   <li
                     key={`${group.id}-${idx}`}
                     className="flex items-start justify-between gap-3 text-xs sm:text-sm"
                   >
-                    <span className="font-bold text-[#1F1617] dark:text-[#F5EFEB] leading-snug">
+                    <span className="font-bold text-[#1C1917] dark:text-[#F5F3EF] leading-snug">
                       {m.name}
                     </span>
-                    <span className="text-[#6E5D5F] dark:text-[#B5A1A3] text-right text-[11px] sm:text-xs whitespace-nowrap">
+                    <span className="text-[#665E55] dark:text-[#A8A196] text-right text-[11px] sm:text-xs whitespace-nowrap">
                       {m.role}
                     </span>
                   </li>
@@ -158,18 +158,18 @@ export default function OrganizationSection() {
 
         {/* Footnote */}
         <div className="mt-12 text-center">
-          <p className="text-xs text-[#6E5D5F] dark:text-[#B5A1A3] max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs text-[#665E55] dark:text-[#A8A196] max-w-2xl mx-auto leading-relaxed">
             Ingin melayani? Hubungi WhatsApp pastoral{' '}
             <a
               href="https://api.whatsapp.com/send?phone=6289620961103"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-[#C5222E] dark:text-[#E03643] hover:underline"
+              className="font-bold text-[#8B1E28] dark:text-[#E88086] hover:underline"
             >
               0896-2096-1103
             </a>{' '}
             atau gunakan formulir pendaftaran di section{' '}
-            <a href="#layanan" className="font-bold text-[#C5222E] dark:text-[#E03643] hover:underline">
+            <a href="#layanan" className="font-bold text-[#8B1E28] dark:text-[#E88086] hover:underline">
               Layanan Jemaat
             </a>
             .

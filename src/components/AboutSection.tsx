@@ -20,7 +20,6 @@ export default function AboutSection() {
       role: 'Gembala Sidang',
       initials: 'YS',
       icon: BookOpen,
-      gradient: 'from-[#80141C] via-[#C5222E] to-[#520B11]',
       desc: 'Memimpin dan menggembalakan jemaat GIA Deliksari dengan keteladanan firman Tuhan, kerendahan hati, dan doa penggembalaan.',
       badge: 'Gembala Sidang',
       instagram: 'https://www.instagram.com/ps.yohanessutono/',
@@ -30,7 +29,6 @@ export default function AboutSection() {
       role: 'Pendamping Gembala',
       initials: 'SL',
       icon: Heart,
-      gradient: 'from-[#A6264A] via-[#C5222E] to-[#7B0F17]',
       desc: 'Mendampingi penggembalaan jemaat serta memimpin persekutuan kaum wanita Hana dengan kehangatan kasih dan keteladanan hidup.',
       badge: 'Pendamping Gembala',
       instagram: 'https://www.instagram.com/santinilidyawati/',
@@ -40,7 +38,6 @@ export default function AboutSection() {
       role: 'Youth Pastor',
       initials: 'NL',
       icon: Sparkles,
-      gradient: 'from-[#C83E20] via-[#E05333] to-[#80141C]',
       desc: 'Membimbing generasi muda Grow Generation dan melayani pengajaran firman yang kontekstual bagi pemuda dan mahasiswa perantauan.',
       badge: 'Youth Pastor',
       instagram: 'https://www.instagram.com/noelloveano_/',
@@ -48,19 +45,19 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="tentang" className="py-24 bg-[#FDFBF7] dark:bg-[#150B0D] transition-colors">
+    <section id="tentang" className="py-24 bg-[#FAF7F2] dark:bg-[#141312] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FDF0F0] dark:bg-[#331418] border border-[#F5CDD0] dark:border-[#521E25] text-[#9A1620] dark:text-[#F2828C] text-xs font-bold uppercase tracking-wider">
-            <Heart className="w-3.5 h-3.5 fill-[#C5222E] text-[#C5222E]" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-[#665E55] dark:text-[#A8A196] text-xs font-bold uppercase tracking-wider">
+            <Heart className="w-3.5 h-3.5 text-[#A37D35]" />
             <span>Mengenal GIA Deliksari</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1F1617] dark:text-[#F5EFEB] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1C1917] dark:text-[#F5F3EF] tracking-tight">
             Bertumbuh Bersama Sebagai Keluarga Allah
           </h2>
-          <p className="text-[#5A4D4E] dark:text-[#D5C2C4] text-base sm:text-lg leading-relaxed">
+          <p className="text-[#665E55] dark:text-[#A8A196] text-base sm:text-lg leading-relaxed">
             Gereja Isa Almasih (GIA) Deliksari adalah persekutuan keluarga Allah di kawasan Sekaran, Gunungpati, Semarang. Kami rindu membawa terang Kristus, memperlengkapi jemaat dengan firman kebenaran, dan mendampingi setiap generasi.
           </p>
         </div>
@@ -69,20 +66,20 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20">
 
           {/* Vision Banner */}
-          <div className="lg:col-span-6 p-8 sm:p-10 rounded-[2.5rem] bg-gradient-to-br from-[#C5222E] via-[#A81722] to-[#7B0F17] text-white shadow-xl flex flex-col justify-between space-y-6">
+          <div className="lg:col-span-6 p-8 sm:p-10 rounded-2xl bg-[#1D1B19] text-[#F5F3EF] border border-[#A37D35]/40 flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white border border-white/25 uppercase tracking-wider">
+              <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#A37D35]/15 text-[#E2C27A] border border-[#A37D35]/40 uppercase tracking-wider">
                 Visi Penggembalaan
               </span>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-[#F5F3EF] leading-tight">
                 GROWING CHURCH!
               </h3>
-              <p className="text-sm sm:text-base text-red-100 leading-relaxed">
+              <p className="text-sm sm:text-base text-[#D4D0C7] leading-relaxed">
                 Menjadi gereja yang senantiasa bertumbuh dalam iman yang berakar pada Kristus, bertumbuh dalam kasih persaudaraan yang tulus, dan bertumbuh dalam perbuatan baik yang memberkati lingkungan sekitar.
               </p>
             </div>
 
-            <div className="pt-4 border-t border-white/20 flex items-center justify-between text-xs text-red-200">
+            <div className="pt-4 border-t border-white/15 flex items-center justify-between text-xs text-[#C9B98E]">
               <span>Kolose 2:6-7</span>
               <span className="font-semibold">&ldquo;Berakar dan Dibangun di dalam Dia&rdquo;</span>
             </div>
@@ -90,57 +87,57 @@ export default function AboutSection() {
 
           {/* Context & Ministry Characteristics */}
           <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="p-7 rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm flex flex-col justify-between space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#FDF0F0] dark:bg-[#331418] flex items-center justify-center text-[#C5222E] dark:text-[#E03643]">
+            <div className="p-7 rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] flex flex-col justify-between space-y-4">
+              <div className="w-12 h-12 rounded-xl bg-[#F3EFE6] dark:bg-[#262421] flex items-center justify-center text-[#8B1E28] dark:text-[#B8323D]">
                 <BookOpen className="w-6 h-6" />
               </div>
               <div className="space-y-2">
-                <h4 className="font-bold text-lg text-[#1F1617] dark:text-[#F5EFEB]">
+                <h4 className="font-bold text-lg text-[#1C1917] dark:text-[#F5F3EF]">
                   Berakar Firman
                 </h4>
-                <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4] leading-relaxed">
+                <p className="text-xs text-[#665E55] dark:text-[#A8A196] leading-relaxed">
                   Pengajaran Alkitab yang setia, kontekstual, dan membangun dasar hidup jemaat dalam menghadapi tantangan zaman.
                 </p>
               </div>
             </div>
 
-            <div className="p-7 rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm flex flex-col justify-between space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#FFF2EE] dark:bg-[#331812] flex items-center justify-center text-[#C83E20] dark:text-[#F88B72]">
+            <div className="p-7 rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] flex flex-col justify-between space-y-4">
+              <div className="w-12 h-12 rounded-xl bg-[#F3EFE6] dark:bg-[#262421] flex items-center justify-center text-[#665E55] dark:text-[#A8A196]">
                 <Users className="w-6 h-6" />
               </div>
               <div className="space-y-2">
-                <h4 className="font-bold text-lg text-[#1F1617] dark:text-[#F5EFEB]">
+                <h4 className="font-bold text-lg text-[#1C1917] dark:text-[#F5F3EF]">
                   Persekutuan Kasih
                 </h4>
-                <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4] leading-relaxed">
+                <p className="text-xs text-[#665E55] dark:text-[#A8A196] leading-relaxed">
                   Komunitas hangat di mana jemaat lintas generasi saling menguatkan, mendoakan, dan melayani dengan tulus.
                 </p>
               </div>
             </div>
 
-            <div className="p-7 rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm flex flex-col justify-between space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/40 flex items-center justify-center text-amber-600 dark:text-amber-400">
+            <div className="p-7 rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] flex flex-col justify-between space-y-4">
+              <div className="w-12 h-12 rounded-xl bg-[#FEF9EC] dark:bg-[#2D2517] flex items-center justify-center text-[#8C6826] dark:text-[#E0B85C]">
                 <Church className="w-6 h-6" />
               </div>
               <div className="space-y-2">
-                <h4 className="font-bold text-lg text-[#1F1617] dark:text-[#F5EFEB]">
+                <h4 className="font-bold text-lg text-[#1C1917] dark:text-[#F5F3EF]">
                   Gedung & Fasilitas
                 </h4>
-                <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4] leading-relaxed">
+                <p className="text-xs text-[#665E55] dark:text-[#A8A196] leading-relaxed">
                   Gedung Sanctuary Utama, Ruang Bethel (anak & pemuda), serta Pastori di Jl. Kolonel HR Hadijanto Sekaran.
                 </p>
               </div>
             </div>
 
-            <div className="p-7 rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm flex flex-col justify-between space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/40 flex items-center justify-center text-blue-600 dark:text-blue-400">
+            <div className="p-7 rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] flex flex-col justify-between space-y-4">
+              <div className="w-12 h-12 rounded-xl bg-[#F3EFE6] dark:bg-[#262421] flex items-center justify-center text-[#665E55] dark:text-[#A8A196]">
                 <GraduationCap className="w-6 h-6" />
               </div>
               <div className="space-y-2">
-                <h4 className="font-bold text-lg text-[#1F1617] dark:text-[#F5EFEB]">
+                <h4 className="font-bold text-lg text-[#1C1917] dark:text-[#F5F3EF]">
                   Keluarga & Mahasiswa
                 </h4>
-                <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4] leading-relaxed">
+                <p className="text-xs text-[#665E55] dark:text-[#A8A196] leading-relaxed">
                   Terbuka bagi keluarga warga Semarang serta menjadi rumah kedua bagi rekan mahasiswa perantauan di sekitar kampus UNNES.
                 </p>
               </div>
@@ -151,10 +148,10 @@ export default function AboutSection() {
 
         {/* Pastoral Leadership Team */}
         <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
-          <h3 className="text-2xl sm:text-3xl font-extrabold text-[#1F1617] dark:text-[#F5EFEB]">
+          <h3 className="text-2xl sm:text-3xl font-extrabold text-[#1C1917] dark:text-[#F5F3EF]">
             Tim Penggembalaan
           </h3>
-          <p className="text-xs sm:text-sm text-[#5A4D4E] dark:text-[#D5C2C4]">
+          <p className="text-xs sm:text-sm text-[#665E55] dark:text-[#A8A196]">
             Hamba-hamba Tuhan yang melayani jemaat GIA Deliksari dengan keteladanan dan kerendahan hati.
           </p>
         </div>
@@ -166,55 +163,57 @@ export default function AboutSection() {
             return (
               <div
                 key={leader.name}
-                className="p-6 rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-5 group"
+                className="p-6 rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] transition-colors flex flex-col justify-between space-y-5 group"
               >
                 <div className="space-y-4">
                   {/* Clean Monogram / Avatar Visual Card */}
-                  <div className={`relative aspect-square w-full rounded-2xl overflow-hidden bg-gradient-to-br ${leader.gradient} p-6 flex flex-col justify-between text-white shadow-inner`}>
+                  <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-[#F3EFE6] dark:bg-[#262421] p-6 flex flex-col justify-between text-[#1C1917] dark:text-[#F5F3EF] border border-[#E5DFD5] dark:border-[#332F2B]">
+                    <div className="absolute top-0 right-0 w-28 h-28 rounded-bl-full border-b border-l border-[#A37D35]/30 dark:border-[#C49B45]/30" aria-hidden="true" />
                     <div className="flex items-center justify-between">
-                      <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/25">
+                      <div className="w-10 h-10 rounded-xl bg-white/70 dark:bg-[#1D1B19]/75 flex items-center justify-center text-[#A37D35] dark:text-[#C49B45] border border-[#E5DFD5] dark:border-[#332F2B]">
                         <LeaderIcon className="w-5 h-5" />
                       </div>
-                      <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-black/30 backdrop-blur-md text-white border border-white/20">
+                      <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-white/70 dark:bg-[#1D1B19]/75 text-[#665E55] dark:text-[#A8A196] border border-[#E5DFD5] dark:border-[#332F2B]">
                         {leader.badge}
                       </span>
                     </div>
 
                     <div className="text-center my-auto py-2">
-                      <span className="text-4xl sm:text-5xl font-black tracking-tight text-white/95 font-serif drop-shadow-md">
+                      <span className="block text-[11px] font-bold uppercase tracking-[0.22em] text-[#A37D35] dark:text-[#C49B45] mb-2">GIA DELIKSARI</span>
+                      <span className="text-4xl sm:text-5xl font-black tracking-tight text-[#8B1E28] dark:text-[#B8323D] font-serif">
                         {leader.initials}
                       </span>
                     </div>
 
                     <div className="text-center">
-                      <span className="inline-block px-3 py-1 rounded-full bg-black/25 backdrop-blur-sm text-[10px] font-medium text-red-100 border border-white/10">
-                        📷 Foto Resmi Segera Diperbarui
+                      <span className="inline-block px-3 py-1 rounded-full bg-white/70 dark:bg-[#1D1B19]/75 text-[10px] font-medium text-[#665E55] dark:text-[#A8A196] border border-[#E5DFD5] dark:border-[#332F2B]">
+                        Foto resmi belum tersedia
                       </span>
                     </div>
                   </div>
 
                   <div>
-                    <h4 className="font-extrabold text-base text-[#1F1617] dark:text-[#F5EFEB] group-hover:text-[#C5222E] dark:group-hover:text-[#E03643] transition-colors">
+                    <h4 className="font-extrabold text-base text-[#1C1917] dark:text-[#F5F3EF] group-hover:text-[#8B1E28] dark:group-hover:text-[#B8323D] transition-colors">
                       {leader.name}
                     </h4>
-                    <p className="text-xs font-semibold text-[#C5222E] dark:text-[#E03643]">
+                    <p className="text-xs font-semibold text-[#A37D35] dark:text-[#C49B45]">
                       {leader.role}
                     </p>
                   </div>
 
-                  <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4] leading-relaxed">
+                  <p className="text-xs text-[#665E55] dark:text-[#A8A196] leading-relaxed">
                     {leader.desc}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-[#EBDDCF]/60 dark:border-[#3A1C20]/60">
+                <div className="pt-3 border-t border-[#E5DFD5] dark:border-[#332F2B]">
                   <a
                     href={leader.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#5A4D4E] dark:text-[#D5C2C4] hover:text-[#C5222E] dark:hover:text-[#E03643] transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#665E55] dark:text-[#A8A196] hover:text-[#8B1E28] dark:hover:text-[#B8323D] transition-colors"
                   >
-                    <InstagramIcon className="w-3.5 h-3.5 text-[#C5222E]" />
+                    <InstagramIcon className="w-3.5 h-3.5 text-[#A37D35] dark:text-[#C49B45]" />
                     <span>Media Sosial</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>

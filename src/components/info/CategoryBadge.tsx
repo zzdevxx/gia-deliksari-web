@@ -10,23 +10,23 @@ interface CategoryBadgeProps {
 const CONFIG: Record<MinistryCategory, { label: string; color: string }> = {
   general: {
     label: 'Ibadah Raya',
-    color: 'bg-[#FDF0F0] dark:bg-[#331418] text-[#9A1620] dark:text-[#F2828C] border-[#F5CDD0] dark:border-[#521E25]',
+    color: 'bg-[#FBF1F2] dark:bg-[#261517] text-[#8B1E28] dark:text-[#E88086] border-[#E8C2C5] dark:border-[#52252A]',
   },
   youth: {
     label: 'Grow Youth',
-    color: 'bg-[#FFF2EE] dark:bg-[#331812] text-[#C83E20] dark:text-[#F88B72] border-[#FCD2C7] dark:border-[#57241A]',
+    color: 'bg-[#FAF0ED] dark:bg-[#281814] text-[#A0442C] dark:text-[#D96B4F] border-[#EAC9C0] dark:border-[#4D2820]',
   },
   kidz: {
     label: 'COC Kidz',
-    color: 'bg-[#FEF9EC] dark:bg-[#332612] text-[#B87A14] dark:text-[#F0BE5E] border-[#F8E3B5] dark:border-[#543E19]',
+    color: 'bg-[#FEF9EC] dark:bg-[#2D2517] text-[#8C6826] dark:text-[#E0B85C] border-[#F5DFAB] dark:border-[#52411E]',
   },
   hana: {
     label: 'Wanita Hana',
-    color: 'bg-[#FDF0F4] dark:bg-[#33121E] text-[#A6264A] dark:text-[#EA7FA0] border-[#F7C6D5] dark:border-[#541D30]',
+    color: 'bg-[#F9EFF3] dark:bg-[#26161E] text-[#7A354A] dark:text-[#B0657C] border-[#E2C3D0] dark:border-[#4A2032]',
   },
   all: {
     label: 'Umum',
-    color: 'bg-[#F7F2E8] dark:bg-[#2A161A] text-[#5A4D4E] dark:text-[#D5C2C4] border-[#EBDDCF] dark:border-[#3A1C20]',
+    color: 'bg-[#F3EFE6] dark:bg-[#262421] text-[#665E55] dark:text-[#A8A196] border-[#E5DFD5] dark:border-[#332F2B]',
   },
 };
 

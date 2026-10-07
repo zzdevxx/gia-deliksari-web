@@ -206,10 +206,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="font-sans antialiased min-h-screen bg-[#FDFBF7] text-[#1F1617] dark:bg-[#150B0D] dark:text-[#F5EFEB] transition-colors duration-200">
+      <body className="font-sans antialiased min-h-screen bg-[#FAF7F2] text-[#1C1917] dark:bg-[#141312] dark:text-[#F5F3EF] transition-colors duration-200">
         <a
           href="#beranda"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 px-4 py-2 bg-gradient-to-r from-[#C5222E] to-[#80141C] text-white font-bold rounded-xl shadow-lg"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 px-4 py-2 bg-[#8B1E28] hover:bg-[#731820] text-white font-bold rounded-xl shadow-lg"
         >
           Lewati ke Konten Utama (Skip to Content)
         </a>

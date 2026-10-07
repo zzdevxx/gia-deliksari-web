@@ -18,7 +18,7 @@ const LABELS: Record<RosterCat, string> = {
  * full CategoryBadge styling is too heavy.
  */
 const RosterCategoryLabel: React.FC<RosterCategoryLabelProps> = ({ category }) => {
-  return <span className="font-bold text-[#1F1617] dark:text-[#F5EFEB]">{LABELS[category]}</span>;
+  return <span className="font-bold text-[#1C1917] dark:text-[#F5F3EF]">{LABELS[category]}</span>;
 };
 
 export default RosterCategoryLabel;

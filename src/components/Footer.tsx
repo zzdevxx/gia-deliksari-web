@@ -57,16 +57,16 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#FDFBF7] dark:bg-[#110809] border-t border-[#EBDDCF] dark:border-[#3A1C20] text-[#5A4D4E] dark:text-[#D5C2C4] transition-colors">
-      {/* Newsletter Strip — replaces admin CTA, drives connection */}
-      <div className="border-b border-[#EBDDCF] dark:border-[#3A1C20] bg-gradient-to-br from-[#FDF0F0] via-[#FDFBF7] to-[#FDF0F0] dark:from-[#1A0E10] dark:via-[#110809] dark:to-[#1A0E10]">
+    <footer className="bg-[#FAF7F2] dark:bg-[#141312] border-t border-[#E5DFD5] dark:border-[#332F2B] text-[#665E55] dark:text-[#A8A196] transition-colors">
+      {/* Newsletter Strip */}
+      <div className="border-b border-[#E5DFD5] dark:border-[#332F2B] bg-[#F3EFE6]/50 dark:bg-[#16171B]/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-md">
-              <h3 className="font-extrabold text-lg sm:text-xl text-[#1F1617] dark:text-[#F5EFEB]">
+              <h3 className="font-extrabold text-lg sm:text-xl text-[#1C1917] dark:text-[#F5F3EF]">
                 Warta Mingguan di Inbox Anda
               </h3>
-              <p className="mt-1 text-sm text-[#5A4D4E] dark:text-[#D5C2C4]">
+              <p className="mt-1 text-sm text-[#665E55] dark:text-[#A8A196]">
                 Dapatkan jadwal ibadah, renungan, dan info kegiatan jemaat setiap minggu.
               </p>
             </div>
@@ -80,7 +80,7 @@ export default function Footer() {
               </label>
               <div className="relative flex-1">
                 <Mail
-                  className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#C5222E] pointer-events-none"
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8B1E28] dark:text-[#B8323D] pointer-events-none"
                   aria-hidden="true"
                 />
                 <input
@@ -90,13 +90,13 @@ export default function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="email@contoh.com"
-                  className="w-full rounded-full border border-[#EBDDCF] dark:border-[#3A1C20] bg-white dark:bg-[#221215] pl-10 pr-4 py-3 text-sm text-[#1F1617] dark:text-[#F5EFEB] placeholder:text-[#9A9180] focus:outline-none focus:ring-2 focus:ring-[#C5222E]/30 focus:border-[#C5222E]"
+                  className="w-full rounded-full border border-[#E5DFD5] dark:border-[#332F2B] bg-white dark:bg-[#1D1B19] pl-10 pr-4 py-3 text-sm text-[#1C1917] dark:text-[#F5F3EF] placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28]"
                 />
               </div>
               <button
                 type="submit"
                 disabled={subscribed}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full font-bold text-sm bg-gradient-to-r from-[#C5222E] to-[#80141C] text-white shadow-sm shadow-red-950/20 hover:shadow-md hover:-translate-y-0.5 active:scale-[0.97] transition-all disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full font-bold text-sm bg-[#8B1E28] hover:bg-[#731820] text-white shadow-xs hover:-translate-y-0.5 active:scale-[0.97] transition-all disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {subscribed ? (
                   <>
@@ -121,7 +121,7 @@ export default function Footer() {
           {/* Col 1: Church Brand */}
           <div className="lg:col-span-4 space-y-4">
             <Link href="/home" className="flex items-center gap-3 group" aria-label="GIA Deliksari - Beranda">
-              <div className="relative w-12 h-12 rounded-2xl overflow-hidden border border-[#C5222E]/30 bg-white p-0.5 shadow-sm group-hover:scale-105 transition-transform">
+              <div className="relative w-12 h-12 rounded-2xl overflow-hidden border border-[#E5DFD5] dark:border-[#332F2B] bg-white dark:bg-[#1D1B19] p-0.5 shadow-xs group-hover:scale-105 transition-transform">
                 <Image
                   src="/images/logo.png"
                   alt="Logo GIA Deliksari"
@@ -131,10 +131,10 @@ export default function Footer() {
                 />
               </div>
               <div>
-                <span className="font-extrabold text-base text-[#1F1617] dark:text-[#F5EFEB] block">
+                <span className="font-extrabold text-base text-[#1C1917] dark:text-[#F5F3EF] block">
                   GIA Deliksari Semarang
                 </span>
-                <span className="text-xs font-bold text-[#C5222E] dark:text-[#E03643]">
+                <span className="text-xs font-bold text-[#8B1E28] dark:text-[#B8323D]">
                   Growing Church! 🔥
                 </span>
               </div>
@@ -147,11 +147,11 @@ export default function Footer() {
 
             <ul className="space-y-2 text-sm">
               <li className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-[#C5222E] shrink-0 mt-0.5" aria-hidden="true" />
+                <MapPin className="w-4 h-4 text-[#A37D35] dark:text-[#C49B45] shrink-0 mt-0.5" aria-hidden="true" />
                 <span>Jl. Kolonel Hadijanto, Deliksari, Gunungpati, Semarang 50229</span>
               </li>
               <li className="flex items-start gap-2">
-                <Clock className="w-4 h-4 text-[#C5222E] shrink-0 mt-0.5" aria-hidden="true" />
+                <Clock className="w-4 h-4 text-[#A37D35] dark:text-[#C49B45] shrink-0 mt-0.5" aria-hidden="true" />
                 <span>Ibadah Raya: Minggu, 09.00 WIB</span>
               </li>
             </ul>
@@ -163,7 +163,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram GIA Deliksari"
-                className="w-10 h-10 rounded-xl bg-[#F7F2E8] dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] flex items-center justify-center text-[#5A4D4E] hover:text-[#C5222E] hover:border-[#C5222E] transition-colors"
+                className="w-10 h-10 rounded-xl bg-[#F3EFE6] dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] flex items-center justify-center text-[#665E55] dark:text-[#A8A196] hover:text-[#8B1E28] dark:hover:text-[#B8323D] hover:border-[#8B1E28] dark:hover:border-[#B8323D] transition-colors"
               >
                 <InstagramIcon className="w-4 h-4" />
               </a>
@@ -172,7 +172,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube GIA Deliksari"
-                className="w-10 h-10 rounded-xl bg-[#F7F2E8] dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] flex items-center justify-center text-[#5A4D4E] hover:text-[#C5222E] hover:border-[#C5222E] transition-colors"
+                className="w-10 h-10 rounded-xl bg-[#F3EFE6] dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] flex items-center justify-center text-[#665E55] dark:text-[#A8A196] hover:text-[#8B1E28] dark:hover:text-[#B8323D] hover:border-[#8B1E28] dark:hover:border-[#B8323D] transition-colors"
               >
                 <YouTubeIcon className="w-4 h-4" />
               </a>
@@ -183,7 +183,7 @@ export default function Footer() {
           <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-8">
             {FOOTER_NAV.map((group) => (
               <div key={group.title}>
-                <h4 className="font-extrabold text-xs uppercase tracking-wider text-[#1F1617] dark:text-[#F5EFEB] mb-3">
+                <h4 className="font-extrabold text-xs uppercase tracking-wider text-[#1C1917] dark:text-[#F5F3EF] mb-3">
                   {group.title}
                 </h4>
                 <ul className="space-y-2">
@@ -191,9 +191,9 @@ export default function Footer() {
                     <li key={link.href}>
                       <a
                         href={link.href}
-                        className="text-sm hover:text-[#C5222E] dark:hover:text-[#E03643] transition-colors inline-flex items-center gap-1.5 group"
+                        className="text-sm hover:text-[#8B1E28] dark:hover:text-[#B8323D] transition-colors inline-flex items-center gap-1.5 group"
                       >
-                        <span className="w-1 h-1 rounded-full bg-[#C5222E]/60 group-hover:w-3 group-hover:bg-[#C5222E] transition-all" />
+                        <span className="w-1 h-1 rounded-full bg-[#A37D35]/60 group-hover:w-3 group-hover:bg-[#8B1E28] dark:group-hover:bg-[#B8323D] transition-all" />
                         {link.name}
                       </a>
                     </li>
@@ -205,14 +205,14 @@ export default function Footer() {
         </div>
 
         {/* Bottom Copyright */}
-        <div className="mt-12 pt-6 border-t border-[#EBDDCF]/60 dark:border-[#3A1C20]/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#6E5D5F] dark:text-[#B5A1A3]">
+        <div className="mt-12 pt-6 border-t border-[#E5DFD5] dark:border-[#332F2B] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#665E55] dark:text-[#A8A196]">
           <p>
             © {currentYear} Gereja Isa Almasih (GIA) Deliksari Semarang.
             <span className="hidden sm:inline"> Hak Cipta Dilindungi.</span>
           </p>
           <p className="flex items-center gap-1.5">
             <span>Dibuat dengan</span>
-            <Heart className="w-3.5 h-3.5 fill-[#C5222E] text-[#C5222E]" aria-hidden="true" />
+            <Heart className="w-3.5 h-3.5 fill-[#8B1E28] text-[#8B1E28] dark:fill-[#B8323D] dark:text-[#B8323D]" aria-hidden="true" />
             <span>untuk Kemuliaan Kristus</span>
           </p>
         </div>

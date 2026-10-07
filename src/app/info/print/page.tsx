@@ -46,9 +46,9 @@ export default function InfoPrintPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#FDFBF7] text-[#1F1617] p-4">
-        <div className="flex items-center gap-3 text-sm font-semibold text-[#80141C]">
-          <div className="w-5 h-5 border-2 border-[#C5222E] border-t-transparent rounded-full animate-spin" />
+      <div className="min-h-screen flex items-center justify-center bg-[#FAF7F2] text-[#1C1917] p-4">
+        <div className="flex items-center gap-3 text-sm font-semibold text-[#731820]">
+          <div className="w-5 h-5 border-2 border-[#8B1E28] border-t-transparent rounded-full animate-spin" />
           <span>Menyiapkan Buletin Warta Cetak A4...</span>
         </div>
       </div>
@@ -56,26 +56,26 @@ export default function InfoPrintPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] text-[#1F1617]">
+    <div className="min-h-screen bg-[#FAF7F2] text-[#1C1917]">
       {/* Top action bar - hidden during print */}
-      <div className="no-print sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#EBDDCF] px-4 py-3 shadow-xs">
+      <div className="no-print sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#E5DFD5] px-4 py-3 shadow-xs">
         <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
           <Link
             href="/info"
-            className="inline-flex items-center gap-2 text-xs font-bold text-[#6E5D5F] hover:text-[#C5222E] transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-bold text-[#665E55] hover:text-[#8B1E28] dark:hover:text-[#B8323D] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Kembali ke Halaman Info</span>
           </Link>
 
           <div className="flex items-center gap-3">
-            <span className="text-xs text-[#6E5D5F] hidden sm:inline">
+            <span className="text-xs text-[#665E55] hidden sm:inline">
               Format Kertas: <strong>A4 Portrait</strong>
             </span>
             <button
               type="button"
               onClick={() => window.print()}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#C5222E] text-white text-xs font-bold hover:bg-[#80141C] shadow-sm transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#8B1E28] dark:bg-[#B8323D] text-white text-xs font-bold hover:bg-[#731820] shadow-sm transition-all"
             >
               <Printer className="w-4 h-4" />
               <span>Cetak Sekarang / Simpan PDF</span>

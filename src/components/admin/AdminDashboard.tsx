@@ -581,17 +581,17 @@ export default function AdminDashboard() {
     switch (category) {
       case 'general':
       case 'ibadah':
-        return 'bg-[#FDF0F0] text-[#9A1620] border-[#F5CDD0] dark:bg-[#331418] dark:text-[#F2828C] dark:border-[#521E25]';
+        return 'bg-[#FBF1F2] text-[#8B1E28] border-[#E8C2C5] dark:bg-[#261517] dark:text-[#E88086] dark:border-[#52252A]';
       case 'youth':
-        return 'bg-[#FFF2EE] text-[#C83E20] border-[#FCD2C7] dark:bg-[#331812] dark:text-[#F88B72] dark:border-[#57241A]';
+        return 'bg-[#FAF0ED] text-[#A0442C] border-[#EAC9C0] dark:bg-[#281814] dark:text-[#D96B4F] dark:border-[#4D2820]';
       case 'kidz':
       case 'worship':
-        return 'bg-[#FEF9EC] text-[#B87A14] border-[#F8E3B5] dark:bg-[#332612] dark:text-[#F0BE5E] dark:border-[#543E19]';
+        return 'bg-[#FEF9EC] text-[#8C6826] border-[#F5DFAB] dark:bg-[#2D2517] dark:text-[#E0B85C] dark:border-[#52411E]';
       case 'hana':
       case 'komunitas':
-        return 'bg-[#FDF0F4] text-[#A6264A] border-[#F7C6D5] dark:bg-[#33121E] dark:text-[#EA7FA0] dark:border-[#541D30]';
+        return 'bg-[#F9EFF3] text-[#7A354A] border-[#E2C3D0] dark:bg-[#26161E] dark:text-[#B0657C] dark:border-[#4A2032]';
       default:
-        return 'bg-[#F7F2E8] text-[#6E5D5F] border-[#EBDDCF] dark:bg-[#2A161A] dark:text-[#B5A1A3] dark:border-[#3A1C20]';
+        return 'bg-[#F3EFE6] text-[#665E55] border-[#E5DFD5] dark:bg-[#262421] dark:text-[#A8A196] dark:border-[#332F2B]';
     }
   };
 
@@ -622,43 +622,41 @@ export default function AdminDashboard() {
   // ----------------------------------------------------
   if (!authChecked) {
     return (
-      <main className="min-h-screen flex items-center justify-center bg-[#FDFBF7] dark:bg-[#150B0D]">
-        <div className="animate-pulse text-[#6E5D5F] dark:text-[#B5A1A3]">Memuat…</div>
+      <main className="min-h-screen flex items-center justify-center bg-[#FAF7F2] dark:bg-[#141312]">
+        <div className="animate-pulse text-[#665E55] dark:text-[#A8A196]">Memuat…</div>
       </main>
     );
   }
 
   if (!authUser) {
     return (
-      <main className="min-h-screen bg-[#FDFBF7] dark:bg-[#150B0D] text-[#1F1617] dark:text-[#F5EFEB] flex flex-col justify-between selection:bg-[#C5222E] selection:text-white">
+      <main className="min-h-screen bg-[#FAF7F2] dark:bg-[#141312] text-[#1C1917] dark:text-[#F5F3EF] flex flex-col justify-between selection:bg-[#8B1E28] selection:text-white">
         <Navbar />
         <div className="flex-1 flex items-center justify-center p-4 sm:p-6 py-20 relative overflow-hidden">
           {/* Subtle Maroon Glow */}
-          <div className="absolute top-1/4 -left-20 w-80 h-80 bg-[#C5222E]/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-10 -right-20 w-80 h-80 bg-[#80141C]/15 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="w-full max-w-md bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] rounded-[2.5rem] shadow-xl p-8 sm:p-10 relative z-10 space-y-6 animate-in fade-in zoom-in-95 duration-300">
+          <div className="w-full max-w-md bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] rounded-2xl shadow-xl p-8 sm:p-10 relative z-10 space-y-6 animate-in fade-in zoom-in-95 duration-300">
             <div className="text-center space-y-3">
-              <div className="w-16 h-16 rounded-3xl bg-gradient-to-tr from-[#C5222E] to-[#80141C] text-white flex items-center justify-center mx-auto shadow-lg shadow-red-900/20">
+              <div className="w-16 h-16 rounded-3xl bg-[#8B1E28] dark:bg-[#B8323D] text-white flex items-center justify-center mx-auto shadow-md">
                 <KeyRound className="w-8 h-8" />
               </div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1F1617] dark:text-white tracking-tight">
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1C1917] dark:text-white tracking-tight">
                 Portal Majelis & Admin
               </h1>
-              <p className="text-xs sm:text-sm text-[#5A4D4E] dark:text-[#D5C2C4] leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#665E55] dark:text-[#A8A196] leading-relaxed">
                 Kelola warta jemaat, plotting pelayan, permohonan doa, media khotbah, dan inventaris GIA Deliksari.
               </p>
             </div>
 
             {authError && (
-              <div className="p-4 rounded-2xl bg-[#FDF0F0] dark:bg-[#331418] border border-[#F5CDD0] dark:border-[#521E25] text-[#9A1620] dark:text-[#F2828C] text-xs font-bold leading-snug animate-shake">
+              <div className="p-4 rounded-2xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800/60 text-rose-800 dark:text-rose-300 text-xs font-bold leading-snug animate-shake">
                 {authError}
               </div>
             )}
 
             <form onSubmit={handleLogin} className="space-y-4">
               <div className="space-y-2">
-                <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB] uppercase tracking-wider">
+                <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF] uppercase tracking-wider">
                   Kata Sandi Pengurus
                 </label>
                 <input
@@ -668,13 +666,13 @@ export default function AdminDashboard() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Masukkan password admin..."
-                  className="w-full px-4 py-3.5 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-[#1F1617] dark:text-[#F5EFEB] text-sm focus:ring-2 focus:ring-[#C5222E]/30 focus:border-[#C5222E] outline-none transition-all placeholder:text-stone-400"
+                  className="w-full px-4 py-3.5 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-[#1C1917] dark:text-[#F5F3EF] text-sm focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full py-4 rounded-2xl bg-gradient-to-r from-[#C5222E] to-[#80141C] hover:opacity-95 text-white font-extrabold text-sm shadow-md shadow-red-900/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-4 rounded-2xl bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white font-extrabold text-sm shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <ShieldCheck className="w-4 h-4" />
                 <span>Masuk ke Dashboard</span>
@@ -684,7 +682,7 @@ export default function AdminDashboard() {
             <div className="pt-2 text-center">
               <Link
                 href="/home"
-                className="inline-flex items-center gap-2 text-xs font-bold text-[#C5222E] hover:underline"
+                className="inline-flex items-center gap-2 text-xs font-bold text-[#8B1E28] dark:text-[#E88086] hover:underline"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 <span>Kembali ke Halaman Beranda Jemaat</span>
@@ -701,7 +699,7 @@ export default function AdminDashboard() {
   // MAIN ADMIN DASHBOARD
   // ----------------------------------------------------
   return (
-    <main className="min-h-screen bg-[#FDFBF7] dark:bg-[#150B0D] text-[#1F1617] dark:text-[#F5EFEB] flex flex-col justify-between selection:bg-[#C5222E] selection:text-white">
+    <main className="min-h-screen bg-[#FAF7F2] dark:bg-[#141312] text-[#1C1917] dark:text-[#F5F3EF] flex flex-col justify-between selection:bg-[#8B1E28] selection:text-white">
       <Navbar />
 
       {/* Toast Notification (rendered by useToast hook) */}
@@ -710,18 +708,18 @@ export default function AdminDashboard() {
       <div className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-8">
         
         {/* Top Header Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-[2.5rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] shadow-sm">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FDF0F0] dark:bg-[#331418] text-[#9A1620] dark:text-[#F2828C] border border-[#F5CDD0] dark:border-[#521E25]">
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FBF1F2] dark:bg-[#261517] text-[#8B1E28] dark:text-[#E88086] border border-[#E8C2C5] dark:border-[#52252A]">
                 Majelis & Pastoral Portal
               </span>
-              <div className="flex items-center gap-1.5 text-xs text-[#5A4D4E] dark:text-[#D5C2C4]">
-                <Database className="w-3.5 h-3.5 text-[#C5222E]" />
+              <div className="flex items-center gap-1.5 text-xs text-[#665E55] dark:text-[#A8A196]">
+                <Database className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#E88086]" />
                 <span>Cloudflare D1 Database</span>
               </div>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1F1617] dark:text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1C1917] dark:text-white tracking-tight">
               Pusat Manajemen Pelayanan
             </h1>
           </div>
@@ -730,23 +728,23 @@ export default function AdminDashboard() {
             <button
               onClick={loadAllData}
               title="Refresh Data"
-              className="p-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] text-[#1F1617] dark:text-[#F5EFEB] hover:bg-[#EBDDCF] dark:hover:bg-[#3A1C20] border border-[#EBDDCF] dark:border-[#3A1C20] transition-colors flex items-center gap-2 text-xs font-bold"
+              className="p-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] hover:bg-[#E5DFD5] dark:hover:bg-[#332F2B] border border-[#E5DFD5] dark:border-[#332F2B] transition-colors flex items-center gap-2 text-xs font-bold"
             >
-              <RefreshCw className={`w-4 h-4 text-[#C5222E] ${loading ? 'animate-spin' : ''}`} />
+              <RefreshCw className={`w-4 h-4 text-[#8B1E28] dark:text-[#E88086] ${loading ? 'animate-spin' : ''}`} />
               <span className="hidden sm:inline">Refresh Data</span>
             </button>
 
             <Link
               href="/home"
-              className="px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] text-[#1F1617] dark:text-[#F5EFEB] hover:bg-[#EBDDCF] dark:hover:bg-[#3A1C20] border border-[#EBDDCF] dark:border-[#3A1C20] transition-colors text-xs font-bold flex items-center gap-2"
+              className="px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] hover:bg-[#E5DFD5] dark:hover:bg-[#332F2B] border border-[#E5DFD5] dark:border-[#332F2B] transition-colors text-xs font-bold flex items-center gap-2"
             >
-              <ExternalLink className="w-3.5 h-3.5 text-[#C5222E]" />
+              <ExternalLink className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#E88086]" />
               <span>Lihat Website</span>
             </Link>
 
             <button
               onClick={handleLogout}
-              className="px-4 py-3 rounded-2xl bg-[#FDF0F0] dark:bg-[#331418] hover:bg-[#FBE2E4] dark:hover:bg-[#451B21] text-[#9A1620] dark:text-[#F2828C] border border-[#F5CDD0] dark:border-[#521E25] transition-colors text-xs font-bold flex items-center gap-2"
+              className="px-4 py-3 rounded-2xl bg-white dark:bg-[#1D1B19] hover:bg-[#F3EFE6] dark:hover:bg-[#262421] text-[#665E55] dark:text-[#A8A196] border border-[#E5DFD5] dark:border-[#332F2B] transition-colors text-xs font-bold flex items-center gap-2"
             >
               <LogOut className="w-3.5 h-3.5" />
               <span>Keluar</span>
@@ -755,7 +753,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* 5 Main Nav Tabs */}
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-3 p-2 bg-[#F7F2E8] dark:bg-[#221215] rounded-3xl border border-[#EBDDCF] dark:border-[#3A1C20]">
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-3 p-2 bg-[#F3EFE6] dark:bg-[#1D1B19] rounded-3xl border border-[#E5DFD5] dark:border-[#332F2B]">
           {[
             { id: 'announcements', label: 'Warta Jemaat', count: announcements.length, icon: Bell },
             { id: 'roster', label: 'Roster Pelayanan', count: roster.length, icon: Users },
@@ -771,15 +769,15 @@ export default function AdminDashboard() {
                 onClick={() => setActiveTab(tab.id as any)}
                 className={`py-3.5 px-3 rounded-2xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-gradient-to-r from-[#C5222E] to-[#80141C] text-white shadow-md'
-                    : 'text-[#5A4D4E] dark:text-[#D5C2C4] hover:bg-white/60 dark:hover:bg-[#2A161A]'
+                    ? 'bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white shadow-md'
+                    : 'text-[#665E55] dark:text-[#A8A196] hover:bg-white/60 dark:hover:bg-[#262421]'
                 }`}
               >
                 <Icon className="w-4 h-4 shrink-0" />
                 <span className="truncate">{tab.label}</span>
                 {tab.count > 0 && (
                   <span className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold ${
-                    isActive ? 'bg-white/20 text-white' : 'bg-[#EBDDCF] dark:bg-[#3A1C20] text-[#1F1617] dark:text-[#F5EFEB]'
+                    isActive ? 'bg-white/20 text-white' : 'bg-[#E5DFD5] dark:bg-[#332F2B] text-[#1C1917] dark:text-[#F5F3EF]'
                   }`}>
                     {tab.count}
                   </span>
@@ -837,10 +835,10 @@ export default function AdminDashboard() {
           <div className="space-y-6 animate-in fade-in">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <h2 className="text-xl font-extrabold text-[#1F1617] dark:text-white">
+                <h2 className="text-xl font-extrabold text-[#1C1917] dark:text-white">
                   Plotting & Jadwal Pelayan Ibadah Mingguan
                 </h2>
-                <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4]">
+                <p className="text-xs text-[#665E55] dark:text-[#A8A196]">
                   Kelola nama pelayan, status konfirmasi tugas, dan broadcast pengingat WhatsApp.
                 </p>
               </div>
@@ -848,15 +846,15 @@ export default function AdminDashboard() {
               <div className="flex flex-wrap items-center gap-2">
                 <button
                   onClick={() => setIsPrintModalOpen(true)}
-                  className="px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] text-[#1F1617] dark:text-[#F5EFEB] hover:bg-[#EBDDCF] dark:hover:bg-[#3A1C20] border border-[#EBDDCF] dark:border-[#3A1C20] transition-colors text-xs font-bold flex items-center gap-2"
+                  className="px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] hover:bg-[#E5DFD5] dark:hover:bg-[#332F2B] border border-[#E5DFD5] dark:border-[#332F2B] transition-colors text-xs font-bold flex items-center gap-2"
                 >
-                  <Printer className="w-4 h-4 text-[#C5222E]" />
+                  <Printer className="w-4 h-4 text-[#8B1E28] dark:text-[#E88086]" />
                   <span>Cetak / Export Jadwal</span>
                 </button>
 
                 <button
                   onClick={() => setIsBroadcastModalOpen(true)}
-                  className="px-4 py-3 rounded-2xl bg-[#FEF9EC] dark:bg-[#332612] text-[#B87A14] dark:text-[#F0BE5E] border border-[#F8E3B5] dark:border-[#543E19] text-xs font-bold flex items-center gap-2"
+                  className="px-4 py-3 rounded-2xl bg-[#FEF9EC] dark:bg-[#2D2517] text-[#8C6826] dark:text-[#E0B85C] border border-[#F5DFAB] dark:border-[#52411E] text-xs font-bold flex items-center gap-2"
                 >
                   <Share2 className="w-4 h-4" />
                   <span>Broadcast WA Pelayan</span>
@@ -876,7 +874,7 @@ export default function AdminDashboard() {
                     });
                     setIsRosterModalOpen(true);
                   }}
-                  className="px-5 py-3 rounded-2xl bg-gradient-to-r from-[#C5222E] to-[#80141C] hover:opacity-95 text-white text-xs sm:text-sm font-bold shadow-md shadow-red-900/10 flex items-center justify-center gap-2"
+                  className="px-5 py-3 rounded-2xl bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white text-xs sm:text-sm font-bold shadow-xs flex items-center justify-center gap-2"
                 >
                   <Plus className="w-4 h-4" />
                   <span>Tambah Petugas</span>
@@ -885,7 +883,7 @@ export default function AdminDashboard() {
             </div>
 
             {/* 4 Community Tabs for Roster */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 p-1.5 bg-[#F7F2E8] dark:bg-[#221215] rounded-2xl border border-[#EBDDCF] dark:border-[#3A1C20]">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 p-1.5 bg-[#F3EFE6] dark:bg-[#1D1B19] rounded-2xl border border-[#E5DFD5] dark:border-[#332F2B]">
               {[
                 { id: 'general', label: '1. Ibadah Raya (Umum)' },
                 { id: 'youth', label: '2. Grow Generation (Youth)' },
@@ -899,8 +897,8 @@ export default function AdminDashboard() {
                     onClick={() => setRosterCategoryTab(cTab.id as any)}
                     className={`py-3 px-3 rounded-xl text-xs font-bold transition-all text-center ${
                       isActive
-                        ? 'bg-white dark:bg-[#2A161A] text-[#C5222E] shadow-sm border border-[#EBDDCF] dark:border-[#3A1C20]'
-                        : 'text-[#5A4D4E] dark:text-[#D5C2C4] hover:bg-white/40'
+                        ? 'bg-white dark:bg-[#262421] text-[#8B1E28] dark:text-[#E88086] shadow-sm border border-[#E5DFD5] dark:border-[#332F2B]'
+                        : 'text-[#665E55] dark:text-[#A8A196] hover:bg-white/40'
                     }`}
                   >
                     {cTab.label}
@@ -910,9 +908,9 @@ export default function AdminDashboard() {
             </div>
 
             {/* Roster Table */}
-            <div className="overflow-x-auto rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm">
+            <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] shadow-sm">
               <table className="w-full text-left text-xs sm:text-sm">
-                <thead className="bg-[#F7F2E8] dark:bg-[#2A161A] text-[#1F1617] dark:text-[#F5EFEB] border-b border-[#EBDDCF] dark:border-[#3A1C20]">
+                <thead className="bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] border-b border-[#E5DFD5] dark:border-[#332F2B]">
                   <tr>
                     <th className="p-4 font-bold">Peran / Tugas</th>
                     <th className="p-4 font-bold">Nama Pelayan</th>
@@ -922,34 +920,34 @@ export default function AdminDashboard() {
                     <th className="p-4 font-bold text-right">Aksi</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#EBDDCF] dark:divide-[#3A1C20]">
+                <tbody className="divide-y divide-[#E5DFD5] dark:divide-[#332F2B]">
                   {currentCategoryRoster.length === 0 ? (
                     <tr>
-                      <td colSpan={6} className="p-8 text-center text-xs text-[#5A4D4E] dark:text-[#D5C2C4]">
+                      <td colSpan={6} className="p-8 text-center text-xs text-[#665E55] dark:text-[#A8A196]">
                         Belum ada petugas terjadwal untuk kategori ini. Klik "Tambah Petugas" di atas.
                       </td>
                     </tr>
                   ) : (
                     currentCategoryRoster.map((item) => (
-                      <tr key={item.id} className="hover:bg-[#FDFBF7] dark:hover:bg-[#261317] transition-colors">
-                        <td className="p-4 font-bold text-[#1F1617] dark:text-white">
+                      <tr key={item.id} className="hover:bg-[#FAF7F2] dark:hover:bg-[#261317] transition-colors">
+                        <td className="p-4 font-bold text-[#1C1917] dark:text-white">
                           {item.role}
                         </td>
                         <td className="p-4">
-                          <div className="font-bold text-[#1F1617] dark:text-[#F5EFEB]">{item.servantName}</div>
+                          <div className="font-bold text-[#1C1917] dark:text-[#F5F3EF]">{item.servantName}</div>
                           {item.phone && (
                             <a
                               href={`https://wa.me/${item.phone.replace(/[^0-9]/g, '')}`}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-[11px] text-[#C5222E] hover:underline flex items-center gap-1 mt-0.5"
+                              className="text-[11px] text-[#8B1E28] dark:text-[#E88086] hover:underline flex items-center gap-1 mt-0.5"
                             >
                               <Phone className="w-3 h-3" />
                               <span>{item.phone}</span>
                             </a>
                           )}
                         </td>
-                        <td className="p-4 text-xs text-[#5A4D4E] dark:text-[#D5C2C4]">
+                        <td className="p-4 text-xs text-[#665E55] dark:text-[#A8A196]">
                           {item.serviceDate}
                         </td>
                         <td className="p-4">
@@ -958,14 +956,14 @@ export default function AdminDashboard() {
                               item.status === 'confirmed'
                                 ? 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/60'
                                 : item.status === 'replacement'
-                                ? 'bg-[#FEF9EC] text-[#B87A14] border-[#F8E3B5] dark:bg-[#332612] dark:text-[#F0BE5E] dark:border-[#543E19]'
-                                : 'bg-[#F7F2E8] text-[#6E5D5F] border-[#EBDDCF] dark:bg-[#2A161A] dark:text-[#B5A1A3] dark:border-[#3A1C20]'
+                                ? 'bg-[#FEF9EC] text-[#8C6826] border-[#F5DFAB] dark:bg-[#2D2517] dark:text-[#E0B85C] dark:border-[#52411E]'
+                                : 'bg-[#F3EFE6] text-[#665E55] border-[#E5DFD5] dark:bg-[#262421] dark:text-[#A8A196] dark:border-[#332F2B]'
                             }`}
                           >
                             {item.status === 'confirmed' ? 'Siap Melayani' : item.status === 'replacement' ? 'Perlu Pengganti' : 'Menunggu Konfirmasi'}
                           </span>
                         </td>
-                        <td className="p-4 text-xs text-[#5A4D4E] dark:text-[#D5C2C4] max-w-xs truncate">
+                        <td className="p-4 text-xs text-[#665E55] dark:text-[#A8A196] max-w-xs truncate">
                           {item.notes || '-'}
                         </td>
                         <td className="p-4 text-right">
@@ -984,14 +982,14 @@ export default function AdminDashboard() {
                                 });
                                 setIsRosterModalOpen(true);
                               }}
-                              className="p-2 rounded-xl bg-[#F7F2E8] dark:bg-[#2A161A] text-[#1F1617] dark:text-[#F5EFEB] hover:bg-[#EBDDCF] dark:hover:bg-[#3A1C20] border border-[#EBDDCF] dark:border-[#3A1C20]"
+                              className="p-2 rounded-xl bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] hover:bg-[#E5DFD5] dark:hover:bg-[#332F2B] border border-[#E5DFD5] dark:border-[#332F2B]"
                               title="Edit"
                             >
                               <Edit2 className="w-3.5 h-3.5" />
                             </button>
                             <button
                               onClick={() => handleDeleteRoster(item.id)}
-                              className="p-2 rounded-xl bg-[#FDF0F0] dark:bg-[#331418] hover:bg-[#FBE2E4] dark:hover:bg-[#451B21] text-[#9A1620] dark:text-[#F2828C] border border-[#F5CDD0] dark:border-[#521E25]"
+                              className="p-2 rounded-xl bg-rose-50 dark:bg-rose-950/40 hover:bg-rose-100 dark:hover:bg-rose-900/40 text-rose-800 dark:text-rose-300 border border-rose-200 dark:border-rose-800/60"
                               title="Hapus"
                             >
                               <Trash2 className="w-3.5 h-3.5" />
@@ -1014,10 +1012,10 @@ export default function AdminDashboard() {
           <div className="space-y-6 animate-in fade-in">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <h2 className="text-xl font-extrabold text-[#1F1617] dark:text-white">
+                <h2 className="text-xl font-extrabold text-[#1C1917] dark:text-white">
                   Permohonan Jemaat & Formulir Masuk
                 </h2>
-                <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4]">
+                <p className="text-xs text-[#665E55] dark:text-[#A8A196]">
                   Daftar jemaat yang mengajukan pokok doa, pendaftaran baptisan, komsel, dan kerinduan melayani.
                 </p>
               </div>
@@ -1036,8 +1034,8 @@ export default function AdminDashboard() {
                     onClick={() => setRequestFilter(f.id as any)}
                     className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                       requestFilter === f.id
-                        ? 'bg-[#C5222E] text-white shadow-sm'
-                        : 'bg-white dark:bg-[#221215] text-[#5A4D4E] dark:text-[#D5C2C4] border border-[#EBDDCF] dark:border-[#3A1C20]'
+                        ? 'bg-[#8B1E28] dark:bg-[#B8323D] text-white shadow-sm'
+                        : 'bg-white dark:bg-[#1D1B19] text-[#665E55] dark:text-[#A8A196] border border-[#E5DFD5] dark:border-[#332F2B]'
                     }`}
                   >
                     {f.label}
@@ -1049,34 +1047,34 @@ export default function AdminDashboard() {
             {/* Requests Cards List */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {filteredRequests.length === 0 ? (
-                <div className="col-span-2 p-12 text-center rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] space-y-2">
-                  <HeartHandshake className="w-10 h-10 text-[#C5222E] mx-auto opacity-60" />
-                  <h3 className="font-bold text-base text-[#1F1617] dark:text-white">Belum Ada Permohonan Masuk</h3>
-                  <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4]">Formulir yang diisi jemaat di website akan otomatis muncul di sini.</p>
+                <div className="col-span-2 p-12 text-center rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] space-y-2">
+                  <HeartHandshake className="w-10 h-10 text-[#8B1E28] dark:text-[#E88086] mx-auto opacity-60" />
+                  <h3 className="font-bold text-base text-[#1C1917] dark:text-white">Belum Ada Permohonan Masuk</h3>
+                  <p className="text-xs text-[#665E55] dark:text-[#A8A196]">Formulir yang diisi jemaat di website akan otomatis muncul di sini.</p>
                 </div>
               ) : (
                 filteredRequests.map((req) => (
                   <div
                     key={req.id}
-                    className="p-6 rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm space-y-4 hover:border-[#C5222E]/40 transition-colors"
+                    className="p-6 rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] shadow-sm space-y-4 hover:border-[#8B1E28]/40 dark:hover:border-[#B8323D]/40 transition-colors"
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
                           <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase border ${
-                            req.type === 'prayer' ? 'bg-[#FDF0F0] text-[#9A1620] border-[#F5CDD0]' :
-                            req.type === 'sacrament' ? 'bg-[#FEF9EC] text-[#B87A14] border-[#F8E3B5]' :
-                            req.type === 'komsel' ? 'bg-[#FDF0F4] text-[#A6264A] border-[#F7C6D5]' :
-                            'bg-[#FFF2EE] text-[#C83E20] border-[#FCD2C7]'
+                            req.type === 'prayer' ? 'bg-[#FBF1F2] text-[#8B1E28] border-[#E8C2C5] dark:bg-[#261517] dark:text-[#E88086] dark:border-[#52252A]' :
+                            req.type === 'sacrament' ? 'bg-[#FEF9EC] text-[#8C6826] border-[#F5DFAB] dark:bg-[#2D2517] dark:text-[#E0B85C] dark:border-[#52411E]' :
+                            req.type === 'komsel' ? 'bg-[#F9EFF3] text-[#7A354A] border-[#E2C3D0] dark:bg-[#26161E] dark:text-[#B0657C] dark:border-[#4A2032]' :
+                            'bg-[#FAF0ED] text-[#A0442C] border-[#EAC9C0] dark:bg-[#281814] dark:text-[#D96B4F] dark:border-[#4D2820]'
                           }`}>
                             {req.type === 'prayer' ? 'Doa & Konseling' : req.type === 'sacrament' ? 'Sakramen' : req.type === 'komsel' ? 'Komsel' : 'Volunteer'}
                           </span>
-                          <span className="text-[11px] text-[#5A4D4E] dark:text-[#D5C2C4]">
+                          <span className="text-[11px] text-[#665E55] dark:text-[#A8A196]">
                             {new Date(req.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}
                           </span>
                         </div>
-                        <h3 className="text-base font-extrabold text-[#1F1617] dark:text-white">{req.name}</h3>
-                        <p className="text-xs font-bold text-[#C5222E]">{req.subType}</p>
+                        <h3 className="text-base font-extrabold text-[#1C1917] dark:text-white">{req.name}</h3>
+                        <p className="text-xs font-bold text-[#8B1E28] dark:text-[#E88086]">{req.subType}</p>
                       </div>
 
                       {/* Status Selector */}
@@ -1087,8 +1085,8 @@ export default function AdminDashboard() {
                           req.status === 'completed'
                             ? 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300'
                             : req.status === 'in_progress'
-                            ? 'bg-[#FEF9EC] text-[#B87A14] border-[#F8E3B5] dark:bg-[#332612] dark:text-[#F0BE5E]'
-                            : 'bg-[#FDF0F0] text-[#9A1620] border-[#F5CDD0] dark:bg-[#331418] dark:text-[#F2828C]'
+                            ? 'bg-[#FEF9EC] text-[#8C6826] border-[#F5DFAB] dark:bg-[#2D2517] dark:text-[#E0B85C]'
+                            : 'bg-[#FBF1F2] text-[#8B1E28] border-[#E8C2C5] dark:bg-[#261517] dark:text-[#E88086] dark:border-[#52252A]'
                         }`}
                       >
                         <option value="new">🔴 Baru Masuk</option>
@@ -1098,24 +1096,24 @@ export default function AdminDashboard() {
                     </div>
 
                     {req.message && (
-                      <div className="p-3.5 rounded-xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-xs text-[#5A4D4E] dark:text-[#D5C2C4] leading-relaxed">
+                      <div className="p-3.5 rounded-xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-xs text-[#665E55] dark:text-[#A8A196] leading-relaxed">
                         "{req.message}"
                       </div>
                     )}
 
                     {req.needPastoralVisit && (
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-[#C5222E]">
+                      <div className="flex items-center gap-1.5 text-xs font-bold text-[#8B1E28] dark:text-[#E88086]">
                         <Clock className="w-3.5 h-3.5" />
                         <span>Memohon Kunjungan Doa Hari Selasa</span>
                       </div>
                     )}
 
-                    <div className="pt-2 flex items-center justify-between gap-3 border-t border-[#EBDDCF] dark:border-[#3A1C20]">
+                    <div className="pt-2 flex items-center justify-between gap-3 border-t border-[#E5DFD5] dark:border-[#332F2B]">
                       <a
                         href={`https://wa.me/${req.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Syalom ${req.name}, kami dari Tim Pastoral GIA Deliksari menindaklanjuti permohonan Anda...`)}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#C5222E] to-[#80141C] text-white text-xs font-bold flex items-center gap-1.5 shadow-sm"
+                        className="px-4 py-2 rounded-xl bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white text-xs font-bold flex items-center gap-1.5 shadow-sm"
                       >
                         <WhatsAppIcon className="w-3.5 h-3.5 text-white" />
                         <span>Hubungi WhatsApp</span>
@@ -1123,7 +1121,7 @@ export default function AdminDashboard() {
 
                       <button
                         onClick={() => handleDeleteRequest(req.id)}
-                        className="p-2 rounded-xl text-[#9A1620] dark:text-[#F2828C] hover:bg-[#FDF0F0] dark:hover:bg-[#331418] transition-colors"
+                        className="p-2 rounded-xl text-rose-800 dark:text-rose-300 hover:bg-rose-100 dark:hover:bg-rose-900/40 transition-colors"
                         title="Hapus Permohonan"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -1143,13 +1141,13 @@ export default function AdminDashboard() {
           <div className="space-y-6 animate-in fade-in">
             {/* Sub-tab toggle & Actions */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="flex items-center gap-2 p-1.5 bg-[#F7F2E8] dark:bg-[#221215] rounded-2xl border border-[#EBDDCF] dark:border-[#3A1C20] w-fit">
+              <div className="flex items-center gap-2 p-1.5 bg-[#F3EFE6] dark:bg-[#1D1B19] rounded-2xl border border-[#E5DFD5] dark:border-[#332F2B] w-fit">
                 <button
                   onClick={() => setMediaSubTab('sermons')}
                   className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
                     mediaSubTab === 'sermons'
-                      ? 'bg-[#C5222E] text-white shadow-sm'
-                      : 'text-[#5A4D4E] dark:text-[#D5C2C4]'
+                      ? 'bg-[#8B1E28] dark:bg-[#B8323D] text-white shadow-sm'
+                      : 'text-[#665E55] dark:text-[#A8A196]'
                   }`}
                 >
                   <Video className="w-3.5 h-3.5" />
@@ -1159,8 +1157,8 @@ export default function AdminDashboard() {
                   onClick={() => setMediaSubTab('gallery')}
                   className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
                     mediaSubTab === 'gallery'
-                      ? 'bg-[#C5222E] text-white shadow-sm'
-                      : 'text-[#5A4D4E] dark:text-[#D5C2C4]'
+                      ? 'bg-[#8B1E28] dark:bg-[#B8323D] text-white shadow-sm'
+                      : 'text-[#665E55] dark:text-[#A8A196]'
                   }`}
                 >
                   <Camera className="w-3.5 h-3.5" />
@@ -1173,9 +1171,9 @@ export default function AdminDashboard() {
                   <button
                     onClick={handleSyncYouTube}
                     disabled={isSyncingYouTube}
-                    className="px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] hover:bg-[#EBDDCF] dark:hover:bg-[#331418] text-[#1F1617] dark:text-[#F5EFEB] border border-[#EBDDCF] dark:border-[#3A1C20] text-xs font-bold transition-all flex items-center gap-2 disabled:opacity-60 cursor-pointer"
+                    className="px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] hover:bg-[#E5DFD5] dark:hover:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] border border-[#E5DFD5] dark:border-[#332F2B] text-xs font-bold transition-all flex items-center gap-2 disabled:opacity-60 cursor-pointer"
                   >
-                    <RefreshCw className={`w-3.5 h-3.5 text-[#C5222E] ${isSyncingYouTube ? 'animate-spin' : ''}`} />
+                    <RefreshCw className={`w-3.5 h-3.5 text-[#8B1E28] dark:text-[#E88086] ${isSyncingYouTube ? 'animate-spin' : ''}`} />
                     <span>{isSyncingYouTube ? 'Sinkronisasi...' : 'Tarik dari YouTube Data API'}</span>
                   </button>
 
@@ -1193,7 +1191,7 @@ export default function AdminDashboard() {
                       });
                       setIsSermonModalOpen(true);
                     }}
-                    className="px-5 py-3 rounded-2xl bg-gradient-to-r from-[#C5222E] to-[#80141C] text-white text-xs sm:text-sm font-bold shadow-md shadow-red-900/10 flex items-center justify-center gap-2 cursor-pointer"
+                    className="px-5 py-3 rounded-2xl bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white text-xs sm:text-sm font-bold shadow-xs flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <Plus className="w-4 h-4" />
                     <span>Tambah Khotbah Manual</span>
@@ -1205,7 +1203,7 @@ export default function AdminDashboard() {
                     href={process.env.NEXT_PUBLIC_GOOGLE_DRIVE_GALLERY_URL || "https://drive.google.com/drive/folders/1T_ahqCtmOjdFl0L-MNu7bIQo-8Oz8y9h"}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] hover:bg-[#EBDDCF] dark:hover:bg-[#331418] text-[#1F1617] dark:text-[#F5EFEB] border border-[#EBDDCF] dark:border-[#3A1C20] text-xs font-bold transition-all flex items-center gap-2"
+                    className="px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] hover:bg-[#E5DFD5] dark:hover:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] border border-[#E5DFD5] dark:border-[#332F2B] text-xs font-bold transition-all flex items-center gap-2"
                   >
                     <FolderOpen className="w-3.5 h-3.5 text-[#C59B27]" />
                     <span>Arsip Google Drive</span>
@@ -1214,7 +1212,7 @@ export default function AdminDashboard() {
 
                   <button
                     onClick={() => setIsUploadPhotoModalOpen(true)}
-                    className="px-5 py-3 rounded-2xl bg-gradient-to-r from-[#C5222E] to-[#80141C] text-white text-xs sm:text-sm font-bold shadow-md shadow-red-900/10 flex items-center justify-center gap-2 cursor-pointer"
+                    className="px-5 py-3 rounded-2xl bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white text-xs sm:text-sm font-bold shadow-xs flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <Upload className="w-4 h-4" />
                     <span>Upload Foto ke Cloud</span>
@@ -1224,7 +1222,7 @@ export default function AdminDashboard() {
             </div>
 
             {/* Storage Info Banner */}
-            <div className="p-4 rounded-2xl bg-[#FEF9EC] dark:bg-[#332612] border border-[#F8E3B5] dark:border-[#543E19] flex items-center justify-between gap-3 text-xs text-[#B87A14] dark:text-[#F0BE5E]">
+            <div className="p-4 rounded-2xl bg-[#FEF9EC] dark:bg-[#2D2517] border border-[#F5DFAB] dark:border-[#52411E] flex items-center justify-between gap-3 text-xs text-[#8C6826] dark:text-[#E0B85C]">
               <div className="flex items-center gap-2.5">
                 <HardDrive className="w-4 h-4 shrink-0" />
                 <span>
@@ -1239,26 +1237,26 @@ export default function AdminDashboard() {
                 {sermons.map((sermon) => (
                   <div
                     key={sermon.id}
-                    className="p-6 rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm flex flex-col justify-between space-y-4"
+                    className="p-6 rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] shadow-sm flex flex-col justify-between space-y-4"
                   >
                     <div className="space-y-2">
-                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FDF0F0] text-[#9A1620] border border-[#F5CDD0] dark:bg-[#331418] dark:text-[#F2828C] dark:border-[#521E25]">
+                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FBF1F2] text-[#8B1E28] border border-[#E8C2C5] dark:bg-[#261517] dark:text-[#E88086] dark:border-[#52252A]">
                         {sermon.category}
                       </span>
-                      <h3 className="text-base font-extrabold text-[#1F1617] dark:text-white leading-snug">
+                      <h3 className="text-base font-extrabold text-[#1C1917] dark:text-white leading-snug">
                         {sermon.title}
                       </h3>
-                      <p className="text-xs font-bold text-[#C5222E]">{sermon.speaker}</p>
-                      <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4]">{sermon.passage}</p>
-                      <p className="text-[11px] text-[#5A4D4E] dark:text-[#D5C2C4]">{sermon.date}</p>
+                      <p className="text-xs font-bold text-[#8B1E28] dark:text-[#E88086]">{sermon.speaker}</p>
+                      <p className="text-xs text-[#665E55] dark:text-[#A8A196]">{sermon.passage}</p>
+                      <p className="text-[11px] text-[#665E55] dark:text-[#A8A196]">{sermon.date}</p>
                     </div>
 
-                    <div className="pt-3 border-t border-[#EBDDCF] dark:border-[#3A1C20] flex items-center justify-between gap-2">
+                    <div className="pt-3 border-t border-[#E5DFD5] dark:border-[#332F2B] flex items-center justify-between gap-2">
                       <a
                         href={sermon.youtubeUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs font-bold text-[#C5222E] flex items-center gap-1 hover:underline"
+                        className="text-xs font-bold text-[#8B1E28] dark:text-[#E88086] flex items-center gap-1 hover:underline"
                       >
                         <Play className="w-3.5 h-3.5" />
                         <span>Link YouTube</span>
@@ -1279,13 +1277,13 @@ export default function AdminDashboard() {
                             });
                             setIsSermonModalOpen(true);
                           }}
-                          className="p-2 rounded-xl bg-[#F7F2E8] dark:bg-[#2A161A] text-[#1F1617] dark:text-[#F5EFEB] border border-[#EBDDCF] dark:border-[#3A1C20]"
+                          className="p-2 rounded-xl bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] border border-[#E5DFD5] dark:border-[#332F2B]"
                         >
                           <Edit2 className="w-3.5 h-3.5" />
                         </button>
                         <button
                           onClick={() => handleDeleteSermon(sermon.id)}
-                          className="p-2 rounded-xl bg-[#FDF0F0] dark:bg-[#331418] text-[#9A1620] dark:text-[#F2828C] border border-[#F5CDD0] dark:border-[#521E25]"
+                          className="p-2 rounded-xl bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300 border border-rose-200 dark:border-rose-800/60"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
@@ -1302,9 +1300,9 @@ export default function AdminDashboard() {
                 {gallery.map((item) => (
                   <div
                     key={item.id}
-                    className="rounded-[2rem] overflow-hidden bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm flex flex-col justify-between"
+                    className="rounded-2xl overflow-hidden bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] shadow-sm flex flex-col justify-between"
                   >
-                    <div className="relative aspect-[16/10] w-full bg-[#F7F2E8] dark:bg-[#2A161A]">
+                    <div className="relative aspect-[16/10] w-full bg-[#F3EFE6] dark:bg-[#262421]">
                       <Image
                         src={item.image || '/images/logo.png'}
                         alt={item.title}
@@ -1313,10 +1311,10 @@ export default function AdminDashboard() {
                       />
                     </div>
                     <div className="p-5 space-y-2">
-                      <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[#C5222E]/10 text-[#C5222E] border border-[#C5222E]/20">
+                      <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[#8B1E28] dark:bg-[#B8323D]/10 text-[#8B1E28] dark:text-[#E88086] border border-[#8B1E28]/20">
                         {item.category.toUpperCase()} • {item.date}
                       </span>
-                      <h4 className="text-sm font-bold text-[#1F1617] dark:text-white leading-snug">{item.title}</h4>
+                      <h4 className="text-sm font-bold text-[#1C1917] dark:text-white leading-snug">{item.title}</h4>
                     </div>
 
                     <div className="p-5 pt-0 flex items-center justify-end gap-2">
@@ -1331,13 +1329,13 @@ export default function AdminDashboard() {
                           });
                           setIsGalleryModalOpen(true);
                         }}
-                        className="p-2 rounded-xl bg-[#F7F2E8] dark:bg-[#2A161A] text-[#1F1617] dark:text-[#F5EFEB] border border-[#EBDDCF] dark:border-[#3A1C20]"
+                        className="p-2 rounded-xl bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] border border-[#E5DFD5] dark:border-[#332F2B]"
                       >
                         <Edit2 className="w-3.5 h-3.5" />
                       </button>
                       <button
                         onClick={() => handleDeleteGallery(item.id)}
-                        className="p-2 rounded-xl bg-[#FDF0F0] dark:bg-[#331418] text-[#9A1620] dark:text-[#F2828C] border border-[#F5CDD0] dark:border-[#521E25]"
+                        className="p-2 rounded-xl bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300 border border-rose-200 dark:border-rose-800/60"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
@@ -1356,10 +1354,10 @@ export default function AdminDashboard() {
           <div className="space-y-6 animate-in fade-in">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <h2 className="text-xl font-extrabold text-[#1F1617] dark:text-white">
+                <h2 className="text-xl font-extrabold text-[#1C1917] dark:text-white">
                   Inventaris & Checklist Alat Ibadah
                 </h2>
-                <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4]">
+                <p className="text-xs text-[#665E55] dark:text-[#A8A196]">
                   Checklist sound system, multimedia, instrumen musik, dan fasilitas ruangan sebelum ibadah dimulai.
                 </p>
               </div>
@@ -1379,7 +1377,7 @@ export default function AdminDashboard() {
                   });
                   setIsInvModalOpen(true);
                 }}
-                className="px-5 py-3 rounded-2xl bg-gradient-to-r from-[#C5222E] to-[#80141C] hover:opacity-95 text-white text-xs sm:text-sm font-bold shadow-md shadow-red-900/10 flex items-center justify-center gap-2"
+                className="px-5 py-3 rounded-2xl bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white text-xs sm:text-sm font-bold shadow-xs flex items-center justify-center gap-2"
               >
                 <Plus className="w-4 h-4" />
                 <span>Tambah Barang</span>
@@ -1395,8 +1393,8 @@ export default function AdminDashboard() {
                     onClick={() => setInvCategoryFilter(cat)}
                     className={`px-3 py-2 rounded-xl text-xs font-bold transition-all ${
                       invCategoryFilter === cat
-                        ? 'bg-[#C5222E] text-white shadow-sm'
-                        : 'bg-white dark:bg-[#221215] text-[#5A4D4E] dark:text-[#D5C2C4] hover:bg-[#F7F2E8] dark:hover:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20]'
+                        ? 'bg-[#8B1E28] dark:bg-[#B8323D] text-white shadow-sm'
+                        : 'bg-white dark:bg-[#1D1B19] text-[#665E55] dark:text-[#A8A196] hover:bg-[#F3EFE6] dark:hover:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B]'
                     }`}
                   >
                     {cat === 'all' ? 'Semua Kategori' : cat}
@@ -1411,15 +1409,15 @@ export default function AdminDashboard() {
                   placeholder="Cari kode / nama barang..."
                   value={invSearchQuery}
                   onChange={(e) => setInvSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 rounded-2xl bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] text-xs text-[#1F1617] dark:text-[#F5EFEB] outline-none focus:ring-2 focus:ring-[#C5222E]/30"
+                  className="w-full pl-10 pr-4 py-2 rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] text-xs text-[#1C1917] dark:text-[#F5F3EF] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
                 />
               </div>
             </div>
 
             {/* Inventory Table */}
-            <div className="overflow-x-auto rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm">
+            <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] shadow-sm">
               <table className="w-full text-left text-xs sm:text-sm">
-                <thead className="bg-[#F7F2E8] dark:bg-[#2A161A] text-[#1F1617] dark:text-[#F5EFEB] border-b border-[#EBDDCF] dark:border-[#3A1C20]">
+                <thead className="bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] border-b border-[#E5DFD5] dark:border-[#332F2B]">
                   <tr>
                     <th className="p-4 font-bold">Checklist</th>
                     <th className="p-4 font-bold">Nama & Kode Barang</th>
@@ -1429,7 +1427,7 @@ export default function AdminDashboard() {
                     <th className="p-4 font-bold text-right">Aksi</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#EBDDCF] dark:divide-[#3A1C20]">
+                <tbody className="divide-y divide-[#E5DFD5] dark:divide-[#332F2B]">
                   {inventory
                     .filter((inv) =>
                       (invCategoryFilter === 'all' || inv.category === invCategoryFilter) &&
@@ -1437,11 +1435,11 @@ export default function AdminDashboard() {
                         inv.code.toLowerCase().includes(invSearchQuery.toLowerCase()))
                     )
                     .map((item) => (
-                      <tr key={item.id} className="hover:bg-[#FDFBF7] dark:hover:bg-[#261317] transition-colors">
+                      <tr key={item.id} className="hover:bg-[#FAF7F2] dark:hover:bg-[#261317] transition-colors">
                         <td className="p-4">
                           <button
                             onClick={() => handleToggleInventoryCheck(item)}
-                            className="p-1 rounded-lg text-[#C5222E] hover:bg-[#FDF0F0] dark:hover:bg-[#331418] transition-colors"
+                            className="p-1 rounded-lg text-[#8B1E28] dark:text-[#E88086] hover:bg-[#F3EFE6] dark:hover:bg-[#262421] transition-colors"
                           >
                             {item.isChecked ? (
                               <CheckSquare className="w-5 h-5 text-emerald-600" />
@@ -1451,11 +1449,11 @@ export default function AdminDashboard() {
                           </button>
                         </td>
                         <td className="p-4">
-                          <div className="font-bold text-[#1F1617] dark:text-white">{item.name}</div>
+                          <div className="font-bold text-[#1C1917] dark:text-white">{item.name}</div>
                           <div className="text-xs text-stone-500 font-mono">Kode: {item.code} • Jml: {item.quantity} unit</div>
                         </td>
                         <td className="p-4">
-                          <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#F7F2E8] text-[#5A4D4E] dark:bg-[#2A161A] dark:text-[#D5C2C4] border border-[#EBDDCF] dark:border-[#3A1C20] inline-block mb-1">
+                          <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#F3EFE6] text-[#665E55] dark:bg-[#262421] dark:text-[#A8A196] border border-[#E5DFD5] dark:border-[#332F2B] inline-block mb-1">
                             {item.category}
                           </span>
                           <div className="text-xs text-stone-500">{item.location}</div>
@@ -1466,8 +1464,8 @@ export default function AdminDashboard() {
                               item.condition === 'good'
                                 ? 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300'
                                 : item.condition === 'maintenance'
-                                ? 'bg-[#FEF9EC] text-[#B87A14] border-[#F8E3B5] dark:bg-[#332612] dark:text-[#F0BE5E]'
-                                : 'bg-[#FDF0F0] text-[#9A1620] border-[#F5CDD0] dark:bg-[#331418] dark:text-[#F2828C]'
+                                ? 'bg-[#FEF9EC] text-[#8C6826] border-[#F5DFAB] dark:bg-[#2D2517] dark:text-[#E0B85C]'
+                                : 'bg-rose-50 text-rose-800 border-rose-200 dark:bg-rose-950/40 dark:text-rose-300'
                             }`}
                           >
                             {item.condition === 'good' ? 'Baik / Normal' : item.condition === 'maintenance' ? 'Perlu Pengecekan' : 'Rusak / Servis'}
@@ -1494,13 +1492,13 @@ export default function AdminDashboard() {
                                 });
                                 setIsInvModalOpen(true);
                               }}
-                              className="p-2 rounded-xl bg-[#F7F2E8] dark:bg-[#2A161A] text-[#1F1617] dark:text-[#F5EFEB] hover:bg-[#EBDDCF] dark:hover:bg-[#3A1C20] border border-[#EBDDCF] dark:border-[#3A1C20]"
+                              className="p-2 rounded-xl bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] hover:bg-[#E5DFD5] dark:hover:bg-[#332F2B] border border-[#E5DFD5] dark:border-[#332F2B]"
                             >
                               <Edit2 className="w-3.5 h-3.5" />
                             </button>
                             <button
                               onClick={() => handleDeleteInventory(item.id)}
-                              className="p-2 rounded-xl bg-[#FDF0F0] dark:bg-[#331418] hover:bg-[#FBE2E4] dark:hover:bg-[#451B21] text-[#9A1620] dark:text-[#F2828C] border border-[#F5CDD0] dark:border-[#521E25]"
+                              className="p-2 rounded-xl bg-rose-50 dark:bg-rose-950/40 hover:bg-rose-100 dark:hover:bg-rose-900/40 text-rose-800 dark:text-rose-300 border border-rose-200 dark:border-rose-800/60"
                             >
                               <Trash2 className="w-3.5 h-3.5" />
                             </button>
@@ -1521,9 +1519,9 @@ export default function AdminDashboard() {
       {/* ========================================================================= */}
       {isAnnModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-          <div className="w-full max-w-xl bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] rounded-[2.5rem] shadow-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
+          <div className="w-full max-w-xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] rounded-2xl shadow-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between">
-              <h3 className="text-xl font-extrabold text-[#1F1617] dark:text-white">
+              <h3 className="text-xl font-extrabold text-[#1C1917] dark:text-white">
                 {editingAnnId ? 'Edit Warta Jemaat' : 'Tambah Warta Jemaat Baru'}
               </h3>
               <button onClick={() => setIsAnnModalOpen(false)} className="p-2 text-stone-400 hover:text-stone-600">
@@ -1533,24 +1531,24 @@ export default function AdminDashboard() {
 
             <form onSubmit={handleSaveAnnouncement} className="space-y-4">
               <div className="space-y-1">
-                <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Judul Warta *</label>
+                <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Judul Warta *</label>
                 <input
                   type="text"
                   required
                   value={annForm.title}
                   onChange={(e) => setAnnForm({ ...annForm, title: e.target.value })}
                   placeholder="Contoh: Ibadah Padang Pemuda & Remaja"
-                  className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none focus:ring-2 focus:ring-[#C5222E]/30"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Kategori Komunitas *</label>
+                  <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Kategori Komunitas *</label>
                   <select
                     value={annForm.category}
                     onChange={(e) => setAnnForm({ ...annForm, category: e.target.value as any })}
-                    className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                   >
                     <option value="general">Ibadah Raya / Umum</option>
                     <option value="youth">Grow Generation (Youth)</option>
@@ -1561,70 +1559,70 @@ export default function AdminDashboard() {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Tanggal Kegiatan *</label>
+                  <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Tanggal Kegiatan *</label>
                   <input
                     type="date"
                     required
                     value={annForm.eventDate}
                     onChange={(e) => setAnnForm({ ...annForm, eventDate: e.target.value })}
-                    className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                   />
                 </div>
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Isi / Deskripsi Warta *</label>
+                <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Isi / Deskripsi Warta *</label>
                 <textarea
                   rows={4}
                   required
                   value={annForm.content}
                   onChange={(e) => setAnnForm({ ...annForm, content: e.target.value })}
                   placeholder="Tuliskan detail pengumuman warta jemaat..."
-                  className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none resize-none"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none resize-none"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Badge Label Teks</label>
+                  <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Badge Label Teks</label>
                   <input
                     type="text"
                     value={annForm.badgeText}
                     onChange={(e) => setAnnForm({ ...annForm, badgeText: e.target.value })}
                     placeholder="Contoh: Khusus, Penting, Youth Event"
-                    className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Penulis / Unit Pelayanan</label>
+                  <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Penulis / Unit Pelayanan</label>
                   <input
                     type="text"
                     value={annForm.author}
                     onChange={(e) => setAnnForm({ ...annForm, author: e.target.value })}
                     placeholder="Sekretariat GIA Deliksari"
-                    className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                   />
                 </div>
               </div>
 
               <div className="flex items-center gap-6 pt-2">
-                <label className="flex items-center gap-2 cursor-pointer text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">
+                <label className="flex items-center gap-2 cursor-pointer text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">
                   <input
                     type="checkbox"
                     checked={annForm.isPinned}
                     onChange={(e) => setAnnForm({ ...annForm, isPinned: e.target.checked })}
-                    className="rounded text-[#C5222E] focus:ring-[#C5222E]"
+                    className="rounded text-[#8B1E28] dark:text-[#E88086] focus:ring-[#8B1E28] dark:focus:ring-[#B8323D]"
                   />
                   <span>Sematkan ke Paling Atas (Pinned)</span>
                 </label>
 
-                <label className="flex items-center gap-2 cursor-pointer text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">
+                <label className="flex items-center gap-2 cursor-pointer text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">
                   <input
                     type="checkbox"
                     checked={annForm.isPublished}
                     onChange={(e) => setAnnForm({ ...annForm, isPublished: e.target.checked })}
-                    className="rounded text-[#C5222E] focus:ring-[#C5222E]"
+                    className="rounded text-[#8B1E28] dark:text-[#E88086] focus:ring-[#8B1E28] dark:focus:ring-[#B8323D]"
                   />
                   <span>Tayangkan Langsung (Publish)</span>
                 </label>
@@ -1634,13 +1632,13 @@ export default function AdminDashboard() {
                 <button
                   type="button"
                   onClick={() => setIsAnnModalOpen(false)}
-                  className="px-5 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] text-[#5A4D4E] dark:text-[#D5C2C4] text-xs font-bold"
+                  className="px-5 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] text-[#665E55] dark:text-[#A8A196] text-xs font-bold"
                 >
                   Batal
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-3 rounded-2xl bg-gradient-to-r from-[#C5222E] to-[#80141C] text-white text-xs font-bold shadow-md"
+                  className="px-6 py-3 rounded-2xl bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white text-xs font-bold shadow-md"
                 >
                   Simpan Warta
                 </button>
@@ -1655,9 +1653,9 @@ export default function AdminDashboard() {
       {/* ========================================================================= */}
       {isRosterModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-          <div className="w-full max-w-lg bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] rounded-[2.5rem] shadow-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
+          <div className="w-full max-w-lg bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] rounded-2xl shadow-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between">
-              <h3 className="text-xl font-extrabold text-[#1F1617] dark:text-white">
+              <h3 className="text-xl font-extrabold text-[#1C1917] dark:text-white">
                 {editingRosterId ? 'Edit Petugas Ibadah' : 'Tambah Petugas Ibadah'}
               </h3>
               <button onClick={() => setIsRosterModalOpen(false)} className="p-2 text-stone-400 hover:text-stone-600">
@@ -1667,11 +1665,11 @@ export default function AdminDashboard() {
 
             <form onSubmit={handleSaveRoster} className="space-y-4">
               <div className="space-y-1">
-                <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Kategori Ibadah *</label>
+                <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Kategori Ibadah *</label>
                 <select
                   value={rosterForm.serviceCategory}
                   onChange={(e) => setRosterForm({ ...rosterForm, serviceCategory: e.target.value as any })}
-                  className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                 >
                   <option value="general">Ibadah Raya (Umum)</option>
                   <option value="youth">Grow Generation (Youth)</option>
@@ -1682,59 +1680,59 @@ export default function AdminDashboard() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Tugas / Role *</label>
+                  <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Tugas / Role *</label>
                   <input
                     type="text"
                     required
                     value={rosterForm.role}
                     onChange={(e) => setRosterForm({ ...rosterForm, role: e.target.value })}
                     placeholder="Worship Leader, Pemain Musik, Usher"
-                    className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Tanggal Ibadah *</label>
+                  <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Tanggal Ibadah *</label>
                   <input
                     type="date"
                     required
                     value={rosterForm.serviceDate}
                     onChange={(e) => setRosterForm({ ...rosterForm, serviceDate: e.target.value })}
-                    className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                   />
                 </div>
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Nama Pelayan *</label>
+                <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Nama Pelayan *</label>
                 <input
                   type="text"
                   required
                   value={rosterForm.servantName}
                   onChange={(e) => setRosterForm({ ...rosterForm, servantName: e.target.value })}
                   placeholder="Nama lengkap pelayan / nama tim..."
-                  className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Nomor WhatsApp / HP</label>
+                  <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Nomor WhatsApp / HP</label>
                   <input
                     type="tel"
                     value={rosterForm.phone}
                     onChange={(e) => setRosterForm({ ...rosterForm, phone: e.target.value })}
                     placeholder="081234567890"
-                    className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Status Kesiapan *</label>
+                  <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Status Kesiapan *</label>
                   <select
                     value={rosterForm.status}
                     onChange={(e) => setRosterForm({ ...rosterForm, status: e.target.value as any })}
-                    className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                   >
                     <option value="confirmed">🟢 Siap Melayani</option>
                     <option value="pending">⏳ Menunggu Konfirmasi</option>
@@ -1744,13 +1742,13 @@ export default function AdminDashboard() {
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Catatan Teknis / Lagu</label>
+                <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Catatan Teknis / Lagu</label>
                 <textarea
                   rows={2}
                   value={rosterForm.notes}
                   onChange={(e) => setRosterForm({ ...rosterForm, notes: e.target.value })}
                   placeholder="Jadwal soundcheck, briefing, atau tema..."
-                  className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none resize-none"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none resize-none"
                 />
               </div>
 
@@ -1758,13 +1756,13 @@ export default function AdminDashboard() {
                 <button
                   type="button"
                   onClick={() => setIsRosterModalOpen(false)}
-                  className="px-5 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] text-[#5A4D4E] dark:text-[#D5C2C4] text-xs font-bold"
+                  className="px-5 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] text-[#665E55] dark:text-[#A8A196] text-xs font-bold"
                 >
                   Batal
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-3 rounded-2xl bg-gradient-to-r from-[#C5222E] to-[#80141C] text-white text-xs font-bold shadow-md"
+                  className="px-6 py-3 rounded-2xl bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white text-xs font-bold shadow-md"
                 >
                   Simpan Petugas
                 </button>
@@ -1779,11 +1777,11 @@ export default function AdminDashboard() {
       {/* ========================================================================= */}
       {isBroadcastModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-          <div className="w-full max-w-lg bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] rounded-[2.5rem] shadow-2xl p-6 sm:p-8 space-y-6">
+          <div className="w-full max-w-lg bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] rounded-2xl shadow-2xl p-6 sm:p-8 space-y-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Share2 className="w-5 h-5 text-[#C5222E]" />
-                <h3 className="text-xl font-extrabold text-[#1F1617] dark:text-white">
+                <Share2 className="w-5 h-5 text-[#8B1E28] dark:text-[#E88086]" />
+                <h3 className="text-xl font-extrabold text-[#1C1917] dark:text-white">
                   Template Broadcast WhatsApp
                 </h3>
               </div>
@@ -1792,11 +1790,11 @@ export default function AdminDashboard() {
               </button>
             </div>
 
-            <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4]">
+            <p className="text-xs text-[#665E55] dark:text-[#A8A196]">
               Salin pesan di bawah ini untuk dibagikan ke grup WhatsApp pelayan atau kirim pengingat tugas mingguan.
             </p>
 
-            <div className="p-4 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-xs font-mono text-[#1F1617] dark:text-[#F5EFEB] whitespace-pre-wrap max-h-60 overflow-y-auto leading-relaxed">
+            <div className="p-4 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-xs font-mono text-[#1C1917] dark:text-[#F5F3EF] whitespace-pre-wrap max-h-60 overflow-y-auto leading-relaxed">
               {broadcastText}
             </div>
 
@@ -1807,7 +1805,7 @@ export default function AdminDashboard() {
                   showToast('Teks broadcast berhasil disalin ke clipboard!');
                   setIsBroadcastModalOpen(false);
                 }}
-                className="px-5 py-3 rounded-2xl bg-gradient-to-r from-[#C5222E] to-[#80141C] text-white text-xs font-bold flex items-center gap-2 shadow-md"
+                className="px-5 py-3 rounded-2xl bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white text-xs font-bold flex items-center gap-2 shadow-md"
               >
                 <Copy className="w-4 h-4" />
                 <span>Salin Teks Broadcast</span>
@@ -1822,10 +1820,10 @@ export default function AdminDashboard() {
       {/* ========================================================================= */}
       {isPrintModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in">
-          <div className="w-full max-w-2xl bg-white text-stone-900 rounded-[2.5rem] shadow-2xl p-8 space-y-6 max-h-[90vh] overflow-y-auto">
+          <div className="w-full max-w-2xl bg-white text-stone-900 rounded-2xl shadow-2xl p-8 space-y-6 max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b pb-4">
               <div>
-                <h3 className="text-xl font-extrabold text-[#C5222E]">
+                <h3 className="text-xl font-extrabold text-[#8B1E28] dark:text-[#E88086]">
                   Jadwal Petugas Pelayanan GIA Deliksari
                 </h3>
                 <p className="text-xs text-stone-500">
@@ -1876,7 +1874,7 @@ export default function AdminDashboard() {
               </button>
               <button
                 onClick={() => window.print()}
-                className="px-5 py-2.5 rounded-xl bg-[#C5222E] text-white text-xs font-bold flex items-center gap-2 shadow-md"
+                className="px-5 py-2.5 rounded-xl bg-[#8B1E28] dark:bg-[#B8323D] text-white text-xs font-bold flex items-center gap-2 shadow-md"
               >
                 <Printer className="w-4 h-4" />
                 <span>Cetak Lembar Jadwal (Print)</span>
@@ -1891,9 +1889,9 @@ export default function AdminDashboard() {
       {/* ========================================================================= */}
       {isSermonModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-          <div className="w-full max-w-lg bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] rounded-[2.5rem] shadow-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
+          <div className="w-full max-w-lg bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] rounded-2xl shadow-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between">
-              <h3 className="text-xl font-extrabold text-[#1F1617] dark:text-white">
+              <h3 className="text-xl font-extrabold text-[#1C1917] dark:text-white">
                 {editingSermonId ? 'Edit Arsip Khotbah' : 'Tambah Khotbah Baru'}
               </h3>
               <button onClick={() => setIsSermonModalOpen(false)} className="p-2 text-stone-400 hover:text-stone-600">
@@ -1903,61 +1901,61 @@ export default function AdminDashboard() {
 
             <form onSubmit={handleSaveSermon} className="space-y-4">
               <div className="space-y-1">
-                <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Judul Khotbah *</label>
+                <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Judul Khotbah *</label>
                 <input
                   type="text"
                   required
                   value={sermonForm.title}
                   onChange={(e) => setSermonForm({ ...sermonForm, title: e.target.value })}
                   placeholder="Contoh: Bertumbuh Kuat di Tengah Badai"
-                  className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Pengkhotbah *</label>
+                  <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Pengkhotbah *</label>
                   <input
                     type="text"
                     required
                     value={sermonForm.speaker}
                     onChange={(e) => setSermonForm({ ...sermonForm, speaker: e.target.value })}
                     placeholder="Ps. Yohanes Sutono"
-                    className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Ayat Alkitab *</label>
+                  <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Ayat Alkitab *</label>
                   <input
                     type="text"
                     required
                     value={sermonForm.passage}
                     onChange={(e) => setSermonForm({ ...sermonForm, passage: e.target.value })}
                     placeholder="Kolose 2:6-7"
-                    className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Tanggal Ibadah</label>
+                  <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Tanggal Ibadah</label>
                   <input
                     type="text"
                     value={sermonForm.date}
                     onChange={(e) => setSermonForm({ ...sermonForm, date: e.target.value })}
                     placeholder="Minggu, 30 Agustus 2026"
-                    className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Kategori Ibadah</label>
+                  <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Kategori Ibadah</label>
                   <select
                     value={sermonForm.category}
                     onChange={(e) => setSermonForm({ ...sermonForm, category: e.target.value })}
-                    className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                   >
                     <option value="Ibadah Raya">Ibadah Raya</option>
                     <option value="Grow Generation Youth">Grow Generation Youth</option>
@@ -1968,14 +1966,14 @@ export default function AdminDashboard() {
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Link Video YouTube *</label>
+                <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Link Video YouTube *</label>
                 <input
                   type="url"
                   required
                   value={sermonForm.youtubeUrl}
                   onChange={(e) => setSermonForm({ ...sermonForm, youtubeUrl: e.target.value })}
                   placeholder="https://www.youtube.com/watch?v=..."
-                  className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                 />
               </div>
 
@@ -1983,13 +1981,13 @@ export default function AdminDashboard() {
                 <button
                   type="button"
                   onClick={() => setIsSermonModalOpen(false)}
-                  className="px-5 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] text-[#5A4D4E] dark:text-[#D5C2C4] text-xs font-bold"
+                  className="px-5 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] text-[#665E55] dark:text-[#A8A196] text-xs font-bold"
                 >
                   Batal
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-3 rounded-2xl bg-gradient-to-r from-[#C5222E] to-[#80141C] text-white text-xs font-bold shadow-md"
+                  className="px-6 py-3 rounded-2xl bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white text-xs font-bold shadow-md"
                 >
                   Simpan Khotbah
                 </button>
@@ -2004,9 +2002,9 @@ export default function AdminDashboard() {
       {/* ========================================================================= */}
       {isGalleryModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-          <div className="w-full max-w-md bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] rounded-[2.5rem] shadow-2xl p-6 sm:p-8 space-y-6">
+          <div className="w-full max-w-md bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] rounded-2xl shadow-2xl p-6 sm:p-8 space-y-6">
             <div className="flex items-center justify-between">
-              <h3 className="text-xl font-extrabold text-[#1F1617] dark:text-white">
+              <h3 className="text-xl font-extrabold text-[#1C1917] dark:text-white">
                 {editingGalleryId ? 'Edit Foto Galeri' : 'Tambah Foto Galeri'}
               </h3>
               <button onClick={() => setIsGalleryModalOpen(false)} className="p-2 text-stone-400 hover:text-stone-600">
@@ -2016,24 +2014,24 @@ export default function AdminDashboard() {
 
             <form onSubmit={handleSaveGallery} className="space-y-4">
               <div className="space-y-1">
-                <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Judul / Keterangan Foto *</label>
+                <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Judul / Keterangan Foto *</label>
                 <input
                   type="text"
                   required
                   value={galleryForm.title}
                   onChange={(e) => setGalleryForm({ ...galleryForm, title: e.target.value })}
                   placeholder="Contoh: Praise & Worship Ibadah Minggu"
-                  className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Kategori *</label>
+                  <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Kategori *</label>
                   <select
                     value={galleryForm.category}
                     onChange={(e) => setGalleryForm({ ...galleryForm, category: e.target.value as any })}
-                    className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                   >
                     <option value="ibadah">Ibadah</option>
                     <option value="worship">Worship</option>
@@ -2044,26 +2042,26 @@ export default function AdminDashboard() {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Bulan / Tahun</label>
+                  <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Bulan / Tahun</label>
                   <input
                     type="text"
                     value={galleryForm.date}
                     onChange={(e) => setGalleryForm({ ...galleryForm, date: e.target.value })}
                     placeholder="Agustus 2026"
-                    className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                   />
                 </div>
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">URL Gambar / Path Foto *</label>
+                <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">URL Gambar / Path Foto *</label>
                 <input
                   type="text"
                   required
                   value={galleryForm.image}
                   onChange={(e) => setGalleryForm({ ...galleryForm, image: e.target.value })}
                   placeholder="https://... atau /images/logo.png"
-                  className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                 />
               </div>
 
@@ -2071,13 +2069,13 @@ export default function AdminDashboard() {
                 <button
                   type="button"
                   onClick={() => setIsGalleryModalOpen(false)}
-                  className="px-5 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] text-[#5A4D4E] dark:text-[#D5C2C4] text-xs font-bold"
+                  className="px-5 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] text-[#665E55] dark:text-[#A8A196] text-xs font-bold"
                 >
                   Batal
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-3 rounded-2xl bg-gradient-to-r from-[#C5222E] to-[#80141C] text-white text-xs font-bold shadow-md"
+                  className="px-6 py-3 rounded-2xl bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white text-xs font-bold shadow-md"
                 >
                   Simpan Foto
                 </button>
@@ -2092,9 +2090,9 @@ export default function AdminDashboard() {
       {/* ========================================================================= */}
       {isInvModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-          <div className="w-full max-w-lg bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] rounded-[2.5rem] shadow-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
+          <div className="w-full max-w-lg bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] rounded-2xl shadow-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between">
-              <h3 className="text-xl font-extrabold text-[#1F1617] dark:text-white">
+              <h3 className="text-xl font-extrabold text-[#1C1917] dark:text-white">
                 {editingInvId ? 'Edit Barang Inventaris' : 'Tambah Barang Inventaris'}
               </h3>
               <button onClick={() => setIsInvModalOpen(false)} className="p-2 text-stone-400 hover:text-stone-600">
@@ -2104,24 +2102,24 @@ export default function AdminDashboard() {
 
             <form onSubmit={handleSaveInventory} className="space-y-4">
               <div className="space-y-1">
-                <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Nama Barang *</label>
+                <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Nama Barang *</label>
                 <input
                   type="text"
                   required
                   value={invForm.name}
                   onChange={(e) => setInvForm({ ...invForm, name: e.target.value })}
                   placeholder="Contoh: Shure Beta 58A Wireless"
-                  className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Kategori *</label>
+                  <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Kategori *</label>
                   <select
                     value={invForm.category}
                     onChange={(e) => setInvForm({ ...invForm, category: e.target.value as any })}
-                    className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                   >
                     <option value="Sound System">Sound System</option>
                     <option value="Multimedia & Kamera">Multimedia & Kamera</option>
@@ -2131,36 +2129,36 @@ export default function AdminDashboard() {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Kode Barang *</label>
+                  <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Kode Barang *</label>
                   <input
                     type="text"
                     required
                     value={invForm.code}
                     onChange={(e) => setInvForm({ ...invForm, code: e.target.value })}
                     placeholder="MIC-01"
-                    className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none font-mono"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none font-mono"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Jumlah Unit</label>
+                  <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Jumlah Unit</label>
                   <input
                     type="number"
                     min={1}
                     value={invForm.quantity}
                     onChange={(e) => setInvForm({ ...invForm, quantity: parseInt(e.target.value) || 1 })}
-                    className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Kondisi Alat *</label>
+                  <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Kondisi Alat *</label>
                   <select
                     value={invForm.condition}
                     onChange={(e) => setInvForm({ ...invForm, condition: e.target.value as any })}
-                    className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                   >
                     <option value="good">🟢 Baik / Normal</option>
                     <option value="maintenance">🟡 Perlu Pengecekan</option>
@@ -2170,25 +2168,25 @@ export default function AdminDashboard() {
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Lokasi Penyimpanan *</label>
+                <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Lokasi Penyimpanan *</label>
                 <input
                   type="text"
                   required
                   value={invForm.location}
                   onChange={(e) => setInvForm({ ...invForm, location: e.target.value })}
                   placeholder="Meja Sound, Ruang Pastori, dsb."
-                  className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Catatan Pengecekan</label>
+                <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Catatan Pengecekan</label>
                 <textarea
                   rows={2}
                   value={invForm.notes}
                   onChange={(e) => setInvForm({ ...invForm, notes: e.target.value })}
                   placeholder="Kabel, adaptor, baterai, dsb."
-                  className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none resize-none"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none resize-none"
                 />
               </div>
 
@@ -2196,13 +2194,13 @@ export default function AdminDashboard() {
                 <button
                   type="button"
                   onClick={() => setIsInvModalOpen(false)}
-                  className="px-5 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] text-[#5A4D4E] dark:text-[#D5C2C4] text-xs font-bold"
+                  className="px-5 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] text-[#665E55] dark:text-[#A8A196] text-xs font-bold"
                 >
                   Batal
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-3 rounded-2xl bg-gradient-to-r from-[#C5222E] to-[#80141C] text-white text-xs font-bold shadow-md"
+                  className="px-6 py-3 rounded-2xl bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white text-xs font-bold shadow-md"
                 >
                   Simpan Inventaris
                 </button>

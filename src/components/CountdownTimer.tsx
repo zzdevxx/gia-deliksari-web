@@ -75,7 +75,7 @@ export function CountdownTimer({
   if (!countdown || !currentService || !youthInfo || !hanaInfo) {
     return (
       <div className={`text-center py-4 ${className}`}>
-        <div className="animate-pulse text-[#6E5D5F] dark:text-[#B5A1A3]">
+        <div className="animate-pulse text-[#665E55] dark:text-[#A8A196]">
           Memuat jadwal...
         </div>
       </div>
@@ -85,16 +85,10 @@ export function CountdownTimer({
   const info = currentService === 'youth' ? youthInfo : hanaInfo;
   const isYouth = currentService === 'youth';
   
-  // Determine service color theme
-  const serviceColor = isYouth 
-    ? 'text-[#C5222E] dark:text-[#E85D5D]' 
-    : 'text-[#8B4513] dark:text-[#D4A574]';
-  const serviceBg = isYouth 
-    ? 'bg-[#FFF0F0] dark:bg-[#3A1C20]' 
-    : 'bg-[#FDF6F0] dark:bg-[#3A2A1C]';
-  const serviceBorder = isYouth 
-    ? 'border-[#E8B4B4] dark:border-[#5D2E2E]' 
-    : 'border-[#E8D4C4] dark:border-[#5D4E2E]';
+  // Keep service identity in the heading; the shared warm-stone surfaces carry the countdown.
+  const serviceColor = 'text-[#8B1E28] dark:text-[#E88086]';
+  const serviceBg = 'bg-[#F3EFE6] dark:bg-[#1D1B19]';
+  const serviceBorder = 'border-[#E5DFD5] dark:border-[#332F2B]';
 
   const serviceIcon = isYouth ? (
     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -118,13 +112,13 @@ export function CountdownTimer({
             {info.serviceName}
           </span>
         </div>
-        <span className={`${serviceColor} text-xs md:text-sm font-medium px-2 py-1 rounded-full bg-white/80 dark:bg-[#221215]/80`}>
+        <span className={`${serviceColor} text-xs md:text-sm font-medium px-2 py-1 rounded-full bg-white/80 dark:bg-[#262421]/80`}>
           Minggu ke-{info.currentWeek}
         </span>
       </div>
 
       {/* Description */}
-      <p className={`text-sm md:text-base text-[#5A4D4E] dark:text-[#D5C2C4] mb-3 md:mb-4 ${serviceColor}/80`}>
+      <p className={`text-sm md:text-base text-[#665E55] dark:text-[#A8A196] mb-3 md:mb-4`}>
         {info.description}
       </p>
 
@@ -153,28 +147,28 @@ export function CountdownTimer({
       </div>
 
       {showFullDetails && (
-        <div className="pt-3 md:pt-4 border-t border-[#EBDDCF] dark:border-[#3A1C20] space-y-2 text-sm">
-          <div className="flex justify-between text-[#5A4D4E] dark:text-[#D5C2C4]">
+        <div className="pt-3 md:pt-4 border-t border-[#E5DFD5] dark:border-[#332F2B] space-y-2 text-sm">
+          <div className="flex justify-between text-[#665E55] dark:text-[#A8A196]">
             <span>Perubahan berikutnya:</span>
-            <span className="font-medium text-[#1F1617] dark:text-[#F5EFEB]">
+            <span className="font-medium text-[#1C1917] dark:text-[#F5F3EF]">
               {formatIndonesianDate(info.nextChangeDate)}
             </span>
           </div>
-          <div className="flex justify-between text-[#5A4D4E] dark:text-[#D5C2C4]">
+          <div className="flex justify-between text-[#665E55] dark:text-[#A8A196]">
             <span>Sisa waktu:</span>
-            <span className="font-medium text-[#1F1617] dark:text-[#F5EFEB]">
+            <span className="font-medium text-[#1C1917] dark:text-[#F5F3EF]">
               {info.daysUntilChange} hari lagi
             </span>
           </div>
-          <div className="flex justify-between text-[#5A4D4E] dark:text-[#D5C2C4]">
+          <div className="flex justify-between text-[#665E55] dark:text-[#A8A196]">
             <span>Hari ini:</span>
-            <span className="font-medium text-[#1F1617] dark:text-[#F5EFEB]">
+            <span className="font-medium text-[#1C1917] dark:text-[#F5F3EF]">
               {isYouth ? 'Sabtu' : 'Minggu'}
             </span>
           </div>
-          <div className="flex justify-between text-[#5A4D4E] dark:text-[#D5C2C4]">
+          <div className="flex justify-between text-[#665E55] dark:text-[#A8A196]">
             <span>Waktu:</span>
-            <span className="font-medium text-[#1F1617] dark:text-[#F5EFEB]">
+            <span className="font-medium text-[#1C1917] dark:text-[#F5F3EF]">
               {isYouth ? '18.00 - 20.00 WIB' : '18.00 / 18.30 WIB'}
             </span>
           </div>
@@ -194,11 +188,11 @@ function CountdownItem({
   color: string;
 }) {
   return (
-    <div className="text-center p-2 md:p-3 bg-white/60 dark:bg-[#221215]/60 rounded-xl">
+    <div className="text-center p-2 md:p-3 bg-white/60 dark:bg-[#262421]/60 rounded-xl">
       <div className={`${color} font-mono font-bold text-2xl md:text-3xl leading-tight`}>
         {value.toString().padStart(2, '0')}
       </div>
-      <div className={`text-xs md:text-sm text-[#5A4D4E] dark:text-[#D5C2C4] mt-1 ${color}/80`}>
+      <div className={`text-xs md:text-sm text-[#665E55] dark:text-[#A8A196] mt-1 ${color}/80`}>
         {label}
       </div>
     </div>

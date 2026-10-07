@@ -32,32 +32,32 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   };
 
   return (
-    <div className="w-full max-w-md bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] rounded-[2.5rem] shadow-xl p-8 sm:p-10 relative z-10 space-y-6 animate-in fade-in zoom-in-95 duration-300">
+    <div className="w-full max-w-md bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] rounded-2xl shadow-xl p-8 sm:p-10 relative z-10 space-y-6 animate-in fade-in zoom-in-95 duration-300">
       <div className="text-center space-y-3">
-        <div className="w-16 h-16 rounded-3xl bg-gradient-to-tr from-[#C5222E] to-[#80141C] text-white flex items-center justify-center mx-auto shadow-lg shadow-red-900/20">
+        <div className="w-16 h-16 rounded-3xl bg-[#8B1E28] dark:bg-[#B8323D] text-white flex items-center justify-center mx-auto shadow-md">
           <KeyRound className="w-8 h-8" />
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1F1617] dark:text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1C1917] dark:text-white tracking-tight">
           Superuser Portal
         </h1>
-        <p className="text-xs sm:text-sm text-[#5A4D4E] dark:text-[#D5C2C4] leading-relaxed">
+        <p className="text-xs sm:text-sm text-[#665E55] dark:text-[#A8A196] leading-relaxed">
           Kelola akun pengurus gereja: superuser, admin/operator, dan bendahara youth.
           <br />
-          <span className="text-[#C5222E] dark:text-[#E03643] font-bold">
+          <span className="text-[#8B1E28] dark:text-[#E88086] font-bold">
             Akses khusus role = super.
           </span>
         </p>
       </div>
 
       {authError && (
-        <div className="p-4 rounded-2xl bg-[#FDF0F0] dark:bg-[#331418] border border-[#F5CDD0] dark:border-[#521E25] text-[#9A1620] dark:text-[#F2828C] text-xs font-bold leading-snug animate-shake">
+        <div className="p-4 rounded-2xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800/60 text-rose-800 dark:text-rose-300 text-xs font-bold leading-snug animate-shake">
           {authError}
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="space-y-2">
-          <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB] uppercase tracking-wider">
+          <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF] uppercase tracking-wider">
             Username Superuser
           </label>
           <input
@@ -68,12 +68,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="andreas"
-            className="w-full px-4 py-3.5 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-[#1F1617] dark:text-[#F5EFEB] text-sm focus:ring-2 focus:ring-[#C5222E]/30 focus:border-[#C5222E] outline-none transition-all placeholder:text-stone-400"
+            className="w-full px-4 py-3.5 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-[#1C1917] dark:text-[#F5F3EF] text-sm focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB] uppercase tracking-wider">
+          <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF] uppercase tracking-wider">
             PIN / Password
           </label>
           <input
@@ -83,14 +83,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="••••"
-            className="w-full px-4 py-3.5 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-[#1F1617] dark:text-[#F5EFEB] text-sm focus:ring-2 focus:ring-[#C5222E]/30 focus:border-[#C5222E] outline-none transition-all placeholder:text-stone-400 tracking-widest"
+            className="w-full px-4 py-3.5 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-[#1C1917] dark:text-[#F5F3EF] text-sm focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400 tracking-widest"
           />
         </div>
 
         <button
           type="submit"
           disabled={submitting}
-          className="w-full py-4 rounded-2xl bg-gradient-to-r from-[#C5222E] to-[#80141C] hover:opacity-95 text-white font-extrabold text-sm shadow-md shadow-red-900/20 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+          className="w-full py-4 rounded-2xl bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white font-extrabold text-sm shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
         >
           <ShieldCheck className="w-4 h-4" />
           <span>{submitting ? 'Memproses…' : 'Masuk Superuser Portal'}</span>
@@ -100,14 +100,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
       <div className="pt-2 text-center space-y-1">
         <Link
           href="/home"
-          className="inline-flex items-center gap-2 text-xs font-bold text-[#C5222E] hover:underline"
+          className="inline-flex items-center gap-2 text-xs font-bold text-[#8B1E28] dark:text-[#E88086] hover:underline"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Kembali ke Beranda Jemaat</span>
         </Link>
-        <div className="text-[11px] text-[#6E5D5F] dark:text-[#B5A1A3] pt-2">
-          Default superuser: <code className="font-mono font-bold text-[#C5222E]">andreas</code> /
-          <code className="font-mono font-bold text-[#C5222E]">5050</code>
+        <div className="text-[11px] text-[#665E55] dark:text-[#A8A196] pt-2">
+          Default superuser: <code className="font-mono font-bold text-[#8B1E28] dark:text-[#E88086]">andreas</code> /
+          <code className="font-mono font-bold text-[#8B1E28] dark:text-[#E88086]">5050</code>
         </div>
       </div>
     </div>

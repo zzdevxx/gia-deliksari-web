@@ -67,3 +67,6 @@ playwright/.cache/
 
 .dev.vars
 .dev.vars.*
+
+# Machine-local Impeccable skill link (absolute path; not portable across laptops)
+.claude/skills/impeccable

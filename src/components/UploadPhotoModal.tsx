@@ -104,19 +104,19 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in">
       <div 
         onClick={(e) => e.stopPropagation()} 
-        className="w-full max-w-lg bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] rounded-[2.5rem] shadow-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto"
+        className="w-full max-w-lg bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] rounded-2xl shadow-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto"
       >
         {/* Header */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-2xl bg-[#FDF0F0] dark:bg-[#331418] text-[#C5222E] flex items-center justify-center">
+            <div className="w-10 h-10 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] text-[#8B1E28] dark:text-[#E88086] flex items-center justify-center">
               <Camera className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-lg sm:text-xl font-extrabold text-[#1F1617] dark:text-white">
+              <h3 className="text-lg sm:text-xl font-extrabold text-[#1C1917] dark:text-white">
                 Unggah Dokumentasi Momen
               </h3>
-              <p className="text-[11px] text-[#5A4D4E] dark:text-[#D5C2C4]">
+              <p className="text-[11px] text-[#665E55] dark:text-[#A8A196]">
                 Foto akan diarsipkan di Google Drive & tampil di Galeri Web
               </p>
             </div>
@@ -134,10 +134,10 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
             <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 dark:bg-emerald-950/50 dark:text-emerald-400 flex items-center justify-center mx-auto">
               <CheckCircle2 className="w-8 h-8" />
             </div>
-            <h4 className="text-xl font-extrabold text-[#1F1617] dark:text-white">
+            <h4 className="text-xl font-extrabold text-[#1C1917] dark:text-white">
               Foto Berhasil Diunggah!
             </h4>
-            <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4] max-w-sm mx-auto">
+            <p className="text-xs text-[#665E55] dark:text-[#A8A196] max-w-sm mx-auto">
               Momen indah Anda telah berhasil ditambahkan ke galeri dan diarsipkan ke Google Drive GIA Deliksari.
             </p>
           </div>
@@ -145,7 +145,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
           <form onSubmit={handleSubmit} className="space-y-4">
             
             {/* Storage Policy Notice */}
-            <div className="p-3.5 rounded-2xl bg-[#FEF9EC] dark:bg-[#332612] border border-[#F8E3B5] dark:border-[#543E19] flex items-start gap-2.5 text-[11px] text-[#B87A14] dark:text-[#F0BE5E] leading-relaxed">
+            <div className="p-3.5 rounded-2xl bg-[#FEF9EC] dark:bg-[#2D2517] border border-[#F5DFAB] dark:border-[#52411E] flex items-start gap-2.5 text-[11px] text-[#8C6826] dark:text-[#E0B85C] leading-relaxed">
               <HardDrive className="w-4 h-4 shrink-0 mt-0.5" />
               <span>
                 <strong>Sistem Rolling Cloud</strong>: Foto disimpan abadi di Google Drive gereja, dan 50 foto terkini ditampilkan otomatis di website.
@@ -153,7 +153,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
             </div>
 
             {errorMsg && (
-              <div className="p-3 rounded-xl bg-[#FDF0F0] dark:bg-[#331418] border border-[#F5CDD0] dark:border-[#521E25] text-[#9A1620] dark:text-[#F2828C] text-xs font-bold flex items-center gap-2">
+              <div className="p-3 rounded-xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-[#8B1E28] dark:text-[#E88086] text-xs font-bold flex items-center gap-2">
                 <AlertCircle className="w-4 h-4 shrink-0" />
                 <span>{errorMsg}</span>
               </div>
@@ -162,7 +162,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
             {/* Dropzone / Preview Area */}
             <div 
               onClick={() => fileInputRef.current?.click()}
-              className="group border-2 border-dashed border-[#EBDDCF] dark:border-[#3A1C20] hover:border-[#C5222E] rounded-2xl p-4 text-center cursor-pointer transition-colors bg-[#F7F2E8] dark:bg-[#2A161A] relative overflow-hidden flex flex-col items-center justify-center min-h-[160px]"
+              className="group border-2 border-dashed border-[#E5DFD5] dark:border-[#332F2B] hover:border-[#8B1E28] rounded-2xl p-4 text-center cursor-pointer transition-colors bg-[#F3EFE6] dark:bg-[#262421] relative overflow-hidden flex flex-col items-center justify-center min-h-[160px]"
             >
               <input
                 ref={fileInputRef}
@@ -188,14 +188,14 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
                 </div>
               ) : (
                 <div className="space-y-2 py-4">
-                  <div className="w-12 h-12 rounded-2xl bg-white dark:bg-[#221215] text-[#C5222E] flex items-center justify-center mx-auto shadow-xs group-hover:scale-110 transition-transform">
+                  <div className="w-12 h-12 rounded-2xl bg-white dark:bg-[#1D1B19] text-[#8B1E28] dark:text-[#E88086] flex items-center justify-center mx-auto shadow-xs group-hover:scale-110 transition-transform">
                     <Upload className="w-6 h-6" />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-[#1F1617] dark:text-white">
+                    <p className="text-xs font-bold text-[#1C1917] dark:text-white">
                       Klik atau Seret Foto ke Sini
                     </p>
-                    <p className="text-[10px] text-[#5A4D4E] dark:text-[#D5C2C4]">
+                    <p className="text-[10px] text-[#665E55] dark:text-[#A8A196]">
                       Format JPG, PNG, atau WebP (Maks. 10MB)
                     </p>
                   </div>
@@ -205,8 +205,8 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
 
             {/* Title */}
             <div className="space-y-1">
-              <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">
-                Judul / Keterangan Momen <span className="text-[#C5222E]">*</span>
+              <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">
+                Judul / Keterangan Momen <span className="text-[#8B1E28] dark:text-[#E88086]">*</span>
               </label>
               <input
                 type="text"
@@ -214,18 +214,18 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Contoh: Persekutuan Pemuda Youth Camp 2026"
-                className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-xs sm:text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none focus:ring-2 focus:ring-[#C5222E]/30"
+                className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-xs sm:text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none focus:ring-2 focus:ring-[#8B1E28]/30"
               />
             </div>
 
             {/* Category & Date */}
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1">
-                <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Kategori</label>
+                <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Kategori</label>
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value as any)}
-                  className="w-full px-3 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-xs text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                  className="w-full px-3 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-xs text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                 >
                   <option value="ibadah">Ibadah Raya</option>
                   <option value="worship">Praise & Worship</option>
@@ -236,20 +236,20 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">Waktu Kegiatan</label>
+                <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">Waktu Kegiatan</label>
                 <input
                   type="text"
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
                   placeholder="Agustus 2026"
-                  className="w-full px-3 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-xs text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                  className="w-full px-3 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-xs text-[#1C1917] dark:text-[#F5F3EF] outline-none"
                 />
               </div>
             </div>
 
             {/* Uploader Name */}
             <div className="space-y-1">
-              <label className="text-xs font-bold text-[#1F1617] dark:text-[#F5EFEB]">
+              <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">
                 Nama Pengunggah / Tim Dokumentasi (Opsional)
               </label>
               <input
@@ -257,7 +257,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
                 value={uploaderName}
                 onChange={(e) => setUploaderName(e.target.value)}
                 placeholder="Contoh: Tim Multimedia / Andreas"
-                className="w-full px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-xs sm:text-sm text-[#1F1617] dark:text-[#F5EFEB] outline-none"
+                className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-xs sm:text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
               />
             </div>
 
@@ -267,14 +267,14 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
                 type="button"
                 onClick={onClose}
                 disabled={isUploading}
-                className="px-4 py-3 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] text-[#5A4D4E] dark:text-[#D5C2C4] text-xs font-bold"
+                className="px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] text-[#665E55] dark:text-[#A8A196] text-xs font-bold"
               >
                 Batal
               </button>
               <button
                 type="submit"
                 disabled={isUploading}
-                className="px-6 py-3 rounded-2xl bg-gradient-to-r from-[#C5222E] to-[#80141C] text-white text-xs font-bold shadow-md flex items-center gap-2 disabled:opacity-60 cursor-pointer"
+                className="px-6 py-3 rounded-2xl bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white text-xs font-bold shadow-md flex items-center gap-2 disabled:opacity-60 cursor-pointer"
               >
                 <Upload className="w-4 h-4" />
                 <span>{isUploading ? 'Mengunggah & Sinkronisasi...' : 'Unggah Dokumentasi'}</span>

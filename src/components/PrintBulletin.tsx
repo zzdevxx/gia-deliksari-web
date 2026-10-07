@@ -88,9 +88,9 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
           .no-print { display: none !important; }
         }
         body {
-          font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
-          color: #1F1617;
-          background: #FDFBF7;
+          font-family: Georgia, 'Times New Roman', serif;
+          color: #1C1917;
+          background: #FAF7F2;
           margin: 0;
           padding: 24px;
           line-height: 1.5;
@@ -104,11 +104,11 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
         .bulletin-header {
           text-align: center;
           padding-bottom: 16px;
-          border-bottom: 3px solid #C5222E;
+          border-bottom: 3px solid #8B1E28;
           margin-bottom: 24px;
         }
         .bulletin-header h1 {
-          color: #C5222E;
+          color: #8B1E28;
           font-size: 26px;
           margin: 0 0 4px;
           letter-spacing: -0.5px;
@@ -116,12 +116,12 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
         }
         .bulletin-header .subtitle {
           font-size: 12px;
-          color: #6E5D5F;
+          color: #665E55;
           margin-bottom: 8px;
         }
         .bulletin-header .tagline {
           font-size: 14px;
-          color: #B87A14;
+          color: #8C6826;
           font-weight: 700;
           margin-top: 4px;
         }
@@ -130,19 +130,19 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
           page-break-inside: avoid;
         }
         .bulletin-section h2 {
-          color: #C5222E;
+          color: #8B1E28;
           font-size: 18px;
           margin: 0 0 12px;
           padding-bottom: 6px;
-          border-bottom: 2px solid #F5CDD0;
+          border-bottom: 2px solid #E5DFD5;
           font-weight: 800;
         }
         .warta-item {
           padding: 10px 12px;
           margin-bottom: 8px;
-          background: #FDFBF7;
-          border-left: 4px solid #C5222E;
-          border-radius: 4px;
+          background: #FAF7F2;
+          border: 1px solid #E5DFD5;
+          border-radius: 6px;
         }
         .warta-item .title {
           font-weight: 700;
@@ -151,7 +151,7 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
         }
         .warta-item .meta {
           font-size: 11px;
-          color: #6E5D5F;
+          color: #665E55;
           margin-bottom: 4px;
         }
         .warta-item .badge {
@@ -160,9 +160,9 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
           border-radius: 4px;
           font-size: 10px;
           font-weight: 700;
-          background: #FDF0F0;
-          color: #9A1620;
-          border: 1px solid #F5CDD0;
+          background: #F3EFE6;
+          color: #8B1E28;
+          border: 1px solid #E5DFD5;
           margin-right: 4px;
         }
         .warta-item .content {
@@ -175,7 +175,7 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
           font-size: 11px;
         }
         .roster-table th {
-          background: #C5222E;
+          background: #8B1E28;
           color: #fff;
           padding: 6px 8px;
           text-align: left;
@@ -183,43 +183,43 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
         }
         .roster-table td {
           padding: 6px 8px;
-          border-bottom: 1px solid #EBDDCF;
+          border-bottom: 1px solid #E5DFD5;
         }
         .roster-table tr:nth-child(even) td {
-          background: #FDFBF7;
+          background: #FAF7F2;
         }
         .community-section {
           margin-bottom: 16px;
         }
         .community-section h3 {
           font-size: 13px;
-          color: #80141C;
+          color: #731820;
           margin: 0 0 6px;
           font-weight: 800;
           padding: 4px 8px;
-          background: #FDF0F0;
+          background: #F3EFE6;
           border-radius: 4px;
           display: inline-block;
         }
         .bulletin-footer {
           margin-top: 32px;
           padding-top: 16px;
-          border-top: 2px solid #EBDDCF;
+          border-top: 2px solid #E5DFD5;
           text-align: center;
           font-size: 10px;
-          color: #6E5D5F;
+          color: #665E55;
         }
         .bulletin-footer .contact {
           margin-top: 4px;
           font-weight: 700;
-          color: #C5222E;
+          color: #8B1E28;
         }
         .toolbar {
           position: sticky;
           top: 0;
           background: #fff;
           padding: 12px;
-          border-bottom: 1px solid #EBDDCF;
+          border-bottom: 1px solid #E5DFD5;
           display: flex;
           gap: 8px;
           justify-content: flex-end;
@@ -234,12 +234,12 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
           border: none;
         }
         .btn-print {
-          background: linear-gradient(to right, #C5222E, #80141C);
+          background: linear-gradient(to right, #8B1E28, #731820);
           color: #fff;
         }
         .btn-close {
-          background: #F7F2E8;
-          color: #5A4D4E;
+          background: #F3EFE6;
+          color: #665E55;
         }
       `}</style>
 
@@ -259,7 +259,7 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
           <h1>GEREJA ISA ALMASIH DELIKSARI</h1>
           <div className="subtitle">Jl. Kolonel HR Hadijanto, Sekaran, Gn. Pati, Semarang 50229</div>
           <div className="tagline">🌱 Growing Church!</div>
-          <div style={{ fontSize: 13, marginTop: 8, color: '#1F1617', fontWeight: 600 }}>
+          <div style={{ fontSize: 13, marginTop: 8, color: '#1C1917', fontWeight: 600 }}>
             Warta Jemaat &amp; Jadwal Pelayanan — {weekLabel}
           </div>
         </div>
@@ -270,7 +270,7 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
             Papan Warta
           </h2>
           {announcements.length === 0 ? (
-            <p style={{ fontSize: 12, color: '#6E5D5F', fontStyle: 'italic' }}>
+            <p style={{ fontSize: 12, color: '#665E55', fontStyle: 'italic' }}>
               Belum ada warta untuk periode ini.
             </p>
           ) : (
@@ -279,7 +279,7 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
                 <div className="title">
                   {a.isPinned && <span className="badge">📌 Pin</span>}
                   {a.badgeText && <span className="badge">{a.badgeText}</span>}
-                  <span className="badge" style={{ background: '#FEF9EC', color: '#B87A14', borderColor: '#F8E3B5' }}>
+                  <span className="badge" style={{ background: '#FEF9EC', color: '#8C6826', borderColor: '#F5DFAB' }}>
                     {CATEGORY_LABEL[a.category] || a.category}
                   </span>
                   {a.title}
@@ -301,7 +301,7 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
             Jadwal Pelayanan
           </h2>
           {Object.keys(byCat).length === 0 ? (
-            <p style={{ fontSize: 12, color: '#6E5D5F', fontStyle: 'italic' }}>
+            <p style={{ fontSize: 12, color: '#665E55', fontStyle: 'italic' }}>
               Belum ada jadwal pelayanan untuk periode ini.
             </p>
           ) : (
@@ -331,8 +331,8 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
                           <td>{r.role}</td>
                           <td>
                             {r.servantName}
-                            {r.status === 'pending' && <span style={{ marginLeft: 6, color: '#B87A14', fontSize: 10 }}>(konfirmasi)</span>}
-                            {r.status === 'replacement' && <span style={{ marginLeft: 6, color: '#C83E20', fontSize: 10 }}>(pengganti)</span>}
+                            {r.status === 'pending' && <span style={{ marginLeft: 6, color: '#8C6826', fontSize: 10 }}>(konfirmasi)</span>}
+                            {r.status === 'replacement' && <span style={{ marginLeft: 6, color: '#A0442C', fontSize: 10 }}>(pengganti)</span>}
                           </td>
                         </tr>
                       ))}

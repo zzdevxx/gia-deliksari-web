@@ -35,29 +35,29 @@ interface AuditLogTableProps {
 
 const ACTION_META: Record<string, { label: string; color: string; icon: string }> = {
   'auth.login_success':  { label: 'Login OK',    color: 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/60', icon: '🔓' },
-  'auth.login_failure':  { label: 'Login Gagal', color: 'bg-[#FDF0F0] text-[#9A1620] border-[#F5CDD0] dark:bg-[#331418] dark:text-[#F2828C] dark:border-[#521E25]',                            icon: '🔒' },
+  'auth.login_failure':  { label: 'Login Gagal', color: 'bg-rose-50 text-rose-800 border-rose-200 dark:bg-rose-950/40 dark:text-rose-300 dark:border-rose-800/60',                            icon: '🔒' },
   'auth.login_lockout':  { label: 'Lockout',     color: 'bg-amber-50 text-amber-800 border-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-800/60',                         icon: '⛔' },
   'auth.logout':         { label: 'Logout',      color: 'bg-stone-100 text-stone-700 border-stone-200 dark:bg-stone-900/40 dark:text-stone-300 dark:border-stone-700/60',                    icon: '🚪' },
   'user.create':         { label: 'Buat User',   color: 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800/60',                       icon: '➕' },
   'user.update':         { label: 'Update User', color: 'bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/40 dark:text-indigo-300 dark:border-indigo-800/60',               icon: '✏️' },
-  'user.deactivate':     { label: 'Nonaktifkan', color: 'bg-[#FDF0F0] text-[#9A1620] border-[#F5CDD0] dark:bg-[#331418] dark:text-[#F2828C] dark:border-[#521E25]',                            icon: '⛔' },
+  'user.deactivate':     { label: 'Nonaktifkan', color: 'bg-rose-50 text-rose-800 border-rose-200 dark:bg-rose-950/40 dark:text-rose-300 dark:border-rose-800/60',                            icon: '⛔' },
   'warta.create':        { label: 'Warta +',     color: 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800/60',                       icon: '📢' },
   'warta.update':        { label: 'Warta ✏️',    color: 'bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/40 dark:text-indigo-300 dark:border-indigo-800/60',               icon: '📢' },
-  'warta.delete':        { label: 'Warta 🗑️',   color: 'bg-[#FDF0F0] text-[#9A1620] border-[#F5CDD0] dark:bg-[#331418] dark:text-[#F2828C] dark:border-[#521E25]',                            icon: '📢' },
+  'warta.delete':        { label: 'Warta 🗑️',   color: 'bg-rose-50 text-rose-800 border-rose-200 dark:bg-rose-950/40 dark:text-rose-300 dark:border-rose-800/60',                            icon: '📢' },
   'warta.pin':           { label: 'Warta Pin',   color: 'bg-violet-50 text-violet-700 border-violet-200 dark:bg-violet-950/40 dark:text-violet-300 dark:border-violet-800/60',               icon: '📌' },
   'roster.create':       { label: 'Roster +',    color: 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800/60',                       icon: '👥' },
   'roster.update':       { label: 'Roster ✏️',   color: 'bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/40 dark:text-indigo-300 dark:border-indigo-800/60',               icon: '👥' },
-  'roster.delete':       { label: 'Roster 🗑️',  color: 'bg-[#FDF0F0] text-[#9A1620] border-[#F5CDD0] dark:bg-[#331418] dark:text-[#F2828C] dark:border-[#521E25]',                            icon: '👥' },
+  'roster.delete':       { label: 'Roster 🗑️',  color: 'bg-rose-50 text-rose-800 border-rose-200 dark:bg-rose-950/40 dark:text-rose-300 dark:border-rose-800/60',                            icon: '👥' },
   'inventory.update':    { label: 'Inventaris',  color: 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/60',         icon: '📦' },
   'sermon.create':       { label: 'Khotbah +',   color: 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800/60',                       icon: '🎬' },
   'sermon.update':       { label: 'Khotbah ✏️',  color: 'bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/40 dark:text-indigo-300 dark:border-indigo-800/60',               icon: '🎬' },
-  'sermon.delete':       { label: 'Khotbah 🗑️', color: 'bg-[#FDF0F0] text-[#9A1620] border-[#F5CDD0] dark:bg-[#331418] dark:text-[#F2828C] dark:border-[#521E25]',                            icon: '🎬' },
+  'sermon.delete':       { label: 'Khotbah 🗑️', color: 'bg-rose-50 text-rose-800 border-rose-200 dark:bg-rose-950/40 dark:text-rose-300 dark:border-rose-800/60',                            icon: '🎬' },
   'gallery.upload':      { label: 'Upload Foto', color: 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/60',         icon: '🖼️' },
-  'gallery.delete':      { label: 'Hapus Foto',  color: 'bg-[#FDF0F0] text-[#9A1620] border-[#F5CDD0] dark:bg-[#331418] dark:text-[#F2828C] dark:border-[#521E25]',                            icon: '🖼️' },
+  'gallery.delete':      { label: 'Hapus Foto',  color: 'bg-rose-50 text-rose-800 border-rose-200 dark:bg-rose-950/40 dark:text-rose-300 dark:border-rose-800/60',                            icon: '🖼️' },
   'ministry_request.update': { label: 'Layanan Jemaat', color: 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800/60',            icon: '🫶' },
   'kas.create':          { label: 'Kas +',       color: 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/60',         icon: '💰' },
   'kas.update':          { label: 'Kas ✏️',      color: 'bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/40 dark:text-indigo-300 dark:border-indigo-800/60',               icon: '💰' },
-  'kas.delete':          { label: 'Kas 🗑️',     color: 'bg-[#FDF0F0] text-[#9A1620] border-[#F5CDD0] dark:bg-[#331418] dark:text-[#F2828C] dark:border-[#521E25]',                            icon: '💰' },
+  'kas.delete':          { label: 'Kas 🗑️',     color: 'bg-rose-50 text-rose-800 border-rose-200 dark:bg-rose-950/40 dark:text-rose-300 dark:border-rose-800/60',                            icon: '💰' },
 };
 
 const AUDIT_LIMIT = 25;
@@ -75,67 +75,67 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
     <div className="space-y-4 pt-4">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-extrabold text-[#1F1617] dark:text-white flex items-center gap-2">
-            <ScrollText className="w-5 h-5 text-[#C5222E]" />
+          <h2 className="text-xl font-extrabold text-[#1C1917] dark:text-white flex items-center gap-2">
+            <ScrollText className="w-5 h-5 text-[#8B1E28] dark:text-[#E88086]" />
             Audit Log ({total})
           </h2>
-          <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4]">
+          <p className="text-xs text-[#665E55] dark:text-[#A8A196]">
             Trail siapa melakukan apa di portal gereja. Append-only — hanya super yang bisa membaca.
           </p>
         </div>
         <button
           onClick={onRefresh}
-          className="px-4 py-2 rounded-2xl bg-[#F7F2E8] dark:bg-[#2A161A] text-[#1F1617] dark:text-[#F5EFEB] border border-[#EBDDCF] dark:border-[#3A1C20] text-xs font-bold flex items-center gap-2"
+          className="px-4 py-2 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] border border-[#E5DFD5] dark:border-[#332F2B] text-xs font-bold flex items-center gap-2"
         >
-          <RefreshCw className={`w-3.5 h-3.5 text-[#C5222E] ${loading ? 'animate-spin' : ''}`} />
+          <RefreshCw className={`w-3.5 h-3.5 text-[#8B1E28] dark:text-[#E88086] ${loading ? 'animate-spin' : ''}`} />
           Refresh
         </button>
       </div>
 
       {/* Filter Bar */}
-      <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-3xl bg-[#F7F2E8] dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20]">
+      <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-3xl bg-[#F3EFE6] dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B]">
         <div className="space-y-1">
-          <label className="text-[10px] font-bold uppercase tracking-wider text-[#6E5D5F] dark:text-[#B5A1A3]">Actor</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider text-[#665E55] dark:text-[#A8A196]">Actor</label>
           <input
             type="text"
             placeholder="username"
             value={filter.actor}
             onChange={(e) => onFilterChange({ ...filter, actor: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-xs text-[#1F1617] dark:text-[#F5EFEB] outline-none focus:ring-2 focus:ring-[#C5222E]/30"
+            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-xs text-[#1C1917] dark:text-[#F5F3EF] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
           />
         </div>
         <div className="space-y-1">
-          <label className="text-[10px] font-bold uppercase tracking-wider text-[#6E5D5F] dark:text-[#B5A1A3]">Action</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider text-[#665E55] dark:text-[#A8A196]">Action</label>
           <input
             type="text"
             placeholder="e.g. warta.create"
             value={filter.action}
             onChange={(e) => onFilterChange({ ...filter, action: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-xs text-[#1F1617] dark:text-[#F5EFEB] outline-none focus:ring-2 focus:ring-[#C5222E]/30 font-mono"
+            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-xs text-[#1C1917] dark:text-[#F5F3EF] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 font-mono"
           />
         </div>
         <div className="space-y-1">
-          <label className="text-[10px] font-bold uppercase tracking-wider text-[#6E5D5F] dark:text-[#B5A1A3]">Dari</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider text-[#665E55] dark:text-[#A8A196]">Dari</label>
           <input
             type="date"
             value={filter.since}
             onChange={(e) => onFilterChange({ ...filter, since: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-xs text-[#1F1617] dark:text-[#F5EFEB] outline-none focus:ring-2 focus:ring-[#C5222E]/30"
+            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-xs text-[#1C1917] dark:text-[#F5F3EF] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
           />
         </div>
         <div className="space-y-1">
-          <label className="text-[10px] font-bold uppercase tracking-wider text-[#6E5D5F] dark:text-[#B5A1A3]">Sampai</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider text-[#665E55] dark:text-[#A8A196]">Sampai</label>
           <input
             type="date"
             value={filter.until}
             onChange={(e) => onFilterChange({ ...filter, until: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-xs text-[#1F1617] dark:text-[#F5EFEB] outline-none focus:ring-2 focus:ring-[#C5222E]/30"
+            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-xs text-[#1C1917] dark:text-[#F5F3EF] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
           />
         </div>
         <div className="sm:col-span-4 flex justify-end">
           <button
             onClick={onApplyFilter}
-            className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#C5222E] to-[#80141C] text-white text-xs font-bold flex items-center gap-2"
+            className="px-4 py-2 rounded-xl bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white text-xs font-bold flex items-center gap-2"
           >
             <Search className="w-3.5 h-3.5" />
             Terapkan Filter
@@ -144,9 +144,9 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
       </div>
 
       {/* Audit Table */}
-      <div className="overflow-x-auto rounded-[2.5rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm">
+      <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] shadow-sm">
         <table className="w-full text-left text-xs">
-          <thead className="bg-[#F7F2E8] dark:bg-[#2A161A] text-[#1F1617] dark:text-[#F5EFEB] border-b border-[#EBDDCF] dark:border-[#3A1C20]">
+          <thead className="bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] border-b border-[#E5DFD5] dark:border-[#332F2B]">
             <tr>
               <th className="p-4 font-bold w-40">Waktu (WIB)</th>
               <th className="p-4 font-bold w-44">Action</th>
@@ -155,14 +155,14 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
               <th className="p-4 font-bold w-32">IP</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#EBDDCF] dark:divide-[#3A1C20]">
+          <tbody className="divide-y divide-[#E5DFD5] dark:divide-[#332F2B]">
             {loading && entries.length === 0 ? (
               <tr>
-                <td colSpan={5} className="p-8 text-center text-xs text-[#6E5D5F] dark:text-[#B5A1A3]">Memuat…</td>
+                <td colSpan={5} className="p-8 text-center text-xs text-[#665E55] dark:text-[#A8A196]">Memuat…</td>
               </tr>
             ) : entries.length === 0 ? (
               <tr>
-                <td colSpan={5} className="p-8 text-center text-xs text-[#6E5D5F] dark:text-[#B5A1A3]">
+                <td colSpan={5} className="p-8 text-center text-xs text-[#665E55] dark:text-[#A8A196]">
                   Belum ada entry. Aktivitas pertama akan muncul di sini setelah admin login.
                 </td>
               </tr>
@@ -175,8 +175,8 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
                 };
                 const ts = new Date(a.created_at);
                 return (
-                  <tr key={a.id} className="hover:bg-[#FDFBF7] dark:hover:bg-[#261317] transition-colors">
-                    <td className="p-4 text-xs text-[#5A4D4E] dark:text-[#D5C2C4] whitespace-nowrap font-mono">
+                  <tr key={a.id} className="hover:bg-[#FAF7F2] dark:hover:bg-[#261317] transition-colors">
+                    <td className="p-4 text-xs text-[#665E55] dark:text-[#A8A196] whitespace-nowrap font-mono">
                       {ts.toLocaleString('id-ID', {
                         day: '2-digit',
                         month: 'short',
@@ -194,10 +194,10 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
                         {meta.label}
                       </span>
                     </td>
-                    <td className="p-4 text-[#1F1617] dark:text-[#F5EFEB]">
+                    <td className="p-4 text-[#1C1917] dark:text-[#F5F3EF]">
                       {a.summary}
                       {a.target_table && (
-                        <div className="text-[10px] text-[#6E5D5F] dark:text-[#B5A1A3] mt-0.5 font-mono">
+                        <div className="text-[10px] text-[#665E55] dark:text-[#A8A196] mt-0.5 font-mono">
                           {a.target_table}{a.target_id ? ` · ${String(a.target_id).slice(0, 8)}…` : ''}
                         </div>
                       )}
@@ -205,20 +205,20 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
                     <td className="p-4 text-xs">
                       {a.actor_username ? (
                         <>
-                          <div className="font-mono font-bold text-[#1F1617] dark:text-[#F5EFEB]">
+                          <div className="font-mono font-bold text-[#1C1917] dark:text-[#F5F3EF]">
                             {a.actor_username}
                           </div>
                           {a.actor_roles && a.actor_roles.length > 0 && (
-                            <div className="text-[10px] text-[#6E5D5F] dark:text-[#B5A1A3]">
+                            <div className="text-[10px] text-[#665E55] dark:text-[#A8A196]">
                               {a.actor_roles.join(', ')}
                             </div>
                           )}
                         </>
                       ) : (
-                        <span className="italic text-[#6E5D5F] dark:text-[#B5A1A3]">anonim</span>
+                        <span className="italic text-[#665E55] dark:text-[#A8A196]">anonim</span>
                       )}
                     </td>
-                    <td className="p-4 text-[10px] font-mono text-[#6E5D5F] dark:text-[#B5A1A3]">
+                    <td className="p-4 text-[10px] font-mono text-[#665E55] dark:text-[#A8A196]">
                       {a.ip || <span className="italic">—</span>}
                     </td>
                   </tr>
@@ -232,14 +232,14 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
       {/* Pagination */}
       {total > limit && (
         <div className="flex items-center justify-between text-xs">
-          <span className="text-[#6E5D5F] dark:text-[#B5A1A3]">
+          <span className="text-[#665E55] dark:text-[#A8A196]">
             Menampilkan {start}–{end} dari {total}
           </span>
           <div className="flex items-center gap-2">
             <button
               onClick={onPrev}
               disabled={!hasPrev || loading}
-              className="px-3 py-2 rounded-xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-[#1F1617] dark:text-[#F5EFEB] font-bold flex items-center gap-1 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="px-3 py-2 rounded-xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-[#1C1917] dark:text-[#F5F3EF] font-bold flex items-center gap-1 disabled:opacity-40 disabled:cursor-not-allowed"
             >
               <ChevronLeft className="w-3.5 h-3.5" />
               Sebelumnya
@@ -247,7 +247,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
             <button
               onClick={onNext}
               disabled={!hasNext || loading}
-              className="px-3 py-2 rounded-xl bg-[#F7F2E8] dark:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20] text-[#1F1617] dark:text-[#F5EFEB] font-bold flex items-center gap-1 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="px-3 py-2 rounded-xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-[#1C1917] dark:text-[#F5F3EF] font-bold flex items-center gap-1 disabled:opacity-40 disabled:cursor-not-allowed"
             >
               Berikutnya
               <ChevronRight className="w-3.5 h-3.5" />

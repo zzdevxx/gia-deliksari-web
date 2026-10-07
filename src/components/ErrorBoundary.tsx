@@ -60,10 +60,10 @@ export class ErrorBoundary extends React.Component<Props, State> {
           <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 to-red-700 text-white shadow-lg mb-5">
             <X className="h-7 w-7" />
           </div>
-          <h2 className="text-2xl font-extrabold text-[#1F1617] dark:text-[#F5EFEB] tracking-tight">
+          <h2 className="text-2xl font-extrabold text-[#1C1917] dark:text-[#F5F3EF] tracking-tight">
             Terjadi kesalahan
           </h2>
-          <p className="mt-2 max-w-md text-sm text-[#5A4D4E] dark:text-[#D5C2C4]">
+          <p className="mt-2 max-w-md text-sm text-[#665E55] dark:text-[#A8A196]">
             Halaman ini gagal dimuat. Coba muat ulang, atau kembali ke beranda jika masalah berlanjut.
           </p>
           {process.env.NODE_ENV !== 'production' && this.state.error && (
@@ -75,14 +75,14 @@ export class ErrorBoundary extends React.Component<Props, State> {
             <button
               type="button"
               onClick={this.handleReset}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#C5222E] to-[#80141C] text-white text-sm font-bold shadow-md hover:shadow-lg transition-all"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white text-sm font-bold shadow-md hover:shadow-lg transition-all"
             >
               <RefreshCw className="h-4 w-4" />
               Coba Lagi
             </button>
             <a
               href="/home"
-              className="inline-flex items-center px-5 py-2.5 rounded-xl border border-[#EBDDCF] dark:border-[#3A1C20] bg-white dark:bg-[#221215] text-[#1F1617] dark:text-[#F5EFEB] text-sm font-bold hover:bg-[#F7F2E8] dark:hover:bg-[#2A161A] transition-all"
+              className="inline-flex items-center px-5 py-2.5 rounded-xl border border-[#E5DFD5] dark:border-[#332F2B] bg-white dark:bg-[#1D1B19] text-[#1C1917] dark:text-[#F5F3EF] text-sm font-bold hover:bg-[#F3EFE6] dark:hover:bg-[#262421] transition-all"
             >
               Ke Beranda
             </a>

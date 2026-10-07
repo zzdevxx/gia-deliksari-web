@@ -16,19 +16,19 @@ type Variant = 'maroon' | 'gold' | 'outline' | 'success' | 'warning' | 'danger' 
 
 const VARIANT_MAP: Record<Variant, string> = {
   maroon:
-    'bg-[#FDF0F0] dark:bg-[#331418] text-[#9A1620] dark:text-[#F2828C] ring-1 ring-inset ring-[#F5CDD0] dark:ring-[#521E25]',
+    'bg-[#FBF1F2] dark:bg-[#261517] text-[#8B1E28] dark:text-[#E88086] ring-1 ring-inset ring-[#E8C2C5] dark:ring-[#52252A]',
   gold:
-    'bg-[#FEF3C7] dark:bg-[#3A2D17] text-[#92400E] dark:text-[#FCD34D] ring-1 ring-inset ring-[#FCD34D] dark:ring-[#6B5316]',
+    'bg-[#FEF9EC] dark:bg-[#2D2517] text-[#8C6826] dark:text-[#E0B85C] ring-1 ring-inset ring-[#F5DFAB] dark:ring-[#52411E]',
   outline:
-    'bg-transparent text-[#1F1617] dark:text-[#F5EFEB] ring-1 ring-inset ring-[#EBDDCF] dark:ring-[#3A1C20]',
+    'bg-transparent text-[#1C1917] dark:text-[#F5F3EF] ring-1 ring-inset ring-[#E5DFD5] dark:ring-[#332F2B]',
   success:
-    'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 ring-1 ring-inset ring-emerald-200 dark:ring-emerald-800/40',
+    'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 ring-1 ring-inset ring-emerald-200 dark:ring-emerald-800/50',
   warning:
-    'bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 ring-1 ring-inset ring-amber-200 dark:ring-amber-800/40',
+    'bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 ring-1 ring-inset ring-amber-200 dark:ring-amber-800/50',
   danger:
-    'bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 ring-1 ring-inset ring-red-200 dark:ring-red-800/40',
+    'bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300 ring-1 ring-inset ring-rose-200 dark:ring-rose-800/50',
   neutral:
-    'bg-[#F7F2E8] dark:bg-[#2A161A] text-[#5A4D4E] dark:text-[#D5C2C4] ring-1 ring-inset ring-[#EBDDCF] dark:ring-[#3A1C20]',
+    'bg-[#F3EFE6] dark:bg-[#262421] text-[#665E55] dark:text-[#A8A196] ring-1 ring-inset ring-[#E5DFD5] dark:ring-[#332F2B]',
 };
 
 interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
@@ -37,7 +37,7 @@ interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 }
 
 export function Badge({
-  variant = 'maroon',
+  variant = 'neutral',
   className,
   children,
   iconLeft,

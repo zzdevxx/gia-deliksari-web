@@ -45,7 +45,7 @@ function MiniCountdown({ targetDate }: { targetDate: string }) {
   }, [targetDate]);
   if (!cd) return null;
   return (
-    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-[#FEF9EC] dark:bg-[#332612] text-[#B87A14] dark:text-[#F0BE5E] text-[11px] font-bold border border-[#F8E3B5] dark:border-[#543E19]">
+    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-[#F3EFE6] dark:bg-[#262421] text-[#665E55] dark:text-[#A8A196] text-[11px] font-bold border border-[#E5DFD5] dark:border-[#332F2B]">
       <Hourglass className="w-3 h-3" />
       {cd.days > 0 ? `${cd.days} hari ` : ''}
       {cd.hours}j {cd.minutes}m lagi
@@ -74,32 +74,18 @@ export default function AnnouncementBoard() {
   }, []);
 
   const getCategoryBadge = (category: MinistryCategory) => {
+    const color = 'bg-[#F3EFE6] text-[#665E55] border-[#E5DFD5] dark:bg-[#262421] dark:text-[#A8A196] dark:border-[#332F2B]';
     switch (category) {
       case 'general':
-        return {
-          label: 'Umum & Ibadah Raya',
-          color: 'bg-[#FDF0F0] text-[#9A1620] border-[#F5CDD0] dark:bg-[#331418] dark:text-[#F2828C] dark:border-[#521E25]',
-        };
+        return { label: 'Umum & Ibadah Raya', color };
       case 'youth':
-        return {
-          label: 'Grow Generation Youth',
-          color: 'bg-[#FFF2EE] text-[#C83E20] border-[#FCD2C7] dark:bg-[#331812] dark:text-[#F88B72] dark:border-[#57241A]',
-        };
+        return { label: 'Grow Generation Youth', color };
       case 'kidz':
-        return {
-          label: 'COC Kidz',
-          color: 'bg-[#FEF9EC] text-[#B87A14] border-[#F8E3B5] dark:bg-[#332612] dark:text-[#F0BE5E] dark:border-[#543E19]',
-        };
+        return { label: 'COC Kidz', color };
       case 'hana':
-        return {
-          label: 'Wanita Hana & Komsel',
-          color: 'bg-[#FDF0F4] text-[#A6264A] border-[#F7C6D5] dark:bg-[#33121E] dark:text-[#EA7FA0] dark:border-[#541D30]',
-        };
+        return { label: 'Wanita Hana & Komsel', color };
       default:
-        return {
-          label: 'Warta Jemaat',
-          color: 'bg-[#F7F2E8] text-[#5A4D4E] border-[#EBDDCF] dark:bg-[#2A161A] dark:text-[#D5C2C4] dark:border-[#3A1C20]',
-        };
+        return { label: 'Warta Jemaat', color };
     }
   };
 
@@ -137,20 +123,20 @@ export default function AnnouncementBoard() {
     });
 
   return (
-    <section id="warta" className="py-24 bg-[#FDFBF7] dark:bg-[#150B0D] transition-colors">
+    <section id="warta" className="py-24 bg-[#FAF7F2] dark:bg-[#141312] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="space-y-4 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FDF0F0] dark:bg-[#331418] border border-[#F5CDD0] dark:border-[#521E25] text-[#9A1620] dark:text-[#F2828C] text-xs font-bold uppercase tracking-wider">
-              <Bell className="w-3.5 h-3.5 text-[#C5222E]" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-[#665E55] dark:text-[#A8A196] text-xs font-bold uppercase tracking-wider">
+              <Bell className="w-3.5 h-3.5 text-[#8B1E28]" />
               <span>Warta Jemaat & Informasi Kegiatan</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1F1617] dark:text-[#F5EFEB] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1C1917] dark:text-[#F5F3EF] tracking-tight">
               Papan Pengumuman & Agenda Gereja
             </h2>
-            <p className="text-[#5A4D4E] dark:text-[#D5C2C4] text-base leading-relaxed">
+            <p className="text-[#665E55] dark:text-[#A8A196] text-base leading-relaxed">
               Ikuti perkembangan kegiatan, warta sakramen, dan agenda pelayanan terkini di GIA Deliksari Semarang.
             </p>
           </div>
@@ -158,9 +144,9 @@ export default function AnnouncementBoard() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => setIsPrintModalOpen(true)}
-              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-2xl bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] hover:bg-[#F7F2E8] dark:hover:bg-[#2A161A] text-[#1F1617] dark:text-[#F5EFEB] text-xs sm:text-sm font-bold shadow-xs transition-all"
+              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] hover:bg-[#F3EFE6] dark:hover:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] text-xs sm:text-sm font-bold shadow-xs transition-all"
             >
-              <Printer className="w-4 h-4 text-[#C5222E] dark:text-[#E03643]" />
+              <Printer className="w-4 h-4 text-[#8B1E28] dark:text-[#E88086]" />
               <span>Cetak Lembar Warta</span>
             </button>
           </div>
@@ -172,7 +158,7 @@ export default function AnnouncementBoard() {
         </div>
 
         {/* Category & Time Filters */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10 pb-6 border-b border-[#EBDDCF] dark:border-[#3A1C20]">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10 pb-6 border-b border-[#E5DFD5] dark:border-[#332F2B]">
           
           {/* Category Chips */}
           <div className="flex flex-wrap items-center gap-2">
@@ -188,8 +174,8 @@ export default function AnnouncementBoard() {
                 onClick={() => setSelectedCategory(tab.id as any)}
                 className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
                   selectedCategory === tab.id
-                    ? 'bg-gradient-to-r from-[#C5222E] to-[#80141C] text-white shadow-xs'
-                    : 'bg-white dark:bg-[#221215] text-[#5A4D4E] dark:text-[#D5C2C4] hover:bg-[#F7F2E8] dark:hover:bg-[#2A161A] border border-[#EBDDCF] dark:border-[#3A1C20]'
+                    ? 'bg-[#8B1E28] text-white shadow-xs'
+                    : 'bg-white dark:bg-[#1D1B19] text-[#665E55] dark:text-[#A8A196] hover:bg-[#F3EFE6] dark:hover:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B]'
                 }`}
               >
                 {tab.label}
@@ -198,13 +184,13 @@ export default function AnnouncementBoard() {
           </div>
 
           {/* Time Filter Tabs */}
-          <div className="flex items-center gap-1 bg-[#F7F2E8] dark:bg-[#221215] p-1 rounded-xl border border-[#EBDDCF] dark:border-[#3A1C20]">
+          <div className="flex items-center gap-1 bg-[#F3EFE6] dark:bg-[#1D1B19] p-1 rounded-xl border border-[#E5DFD5] dark:border-[#332F2B]">
             <button
               onClick={() => setTimeFilter('upcoming')}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                 timeFilter === 'upcoming'
-                  ? 'bg-white dark:bg-[#2A161A] text-[#1F1617] dark:text-white shadow-xs'
-                  : 'text-[#6E5D5F] dark:text-[#B5A1A3] hover:text-[#1F1617]'
+                  ? 'bg-white dark:bg-[#262421] text-[#1C1917] dark:text-white shadow-xs'
+                  : 'text-[#665E55] dark:text-[#A8A196] hover:text-[#1C1917]'
               }`}
             >
               <Hourglass className="w-3.5 h-3.5" />
@@ -214,8 +200,8 @@ export default function AnnouncementBoard() {
               onClick={() => setTimeFilter('all')}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                 timeFilter === 'all'
-                  ? 'bg-white dark:bg-[#2A161A] text-[#1F1617] dark:text-white shadow-xs'
-                  : 'text-[#6E5D5F] dark:text-[#B5A1A3] hover:text-[#1F1617]'
+                  ? 'bg-white dark:bg-[#262421] text-[#1C1917] dark:text-white shadow-xs'
+                  : 'text-[#665E55] dark:text-[#A8A196] hover:text-[#1C1917]'
               }`}
             >
               Semua
@@ -224,8 +210,8 @@ export default function AnnouncementBoard() {
               onClick={() => setTimeFilter('past')}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                 timeFilter === 'past'
-                  ? 'bg-white dark:bg-[#2A161A] text-[#1F1617] dark:text-white shadow-xs'
-                  : 'text-[#6E5D5F] dark:text-[#B5A1A3] hover:text-[#1F1617]'
+                  ? 'bg-white dark:bg-[#262421] text-[#1C1917] dark:text-white shadow-xs'
+                  : 'text-[#665E55] dark:text-[#A8A196] hover:text-[#1C1917]'
               }`}
             >
               <CheckCircle2 className="w-3.5 h-3.5" />
@@ -237,14 +223,14 @@ export default function AnnouncementBoard() {
 
         {/* Empty state (depends on filter) */}
         {filteredAnnouncements.length === 0 ? (
-          <div className="p-12 text-center rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] space-y-3">
-            <Bell className="w-8 h-8 text-[#C5222E] mx-auto opacity-40" />
-            <p className="text-base font-bold text-[#1F1617] dark:text-[#F5EFEB]">
+          <div className="p-12 text-center rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] space-y-3">
+            <Bell className="w-8 h-8 text-[#8B1E28] mx-auto opacity-40" />
+            <p className="text-base font-bold text-[#1C1917] dark:text-[#F5F3EF]">
               {timeFilter === 'past'
                 ? 'Belum ada warta yang sudah berlalu.'
                 : 'Belum ada warta untuk filter ini.'}
             </p>
-            <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4]">
+            <p className="text-xs text-[#665E55] dark:text-[#A8A196]">
               {timeFilter === 'upcoming' && (
                 <>Warta yang sudah lewat otomatis dipindahkan ke tab <b>Sudah Berlalu</b>.</>
               )}
@@ -271,8 +257,8 @@ export default function AnnouncementBoard() {
                   {upcoming.length > 0 && (
                     <div className="space-y-4">
                       <div className="flex items-center gap-2">
-                        <Hourglass className="w-4 h-4 text-[#C5222E]" />
-                        <h3 className="text-xs font-extrabold uppercase tracking-wider text-[#C5222E]">
+                        <Hourglass className="w-4 h-4 text-[#8B1E28]" />
+                        <h3 className="text-xs font-extrabold uppercase tracking-wider text-[#8B1E28]">
                           Akan Datang ({upcoming.length})
                         </h3>
                       </div>
@@ -282,8 +268,8 @@ export default function AnnouncementBoard() {
                           return (
                             <div
                               key={item.id}
-                              className={`p-7 rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-6 ${
-                                item.isPinned ? 'ring-2 ring-[#C5222E]/40' : ''
+                              className={`p-7 rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-6 ${
+                                item.isPinned ? 'ring-2 ring-[#8B1E28]/40' : ''
                               }`}
                             >
                               <div className="space-y-4">
@@ -292,8 +278,8 @@ export default function AnnouncementBoard() {
                                     {badgeInfo.label}
                                   </span>
                                   {item.isPinned && (
-                                    <span className="flex items-center gap-1 text-[11px] font-bold text-[#C5222E] dark:text-[#E03643]">
-                                      <Pin className="w-3.5 h-3.5 fill-[#C5222E] dark:fill-[#E03643]" />
+                                    <span className="flex items-center gap-1 text-[11px] font-bold text-[#8B1E28] dark:text-[#E88086]">
+                                      <Pin className="w-3.5 h-3.5 fill-[#8B1E28] dark:fill-[#E88086]" />
                                       <span>Penting</span>
                                     </span>
                                   )}
@@ -301,24 +287,24 @@ export default function AnnouncementBoard() {
 
                                 <MiniCountdown targetDate={item.eventDate} />
 
-                                <h3 className="font-extrabold text-lg text-[#1F1617] dark:text-[#F5EFEB] leading-snug">
+                                <h3 className="font-extrabold text-lg text-[#1C1917] dark:text-[#F5F3EF] leading-snug">
                                   {item.title}
                                 </h3>
 
-                                <p className="text-xs sm:text-sm text-[#5A4D4E] dark:text-[#D5C2C4] leading-relaxed line-clamp-4">
+                                <p className="text-xs sm:text-sm text-[#665E55] dark:text-[#A8A196] leading-relaxed line-clamp-4">
                                   {item.content}
                                 </p>
                               </div>
 
-                              <div className="pt-4 border-t border-[#EBDDCF]/60 dark:border-[#3A1C20]/60 flex items-center justify-between text-xs text-[#6E5D5F] dark:text-[#B5A1A3]">
+                              <div className="pt-4 border-t border-[#E5DFD5]/60 dark:border-[#332F2B]/60 flex items-center justify-between text-xs text-[#665E55] dark:text-[#A8A196]">
                                 <div className="flex items-center gap-1.5 font-medium">
-                                  <Calendar className="w-3.5 h-3.5 text-[#C5222E]" />
+                                  <Calendar className="w-3.5 h-3.5 text-[#8B1E28]" />
                                   <span>{item.eventDate}</span>
                                 </div>
 
                                 <a
                                   href="#layanan"
-                                  className="font-bold text-[#C5222E] dark:text-[#E03643] hover:underline flex items-center gap-0.5"
+                                  className="font-bold text-[#8B1E28] dark:text-[#E88086] hover:underline flex items-center gap-0.5"
                                 >
                                   <span>Layanan</span>
                                   <ChevronRight className="w-3.5 h-3.5" />
@@ -332,7 +318,7 @@ export default function AnnouncementBoard() {
                   )}
                   {past.length > 0 && (
                     <details className="space-y-4 group">
-                      <summary className="cursor-pointer flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-[#6E5D5F] dark:text-[#B5A1A3] hover:text-[#1F1617] dark:hover:text-[#F5EFEB] list-none">
+                      <summary className="cursor-pointer flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-[#665E55] dark:text-[#A8A196] hover:text-[#1C1917] dark:hover:text-[#F5F3EF] list-none">
                         <CheckCircle2 className="w-4 h-4" />
                         <span>Sudah Berlalu ({past.length})</span>
                         <ChevronRight className="w-3.5 h-3.5 transition-transform group-open:rotate-90" />
@@ -343,7 +329,7 @@ export default function AnnouncementBoard() {
                           return (
                             <div
                               key={item.id}
-                              className="p-7 rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] flex flex-col justify-between space-y-6"
+                              className="p-7 rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] flex flex-col justify-between space-y-6"
                             >
                               <div className="space-y-4">
                                 <div className="flex items-center justify-between flex-wrap gap-2">
@@ -351,14 +337,14 @@ export default function AnnouncementBoard() {
                                     {badgeInfo.label}
                                   </span>
                                 </div>
-                                <h3 className="font-extrabold text-lg text-[#1F1617] dark:text-[#F5EFEB] leading-snug line-through opacity-60">
+                                <h3 className="font-extrabold text-lg text-[#1C1917] dark:text-[#F5F3EF] leading-snug line-through opacity-60">
                                   {item.title}
                                 </h3>
-                                <p className="text-xs sm:text-sm text-[#5A4D4E] dark:text-[#D5C2C4] leading-relaxed line-clamp-3">
+                                <p className="text-xs sm:text-sm text-[#665E55] dark:text-[#A8A196] leading-relaxed line-clamp-3">
                                   {item.content}
                                 </p>
                               </div>
-                              <div className="pt-4 border-t border-[#EBDDCF]/60 dark:border-[#3A1C20]/60 flex items-center justify-between text-xs text-[#6E5D5F] dark:text-[#B5A1A3]">
+                              <div className="pt-4 border-t border-[#E5DFD5]/60 dark:border-[#332F2B]/60 flex items-center justify-between text-xs text-[#665E55] dark:text-[#A8A196]">
                                 <div className="flex items-center gap-1.5 font-medium">
                                   <Calendar className="w-3.5 h-3.5" />
                                   <span>{item.eventDate}</span>
@@ -380,7 +366,7 @@ export default function AnnouncementBoard() {
                   return (
                     <div
                       key={item.id}
-                      className="p-7 rounded-[2rem] bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-6 opacity-70"
+                      className="p-7 rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-6 opacity-70"
                     >
                       <div className="space-y-4">
                         <div className="flex items-center justify-between flex-wrap gap-2">
@@ -388,14 +374,14 @@ export default function AnnouncementBoard() {
                             {badgeInfo.label}
                           </span>
                         </div>
-                        <h3 className="font-extrabold text-lg text-[#1F1617] dark:text-[#F5EFEB] leading-snug line-through opacity-60">
+                        <h3 className="font-extrabold text-lg text-[#1C1917] dark:text-[#F5F3EF] leading-snug line-through opacity-60">
                           {item.title}
                         </h3>
-                        <p className="text-xs sm:text-sm text-[#5A4D4E] dark:text-[#D5C2C4] leading-relaxed line-clamp-3">
+                        <p className="text-xs sm:text-sm text-[#665E55] dark:text-[#A8A196] leading-relaxed line-clamp-3">
                           {item.content}
                         </p>
                       </div>
-                      <div className="pt-4 border-t border-[#EBDDCF]/60 dark:border-[#3A1C20]/60 flex items-center justify-between text-xs text-[#6E5D5F] dark:text-[#B5A1A3]">
+                      <div className="pt-4 border-t border-[#E5DFD5]/60 dark:border-[#332F2B]/60 flex items-center justify-between text-xs text-[#665E55] dark:text-[#A8A196]">
                         <div className="flex items-center gap-1.5 font-medium">
                           <Calendar className="w-3.5 h-3.5" />
                           <span>{item.eventDate}</span>
@@ -415,19 +401,19 @@ export default function AnnouncementBoard() {
       {/* Print Bulletin Modal */}
       {isPrintModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="relative w-full max-w-3xl bg-white dark:bg-[#221215] rounded-[2.5rem] border border-[#EBDDCF] dark:border-[#3A1C20] shadow-2xl p-6 sm:p-10 max-h-[90vh] overflow-y-auto space-y-6">
+          <div className="relative w-full max-w-3xl bg-white dark:bg-[#1D1B19] rounded-2xl border border-[#E5DFD5] dark:border-[#332F2B] shadow-2xl p-6 sm:p-10 max-h-[90vh] overflow-y-auto space-y-6">
             
             {/* Modal Header */}
-            <div className="flex items-center justify-between pb-4 border-b border-[#EBDDCF] dark:border-[#3A1C20]">
+            <div className="flex items-center justify-between pb-4 border-b border-[#E5DFD5] dark:border-[#332F2B]">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#FDF0F0] dark:bg-[#331418] flex items-center justify-center text-[#C5222E]">
+                <div className="w-10 h-10 rounded-xl bg-[#F3EFE6] dark:bg-[#262421] flex items-center justify-center text-[#8B1E28]">
                   <BookOpen className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-bold text-[#1F1617] dark:text-[#F5EFEB]">
+                  <h4 className="text-lg font-bold text-[#1C1917] dark:text-[#F5F3EF]">
                     Warta Jemaat Mingguan GIA Deliksari
                   </h4>
-                  <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4]">
+                  <p className="text-xs text-[#665E55] dark:text-[#A8A196]">
                     Lembar Ringkasan Ibadah & Warta Cetak
                   </p>
                 </div>
@@ -435,66 +421,66 @@ export default function AnnouncementBoard() {
 
               <button
                 onClick={() => setIsPrintModalOpen(false)}
-                className="p-2 rounded-xl text-[#5A4D4E] hover:bg-[#F7F2E8] dark:hover:bg-[#2A161A] transition-colors"
+                className="p-2 rounded-xl text-[#665E55] hover:bg-[#F3EFE6] dark:hover:bg-[#262421] transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             {/* Bulletin Content Preview */}
-            <div className="p-6 rounded-2xl bg-[#FDFBF7] dark:bg-[#1A0E10] border border-[#EBDDCF] dark:border-[#3A1C20] space-y-6">
+            <div className="p-6 rounded-2xl bg-[#FAF7F2] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] space-y-6">
               
               {/* Header Bulletin */}
-              <div className="text-center pb-4 border-b border-[#EBDDCF] dark:border-[#3A1C20] space-y-1">
-                <h5 className="font-extrabold text-base text-[#1F1617] dark:text-[#F5EFEB]">
+              <div className="text-center pb-4 border-b border-[#E5DFD5] dark:border-[#332F2B] space-y-1">
+                <h5 className="font-extrabold text-base text-[#1C1917] dark:text-[#F5F3EF]">
                   GEREJA ISA ALMASIH DELIKSARI SEMARANG
                 </h5>
-                <p className="text-xs text-[#5A4D4E] dark:text-[#D5C2C4]">
+                <p className="text-xs text-[#665E55] dark:text-[#A8A196]">
                   Jl. Kolonel HR Hadijanto, Sekaran, Kec. Gn. Pati, Kota Semarang, Jawa Tengah 50229
                 </p>
-                <p className="text-xs font-bold text-[#C5222E]">
+                <p className="text-xs font-bold text-[#8B1E28]">
                   Tema Bulanan: &ldquo;Bertumbuh Kuat dalam Iman & Buah Roh&rdquo; (1 Kor 15:58)
                 </p>
               </div>
 
               {/* Schedules List */}
               <div className="space-y-2">
-                <h6 className="font-bold text-xs uppercase tracking-wider text-[#1F1617] dark:text-[#F5EFEB]">
+                <h6 className="font-bold text-xs uppercase tracking-wider text-[#1C1917] dark:text-[#F5F3EF]">
                   Jadwal Ibadah Minggu Ini:
                 </h6>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                  <div className="p-2.5 rounded-xl bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20]">
+                  <div className="p-2.5 rounded-xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B]">
                     <span className="font-bold block">Ibadah Raya Umum</span>
-                    <span className="text-[#6E5D5F] dark:text-[#B5A1A3]">Minggu, 09.00 - 11.00 WIB (Gedung Utama)</span>
+                    <span className="text-[#665E55] dark:text-[#A8A196]">Minggu, 09.00 - 11.00 WIB (Gedung Utama)</span>
                   </div>
-                  <div className="p-2.5 rounded-xl bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20]">
+                  <div className="p-2.5 rounded-xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B]">
                     <span className="font-bold block">Grow Generation Youth</span>
-                    <span className="text-[#6E5D5F] dark:text-[#B5A1A3]">Sabtu, 18.00 - 20.00 WIB (Bergantian: Minggu 1&3 Youth, 2&4 Komsel)</span>
+                    <span className="text-[#665E55] dark:text-[#A8A196]">Sabtu, 18.00 - 20.00 WIB (Bergantian: Minggu 1&3 Youth, 2&4 Komsel)</span>
                   </div>
-                  <div className="p-2.5 rounded-xl bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20]">
+                  <div className="p-2.5 rounded-xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B]">
                     <span className="font-bold block">COC Kidz (Sekolah Minggu)</span>
-                    <span className="text-[#6E5D5F] dark:text-[#B5A1A3]">Minggu, 09.30 - 10.30 WIB (Ruang Anak)</span>
+                    <span className="text-[#665E55] dark:text-[#A8A196]">Minggu, 09.30 - 10.30 WIB (Ruang Anak)</span>
                   </div>
-                  <div className="p-2.5 rounded-xl bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20]">
+                  <div className="p-2.5 rounded-xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B]">
                     <span className="font-bold block">HANA Wanita / Komsel Ekklesia</span>
-                    <span className="text-[#6E5D5F] dark:text-[#B5A1A3]">Minggu, 18.00/18.30 WIB (Bergantian: Minggu 1&3 HANA, 2&4 Komsel)</span>
+                    <span className="text-[#665E55] dark:text-[#A8A196]">Minggu, 18.00/18.30 WIB (Bergantian: Minggu 1&3 HANA, 2&4 Komsel)</span>
                   </div>
                 </div>
               </div>
 
               {/* Active Announcements List */}
               <div className="space-y-3">
-                <h6 className="font-bold text-xs uppercase tracking-wider text-[#1F1617] dark:text-[#F5EFEB]">
+                <h6 className="font-bold text-xs uppercase tracking-wider text-[#1C1917] dark:text-[#F5F3EF]">
                   Warta & Pokok Doa:
                 </h6>
                 <div className="space-y-2">
                   {announcements.slice(0, 4).map((warta) => (
-                    <div key={warta.id} className="text-xs p-3 rounded-xl bg-white dark:bg-[#221215] border border-[#EBDDCF] dark:border-[#3A1C20] space-y-1">
+                    <div key={warta.id} className="text-xs p-3 rounded-xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] space-y-1">
                       <div className="flex items-center justify-between font-bold">
                         <span>{warta.title}</span>
-                        <span className="text-[#C5222E]">{warta.eventDate}</span>
+                        <span className="text-[#8B1E28]">{warta.eventDate}</span>
                       </div>
-                      <p className="text-[#5A4D4E] dark:text-[#D5C2C4] leading-relaxed">{warta.content}</p>
+                      <p className="text-[#665E55] dark:text-[#A8A196] leading-relaxed">{warta.content}</p>
                     </div>
                   ))}
                 </div>
@@ -506,13 +492,13 @@ export default function AnnouncementBoard() {
             <div className="flex items-center justify-end gap-3 pt-2">
               <button
                 onClick={() => setIsPrintModalOpen(false)}
-                className="px-5 py-2.5 rounded-xl text-xs font-bold text-[#5A4D4E] hover:bg-[#F7F2E8] dark:hover:bg-[#2A161A] transition-colors"
+                className="px-5 py-2.5 rounded-xl text-xs font-bold text-[#665E55] hover:bg-[#F3EFE6] dark:hover:bg-[#262421] transition-colors"
               >
                 Tutup
               </button>
               <button
                 onClick={() => window.print()}
-                className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#C5222E] to-[#80141C] text-white text-xs font-bold shadow-sm flex items-center gap-2"
+                className="px-6 py-2.5 rounded-xl bg-[#8B1E28] text-white text-xs font-bold shadow-sm flex items-center gap-2"
               >
                 <Printer className="w-4 h-4" />
                 <span>Cetak Lembar Warta (PDF)</span>
