@@ -11,6 +11,7 @@ import LoginForm from '@/components/super/LoginForm';
 import UserModal, { type Role, type UserFormData } from '@/components/super/UserModal';
 import UserTable, { type User } from '@/components/super/UserTable';
 import AuditLogTable, { type AuditEntry, AUDIT_LIMIT } from '@/components/super/AuditLogTable';
+import { clearClientCachesOnLogout } from '@/lib/storage';
 
 /**
  * /super page orchestrator.
@@ -118,7 +119,10 @@ export default function SuperPage() {
   };
 
   const handleLogout = async () => {
-    await fetch('/api/auth/login', { method: 'DELETE' });
+    try {
+      await fetch('/api/auth/login', { method: 'DELETE' });
+    } catch {}
+    clearClientCachesOnLogout();
     setAuthUser(null);
     setUsers([]);
     showToast('Berhasil logout');

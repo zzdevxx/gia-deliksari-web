@@ -27,6 +27,7 @@ import {
   AlertCircle,
 } from 'lucide-react';
 import { useToast } from '@/components/admin/useToast';
+import { clearClientCachesOnLogout } from '@/lib/storage';
 
 type Role = 'super' | 'admin' | 'treasurer';
 
@@ -194,6 +195,7 @@ export default function KasDashboard() {
     } catch {
       /* ignore */
     }
+    clearClientCachesOnLogout();
     setAuthUser(null);
     setTransactions([]);
     showToast('Berhasil logout');

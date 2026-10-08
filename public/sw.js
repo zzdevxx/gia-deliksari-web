@@ -1,34 +1,33 @@
 /* GIA Deliksari — Service Worker
  *
  * Strategy:
- *   - HTML navigations (/home, /info, /admin, /super, /kas): network-first,
- *     fall back to cache when offline. Ensures jemaat always sees fresh content
- *     when online, but can still browse the public pages without internet.
- *   - API GET responses: stale-while-revalidate (instant render from cache,
- *     refresh from network in background).
+ *   - HTML navigations: network-first, fall back to cache when offline for public
+ *     pages (/home, /info, /media, /layanan, /persembahan). Authenticated portals
+ *     (/admin, /super, /kas) are NEVER cached.
+ *   - Public API GET (/api/public/data, /api/youtube/latest): stale-while-revalidate.
+ *     Admin data, auth check, users, and audit APIs are NEVER cached by SW.
  *   - Static assets (images, fonts, CSS, JS chunks): cache-first with 30-day
  *     expiration.
- *   - Cross-origin (Drive, YouTube, Supabase): bypass — let browser handle.
+ *   - Cross-origin (Drive, YouTube): bypass — let browser handle.
  *
  * Versioning:
  *   Bump CACHE_VERSION to invalidate all old caches after significant deploys.
- *   Currently 1.0.0.
+ *   Currently gia-v2.
  */
 
-const CACHE_VERSION = 'gia-v1';
+const CACHE_VERSION = 'gia-v2';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const HTML_CACHE = `${CACHE_VERSION}-html`;
 const API_CACHE = `${CACHE_VERSION}-api`;
 const MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
 
 // Minimal precache for first-install offline experience.
-// We don't precache full HTML (would balloon size); instead the runtime cache
-// fills as jemaat navigates.
 const PRECACHE_URLS = [
   '/',
   '/home',
   '/info',
   '/images/logo.png',
+  '/favicon.ico',
 ];
 
 self.addEventListener('install', (event) => {
@@ -38,7 +37,7 @@ self.addEventListener('install', (event) => {
       try {
         await cache.addAll(PRECACHE_URLS);
       } catch (err) {
-        // If any individual asset fails (e.g, 404), continue install — don't block.
+        // If any individual asset fails, continue install — don't block.
         console.warn('[sw] precache partial failure:', err);
       }
       await self.skipWaiting();
@@ -66,14 +65,30 @@ function isHTMLRequest(req) {
   return req.mode === 'navigate' || accept.includes('text/html');
 }
 
+function isPublicPath(pathname) {
+  // Never cache authenticated portal shells or internal paths
+  if (
+    pathname.startsWith('/admin') ||
+    pathname.startsWith('/super') ||
+    pathname.startsWith('/kas')
+  ) {
+    return false;
+  }
+  return true;
+}
+
 function isStaticAsset(url) {
   return /\/_next\/static\//.test(url.pathname)
     || /\.(?:png|jpg|jpeg|webp|avif|svg|ico|css|js|woff2?|ttf|eot)$/.test(url.pathname);
 }
 
-function isAPIGET(req, urlObj) {
-  return req.method === 'GET' && urlObj.pathname.startsWith('/api/');
+function isCacheableAPIGET(req, urlObj) {
+  if (req.method !== 'GET') return false;
+  const p = urlObj.pathname;
+  // ONLY cache public read-only endpoints — never admin data, auth check, users, youth treasury, or audit log
+  return p === '/api/public/data' || p === '/api/youtube/latest';
 }
+
 function u(req) {
   return new URL(req.url);
 }
@@ -98,24 +113,26 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // 1. HTML navigations → network-first, fallback to cache.
+  // 1. HTML navigations → network-first, fallback to cache for public routes only.
   if (isHTMLRequest(req)) {
     event.respondWith(
       (async () => {
         try {
           const network = await fetch(req);
-          // Only cache successful public pages (avoid caching /admin etc. when gated)
-          if (network.ok && (network.status === 200)) {
+          // Only cache successful public pages (avoid caching /admin, /super, /kas)
+          if (network.ok && network.status === 200 && isPublicPath(urlObj.pathname)) {
             const cache = await caches.open(HTML_CACHE);
             cache.put(req, network.clone()).catch(() => {});
           }
           return network;
         } catch (err) {
-          const cached = await caches.match(req);
-          if (cached) return cached;
-          // Last-ditch: serve homepage if offline and not precached.
-          const fallback = await caches.match('/home');
-          if (fallback) return fallback;
+          if (isPublicPath(urlObj.pathname)) {
+            const cached = await caches.match(req);
+            if (cached) return cached;
+            // Last-ditch: serve homepage if offline and not precached.
+            const fallback = await caches.match('/home');
+            if (fallback) return fallback;
+          }
           throw err;
         }
       })(),
@@ -123,8 +140,8 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // 2. API GET → stale-while-revalidate.
-  if (isAPIGET(req, urlObj)) {
+  // 2. Public API GET → stale-while-revalidate.
+  if (isCacheableAPIGET(req, urlObj)) {
     event.respondWith(
       (async () => {
         const cache = await caches.open(API_CACHE);
@@ -165,10 +182,13 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Default: network passthrough.
+  // Default: network passthrough for un-cached endpoints (including private APIs).
 });
 
 self.addEventListener('message', (event) => {
+  if (event.data?.type === 'CLEAR_API_CACHE') {
+    caches.delete(API_CACHE).catch(() => {});
+  }
   if (event.data?.type === 'SKIP_WAITING') {
     self.skipWaiting();
   }

@@ -430,3 +430,27 @@ export const adminDataStore = {
   deleteMinistryRequest: (id: string): Promise<boolean> =>
     deleteViaApi('ministry_requests', id),
 };
+
+/**
+ * Clean up private/admin cached records from localStorage and service worker caches
+ * when an operator logs out from /admin, /super, or /kas.
+ */
+export function clearClientCachesOnLogout() {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.removeItem(REQUESTS_KEY);
+    localStorage.removeItem(INVENTORY_KEY);
+    localStorage.removeItem(ROSTER_KEY);
+  } catch {}
+
+  try {
+    if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+      navigator.serviceWorker.controller.postMessage({ type: 'CLEAR_API_CACHE' });
+    }
+    if ('caches' in window) {
+      caches.delete('gia-v1-api').catch(() => {});
+      caches.delete('gia-v2-api').catch(() => {});
+    }
+  } catch {}
+}
+

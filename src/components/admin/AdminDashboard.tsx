@@ -16,7 +16,7 @@ import {
   MinistryRequest,
   MinistryRequestType
 } from '@/types';
-import { adminDataStore } from '@/lib/storage';
+import { adminDataStore, clearClientCachesOnLogout } from '@/lib/storage';
 import {
   Bell,
   Users,
@@ -122,6 +122,7 @@ function useCurrentUser() {
     } catch {
       /* ignore */
     }
+    clearClientCachesOnLogout();
     setUser(null);
     setUsername('');
     setPassword('');
