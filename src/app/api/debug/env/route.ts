@@ -1,15 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { readSessionFromCookie } from '@/lib/auth';
+import { requireRole } from '@/lib/auth';
 import { queryFirst } from '@/lib/d1';
 import { getCloudflareContext } from '@opennextjs/cloudflare';
 
 export async function GET(req: NextRequest) {
-  const session = readSessionFromCookie(req);
-  const isSuperOrAdmin = session?.roles?.includes('super') || session?.roles?.includes('admin');
-
-  if (process.env.NODE_ENV === 'production' && !isSuperOrAdmin) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
-  }
+  const guard = await requireRole(req, ['super', 'admin']);
+  if (guard instanceof Response) return guard;
 
   let d1Test: { ok: boolean; count?: number; error?: string } = { ok: false };
   try {
@@ -27,7 +23,7 @@ export async function GET(req: NextRequest) {
 
   return NextResponse.json({
     timestamp: new Date().toISOString(),
-    isSuperOrAdmin,
+    user: guard.username,
     database: 'Cloudflare D1 (gia-deliksari-db)',
     d1Test,
     r2Configured,

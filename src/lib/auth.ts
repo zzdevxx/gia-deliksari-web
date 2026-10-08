@@ -64,7 +64,9 @@ function getSessionSecret(): string {
   const secret = process.env.ADMIN_SESSION_SECRET;
   if (!secret) {
     if (process.env.NODE_ENV === 'production') {
-      console.warn('[auth] WARNING: ADMIN_SESSION_SECRET environment variable is not configured! Using default secret.');
+      throw new Error(
+        '[auth] FATAL: ADMIN_SESSION_SECRET is not configured in production. Set it via wrangler secret put ADMIN_SESSION_SECRET.',
+      );
     }
     return 'gia-deliksari-semarang-secret-key-2026';
   }
@@ -113,7 +115,13 @@ export function setSessionCookie(res: { cookies: { set(name: string, value: stri
 }
 
 export function clearSessionCookie(res: { cookies: { set(name: string, value: string, opts: any): void } }) {
-  res.cookies.set(COOKIE_NAME, '', { path: '/', maxAge: 0 });
+  res.cookies.set(COOKIE_NAME, '', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    path: '/',
+    maxAge: 0,
+  });
 }
 
 // ---------------------------------------------------------------------------
@@ -205,7 +213,7 @@ function normalizeUser(row: any): User {
       roles = [row.role];
     }
   }
-  if (roles.length === 0) roles = ['admin']; // safe default
+  // Fail-closed: do NOT default to ['admin'] if roles is empty or invalid.
   return {
     id: row.id,
     username: row.username,

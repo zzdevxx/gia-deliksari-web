@@ -1,23 +1,36 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { timingSafeEqual } from 'node:crypto';
 import { getCloudflareContext } from '@opennextjs/cloudflare';
 import { queryAll, execute } from '@/lib/d1';
 import { getDriveClient } from '@/lib/googleDrive';
-import { readSessionFromCookie } from '@/lib/auth';
+import { requireRole, type User } from '@/lib/auth';
 import { logAudit, auditContextFromRequest } from '@/lib/auditLog';
 
 export async function POST(req: NextRequest) {
   const syncSecret = process.env.GALLERY_SYNC_SECRET;
   const providedSecret = req.headers.get('x-sync-secret');
-  const session = readSessionFromCookie(req);
+  let isAuthed = false;
+  let actor: User | null = null;
 
-  const isAuthed =
-    (syncSecret && providedSecret === syncSecret) ||
-    session?.roles?.includes('super') ||
-    session?.roles?.includes('admin');
+  if (syncSecret && providedSecret) {
+    const a = Buffer.from(providedSecret);
+    const b = Buffer.from(syncSecret);
+    if (a.length === b.length && timingSafeEqual(a, b)) {
+      isAuthed = true;
+    }
+  }
+
+  if (!isAuthed) {
+    const guard = await requireRole(req, ['super', 'admin']);
+    if (!(guard instanceof Response)) {
+      isAuthed = true;
+      actor = guard;
+    }
+  }
 
   if (!isAuthed) {
     return NextResponse.json(
-      { error: 'Akses ditolak. Butuh admin session atau sync secret.' },
+      { error: 'Akses ditolak. Butuh admin session yang valid atau sync secret.' },
       { status: 401 },
     );
   }
@@ -137,7 +150,7 @@ export async function POST(req: NextRequest) {
     }
 
     await logAudit({
-      actor: null,
+      actor,
       action: 'gallery.upload',
       summary: `Sync Drive→D1 selesai: ${added} baru, ${skipped} skip, ${driveFiles.length} total`,
       meta: { added, skipped, totalScanned: driveFiles.length, errors: errors.length > 0 ? errors.slice(0, 10) : undefined },
