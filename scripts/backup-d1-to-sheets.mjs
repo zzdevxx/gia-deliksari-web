@@ -60,14 +60,35 @@ async function main() {
   let announcements = [];
   let rosters = [];
   let inventory = [];
+  let sermons = [];
+  let gallery = [];
+  let ministryRequests = [];
+  let users = [];
+  let auditLog = [];
 
   if (API_TOKEN) {
-    [treasury, balanceArr, announcements, rosters, inventory] = await Promise.all([
+    [
+      treasury,
+      balanceArr,
+      announcements,
+      rosters,
+      inventory,
+      sermons,
+      gallery,
+      ministryRequests,
+      users,
+      auditLog,
+    ] = await Promise.all([
       queryD1('SELECT * FROM youth_treasury_transactions ORDER BY transaction_date DESC, created_at DESC'),
       queryD1('SELECT * FROM youth_treasury_balance LIMIT 1'),
       queryD1('SELECT * FROM announcements ORDER BY event_date DESC'),
       queryD1('SELECT * FROM servant_rosters ORDER BY service_date DESC'),
       queryD1('SELECT * FROM inventory_items ORDER BY category ASC, code ASC'),
+      queryD1('SELECT * FROM sermons ORDER BY created_at DESC'),
+      queryD1('SELECT * FROM gallery_items ORDER BY created_at DESC'),
+      queryD1('SELECT * FROM ministry_requests ORDER BY created_at DESC'),
+      queryD1('SELECT id, username, roles, display_name, active, last_login_at, created_at FROM users ORDER BY created_at ASC'),
+      queryD1('SELECT * FROM audit_log ORDER BY created_at DESC LIMIT 1000'),
     ]);
   } else {
     console.log('Skipping remote D1 query karena API token belum di-set.');
@@ -84,6 +105,11 @@ async function main() {
         announcements: announcements.length,
         rosters: rosters.length,
         inventory: inventory.length,
+        sermons: sermons.length,
+        gallery: gallery.length,
+        ministry_requests: ministryRequests.length,
+        users: users.length,
+        audit_log: auditLog.length,
       },
     },
     tables: {
@@ -92,6 +118,11 @@ async function main() {
       announcements,
       servant_rosters: rosters,
       inventory_items: inventory,
+      sermons,
+      gallery_items: gallery,
+      ministry_requests: ministryRequests,
+      users,
+      audit_log: auditLog,
     },
   };
 

@@ -20,9 +20,6 @@
     { "pattern": "giadeliksari.my.id", "custom_domain": true },
     { "pattern": "www.giadeliksari.my.id", "custom_domain": true }
   ],
-  "triggers": {
-    "crons": ["0 3 * * *"]
-  },
   "vars": {
     "NEXT_PUBLIC_SITE_URL": "https://giadeliksari.my.id",
     "R2_PUBLIC_URL": "https://gallery.giadeliksari.org",
