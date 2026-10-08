@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: 'Khotbah & Galeri Dokumentasi',
   description:
     'Arsip khotbah video YouTube Data API v3 dan galeri dokumentasi foto kegiatan ibadah serta persekutuan jemaat GIA Deliksari Semarang.',
+  alternates: {
+    canonical: '/media',
+  },
 };
 
 export default function MediaPage() {

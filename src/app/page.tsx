@@ -1,4 +1,5 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import HospitalitySection from '@/components/HospitalitySection';
@@ -7,6 +8,12 @@ import MinistriesSection from '@/components/MinistriesSection';
 import OrganizationSection from '@/components/OrganizationSection';
 import LocationContactSection from '@/components/LocationContactSection';
 import Footer from '@/components/Footer';
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
+  },
+};
 
 export default function Home() {
   return (

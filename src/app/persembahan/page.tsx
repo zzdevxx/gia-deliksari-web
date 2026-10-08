@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: 'Persembahan Kasih & QRIS Digital',
   description:
     'Dukungan pelayanan pekerjaan rumah Tuhan GIA Deliksari Semarang melalui persembahan umum, persepuluhan, pembangunan, dan diakonia via transfer bank dan QRIS digital.',
+  alternates: {
+    canonical: '/persembahan',
+  },
 };
 
 export default function PersembahanPage() {

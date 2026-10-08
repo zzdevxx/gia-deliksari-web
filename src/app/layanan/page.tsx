@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'Layanan Jemaat & Permohonan Doa',
   description:
     'Pusat layanan jemaat GIA Deliksari Semarang: Permohonan Doa, Konseling Pastoral, Pendaftaran Sakramen Baptisan/Penyerahan Anak, Komsel Ekklesia, dan Volunteer Pelayan Ibadah.',
+  alternates: {
+    canonical: '/layanan',
+  },
 };
 
 export default function LayananPage() {

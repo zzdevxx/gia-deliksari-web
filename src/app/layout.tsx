@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     telephone: false,
   },
   alternates: {
-    canonical: siteUrl,
+    canonical: '/',
   },
   openGraph: {
     title: 'GIA Deliksari Semarang - Growing Church!',
@@ -79,8 +79,11 @@ export const metadata: Metadata = {
     images: ['/images/logo.png'],
   },
   icons: {
-    icon: '/images/logo.png',
-    shortcut: '/images/logo.png',
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/images/logo.png', sizes: '1080x1080', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
     apple: '/images/logo.png',
   },
 };

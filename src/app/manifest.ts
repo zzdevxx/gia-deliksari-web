@@ -4,7 +4,8 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'GIA Deliksari Semarang — Growing Church',
     short_name: 'GIA Deliksari',
-    description: 'Website Resmi Gereja Isa Almasih Deliksari Semarang. Jadwal Ibadah, Warta Jemaat, Roster Pelayanan, Permohonan Doa & Khotbah.',
+    description:
+      'Website Resmi Gereja Isa Almasih Deliksari Semarang. Jadwal Ibadah, Warta Jemaat, Roster Pelayanan, Permohonan Doa & Khotbah.',
     start_url: '/',
     display: 'standalone',
     background_color: '#FAF7F2',
@@ -12,8 +13,13 @@ export default function manifest(): MetadataRoute.Manifest {
     icons: [
       {
         src: '/favicon.ico',
-        sizes: 'any',
+        sizes: '32x32',
         type: 'image/x-icon',
+      },
+      {
+        src: '/images/logo.png',
+        sizes: '192x192 512x512',
+        type: 'image/png',
       },
     ],
   };
