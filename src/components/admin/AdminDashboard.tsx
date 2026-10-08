@@ -312,7 +312,6 @@ export default function AdminDashboard() {
             }
           : item
       );
-      showToast('Warta Jemaat berhasil diperbarui');
     } else {
       const newAnn: Announcement = {
         id: `ann-${Date.now()}`,
@@ -320,10 +319,14 @@ export default function AdminDashboard() {
         createdAt: new Date().toISOString(),
       };
       updated = [newAnn, ...announcements];
-      showToast('Warta Jemaat baru berhasil diterbitkan');
     }
     setAnnouncements(updated);
-    await adminDataStore.saveAnnouncements(updated);
+    const ok = await adminDataStore.saveAnnouncements(updated);
+    if (!ok) {
+      showToast('Gagal menyimpan warta ke database D1. Periksa koneksi/sesi.');
+    } else {
+      showToast(editingAnnId ? 'Warta Jemaat berhasil diperbarui' : 'Warta Jemaat baru berhasil diterbitkan');
+    }
     setIsAnnModalOpen(false);
     setEditingAnnId(null);
   };
@@ -347,8 +350,12 @@ export default function AdminDashboard() {
       a.id === item.id ? { ...a, isPinned: !a.isPinned } : a
     );
     setAnnouncements(updated);
-    await adminDataStore.saveAnnouncements(updated);
-    showToast(item.isPinned ? 'Pin warta dilepas' : 'Warta disematkan ke paling atas');
+    const ok = await adminDataStore.saveAnnouncements(updated);
+    if (!ok) {
+      showToast('Gagal memperbarui status pin warta di database');
+    } else {
+      showToast(item.isPinned ? 'Pin warta dilepas' : 'Warta disematkan ke paling atas');
+    }
   };
 
   // Roster Handlers
@@ -364,7 +371,6 @@ export default function AdminDashboard() {
             }
           : item
       );
-      showToast('Jadwal pelayan berhasil diperbarui');
     } else {
       const newRoster: ServantRoster = {
         id: `rst-${Date.now()}`,
@@ -372,10 +378,14 @@ export default function AdminDashboard() {
         createdAt: new Date().toISOString(),
       };
       updated = [...roster, newRoster];
-      showToast('Petugas ibadah baru berhasil ditambahkan');
     }
     setRoster(updated);
-    await adminDataStore.saveRoster(updated);
+    const ok = await adminDataStore.saveRoster(updated);
+    if (!ok) {
+      showToast('Gagal menyimpan jadwal pelayan ke database D1');
+    } else {
+      showToast(editingRosterId ? 'Jadwal pelayan berhasil diperbarui' : 'Petugas ibadah baru berhasil ditambahkan');
+    }
     setIsRosterModalOpen(false);
     setEditingRosterId(null);
   };
@@ -398,8 +408,12 @@ export default function AdminDashboard() {
   const handleUpdateRequestStatus = async (id: string, status: 'new' | 'in_progress' | 'completed') => {
     const updated = requests.map(r => r.id === id ? { ...r, status } : r);
     setRequests(updated);
-    await adminDataStore.updateMinistryRequests(updated);
-    showToast('Status permohonan berhasil diperbarui');
+    const ok = await adminDataStore.updateMinistryRequests(updated);
+    if (!ok) {
+      showToast('Gagal memperbarui status permohonan di database D1');
+    } else {
+      showToast('Status permohonan berhasil diperbarui');
+    }
   };
 
   const handleDeleteRequest = async (id: string) => {
@@ -422,7 +436,6 @@ export default function AdminDashboard() {
     let updated: Sermon[];
     if (editingSermonId) {
       updated = sermons.map((s) => s.id === editingSermonId ? { ...s, ...sermonForm } : s);
-      showToast('Khotbah berhasil diperbarui');
     } else {
       const newSermon: Sermon = {
         id: `srm-${Date.now()}`,
@@ -430,10 +443,14 @@ export default function AdminDashboard() {
         createdAt: new Date().toISOString(),
       };
       updated = [newSermon, ...sermons];
-      showToast('Khotbah baru berhasil ditambahkan');
     }
     setSermons(updated);
-    await adminDataStore.saveSermons(updated);
+    const ok = await adminDataStore.saveSermons(updated);
+    if (!ok) {
+      showToast('Gagal menyimpan khotbah ke database D1');
+    } else {
+      showToast(editingSermonId ? 'Khotbah berhasil diperbarui' : 'Khotbah baru berhasil ditambahkan');
+    }
     setIsSermonModalOpen(false);
     setEditingSermonId(null);
   };
@@ -466,8 +483,10 @@ export default function AdminDashboard() {
           (a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''),
         );
         setSermons(merged);
-        await adminDataStore.saveSermons(merged);
-        if (data.source === 'youtube_api') {
+        const ok = await adminDataStore.saveSermons(merged);
+        if (!ok) {
+          showToast('Video diterima, tapi gagal menyimpan ke database D1');
+        } else if (data.source === 'youtube_api') {
           showToast(`Sinkronisasi ${incoming.length} video terbaru — khotbah manual tetap aman`);
         } else {
           showToast('Sinkronisasi selesai (menggunakan data cadangan/kurasi)');
@@ -486,7 +505,6 @@ export default function AdminDashboard() {
     let updated: GalleryItem[];
     if (editingGalleryId) {
       updated = gallery.map((g) => g.id === editingGalleryId ? { ...g, ...galleryForm } : g);
-      showToast('Foto galeri berhasil diperbarui');
     } else {
       const newGal: GalleryItem = {
         id: `gal-${Date.now()}`,
@@ -494,10 +512,14 @@ export default function AdminDashboard() {
         createdAt: new Date().toISOString(),
       };
       updated = [newGal, ...gallery];
-      showToast('Foto galeri berhasil ditambahkan');
     }
     setGallery(updated);
-    await adminDataStore.saveGallery(updated);
+    const ok = await adminDataStore.saveGallery(updated);
+    if (!ok) {
+      showToast('Gagal menyimpan foto ke database D1');
+    } else {
+      showToast(editingGalleryId ? 'Foto galeri berhasil diperbarui' : 'Foto galeri berhasil ditambahkan');
+    }
     setIsGalleryModalOpen(false);
     setEditingGalleryId(null);
   };
@@ -529,7 +551,10 @@ export default function AdminDashboard() {
         : inv
     );
     setInventory(updated);
-    await adminDataStore.saveInventory(updated);
+    const ok = await adminDataStore.saveInventory(updated);
+    if (!ok) {
+      showToast('Gagal menyimpan status checklist ke database D1');
+    }
   };
 
   const handleSaveInventory = async (e: React.FormEvent) => {
@@ -545,7 +570,6 @@ export default function AdminDashboard() {
             }
           : inv
       );
-      showToast('Data barang inventaris berhasil diupdate');
     } else {
       const newInv: InventoryItem = {
         id: `inv-${Date.now()}`,
@@ -555,10 +579,14 @@ export default function AdminDashboard() {
         checkedBy: 'Majelis Admin',
       };
       updated = [...inventory, newInv];
-      showToast('Barang inventaris baru berhasil ditambahkan');
     }
     setInventory(updated);
-    await adminDataStore.saveInventory(updated);
+    const ok = await adminDataStore.saveInventory(updated);
+    if (!ok) {
+      showToast('Gagal menyimpan data barang ke database D1');
+    } else {
+      showToast(editingInvId ? 'Data barang inventaris berhasil diupdate' : 'Barang inventaris baru berhasil ditambahkan');
+    }
     setIsInvModalOpen(false);
     setEditingInvId(null);
   };

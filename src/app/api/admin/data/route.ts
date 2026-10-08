@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireRole } from '@/lib/auth';
 import { getDb, queryAll, execute } from '@/lib/d1';
+import { logAudit, auditContextFromRequest, type AuditAction } from '@/lib/auditLog';
 
 /**
  * Server-side mutation gateway for the admin portal backed by Cloudflare D1.
@@ -18,6 +19,24 @@ const TABLE_WHITELIST = [
 ] as const;
 
 type TableName = (typeof TABLE_WHITELIST)[number];
+
+const TABLE_MUTATE_ACTION: Record<TableName, AuditAction> = {
+  announcements: 'warta.update',
+  servant_rosters: 'roster.update',
+  inventory_items: 'inventory.update',
+  sermons: 'sermon.update',
+  gallery_items: 'gallery.upload',
+  ministry_requests: 'ministry_request.update',
+};
+
+const TABLE_DELETE_ACTION: Record<TableName, AuditAction> = {
+  announcements: 'warta.delete',
+  servant_rosters: 'roster.delete',
+  inventory_items: 'inventory.update',
+  sermons: 'sermon.delete',
+  gallery_items: 'gallery.delete',
+  ministry_requests: 'ministry_request.update',
+};
 
 const TABLE_COLUMNS: Record<TableName, Set<string>> = {
   announcements: new Set([
@@ -135,6 +154,15 @@ export async function POST(req: NextRequest) {
 
     await db.batch(statements);
 
+    await logAudit({
+      actor: { id: guard.id, username: guard.username, roles: guard.roles },
+      action: TABLE_MUTATE_ACTION[table],
+      target: { table, label: `${items.length} baris` },
+      summary: `Admin '${guard.username}' menyimpan ${items.length} baris ke tabel '${table}'`,
+      meta: { table, count: items.length },
+      ctx: auditContextFromRequest(req),
+    });
+
     return NextResponse.json({ success: true, table, count: items.length });
   } catch (err: any) {
     console.error(`[admin/data] POST ${table} failed:`, err);
@@ -158,6 +186,16 @@ export async function DELETE(req: NextRequest) {
 
   try {
     await execute(`DELETE FROM ${table} WHERE id = ?`, [id]);
+
+    await logAudit({
+      actor: { id: guard.id, username: guard.username, roles: guard.roles },
+      action: TABLE_DELETE_ACTION[table],
+      target: { table, id },
+      summary: `Admin '${guard.username}' menghapus baris dari tabel '${table}' (id: ${id})`,
+      meta: { table, id },
+      ctx: auditContextFromRequest(req),
+    });
+
     return NextResponse.json({ success: true, table, id });
   } catch (err: any) {
     console.error(`[admin/data] DELETE ${table} failed:`, err);

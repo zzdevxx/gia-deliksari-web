@@ -355,11 +355,11 @@ export const adminDataStore = {
     return list;
   },
 
-  saveAnnouncements: async (items: Announcement[]) => {
+  saveAnnouncements: async (items: Announcement[]): Promise<boolean> => {
     if (typeof window !== 'undefined') {
       try { localStorage.setItem(ANNOUNCEMENTS_KEY, JSON.stringify(items)); } catch {}
     }
-    await writeViaApi('announcements', items.map(toAnnouncementDB));
+    return await writeViaApi('announcements', items.map(toAnnouncementDB));
   },
 
   deleteAnnouncement: (id: string): Promise<boolean> =>
@@ -368,11 +368,11 @@ export const adminDataStore = {
   getRoster: (): Promise<ServantRoster[]> =>
     readViaApi<ServantRoster>('/api/admin/data?table=servant_rosters', ROSTER_KEY, toRosterModel, INITIAL_ROSTER),
 
-  saveRoster: async (items: ServantRoster[]) => {
+  saveRoster: async (items: ServantRoster[]): Promise<boolean> => {
     if (typeof window !== 'undefined') {
       try { localStorage.setItem(ROSTER_KEY, JSON.stringify(items)); } catch {}
     }
-    await writeViaApi('servant_rosters', items.map(toRosterDB));
+    return await writeViaApi('servant_rosters', items.map(toRosterDB));
   },
 
   deleteRoster: (id: string): Promise<boolean> =>
@@ -381,11 +381,11 @@ export const adminDataStore = {
   getInventory: (): Promise<InventoryItem[]> =>
     readViaApi<InventoryItem>('/api/admin/data?table=inventory_items', INVENTORY_KEY, toInventoryModel, INITIAL_INVENTORY),
 
-  saveInventory: async (items: InventoryItem[]) => {
+  saveInventory: async (items: InventoryItem[]): Promise<boolean> => {
     if (typeof window !== 'undefined') {
       try { localStorage.setItem(INVENTORY_KEY, JSON.stringify(items)); } catch {}
     }
-    await writeViaApi('inventory_items', items.map(toInventoryDB));
+    return await writeViaApi('inventory_items', items.map(toInventoryDB));
   },
 
   deleteInventory: (id: string): Promise<boolean> =>
@@ -394,11 +394,11 @@ export const adminDataStore = {
   getSermons: (): Promise<Sermon[]> =>
     readViaApi<Sermon>('/api/admin/data?table=sermons', SERMONS_KEY, toSermonModel, INITIAL_SERMONS),
 
-  saveSermons: async (items: Sermon[]) => {
+  saveSermons: async (items: Sermon[]): Promise<boolean> => {
     if (typeof window !== 'undefined') {
       try { localStorage.setItem(SERMONS_KEY, JSON.stringify(items)); } catch {}
     }
-    await writeViaApi('sermons', items.map(toSermonDB));
+    return await writeViaApi('sermons', items.map(toSermonDB));
   },
 
   deleteSermon: (id: string): Promise<boolean> =>
@@ -407,11 +407,11 @@ export const adminDataStore = {
   getGallery: (): Promise<GalleryItem[]> =>
     readViaApi<GalleryItem>('/api/admin/data?table=gallery_items', GALLERY_KEY, toGalleryModel, INITIAL_GALLERY),
 
-  saveGallery: async (items: GalleryItem[]) => {
+  saveGallery: async (items: GalleryItem[]): Promise<boolean> => {
     if (typeof window !== 'undefined') {
       try { localStorage.setItem(GALLERY_KEY, JSON.stringify(items)); } catch {}
     }
-    await writeViaApi('gallery_items', items.map(toGalleryDB));
+    return await writeViaApi('gallery_items', items.map(toGalleryDB));
   },
 
   deleteGallery: (id: string): Promise<boolean> =>
@@ -420,11 +420,11 @@ export const adminDataStore = {
   getMinistryRequests: (): Promise<MinistryRequest[]> =>
     readViaApi<MinistryRequest>('/api/admin/data?table=ministry_requests', REQUESTS_KEY, toRequestModel, INITIAL_MINISTRY_REQUESTS),
 
-  updateMinistryRequests: async (items: MinistryRequest[]) => {
+  updateMinistryRequests: async (items: MinistryRequest[]): Promise<boolean> => {
     if (typeof window !== 'undefined') {
       try { localStorage.setItem(REQUESTS_KEY, JSON.stringify(items)); } catch {}
     }
-    await writeViaApi('ministry_requests', items.map(toRequestDB));
+    return await writeViaApi('ministry_requests', items.map(toRequestDB));
   },
 
   deleteMinistryRequest: (id: string): Promise<boolean> =>

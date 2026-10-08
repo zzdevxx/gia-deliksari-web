@@ -3,6 +3,7 @@ import { getCloudflareContext } from '@opennextjs/cloudflare';
 import { execute } from '@/lib/d1';
 import { requireRole } from '@/lib/auth';
 import { uploadToGoogleDrive } from '@/lib/googleDrive';
+import { logAudit, auditContextFromRequest } from '@/lib/auditLog';
 import { GalleryItem } from '@/types';
 
 export async function POST(req: NextRequest) {
@@ -116,6 +117,15 @@ export async function POST(req: NextRequest) {
         now,
       ],
     );
+
+    await logAudit({
+      actor: { id: guard.id, username: guard.username, roles: guard.roles },
+      action: 'gallery.upload',
+      target: { table: 'gallery_items', id, label: title },
+      summary: `Admin '${guard.username}' mengunggah foto '${title}' (${category})`,
+      meta: { id, title, category, driveFileId: newGalleryItem.driveFileId },
+      ctx: auditContextFromRequest(req),
+    });
 
     return NextResponse.json({
       success: true,
