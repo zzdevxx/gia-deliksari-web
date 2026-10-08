@@ -1,22 +1,23 @@
 ---
 name: GIA Deliksari Web Portal
-description: Warm, reverent digital home for the GIA Deliksari congregation.
+description: Clean, reverent digital home for the GIA Deliksari congregation.
 colors:
   primary: "#8B1E28"
-  primary-dark: "#C04050"
-  gold: "#75561E"
-  gold-dark: "#C49B45"
-  alabaster: "#FAF7F2"
-  cream: "#F3EFE6"
+  primary-dark: "#B8323D"
+  primary-hover: "#731820"
+  gold: "#4B5563"
+  gold-dark: "#9CA3AF"
+  alabaster: "#FFFFFF"
+  cream: "#F3F4F6"
   card: "#FFFFFF"
-  ink: "#1C1917"
-  ink-muted: "#665E55"
-  charcoal: "#141312"
-  slate-card: "#1D1B19"
-  slate-raised: "#262421"
-  slate-border: "#332F2B"
-  linen: "#F5F3EF"
-  linen-muted: "#A8A196"
+  ink: "#111827"
+  ink-muted: "#6B7280"
+  charcoal: "#0F1115"
+  slate-card: "#171A21"
+  slate-raised: "#1F232D"
+  slate-border: "#2A2F3A"
+  linen: "#F9FAFB"
+  linen-muted: "#9CA3AF"
 typography:
   body:
     fontFamily: "var(--font-sans), system-ui, sans-serif"
@@ -64,44 +65,44 @@ components:
 
 ## Overview
 
-**Creative North Star: "The Warm Sanctuary"**
+**Creative North Star: "The Clean Sanctuary"**
 
-GIA Deliksari's web portal should feel like arriving at a familiar church home: calm, welcoming, and grounded in real community life around Sekaran and UNNES. Warm paper and stone surfaces hold the page; the official crimson identity remains visible, but only where it helps people find an action or recognize a meaningful church detail.
+GIA Deliksari's web portal should feel like arriving at a familiar church home: calm, welcoming, and grounded in real community life around Sekaran and UNNES. Pure white surfaces and cool neutral greys hold the page; the official crimson identity remains visible, but only where it helps people find an action or recognize a meaningful church detail.
 
-The public pages invite visitors and communicate schedules. The admin, superuser, and treasury portals help church operators finish practical work. Their visual density may differ, but both share the same warm-neutral foundations, legible text, and restrained identity accents.
+The public pages invite visitors and communicate schedules. The admin, superuser, and treasury portals help church operators finish practical work. Their visual density may differ, but both share the same neutral foundations, legible text, and restrained identity accents.
 
 **Key Characteristics:**
-- Warm alabaster and mineral neutrals carry most of the interface.
-- Sacred wine is reserved for primary actions and a few meaningful highlights.
-- Gold marks liturgical emphasis, not decoration.
+- Pure white canvas and cool neutral greys carry most of the interface. No sepia, cream, or caramel surfaces.
+- Sacred wine `#8B1E28` is reserved for primary actions and a few meaningful highlights — the only saturated colour on the page.
+- Warm gold is gone; liturgical emphasis uses cool slate `#4B5563` instead, so the palette never drifts toward brown.
 - Flat, composed surfaces keep attention on people, schedules, and service information.
 
 ## Colors
 
-A warm neutral foundation supports a small number of intentional church identity accents. Light and dark themes use distinct surface ramps; dark mode is charcoal stone, not a mechanical inverse.
+A cool neutral foundation supports a single intentional church identity accent. Light and dark themes use distinct surface ramps; dark mode is cool slate, not a mechanical inverse, and never a warm brown-black.
 
 ### Primary
 - **Sacred Wine** (`{colors.primary}`): Primary actions, selected navigation, and a limited set of church identity highlights.
 - **Night Wine** (`{colors.primary-dark}`): Primary-action counterpart on dark surfaces.
 
 ### Secondary
-- **Altar Brass** (`{colors.gold}`): Small liturgical emphasis and schedule cues. Keep labels readable and verify each foreground/background pair.
-- **Evening Brass** (`{colors.gold-dark}`): Gold accent on dark surfaces.
+- **Cool Slate** (`{colors.gold}`): Small liturgical emphasis and schedule cues, replacing the former warm brass. Keep labels readable and verify each foreground/background pair.
+- **Mist Slate** (`{colors.gold-dark}`): Slate accent on dark surfaces.
 
 ### Neutral
-- **Warm Alabaster** (`{colors.alabaster}`): Main light-mode canvas.
-- **Soft Cream** (`{colors.cream}`): Secondary light surface and neutral badge fill.
+- **Pure White** (`{colors.alabaster}`): Main light-mode canvas.
+- **Cool Mist** (`{colors.cream}`): Secondary light surface and neutral badge fill.
 - **White Linen** (`{colors.card}`): Light-mode cards and raised content surfaces.
-- **Stone Ink** (`{colors.ink}`): Primary light-mode text.
-- **Warm Stone Text** (`{colors.ink-muted}`): Secondary light-mode text; verify on each actual surface.
-- **Cathedral Charcoal** (`{colors.charcoal}`): Main dark-mode canvas.
-- **Warm Slate** (`{colors.slate-card}`): Dark cards and popovers.
+- **Graphite Ink** (`{colors.ink}`): Primary light-mode text.
+- **Graphite Muted** (`{colors.ink-muted}`): Secondary light-mode text; verify on each actual surface.
+- **Cathedral Charcoal** (`{colors.charcoal}`): Main dark-mode canvas, cool near-black.
+- **Slate Card** (`{colors.slate-card}`): Dark cards and popovers.
 - **Raised Slate** (`{colors.slate-raised}`): Elevated dark surfaces and controls.
 - **Chiseled Edge** (`{colors.slate-border}`): Dark-mode borders and separators.
 - **Linen Text** (`{colors.linen}`): Primary dark-mode text.
 - **Mineral Text** (`{colors.linen-muted}`): Secondary dark-mode text; verify on each actual surface.
 
-**The Rare Wine Rule.** Sacred wine communicates identity and action. Ordinary categories, information badges, and structural borders remain neutral.
+**The Rare Wine Rule.** Sacred wine communicates identity and action. Ordinary categories, information badges, and structural borders remain neutral. Warm, sepia, cream, and caramel tones are not part of this palette — if a surface reads brown, it is wrong.
 
 ## Typography
 
@@ -132,16 +133,16 @@ Cards have gently rounded corners (16px). Controls use a smaller, clear radius (
 ## Components
 
 ### Buttons
-Primary actions use a solid Sacred Wine fill, white text, and a visible focus ring. Secondary actions use a neutral surface and border. Gold-filled controls use a sufficiently dark foreground; white text on light gold is not an approved pairing. Hover states should be restrained and preserve contrast.
+Primary actions use a solid Sacred Wine fill, white text, and a visible focus ring. Secondary actions use a neutral surface and border. Slate-filled controls use a sufficiently dark foreground; white text on light slate is not an approved pairing. Hover states should be restrained and preserve contrast.
 
 ### Chips and badges
-Neutral is the default for ordinary categories and metadata. Wine or gold variants are used only where their meaning is specific. Status color is paired with a readable label and is never the sole carrier of meaning.
+Neutral is the default for ordinary categories and metadata. Wine variants are used only where their meaning is specific. Slate variants mark liturgical emphasis. Status color is paired with a readable label and is never the sole carrier of meaning.
 
 ### Cards and containers
-Content cards use white linen in light mode and warm slate in dark mode with a fine neutral border. Category is communicated through headings, compact badges, and explicit labels rather than thick colored edge bars.
+Content cards use white linen in light mode and slate card in dark mode with a fine neutral border. Category is communicated through headings, compact badges, and explicit labels rather than thick colored edge bars.
 
 ### Navigation
-Navigation backgrounds follow the active theme. The active route uses clear text weight and one restrained indicator. Mobile navigation remains grouped and discoverable.
+Navigation backgrounds follow the active theme. The active route uses clear text weight and one restrained indicator. The header exposes exactly one control on small screens — the menu trigger. Theme and admin entry points live inside the mobile drawer, never as duplicate floating buttons, so no breakpoint can render two of them at once. Mobile navigation remains grouped and discoverable.
 
 ### Print bulletin
 The `/info/print` route uses an editorial serif face, clear section hierarchy, and print-safe contrast on white paper. Its layout must remain usable as an A4 printout.

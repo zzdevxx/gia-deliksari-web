@@ -21,12 +21,12 @@ const ROLE_META: Record<Role, { label: string; color: string; portal: string }> 
   },
   admin: {
     label: 'Admin / Operator',
-    color: 'bg-[#FAF0ED] dark:bg-[#281814] text-[#A0442C] dark:text-[#D96B4F] border-[#EAC9C0] dark:border-[#4D2820]',
+    color: 'bg-[#F9FAFB] dark:bg-[#1E293B] text-[#475569] dark:text-[#64748B] border-[#E5E7EB] dark:border-[#334155]',
     portal: '/admin',
   },
   treasurer: {
     label: 'Bendahara Youth',
-    color: 'bg-[#FEF9EC] dark:bg-[#2D2517] text-[#8C6826] dark:text-[#E0B85C] border-[#F5DFAB] dark:border-[#52411E]',
+    color: 'bg-[#F9FAFB] dark:bg-[#1F232D] text-[#4B5563] dark:text-[#9CA3AF] border-[#E5E7EB] dark:border-[#2A2F3A]',
     portal: '/kas',
   },
 };
@@ -47,16 +47,16 @@ interface UserTableProps {
 const UserTable: React.FC<UserTableProps> = ({ users, loading, currentUsername, onEdit, onDeactivate }) => {
   if (loading) {
     return (
-      <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] shadow-sm">
-        <div className="p-8 text-center text-xs text-[#665E55] dark:text-[#A8A196]">Memuat daftar user…</div>
+      <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-sm">
+        <div className="p-8 text-center text-xs text-[#6B7280] dark:text-[#9CA3AF]">Memuat daftar user…</div>
       </div>
     );
   }
 
   return (
-    <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] shadow-sm">
+    <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-sm">
       <table className="w-full text-left text-xs sm:text-sm">
-        <thead className="bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] border-b border-[#E5DFD5] dark:border-[#332F2B]">
+        <thead className="bg-[#F3F4F6] dark:bg-[#1F232D] text-[#111827] dark:text-[#F9FAFB] border-b border-[#E5E7EB] dark:border-[#2A2F3A]">
           <tr>
             <th className="p-4 font-bold">Username</th>
             <th className="p-4 font-bold">Role</th>
@@ -66,10 +66,10 @@ const UserTable: React.FC<UserTableProps> = ({ users, loading, currentUsername, 
             <th className="p-4 font-bold text-right">Aksi</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-[#E5DFD5] dark:divide-[#332F2B]">
+        <tbody className="divide-y divide-[#E5E7EB] dark:divide-[#2A2F3A]">
           {users.length === 0 ? (
             <tr>
-              <td colSpan={6} className="p-8 text-center text-xs text-[#665E55] dark:text-[#A8A196]">
+              <td colSpan={6} className="p-8 text-center text-xs text-[#6B7280] dark:text-[#9CA3AF]">
                 Belum ada user. Klik "Tambah User Baru" untuk mulai.
               </td>
             </tr>
@@ -80,10 +80,10 @@ const UserTable: React.FC<UserTableProps> = ({ users, loading, currentUsername, 
               return (
                 <tr
                   key={u.id}
-                  className={`hover:bg-[#FAF7F2] dark:hover:bg-[#261317] transition-colors ${!u.active ? 'opacity-50' : ''}`}
+                  className={`hover:bg-[#FFFFFF] dark:hover:bg-[#261317] transition-colors ${!u.active ? 'opacity-50' : ''}`}
                 >
                   <td className="p-4">
-                    <div className="font-mono font-bold text-[#1C1917] dark:text-[#F5F3EF]">{u.username}</div>
+                    <div className="font-mono font-bold text-[#111827] dark:text-[#F9FAFB]">{u.username}</div>
                     {u.username === currentUsername && (
                       <span className="text-[10px] uppercase font-bold text-[#8B1E28] dark:text-[#E88086]">← Anda</span>
                     )}
@@ -92,13 +92,13 @@ const UserTable: React.FC<UserTableProps> = ({ users, loading, currentUsername, 
                     <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-bold border ${meta.color}`}>
                       {meta.label}
                     </span>
-                    <div className="text-[10px] text-[#665E55] dark:text-[#A8A196] mt-0.5">
+                    <div className="text-[10px] text-[#6B7280] dark:text-[#9CA3AF] mt-0.5">
                       → {meta.portal}
                       {u.roles.length > 1 && ` (+${u.roles.length - 1})`}
                     </div>
                   </td>
-                  <td className="p-4 text-[#1C1917] dark:text-[#F5F3EF]">
-                    {u.display_name || <span className="text-[#665E55] dark:text-[#A8A196] italic">—</span>}
+                  <td className="p-4 text-[#111827] dark:text-[#F9FAFB]">
+                    {u.display_name || <span className="text-[#6B7280] dark:text-[#9CA3AF] italic">—</span>}
                   </td>
                   <td className="p-4">
                     {u.active ? (
@@ -111,7 +111,7 @@ const UserTable: React.FC<UserTableProps> = ({ users, loading, currentUsername, 
                       </span>
                     )}
                   </td>
-                  <td className="p-4 text-xs text-[#665E55] dark:text-[#A8A196]">
+                  <td className="p-4 text-xs text-[#6B7280] dark:text-[#9CA3AF]">
                     {u.last_login_at
                       ? new Date(u.last_login_at).toLocaleString('id-ID', {
                           day: 'numeric',
@@ -128,7 +128,7 @@ const UserTable: React.FC<UserTableProps> = ({ users, loading, currentUsername, 
                         <button
                           onClick={() => onEdit(u)}
                           title="Edit role / password"
-                          className="p-2 rounded-xl bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] hover:bg-[#E5DFD5] dark:hover:bg-[#332F2B] border border-[#E5DFD5] dark:border-[#332F2B]"
+                          className="p-2 rounded-xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#111827] dark:text-[#F9FAFB] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[#E5E7EB] dark:border-[#2A2F3A]"
                         >
                           <Edit2 className="w-3.5 h-3.5" />
                         </button>

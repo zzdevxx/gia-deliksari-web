@@ -307,18 +307,18 @@ export default function KasDashboard() {
   // ---------------------- LOGIN SCREEN ----------------------
   if (authChecked && !authUser) {
     return (
-      <main className="min-h-screen bg-[#FAF7F2] dark:bg-[#141312] text-[#1C1917] dark:text-[#F5F3EF] flex flex-col justify-between selection:bg-[#8B1E28] selection:text-white">
+      <main className="min-h-screen bg-[#FFFFFF] dark:bg-[#0F1115] text-[#111827] dark:text-[#F9FAFB] flex flex-col justify-between selection:bg-[#8B1E28] selection:text-white">
         <Navbar />
         <div className="flex-1 flex items-center justify-center p-4 sm:p-6 py-20 relative overflow-hidden">
-          <div className="w-full max-w-md bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] rounded-2xl shadow-md p-8 sm:p-10 relative z-10 space-y-6 animate-in fade-in zoom-in-95 duration-300">
+          <div className="w-full max-w-md bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] rounded-2xl shadow-md p-8 sm:p-10 relative z-10 space-y-6 animate-in fade-in zoom-in-95 duration-300">
             <div className="text-center space-y-3">
               <div className="w-16 h-16 rounded-2xl bg-[#8B1E28] dark:bg-[#B8323D] text-white flex items-center justify-center mx-auto shadow-sm">
                 <Wallet className="w-8 h-8" />
               </div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1C1917] dark:text-[#F5F3EF] tracking-tight">
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight">
                 Kas Grow Generation
               </h1>
-              <p className="text-xs sm:text-sm text-[#665E55] dark:text-[#A8A196] leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
                 Portal manajemen keuangan pemuda & remaja GIA Deliksari.
                 <br />
                 <span className="text-[#8B1E28] dark:text-[#E88086] font-bold">
@@ -335,7 +335,7 @@ export default function KasDashboard() {
 
             <form onSubmit={handleLogin} className="space-y-4">
               <div className="space-y-2">
-                <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF] uppercase tracking-wider">
+                <label className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB] uppercase tracking-wider">
                   Username Bendahara
                 </label>
                 <input
@@ -346,12 +346,12 @@ export default function KasDashboard() {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="namabendahara"
-                  className="w-full px-4 py-3.5 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400"
+                  className="w-full px-4 py-3.5 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-sm text-[#111827] dark:text-[#F9FAFB] focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF] uppercase tracking-wider">
+                <label className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB] uppercase tracking-wider">
                   PIN / Password
                 </label>
                 <input
@@ -361,7 +361,7 @@ export default function KasDashboard() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••"
-                  className="w-full px-4 py-3.5 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400 tracking-widest"
+                  className="w-full px-4 py-3.5 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-sm text-[#111827] dark:text-[#F9FAFB] focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400 tracking-widest"
                 />
               </div>
 
@@ -392,38 +392,38 @@ export default function KasDashboard() {
 
   if (!authChecked) {
     return (
-      <main className="min-h-screen flex items-center justify-center bg-[#FAF7F2] dark:bg-[#141312]">
-        <div className="animate-pulse text-[#665E55] dark:text-[#A8A196]">Memuat…</div>
+      <main className="min-h-screen flex items-center justify-center bg-[#FFFFFF] dark:bg-[#0F1115]">
+        <div className="animate-pulse text-[#6B7280] dark:text-[#9CA3AF]">Memuat…</div>
       </main>
     );
   }
 
   // ---------------------- DASHBOARD ----------------------
   return (
-    <main className="min-h-screen bg-[#FAF7F2] dark:bg-[#141312] text-[#1C1917] dark:text-[#F5F3EF] flex flex-col justify-between selection:bg-[#8B1E28] selection:text-white">
+    <main className="min-h-screen bg-[#FFFFFF] dark:bg-[#0F1115] text-[#111827] dark:text-[#F9FAFB] flex flex-col justify-between selection:bg-[#8B1E28] selection:text-white">
       <Navbar />
 
       {ToastView}
 
       <div className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-8">
         {/* Top Header Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-sm">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FEF9EC] dark:bg-[#2D2517] text-[#8C6826] dark:text-[#E0B85C] border border-[#F5DFAB] dark:border-[#52411E]">
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#F9FAFB] dark:bg-[#1F232D] text-[#4B5563] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A]">
                 💰 Portal Kas Grow Generation
               </span>
-              <div className="flex items-center gap-1.5 text-xs text-[#665E55] dark:text-[#A8A196]">
-                <Coins className="w-3.5 h-3.5 text-[#8C6826]" />
+              <div className="flex items-center gap-1.5 text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+                <Coins className="w-3.5 h-3.5 text-[#4B5563]" />
                 <span>{transactions.length} transaksi tercatat</span>
               </div>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1C1917] dark:text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#111827] dark:text-white tracking-tight">
               Manajemen Kas Youth
             </h1>
-            <p className="text-xs text-[#665E55] dark:text-[#A8A196]">
+            <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
               Login sebagai{' '}
-              <span className="font-bold text-[#1C1917] dark:text-[#F5F3EF]">
+              <span className="font-bold text-[#111827] dark:text-[#F9FAFB]">
                 {authUser?.display_name || authUser?.username}
               </span>{' '}
               ({authUser?.roles?.join(', ') || authUser?.username})
@@ -434,23 +434,23 @@ export default function KasDashboard() {
             <button
               onClick={loadData}
               title="Refresh"
-              className="p-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] hover:bg-[#E5DFD5] dark:hover:bg-[#332F2B] border border-[#E5DFD5] dark:border-[#332F2B] transition-colors flex items-center gap-2 text-xs font-bold"
+              className="p-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#111827] dark:text-[#F9FAFB] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[#E5E7EB] dark:border-[#2A2F3A] transition-colors flex items-center gap-2 text-xs font-bold"
             >
-              <RefreshCw className={`w-4 h-4 text-[#8C6826] ${loading ? 'animate-spin' : ''}`} />
+              <RefreshCw className={`w-4 h-4 text-[#4B5563] ${loading ? 'animate-spin' : ''}`} />
               <span className="hidden sm:inline">Refresh</span>
             </button>
 
             <Link
               href="/home"
-              className="px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] hover:bg-[#E5DFD5] dark:hover:bg-[#332F2B] border border-[#E5DFD5] dark:border-[#332F2B] transition-colors text-xs font-bold flex items-center gap-2"
+              className="px-4 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#111827] dark:text-[#F9FAFB] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[#E5E7EB] dark:border-[#2A2F3A] transition-colors text-xs font-bold flex items-center gap-2"
             >
-              <ExternalLink className="w-3.5 h-3.5 text-[#8C6826]" />
+              <ExternalLink className="w-3.5 h-3.5 text-[#4B5563]" />
               <span>Lihat Website</span>
             </Link>
 
             <button
               onClick={handleLogout}
-              className="px-4 py-3 rounded-2xl bg-white dark:bg-[#1D1B19] hover:bg-[#F3EFE6] dark:hover:bg-[#262421] text-[#665E55] dark:text-[#A8A196] border border-[#E5DFD5] dark:border-[#332F2B] transition-colors text-xs font-bold flex items-center gap-2"
+              className="px-4 py-3 rounded-2xl bg-white dark:bg-[#171A21] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A] transition-colors text-xs font-bold flex items-center gap-2"
             >
               <LogOut className="w-3.5 h-3.5" />
               <span>Keluar</span>
@@ -467,10 +467,10 @@ export default function KasDashboard() {
               </span>
               <TrendingUp className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
             </div>
-            <div className="text-3xl font-extrabold text-[#1C1917] dark:text-[#F5F3EF] font-mono">
+            <div className="text-3xl font-extrabold text-[#111827] dark:text-[#F9FAFB] font-mono">
               {formatIDR(Number(balance.total_income))}
             </div>
-            <div className="text-xs text-[#665E55] dark:text-[#A8A196]">
+            <div className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
               {balance.income_count} transaksi pemasukan
             </div>
           </div>
@@ -482,10 +482,10 @@ export default function KasDashboard() {
               </span>
               <TrendingDown className="w-5 h-5 text-rose-600 dark:text-rose-400" />
             </div>
-            <div className="text-3xl font-extrabold text-[#1C1917] dark:text-[#F5F3EF] font-mono">
+            <div className="text-3xl font-extrabold text-[#111827] dark:text-[#F9FAFB] font-mono">
               {formatIDR(Number(balance.total_expense))}
             </div>
-            <div className="text-xs text-[#665E55] dark:text-[#A8A196]">
+            <div className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
               {balance.expense_count} transaksi pengeluaran
             </div>
           </div>
@@ -498,7 +498,7 @@ export default function KasDashboard() {
             }`}
           >
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#1C1917] dark:text-[#F5F3EF]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#111827] dark:text-[#F9FAFB]">
                 Saldo Kas
               </span>
               <Wallet
@@ -514,7 +514,7 @@ export default function KasDashboard() {
             >
               {formatIDR(Number(balance.balance))}
             </div>
-            <div className="text-xs text-[#665E55] dark:text-[#A8A196]">
+            <div className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
               {Number(balance.balance) < 0 ? '⚠️ Saldo negatif — perlu top-up' : '✓ Kas Grow Generation'}
             </div>
           </div>
@@ -523,8 +523,8 @@ export default function KasDashboard() {
         {/* Action Bar */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h2 className="text-xl font-extrabold text-[#1C1917] dark:text-white">Buku Kas</h2>
-            <p className="text-xs text-[#665E55] dark:text-[#A8A196]">
+            <h2 className="text-xl font-extrabold text-[#111827] dark:text-white">Buku Kas</h2>
+            <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
               Catat pemasukan & pengeluaran Grow Generation.
             </p>
           </div>
@@ -548,7 +548,7 @@ export default function KasDashboard() {
 
         {/* Filter */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-          <div className="flex items-center gap-1 bg-[#F3EFE6] dark:bg-[#1D1B19] p-1 rounded-xl border border-[#E5DFD5] dark:border-[#332F2B]">
+          <div className="flex items-center gap-1 bg-[#F3F4F6] dark:bg-[#171A21] p-1 rounded-xl border border-[#E5E7EB] dark:border-[#2A2F3A]">
             {[
               { id: 'all', label: 'Semua' },
               { id: 'income', label: 'Pemasukan' },
@@ -559,8 +559,8 @@ export default function KasDashboard() {
                 onClick={() => setFilterType(f.id as any)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                   filterType === f.id
-                    ? 'bg-white dark:bg-[#262421] text-[#1C1917] dark:text-white shadow-xs'
-                    : 'text-[#665E55] dark:text-[#A8A196] hover:text-[#1C1917]'
+                    ? 'bg-white dark:bg-[#1F232D] text-[#111827] dark:text-white shadow-xs'
+                    : 'text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#111827]'
                 }`}
               >
                 {f.label}
@@ -575,26 +575,26 @@ export default function KasDashboard() {
               placeholder="Cari kategori / deskripsi..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] text-xs text-[#1C1917] dark:text-[#F5F3EF] outline-none focus:ring-2 focus:ring-[#8C6826]/30"
+              className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs text-[#111827] dark:text-[#F9FAFB] outline-none focus:ring-2 focus:ring-[#4B5563]/30"
             />
           </div>
         </div>
 
         {/* Transactions Table */}
-        <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] shadow-sm">
+        <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-sm">
           {filtered.length === 0 ? (
             <div className="p-12 text-center space-y-3">
-              <Wallet className="w-10 h-10 text-[#8C6826] mx-auto opacity-60" />
-              <h3 className="font-bold text-base text-[#1C1917] dark:text-[#F5F3EF]">
+              <Wallet className="w-10 h-10 text-[#4B5563] mx-auto opacity-60" />
+              <h3 className="font-bold text-base text-[#111827] dark:text-[#F9FAFB]">
                 {transactions.length === 0 ? 'Belum ada transaksi' : 'Tidak ada transaksi sesuai filter'}
               </h3>
-              <p className="text-xs text-[#665E55] dark:text-[#A8A196]">
+              <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
                 Klik "Catat Pemasukan" atau "Catat Pengeluaran" untuk mulai.
               </p>
             </div>
           ) : (
             <table className="w-full text-left text-xs sm:text-sm">
-              <thead className="bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] border-b border-[#E5DFD5] dark:border-[#332F2B]">
+              <thead className="bg-[#F3F4F6] dark:bg-[#1F232D] text-[#111827] dark:text-[#F9FAFB] border-b border-[#E5E7EB] dark:border-[#2A2F3A]">
                 <tr>
                   <th className="p-4 font-bold">Tanggal</th>
                   <th className="p-4 font-bold">Tipe</th>
@@ -604,14 +604,14 @@ export default function KasDashboard() {
                   <th className="p-4 font-bold text-right">Aksi</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#E5DFD5] dark:divide-[#332F2B]">
+              <tbody className="divide-y divide-[#E5E7EB] dark:divide-[#2A2F3A]">
                 {filtered.map((t) => (
-                  <tr key={t.id} className="hover:bg-[#FAF7F2] dark:hover:bg-[#261317] transition-colors">
+                  <tr key={t.id} className="hover:bg-[#FFFFFF] dark:hover:bg-[#261317] transition-colors">
                     <td className="p-4">
-                      <div className="font-mono text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">
+                      <div className="font-mono text-xs font-bold text-[#111827] dark:text-[#F9FAFB]">
                         {t.transaction_date}
                       </div>
-                      <div className="text-[10px] text-[#665E55] dark:text-[#A8A196] mt-0.5">
+                      <div className="text-[10px] text-[#6B7280] dark:text-[#9CA3AF] mt-0.5">
                         oleh {t.created_by?.slice(0, 8) || '—'}
                       </div>
                     </td>
@@ -629,7 +629,7 @@ export default function KasDashboard() {
                       )}
                     </td>
                     <td className="p-4">
-                      <div className="font-mono text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF]">
+                      <div className="font-mono text-xs font-bold text-[#111827] dark:text-[#F9FAFB]">
                         {t.category}
                       </div>
                     </td>
@@ -642,7 +642,7 @@ export default function KasDashboard() {
                     >
                       {t.type === 'income' ? '+' : '−'} {formatIDR(Number(t.amount))}
                     </td>
-                    <td className="p-4 text-xs text-[#665E55] dark:text-[#A8A196] max-w-xs">
+                    <td className="p-4 text-xs text-[#6B7280] dark:text-[#9CA3AF] max-w-xs">
                       {t.description || <span className="italic-">—</span>}
                     </td>
                     <td className="p-4 text-right">
@@ -650,7 +650,7 @@ export default function KasDashboard() {
                         <button
                           onClick={() => openEditModal(t)}
                           title="Edit"
-                          className="p-2 rounded-xl bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] hover:bg-[#E5DFD5] dark:hover:bg-[#332F2B] border border-[#E5DFD5] dark:border-[#332F2B]"
+                          className="p-2 rounded-xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#111827] dark:text-[#F9FAFB] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[#E5E7EB] dark:border-[#2A2F3A]"
                         >
                           <Edit2 className="w-3.5 h-3.5" />
                         </button>
@@ -674,9 +674,9 @@ export default function KasDashboard() {
       {/* ============== MODAL: ADD / EDIT TRANSACTION ============== */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-          <div className="w-full max-w-lg bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] rounded-2xl shadow-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
+          <div className="w-full max-w-lg bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] rounded-2xl shadow-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between">
-              <h3 className="text-xl font-extrabold text-[#1C1917] dark:text-white">
+              <h3 className="text-xl font-extrabold text-[#111827] dark:text-white">
                 {editingId ? 'Edit Transaksi' : form.type === 'income' ? 'Catat Pemasukan' : 'Catat Pengeluaran'}
               </h3>
               <button onClick={() => setIsModalOpen(false)} className="p-2 text-stone-400 hover:text-stone-600">
@@ -687,7 +687,7 @@ export default function KasDashboard() {
             <form onSubmit={handleSave} className="space-y-4">
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF] uppercase tracking-wider">
+                  <label className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB] uppercase tracking-wider">
                     Tanggal
                   </label>
                   <input
@@ -695,17 +695,17 @@ export default function KasDashboard() {
                     required
                     value={form.transaction_date}
                     onChange={(e) => setForm({ ...form, transaction_date: e.target.value })}
-                    className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none focus:ring-2 focus:ring-[#8C6826]/30"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-sm text-[#111827] dark:text-[#F9FAFB] outline-none focus:ring-2 focus:ring-[#4B5563]/30"
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF] uppercase tracking-wider">
+                  <label className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB] uppercase tracking-wider">
                     Tipe
                   </label>
                   <select
                     value={form.type}
                     onChange={(e) => setForm({ ...form, type: e.target.value as any })}
-                    className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-sm text-[#111827] dark:text-[#F9FAFB] outline-none"
                   >
                     <option value="income">📈 Pemasukan</option>
                     <option value="expense">📉 Pengeluaran</option>
@@ -714,7 +714,7 @@ export default function KasDashboard() {
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF] uppercase tracking-wider">
+                <label className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB] uppercase tracking-wider">
                   Kategori *
                 </label>
                 <input
@@ -724,20 +724,20 @@ export default function KasDashboard() {
                   value={form.category}
                   onChange={(e) => setForm({ ...form, category: e.target.value })}
                   placeholder="contoh: iuran_anggota"
-                  className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm font-mono text-[#1C1917] dark:text-[#F5F3EF] outline-none focus:ring-2 focus:ring-[#8C6826]/30"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-sm font-mono text-[#111827] dark:text-[#F9FAFB] outline-none focus:ring-2 focus:ring-[#4B5563]/30"
                 />
                 <datalist id="kas-categories">
                   {SUGGESTED_CATEGORIES.map((c) => (
                     <option key={c} value={c} />
                   ))}
                 </datalist>
-                <p className="text-[10px] text-[#665E55] dark:text-[#A8A196]">
+                <p className="text-[10px] text-[#6B7280] dark:text-[#9CA3AF]">
                   Saran: {SUGGESTED_CATEGORIES.join(', ')}
                 </p>
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF] uppercase tracking-wider">
+                <label className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB] uppercase tracking-wider">
                   Nominal (Rp) *
                 </label>
                 <input
@@ -748,12 +748,12 @@ export default function KasDashboard() {
                   value={form.amount}
                   onChange={(e) => setForm({ ...form, amount: e.target.value })}
                   placeholder="50000"
-                  className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm font-mono text-[#1C1917] dark:text-[#F5F3EF] outline-none focus:ring-2 focus:ring-[#8C6826]/30"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-sm font-mono text-[#111827] dark:text-[#F9FAFB] outline-none focus:ring-2 focus:ring-[#4B5563]/30"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF] uppercase tracking-wider">
+                <label className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB] uppercase tracking-wider">
                   Catatan (opsional)
                 </label>
                 <textarea
@@ -761,7 +761,7 @@ export default function KasDashboard() {
                   value={form.description}
                   onChange={(e) => setForm({ ...form, description: e.target.value })}
                   placeholder="Detail tambahan: nama penyetor, sumber dana, dll."
-                  className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-sm text-[#1C1917] dark:text-[#F5F3EF] outline-none focus:ring-2 focus:ring-[#8C6826]/30 resize-none"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-sm text-[#111827] dark:text-[#F9FAFB] outline-none focus:ring-2 focus:ring-[#4B5563]/30 resize-none"
                 />
               </div>
 
@@ -769,7 +769,7 @@ export default function KasDashboard() {
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-5 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] text-[#665E55] dark:text-[#A8A196] text-xs font-bold"
+                  className="px-5 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] text-xs font-bold"
                 >
                   Batal
                 </button>

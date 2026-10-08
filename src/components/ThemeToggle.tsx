@@ -16,16 +16,16 @@ export default function ThemeToggle({ className = '' }: Props) {
       onClick={toggleTheme}
       type="button"
       aria-label="Toggle Dark/Light Mode"
-      className={`relative p-2.5 rounded-xl border transition-all duration-300 flex items-center justify-center ${
+      className={`relative p-2 rounded-lg border transition-colors duration-200 flex items-center justify-center shrink-0 ${
         theme === 'dark'
-          ? 'bg-slate-800 border-slate-700 text-amber-400 hover:bg-slate-700 shadow-sm'
-          : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100 hover:text-amber-600 shadow-sm'
+          ? 'bg-[#1F232D] border-[#2A2F3A] text-[#F9FAFB] hover:bg-[#2A2F3A]'
+          : 'bg-white border-[#E5E7EB] text-[#111827] hover:bg-[#F3F4F6]'
       } ${className}`}
     >
       {theme === 'dark' ? (
-        <Sun className="w-5 h-5 transition-transform duration-300 rotate-0 hover:rotate-45" />
+        <Sun className="w-4 h-4" />
       ) : (
-        <Moon className="w-5 h-5 transition-transform duration-300 -rotate-12 hover:rotate-0" />
+        <Moon className="w-4 h-4" />
       )}
     </button>
   );

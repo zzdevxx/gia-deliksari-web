@@ -89,8 +89,8 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
         }
         body {
           font-family: Georgia, 'Times New Roman', serif;
-          color: #1C1917;
-          background: #FAF7F2;
+          color: #111827;
+          background: #FFFFFF;
           margin: 0;
           padding: 24px;
           line-height: 1.5;
@@ -116,12 +116,12 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
         }
         .bulletin-header .subtitle {
           font-size: 12px;
-          color: #665E55;
+          color: #6B7280;
           margin-bottom: 8px;
         }
         .bulletin-header .tagline {
           font-size: 14px;
-          color: #8C6826;
+          color: #4B5563;
           font-weight: 700;
           margin-top: 4px;
         }
@@ -134,14 +134,14 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
           font-size: 18px;
           margin: 0 0 12px;
           padding-bottom: 6px;
-          border-bottom: 2px solid #E5DFD5;
+          border-bottom: 2px solid #E5E7EB;
           font-weight: 800;
         }
         .warta-item {
           padding: 10px 12px;
           margin-bottom: 8px;
-          background: #FAF7F2;
-          border: 1px solid #E5DFD5;
+          background: #FFFFFF;
+          border: 1px solid #E5E7EB;
           border-radius: 6px;
         }
         .warta-item .title {
@@ -151,7 +151,7 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
         }
         .warta-item .meta {
           font-size: 11px;
-          color: #665E55;
+          color: #6B7280;
           margin-bottom: 4px;
         }
         .warta-item .badge {
@@ -160,9 +160,9 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
           border-radius: 4px;
           font-size: 10px;
           font-weight: 700;
-          background: #F3EFE6;
+          background: #F3F4F6;
           color: #8B1E28;
-          border: 1px solid #E5DFD5;
+          border: 1px solid #E5E7EB;
           margin-right: 4px;
         }
         .warta-item .content {
@@ -183,10 +183,10 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
         }
         .roster-table td {
           padding: 6px 8px;
-          border-bottom: 1px solid #E5DFD5;
+          border-bottom: 1px solid #E5E7EB;
         }
         .roster-table tr:nth-child(even) td {
-          background: #FAF7F2;
+          background: #FFFFFF;
         }
         .community-section {
           margin-bottom: 16px;
@@ -197,17 +197,17 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
           margin: 0 0 6px;
           font-weight: 800;
           padding: 4px 8px;
-          background: #F3EFE6;
+          background: #F3F4F6;
           border-radius: 4px;
           display: inline-block;
         }
         .bulletin-footer {
           margin-top: 32px;
           padding-top: 16px;
-          border-top: 2px solid #E5DFD5;
+          border-top: 2px solid #E5E7EB;
           text-align: center;
           font-size: 10px;
-          color: #665E55;
+          color: #6B7280;
         }
         .bulletin-footer .contact {
           margin-top: 4px;
@@ -219,7 +219,7 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
           top: 0;
           background: #fff;
           padding: 12px;
-          border-bottom: 1px solid #E5DFD5;
+          border-bottom: 1px solid #E5E7EB;
           display: flex;
           gap: 8px;
           justify-content: flex-end;
@@ -238,8 +238,8 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
           color: #fff;
         }
         .btn-close {
-          background: #F3EFE6;
-          color: #665E55;
+          background: #F3F4F6;
+          color: #6B7280;
         }
       `}</style>
 
@@ -259,7 +259,7 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
           <h1>GEREJA ISA ALMASIH DELIKSARI</h1>
           <div className="subtitle">Jl. Kolonel HR Hadijanto, Sekaran, Gn. Pati, Semarang 50229</div>
           <div className="tagline">🌱 Growing Church!</div>
-          <div style={{ fontSize: 13, marginTop: 8, color: '#1C1917', fontWeight: 600 }}>
+          <div style={{ fontSize: 13, marginTop: 8, color: '#111827', fontWeight: 600 }}>
             Warta Jemaat &amp; Jadwal Pelayanan — {weekLabel}
           </div>
         </div>
@@ -270,7 +270,7 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
             Papan Warta
           </h2>
           {announcements.length === 0 ? (
-            <p style={{ fontSize: 12, color: '#665E55', fontStyle: 'italic' }}>
+            <p style={{ fontSize: 12, color: '#6B7280', fontStyle: 'italic' }}>
               Belum ada warta untuk periode ini.
             </p>
           ) : (
@@ -279,7 +279,7 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
                 <div className="title">
                   {a.isPinned && <span className="badge">📌 Pin</span>}
                   {a.badgeText && <span className="badge">{a.badgeText}</span>}
-                  <span className="badge" style={{ background: '#FEF9EC', color: '#8C6826', borderColor: '#F5DFAB' }}>
+                  <span className="badge" style={{ background: '#F9FAFB', color: '#4B5563', borderColor: '#E5E7EB' }}>
                     {CATEGORY_LABEL[a.category] || a.category}
                   </span>
                   {a.title}
@@ -301,7 +301,7 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
             Jadwal Pelayanan
           </h2>
           {Object.keys(byCat).length === 0 ? (
-            <p style={{ fontSize: 12, color: '#665E55', fontStyle: 'italic' }}>
+            <p style={{ fontSize: 12, color: '#6B7280', fontStyle: 'italic' }}>
               Belum ada jadwal pelayanan untuk periode ini.
             </p>
           ) : (
@@ -331,8 +331,8 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
                           <td>{r.role}</td>
                           <td>
                             {r.servantName}
-                            {r.status === 'pending' && <span style={{ marginLeft: 6, color: '#8C6826', fontSize: 10 }}>(konfirmasi)</span>}
-                            {r.status === 'replacement' && <span style={{ marginLeft: 6, color: '#A0442C', fontSize: 10 }}>(pengganti)</span>}
+                            {r.status === 'pending' && <span style={{ marginLeft: 6, color: '#4B5563', fontSize: 10 }}>(konfirmasi)</span>}
+                            {r.status === 'replacement' && <span style={{ marginLeft: 6, color: '#475569', fontSize: 10 }}>(pengganti)</span>}
                           </td>
                         </tr>
                       ))}

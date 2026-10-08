@@ -123,20 +123,20 @@ export default function GallerySection() {
   const selectedItem = selectedPhotoIndex !== null ? displayed[selectedPhotoIndex] : null;
 
   return (
-    <section id="galeri" className="py-24 bg-[#FAF7F2] dark:bg-[#141312] transition-colors">
+    <section id="galeri" className="py-24 bg-[#FFFFFF] dark:bg-[#0F1115] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div className="space-y-4 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-[#665E55] dark:text-[#A8A196] text-xs font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#6B7280] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
               <Camera className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#B8323D]" />
               <span>Dokumentasi Pelayanan & Momen Kebersamaan</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1C1917] dark:text-[#F5F3EF] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight">
               Galeri Sukacita Jemaat
             </h2>
-            <p className="text-[#665E55] dark:text-[#A8A196] text-base leading-relaxed">
+            <p className="text-[#6B7280] dark:text-[#9CA3AF] text-base leading-relaxed">
               Momen-momen indah persekutuan, pujian penyembahan, dan kebersamaan keluarga Allah di GIA Deliksari.
               Etalase ini menampilkan cuplikan acak dari arsip Google Drive gereja.
             </p>
@@ -156,9 +156,9 @@ export default function GallerySection() {
               href={googleDriveFolderUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#1D1B19] hover:bg-[#EBE4D8] dark:hover:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] border border-[#E5DFD5] dark:border-[#332F2B] text-xs sm:text-sm font-bold transition-all flex items-center gap-2"
+              className="px-5 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#171A21] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] text-[#111827] dark:text-[#F9FAFB] border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs sm:text-sm font-bold transition-all flex items-center gap-2"
             >
-              <FolderOpen className="w-4 h-4 text-[#C59B27]" />
+              <FolderOpen className="w-4 h-4 text-[#4B5563]" />
               <span>Arsip Google Drive</span>
               <ExternalLink className="w-3 h-3 text-stone-400" />
             </a>
@@ -181,7 +181,7 @@ export default function GallerySection() {
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
                 activeFilter === filter.id
                   ? 'bg-[#8B1E28] dark:bg-[#B8323D] text-white shadow-xs'
-                  : 'bg-white dark:bg-[#1D1B19] text-[#665E55] dark:text-[#A8A196] hover:bg-[#F3EFE6] dark:hover:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B]'
+                  : 'bg-white dark:bg-[#171A21] text-[#6B7280] dark:text-[#9CA3AF] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A]'
               }`}
             >
               {filter.label}
@@ -191,7 +191,7 @@ export default function GallerySection() {
           {/* Tombol shuffle (acak ulang) di kanan chip */}
           <button
             onClick={handleShuffle}
-            className="ml-auto inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-[#665E55] dark:text-[#A8A196] hover:text-[#8B1E28] dark:hover:text-[#B8323D] hover:bg-[#F3EFE6] dark:hover:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] transition-all"
+            className="ml-auto inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#8B1E28] dark:hover:text-[#B8323D] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] transition-all"
             title="Tampilkan momen acak lainnya"
           >
             <RotateCw className="w-3.5 h-3.5" />
@@ -201,18 +201,18 @@ export default function GallerySection() {
 
         {/* Gallery Grid - 12 foto random, 2/3/4 cols responsif */}
         {displayed.length === 0 ? (
-          <div className="p-12 sm:p-16 rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] shadow-xs text-center max-w-2xl mx-auto space-y-5">
-            <div className="w-16 h-16 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] flex items-center justify-center text-[#8B1E28] dark:text-[#B8323D] mx-auto shadow-xs">
+          <div className="p-12 sm:p-16 rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-xs text-center max-w-2xl mx-auto space-y-5">
+            <div className="w-16 h-16 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] flex items-center justify-center text-[#8B1E28] dark:text-[#B8323D] mx-auto shadow-xs">
               <Camera className="w-8 h-8" />
             </div>
             <div className="space-y-2">
-              <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold bg-[#F3EFE6] dark:bg-[#262421] text-[#665E55] dark:text-[#A8A196] border border-[#E5DFD5] dark:border-[#332F2B] uppercase tracking-wider">
+              <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A] uppercase tracking-wider">
                 Dokumentasi Kegiatan
               </span>
-              <h3 className="text-xl sm:text-2xl font-extrabold text-[#1C1917] dark:text-[#F5F3EF]">
+              <h3 className="text-xl sm:text-2xl font-extrabold text-[#111827] dark:text-[#F9FAFB]">
                 Arsip Foto Sedang Dipersiapkan
               </h3>
-              <p className="text-xs sm:text-sm text-[#665E55] dark:text-[#A8A196] leading-relaxed max-w-lg mx-auto">
+              <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed max-w-lg mx-auto">
                 Dokumentasi resmi ibadah raya, persekutuan pemuda, sekolah minggu, dan kegiatan jemaat GIA Deliksari akan segera diunggah oleh tim media gereja.
               </p>
             </div>
@@ -227,7 +227,7 @@ export default function GallerySection() {
                 href={googleDriveFolderUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 rounded-xl bg-white dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] border border-[#E5DFD5] dark:border-[#332F2B] text-xs font-bold hover:bg-[#F3EFE6] transition-all flex items-center gap-2"
+                className="px-5 py-2.5 rounded-xl bg-white dark:bg-[#1F232D] text-[#111827] dark:text-[#F9FAFB] border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs font-bold hover:bg-[#F3F4F6] transition-all flex items-center gap-2"
               >
                 <FolderOpen className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#B8323D]" />
                 <span>Google Drive Master</span>
@@ -240,7 +240,7 @@ export default function GallerySection() {
               <div
                 key={item.id}
                 onClick={() => setSelectedPhotoIndex(index)}
-                className="group relative aspect-square rounded-2xl overflow-hidden bg-[#F3EFE6] dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] shadow-xs hover:shadow-sm cursor-pointer transition-all"
+                className="group relative aspect-square rounded-2xl overflow-hidden bg-[#F3F4F6] dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-xs hover:shadow-sm cursor-pointer transition-all"
               >
                 <Image
                   src={item.thumbUrl || item.image || '/images/logo.png'}
@@ -252,7 +252,7 @@ export default function GallerySection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
 
                 <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="w-8 h-8 rounded-lg bg-white/90 backdrop-blur-md text-[#1C1917] flex items-center justify-center shadow-md">
+                  <div className="w-8 h-8 rounded-lg bg-white/90 backdrop-blur-md text-[#111827] flex items-center justify-center shadow-md">
                     <Maximize2 className="w-3.5 h-3.5" />
                   </div>
                 </div>
@@ -275,25 +275,25 @@ export default function GallerySection() {
           <div className="flex justify-center mt-10">
             <button
               onClick={handleLoadMore}
-              className="px-7 py-3.5 rounded-2xl bg-white dark:bg-[#1D1B19] hover:bg-[#F3EFE6] dark:hover:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] border border-[#E5DFD5] dark:border-[#332F2B] text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-xs"
+              className="px-7 py-3.5 rounded-2xl bg-white dark:bg-[#171A21] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] text-[#111827] dark:text-[#F9FAFB] border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-xs"
             >
-              <Images className="w-4 h-4 text-[#C59B27]" />
+              <Images className="w-4 h-4 text-[#4B5563]" />
               <span>Tampilkan Lebih Banyak</span>
             </button>
           </div>
         )}
 
         {/* Bottom Archive Banner */}
-        <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-[#F3EFE6] dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-[#F3F4F6] dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="space-y-1 text-center sm:text-left">
             <div className="flex items-center justify-center sm:justify-start gap-2 text-xs font-bold text-[#8B1E28] dark:text-[#B8323D]">
               <HardDrive className="w-4 h-4" />
               <span>Arsip Master Dokumentasi Cloud Gereja</span>
             </div>
-            <h4 className="text-base font-extrabold text-[#1C1917] dark:text-[#F5F3EF]">
+            <h4 className="text-base font-extrabold text-[#111827] dark:text-[#F9FAFB]">
               Mencari foto kegiatan tahun lalu atau album beresolusi penuh?
             </h4>
-            <p className="text-xs text-[#665E55] dark:text-[#A8A196]">
+            <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
               Semua arsip master dokumentasi pelayanan disimpan secara abadi di Google Drive GIA Deliksari.
             </p>
           </div>
@@ -302,9 +302,9 @@ export default function GallerySection() {
             href={googleDriveFolderUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3.5 rounded-2xl bg-white dark:bg-[#262421] hover:bg-[#FAF7F2] dark:hover:bg-[#332F2B] text-[#1C1917] dark:text-[#F5F3EF] border border-[#E5DFD5] dark:border-[#332F2B] text-xs font-bold flex items-center gap-2 shadow-xs shrink-0"
+            className="px-6 py-3.5 rounded-2xl bg-white dark:bg-[#1F232D] hover:bg-[#FFFFFF] dark:hover:bg-[#2A2F3A] text-[#111827] dark:text-[#F9FAFB] border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs font-bold flex items-center gap-2 shadow-xs shrink-0"
           >
-            <FolderOpen className="w-4 h-4 text-[#C59B27]" />
+            <FolderOpen className="w-4 h-4 text-[#4B5563]" />
             <span>Buka Folder Google Drive</span>
             <ExternalLink className="w-3.5 h-3.5 text-stone-400" />
           </a>
@@ -361,7 +361,7 @@ export default function GallerySection() {
                     href={selectedItem.driveWebViewLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#C59B27] hover:text-[#E8C168] transition-colors mt-1"
+                    className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#4B5563] hover:text-[#9CA3AF] transition-colors mt-1"
                     onClick={(e) => e.stopPropagation()}
                   >
                     <ExternalLink className="w-3 h-3" />

@@ -19,10 +19,10 @@ type Variant = 'elevated' | 'flat' | 'outlined' | 'inverted';
 
 const VARIANT_MAP: Record<Variant, string> = {
   elevated:
-    'bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] shadow-xs',
-  flat: 'bg-[#FAF7F2] dark:bg-[#141312] border border-[#E5DFD5]/80 dark:border-[#332F2B]/80',
-  outlined: 'bg-transparent border border-[#E5DFD5] dark:border-[#332F2B]',
-  inverted: 'bg-[#1D1B19] text-[#F5F3EF] border border-[#A37D35]/30',
+    'bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-xs',
+  flat: 'bg-[#FFFFFF] dark:bg-[#0F1115] border border-[#E5E7EB]/80 dark:border-[#2A2F3A]/80',
+  outlined: 'bg-transparent border border-[#E5E7EB] dark:border-[#2A2F3A]',
+  inverted: 'bg-[#171A21] text-[#F9FAFB] border border-[#4B5563]/30',
 };
 
 const BASE_CLASSES =
@@ -40,7 +40,7 @@ function cardClasses(variant: Variant, hoverable: boolean, extra?: string) {
     BASE_CLASSES,
     VARIANT_MAP[variant],
     hoverable &&
-      'hover:-translate-y-0.5 hover:shadow-sm hover:border-[#A37D35]/50 motion-reduce:hover:translate-y-0',
+      'hover:-translate-y-0.5 hover:shadow-sm hover:border-[#4B5563]/50 motion-reduce:hover:translate-y-0',
     extra,
   );
 }

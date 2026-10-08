@@ -64,7 +64,7 @@ export default async function Image() {
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          background: 'linear-gradient(135deg, #FAF7F2 0%, #F3EFE6 100%)',
+          background: 'linear-gradient(135deg, #FFFFFF 0%, #F3F4F6 100%)',
           fontFamily: 'system-ui, -apple-system, sans-serif',
           padding: 60,
           position: 'relative',
@@ -103,10 +103,10 @@ export default async function Image() {
             G
           </div>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <div style={{ display: 'flex', fontSize: 32, fontWeight: 900, color: '#1C1917', letterSpacing: '-1px' }}>
+            <div style={{ display: 'flex', fontSize: 32, fontWeight: 900, color: '#111827', letterSpacing: '-1px' }}>
               GIA DELIKSARI
             </div>
-            <div style={{ display: 'flex', fontSize: 18, color: '#665E55', fontWeight: 600, marginTop: 4 }}>
+            <div style={{ display: 'flex', fontSize: 18, color: '#6B7280', fontWeight: 600, marginTop: 4 }}>
               Semarang · Growing Church!
             </div>
           </div>
@@ -117,7 +117,7 @@ export default async function Image() {
           <div style={{ display: 'flex', fontSize: 22, color: '#8B1E28', fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase' }}>
             📋 Papan Warta & Jadwal Pelayanan
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', fontSize: 52, color: '#1C1917', fontWeight: 900, lineHeight: 1.1, marginTop: 12 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', fontSize: 52, color: '#111827', fontWeight: 900, lineHeight: 1.1, marginTop: 12 }}>
             <div style={{ display: 'flex' }}>Warta Jemaat</div>
             <div style={{ display: 'flex', color: '#8B1E28' }}>Minggu Ini</div>
           </div>
@@ -134,11 +134,11 @@ export default async function Image() {
                 padding: 24,
                 background: 'rgba(255,255,255,0.6)',
                 borderRadius: 20,
-                border: '2px solid #E5DFD5',
+                border: '2px solid #E5E7EB',
               }}
             >
               <div style={{ display: 'flex', fontSize: 28 }}>📅</div>
-              <div style={{ display: 'flex', fontSize: 22, color: '#665E55', fontStyle: 'italic' }}>
+              <div style={{ display: 'flex', fontSize: 22, color: '#6B7280', fontStyle: 'italic' }}>
                 Warta jemaat akan tampil di sini setelah pengurus menginputnya.
               </div>
             </div>
@@ -153,13 +153,13 @@ export default async function Image() {
                   padding: 20,
                   background: 'rgba(255,255,255,0.7)',
                   borderRadius: 18,
-                  border: '1px solid #E5DFD5',
+                  border: '1px solid #E5E7EB',
                   boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
                 }}
               >
                 <div
                   style={{
-                    background: '#F3EFE6',
+                    background: '#F3F4F6',
                     color: '#8B1E28',
                     fontSize: 14,
                     fontWeight: 800,
@@ -180,7 +180,7 @@ export default async function Image() {
                       display: 'flex',
                       fontSize: 22,
                       fontWeight: 800,
-                      color: '#1C1917',
+                      color: '#111827',
                       lineHeight: 1.2,
                       maxWidth: 700,
                       overflow: 'hidden',
@@ -190,7 +190,7 @@ export default async function Image() {
                   >
                     {a.title}
                   </div>
-                  <div style={{ display: 'flex', fontSize: 16, color: '#665E55', marginTop: 4 }}>
+                  <div style={{ display: 'flex', fontSize: 16, color: '#6B7280', marginTop: 4 }}>
                     📅 {fmtDate(a.event_date)}
                   </div>
                 </div>
@@ -207,15 +207,15 @@ export default async function Image() {
             justifyContent: 'space-between',
             marginTop: 32,
             paddingTop: 24,
-            borderTop: '2px solid #E5DFD5',
+            borderTop: '2px solid #E5E7EB',
           }}
         >
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <div style={{ display: 'flex', fontSize: 16, color: '#665E55', fontWeight: 600 }}>
+            <div style={{ display: 'flex', fontSize: 16, color: '#6B7280', fontWeight: 600 }}>
               GIA Deliksari Web Portal · /info
             </div>
             {nextEvent ? (
-              <div style={{ display: 'flex', fontSize: 14, color: '#8C6826', marginTop: 4 }}>
+              <div style={{ display: 'flex', fontSize: 14, color: '#4B5563', marginTop: 4 }}>
                 ⏰ Ibadah terdekat: {fmtDate(nextEvent.service_date)} —{' '}
                 {CATEGORY_LABEL[nextEvent.service_category] || nextEvent.service_category}
               </div>
@@ -228,9 +228,9 @@ export default async function Image() {
               color: '#8B1E28',
               fontWeight: 800,
               padding: '8px 16px',
-              background: '#F3EFE6',
+              background: '#F3F4F6',
               borderRadius: 12,
-              border: '2px solid #E5DFD5',
+              border: '2px solid #E5E7EB',
             }}
           >
             🔥 Growing Church

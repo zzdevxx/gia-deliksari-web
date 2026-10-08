@@ -12,10 +12,10 @@ interface CalendarProps {
 const DAY_NAMES_ID = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
 
 const CAT_META: Record<string, { label: string; bg: string; border: string; text: string }> = {
-  general: { label: 'Ibadah Raya', bg: 'bg-[#F3EFE6] dark:bg-[#262421]', border: 'border-[#E5DFD5] dark:border-[#332F2B]', text: 'text-[#665E55] dark:text-[#A8A196]' },
-  youth:   { label: 'Grow Youth',  bg: 'bg-[#F3EFE6] dark:bg-[#262421]', border: 'border-[#E5DFD5] dark:border-[#332F2B]', text: 'text-[#665E55] dark:text-[#A8A196]' },
-  kidz:    { label: 'COC Kidz',    bg: 'bg-[#F3EFE6] dark:bg-[#262421]', border: 'border-[#E5DFD5] dark:border-[#332F2B]', text: 'text-[#665E55] dark:text-[#A8A196]' },
-  hana:    { label: 'Wanita Hana', bg: 'bg-[#F3EFE6] dark:bg-[#262421]', border: 'border-[#E5DFD5] dark:border-[#332F2B]', text: 'text-[#665E55] dark:text-[#A8A196]' },
+  general: { label: 'Ibadah Raya', bg: 'bg-[#F3F4F6] dark:bg-[#1F232D]', border: 'border-[#E5E7EB] dark:border-[#2A2F3A]', text: 'text-[#6B7280] dark:text-[#9CA3AF]' },
+  youth:   { label: 'Grow Youth',  bg: 'bg-[#F3F4F6] dark:bg-[#1F232D]', border: 'border-[#E5E7EB] dark:border-[#2A2F3A]', text: 'text-[#6B7280] dark:text-[#9CA3AF]' },
+  kidz:    { label: 'COC Kidz',    bg: 'bg-[#F3F4F6] dark:bg-[#1F232D]', border: 'border-[#E5E7EB] dark:border-[#2A2F3A]', text: 'text-[#6B7280] dark:text-[#9CA3AF]' },
+  hana:    { label: 'Wanita Hana', bg: 'bg-[#F3F4F6] dark:bg-[#1F232D]', border: 'border-[#E5E7EB] dark:border-[#2A2F3A]', text: 'text-[#6B7280] dark:text-[#9CA3AF]' },
 };
 
 /**
@@ -76,17 +76,17 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
       <div className="flex items-center justify-between">
         <button
           onClick={() => setCursor(new Date(cursor.getFullYear(), cursor.getMonth() - 1, 1))}
-          className="p-2 rounded-xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-[#1C1917] dark:text-[#F5F3EF] hover:bg-[#E5DFD5] dark:hover:bg-[#332F2B]"
+          className="p-2 rounded-xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#111827] dark:text-[#F9FAFB] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A]"
           aria-label="Bulan sebelumnya"
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
-        <h3 className="text-base sm:text-lg font-extrabold text-[#1C1917] dark:text-[#F5F3EF] capitalize">
+        <h3 className="text-base sm:text-lg font-extrabold text-[#111827] dark:text-[#F9FAFB] capitalize">
           {monthLabel}
         </h3>
         <button
           onClick={() => setCursor(new Date(cursor.getFullYear(), cursor.getMonth() + 1, 1))}
-          className="p-2 rounded-xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-[#1C1917] dark:text-[#F5F3EF] hover:bg-[#E5DFD5] dark:hover:bg-[#332F2B]"
+          className="p-2 rounded-xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#111827] dark:text-[#F9FAFB] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A]"
           aria-label="Bulan berikutnya"
         >
           <ChevronRight className="w-4 h-4" />
@@ -96,7 +96,7 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
       {/* Grid */}
       <div className="grid grid-cols-7 gap-1.5 text-center text-[10px] sm:text-xs">
         {DAY_NAMES_ID.map((d) => (
-          <div key={d} className="font-bold text-[#665E55] dark:text-[#A8A196] py-1.5">
+          <div key={d} className="font-bold text-[#6B7280] dark:text-[#9CA3AF] py-1.5">
             {d}
           </div>
         ))}
@@ -116,11 +116,11 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
                 'min-h-[60px] sm:min-h-[78px] p-1.5 rounded-2xl border text-left flex flex-col gap-1 transition-all',
                 inMonth ? '' : 'opacity-40',
                 isToday ? 'ring-2 ring-[#8B1E28]/40' : '',
-                isSelected ? 'border-[#8B1E28] bg-[#EBE4D8] dark:bg-[#262421]' : 'border-[#E5DFD5] dark:border-[#332F2B]',
-                hasEntries ? 'cursor-pointer hover:border-[#8B1E28]/40 hover:bg-[#FAF7F2] dark:hover:bg-[#262421]' : 'cursor-default',
+                isSelected ? 'border-[#8B1E28] bg-[#F3F4F6] dark:bg-[#1F232D]' : 'border-[#E5E7EB] dark:border-[#2A2F3A]',
+                hasEntries ? 'cursor-pointer hover:border-[#8B1E28]/40 hover:bg-[#FFFFFF] dark:hover:bg-[#1F232D]' : 'cursor-default',
               ].join(' ')}
             >
-              <div className={`text-[11px] sm:text-xs font-bold ${isToday ? 'text-[#8B1E28]' : 'text-[#1C1917] dark:text-[#F5F3EF]'}`}>
+              <div className={`text-[11px] sm:text-xs font-bold ${isToday ? 'text-[#8B1E28]' : 'text-[#111827] dark:text-[#F9FAFB]'}`}>
                 {date.getDate()}
               </div>
               <div className="flex flex-wrap gap-0.5">
@@ -129,19 +129,19 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
                     key={c}
                     className={`w-1.5 h-1.5 rounded-full ${
                       c === 'general' ? 'bg-[#8B1E28]' :
-                      c === 'youth' ? 'bg-[#A0442C]' :
-                      c === 'kidz' ? 'bg-[#8C6826]' :
-                      'bg-[#7A354A]'
+                      c === 'youth' ? 'bg-[#475569]' :
+                      c === 'kidz' ? 'bg-[#4B5563]' :
+                      'bg-[#6D28D9]'
                     }`}
                     title={CAT_META[c]?.label ?? c}
                   />
                 ))}
                 {cats.length > 3 && (
-                  <span className="text-[8px] text-[#665E55] dark:text-[#A8A196]">+{cats.length - 3}</span>
+                  <span className="text-[8px] text-[#6B7280] dark:text-[#9CA3AF]">+{cats.length - 3}</span>
                 )}
               </div>
               {hasEntries && (
-                <div className="text-[9px] sm:text-[10px] text-[#665E55] dark:text-[#A8A196] truncate">
+                <div className="text-[9px] sm:text-[10px] text-[#6B7280] dark:text-[#9CA3AF] truncate">
                   {entries.length} pelayan
                 </div>
               )}
@@ -152,21 +152,21 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
 
       {/* Selected day detail */}
       {selectedDay && (
-        <div className="p-5 rounded-3xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] shadow-sm space-y-3 animate-in fade-in">
+        <div className="p-5 rounded-3xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-sm space-y-3 animate-in fade-in">
           <div className="flex items-center justify-between">
-            <h4 className="font-extrabold text-sm text-[#1C1917] dark:text-[#F5F3EF] flex items-center gap-2">
+            <h4 className="font-extrabold text-sm text-[#111827] dark:text-[#F9FAFB] flex items-center gap-2">
               <Users className="w-4 h-4 text-[#8B1E28]" />
               {new Date(`${selectedDay}T00:00:00`).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
             </h4>
             <button
               onClick={() => setSelectedDay(null)}
-              className="text-[10px] font-bold text-[#665E55] dark:text-[#A8A196] hover:text-[#8B1E28]"
+              className="text-[10px] font-bold text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#8B1E28]"
             >
               Tutup
             </button>
           </div>
           {dayEntries.length === 0 ? (
-            <p className="text-xs text-[#665E55] dark:text-[#A8A196] italic">Tidak ada jadwal.</p>
+            <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] italic">Tidak ada jadwal.</p>
           ) : (
             <div className="space-y-2">
               {dayEntries.map((r) => {
@@ -180,16 +180,16 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
                       <span className={`text-[10px] font-bold uppercase tracking-wider ${meta.text}`}>
                         {meta.label}
                       </span>
-                      <span className="text-[10px] text-[#665E55] dark:text-[#A8A196]">·</span>
-                      <span className="text-xs font-extrabold text-[#1C1917] dark:text-[#F5F3EF]">{r.role}</span>
+                      <span className="text-[10px] text-[#6B7280] dark:text-[#9CA3AF]">·</span>
+                      <span className="text-xs font-extrabold text-[#111827] dark:text-[#F9FAFB]">{r.role}</span>
                     </div>
-                    <div className="text-xs text-[#665E55] dark:text-[#A8A196] font-medium">
+                    <div className="text-xs text-[#6B7280] dark:text-[#9CA3AF] font-medium">
                       {r.servantName}
-                      {r.status === 'pending' && <span className="ml-2 text-[10px] italic text-[#665E55] dark:text-[#A8A196]">(konfirmasi)</span>}
-                      {r.status === 'replacement' && <span className="ml-2 text-[10px] italic text-[#665E55] dark:text-[#A8A196]">(pengganti)</span>}
+                      {r.status === 'pending' && <span className="ml-2 text-[10px] italic text-[#6B7280] dark:text-[#9CA3AF]">(konfirmasi)</span>}
+                      {r.status === 'replacement' && <span className="ml-2 text-[10px] italic text-[#6B7280] dark:text-[#9CA3AF]">(pengganti)</span>}
                     </div>
                     {r.notes && (
-                      <div className="text-[10px] text-[#665E55] dark:text-[#A8A196] mt-1 italic">
+                      <div className="text-[10px] text-[#6B7280] dark:text-[#9CA3AF] mt-1 italic">
                         {r.notes}
                       </div>
                     )}
@@ -202,7 +202,7 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
       )}
 
       {/* Legend */}
-      <div className="flex flex-wrap items-center gap-3 pt-2 text-[10px] text-[#665E55] dark:text-[#A8A196]">
+      <div className="flex flex-wrap items-center gap-3 pt-2 text-[10px] text-[#6B7280] dark:text-[#9CA3AF]">
         <span className="font-bold">Kategori:</span>
         {Object.entries(CAT_META).map(([key, m]) => (
           <span key={key} className="inline-flex items-center gap-1">

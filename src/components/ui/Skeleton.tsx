@@ -29,8 +29,8 @@ export function Skeleton({
   return (
     <div
       className={cn(
-        'animate-pulse bg-gradient-to-r from-[#E5DFD5] via-[#F3EFE6] to-[#E5DFD5] bg-[length:200%_100%]',
-        'dark:from-[#332F2B] dark:via-[#262421] dark:to-[#332F2B]',
+        'animate-pulse bg-gradient-to-r from-[#E5E7EB] via-[#F3F4F6] to-[#E5E7EB] bg-[length:200%_100%]',
+        'dark:from-[#2A2F3A] dark:via-[#1F232D] dark:to-[#2A2F3A]',
         VARIANT_MAP[variant],
         className,
       )}
@@ -65,7 +65,7 @@ export function SkeletonCard({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        'rounded-2xl border border-[#E5DFD5] dark:border-[#332F2B] bg-white dark:bg-[#1D1B19] p-6 space-y-4',
+        'rounded-2xl border border-[#E5E7EB] dark:border-[#2A2F3A] bg-white dark:bg-[#171A21] p-6 space-y-4',
         className,
       )}
     >

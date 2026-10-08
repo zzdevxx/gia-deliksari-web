@@ -46,7 +46,7 @@ export default function InfoPrintPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#FAF7F2] text-[#1C1917] p-4">
+      <div className="min-h-screen flex items-center justify-center bg-[#FFFFFF] text-[#111827] p-4">
         <div className="flex items-center gap-3 text-sm font-semibold text-[#731820]">
           <div className="w-5 h-5 border-2 border-[#8B1E28] border-t-transparent rounded-full animate-spin" />
           <span>Menyiapkan Buletin Warta Cetak A4...</span>
@@ -56,20 +56,20 @@ export default function InfoPrintPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FAF7F2] text-[#1C1917]">
+    <div className="min-h-screen bg-[#FFFFFF] text-[#111827]">
       {/* Top action bar - hidden during print */}
-      <div className="no-print sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#E5DFD5] px-4 py-3 shadow-xs">
+      <div className="no-print sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#E5E7EB] px-4 py-3 shadow-xs">
         <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
           <Link
             href="/info"
-            className="inline-flex items-center gap-2 text-xs font-bold text-[#665E55] hover:text-[#8B1E28] dark:hover:text-[#B8323D] transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-bold text-[#6B7280] hover:text-[#8B1E28] dark:hover:text-[#B8323D] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Kembali ke Halaman Info</span>
           </Link>
 
           <div className="flex items-center gap-3">
-            <span className="text-xs text-[#665E55] hidden sm:inline">
+            <span className="text-xs text-[#6B7280] hidden sm:inline">
               Format Kertas: <strong>A4 Portrait</strong>
             </span>
             <button

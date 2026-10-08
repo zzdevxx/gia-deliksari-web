@@ -14,19 +14,19 @@ const CONFIG: Record<MinistryCategory, { label: string; color: string }> = {
   },
   youth: {
     label: 'Grow Youth',
-    color: 'bg-[#FAF0ED] dark:bg-[#281814] text-[#A0442C] dark:text-[#D96B4F] border-[#EAC9C0] dark:border-[#4D2820]',
+    color: 'bg-[#F9FAFB] dark:bg-[#1E293B] text-[#475569] dark:text-[#64748B] border-[#E5E7EB] dark:border-[#334155]',
   },
   kidz: {
     label: 'COC Kidz',
-    color: 'bg-[#FEF9EC] dark:bg-[#2D2517] text-[#8C6826] dark:text-[#E0B85C] border-[#F5DFAB] dark:border-[#52411E]',
+    color: 'bg-[#F9FAFB] dark:bg-[#1F232D] text-[#4B5563] dark:text-[#9CA3AF] border-[#E5E7EB] dark:border-[#2A2F3A]',
   },
   hana: {
     label: 'Wanita Hana',
-    color: 'bg-[#F9EFF3] dark:bg-[#26161E] text-[#7A354A] dark:text-[#B0657C] border-[#E2C3D0] dark:border-[#4A2032]',
+    color: 'bg-[#FAF5FF] dark:bg-[#2E1065] text-[#6D28D9] dark:text-[#A78BFA] border-[#E9D5FF] dark:border-[#4C1D95]',
   },
   all: {
     label: 'Umum',
-    color: 'bg-[#F3EFE6] dark:bg-[#262421] text-[#665E55] dark:text-[#A8A196] border-[#E5DFD5] dark:border-[#332F2B]',
+    color: 'bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] border-[#E5E7EB] dark:border-[#2A2F3A]',
   },
 };
 

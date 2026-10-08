@@ -262,15 +262,15 @@ export default function SuperPage() {
   // ---------- Render ----------
   if (!authChecked) {
     return (
-      <main className="min-h-screen flex items-center justify-center bg-[#FAF7F2] dark:bg-[#141312]">
-        <div className="animate-pulse text-[#665E55] dark:text-[#A8A196]">Memuat…</div>
+      <main className="min-h-screen flex items-center justify-center bg-[#FFFFFF] dark:bg-[#0F1115]">
+        <div className="animate-pulse text-[#6B7280] dark:text-[#9CA3AF]">Memuat…</div>
       </main>
     );
   }
 
   if (!authUser) {
     return (
-      <main className="min-h-screen bg-[#FAF7F2] dark:bg-[#141312] text-[#1C1917] dark:text-[#F5F3EF] flex flex-col justify-between selection:bg-[#8B1E28] selection:text-white">
+      <main className="min-h-screen bg-[#FFFFFF] dark:bg-[#0F1115] text-[#111827] dark:text-[#F9FAFB] flex flex-col justify-between selection:bg-[#8B1E28] selection:text-white">
         <Navbar />
         <div className="flex-1 flex items-center justify-center p-4 sm:p-6 py-20 relative overflow-hidden">
           <LoginForm onLogin={handleLogin} />
@@ -283,27 +283,27 @@ export default function SuperPage() {
   const activeCount = users.filter((u) => u.active).length;
 
   return (
-    <main className="min-h-screen bg-[#FAF7F2] dark:bg-[#141312] text-[#1C1917] dark:text-[#F5F3EF] flex flex-col justify-between selection:bg-[#8B1E28] selection:text-white">
+    <main className="min-h-screen bg-[#FFFFFF] dark:bg-[#0F1115] text-[#111827] dark:text-[#F9FAFB] flex flex-col justify-between selection:bg-[#8B1E28] selection:text-white">
       <Navbar />
       {ToastView}
 
       <div className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-8">
         {/* Top Header Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-sm">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
               <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FBF1F2] dark:bg-[#261517] text-[#8B1E28] dark:text-[#E88086] border border-[#E8C2C5] dark:border-[#52252A]">
                 🔑 Superuser Portal
               </span>
-              <div className="flex items-center gap-1.5 text-xs text-[#665E55] dark:text-[#A8A196]">
+              <div className="flex items-center gap-1.5 text-xs text-[#6B7280] dark:text-[#9CA3AF]">
                 <Users className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#E88086]" />
                 <span>{activeCount}/{users.length} user aktif</span>
               </div>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1C1917] dark:text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#111827] dark:text-white tracking-tight">
               Manajemen Akun Pengurus Gereja
             </h1>
-            <p className="text-xs text-[#665E55] dark:text-[#A8A196]">
+            <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
               Kelola akun superuser, admin/operator, dan bendahara youth. Akun baru otomatis mendapat
               akses ke portal sesuai role-nya.
             </p>
@@ -313,21 +313,21 @@ export default function SuperPage() {
             <button
               onClick={loadUsers}
               title="Refresh"
-              className="p-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] hover:bg-[#E5DFD5] dark:hover:bg-[#332F2B] border border-[#E5DFD5] dark:border-[#332F2B] transition-colors flex items-center gap-2 text-xs font-bold"
+              className="p-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#111827] dark:text-[#F9FAFB] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[#E5E7EB] dark:border-[#2A2F3A] transition-colors flex items-center gap-2 text-xs font-bold"
             >
               <RefreshCw className={`w-4 h-4 text-[#8B1E28] dark:text-[#E88086] ${usersLoading ? 'animate-spin' : ''}`} />
               <span className="hidden sm:inline">Refresh</span>
             </button>
             <Link
               href="/home"
-              className="px-4 py-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] hover:bg-[#E5DFD5] dark:hover:bg-[#332F2B] border border-[#E5DFD5] dark:border-[#332F2B] transition-colors text-xs font-bold flex items-center gap-2"
+              className="px-4 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#111827] dark:text-[#F9FAFB] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[#E5E7EB] dark:border-[#2A2F3A] transition-colors text-xs font-bold flex items-center gap-2"
             >
               <ExternalLink className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#E88086]" />
               <span>Lihat Website</span>
             </Link>
             <button
               onClick={handleLogout}
-              className="px-4 py-3 rounded-2xl bg-white dark:bg-[#1D1B19] hover:bg-[#F3EFE6] dark:hover:bg-[#262421] text-[#665E55] dark:text-[#A8A196] border border-[#E5DFD5] dark:border-[#332F2B] transition-colors text-xs font-bold flex items-center gap-2"
+              className="px-4 py-3 rounded-2xl bg-white dark:bg-[#171A21] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A] transition-colors text-xs font-bold flex items-center gap-2"
             >
               <LogOut className="w-3.5 h-3.5" />
               <span>Keluar</span>
@@ -336,12 +336,12 @@ export default function SuperPage() {
         </div>
 
         {/* Greeting */}
-        <div className="text-xs text-[#665E55] dark:text-[#A8A196]">
+        <div className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
           Login sebagai{' '}
-          <span className="font-bold text-[#1C1917] dark:text-[#F5F3EF]">
+          <span className="font-bold text-[#111827] dark:text-[#F9FAFB]">
             {authUser?.display_name || authUser?.username}
           </span>{' '}
-          <span className="text-[#665E55] dark:text-[#A8A196]">
+          <span className="text-[#6B7280] dark:text-[#9CA3AF]">
             ({authUser?.roles?.join(', ') || authUser?.username})
           </span>
         </div>
@@ -349,10 +349,10 @@ export default function SuperPage() {
         {/* User Management Section */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h2 className="text-xl font-extrabold text-[#1C1917] dark:text-white">
+            <h2 className="text-xl font-extrabold text-[#111827] dark:text-white">
               Daftar Akun ({users.length})
             </h2>
-            <p className="text-xs text-[#665E55] dark:text-[#A8A196]">
+            <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
               Tambah akun baru, ubah role, atau nonaktifkan akun yang tidak aktif.
             </p>
           </div>
@@ -392,11 +392,11 @@ export default function SuperPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
           <Link
             href="/admin"
-            className="p-5 rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] hover:border-[#8B1E28]/40 dark:hover:border-[#B8323D]/40 transition-all flex items-center justify-between group"
+            className="p-5 rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] hover:border-[#8B1E28]/40 dark:hover:border-[#B8323D]/40 transition-all flex items-center justify-between group"
           >
             <div>
-              <h3 className="font-bold text-[#1C1917] dark:text-[#F5F3EF]">📋 Portal Admin</h3>
-              <p className="text-xs text-[#665E55] dark:text-[#A8A196] mt-0.5">
+              <h3 className="font-bold text-[#111827] dark:text-[#F9FAFB]">📋 Portal Admin</h3>
+              <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] mt-0.5">
                 Warta, Roster Pelayanan, Inventaris
               </p>
             </div>
@@ -404,11 +404,11 @@ export default function SuperPage() {
           </Link>
           <Link
             href="/kas"
-            className="p-5 rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] hover:border-[#8B1E28]/40 dark:hover:border-[#B8323D]/40 transition-all flex items-center justify-between group"
+            className="p-5 rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] hover:border-[#8B1E28]/40 dark:hover:border-[#B8323D]/40 transition-all flex items-center justify-between group"
           >
             <div>
-              <h3 className="font-bold text-[#1C1917] dark:text-[#F5F3EF]">💰 Portal Kas Youth</h3>
-              <p className="text-xs text-[#665E55] dark:text-[#A8A196] mt-0.5">
+              <h3 className="font-bold text-[#111827] dark:text-[#F9FAFB]">💰 Portal Kas Youth</h3>
+              <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] mt-0.5">
                 Manajemen keuangan Grow Generation
               </p>
             </div>

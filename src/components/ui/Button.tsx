@@ -26,19 +26,19 @@ type Size = 'sm' | 'md' | 'lg';
 const BASE =
   'group/btn relative inline-flex items-center justify-center gap-2 rounded-full font-semibold ' +
   'transition-all duration-200 ease-out ' +
-  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8C6826] dark:focus-visible:ring-[#C49B45] focus-visible:ring-offset-2 ' +
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4B5563] dark:focus-visible:ring-[#9CA3AF] focus-visible:ring-offset-2 ' +
   'active:scale-[0.97] active:translate-y-0 ' +
   'disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:active:scale-100';
 
 const VARIANT_MAP: Record<Variant, string> = {
   gold:
-    'bg-[#8C6826] hover:bg-[#75561E] text-white shadow-sm hover:-translate-y-0.5 hover:shadow-md dark:bg-[#C49B45] dark:text-[#141312] dark:hover:bg-[#B38C38]',
+    'bg-[#4B5563] hover:bg-[#374151] text-white shadow-sm hover:-translate-y-0.5 hover:shadow-md dark:bg-[#9CA3AF] dark:text-[#0F1115] dark:hover:bg-[#4B5563]',
   maroon:
     'bg-[#8B1E28] hover:bg-[#731820] text-white shadow-sm hover:-translate-y-0.5 hover:shadow-md dark:bg-[#C04050] dark:hover:bg-[#AC3543]',
   outline:
-    'border border-[#E5DFD5] dark:border-[#332F2B] text-[#1C1917] dark:text-[#F5F3EF] hover:bg-[#F3EFE6] dark:hover:bg-[#262421]',
+    'border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#111827] dark:text-[#F9FAFB] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D]',
   ghost:
-    'text-[#1C1917] dark:text-[#F5F3EF] hover:bg-[#F3EFE6] dark:hover:bg-[#262421]',
+    'text-[#111827] dark:text-[#F9FAFB] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D]',
 };
 
 const SIZE_MAP: Record<Size, string> = {

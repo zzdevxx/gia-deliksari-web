@@ -37,10 +37,10 @@ const AnnouncementsTab: React.FC<AnnouncementsTabProps> = ({
     <div className="space-y-6 animate-in fade-in">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-extrabold text-[#1C1917] dark:text-white">
+          <h2 className="text-xl font-extrabold text-[#111827] dark:text-white">
             Kelola Warta & Pengumuman Jemaat
           </h2>
-          <p className="text-xs text-[#665E55] dark:text-[#A8A196]">
+          <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
             Warta yang dipublish akan otomatis tayang di halaman utama website jemaat.
           </p>
         </div>
@@ -58,7 +58,7 @@ const AnnouncementsTab: React.FC<AnnouncementsTabProps> = ({
         {announcements.map((item) => (
           <div
             key={item.id}
-            className="p-6 rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-[#8B1E28]/40 dark:hover:border-[#B8323D]/40 transition-colors"
+            className="p-6 rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-[#8B1E28]/40 dark:hover:border-[#B8323D]/40 transition-colors"
           >
             <div className="space-y-2 flex-1">
               <div className="flex flex-wrap items-center gap-2">
@@ -68,26 +68,26 @@ const AnnouncementsTab: React.FC<AnnouncementsTabProps> = ({
                   {getCategoryLabel(item.category)}
                 </span>
                 {item.isPinned && (
-                  <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#FEF9EC] text-[#8C6826] border border-[#F5DFAB] dark:bg-[#2D2517] dark:text-[#E0B85C] dark:border-[#52411E] flex items-center gap-1">
+                  <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#F9FAFB] text-[#4B5563] border border-[#E5E7EB] dark:bg-[#1F232D] dark:text-[#9CA3AF] dark:border-[#2A2F3A] flex items-center gap-1">
                     <Pin className="w-3 h-3" />
                     <span>Tersemat (Pinned)</span>
                   </span>
                 )}
                 {!item.isPublished && (
-                  <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#F3EFE6] text-[#665E55] border border-[#E5DFD5] dark:bg-[#262421] dark:text-[#A8A196] dark:border-[#332F2B]">
+                  <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#F3F4F6] text-[#6B7280] border border-[#E5E7EB] dark:bg-[#1F232D] dark:text-[#9CA3AF] dark:border-[#2A2F3A]">
                     Draft (Tidak Tayang)
                   </span>
                 )}
-                <span className="text-xs text-[#665E55] dark:text-[#A8A196] flex items-center gap-1">
+                <span className="text-xs text-[#6B7280] dark:text-[#9CA3AF] flex items-center gap-1">
                   <Calendar className="w-3 h-3 text-[#8B1E28] dark:text-[#E88086]" />
                   <span>{item.eventDate}</span>
                 </span>
               </div>
 
-              <h3 className="text-lg font-extrabold text-[#1C1917] dark:text-white">
+              <h3 className="text-lg font-extrabold text-[#111827] dark:text-white">
                 {item.title}
               </h3>
-              <p className="text-xs text-[#665E55] dark:text-[#A8A196] line-clamp-2 leading-relaxed">
+              <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] line-clamp-2 leading-relaxed">
                 {item.content}
               </p>
             </div>
@@ -98,8 +98,8 @@ const AnnouncementsTab: React.FC<AnnouncementsTabProps> = ({
                 title={item.isPinned ? 'Lepas Pin' : 'Sematkan Warta'}
                 className={`p-3 rounded-2xl border transition-colors ${
                   item.isPinned
-                    ? 'bg-[#FEF9EC] text-[#8C6826] border-[#F5DFAB] dark:bg-[#2D2517] dark:text-[#E0B85C] dark:border-[#52411E]'
-                    : 'bg-[#F3EFE6] dark:bg-[#262421] text-[#665E55] dark:text-[#A8A196] border-[#E5DFD5] dark:border-[#332F2B]'
+                    ? 'bg-[#F9FAFB] text-[#4B5563] border-[#E5E7EB] dark:bg-[#1F232D] dark:text-[#9CA3AF] dark:border-[#2A2F3A]'
+                    : 'bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] border-[#E5E7EB] dark:border-[#2A2F3A]'
                 }`}
               >
                 <Pin className="w-4 h-4" />
@@ -107,7 +107,7 @@ const AnnouncementsTab: React.FC<AnnouncementsTabProps> = ({
 
               <button
                 onClick={() => onEdit(item)}
-                className="p-3 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] hover:bg-[#E5DFD5] dark:hover:bg-[#332F2B] border border-[#E5DFD5] dark:border-[#332F2B] transition-colors"
+                className="p-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#111827] dark:text-[#F9FAFB] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[#E5E7EB] dark:border-[#2A2F3A] transition-colors"
                 title="Edit Warta"
               >
                 <Edit2 className="w-4 h-4" />

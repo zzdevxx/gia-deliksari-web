@@ -32,15 +32,15 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   };
 
   return (
-    <div className="w-full max-w-md bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] rounded-2xl shadow-xl p-8 sm:p-10 relative z-10 space-y-6 animate-in fade-in zoom-in-95 duration-300">
+    <div className="w-full max-w-md bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] rounded-2xl shadow-xl p-8 sm:p-10 relative z-10 space-y-6 animate-in fade-in zoom-in-95 duration-300">
       <div className="text-center space-y-3">
         <div className="w-16 h-16 rounded-3xl bg-[#8B1E28] dark:bg-[#B8323D] text-white flex items-center justify-center mx-auto shadow-md">
           <KeyRound className="w-8 h-8" />
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1C1917] dark:text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#111827] dark:text-white tracking-tight">
           Superuser Portal
         </h1>
-        <p className="text-xs sm:text-sm text-[#665E55] dark:text-[#A8A196] leading-relaxed">
+        <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
           Kelola akun pengurus gereja: superuser, admin/operator, dan bendahara youth.
           <br />
           <span className="text-[#8B1E28] dark:text-[#E88086] font-bold">
@@ -57,7 +57,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="space-y-2">
-          <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF] uppercase tracking-wider">
+          <label className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB] uppercase tracking-wider">
             Username Superuser
           </label>
           <input
@@ -68,12 +68,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="namapengurus"
-            className="w-full px-4 py-3.5 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-[#1C1917] dark:text-[#F5F3EF] text-sm focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400"
+            className="w-full px-4 py-3.5 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#111827] dark:text-[#F9FAFB] text-sm focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF] uppercase tracking-wider">
+          <label className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB] uppercase tracking-wider">
             PIN / Password
           </label>
           <input
@@ -83,7 +83,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="••••"
-            className="w-full px-4 py-3.5 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-[#1C1917] dark:text-[#F5F3EF] text-sm focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400 tracking-widest"
+            className="w-full px-4 py-3.5 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#111827] dark:text-[#F9FAFB] text-sm focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400 tracking-widest"
           />
         </div>
 

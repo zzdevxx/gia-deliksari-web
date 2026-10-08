@@ -57,16 +57,16 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#FAF7F2] dark:bg-[#141312] border-t border-[#E5DFD5] dark:border-[#332F2B] text-[#665E55] dark:text-[#A8A196] transition-colors">
+    <footer className="bg-[#FFFFFF] dark:bg-[#0F1115] border-t border-[#E5E7EB] dark:border-[#2A2F3A] text-[#6B7280] dark:text-[#9CA3AF] transition-colors">
       {/* Newsletter Strip */}
-      <div className="border-b border-[#E5DFD5] dark:border-[#332F2B] bg-[#F3EFE6]/50 dark:bg-[#16171B]/50">
+      <div className="border-b border-[#E5E7EB] dark:border-[#2A2F3A] bg-[#F3F4F6]/50 dark:bg-[#12141A]/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-md">
-              <h3 className="font-extrabold text-lg sm:text-xl text-[#1C1917] dark:text-[#F5F3EF]">
+              <h3 className="font-extrabold text-lg sm:text-xl text-[#111827] dark:text-[#F9FAFB]">
                 Warta Mingguan di Inbox Anda
               </h3>
-              <p className="mt-1 text-sm text-[#665E55] dark:text-[#A8A196]">
+              <p className="mt-1 text-sm text-[#6B7280] dark:text-[#9CA3AF]">
                 Dapatkan jadwal ibadah, renungan, dan info kegiatan jemaat setiap minggu.
               </p>
             </div>
@@ -90,7 +90,7 @@ export default function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="email@contoh.com"
-                  className="w-full rounded-full border border-[#E5DFD5] dark:border-[#332F2B] bg-white dark:bg-[#1D1B19] pl-10 pr-4 py-3 text-sm text-[#1C1917] dark:text-[#F5F3EF] placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28]"
+                  className="w-full rounded-full border border-[#E5E7EB] dark:border-[#2A2F3A] bg-white dark:bg-[#171A21] pl-10 pr-4 py-3 text-sm text-[#111827] dark:text-[#F9FAFB] placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28]"
                 />
               </div>
               <button
@@ -121,7 +121,7 @@ export default function Footer() {
           {/* Col 1: Church Brand */}
           <div className="lg:col-span-4 space-y-4">
             <Link href="/home" className="flex items-center gap-3 group" aria-label="GIA Deliksari - Beranda">
-              <div className="relative w-12 h-12 rounded-2xl overflow-hidden border border-[#E5DFD5] dark:border-[#332F2B] bg-white dark:bg-[#1D1B19] p-0.5 shadow-xs group-hover:scale-105 transition-transform">
+              <div className="relative w-12 h-12 rounded-2xl overflow-hidden border border-[#E5E7EB] dark:border-[#2A2F3A] bg-white dark:bg-[#171A21] p-0.5 shadow-xs group-hover:scale-105 transition-transform">
                 <Image
                   src="/images/logo.png"
                   alt="Logo GIA Deliksari"
@@ -131,7 +131,7 @@ export default function Footer() {
                 />
               </div>
               <div>
-                <span className="font-extrabold text-base text-[#1C1917] dark:text-[#F5F3EF] block">
+                <span className="font-extrabold text-base text-[#111827] dark:text-[#F9FAFB] block">
                   GIA Deliksari Semarang
                 </span>
                 <span className="text-xs font-bold text-[#8B1E28] dark:text-[#B8323D]">
@@ -147,11 +147,11 @@ export default function Footer() {
 
             <ul className="space-y-2 text-sm">
               <li className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-[#A37D35] dark:text-[#C49B45] shrink-0 mt-0.5" aria-hidden="true" />
+                <MapPin className="w-4 h-4 text-[#4B5563] dark:text-[#9CA3AF] shrink-0 mt-0.5" aria-hidden="true" />
                 <span>Jl. Kolonel Hadijanto, Deliksari, Gunungpati, Semarang 50229</span>
               </li>
               <li className="flex items-start gap-2">
-                <Clock className="w-4 h-4 text-[#A37D35] dark:text-[#C49B45] shrink-0 mt-0.5" aria-hidden="true" />
+                <Clock className="w-4 h-4 text-[#4B5563] dark:text-[#9CA3AF] shrink-0 mt-0.5" aria-hidden="true" />
                 <span>Ibadah Raya: Minggu, 09.00 WIB</span>
               </li>
             </ul>
@@ -163,7 +163,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram GIA Deliksari"
-                className="w-10 h-10 rounded-xl bg-[#F3EFE6] dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] flex items-center justify-center text-[#665E55] dark:text-[#A8A196] hover:text-[#8B1E28] dark:hover:text-[#B8323D] hover:border-[#8B1E28] dark:hover:border-[#B8323D] transition-colors"
+                className="w-10 h-10 rounded-xl bg-[#F3F4F6] dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] flex items-center justify-center text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#8B1E28] dark:hover:text-[#B8323D] hover:border-[#8B1E28] dark:hover:border-[#B8323D] transition-colors"
               >
                 <InstagramIcon className="w-4 h-4" />
               </a>
@@ -172,7 +172,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube GIA Deliksari"
-                className="w-10 h-10 rounded-xl bg-[#F3EFE6] dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] flex items-center justify-center text-[#665E55] dark:text-[#A8A196] hover:text-[#8B1E28] dark:hover:text-[#B8323D] hover:border-[#8B1E28] dark:hover:border-[#B8323D] transition-colors"
+                className="w-10 h-10 rounded-xl bg-[#F3F4F6] dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] flex items-center justify-center text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#8B1E28] dark:hover:text-[#B8323D] hover:border-[#8B1E28] dark:hover:border-[#B8323D] transition-colors"
               >
                 <YouTubeIcon className="w-4 h-4" />
               </a>
@@ -183,7 +183,7 @@ export default function Footer() {
           <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-8">
             {FOOTER_NAV.map((group) => (
               <div key={group.title}>
-                <h4 className="font-extrabold text-xs uppercase tracking-wider text-[#1C1917] dark:text-[#F5F3EF] mb-3">
+                <h4 className="font-extrabold text-xs uppercase tracking-wider text-[#111827] dark:text-[#F9FAFB] mb-3">
                   {group.title}
                 </h4>
                 <ul className="space-y-2">
@@ -193,7 +193,7 @@ export default function Footer() {
                         href={link.href}
                         className="text-sm hover:text-[#8B1E28] dark:hover:text-[#B8323D] transition-colors inline-flex items-center gap-1.5 group"
                       >
-                        <span className="w-1 h-1 rounded-full bg-[#A37D35]/60 group-hover:w-3 group-hover:bg-[#8B1E28] dark:group-hover:bg-[#B8323D] transition-all" />
+                        <span className="w-1 h-1 rounded-full bg-[#4B5563]/60 group-hover:w-3 group-hover:bg-[#8B1E28] dark:group-hover:bg-[#B8323D] transition-all" />
                         {link.name}
                       </a>
                     </li>
@@ -205,7 +205,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Copyright */}
-        <div className="mt-12 pt-6 border-t border-[#E5DFD5] dark:border-[#332F2B] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#665E55] dark:text-[#A8A196]">
+        <div className="mt-12 pt-6 border-t border-[#E5E7EB] dark:border-[#2A2F3A] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#6B7280] dark:text-[#9CA3AF]">
           <p>
             © {currentYear} Gereja Isa Almasih (GIA) Deliksari Semarang.
             <span className="hidden sm:inline"> Hak Cipta Dilindungi.</span>

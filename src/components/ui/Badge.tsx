@@ -18,9 +18,9 @@ const VARIANT_MAP: Record<Variant, string> = {
   maroon:
     'bg-[#FBF1F2] dark:bg-[#261517] text-[#8B1E28] dark:text-[#E88086] ring-1 ring-inset ring-[#E8C2C5] dark:ring-[#52252A]',
   gold:
-    'bg-[#FEF9EC] dark:bg-[#2D2517] text-[#8C6826] dark:text-[#E0B85C] ring-1 ring-inset ring-[#F5DFAB] dark:ring-[#52411E]',
+    'bg-[#F9FAFB] dark:bg-[#1F232D] text-[#4B5563] dark:text-[#9CA3AF] ring-1 ring-inset ring-[#E5E7EB] dark:ring-[#2A2F3A]',
   outline:
-    'bg-transparent text-[#1C1917] dark:text-[#F5F3EF] ring-1 ring-inset ring-[#E5DFD5] dark:ring-[#332F2B]',
+    'bg-transparent text-[#111827] dark:text-[#F9FAFB] ring-1 ring-inset ring-[#E5E7EB] dark:ring-[#2A2F3A]',
   success:
     'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 ring-1 ring-inset ring-emerald-200 dark:ring-emerald-800/50',
   warning:
@@ -28,7 +28,7 @@ const VARIANT_MAP: Record<Variant, string> = {
   danger:
     'bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300 ring-1 ring-inset ring-rose-200 dark:ring-rose-800/50',
   neutral:
-    'bg-[#F3EFE6] dark:bg-[#262421] text-[#665E55] dark:text-[#A8A196] ring-1 ring-inset ring-[#E5DFD5] dark:ring-[#332F2B]',
+    'bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] ring-1 ring-inset ring-[#E5E7EB] dark:ring-[#2A2F3A]',
 };
 
 interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {

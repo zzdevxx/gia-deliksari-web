@@ -208,8 +208,15 @@ export default function RootLayout({
             __html: `(function(){try{var t=localStorage.getItem('gia_theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');}}catch(e){}})();`,
           }}
         />
+        {/* Anti-FOIC: resolve the persisted theme BEFORE first paint so a dark-mode
+            visitor never sees a white flash while React hydrates. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=localStorage.getItem('gia_theme');var d=s?s==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');else document.documentElement.classList.remove('dark');}catch(e){}})();`,
+          }}
+        />
       </head>
-      <body className="font-sans antialiased min-h-screen bg-[#FAF7F2] text-[#1C1917] dark:bg-[#141312] dark:text-[#F5F3EF] transition-colors duration-200">
+      <body className="font-sans antialiased min-h-screen bg-[#FFFFFF] text-[#111827] dark:bg-[#0F1115] dark:text-[#F9FAFB] transition-colors duration-200">
         <a
           href="#beranda"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 px-4 py-2 bg-[#8B1E28] hover:bg-[#731820] text-white font-bold rounded-xl shadow-lg"

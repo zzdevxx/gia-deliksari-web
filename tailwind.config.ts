@@ -46,11 +46,11 @@ const config: Config = {
         sacred: {
           wine: '#8B1E28',
           wineDark: '#B8323D',
-          gold: '#8C6826',
-          goldDark: '#C49B45',
-          stone: '#FAF7F2',
-          charcoal: '#141312',
-          slate: '#1D1B19',
+          gold: '#4B5563',
+          goldDark: '#9CA3AF',
+          stone: '#FFFFFF',
+          charcoal: '#0F1115',
+          slate: '#171A21',
         },
         church: {
           amber: {

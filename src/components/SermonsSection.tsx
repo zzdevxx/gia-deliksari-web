@@ -55,14 +55,14 @@ export default function SermonsSection() {
   }, []);
 
   return (
-    <section id="khotbah" className="py-24 bg-[#FAF7F2] dark:bg-[#141312] text-[#1C1917] dark:text-[#F5F3EF] transition-colors relative overflow-hidden">
+    <section id="khotbah" className="py-24 bg-[#FFFFFF] dark:bg-[#0F1115] text-[#111827] dark:text-[#F9FAFB] transition-colors relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div className="space-y-4 max-w-2xl">
             <div className="flex flex-wrap items-center gap-2">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-[#665E55] dark:text-[#A8A196] text-xs font-bold uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#6B7280] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
                 <Radio className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#B8323D]" />
                 <span>Mimbar & Pengajaran Firman</span>
               </div>
@@ -75,10 +75,10 @@ export default function SermonsSection() {
               )}
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1C1917] dark:text-[#F5F3EF] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight">
               Arsip Khotbah & Renungan Rohani
             </h2>
-            <p className="text-[#665E55] dark:text-[#A8A196] text-base leading-relaxed">
+            <p className="text-[#6B7280] dark:text-[#9CA3AF] text-base leading-relaxed">
               Dengarkan kembali firman kebenaran yang memberkati, menguatkan, dan menuntun langkah hidup Anda setiap hari.
             </p>
           </div>
@@ -102,11 +102,11 @@ export default function SermonsSection() {
           {sermons.map((sermon) => (
             <div
               key={sermon.id}
-              className="rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] overflow-hidden shadow-xs hover:border-[#A37D35]/50 transition-all flex flex-col justify-between group"
+              className="rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] overflow-hidden shadow-xs hover:border-[#4B5563]/50 transition-all flex flex-col justify-between group"
             >
               <div>
                 {/* Thumbnail Container */}
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#F3EFE6] dark:bg-[#262421]">
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#F3F4F6] dark:bg-[#1F232D]">
                   <Image
                     src={sermon.thumbnail && !sermon.thumbnail.includes('gallery-') ? sermon.thumbnail : '/images/logo.png'}
                     alt={sermon.title}
@@ -138,21 +138,21 @@ export default function SermonsSection() {
 
                 {/* Content Details */}
                 <div className="p-7 space-y-4">
-                  <div className="flex items-center gap-2 text-xs text-[#665E55] dark:text-[#A8A196]">
+                  <div className="flex items-center gap-2 text-xs text-[#6B7280] dark:text-[#9CA3AF]">
                     <Calendar className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#B8323D]" />
                     <span>{sermon.date}</span>
                   </div>
 
-                  <h3 className="text-xl font-extrabold text-[#1C1917] dark:text-[#F5F3EF] leading-snug line-clamp-2">
+                  <h3 className="text-xl font-extrabold text-[#111827] dark:text-[#F9FAFB] leading-snug line-clamp-2">
                     {sermon.title}
                   </h3>
 
                   <div className="space-y-1.5 pt-1 text-xs">
-                    <div className="flex items-center gap-2 text-[#665E55] dark:text-[#A8A196]">
+                    <div className="flex items-center gap-2 text-[#6B7280] dark:text-[#9CA3AF]">
                       <User className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#B8323D] shrink-0" />
                       <span className="font-semibold">{sermon.speaker}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-[#665E55] dark:text-[#A8A196]">
+                    <div className="flex items-center gap-2 text-[#6B7280] dark:text-[#9CA3AF]">
                       <BookOpen className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#B8323D] shrink-0" />
                       <span className="line-clamp-1">{sermon.passage}</span>
                     </div>
@@ -166,7 +166,7 @@ export default function SermonsSection() {
                   href={sermon.youtubeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3 rounded-xl bg-[#F3EFE6] dark:bg-[#262421] hover:bg-[#EBE4D8] dark:hover:bg-[#332F2B] border border-[#E5DFD5] dark:border-[#332F2B] text-xs font-bold text-[#1C1917] dark:text-[#F5F3EF] flex items-center justify-center gap-2 transition-colors"
+                  className="w-full py-3 rounded-xl bg-[#F3F4F6] dark:bg-[#1F232D] hover:bg-[#F3F4F6] dark:hover:bg-[#2A2F3A] border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs font-bold text-[#111827] dark:text-[#F9FAFB] flex items-center justify-center gap-2 transition-colors"
                 >
                   <YouTubeIcon className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#B8323D]" />
                   <span>Tonton di YouTube</span>

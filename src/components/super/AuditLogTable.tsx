@@ -75,17 +75,17 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
     <div className="space-y-4 pt-4">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-extrabold text-[#1C1917] dark:text-white flex items-center gap-2">
+          <h2 className="text-xl font-extrabold text-[#111827] dark:text-white flex items-center gap-2">
             <ScrollText className="w-5 h-5 text-[#8B1E28] dark:text-[#E88086]" />
             Audit Log ({total})
           </h2>
-          <p className="text-xs text-[#665E55] dark:text-[#A8A196]">
+          <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
             Trail siapa melakukan apa di portal gereja. Append-only — hanya super yang bisa membaca.
           </p>
         </div>
         <button
           onClick={onRefresh}
-          className="px-4 py-2 rounded-2xl bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] border border-[#E5DFD5] dark:border-[#332F2B] text-xs font-bold flex items-center gap-2"
+          className="px-4 py-2 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#111827] dark:text-[#F9FAFB] border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs font-bold flex items-center gap-2"
         >
           <RefreshCw className={`w-3.5 h-3.5 text-[#8B1E28] dark:text-[#E88086] ${loading ? 'animate-spin' : ''}`} />
           Refresh
@@ -93,43 +93,43 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
       </div>
 
       {/* Filter Bar */}
-      <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-3xl bg-[#F3EFE6] dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B]">
+      <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-3xl bg-[#F3F4F6] dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A]">
         <div className="space-y-1">
-          <label className="text-[10px] font-bold uppercase tracking-wider text-[#665E55] dark:text-[#A8A196]">Actor</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#9CA3AF]">Actor</label>
           <input
             type="text"
             placeholder="username"
             value={filter.actor}
             onChange={(e) => onFilterChange({ ...filter, actor: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-xs text-[#1C1917] dark:text-[#F5F3EF] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
+            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs text-[#111827] dark:text-[#F9FAFB] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
           />
         </div>
         <div className="space-y-1">
-          <label className="text-[10px] font-bold uppercase tracking-wider text-[#665E55] dark:text-[#A8A196]">Action</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#9CA3AF]">Action</label>
           <input
             type="text"
             placeholder="e.g. warta.create"
             value={filter.action}
             onChange={(e) => onFilterChange({ ...filter, action: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-xs text-[#1C1917] dark:text-[#F5F3EF] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 font-mono"
+            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs text-[#111827] dark:text-[#F9FAFB] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 font-mono"
           />
         </div>
         <div className="space-y-1">
-          <label className="text-[10px] font-bold uppercase tracking-wider text-[#665E55] dark:text-[#A8A196]">Dari</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#9CA3AF]">Dari</label>
           <input
             type="date"
             value={filter.since}
             onChange={(e) => onFilterChange({ ...filter, since: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-xs text-[#1C1917] dark:text-[#F5F3EF] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
+            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs text-[#111827] dark:text-[#F9FAFB] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
           />
         </div>
         <div className="space-y-1">
-          <label className="text-[10px] font-bold uppercase tracking-wider text-[#665E55] dark:text-[#A8A196]">Sampai</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#9CA3AF]">Sampai</label>
           <input
             type="date"
             value={filter.until}
             onChange={(e) => onFilterChange({ ...filter, until: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-xs text-[#1C1917] dark:text-[#F5F3EF] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
+            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs text-[#111827] dark:text-[#F9FAFB] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
           />
         </div>
         <div className="sm:col-span-4 flex justify-end">
@@ -144,9 +144,9 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
       </div>
 
       {/* Audit Table */}
-      <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[#1D1B19] border border-[#E5DFD5] dark:border-[#332F2B] shadow-sm">
+      <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-sm">
         <table className="w-full text-left text-xs">
-          <thead className="bg-[#F3EFE6] dark:bg-[#262421] text-[#1C1917] dark:text-[#F5F3EF] border-b border-[#E5DFD5] dark:border-[#332F2B]">
+          <thead className="bg-[#F3F4F6] dark:bg-[#1F232D] text-[#111827] dark:text-[#F9FAFB] border-b border-[#E5E7EB] dark:border-[#2A2F3A]">
             <tr>
               <th className="p-4 font-bold w-40">Waktu (WIB)</th>
               <th className="p-4 font-bold w-44">Action</th>
@@ -155,14 +155,14 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
               <th className="p-4 font-bold w-32">IP</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#E5DFD5] dark:divide-[#332F2B]">
+          <tbody className="divide-y divide-[#E5E7EB] dark:divide-[#2A2F3A]">
             {loading && entries.length === 0 ? (
               <tr>
-                <td colSpan={5} className="p-8 text-center text-xs text-[#665E55] dark:text-[#A8A196]">Memuat…</td>
+                <td colSpan={5} className="p-8 text-center text-xs text-[#6B7280] dark:text-[#9CA3AF]">Memuat…</td>
               </tr>
             ) : entries.length === 0 ? (
               <tr>
-                <td colSpan={5} className="p-8 text-center text-xs text-[#665E55] dark:text-[#A8A196]">
+                <td colSpan={5} className="p-8 text-center text-xs text-[#6B7280] dark:text-[#9CA3AF]">
                   Belum ada entry. Aktivitas pertama akan muncul di sini setelah admin login.
                 </td>
               </tr>
@@ -175,8 +175,8 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
                 };
                 const ts = new Date(a.created_at);
                 return (
-                  <tr key={a.id} className="hover:bg-[#FAF7F2] dark:hover:bg-[#261317] transition-colors">
-                    <td className="p-4 text-xs text-[#665E55] dark:text-[#A8A196] whitespace-nowrap font-mono">
+                  <tr key={a.id} className="hover:bg-[#FFFFFF] dark:hover:bg-[#261317] transition-colors">
+                    <td className="p-4 text-xs text-[#6B7280] dark:text-[#9CA3AF] whitespace-nowrap font-mono">
                       {ts.toLocaleString('id-ID', {
                         day: '2-digit',
                         month: 'short',
@@ -194,10 +194,10 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
                         {meta.label}
                       </span>
                     </td>
-                    <td className="p-4 text-[#1C1917] dark:text-[#F5F3EF]">
+                    <td className="p-4 text-[#111827] dark:text-[#F9FAFB]">
                       {a.summary}
                       {a.target_table && (
-                        <div className="text-[10px] text-[#665E55] dark:text-[#A8A196] mt-0.5 font-mono">
+                        <div className="text-[10px] text-[#6B7280] dark:text-[#9CA3AF] mt-0.5 font-mono">
                           {a.target_table}{a.target_id ? ` · ${String(a.target_id).slice(0, 8)}…` : ''}
                         </div>
                       )}
@@ -205,20 +205,20 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
                     <td className="p-4 text-xs">
                       {a.actor_username ? (
                         <>
-                          <div className="font-mono font-bold text-[#1C1917] dark:text-[#F5F3EF]">
+                          <div className="font-mono font-bold text-[#111827] dark:text-[#F9FAFB]">
                             {a.actor_username}
                           </div>
                           {a.actor_roles && a.actor_roles.length > 0 && (
-                            <div className="text-[10px] text-[#665E55] dark:text-[#A8A196]">
+                            <div className="text-[10px] text-[#6B7280] dark:text-[#9CA3AF]">
                               {a.actor_roles.join(', ')}
                             </div>
                           )}
                         </>
                       ) : (
-                        <span className="italic text-[#665E55] dark:text-[#A8A196]">anonim</span>
+                        <span className="italic text-[#6B7280] dark:text-[#9CA3AF]">anonim</span>
                       )}
                     </td>
-                    <td className="p-4 text-[10px] font-mono text-[#665E55] dark:text-[#A8A196]">
+                    <td className="p-4 text-[10px] font-mono text-[#6B7280] dark:text-[#9CA3AF]">
                       {a.ip || <span className="italic">—</span>}
                     </td>
                   </tr>
@@ -232,14 +232,14 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
       {/* Pagination */}
       {total > limit && (
         <div className="flex items-center justify-between text-xs">
-          <span className="text-[#665E55] dark:text-[#A8A196]">
+          <span className="text-[#6B7280] dark:text-[#9CA3AF]">
             Menampilkan {start}–{end} dari {total}
           </span>
           <div className="flex items-center gap-2">
             <button
               onClick={onPrev}
               disabled={!hasPrev || loading}
-              className="px-3 py-2 rounded-xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-[#1C1917] dark:text-[#F5F3EF] font-bold flex items-center gap-1 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="px-3 py-2 rounded-xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#111827] dark:text-[#F9FAFB] font-bold flex items-center gap-1 disabled:opacity-40 disabled:cursor-not-allowed"
             >
               <ChevronLeft className="w-3.5 h-3.5" />
               Sebelumnya
@@ -247,7 +247,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
             <button
               onClick={onNext}
               disabled={!hasNext || loading}
-              className="px-3 py-2 rounded-xl bg-[#F3EFE6] dark:bg-[#262421] border border-[#E5DFD5] dark:border-[#332F2B] text-[#1C1917] dark:text-[#F5F3EF] font-bold flex items-center gap-1 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="px-3 py-2 rounded-xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#111827] dark:text-[#F9FAFB] font-bold flex items-center gap-1 disabled:opacity-40 disabled:cursor-not-allowed"
             >
               Berikutnya
               <ChevronRight className="w-3.5 h-3.5" />

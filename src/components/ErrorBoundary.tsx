@@ -60,10 +60,10 @@ export class ErrorBoundary extends React.Component<Props, State> {
           <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 to-red-700 text-white shadow-lg mb-5">
             <X className="h-7 w-7" />
           </div>
-          <h2 className="text-2xl font-extrabold text-[#1C1917] dark:text-[#F5F3EF] tracking-tight">
+          <h2 className="text-2xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight">
             Terjadi kesalahan
           </h2>
-          <p className="mt-2 max-w-md text-sm text-[#665E55] dark:text-[#A8A196]">
+          <p className="mt-2 max-w-md text-sm text-[#6B7280] dark:text-[#9CA3AF]">
             Halaman ini gagal dimuat. Coba muat ulang, atau kembali ke beranda jika masalah berlanjut.
           </p>
           {process.env.NODE_ENV !== 'production' && this.state.error && (
@@ -82,7 +82,7 @@ export class ErrorBoundary extends React.Component<Props, State> {
             </button>
             <a
               href="/home"
-              className="inline-flex items-center px-5 py-2.5 rounded-xl border border-[#E5DFD5] dark:border-[#332F2B] bg-white dark:bg-[#1D1B19] text-[#1C1917] dark:text-[#F5F3EF] text-sm font-bold hover:bg-[#F3EFE6] dark:hover:bg-[#262421] transition-all"
+              className="inline-flex items-center px-5 py-2.5 rounded-xl border border-[#E5E7EB] dark:border-[#2A2F3A] bg-white dark:bg-[#171A21] text-[#111827] dark:text-[#F9FAFB] text-sm font-bold hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] transition-all"
             >
               Ke Beranda
             </a>

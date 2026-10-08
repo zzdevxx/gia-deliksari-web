@@ -29,7 +29,7 @@ export function useToast() {
   }, [toastMessage]);
 
   const ToastView = toastMessage ? (
-    <div className="fixed bottom-6 right-6 z-50 p-4 rounded-2xl bg-[#141312] text-white border border-[#332F2B] shadow-2xl flex items-center gap-3 text-xs sm:text-sm font-bold animate-in slide-in-from-bottom-5 duration-300">
+    <div className="fixed bottom-6 right-6 z-50 p-4 rounded-2xl bg-[#0F1115] text-white border border-[#2A2F3A] shadow-2xl flex items-center gap-3 text-xs sm:text-sm font-bold animate-in slide-in-from-bottom-5 duration-300">
       <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
       <span>{toastMessage}</span>
     </div>
