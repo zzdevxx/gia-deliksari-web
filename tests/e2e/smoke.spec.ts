@@ -64,7 +64,7 @@ test.describe('Public surface', () => {
       }
       return navigator.serviceWorker.controller ? 'controlled' : 'unclaimed';
     });
-    // We don't strictly assert 'controlled' — Vercel CDN sometimes claims
+    // We don't strictly assert 'controlled' — edge workers sometimes claim
     // lazily. We do assert that SW API exists + script reachable.
     expect(['controlled', 'unclaimed']).toContain(swState);
 
@@ -131,11 +131,9 @@ test.describe('Admin / Super auth flow', () => {
     await expect(page.getByText(/salah|gagal/i).first()).toBeVisible({ timeout: 5_000 });
   });
 
-  // Skipped: rate limit lives in an in-memory Map inside the serverless
-  // function. On Vercel, each cold start resets state, so reload inside the
-  // test window often shows fresh function and lockout never triggers.
-  // Real lockout protection still works for users hammering from a single IP
-  // within the same serverless instance (Vercel keeps warm for ~5 min).
+  // Skipped: rate limit lives in an in-memory Map inside the serverless isolate.
+  // In edge workers, requests may hit different isolates, so lockout state
+  // does not always cross isolate boundaries in fast test runs.
   test.skip('rate-limit kicks in after 3 failed attempts', async ({ page }) => {
     await waitForLoginForm(page);
     for (let i = 0; i < 3; i++) {

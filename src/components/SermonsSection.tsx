@@ -41,7 +41,7 @@ export default function SermonsSection() {
         console.warn('YouTube API fetch skipped, trying dataStore:', ytErr);
       }
 
-      // 2. Fallback to Supabase / Local DataStore
+      // 2. Fallback to Cloudflare D1 / Local DataStore
       try {
         const data = await dataStore.getSermons();
         if (data && data.length > 0) {

@@ -48,16 +48,13 @@ for 5+ years before any cost.**
 
 ## Step 4 — Set environment variables
 
-Add to `.env.local` (local dev) AND Vercel dashboard (production):
+Add to `.env.local` (local dev) or CI secrets:
 
 ```bash
 B2_ACCOUNT_ID=<your-account-id>
 B2_APPLICATION_KEY=<your-app-key>
 B2_BUCKET_NAME=gia-deliksari-photos-mirror
 ```
-
-In Vercel: **Settings** → **Environment Variables** → add the three above.
-Scope to "Production" (or all environments if you also want staging).
 
 ## Step 5 — First run (dry-run)
 
@@ -98,25 +95,8 @@ First run uploads everything. Subsequent runs only upload deltas.
 
 ## Step 7 — Automate (optional)
 
-Add a step to `.github/workflows/daily-backup.yml`:
-
-```yaml
-- name: Mirror Drive to B2
-  env:
-    B2_ACCOUNT_ID: ${{ secrets.B2_ACCOUNT_ID }}
-    B2_APPLICATION_KEY: ${{ secrets.B2_APPLICATION_KEY }}
-    B2_BUCKET_NAME: ${{ secrets.B2_BUCKET_NAME }}
-    GOOGLE_OAUTH_REFRESH_TOKEN: ${{ secrets.GOOGLE_OAUTH_REFRESH_TOKEN }}
-    # ...other Drive OAuth vars
-  run: npm run mirror:b2
-```
-
-Or run via Vercel Cron (requires paid plan):
-- Add a new cron entry pointing to `/api/mirror/run` (you'd need to
-  create a new API endpoint that wraps the script — out of scope for
-  initial setup).
-
-For now, manual weekly runs are fine.
+Run periodically or integrate with a scheduled GitHub Actions workflow when needed.
+For now, manual runs via `npm run mirror:b2` are sufficient.
 
 ## Verification
 
@@ -141,8 +121,7 @@ aws s3 cp s3://<bucket-name>/drive-mirror/<file-id>/<name> ./restore/ \
 
 ## Troubleshooting
 
-**"No API key found"** — Vercel env vars not picked up by serverless
-function. Trigger a redeploy after adding env vars.
+**"No API key found"** — environment variable belum di-set di `.env.local`.
 
 **"FATAL: missing env B2_ACCOUNT_ID"** — local `.env.local` not
 populated, or script running outside Node 20+.

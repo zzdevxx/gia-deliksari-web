@@ -21,8 +21,8 @@ export const INITIAL_ANNOUNCEMENTS: Announcement[] = [
     createdAt: '2026-08-31T00:00:00Z',
   },
   // === CATATAN: warta yang sudah berlalu (eventDate < hari ini)
-  //     TIDAK ditampilkan di landing publik — lihat AnnouncementBoard.tsx
-  //     filter isPublished + waktu. Tersimpan di Supabase untuk arsip admin. ===
+  //     TIDAK ditampilkan di landing publik — difilter isPublished + waktu.
+  //     Tersimpan di Cloudflare D1 untuk arsip admin. ===
 ];
 
 export const INITIAL_ROSTER: ServantRoster[] = [

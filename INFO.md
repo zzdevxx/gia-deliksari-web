@@ -243,9 +243,9 @@ GIA Deliksari menerima persembahan jemaat melalui **3 metode**:
 - `author` (penulis / unit pelayanan)
 
 ### 9.4 Sumber Data
-Warta jemaat **diinput oleh admin melalui Portal Admin** (`/admin` → tab **Warta Jemaat**). Data disimpan di tabel `announcements` di Supabase dan ditampilkan di:
-- `/` & `/home` → section `AnnouncementBoard` (5 warta upcoming)
-- `/info` → section "Papan Pengumuman & Warta" (with full category filter + countdown)
+Warta jemaat **diinput oleh admin melalui Portal Admin** (`/admin` → tab **Warta Jemaat**). Data disimpan di tabel `announcements` di Cloudflare D1 dan ditampilkan di:
+- `/info` → section "Papan Warta Jemaat" (filter kategori, hitung mundur, salin format WA)
+- `/info/print` → buletin warta & roster siap cetak A4
 - `/api/public/data?table=announcements` → endpoint publik sanitasi
 
 ---
@@ -307,7 +307,7 @@ Contoh:
 
 5 tab utama:
 
-| Tab | Modul | Tabel Supabase |
+| Tab | Modul | Tabel D1 |
 |---|---|---|
 | 🔔 Warta Jemaat | CRUD warta + pin/unpin + filter publish/draft | `announcements` |
 | 👥 Roster Pelayanan | Plotting pelayan 4 komunitas + WhatsApp broadcast + cetak A4 | `servant_rosters` |
@@ -344,18 +344,20 @@ Contoh:
 | `POST /api/users` | super | Create user baru (bcrypt-hash) — roles array |
 | `PATCH /api/users/[id]` | super | Update `roles[]` / password / display_name / active |
 | `DELETE /api/users/[id]` | super | Soft-deactivate (set active=false) |
+| `GET /api/audit-log` | super | List & filter audit trail (actor, action, date range) |
 | `GET /api/admin/data?table=…` | super \| admin | Read CRUD table |
-| `POST /api/admin/data` | super \| admin | Upsert rows |
-| `DELETE /api/admin/data?table=…&id=…` | super \| admin | Hard-delete row |
+| `POST /api/admin/data` | super \| admin | Upsert rows (tercatat di audit log) |
+| `DELETE /api/admin/data?table=…&id=…` | super \| admin | Hard-delete row (tercatat di audit log) |
 | `GET /api/public/data?table=…` | public | Read publik (filtered, sanitized) |
 | `POST /api/public/ministry-requests` | public + rate limit | Submit permohonan jemaat |
-| `POST /api/gallery/upload` | public (multipart) | Upload foto ke Drive + Supabase |
-| `POST /api/gallery/sync` | session atau `x-sync-secret` | Sinkronisasi Drive → DB |
+| `POST /api/gallery/upload` | super \| admin | Upload foto ke Drive + Cloudflare D1 |
+| `POST /api/gallery/sync` | session atau `x-sync-secret` | Sinkronisasi Drive → D1 |
 | `GET /api/youtube/latest` | public | Fetch video khotbah terbaru YouTube Data API v3 |
 | `GET /api/youth-treasury` | super \| treasurer | List transaksi + balance aggregate |
 | `POST /api/youth-treasury` | super \| treasurer | Create transaksi |
 | `PATCH /api/youth-treasury/[id]` | super \| treasurer | Update transaksi |
 | `DELETE /api/youth-treasury/[id]` | super \| treasurer | Hard-delete transaksi |
+| `GET /api/debug/env` | super \| admin | Diagnostic status D1 & environment |
 
 ---
 
@@ -364,12 +366,6 @@ Contoh:
 Lihat `.env.example` untuk dokumentasi lengkap. Ringkasan:
 
 ```env
-# === Supabase ===
-NEXT_PUBLIC_SUPABASE_URL=https://<project-ref>.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon-jwt>
-SUPABASE_SERVICE_ROLE_KEY=<service-role-jwt>     # Server-only, bypass RLS
-SUPABASE_ACCESS_TOKEN=<management-api-token>      # opsional, untuk sync env
-
 # === Admin / Auth ===
 # Login memakai tabel users (bcrypt) di Cloudflare D1 — tidak ada
 # fallback password lagi. ADMIN_SESSION_SECRET WAJIB di-set di production
@@ -396,11 +392,11 @@ YOUTUBE_CHANNEL_ID=
 2. **Jangan hardcode nomor rekening / data sensitif** di komponen publik — gunakan env var atau field DB.
 3. **Kredensial akun tidak pernah ditulis di dokumen/repo** — simpan di vault pengurus; rotasi via `/super`. Smoke test CI memakai GitHub secrets, bukan nilai hard-coded.
 4. **Link Zoom ibadah do'a pagi** masih sementara dan akan diperbarui — update langsung di `src/app/info/page.tsx` (bagian kartu agenda) setelah link baru tersedia.
-5. **Struktur multi-portal**: `/` redirect ke `/home`, lalu navigasi internal via Navbar. Portal admin/super/kas adalah route terpisah yang masing-masing memerlukan login.
-6. **RBAC**: helper `requireRole(req, ['super', 'admin'])` di API routes memastikan role enforcement. Jangan bypass di route baru.
+5. **Struktur multi-portal**: `/` dan `/home` melayani Beranda Jemaat publik, dengan navigasi internal via Navbar. Portal admin/super/kas adalah route terpisah yang masing-masing memerlukan login.
+6. **RBAC**: helper `requireRole(req, ['super', 'admin'])` di API routes memastikan role enforcement di server. Jangan bypass di route baru.
 7. **Akun user baru** dibuat via `/super` → bcrypt cost 10, disimpan di tabel `users`. Password tidak pernah di-log atau di-display plain.
 
 ---
 
-_Dokumen ini terakhir diperbarui: **31 Agustus 2026**._
+_Dokumen ini terakhir diperbarui: **8 Oktober 2026**._
 _Maintainer: Tim Media & Pastoral GIA Deliksari Semarang._

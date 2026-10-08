@@ -15,11 +15,10 @@ if (process.env.NODE_ENV === 'development' || process.argv.includes('dev')) {
  *    mitigate by removing these via nonce-based CSP in a future iteration.
  *  - 'self' for scripts/styles/images that originate from the same origin.
  *  - External resources are scoped to the exact hosts we actually use:
- *    Supabase (api + storage + image transform), Google (apis, Drive,
- *    YouTube, Maps), Instagram, WhatsApp.
+ *    Cloudflare (R2, APIs), Google (apis, Drive, YouTube, Maps), Instagram, WhatsApp.
  *  - Frame-src allows Google Maps embed + YouTube embeds (used by Sermons
- *    iframe lightbox) + Vercel live preview (inspected domain).
- *  - Connect-src includes Supabase realtime + REST + WebSocket, Google APIs.
+ *    iframe lightbox).
+ *  - Connect-src includes Cloudflare APIs/R2, Google APIs, WhatsApp.
  *  - object-src 'none' to block plugin abuse (Flash/Java).
  *
  * If you add a new external integration, append the host to the relevant

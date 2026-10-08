@@ -8,7 +8,7 @@ import { test, expect, request } from '@playwright/test';
  * CREATE real rows that get cleaned up in afterAll hooks.
  *
  * DO NOT enable on shared CI without coordination — concurrent test runs
- * against the same Supabase project will collide.
+ * against the production database will collide.
  *
  * Usage:
  *   RUN_MUTATION_TESTS=1 npx playwright test mutations.spec.ts
@@ -213,8 +213,8 @@ describeIf('Mutation: auth rate-limit', () => {
         break;
       }
     }
-    // Best-effort: Vercel cold-start resets in-memory rate limit, so this is
-    // flaky. Log warning instead of failing hard.
+    // Best-effort: Serverless isolate resets in-memory rate limit, so this is
+    // flaky across edge instances. Log warning instead of failing hard.
     if (!locked) {
       console.warn('Rate-limit did not trigger (likely cold-start reset)');
     }

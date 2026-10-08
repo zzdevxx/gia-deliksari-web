@@ -28,10 +28,14 @@ Website telah resmi aktif dan ter-deploy secara langsung di **Cloudflare Workers
 
 | Portal | Path | Akses | Deskripsi singkat |
 |---|---|---|---|
-| 🕊️ **Beranda Jemaat** | [`/home`](/home) | publik | Landing page: profil gereja, warta, jadwal, galeri, kontak, persembahan. |
-| 📋 **Info Pelayanan** | [`/info`](/info) | publik | Papan warta + jadwal pelayanan fokus operasional. |
+| 🕊️ **Beranda Jemaat** | [`/`](/) & [`/home`](/home) | publik | Landing page: profil gereja, visi pastoral, 4 pilar pelayanan, struktur organisasi, lokasi & kontak. |
+| 📋 **Info Pelayanan** | [`/info`](/info) | publik | Papan warta jemaat, 6 agenda rutin sepekan, dan roster pelayan ibadah (list & kalender). |
+| 🖨️ **Buletin Cetak** | [`/info/print`](/info/print) | publik | Format buletin warta dan roster mingguan siap cetak A4. |
+| 🎥 **Media & Galeri** | [`/media`](/media) | publik | Arsip video khotbah YouTube Data API v3 & galeri foto dokumentasi kegiatan. |
+| 🤝 **Layanan Jemaat** | [`/layanan`](/layanan) | publik | Formulir permohonan doa, konseling, sakramen baptisan/anak, komsel, dan volunteer. |
+| 💝 **Persembahan Kasih** | [`/persembahan`](/persembahan) | publik | Panduan 4 pos persembahan, salin rekening BCA/BRI 1-klik, dan modal QRIS digital. |
 | 🛡️ **Admin / Operator** | [`/admin`](/admin) | `super` / `admin` | 5 tab: Warta, Roster, Layanan Jemaat, Khotbah & Galeri, Inventaris. |
-| 👑 **Superuser** | [`/super`](/super) | `super` only | User management (create, edit roles, soft-delete). |
+| 👑 **Superuser** | [`/super`](/super) | `super` only | User management (create, edit roles, soft-delete) & Audit Log. |
 | 💰 **Kas Youth** | [`/kas`](/kas) | `super` / `treasurer` | Catat pemasukan/pengeluaran kas Grow Generation + saldo realtime. |
 
 Akun & kredensial production **tidak didokumentasikan di repo ini** — dikelola via `/super` dan disimpan di vault pengurus (detail: INFO.md §10.2).
@@ -40,20 +44,20 @@ Akun & kredensial production **tidak didokumentasikan di repo ini** — dikelola
 
 ## 📖 Ringkasan Proyek
 
-**GIA Deliksari Web** adalah platform digital komprehensif yang dibangun khusus untuk melayani jemaat **Gereja Isa Almasih (GIA) Deliksari Semarang**. Platform ini menggabungkan landing page publik yang modern, responsif, dan interaktif dengan portal manajemen operasional gereja yang terintegrasi langsung ke cloud database **Supabase**.
+**GIA Deliksari Web** adalah platform digital komprehensif yang dibangun khusus untuk melayani jemaat **Gereja Isa Almasih (GIA) Deliksari Semarang**. Platform ini menggabungkan landing page publik yang modern, responsif, dan interaktif dengan portal manajemen operasional gereja yang terintegrasi langsung ke serverless database **Cloudflare D1**.
 
 ### 🌟 Fitur Utama
 
-### 1. Public Landing Page (`/public` & `/`)
+### 1. Public Landing Page (`/` & `/home`)
 - **Hero & Church Identity**: Banner foto riil gedung gereja, tagar *"GROWING CHURCH! 🔥"*, serta akses cepat ke warta dan jadwal.
 - **Tentang & Gembala Sidang**: Profil pelayanan **Ps. Yohanes Sutono** beserta visi, misi, dan nilai-nilai inti jemaat.
 - **4 Pilar Pelayanan Ibadah**:
-  1. ⛪ **Ibadah Raya Umum** (Minggu 07:00 & 16:30 WIB)
-  2. 🔥 **Grow Generation Youth / PRBK** (Sabtu 17:00 WIB)
-  3. 🎨 **COC Kidz / Sekolah Minggu** (Minggu 07:00 WIB)
-  4. 🌸 **Persekutuan Kaum Wanita Hana** (Kamis 16:00 WIB)
+  1. ⛪ **Ibadah Raya Umum** (Minggu 09:00 - 11:00 WIB)
+  2. 🔥 **Grow Generation Youth / PRBK** (Sabtu 18:00 - 20:00 WIB)
+  3. 🎨 **COC Kidz / Sekolah Minggu** (Minggu 09:30 - 10:30 WIB)
+  4. 🌸 **Persekutuan Kaum Wanita Hana** (Jumat 17:30 WIB / Kamis minggu ke-2)
 - **Papan Warta & Pengumuman Interaktif**: Menampilkan pengumuman minggu depan/bulan ini yang terfilter langsung dari database.
-- **Galeri Dokumentasi Foto Asli**: 8+ foto resolusi tinggi terverifikasi dari Google Maps dan YouTube dengan filter kategori dan tampilan *interactive lightbox modal*.
+- **Galeri Dokumentasi Foto Asli**: Arsip foto dokumentasi resolusi tinggi terverifikasi dari Google Maps dan YouTube dengan filter kategori dan tampilan *interactive lightbox modal*.
 - **Lokasi & Google Maps**: Integrasi lokasi resmi, panduan rute navigasi, dan tautan deep link WhatsApp doa/konseling.
 - **Dark Mode & Light Mode**: Dukungan pergantian tema dinamis (*persisted*).
 
@@ -62,7 +66,7 @@ Akun & kredensial production **tidak didokumentasikan di repo ini** — dikelola
 - 📢 **Manajemen Warta & Pengumuman**: Tambah, edit, hapus, pin warta prioritas, dan filter status publikasi.
 - 👥 **Plotting Jadwal Pelayan Ibadah**: Tab khusus untuk 4 kategori (General, Youth, Kidz, Hana) dengan input peran (WL, Singer, Pemusik, Multimedia, Usher, dll), nomor telepon, dan status konfirmasi.
 - 📦 **Checklist & Audit Inventaris**: Daftar inventaris alat gereja (Sound System, Multimedia, Musik, Kursi & Gedung) dengan fitur centang/uncentang realtime, filter status kondisi (*Good / Maintenance / Broken*), dan reset checklist sebelum ibadah.
-- 🔄 **Supabase Dual-Sync Engine**: Otomatis menyimpan data ke cloud database Supabase PostgreSQL sekaligus caching lokal di `localStorage` saat offline.
+- 🔄 **Cloudflare D1 Storage Engine**: Menyimpan data langsung ke Cloudflare D1 serverless database dengan audit log lengkap dan caching lokal saat offline.
 
 ---
 
@@ -111,13 +115,16 @@ gia-deliksari-web/
 │       └── gallery-*.jpg       # Galeri foto kegiatan & persekutuan
 ├── src/
 │   ├── app/
-│   │   ├── layout.tsx          # Root layout & tema
-│   │   ├── page.tsx            # Redirect '/' → '/home'
-│   │   ├── home/page.tsx       # Landing publik jemaat (8+ section)
-│   │   ├── info/page.tsx       # Halaman fokus warta + jadwal pelayanan
-│   │   ├── admin/page.tsx      # Portal admin (5 tab CRUD)
-│   │   ├── super/page.tsx      # Portal superuser (user management)
-│   │   ├── kas/page.tsx        # Portal kas youth (treasury)
+│   │   ├── layout.tsx          # Root layout, fonts, meta & tema
+│   │   ├── page.tsx            # Beranda publik jemaat
+│   │   ├── home/page.tsx       # Alias canonical Beranda Jemaat
+│   │   ├── info/               # Warta jemaat + agenda & roster (+ print buletin A4)
+│   │   ├── media/page.tsx      # Arsip khotbah video & galeri foto
+│   │   ├── layanan/page.tsx    # Layanan jemaat & permohonan doa
+│   │   ├── persembahan/page.tsx# Persembahan kasih & QRIS digital
+│   │   ├── admin/              # Portal majelis & admin (5 tab CRUD)
+│   │   ├── super/              # Portal superuser (user management & audit log)
+│   │   ├── kas/                # Portal kas youth (treasury Grow Generation)
 │   │   ├── manifest.ts         # PWA manifest
 │   │   ├── robots.ts           # SEO robots
 │   │   ├── sitemap.ts          # SEO sitemap
@@ -131,9 +138,9 @@ gia-deliksari-web/
 │   │       ├── youtube/latest/ # Fetch khotbah terbaru YouTube Data API v3
 │   │       ├── youth-treasury/ # CRUD transaksi kas
 │   │       └── debug/env/      # Diagnostic env vars (admin-only)
-│   ├── components/             # Section publik + admin hooks
+│   ├── components/             # Section publik + admin dashboard
 │   │   ├── Hero.tsx, Navbar.tsx, Footer.tsx, ThemeToggle.tsx, …
-│   │   └── admin/              # useAdminAuth, useAdminData, useToast
+│   │   └── admin/              # Tab components, useAdminData, useToast
 │   ├── lib/
 │   │   ├── auth.ts             # Multi-role auth + bcrypt + rate limit
 │   │   ├── d1.ts               # Cloudflare D1 unified client (edge/dev/test)
@@ -147,11 +154,12 @@ gia-deliksari-web/
 ├── scripts/                    # Ops tooling (D1 backup to sheets, drive diagnostic)
 ├── .github/workflows/
 │   ├── backup-d1-to-sheets.yml # GH Actions daily D1 → Google Sheets
-│   └── ci.yml                  # TypeScript + Vitest + Playwright CI
+│   ├── ci.yml                  # TypeScript + Vitest + Playwright CI
+│   └── lighthouse.yml          # Lighthouse CI audit
 ├── backups/                    # Auto-generated SQL / JSON snapshots
 ├── INFO.md                     # Single source of truth (identitas, jadwal, struktur)
 ├── PRD.md                      # Product Requirements Document
-├── DESIGN.md                   # Design System & Token Specification v3.4.0
+├── DESIGN.md                   # Design System & Token Specification (Warm Alabaster & Sacred Wine)
 ├── LICENSE                     # Proprietary & Private
 └── package.json
 ```

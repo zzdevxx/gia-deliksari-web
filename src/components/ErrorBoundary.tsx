@@ -34,7 +34,7 @@ export class ErrorBoundary extends React.Component<Props, State> {
   }
 
   componentDidCatch(error: Error, info: React.ErrorInfo): void {
-    // Log to console — Vercel picks up console.error/warn into function logs.
+    // Log to console — Cloudflare Workers runtime captures console.error/warn into execution logs.
     // (Future: forward to Sentry/PostHog via the observer hook below.)
     console.error('[ErrorBoundary] caught:', error, info.componentStack);
     if (typeof window !== 'undefined') {

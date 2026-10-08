@@ -155,64 +155,52 @@ View: `youth_treasury_balance` (total_income, total_expense, balance, income_cou
 
 ---
 
-## 8. Hybrid Storage Architecture: Drive Gudang + Supabase Etalase CDN
+## 8. Hybrid Storage Architecture: Drive Gudang + Cloudflare D1 & Edge Delivery
 
 ### 8.1 Prinsip
 - Google Drive = permanent master archive (full resolution, abadi).
-- Supabase = etalase metadata + thumbnail CDN (Image Transform, 800px WebP).
-- Jemaat boleh upload + download, TIDAK boleh hapus/edit — token Drive hanya di server.
-- TIDAK ADA endpoint DELETE/EDIT di layer jemaat.
+- Cloudflare D1 = cache metadata + thumbnail URL untuk rendering cepat di web.
+- Operator upload via `/admin` (terautentikasi), visitor hanya membaca.
+- TIDAK ADA endpoint DELETE/EDIT di layer jemaat publik.
 
 ### 8.2 Security Model
 1. Jemaat tidak pegang kredensial Drive.
-2. API route `/api/gallery/upload` hanya terima multipart/form-data untuk create file baru.
+2. API route `/api/gallery/upload` dilindungi `requireRole(['super', 'admin'])`.
 3. Folder Drive permission: `reader` untuk anyone-with-link.
-4. jemaat bisa download via Drive webViewLink, tapi tidak bisa list/delete.
+4. Jemaat bisa melihat via thumbnail dan webViewLink, tapi tidak bisa list/delete langsung.
 
 ---
 
-## 9. Setup Manual Pertama Kali
+## 9. Setup Database & Deployment
 
-### 9.1 Database
-1. Jalankan migration via Supabase CLI:
+### 9.1 Database Cloudflare D1
+1. Jalankan migration via npm scripts / Wrangler:
    ```bash
-   supabase db push --include-all
+   npm run d1:migrate:remote
    ```
-   Ini apply semua migration di `supabase/migrations/`.
+   Ini mengaplikasikan schema di `migrations/0001_initial_schema.sql`.
 
-2. Seed users default:
+2. Seed data awal (users, announcements, roster, inventaris):
    ```bash
-   node scripts/seed-users.mjs
+   npm run d1:seed:remote
    ```
-   Ini insert akun default (bcrypt hash saja — PIN plaintext tidak
-   disimpan di repo; lihat vault pengurus):
-   - `andreas` (super), `noel` (admin), `mara` (treasurer), `zzdree` (admin+treasurer)
+   Ini memasukkan data awal dari `migrations/0002_initial_seed.sql`.
 
-### 9.2 Environment Variables (Vercel Production)
-Set di Vercel dashboard → Settings → Environment Variables:
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- `SUPABASE_SERVICE_ROLE_KEY` (server-only, bypass RLS)
-- `ADMIN_SESSION_SECRET` (random 32-char string)
+### 9.2 Secrets Management (Cloudflare Workers)
+Set via `npx wrangler secret put <NAME>`:
+- `ADMIN_SESSION_SECRET` (random 32+ char HMAC secret)
+- `GOOGLE_OAUTH_CLIENT_ID`
+- `GOOGLE_OAUTH_CLIENT_SECRET`
+- `GOOGLE_OAUTH_REFRESH_TOKEN`
+- `YOUTUBE_API_KEY`
 
-### 9.3 Sync Data Placeholder
-Setelah deploy pertama:
-```bash
-node scripts/sync-placeholder.mjs
-```
-Ini wipe production announcements + roster ke state placeholder, supaya landing publik tidak menampilkan data lama (fake). Admin selanjutnya input data real via `/admin`.
+Public non-sensitive variables disimpan di blok `vars` pada `wrangler.jsonc`.
 
 ---
 
 ## 10. Environment Variables Lengkap
 
 ```env
-# === Supabase ===
-NEXT_PUBLIC_SUPABASE_URL=https://<project-ref>.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon-jwt>
-SUPABASE_SERVICE_ROLE_KEY=<service-role-jwt>
-SUPABASE_ACCESS_TOKEN=<management-api-token>
-
 # === Admin / Auth ===
 ADMIN_SESSION_SECRET=<random-32-char>            # HMAC key untuk gia_session cookie (wajib)
 
@@ -234,11 +222,11 @@ YOUTUBE_CHANNEL_ID=
 
 1. **INFO.md adalah single source of truth** untuk semua informasi non-konten gereja (identitas, kontak, struktur, jadwal ibadah, persembahan). Selalu update INFO.md dulu sebelum ubah code.
 2. **Warta & roster pelayanan** tidak disimpan di code — sepenuhnya dikontrol oleh admin via `/admin`. Code hanya berisi placeholder 1 sample.
-3. **Password** disimpan sebagai bcrypt hash di Supabase. Tidak pernah plain text di code/env/log.
+3. **Password** disimpan sebagai bcrypt hash di Cloudflare D1. Tidak pernah plain text di code/env/log.
 4. **RBAC**: gunakan `requireRole(req, [...])` di setiap API route baru. Test matrix role sebelum merge.
 5. **CSP header** sudah aktif (`next.config.ts`). Tambahkan host baru ke directive yang relevan saat menambah integrasi.
-6. **Schema migrations** diletakkan di `supabase/migrations/` dengan format timestamp `YYYYMMDDHHMMSS_nama.sql`. Apply via `supabase db push`.
-7. **Backup workflow** (`.github/workflows/daily-backup.yml`) auto-backup harian ke Google Drive.
+6. **Schema migrations** diletakkan di `migrations/` dengan format SQL (`0001_initial_schema.sql`, dst). Apply via `npm run d1:migrate:remote`.
+7. **Backup workflow** (`.github/workflows/backup-d1-to-sheets.yml`) auto-backup harian D1 ke Google Sheets pengurus.
 
 ---
 
@@ -248,6 +236,6 @@ _Phase 3 (/admin pakai multi-user auth): selesai_
 _Phase 4 (/kas + treasury): selesai_
 _Phase 5 (/info page): selesai_
 _Phase 6 (Cleanup placeholder & Zoom link): selesai_
-_Phase 7 (PRD/DESIGN.md sync dengan multi-portal): selesai_
+_Phase 7 (Migrasi Cloudflare D1 & OpenNext): selesai_
 
-_Dokumen ini terakhir diperbarui: **31 Agustus 2026**._
+_Dokumen ini terakhir diperbarui: **8 Oktober 2026**._
