@@ -33,11 +33,22 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>('light');
   const [mounted, setMounted] = useState(false);
 
-  // Read back what the pre-paint script in layout.tsx already resolved, so the
-  // first client render matches the DOM instead of flashing the wrong theme.
+  // Read stored preference, OS preference, or existing DOM class,
+  // ensuring the theme is correctly applied upon mount.
   useEffect(() => {
-    const root = document.documentElement;
-    const resolved: Theme = root.classList.contains('dark') ? 'dark' : 'light';
+    let resolved: Theme;
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
+      if (stored === 'dark' || stored === 'light') {
+        resolved = stored;
+      } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        resolved = prefersDark ? 'dark' : 'light';
+      }
+    } catch {
+      resolved = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    }
+    applyTheme(resolved);
     setThemeState(resolved);
     setMounted(true);
   }, []);
