@@ -5,6 +5,34 @@ All notable changes to GIA Deliksari Web will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.0] - 2026-10-09 — Crimson Field Theme, Hero Geometry Repair & Frosted Glass Navbar
+
+### Visual & Color Architecture (Crimson Field)
+- **Akar Masalah Palet Terpecahkan**: Logo `#8B1E28` berada di OKLCH hue 21.4° (zona oranye/terakota/bata). Menurunkan ke hitam selalu melewati mud/coklat (`alpha 0.30` -> `#2F0F14`, chroma 0.053).
+- **Pergeseran Hue Kanonik ke 14.1° (`#8E1533`)**: Mempertahankan identitas merah anggur gereja saat digelapkan (`#5A0F24` memegang chroma 0.107 murni merah, bukan coklat).
+- **Gradient Atmosphere Terisolasi (`.gia-field`)**: Sesuai kesepakatan flat minimalism, gradien merah ke hitam gelap hanya diizinkan di background Hero (`overflow-hidden`, scrolling away), sementara semua komponen, kartu, tombol, dan teks tetap 100% flat.
+- **Three-way Brand Token Split**:
+  - `--brand` (`#8E1533`): Background fill tombol/CTA (kontras teks putih 9.11:1).
+  - `--brand-text` (`#8E1533` light, `#F08AA4` dark): Teks/ikon di atas kanvas (8.35:1).
+  - `--brand-text-on-brand` (`#F5A0B6`): Teks di atas fill brand (4.59:1 WCAG AA).
+- **Sisa Hex 0 di `src/`**: 444 utility hex dibersihkan menjadi semantic tokens.
+
+### Hero Component Geometric Repair (Commit `832d2ac`)
+- **Fix Label Countdown Dobel**: Hapus span visual yang redundant di `Hero.tsx` (`sr-only sm:not-sr-only` vs `hidden sm:inline`), label kini render 1x di semua breakpoint.
+- **Fix Tabrakan Kartu Pastoral & Alamat**: Kartu pastoral floating digeser dari `-bottom-5/-bottom-6` ke `-bottom-14` (clearing 5px bebas tabrakan di seluruh lebar layar 375–1440px).
+- **Fix Tabrakan Indikator Scroll**: Ditambahkan `pt-16` pada container indikator scroll agar tidak tumpang tindih dengan kartu floating di tampilan mobile/tablet.
+
+### Frosted Glass Navbar (Anti-Slop R-10 & Taste Guidelines) (Commit `ff392f8` & `1c4f4d2`)
+- **Fix Bug Silent Tailwind 3**: `bg-[var(--background)]/95` sebelumnya menghasilkan 0 CSS rules karena Tailwind 3 tidak mendukung opacity modifier pada CSS custom properties, membuat header transparan bolong.
+- **Explicit Semantic Tokens**: Menambahkan `--nav-bg` (`rgba(250, 249, 248, 0.72)` light / `rgba(10, 10, 14, 0.72)` dark) dan `--nav-border` (`rgba(227, 223, 221, 0.60)` light / `rgba(49, 49, 62, 0.60)` dark).
+- **Dose Cap R-10 Terpenuhi**: Efek frosted glass (`backdrop-blur-md`) hanya dipasang pada sticky Navbar yang melayang di atas scroll konten. Kartu warta dan modul lainnya tetap solid dan flat.
+- **Sinkronisasi Dark Mode**: `ThemeProvider.tsx` membaca `localStorage` & `prefers-color-scheme` saat mount, mencegah flash putih saat pengguna dark mode membuka halaman.
+
+### Status Verifikasi & Deploy
+- Cloudflare Workers Version ID: `38dc955c-4d2c-4080-89fc-a893f231eb29` aktif di `https://giadeliksari.my.id`.
+- CI GitHub Actions (TypeScript, Vitest 26/26, Playwright smoke, Lighthouse CI): **100% HIJAU**.
+- Impeccable Design Linter: **0 anti-patterns**.
+
 ## [2.3.0] - 2026-10-07 — Impeccable Integration & Warm Alabaster / Sacred Wine Theme Overhaul
 
 ### Design System (replaces the red-saturated "Sacred Crimson" theme)

@@ -48,6 +48,11 @@ colors:
   surface-raised-hover-dark: "#2E2E3B"
   border-dark: "#31313E"      # --border
   inverted-dark: "#17171E"    # --card-inverted-bg (light-mode dark panels)
+  # ── frosted glass chrome (functional overlay, Anti-Slop R-10 compliant) ─
+  nav-bg-light: "rgba(250, 249, 248, 0.72)"   # --nav-bg
+  nav-border-light: "rgba(227, 223, 221, 0.60)" # --nav-border
+  nav-bg-dark: "rgba(10, 10, 14, 0.72)"       # --nav-bg
+  nav-border-dark: "rgba(49, 49, 62, 0.60)"   # --nav-border
   # ── ink ──────────────────────────────────────────────────────────────────
   ink: "#17161A"              # --foreground       light primary text
   ink-muted: "#5C5654"        # --muted-foreground light secondary
@@ -217,10 +222,12 @@ you see in dark mode is the same colour, lit differently.
 
 | Token | Light | Dark | Role |
 |---|---|---|---|
-| `--background` | `#FFFFFF` | `#0F1115` | page canvas |
-| `--card` | `#FFFFFF` | `#171A21` | cards, popovers |
-| `--surface-raised` | `#F3F4F6` | `#1F232D` | inset: table rows, chips |
-| `--card-inverted-*` | `#171A21` | `#171A21` | always-dark panels (vision banner, toasts) — never flips |
+| `--background` | `#FAF9F8` | `#0A0A0E` | page canvas |
+| `--card` | `#FFFFFF` | `#1B1B24` | cards, popovers |
+| `--surface-raised` | `#F1EFEE` | `#24242F` | inset: table rows, chips |
+| `--card-inverted-*` | `#17171E` | `#24242F` | always-dark panels (vision banner, toasts) |
+| `--nav-bg` | `rgba(250, 249, 248, 0.72)` | `rgba(10, 10, 14, 0.72)` | frosted glass navbar veil |
+| `--nav-border` | `rgba(227, 223, 221, 0.60)` | `rgba(49, 49, 62, 0.60)` | hairline bottom boundary |
 
 `--card-inverted-*` exists because ~130 call sites paint a permanently dark
 panel. Pointing them at `--card` would turn those white in light mode.
