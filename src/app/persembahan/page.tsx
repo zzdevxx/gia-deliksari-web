@@ -20,7 +20,7 @@ export default function PersembahanPage() {
       <Navbar />
 
       {/* Header Banner */}
-      <section className="pt-28 pb-10 bg-gradient-to-b from-[var(--background)] via-[var(--background)] to-[var(--surface-raised)]/50 dark:from-[var(--card-inverted-bg)] dark:via-[var(--card-inverted-bg)] dark:to-[#12141A] border-b border-[var(--border)] dark:border-[var(--border)]">
+      <section className="pt-28 pb-10 bg-[var(--background)] dark:bg-[var(--card-inverted-bg)] border-b border-[var(--border)] dark:border-[var(--border)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--brand-text)] dark:text-[#E88086] text-xs font-bold uppercase tracking-wider mb-4">
             <Heart className="w-3.5 h-3.5 fill-[var(--brand)] text-[var(--brand-text)] dark:text-[#E88086]" />

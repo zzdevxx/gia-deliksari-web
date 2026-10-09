@@ -56,8 +56,16 @@ export default function Hero() {
 
   return (
     <section id="beranda" className="relative pt-8 pb-20 sm:pt-14 sm:pb-28 overflow-hidden bg-[var(--background)] dark:bg-[var(--card-inverted-bg)] transition-colors">
-      {/* Subtle Warm Candlelight Ambient Glow */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#4B5563]/4 dark:bg-[#9CA3AF]/4 rounded-full blur-3xl pointer-events-none" />
+      {/* Geometric brand anchor — flat, no glow. A blurred orb at 4% opacity
+          read as a smudge on a white canvas rather than as depth. */}
+      <div
+        aria-hidden="true"
+        className="absolute -top-20 -right-16 w-72 h-72 rounded-full border border-[var(--border)] dark:border-[var(--border)] pointer-events-none"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute -top-6 right-24 w-40 h-40 rounded-full border border-[var(--border)] dark:border-[var(--border)] pointer-events-none"
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
