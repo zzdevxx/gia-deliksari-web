@@ -137,8 +137,8 @@ export default function MinistryRegistrationSection() {
                 onClick={() => setActiveTab(tab.id as ServiceType)}
                 className={`py-3 px-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold flex flex-col sm:flex-row items-center justify-center gap-1.5 transition-all ${
                   isActive
-                    ? 'bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white shadow-sm'
-                    : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-white/60 dark:hover:bg-[#1F232D]'
+                    ? 'bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white shadow-sm'
+                    : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-white/60 dark:hover:bg-[var(--surface-raised-hover)]'
                 }`}
               >
                 <Icon className="w-4 h-4 shrink-0" />
@@ -176,7 +176,7 @@ export default function MinistryRegistrationSection() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Contoh: Andreas Handoko"
-                    className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28] outline-none transition-all"
+                    className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[var(--brand)]/30 focus:border-[var(--brand)] outline-none transition-all"
                   />
                 </div>
 
@@ -197,7 +197,7 @@ export default function MinistryRegistrationSection() {
                     placeholder="Contoh: 081234567890"
                     pattern="^(\+62|62|0)8[1-9][0-9]{6,11}$"
                     title="Masukkan nomor WhatsApp Indonesia yang valid (contoh: 081234567890)"
-                    className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28] outline-none transition-all"
+                    className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[var(--brand)]/30 focus:border-[var(--brand)] outline-none transition-all"
                   />
                 </div>
               </div>
@@ -212,7 +212,7 @@ export default function MinistryRegistrationSection() {
                     <select
                       value={prayerType}
                       onChange={(e) => setPrayerType(e.target.value)}
-                      className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28] outline-none transition-all"
+                      className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[var(--brand)]/30 focus:border-[var(--brand)] outline-none transition-all"
                     >
                       <option value="Doa Kesembuhan">Doa Kesembuhan / Sakit Penyakit</option>
                       <option value="Pemulihan Keluarga / Pernikahan">Pemulihan Keluarga / Pernikahan</option>
@@ -253,7 +253,7 @@ export default function MinistryRegistrationSection() {
                   <select
                     value={sacramentType}
                     onChange={(e) => setSacramentType(e.target.value)}
-                    className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28] outline-none transition-all"
+                    className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[var(--brand)]/30 focus:border-[var(--brand)] outline-none transition-all"
                   >
                     <option value="Baptisan Selam">Baptisan Selam Dewasa</option>
                     <option value="Penyerahan Anak / Bayi">Penyerahan Anak / Bayi Dedication</option>
@@ -271,7 +271,7 @@ export default function MinistryRegistrationSection() {
                   <select
                     value={komselArea}
                     onChange={(e) => setKomselArea(e.target.value)}
-                    className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28] outline-none transition-all"
+                    className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[var(--brand)]/30 focus:border-[var(--brand)] outline-none transition-all"
                   >
                     <option value="Deliksari / Sukorejo">Komsel Wilayah Deliksari / Sukorejo</option>
                     <option value="Sekaran / Kampus UNNES (Mahasiswa)">Komsel Mahasiswa Sekaran / Sekitar UNNES</option>
@@ -289,7 +289,7 @@ export default function MinistryRegistrationSection() {
                   <select
                     value={volunteerRole}
                     onChange={(e) => setVolunteerRole(e.target.value)}
-                    className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28] outline-none transition-all"
+                    className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[var(--brand)]/30 focus:border-[var(--brand)] outline-none transition-all"
                   >
                     <option value="Pujian & Penyembahan (Worship/Musisi)">Pujian & Penyembahan (WL / Singer / Pemain Musik)</option>
                     <option value="Multimedia, Slide & Live Streaming">Multimedia (Slide Operator, Sound System, Camera Streaming)</option>
@@ -310,7 +310,7 @@ export default function MinistryRegistrationSection() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Tuliskan pokok doa, pertanyaan, atau catatan khusus Anda di sini..."
-                  className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28] outline-none transition-all resize-none"
+                  className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[var(--brand)]/30 focus:border-[var(--brand)] outline-none transition-all resize-none"
                 />
               </div>
 
@@ -318,7 +318,7 @@ export default function MinistryRegistrationSection() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 rounded-2xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-xs transition-all cursor-pointer disabled:opacity-70"
+                className="w-full py-4 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-xs transition-all cursor-pointer disabled:opacity-70"
               >
                 <WhatsAppIcon className="w-5 h-5 text-white" />
                 <span>{isSubmitting ? 'Menyimpan & Menghubungkan...' : 'Kirim Formulir ke Tim Pastoral'}</span>

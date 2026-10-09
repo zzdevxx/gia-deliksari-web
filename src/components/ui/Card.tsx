@@ -19,10 +19,10 @@ type Variant = 'elevated' | 'flat' | 'outlined' | 'inverted';
 
 const VARIANT_MAP: Record<Variant, string> = {
   elevated:
-    'bg-white dark:bg-[var(--card)] border border-[#E5E7EB] dark:border-[var(--border)] shadow-xs',
-  flat: 'bg-[#FFFFFF] dark:bg-[var(--card-inverted-bg)] border border-[#E5E7EB]/80 dark:border-[var(--border)]/80',
-  outlined: 'bg-transparent border border-[#E5E7EB] dark:border-[var(--border)]',
-  inverted: 'bg-[#171A21] text-[#F9FAFB] border border-[#4B5563]/30',
+    'bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-xs',
+  flat: 'bg-[var(--background)] dark:bg-[var(--card-inverted-bg)] border border-[var(--border)]/80 dark:border-[var(--border)]/80',
+  outlined: 'bg-transparent border border-[var(--border)] dark:border-[var(--border)]',
+  inverted: 'bg-[var(--card)] text-[var(--foreground)] border border-[var(--ink-strong)]/30',
 };
 
 const BASE_CLASSES =
@@ -40,7 +40,7 @@ function cardClasses(variant: Variant, hoverable: boolean, extra?: string) {
     BASE_CLASSES,
     VARIANT_MAP[variant],
     hoverable &&
-      'hover:-translate-y-0.5 hover:shadow-sm hover:border-[#4B5563]/50 motion-reduce:hover:translate-y-0',
+      'hover:-translate-y-0.5 hover:shadow-sm hover:border-[var(--ink-strong)]/50 motion-reduce:hover:translate-y-0',
     extra,
   );
 }

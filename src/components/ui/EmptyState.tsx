@@ -25,21 +25,21 @@ export function EmptyState({
     <div
       className={cn(
         'flex flex-col items-center justify-center text-center py-16 px-6 rounded-2xl',
-        'border border-dashed border-[#E5E7EB] dark:border-[var(--border)]',
-        'bg-[#F3F4F6]/40 dark:bg-[var(--card)]/40',
+        'border border-dashed border-[var(--border)] dark:border-[var(--border)]',
+        'bg-[var(--surface-raised)]/40 dark:bg-[var(--card)]/40',
         className,
       )}
     >
       {icon && (
-        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#8B1E28] dark:bg-[#B8323D] text-white shadow-xs">
+        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--brand)] dark:bg-[var(--brand)] text-white shadow-xs">
           {icon}
         </div>
       )}
-      <h3 className="text-lg font-semibold text-[#111827] dark:text-[var(--foreground)]">
+      <h3 className="text-lg font-semibold text-[var(--foreground)] dark:text-[var(--foreground)]">
         {title}
       </h3>
       {description && (
-        <p className="mt-2 max-w-md text-sm text-[#5B6472] dark:text-[var(--muted-foreground)]">
+        <p className="mt-2 max-w-md text-sm text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
           {description}
         </p>
       )}

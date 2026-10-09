@@ -102,7 +102,7 @@ export default function GivingSection() {
  )}`;
 
  return (
- <section id="persembahan" className="py-24 bg-[var(--surface-raised)]/60 dark:bg-[#12141A]/60 border-y border-[var(--border)] dark:border-[var(--border)] transition-colors">
+ <section id="persembahan" className="py-24 bg-[var(--surface-raised)]/60 dark:bg-[var(--card)]/60 border-y border-[var(--border)] dark:border-[var(--border)] transition-colors">
  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
  {/* Section Header */}
@@ -135,7 +135,7 @@ export default function GivingSection() {
  className={`py-3 px-3 rounded-xl text-xs font-bold transition-all text-center flex flex-col items-center justify-center gap-1 ${
  isActive
  ? 'bg-[var(--brand)] dark:bg-[var(--brand)] text-white shadow-xs scale-[1.02]'
- : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D]'
+ : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)]'
  }`}
  >
  <span>{cat.name}</span>
@@ -163,7 +163,7 @@ export default function GivingSection() {
  <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white bg-[var(--brand)] dark:bg-[var(--brand)]">
  <Box className="w-8 h-8" />
  </div>
- <span className="inline-block px-3 py-1 rounded-xl text-xs font-bold border bg-[#FBF1F2] text-[var(--brand-text)] border-[#E8C2C5] dark:bg-[#261517] dark:text-[var(--brand-text)] dark:border-[#52252A]">
+ <span className="inline-block px-3 py-1 rounded-xl text-xs font-bold border bg-[var(--brand-tint)] text-[var(--brand-text)] border-[var(--brand-tint-border)] dark:bg-[var(--brand-tint-ink)] dark:text-[var(--brand-text)] dark:border-[var(--brand-tint-border)]">
  Ibadah Onsite
  </span>
  </div>
@@ -201,10 +201,10 @@ export default function GivingSection() {
  <div className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm transition-all flex flex-col justify-between space-y-6 ">
  <div className="space-y-4">
  <div className="flex items-center gap-3">
- <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white bg-[#475569]">
+ <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white bg-[var(--ink-strong)]">
  <CreditCard className="w-8 h-8" />
  </div>
- <span className="inline-block px-3 py-1 rounded-xl text-xs font-bold border bg-[#F9FAFB] text-[#475569] border-[var(--border)] dark:bg-[#1E293B] dark:text-[#64748B] dark:border-[#334155]">
+ <span className="inline-block px-3 py-1 rounded-xl text-xs font-bold border bg-[var(--foreground)] text-[var(--ink-strong)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border-strong)]">
  Transfer Bank
  </span>
  </div>
@@ -238,7 +238,7 @@ export default function GivingSection() {
  className={`px-2.5 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all ${
  copiedKey === bank.id
  ? 'bg-emerald-600 text-white'
- : 'bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#4A161D]'
+ : 'bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--brand-tint-ink)]'
  }`}
  title="Salin Nomor Rekening"
  >
@@ -272,10 +272,10 @@ export default function GivingSection() {
  <div className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm transition-all flex flex-col justify-between space-y-6 ">
  <div className="space-y-4">
  <div className="flex items-center gap-3">
- <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white bg-[#16A34A]">
+ <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white bg-[var(--status-success)]">
  <QrCode className="w-8 h-8" />
  </div>
- <span className="inline-block px-3 py-1 rounded-xl text-xs font-bold border bg-[#F0FDF4] text-[#16A34A] border-[#BBF7D0] dark:bg-[#142A1B] dark:text-[#4ADE80] dark:border-[#052E16]">
+ <span className="inline-block px-3 py-1 rounded-xl text-xs font-bold border bg-[var(--status-success-tint)] text-[var(--status-success)] border-[var(--status-success-border)] dark:bg-[var(--status-success-tint)] dark:text-[var(--status-success)] dark:border-[var(--status-success-border)]">
  Scan & Bayar (QRIS)
  </span>
  </div>
@@ -361,7 +361,7 @@ export default function GivingSection() {
  href={whatsappConfirmUrl}
  target="_blank"
  rel="noopener noreferrer"
- className="w-full sm:w-auto px-5 py-3 rounded-xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] hover:from-[#A81B26] hover:to-[#6E0F16] text-white text-xs font-bold shadow-xs flex items-center justify-center gap-2 shrink-0 transition-all active:scale-95"
+ className="w-full sm:w-auto px-5 py-3 rounded-xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] hover:from-[var(--brand-hover)] hover:to-[var(--brand-hover)] text-white text-xs font-bold shadow-xs flex items-center justify-center gap-2 shrink-0 transition-all active:scale-95"
  >
  <WhatsAppIcon className="w-4 h-4 text-emerald-400" />
  <span>Konfirmasi {currentCategoryObj.name}</span>
@@ -473,7 +473,7 @@ export default function GivingSection() {
  <button
  type="button"
  onClick={() => setShowQrisModal(false)}
- className="flex-1 py-2.5 rounded-xl border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] transition-colors"
+ className="flex-1 py-2.5 rounded-xl border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] transition-colors"
  >
  Tutup
  </button>

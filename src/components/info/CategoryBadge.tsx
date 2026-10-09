@@ -10,15 +10,15 @@ interface CategoryBadgeProps {
 const CONFIG: Record<MinistryCategory, { label: string; color: string }> = {
   general: {
     label: 'Ibadah Raya',
-    color: 'bg-[#FBF1F2] dark:bg-[#261517] text-[var(--brand-text)] dark:text-[var(--brand-text)] border-[#E8C2C5] dark:border-[#52252A]',
+    color: 'bg-[var(--brand-tint)] dark:bg-[var(--brand-tint-ink)] text-[var(--brand-text)] dark:text-[var(--brand-text)] border-[var(--brand-tint-border)] dark:border-[var(--brand-tint-border)]',
   },
   youth: {
     label: 'Grow Youth',
-    color: 'bg-[#F9FAFB] dark:bg-[#1E293B] text-[#475569] dark:text-[#64748B] border-[var(--border)] dark:border-[#334155]',
+    color: 'bg-[var(--foreground)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border-strong)]',
   },
   kidz: {
     label: 'COC Kidz',
-    color: 'bg-[#F9FAFB] dark:bg-[var(--surface-raised)] text-[#4B5563] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border)]',
+    color: 'bg-[var(--foreground)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border)]',
   },
   hana: {
     label: 'Wanita Hana',

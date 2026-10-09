@@ -68,7 +68,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
  value={username}
  onChange={(e) => setUsername(e.target.value)}
  placeholder="namapengurus"
- className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400"
+ className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm focus:ring-2 focus:ring-[var(--brand)]/30 dark:focus:ring-[var(--brand)]/30 focus:border-[var(--brand)] dark:focus:border-[var(--brand)] outline-none transition-all placeholder:text-stone-400"
  />
  </div>
 
@@ -83,14 +83,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
  value={password}
  onChange={(e) => setPassword(e.target.value)}
  placeholder="••••"
- className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400 tracking-widest"
+ className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm focus:ring-2 focus:ring-[var(--brand)]/30 dark:focus:ring-[var(--brand)]/30 focus:border-[var(--brand)] dark:focus:border-[var(--brand)] outline-none transition-all placeholder:text-stone-400 tracking-widest"
  />
  </div>
 
  <button
  type="submit"
  disabled={submitting}
- className="w-full py-4 rounded-2xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white font-extrabold text-sm shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+ className="w-full py-4 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white font-extrabold text-sm shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
  >
  <ShieldCheck className="w-4 h-4" />
  <span>{submitting ? 'Memproses…' : 'Masuk Superuser Portal'}</span>

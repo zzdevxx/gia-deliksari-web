@@ -18,7 +18,7 @@ export default function ThemeToggle({ className = '' }: Props) {
       aria-label="Toggle Dark/Light Mode"
       className={`relative p-2 rounded-lg border transition-colors duration-200 flex items-center justify-center shrink-0 ${
         theme === 'dark'
-          ? 'bg-[#1F232D] border-[var(--border)] text-[var(--foreground)] hover:bg-[#2A2F3A]'
+          ? 'bg-[var(--card)] border-[var(--border)] text-[var(--foreground)] hover:bg-[var(--surface-raised-hover)]'
           : 'bg-white border-[var(--border)] text-[var(--foreground)] hover:bg-[var(--surface-raised)]'
       } ${className}`}
     >

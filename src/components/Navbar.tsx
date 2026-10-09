@@ -108,7 +108,7 @@ export default function Navbar() {
  className="flex items-center gap-3.5 group transition-transform active:scale-95"
  aria-label="Gereja Isa Almasih Deliksari Semarang - Kembali ke Beranda"
  >
- <div className="relative w-11 h-11 rounded-2xl overflow-hidden shadow-xs border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--card)] p-0.5 group-hover:border-[#8B1E28] dark:group-hover:border-[#B8323D] transition-colors">
+ <div className="relative w-11 h-11 rounded-2xl overflow-hidden shadow-xs border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--card)] p-0.5 group-hover:border-[var(--brand)] dark:group-hover:border-[var(--brand)] transition-colors">
  <Image
  src="/images/logo.png"
  alt="Logo Resmi GIA Deliksari Semarang"
@@ -149,7 +149,7 @@ export default function Navbar() {
  className={`relative px-3.5 py-2 rounded-xl text-xs font-semibold transition-all ${
  isActive
  ? 'text-[var(--foreground)] dark:text-[var(--foreground)] bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] font-bold shadow-xs'
- : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)] dark:hover:text-[var(--foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D]'
+ : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)] dark:hover:text-[var(--foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)]'
  }`}
  >
  {link.name}
@@ -170,7 +170,7 @@ export default function Navbar() {
  <button
  type="button"
  onClick={() => setIsOpen(!isOpen)}
- className="lg:hidden shrink-0 p-2.5 rounded-xl text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B1E28]"
+ className="lg:hidden shrink-0 p-2.5 rounded-xl text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)]"
  aria-label={isOpen ? 'Tutup navigasi' : 'Buka navigasi'}
  aria-expanded={isOpen}
  >
@@ -208,7 +208,7 @@ export default function Navbar() {
  <Link
  href={link.href}
  onClick={closeSheet}
- className="flex items-start gap-3 px-4 py-2.5 rounded-xl hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] transition-colors group"
+ className="flex items-start gap-3 px-4 py-2.5 rounded-xl hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] transition-colors group"
  >
  <span className="flex-1 min-w-0">
  <span className="block text-sm font-semibold text-[var(--foreground)] dark:text-[var(--foreground)] group-hover:text-[var(--brand-text)] dark:group-hover:text-[var(--brand-text)] transition-colors">
@@ -238,7 +238,7 @@ export default function Navbar() {
  <Link
  href="/admin"
  onClick={closeSheet}
- className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-xs font-bold bg-[var(--brand)] hover:bg-[#731820] text-white shadow-xs"
+ className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-xs font-bold bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white shadow-xs"
  >
  <ShieldCheck className="w-4 h-4" />
  <span>Masuk Admin Portal</span>

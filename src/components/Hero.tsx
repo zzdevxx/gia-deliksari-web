@@ -77,7 +77,7 @@ export default function Hero() {
             aria-label={`Ibadah Raya Minggu dalam ${timeLeft.days} hari ${timeLeft.hours} jam ${timeLeft.minutes} menit`}
             className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-4 py-2 rounded-full bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-xs text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]"
           >
-            <span className="flex items-center gap-1.5 text-[#4B5563] dark:text-[var(--muted-foreground)] font-bold">
+            <span className="flex items-center gap-1.5 text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] font-bold">
               <Calendar className="w-3.5 h-3.5" />
               <span className="sr-only sm:not-sr-only">Ibadah Raya Berikutnya · Minggu 09.00 WIB:</span>
               <span aria-hidden="true" className="hidden sm:inline">Ibadah Raya Berikutnya · Minggu 09.00 WIB:</span>
@@ -99,7 +99,7 @@ export default function Hero() {
 
             {/* Mission Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-[#4B5563]" aria-hidden="true" />
+              <Sparkles className="w-3.5 h-3.5 text-[var(--ink-strong)]" aria-hidden="true" />
               <span>Gerakan Tumbuh dalam Iman & Kasih</span>
             </div>
 
@@ -184,7 +184,7 @@ export default function Hero() {
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                     <span>Ibadah Onsite & Persekutuan</span>
                   </div>
-                  <span className="text-[11px] font-bold text-[#4B5563] dark:text-[var(--muted-foreground)] tracking-wider">
+                  <span className="text-[11px] font-bold text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] tracking-wider">
                     GIA DELIKSARI
                   </span>
                 </div>
@@ -204,7 +204,7 @@ export default function Hero() {
                     <h3 className="text-lg sm:text-xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] tracking-tight leading-tight">
                       GEREJA ISA ALMASIH DELIKSARI
                     </h3>
-                    <p className="text-xs sm:text-sm font-medium text-[#4B5563] dark:text-[var(--muted-foreground)] italic">
+                    <p className="text-xs sm:text-sm font-medium text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] italic">
                       &ldquo;A Growing Church in Faith, Love, and Hope&rdquo;
                     </p>
                   </div>

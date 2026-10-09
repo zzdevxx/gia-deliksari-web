@@ -39,7 +39,7 @@ export default function MediaPage() {
           <div className="flex flex-wrap items-center gap-3 mt-6">
             <a
               href="#khotbah"
-              className="px-4 py-2 rounded-xl bg-[var(--brand)] dark:bg-[var(--brand)] text-white text-xs font-bold hover:bg-[#731820] transition-colors flex items-center gap-1.5 shadow-xs"
+              className="px-4 py-2 rounded-xl bg-[var(--brand)] dark:bg-[var(--brand)] text-white text-xs font-bold hover:bg-[var(--brand-hover)] transition-colors flex items-center gap-1.5 shadow-xs"
             >
               <YouTubeIcon className="w-3.5 h-3.5 text-white" />
               <span>Video Khotbah Terbaru</span>

@@ -59,7 +59,7 @@ export default function Footer() {
   return (
     <footer className="bg-[var(--background)] dark:bg-[var(--card-inverted-bg)] border-t border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] transition-colors">
       {/* Newsletter Strip */}
-      <div className="border-b border-[var(--border)] dark:border-[var(--border)] bg-[var(--surface-raised)]/50 dark:bg-[#12141A]/50">
+      <div className="border-b border-[var(--border)] dark:border-[var(--border)] bg-[var(--surface-raised)]/50 dark:bg-[var(--card)]/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-md">
@@ -90,13 +90,13 @@ export default function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="email@contoh.com"
-                  className="w-full rounded-full border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--card)] pl-10 pr-4 py-3 text-sm text-[var(--foreground)] dark:text-[var(--foreground)] placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28]"
+                  className="w-full rounded-full border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--card)] pl-10 pr-4 py-3 text-sm text-[var(--foreground)] dark:text-[var(--foreground)] placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]/30 focus:border-[var(--brand)]"
                 />
               </div>
               <button
                 type="submit"
                 disabled={subscribed}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full font-bold text-sm bg-[var(--brand)] hover:bg-[#731820] text-white shadow-xs hover:-translate-y-0.5 active:scale-[0.97] transition-all disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full font-bold text-sm bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white shadow-xs hover:-translate-y-0.5 active:scale-[0.97] transition-all disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {subscribed ? (
                   <>
@@ -147,11 +147,11 @@ export default function Footer() {
 
             <ul className="space-y-2 text-sm">
               <li className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-[#4B5563] dark:text-[var(--muted-foreground)] shrink-0 mt-0.5" aria-hidden="true" />
+                <MapPin className="w-4 h-4 text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] shrink-0 mt-0.5" aria-hidden="true" />
                 <span>Jl. Kolonel Hadijanto, Deliksari, Gunungpati, Semarang 50229</span>
               </li>
               <li className="flex items-start gap-2">
-                <Clock className="w-4 h-4 text-[#4B5563] dark:text-[var(--muted-foreground)] shrink-0 mt-0.5" aria-hidden="true" />
+                <Clock className="w-4 h-4 text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] shrink-0 mt-0.5" aria-hidden="true" />
                 <span>Ibadah Raya: Minggu, 09.00 WIB</span>
               </li>
             </ul>
@@ -163,7 +163,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram GIA Deliksari"
-                className="w-10 h-10 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex items-center justify-center text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--brand-text)] dark:hover:text-[var(--brand-text)] hover:border-[#8B1E28] dark:hover:border-[#B8323D] transition-colors"
+                className="w-10 h-10 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex items-center justify-center text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--brand-text)] dark:hover:text-[var(--brand-text)] hover:border-[var(--brand)] dark:hover:border-[var(--brand)] transition-colors"
               >
                 <InstagramIcon className="w-4 h-4" />
               </a>
@@ -172,7 +172,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube GIA Deliksari"
-                className="w-10 h-10 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex items-center justify-center text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--brand-text)] dark:hover:text-[var(--brand-text)] hover:border-[#8B1E28] dark:hover:border-[#B8323D] transition-colors"
+                className="w-10 h-10 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex items-center justify-center text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--brand-text)] dark:hover:text-[var(--brand-text)] hover:border-[var(--brand)] dark:hover:border-[var(--brand)] transition-colors"
               >
                 <YouTubeIcon className="w-4 h-4" />
               </a>
@@ -193,7 +193,7 @@ export default function Footer() {
                         href={link.href}
                         className="text-sm hover:text-[var(--brand-text)] dark:hover:text-[var(--brand-text)] transition-colors inline-flex items-center gap-1.5 group"
                       >
-                        <span className="w-1 h-1 rounded-full bg-[#4B5563]/60 group-hover:w-3 group-hover:bg-[var(--brand)] dark:group-hover:bg-[var(--brand)] transition-all" />
+                        <span className="w-1 h-1 rounded-full bg-[var(--ink-strong)]/60 group-hover:w-3 group-hover:bg-[var(--brand)] dark:group-hover:bg-[var(--brand)] transition-all" />
                         {link.name}
                       </a>
                     </li>

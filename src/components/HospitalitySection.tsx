@@ -24,7 +24,7 @@ export default function HospitalitySection() {
       desc: 'Lokasi gereja mudah dijangkau di Deliksari Gunungpati dengan area parkir aman untuk motor & mobil.',
       icon: MapPin,
       badge: 'Lokasi Strategis',
-      color: 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]',
+      color: 'bg-[var(--foreground)] text-[var(--ink-strong)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]',
     },
     {
       step: '02',
@@ -40,7 +40,7 @@ export default function HospitalitySection() {
       desc: 'Anak-anak Anda dididik dalam firman Tuhan dengan penuh sukacita di kelas Sekolah Minggu (09.30 WIB).',
       icon: Baby,
       badge: 'Ramah Keluarga',
-      color: 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]',
+      color: 'bg-[var(--foreground)] text-[var(--ink-strong)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]',
     },
     {
       step: '04',
@@ -53,13 +53,13 @@ export default function HospitalitySection() {
   ];
 
   return (
-    <section id="kunjungan" className="py-24 bg-[var(--surface-raised)]/50 dark:bg-[#12141A]/50 border-y border-[var(--border)] dark:border-[var(--border)] transition-colors">
+    <section id="kunjungan" className="py-24 bg-[var(--surface-raised)]/50 dark:bg-[var(--card)]/50 border-y border-[var(--border)] dark:border-[var(--border)] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
-            <Compass className="w-3.5 h-3.5 text-[#4B5563]" />
+            <Compass className="w-3.5 h-3.5 text-[var(--ink-strong)]" />
             <span>Panduan Jemaat Baru & Tamu</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] tracking-tight">
@@ -77,7 +77,7 @@ export default function HospitalitySection() {
             return (
               <div
                 key={item.step}
-                className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-xs hover:border-[#4B5563]/50 transition-all flex flex-col justify-between space-y-6"
+                className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-xs hover:border-[var(--ink-strong)]/50 transition-all flex flex-col justify-between space-y-6"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
@@ -107,7 +107,7 @@ export default function HospitalitySection() {
         </div>
 
         {/* Banner CTA Box: Altar Stone Invitation Box */}
-        <div className="p-8 sm:p-10 rounded-2xl bg-[#111827] dark:bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)] shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="p-8 sm:p-10 rounded-2xl bg-[var(--card)] dark:bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)] shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center md:text-left">
             <h3 className="text-xl sm:text-2xl font-extrabold text-[var(--foreground)]">
               Punya Pertanyaan Sebelum Hadir?

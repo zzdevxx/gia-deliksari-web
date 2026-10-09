@@ -33,7 +33,7 @@ export default function MinistriesSection() {
       location: 'Gedung Utama / Ruang Bethel',
       desc: 'Wadah fellowship, pemuridan, dan kreativitas generasi muda untuk bertumbuh relevan dalam iman dan kasih persaudaraan (Pola 4-Minggu: M1 & M3 Youth, M2 & M4 Komsel).',
       icon: Flame,
-      tone: 'text-[#475569] dark:text-[#64748B]',
+      tone: 'text-[var(--ink-strong)] dark:text-[var(--muted-foreground)]',
       badge: 'Pemuda & Remaja',
       instagram: 'https://www.instagram.com/growgeneration_/',
     },
@@ -45,7 +45,7 @@ export default function MinistriesSection() {
       location: 'Ruang Bethel',
       desc: 'Pendidikan karakter kristiani yang interaktif, puji-pujian sukacita, dan pengenalan firman Tuhan sejak usia dini sesuai kelompok umur.',
       icon: Baby,
-      tone: 'text-[#4B5563] dark:text-[var(--muted-foreground)]',
+      tone: 'text-[var(--ink-strong)] dark:text-[var(--muted-foreground)]',
       badge: 'Sekolah Minggu',
       instagram: 'https://www.instagram.com/cockidz/',
     },
@@ -67,7 +67,7 @@ export default function MinistriesSection() {
     <section id="pelayanan" className="py-20 sm:py-24 bg-[var(--surface-raised)]/50 dark:bg-[var(--card-inverted-bg)] border-y border-[var(--border)] dark:border-[var(--border)] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 text-sm font-semibold text-[#4B5563] dark:text-[var(--muted-foreground)]">
+          <div className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--ink-strong)] dark:text-[var(--muted-foreground)]">
             <Users className="w-4 h-4" aria-hidden="true" />
             <span>4 Komunitas Ibadah &amp; Pelayanan</span>
           </div>
@@ -131,7 +131,7 @@ export default function MinistriesSection() {
                     href={ministry.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-11 items-center gap-2 rounded-md px-2 text-sm font-semibold text-[var(--muted-foreground)] hover:text-[var(--brand-text)] dark:text-[var(--muted-foreground)] dark:hover:text-[var(--brand-text)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8B1E28] dark:focus-visible:outline-[#B8323D] transition-colors"
+                    className="inline-flex min-h-11 items-center gap-2 rounded-md px-2 text-sm font-semibold text-[var(--muted-foreground)] hover:text-[var(--brand-text)] dark:text-[var(--muted-foreground)] dark:hover:text-[var(--brand-text)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand)] dark:focus-visible:outline-[var(--brand)] transition-colors"
                   >
                     <InstagramIcon className="w-4 h-4 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
                     <span>Instagram</span>

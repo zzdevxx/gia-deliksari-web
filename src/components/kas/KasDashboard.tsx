@@ -346,7 +346,7 @@ export default function KasDashboard() {
  value={username}
  onChange={(e) => setUsername(e.target.value)}
  placeholder="namabendahara"
- className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400"
+ className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[var(--brand)]/30 dark:focus:ring-[var(--brand)]/30 focus:border-[var(--brand)] dark:focus:border-[var(--brand)] outline-none transition-all placeholder:text-stone-400"
  />
  </div>
 
@@ -361,13 +361,13 @@ export default function KasDashboard() {
  value={password}
  onChange={(e) => setPassword(e.target.value)}
  placeholder="••••"
- className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400 tracking-widest"
+ className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[var(--brand)]/30 dark:focus:ring-[var(--brand)]/30 focus:border-[var(--brand)] dark:focus:border-[var(--brand)] outline-none transition-all placeholder:text-stone-400 tracking-widest"
  />
  </div>
 
  <button
  type="submit"
- className="w-full py-4 rounded-2xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white font-extrabold text-sm shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
+ className="w-full py-4 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white font-extrabold text-sm shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
  >
  <KeyRound className="w-4 h-4" />
  <span>Masuk Portal Kas</span>
@@ -410,11 +410,11 @@ export default function KasDashboard() {
  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm">
  <div className="space-y-1">
  <div className="flex items-center gap-2">
- <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#F9FAFB] dark:bg-[var(--surface-raised)] text-[#4B5563] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)]">
+ <span className="px-3 py-1 rounded-full text-xs font-bold bg-[var(--foreground)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)]">
  💰 Portal Kas Grow Generation
  </span>
  <div className="flex items-center gap-1.5 text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
- <Coins className="w-3.5 h-3.5 text-[#4B5563]" />
+ <Coins className="w-3.5 h-3.5 text-[var(--ink-strong)]" />
  <span>{transactions.length} transaksi tercatat</span>
  </div>
  </div>
@@ -434,23 +434,23 @@ export default function KasDashboard() {
  <button
  onClick={loadData}
  title="Refresh"
- className="p-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors flex items-center gap-2 text-xs font-bold"
+ className="p-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised-hover)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)] transition-colors flex items-center gap-2 text-xs font-bold"
  >
- <RefreshCw className={`w-4 h-4 text-[#4B5563] ${loading ? 'animate-spin' : ''}`} />
+ <RefreshCw className={`w-4 h-4 text-[var(--ink-strong)] ${loading ? 'animate-spin' : ''}`} />
  <span className="hidden sm:inline">Refresh</span>
  </button>
 
  <Link
  href="/home"
- className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
+ className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised-hover)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
  >
- <ExternalLink className="w-3.5 h-3.5 text-[#4B5563]" />
+ <ExternalLink className="w-3.5 h-3.5 text-[var(--ink-strong)]" />
  <span>Lihat Website</span>
  </Link>
 
  <button
  onClick={handleLogout}
- className="px-4 py-3 rounded-2xl bg-white dark:bg-[var(--card)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
+ className="px-4 py-3 rounded-2xl bg-white dark:bg-[var(--card)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
  >
  <LogOut className="w-3.5 h-3.5" />
  <span>Keluar</span>
@@ -575,7 +575,7 @@ export default function KasDashboard() {
  placeholder="Cari kategori / deskripsi..."
  value={searchQuery}
  onChange={(e) => setSearchQuery(e.target.value)}
- className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#4B5563]/30"
+ className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ink-strong)]/30"
  />
  </div>
  </div>
@@ -584,7 +584,7 @@ export default function KasDashboard() {
  <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm">
  {filtered.length === 0 ? (
  <div className="p-12 text-center space-y-3">
- <Wallet className="w-10 h-10 text-[#4B5563] mx-auto opacity-60" />
+ <Wallet className="w-10 h-10 text-[var(--ink-strong)] mx-auto opacity-60" />
  <h3 className="font-bold text-base text-[var(--foreground)] dark:text-[var(--foreground)]">
  {transactions.length === 0 ? 'Belum ada transaksi' : 'Tidak ada transaksi sesuai filter'}
  </h3>
@@ -606,7 +606,7 @@ export default function KasDashboard() {
  </thead>
  <tbody className="divide-y divide-[var(--border)] dark:divide-[var(--border)]">
  {filtered.map((t) => (
- <tr key={t.id} className="hover:bg-[var(--background)] dark:hover:bg-[#261317] transition-colors">
+ <tr key={t.id} className="hover:bg-[var(--background)] dark:hover:bg-[var(--brand-tint-ink)] transition-colors">
  <td className="p-4">
  <div className="font-mono text-xs font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">
  {t.transaction_date}
@@ -650,7 +650,7 @@ export default function KasDashboard() {
  <button
  onClick={() => openEditModal(t)}
  title="Edit"
- className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)]"
+ className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised-hover)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)]"
  >
  <Edit2 className="w-3.5 h-3.5" />
  </button>
@@ -695,7 +695,7 @@ export default function KasDashboard() {
  required
  value={form.transaction_date}
  onChange={(e) => setForm({ ...form, transaction_date: e.target.value })}
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#4B5563]/30"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ink-strong)]/30"
  />
  </div>
  <div className="space-y-1">
@@ -724,7 +724,7 @@ export default function KasDashboard() {
  value={form.category}
  onChange={(e) => setForm({ ...form, category: e.target.value })}
  placeholder="contoh: iuran_anggota"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm font-mono text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#4B5563]/30"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm font-mono text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ink-strong)]/30"
  />
  <datalist id="kas-categories">
  {SUGGESTED_CATEGORIES.map((c) => (
@@ -748,7 +748,7 @@ export default function KasDashboard() {
  value={form.amount}
  onChange={(e) => setForm({ ...form, amount: e.target.value })}
  placeholder="50000"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm font-mono text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#4B5563]/30"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm font-mono text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ink-strong)]/30"
  />
  </div>
 
@@ -761,7 +761,7 @@ export default function KasDashboard() {
  value={form.description}
  onChange={(e) => setForm({ ...form, description: e.target.value })}
  placeholder="Detail tambahan: nama penyetor, sumber dana, dll."
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#4B5563]/30 resize-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ink-strong)]/30 resize-none"
  />
  </div>
 

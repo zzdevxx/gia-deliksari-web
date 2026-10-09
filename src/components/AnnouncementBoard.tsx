@@ -144,7 +144,7 @@ export default function AnnouncementBoard() {
  <div className="flex items-center gap-3">
  <button
  onClick={() => setIsPrintModalOpen(true)}
- className="inline-flex items-center gap-2 px-5 py-3.5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] text-xs sm:text-sm font-bold shadow-xs transition-all"
+ className="inline-flex items-center gap-2 px-5 py-3.5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] text-[var(--foreground)] dark:text-[var(--foreground)] text-xs sm:text-sm font-bold shadow-xs transition-all"
  >
  <Printer className="w-4 h-4 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  <span>Cetak Lembar Warta</span>
@@ -175,7 +175,7 @@ export default function AnnouncementBoard() {
  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
  selectedCategory === tab.id
  ? 'bg-[var(--brand)] text-white shadow-xs'
- : 'bg-white dark:bg-[var(--card)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)]'
+ : 'bg-white dark:bg-[var(--card)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)]'
  }`}
  >
  {tab.label}
@@ -269,7 +269,7 @@ export default function AnnouncementBoard() {
  <div
  key={item.id}
  className={`p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm transition-all flex flex-col justify-between space-y-6 ${
- item.isPinned ? 'ring-2 ring-[#8B1E28]/40' : ''
+ item.isPinned ? 'ring-2 ring-[var(--brand)]/40' : ''
  }`}
  >
  <div className="space-y-4">
@@ -279,7 +279,7 @@ export default function AnnouncementBoard() {
  </span>
  {item.isPinned && (
  <span className="flex items-center gap-1 text-[11px] font-bold text-[var(--brand-text)] dark:text-[var(--brand-text)]">
- <Pin className="w-3.5 h-3.5 fill-[var(--brand)] dark:fill-[#E88086]" />
+ <Pin className="w-3.5 h-3.5 fill-[var(--brand)] dark:fill-[var(--brand-text)]" />
  <span>Penting</span>
  </span>
  )}
@@ -421,7 +421,7 @@ export default function AnnouncementBoard() {
 
  <button
  onClick={() => setIsPrintModalOpen(false)}
- className="p-2 rounded-xl text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] transition-colors"
+ className="p-2 rounded-xl text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] transition-colors"
  >
  <X className="w-5 h-5" />
  </button>
@@ -492,7 +492,7 @@ export default function AnnouncementBoard() {
  <div className="flex items-center justify-end gap-3 pt-2">
  <button
  onClick={() => setIsPrintModalOpen(false)}
- className="px-5 py-2.5 rounded-xl text-xs font-bold text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] transition-colors"
+ className="px-5 py-2.5 rounded-xl text-xs font-bold text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] transition-colors"
  >
  Tutup
  </button>

@@ -47,7 +47,7 @@ export default function LocationContactSection() {
   ];
 
   return (
-    <section id="kontak" className="py-24 bg-[var(--surface-raised)]/60 dark:bg-[#12141A]/60 border-y border-[var(--border)] dark:border-[var(--border)] transition-colors">
+    <section id="kontak" className="py-24 bg-[var(--surface-raised)]/60 dark:bg-[var(--card)]/60 border-y border-[var(--border)] dark:border-[var(--border)] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
@@ -124,7 +124,7 @@ export default function LocationContactSection() {
                   href="https://api.whatsapp.com/send?phone=6289620961103"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2.5 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold flex items-center gap-2 transition-colors"
+                  className="px-4 py-2.5 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold flex items-center gap-2 transition-colors"
                 >
                   <WhatsAppIcon className="w-4 h-4 text-emerald-600" />
                   <span>WhatsApp: 0896-2096-1103</span>

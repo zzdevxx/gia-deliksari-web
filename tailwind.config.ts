@@ -65,6 +65,11 @@ const config: Config = {
         'border-strong': 'var(--border-strong)',
         // Raised/inset surface: table rows, code blocks, sunken panels.
         raised: 'var(--surface-raised)',
+        'raised-hover': 'var(--surface-raised-hover)',
+        // The deepest neutral that still clears 4.5:1 on the light canvas.
+        // For subheadings that need more weight than `--muted-foreground`
+        // without promoting themselves to a heading.
+        'ink-strong': 'var(--ink-strong)',
         // Always-dark panels (vision banner, inverted cards). Separate from
         // `card` so they don't flip to white in light mode.
         inverted: {

@@ -205,7 +205,7 @@ export default function InfoPage() {
  <Link
  href="/info/print"
  target="_blank"
- className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white text-xs sm:text-sm font-bold shadow-xs"
+ className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs sm:text-sm font-bold shadow-xs"
  >
  <Printer className="w-4 h-4" />
  <span>Cetak Bulletin (A4 / PDF)</span>
@@ -270,8 +270,8 @@ export default function InfoPage() {
  onClick={() => setAnnCategory(c.id as MinistryCategory)}
  className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
  annCategory === c.id
- ? 'bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white shadow-sm'
- : 'bg-white dark:bg-[var(--card)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)]'
+ ? 'bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white shadow-sm'
+ : 'bg-white dark:bg-[var(--card)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)]'
  }`}
  >
  {c.label}
@@ -332,7 +332,7 @@ export default function InfoPage() {
  <div
  key={item.id}
  className={`p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm transition-all flex flex-col justify-between space-y-6 ${
- item.isPinned ? 'ring-2 ring-[#8B1E28]/40' : ''
+ item.isPinned ? 'ring-2 ring-[var(--brand)]/40' : ''
  }`}
  >
  <div className="space-y-4">
@@ -421,10 +421,10 @@ export default function InfoPage() {
  <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex flex-col justify-between space-y-4">
  <div className="space-y-3">
  <div className="flex items-center justify-between">
- <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[#F9FAFB] text-[#4B5563] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)]">
+ <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--foreground)] text-[var(--ink-strong)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)]">
  Sekolah Minggu (KAA)
  </span>
- <span className="text-xs font-bold text-[#4B5563]">Minggu</span>
+ <span className="text-xs font-bold text-[var(--ink-strong)]">Minggu</span>
  </div>
  <h3 className="text-lg font-black text-[var(--foreground)] dark:text-[var(--foreground)]">
  COC Kidz
@@ -434,11 +434,11 @@ export default function InfoPage() {
  </p>
  </div>
  <div className="pt-3 border-t border-[var(--border)]/60 dark:border-[var(--border)]/60 flex items-center justify-between text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
- <span className="flex items-center gap-1 font-mono text-[#4B5563] font-bold">
+ <span className="flex items-center gap-1 font-mono text-[var(--ink-strong)] font-bold">
  <Clock className="w-3.5 h-3.5" /> 09.30 - 10.30 WIB
  </span>
  <span className="flex items-center gap-1">
- <MapPin className="w-3.5 h-3.5 text-[#4B5563]" /> Ruang Bethel
+ <MapPin className="w-3.5 h-3.5 text-[var(--ink-strong)]" /> Ruang Bethel
  </span>
  </div>
  </div>
@@ -447,10 +447,10 @@ export default function InfoPage() {
  <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex flex-col justify-between space-y-4">
  <div className="space-y-3">
  <div className="flex items-center justify-between">
- <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--surface-raised)] text-[#475569] dark:bg-[var(--surface-raised)] dark:text-[#64748B] border border-[var(--border)] dark:border-[var(--border)]">
+ <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)]">
  Pemuda & Komsel (4-Minggu)
  </span>
- <span className="text-xs font-bold text-[#475569]">Sabtu</span>
+ <span className="text-xs font-bold text-[var(--ink-strong)]">Sabtu</span>
  </div>
  <h3 className="text-lg font-black text-[var(--foreground)] dark:text-[var(--foreground)]">
  Grow Generation Youth
@@ -460,11 +460,11 @@ export default function InfoPage() {
  </p>
  </div>
  <div className="pt-3 border-t border-[var(--border)]/60 dark:border-[var(--border)]/60 flex items-center justify-between text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
- <span className="flex items-center gap-1 font-mono text-[#475569] font-bold">
+ <span className="flex items-center gap-1 font-mono text-[var(--ink-strong)] font-bold">
  <Clock className="w-3.5 h-3.5" /> 18.00 - 20.00 WIB
  </span>
  <span className="flex items-center gap-1">
- <MapPin className="w-3.5 h-3.5 text-[#475569]" /> Sanctuary / Bethel
+ <MapPin className="w-3.5 h-3.5 text-[var(--ink-strong)]" /> Sanctuary / Bethel
  </span>
  </div>
  </div>
@@ -558,7 +558,7 @@ export default function InfoPage() {
  </section>
 
  {/* ============== SECTION 3: JADWAL PELAYANAN ============== */}
- <section id="jadwal" className="py-16 bg-[var(--surface-raised)]/40 dark:bg-[#12141A] border-y border-[var(--border)] dark:border-[var(--border)]">
+ <section id="jadwal" className="py-16 bg-[var(--surface-raised)]/40 dark:bg-[var(--card)] border-y border-[var(--border)] dark:border-[var(--border)]">
  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
  <div className="space-y-1">
@@ -634,7 +634,7 @@ export default function InfoPage() {
  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
  rosterCat === c.id
  ? 'bg-[var(--brand)] dark:bg-[var(--brand)] text-white shadow-sm'
- : 'bg-white dark:bg-[var(--card)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)]'
+ : 'bg-white dark:bg-[var(--card)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)]'
  }`}
  >
  {c.label}
@@ -669,7 +669,7 @@ export default function InfoPage() {
  {filteredRoster.map((item) => (
  <tr
  key={item.id}
- className="hover:bg-[var(--background)] dark:hover:bg-[#1F232D] transition-colors"
+ className="hover:bg-[var(--background)] dark:hover:bg-[var(--surface-raised-hover)] transition-colors"
  >
  <td className="p-4">
  <RosterCategoryLabel category={item.serviceCategory} />
@@ -728,7 +728,7 @@ export default function InfoPage() {
  href="https://api.whatsapp.com/send?phone=6289620961103"
  target="_blank"
  rel="noopener noreferrer"
- className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white font-bold text-sm"
+ className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white font-bold text-sm"
  >
  Hubungi WhatsApp Pastoral
  <ChevronRight className="w-4 h-4" />

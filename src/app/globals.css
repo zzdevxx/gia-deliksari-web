@@ -57,11 +57,19 @@
     --brand-tint-ink: #261517;
     --border-strong: #848B94;         /* interactive boundary — 3.44:1 (WCAG 1.4.11) */
     --surface-raised: #F3F4F6;
+    --surface-raised-hover: #E5E7EB;
+    /* Deepest neutral. Sits just above `--brand-tint-ink` on the ramp, and is
+       the darkest ink that still clears 4.5:1 on the white canvas — so it is
+       the one extra colour a component may reach for. Everything lighter must
+       use `--muted-foreground`, or headings lose their contrast advantage. */
+    --ink-strong: #4B5563;
     --card-inverted-bg: #171A21;     /* always-dark panels (130 call sites) */
     --card-inverted-fg: #F9FAFB;
     --card-inverted-border: #6B7480;
     --status-success: #166534;
     --status-success-fg: #FFFFFF;
+    --status-success-tint: #F0FDF4;
+    --status-success-border: #BBF7D0;
     --status-danger: #991B1B;
     --status-danger-fg: #FFFFFF;
     --status-info: #1D4ED8;
@@ -100,11 +108,15 @@
     --brand-tint-ink: #FBF1F2;
     --border-strong: #6B7480;         /* interactive boundary — 3.99:1 */
     --surface-raised: #1F232D;
+    --surface-raised-hover: #2A2F3A;
+    --ink-strong: #64748B;
     --card-inverted-bg: #171A21;
     --card-inverted-fg: #F9FAFB;
     --card-inverted-border: #6B7480;
     --status-success: #4ADE80;
     --status-success-fg: #052E16;
+    --status-success-tint: #142A1B;
+    --status-success-border: #052E16;
     --status-danger: #F87171;
     --status-danger-fg: #450A0A;
     --status-info: #93C5FD;

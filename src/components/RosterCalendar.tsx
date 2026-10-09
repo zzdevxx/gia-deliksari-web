@@ -76,7 +76,7 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
       <div className="flex items-center justify-between">
         <button
           onClick={() => setCursor(new Date(cursor.getFullYear(), cursor.getMonth() - 1, 1))}
-          className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A]"
+          className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised-hover)] dark:hover:bg-[var(--surface-raised-hover)]"
           aria-label="Bulan sebelumnya"
         >
           <ChevronLeft className="w-4 h-4" />
@@ -86,7 +86,7 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
         </h3>
         <button
           onClick={() => setCursor(new Date(cursor.getFullYear(), cursor.getMonth() + 1, 1))}
-          className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A]"
+          className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised-hover)] dark:hover:bg-[var(--surface-raised-hover)]"
           aria-label="Bulan berikutnya"
         >
           <ChevronRight className="w-4 h-4" />
@@ -115,9 +115,9 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
               className={[
                 'min-h-[60px] sm:min-h-[78px] p-1.5 rounded-2xl border text-left flex flex-col gap-1 transition-all',
                 inMonth ? '' : 'opacity-40',
-                isToday ? 'ring-2 ring-[#8B1E28]/40' : '',
-                isSelected ? 'border-[#8B1E28] bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)]' : 'border-[var(--border)] dark:border-[var(--border)]',
-                hasEntries ? 'cursor-pointer hover:border-[#8B1E28]/40 hover:bg-[var(--background)] dark:hover:bg-[#1F232D]' : 'cursor-default',
+                isToday ? 'ring-2 ring-[var(--brand)]/40' : '',
+                isSelected ? 'border-[var(--brand)] bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)]' : 'border-[var(--border)] dark:border-[var(--border)]',
+                hasEntries ? 'cursor-pointer hover:border-[var(--brand)]/40 hover:bg-[var(--background)] dark:hover:bg-[var(--surface-raised-hover)]' : 'cursor-default',
               ].join(' ')}
             >
               <div className={`text-[11px] sm:text-xs font-bold ${isToday ? 'text-[var(--brand-text)]' : 'text-[var(--foreground)] dark:text-[var(--foreground)]'}`}>
@@ -133,9 +133,9 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
                       // the wine → slate ramp instead: wine stays reserved for
                       // the main service, the rest step down into neutrals.
                       c === 'general' ? 'bg-[var(--brand)]' :
-                      c === 'youth' ? 'bg-[#475569]' :
-                      c === 'kidz' ? 'bg-[#6B7280]' :
-                      'bg-[#9CA3AF]'
+                      c === 'youth' ? 'bg-[var(--ink-strong)]' :
+                      c === 'kidz' ? 'bg-[var(--muted-foreground)]' :
+                      'bg-[var(--muted-foreground)]'
                     }`}
                     title={CAT_META[c]?.label ?? c}
                   />

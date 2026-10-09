@@ -101,7 +101,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
             placeholder="username"
             value={filter.actor}
             onChange={(e) => onFilterChange({ ...filter, actor: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
+            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--brand)]/30 dark:focus:ring-[var(--brand)]/30"
           />
         </div>
         <div className="space-y-1">
@@ -111,7 +111,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
             placeholder="e.g. warta.create"
             value={filter.action}
             onChange={(e) => onFilterChange({ ...filter, action: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 font-mono"
+            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--brand)]/30 dark:focus:ring-[var(--brand)]/30 font-mono"
           />
         </div>
         <div className="space-y-1">
@@ -120,7 +120,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
             type="date"
             value={filter.since}
             onChange={(e) => onFilterChange({ ...filter, since: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
+            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--brand)]/30 dark:focus:ring-[var(--brand)]/30"
           />
         </div>
         <div className="space-y-1">
@@ -129,13 +129,13 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
             type="date"
             value={filter.until}
             onChange={(e) => onFilterChange({ ...filter, until: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
+            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--brand)]/30 dark:focus:ring-[var(--brand)]/30"
           />
         </div>
         <div className="sm:col-span-4 flex justify-end">
           <button
             onClick={onApplyFilter}
-            className="px-4 py-2 rounded-xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white text-xs font-bold flex items-center gap-2"
+            className="px-4 py-2 rounded-xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs font-bold flex items-center gap-2"
           >
             <Search className="w-3.5 h-3.5" />
             Terapkan Filter
@@ -175,7 +175,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
                 };
                 const ts = new Date(a.created_at);
                 return (
-                  <tr key={a.id} className="hover:bg-[var(--background)] dark:hover:bg-[#261317] transition-colors">
+                  <tr key={a.id} className="hover:bg-[var(--background)] dark:hover:bg-[var(--brand-tint-ink)] transition-colors">
                     <td className="p-4 text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] whitespace-nowrap font-mono">
                       {ts.toLocaleString('id-ID', {
                         day: '2-digit',

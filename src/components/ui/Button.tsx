@@ -40,7 +40,7 @@ const VARIANT_MAP: Record<Variant, string> = {
     // needs an explicit boundary to satisfy WCAG 1.4.11 in dark mode.
     'dark:border dark:border-[var(--border-strong)]',
   neutral:
-    'bg-[#4B5563] hover:bg-[#374151] text-white dark:bg-[var(--muted-foreground)] dark:text-[var(--card-inverted-bg)] dark:hover:bg-[#4B5563]',
+    'bg-[var(--ink-strong)] hover:bg-[var(--ink-strong)] text-white dark:bg-[var(--muted-foreground)] dark:text-[var(--card-inverted-bg)] dark:hover:bg-[var(--ink-strong)]',
   outline:
     'border border-[var(--border-strong)] text-[var(--foreground)] hover:bg-[var(--surface-raised)]',
   ghost:

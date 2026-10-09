@@ -145,7 +145,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  <form onSubmit={handleSubmit} className="space-y-4">
  
  {/* Storage Policy Notice */}
- <div className="p-3.5 rounded-2xl bg-[#F9FAFB] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] flex items-start gap-2.5 text-[11px] text-[#4B5563] dark:text-[var(--muted-foreground)] leading-relaxed">
+ <div className="p-3.5 rounded-2xl bg-[var(--foreground)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] flex items-start gap-2.5 text-[11px] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] leading-relaxed">
  <HardDrive className="w-4 h-4 shrink-0 mt-0.5" />
  <span>
  <strong>Sistem Rolling Cloud</strong>: Foto disimpan abadi di Google Drive gereja, dan 50 foto terkini ditampilkan otomatis di website.
@@ -162,7 +162,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  {/* Dropzone / Preview Area */}
  <div 
  onClick={() => fileInputRef.current?.click()}
- className="group border-2 border-dashed border-[var(--border)] dark:border-[var(--border)] hover:border-[#8B1E28] rounded-2xl p-4 text-center cursor-pointer transition-colors bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] relative overflow-hidden flex flex-col items-center justify-center min-h-[160px]"
+ className="group border-2 border-dashed border-[var(--border)] dark:border-[var(--border)] hover:border-[var(--brand)] rounded-2xl p-4 text-center cursor-pointer transition-colors bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] relative overflow-hidden flex flex-col items-center justify-center min-h-[160px]"
  >
  <input
  ref={fileInputRef}
@@ -214,7 +214,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  value={title}
  onChange={(e) => setTitle(e.target.value)}
  placeholder="Contoh: Persekutuan Pemuda Youth Camp 2026"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs sm:text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs sm:text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--brand)]/30"
  />
  </div>
 
@@ -274,7 +274,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  <button
  type="submit"
  disabled={isUploading}
- className="px-6 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white text-xs font-bold flex items-center gap-2 disabled:opacity-60 cursor-pointer"
+ className="px-6 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs font-bold flex items-center gap-2 disabled:opacity-60 cursor-pointer"
  >
  <Upload className="w-4 h-4" />
  <span>{isUploading ? 'Mengunggah & Sinkronisasi...' : 'Unggah Dokumentasi'}</span>

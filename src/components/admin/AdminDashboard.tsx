@@ -610,12 +610,12 @@ export default function AdminDashboard() {
  switch (category) {
  case 'general':
  case 'ibadah':
- return 'bg-[#FBF1F2] text-[var(--brand-text)] border-[#E8C2C5] dark:bg-[#261517] dark:text-[var(--brand-text)] dark:border-[#52252A]';
+ return 'bg-[var(--brand-tint)] text-[var(--brand-text)] border-[var(--brand-tint-border)] dark:bg-[var(--brand-tint-ink)] dark:text-[var(--brand-text)] dark:border-[var(--brand-tint-border)]';
  case 'youth':
- return 'bg-[#F9FAFB] text-[#475569] border-[var(--border)] dark:bg-[#1E293B] dark:text-[#64748B] dark:border-[#334155]';
+ return 'bg-[var(--foreground)] text-[var(--ink-strong)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border-strong)]';
  case 'kidz':
  case 'worship':
- return 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]';
+ return 'bg-[var(--foreground)] text-[var(--ink-strong)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]';
  case 'hana':
  case 'komunitas':
  return 'bg-[var(--brand-tint)] text-[var(--brand-text)] border-[var(--brand-tint-border)] dark:bg-[var(--brand-tint)] dark:text-[var(--brand-text)] dark:border-[var(--brand-tint-border)]';
@@ -696,7 +696,7 @@ export default function AdminDashboard() {
  value={username}
  onChange={(e) => setUsername(e.target.value)}
  placeholder="nama pengurus"
- className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400"
+ className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm focus:ring-2 focus:ring-[var(--brand)]/30 dark:focus:ring-[var(--brand)]/30 focus:border-[var(--brand)] dark:focus:border-[var(--brand)] outline-none transition-all placeholder:text-stone-400"
  />
  </div>
 
@@ -711,13 +711,13 @@ export default function AdminDashboard() {
  value={password}
  onChange={(e) => setPassword(e.target.value)}
  placeholder="Masukkan password admin..."
- className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400"
+ className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm focus:ring-2 focus:ring-[var(--brand)]/30 dark:focus:ring-[var(--brand)]/30 focus:border-[var(--brand)] dark:focus:border-[var(--brand)] outline-none transition-all placeholder:text-stone-400"
  />
  </div>
 
  <button
  type="submit"
- className="w-full py-4 rounded-2xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white font-extrabold text-sm shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
+ className="w-full py-4 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white font-extrabold text-sm shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
  >
  <ShieldCheck className="w-4 h-4" />
  <span>Masuk ke Dashboard</span>
@@ -756,7 +756,7 @@ export default function AdminDashboard() {
  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm">
  <div className="space-y-1">
  <div className="flex items-center gap-2">
- <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FBF1F2] dark:bg-[#261517] text-[var(--brand-text)] dark:text-[var(--brand-text)] border border-[#E8C2C5] dark:border-[#52252A]">
+ <span className="px-3 py-1 rounded-full text-xs font-bold bg-[var(--brand-tint)] dark:bg-[var(--brand-tint-ink)] text-[var(--brand-text)] dark:text-[var(--brand-text)] border border-[var(--brand-tint-border)] dark:border-[var(--brand-tint-border)]">
  Majelis & Pastoral Portal
  </span>
  <div className="flex items-center gap-1.5 text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
@@ -773,7 +773,7 @@ export default function AdminDashboard() {
  <button
  onClick={loadAllData}
  title="Refresh Data"
- className="p-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors flex items-center gap-2 text-xs font-bold"
+ className="p-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised-hover)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)] transition-colors flex items-center gap-2 text-xs font-bold"
  >
  <RefreshCw className={`w-4 h-4 text-[var(--brand-text)] dark:text-[var(--brand-text)] ${loading ? 'animate-spin' : ''}`} />
  <span className="hidden sm:inline">Refresh Data</span>
@@ -781,7 +781,7 @@ export default function AdminDashboard() {
 
  <Link
  href="/home"
- className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
+ className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised-hover)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
  >
  <ExternalLink className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  <span>Lihat Website</span>
@@ -789,7 +789,7 @@ export default function AdminDashboard() {
 
  <button
  onClick={handleLogout}
- className="px-4 py-3 rounded-2xl bg-white dark:bg-[var(--card)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
+ className="px-4 py-3 rounded-2xl bg-white dark:bg-[var(--card)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
  >
  <LogOut className="w-3.5 h-3.5" />
  <span>Keluar</span>
@@ -814,15 +814,15 @@ export default function AdminDashboard() {
  onClick={() => setActiveTab(tab.id as any)}
  className={`py-3.5 px-3 rounded-2xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
  isActive
- ? 'bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white shadow-md'
- : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-white/60 dark:hover:bg-[#1F232D]'
+ ? 'bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white shadow-md'
+ : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-white/60 dark:hover:bg-[var(--surface-raised-hover)]'
  }`}
  >
  <Icon className="w-4 h-4 shrink-0" />
  <span className="truncate">{tab.label}</span>
  {tab.count > 0 && (
  <span className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold ${
- isActive ? 'bg-white/20 text-white' : 'bg-[#E5E7EB] dark:bg-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)]'
+ isActive ? 'bg-white/20 text-white' : 'bg-[var(--surface-raised-hover)] dark:bg-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)]'
  }`}>
  {tab.count}
  </span>
@@ -891,7 +891,7 @@ export default function AdminDashboard() {
  <div className="flex flex-wrap items-center gap-2">
  <button
  onClick={() => setIsPrintModalOpen(true)}
- className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
+ className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised-hover)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
  >
  <Printer className="w-4 h-4 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  <span>Cetak / Export Jadwal</span>
@@ -899,7 +899,7 @@ export default function AdminDashboard() {
 
  <button
  onClick={() => setIsBroadcastModalOpen(true)}
- className="px-4 py-3 rounded-2xl bg-[#F9FAFB] dark:bg-[var(--surface-raised)] text-[#4B5563] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold flex items-center gap-2"
+ className="px-4 py-3 rounded-2xl bg-[var(--foreground)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold flex items-center gap-2"
  >
  <Share2 className="w-4 h-4" />
  <span>Broadcast WA Pelayan</span>
@@ -919,7 +919,7 @@ export default function AdminDashboard() {
  });
  setIsRosterModalOpen(true);
  }}
- className="px-5 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white text-xs sm:text-sm font-bold shadow-xs flex items-center justify-center gap-2"
+ className="px-5 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs sm:text-sm font-bold shadow-xs flex items-center justify-center gap-2"
  >
  <Plus className="w-4 h-4" />
  <span>Tambah Petugas</span>
@@ -974,7 +974,7 @@ export default function AdminDashboard() {
  </tr>
  ) : (
  currentCategoryRoster.map((item) => (
- <tr key={item.id} className="hover:bg-[var(--background)] dark:hover:bg-[#261317] transition-colors">
+ <tr key={item.id} className="hover:bg-[var(--background)] dark:hover:bg-[var(--brand-tint-ink)] transition-colors">
  <td className="p-4 font-bold text-[var(--foreground)] dark:text-white">
  {item.role}
  </td>
@@ -1001,7 +1001,7 @@ export default function AdminDashboard() {
  item.status === 'confirmed'
  ? 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/60'
  : item.status === 'replacement'
- ? 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]'
+ ? 'bg-[var(--foreground)] text-[var(--ink-strong)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]'
  : 'bg-[var(--surface-raised)] text-[var(--muted-foreground)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]'
  }`}
  >
@@ -1027,7 +1027,7 @@ export default function AdminDashboard() {
  });
  setIsRosterModalOpen(true);
  }}
- className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)]"
+ className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised-hover)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)]"
  title="Edit"
  >
  <Edit2 className="w-3.5 h-3.5" />
@@ -1101,16 +1101,16 @@ export default function AdminDashboard() {
  filteredRequests.map((req) => (
  <div
  key={req.id}
- className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm space-y-4 hover:border-[#8B1E28]/40 dark:hover:border-[#B8323D]/40 transition-colors"
+ className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm space-y-4 hover:border-[var(--brand)]/40 dark:hover:border-[var(--brand)]/40 transition-colors"
  >
  <div className="flex items-start justify-between gap-3">
  <div className="space-y-1">
  <div className="flex items-center gap-2">
  <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase border ${
- req.type === 'prayer' ? 'bg-[#FBF1F2] text-[var(--brand-text)] border-[#E8C2C5] dark:bg-[#261517] dark:text-[var(--brand-text)] dark:border-[#52252A]' :
- req.type === 'sacrament' ? 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]' :
+ req.type === 'prayer' ? 'bg-[var(--brand-tint)] text-[var(--brand-text)] border-[var(--brand-tint-border)] dark:bg-[var(--brand-tint-ink)] dark:text-[var(--brand-text)] dark:border-[var(--brand-tint-border)]' :
+ req.type === 'sacrament' ? 'bg-[var(--foreground)] text-[var(--ink-strong)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]' :
  req.type === 'komsel' ? 'bg-[var(--brand-tint)] text-[var(--brand-text)] border-[var(--brand-tint-border)] dark:bg-[var(--brand-tint)] dark:text-[var(--brand-text)] dark:border-[var(--brand-tint-border)]' :
- 'bg-[#F9FAFB] text-[#475569] border-[var(--border)] dark:bg-[#1E293B] dark:text-[#64748B] dark:border-[#334155]'
+ 'bg-[var(--foreground)] text-[var(--ink-strong)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border-strong)]'
  }`}>
  {req.type === 'prayer' ? 'Doa & Konseling' : req.type === 'sacrament' ? 'Sakramen' : req.type === 'komsel' ? 'Komsel' : 'Volunteer'}
  </span>
@@ -1130,8 +1130,8 @@ export default function AdminDashboard() {
  req.status === 'completed'
  ? 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300'
  : req.status === 'in_progress'
- ? 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)]'
- : 'bg-[#FBF1F2] text-[var(--brand-text)] border-[#E8C2C5] dark:bg-[#261517] dark:text-[var(--brand-text)] dark:border-[#52252A]'
+ ? 'bg-[var(--foreground)] text-[var(--ink-strong)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)]'
+ : 'bg-[var(--brand-tint)] text-[var(--brand-text)] border-[var(--brand-tint-border)] dark:bg-[var(--brand-tint-ink)] dark:text-[var(--brand-text)] dark:border-[var(--brand-tint-border)]'
  }`}
  >
  <option value="new">🔴 Baru Masuk</option>
@@ -1158,7 +1158,7 @@ export default function AdminDashboard() {
  href={`https://wa.me/${req.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Syalom ${req.name}, kami dari Tim Pastoral GIA Deliksari menindaklanjuti permohonan Anda...`)}`}
  target="_blank"
  rel="noopener noreferrer"
- className="px-4 py-2 rounded-xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white text-xs font-bold flex items-center gap-1.5 shadow-sm"
+ className="px-4 py-2 rounded-xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs font-bold flex items-center gap-1.5 shadow-sm"
  >
  <WhatsAppIcon className="w-3.5 h-3.5 text-white" />
  <span>Hubungi WhatsApp</span>
@@ -1216,7 +1216,7 @@ export default function AdminDashboard() {
  <button
  onClick={handleSyncYouTube}
  disabled={isSyncingYouTube}
- className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] hover:bg-[#E5E7EB] dark:hover:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold transition-all flex items-center gap-2 disabled:opacity-60 cursor-pointer"
+ className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] hover:bg-[var(--surface-raised-hover)] dark:hover:bg-[var(--surface-raised-hover)] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold transition-all flex items-center gap-2 disabled:opacity-60 cursor-pointer"
  >
  <RefreshCw className={`w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)] ${isSyncingYouTube ? 'animate-spin' : ''}`} />
  <span>{isSyncingYouTube ? 'Sinkronisasi...' : 'Tarik dari YouTube Data API'}</span>
@@ -1236,7 +1236,7 @@ export default function AdminDashboard() {
  });
  setIsSermonModalOpen(true);
  }}
- className="px-5 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white text-xs sm:text-sm font-bold shadow-xs flex items-center justify-center gap-2 cursor-pointer"
+ className="px-5 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs sm:text-sm font-bold shadow-xs flex items-center justify-center gap-2 cursor-pointer"
  >
  <Plus className="w-4 h-4" />
  <span>Tambah Khotbah Manual</span>
@@ -1248,16 +1248,16 @@ export default function AdminDashboard() {
  href={process.env.NEXT_PUBLIC_GOOGLE_DRIVE_GALLERY_URL || "https://drive.google.com/drive/folders/1T_ahqCtmOjdFl0L-MNu7bIQo-8Oz8y9h"}
  target="_blank"
  rel="noopener noreferrer"
- className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] hover:bg-[#E5E7EB] dark:hover:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold transition-all flex items-center gap-2"
+ className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] hover:bg-[var(--surface-raised-hover)] dark:hover:bg-[var(--surface-raised-hover)] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold transition-all flex items-center gap-2"
  >
- <FolderOpen className="w-3.5 h-3.5 text-[#4B5563]" />
+ <FolderOpen className="w-3.5 h-3.5 text-[var(--ink-strong)]" />
  <span>Arsip Google Drive</span>
  <ExternalLink className="w-3 h-3 text-stone-400" />
  </a>
 
  <button
  onClick={() => setIsUploadPhotoModalOpen(true)}
- className="px-5 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white text-xs sm:text-sm font-bold shadow-xs flex items-center justify-center gap-2 cursor-pointer"
+ className="px-5 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs sm:text-sm font-bold shadow-xs flex items-center justify-center gap-2 cursor-pointer"
  >
  <Upload className="w-4 h-4" />
  <span>Upload Foto ke Cloud</span>
@@ -1267,7 +1267,7 @@ export default function AdminDashboard() {
  </div>
 
  {/* Storage Info Banner */}
- <div className="p-4 rounded-2xl bg-[#F9FAFB] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] flex items-center justify-between gap-3 text-xs text-[#4B5563] dark:text-[var(--muted-foreground)]">
+ <div className="p-4 rounded-2xl bg-[var(--foreground)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] flex items-center justify-between gap-3 text-xs text-[var(--ink-strong)] dark:text-[var(--muted-foreground)]">
  <div className="flex items-center gap-2.5">
  <HardDrive className="w-4 h-4 shrink-0" />
  <span>
@@ -1285,7 +1285,7 @@ export default function AdminDashboard() {
  className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex flex-col justify-between space-y-4"
  >
  <div className="space-y-2">
- <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FBF1F2] text-[var(--brand-text)] border border-[#E8C2C5] dark:bg-[#261517] dark:text-[var(--brand-text)] dark:border-[#52252A]">
+ <span className="px-3 py-1 rounded-full text-xs font-bold bg-[var(--brand-tint)] text-[var(--brand-text)] border border-[var(--brand-tint-border)] dark:bg-[var(--brand-tint-ink)] dark:text-[var(--brand-text)] dark:border-[var(--brand-tint-border)]">
  {sermon.category}
  </span>
  <h3 className="text-base font-extrabold text-[var(--foreground)] dark:text-white leading-snug">
@@ -1356,7 +1356,7 @@ export default function AdminDashboard() {
  />
  </div>
  <div className="p-5 space-y-2">
- <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--brand)] dark:bg-[var(--brand)]/10 text-[var(--brand-text)] dark:text-[var(--brand-text)] border border-[#8B1E28]/20">
+ <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--brand)] dark:bg-[var(--brand)]/10 text-[var(--brand-text)] dark:text-[var(--brand-text)] border border-[var(--brand)]/20">
  {item.category.toUpperCase()} • {item.date}
  </span>
  <h4 className="text-sm font-bold text-[var(--foreground)] dark:text-white leading-snug">{item.title}</h4>
@@ -1422,7 +1422,7 @@ export default function AdminDashboard() {
  });
  setIsInvModalOpen(true);
  }}
- className="px-5 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white text-xs sm:text-sm font-bold shadow-xs flex items-center justify-center gap-2"
+ className="px-5 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs sm:text-sm font-bold shadow-xs flex items-center justify-center gap-2"
  >
  <Plus className="w-4 h-4" />
  <span>Tambah Barang</span>
@@ -1439,7 +1439,7 @@ export default function AdminDashboard() {
  className={`px-3 py-2 rounded-xl text-xs font-bold transition-all ${
  invCategoryFilter === cat
  ? 'bg-[var(--brand)] dark:bg-[var(--brand)] text-white shadow-sm'
- : 'bg-white dark:bg-[var(--card)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)]'
+ : 'bg-white dark:bg-[var(--card)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)]'
  }`}
  >
  {cat === 'all' ? 'Semua Kategori' : cat}
@@ -1454,7 +1454,7 @@ export default function AdminDashboard() {
  placeholder="Cari kode / nama barang..."
  value={invSearchQuery}
  onChange={(e) => setInvSearchQuery(e.target.value)}
- className="w-full pl-10 pr-4 py-2 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
+ className="w-full pl-10 pr-4 py-2 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--brand)]/30 dark:focus:ring-[var(--brand)]/30"
  />
  </div>
  </div>
@@ -1480,11 +1480,11 @@ export default function AdminDashboard() {
  inv.code.toLowerCase().includes(invSearchQuery.toLowerCase()))
  )
  .map((item) => (
- <tr key={item.id} className="hover:bg-[var(--background)] dark:hover:bg-[#261317] transition-colors">
+ <tr key={item.id} className="hover:bg-[var(--background)] dark:hover:bg-[var(--brand-tint-ink)] transition-colors">
  <td className="p-4">
  <button
  onClick={() => handleToggleInventoryCheck(item)}
- className="p-1 rounded-lg text-[var(--brand-text)] dark:text-[var(--brand-text)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] transition-colors"
+ className="p-1 rounded-lg text-[var(--brand-text)] dark:text-[var(--brand-text)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] transition-colors"
  >
  {item.isChecked ? (
  <CheckSquare className="w-5 h-5 text-emerald-600" />
@@ -1509,7 +1509,7 @@ export default function AdminDashboard() {
  item.condition === 'good'
  ? 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300'
  : item.condition === 'maintenance'
- ? 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)]'
+ ? 'bg-[var(--foreground)] text-[var(--ink-strong)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)]'
  : 'bg-rose-50 text-rose-800 border-rose-200 dark:bg-rose-950/40 dark:text-rose-300'
  }`}
  >
@@ -1537,7 +1537,7 @@ export default function AdminDashboard() {
  });
  setIsInvModalOpen(true);
  }}
- className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)]"
+ className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised-hover)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)]"
  >
  <Edit2 className="w-3.5 h-3.5" />
  </button>
@@ -1583,7 +1583,7 @@ export default function AdminDashboard() {
  value={annForm.title}
  onChange={(e) => setAnnForm({ ...annForm, title: e.target.value })}
  placeholder="Contoh: Ibadah Padang Pemuda & Remaja"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--brand)]/30 dark:focus:ring-[var(--brand)]/30"
  />
  </div>
 
@@ -1657,7 +1657,7 @@ export default function AdminDashboard() {
  type="checkbox"
  checked={annForm.isPinned}
  onChange={(e) => setAnnForm({ ...annForm, isPinned: e.target.checked })}
- className="rounded text-[var(--brand-text)] dark:text-[var(--brand-text)] focus:ring-[#8B1E28] dark:focus:ring-[#B8323D]"
+ className="rounded text-[var(--brand-text)] dark:text-[var(--brand-text)] focus:ring-[var(--brand)] dark:focus:ring-[var(--brand)]"
  />
  <span>Sematkan ke Paling Atas (Pinned)</span>
  </label>
@@ -1667,7 +1667,7 @@ export default function AdminDashboard() {
  type="checkbox"
  checked={annForm.isPublished}
  onChange={(e) => setAnnForm({ ...annForm, isPublished: e.target.checked })}
- className="rounded text-[var(--brand-text)] dark:text-[var(--brand-text)] focus:ring-[#8B1E28] dark:focus:ring-[#B8323D]"
+ className="rounded text-[var(--brand-text)] dark:text-[var(--brand-text)] focus:ring-[var(--brand)] dark:focus:ring-[var(--brand)]"
  />
  <span>Tayangkan Langsung (Publish)</span>
  </label>
@@ -1683,7 +1683,7 @@ export default function AdminDashboard() {
  </button>
  <button
  type="submit"
- className="px-6 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white text-xs font-bold"
+ className="px-6 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs font-bold"
  >
  Simpan Warta
  </button>
@@ -1807,7 +1807,7 @@ export default function AdminDashboard() {
  </button>
  <button
  type="submit"
- className="px-6 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white text-xs font-bold"
+ className="px-6 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs font-bold"
  >
  Simpan Petugas
  </button>
@@ -1850,7 +1850,7 @@ export default function AdminDashboard() {
  showToast('Teks broadcast berhasil disalin ke clipboard!');
  setIsBroadcastModalOpen(false);
  }}
- className="px-5 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white text-xs font-bold flex items-center gap-2"
+ className="px-5 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs font-bold flex items-center gap-2"
  >
  <Copy className="w-4 h-4" />
  <span>Salin Teks Broadcast</span>
@@ -2032,7 +2032,7 @@ export default function AdminDashboard() {
  </button>
  <button
  type="submit"
- className="px-6 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white text-xs font-bold"
+ className="px-6 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs font-bold"
  >
  Simpan Khotbah
  </button>
@@ -2120,7 +2120,7 @@ export default function AdminDashboard() {
  </button>
  <button
  type="submit"
- className="px-6 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white text-xs font-bold"
+ className="px-6 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs font-bold"
  >
  Simpan Foto
  </button>
@@ -2245,7 +2245,7 @@ export default function AdminDashboard() {
  </button>
  <button
  type="submit"
- className="px-6 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white text-xs font-bold"
+ className="px-6 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs font-bold"
  >
  Simpan Inventaris
  </button>

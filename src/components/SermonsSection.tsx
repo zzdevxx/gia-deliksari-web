@@ -88,7 +88,7 @@ export default function SermonsSection() {
  href="https://www.youtube.com/@GIADeliksariSemarang"
  target="_blank"
  rel="noopener noreferrer"
- className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white text-xs sm:text-sm font-bold shadow-xs transition-all"
+ className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs sm:text-sm font-bold shadow-xs transition-all"
  >
  <YouTubeIcon className="w-4 h-4 text-white" />
  <span>Channel YouTube GIA Deliksari</span>
@@ -102,7 +102,7 @@ export default function SermonsSection() {
  {sermons.map((sermon) => (
  <div
  key={sermon.id}
- className="rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] overflow-hidden shadow-xs hover:border-[#4B5563]/50 transition-all flex flex-col justify-between group"
+ className="rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] overflow-hidden shadow-xs hover:border-[var(--ink-strong)]/50 transition-all flex flex-col justify-between group"
  >
  <div>
  {/* Thumbnail Container */}
@@ -166,7 +166,7 @@ export default function SermonsSection() {
  href={sermon.youtubeUrl}
  target="_blank"
  rel="noopener noreferrer"
- className="w-full py-3 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold text-[var(--foreground)] dark:text-[var(--foreground)] flex items-center justify-center gap-2 transition-colors"
+ className="w-full py-3 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold text-[var(--foreground)] dark:text-[var(--foreground)] flex items-center justify-center gap-2 transition-colors"
  >
  <YouTubeIcon className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  <span>Tonton di YouTube</span>

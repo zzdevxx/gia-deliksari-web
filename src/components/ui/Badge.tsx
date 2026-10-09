@@ -16,11 +16,11 @@ type Variant = 'maroon' | 'gold' | 'outline' | 'success' | 'warning' | 'danger' 
 
 const VARIANT_MAP: Record<Variant, string> = {
   maroon:
-    'bg-[#FBF1F2] dark:bg-[#261517] text-[#8B1E28] dark:text-[var(--brand-text)] ring-1 ring-inset ring-[#E8C2C5] dark:ring-[#52252A]',
+    'bg-[var(--brand-tint)] dark:bg-[var(--brand-tint-ink)] text-[var(--brand-text)] dark:text-[var(--brand-text)] ring-1 ring-inset ring-[var(--brand)] dark:ring-[var(--brand)]',
   gold:
-    'bg-[#F9FAFB] dark:bg-[var(--surface-raised)] text-[#4B5563] dark:text-[var(--muted-foreground)] ring-1 ring-inset ring-[#E5E7EB] dark:ring-[#2A2F3A]',
+    'bg-[var(--foreground)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] ring-1 ring-inset ring-[var(--border-strong)] dark:ring-[var(--border-strong)]',
   outline:
-    'bg-transparent text-[#111827] dark:text-[var(--foreground)] ring-1 ring-inset ring-[#E5E7EB] dark:ring-[#2A2F3A]',
+    'bg-transparent text-[var(--foreground)] dark:text-[var(--foreground)] ring-1 ring-inset ring-[var(--border-strong)] dark:ring-[var(--border-strong)]',
   success:
     'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 ring-1 ring-inset ring-emerald-200 dark:ring-emerald-800/50',
   warning:
@@ -28,7 +28,7 @@ const VARIANT_MAP: Record<Variant, string> = {
   danger:
     'bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300 ring-1 ring-inset ring-rose-200 dark:ring-rose-800/50',
   neutral:
-    'bg-[#F3F4F6] dark:bg-[var(--surface-raised)] text-[#5B6472] dark:text-[var(--muted-foreground)] ring-1 ring-inset ring-[#E5E7EB] dark:ring-[#2A2F3A]',
+    'bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] ring-1 ring-inset ring-[var(--border-strong)] dark:ring-[var(--border-strong)]',
 };
 
 interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {

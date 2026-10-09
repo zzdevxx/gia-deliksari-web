@@ -16,17 +16,17 @@ interface User {
 const ROLE_META: Record<Role, { label: string; color: string; portal: string }> = {
   super: {
     label: 'Superuser',
-    color: 'bg-[#FBF1F2] dark:bg-[#261517] text-[var(--brand-text)] dark:text-[var(--brand-text)] border-[#E8C2C5] dark:border-[#52252A]',
+    color: 'bg-[var(--brand-tint)] dark:bg-[var(--brand-tint-ink)] text-[var(--brand-text)] dark:text-[var(--brand-text)] border-[var(--brand-tint-border)] dark:border-[var(--brand-tint-border)]',
     portal: '/super',
   },
   admin: {
     label: 'Admin / Operator',
-    color: 'bg-[#F9FAFB] dark:bg-[#1E293B] text-[#475569] dark:text-[#64748B] border-[var(--border)] dark:border-[#334155]',
+    color: 'bg-[var(--foreground)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border-strong)]',
     portal: '/admin',
   },
   treasurer: {
     label: 'Bendahara Youth',
-    color: 'bg-[#F9FAFB] dark:bg-[var(--surface-raised)] text-[#4B5563] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border)]',
+    color: 'bg-[var(--foreground)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border)]',
     portal: '/kas',
   },
 };
@@ -80,7 +80,7 @@ const UserTable: React.FC<UserTableProps> = ({ users, loading, currentUsername, 
               return (
                 <tr
                   key={u.id}
-                  className={`hover:bg-[var(--background)] dark:hover:bg-[#261317] transition-colors ${!u.active ? 'opacity-50' : ''}`}
+                  className={`hover:bg-[var(--background)] dark:hover:bg-[var(--brand-tint-ink)] transition-colors ${!u.active ? 'opacity-50' : ''}`}
                 >
                   <td className="p-4">
                     <div className="font-mono font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">{u.username}</div>
@@ -128,7 +128,7 @@ const UserTable: React.FC<UserTableProps> = ({ users, loading, currentUsername, 
                         <button
                           onClick={() => onEdit(u)}
                           title="Edit role / password"
-                          className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)]"
+                          className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised-hover)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)]"
                         >
                           <Edit2 className="w-3.5 h-3.5" />
                         </button>

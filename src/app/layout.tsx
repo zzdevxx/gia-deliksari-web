@@ -215,7 +215,7 @@ export default function RootLayout({
  <body className="font-sans antialiased min-h-screen bg-[var(--background)] text-[var(--foreground)] dark:bg-[var(--card-inverted-bg)] dark:text-[var(--foreground)] transition-colors duration-200">
  <a
  href="#beranda"
- className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 px-4 py-2 bg-[var(--brand)] hover:bg-[#731820] text-white font-bold rounded-xl"
+ className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 px-4 py-2 bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white font-bold rounded-xl"
  >
  Lewati ke Konten Utama (Skip to Content)
  </a>

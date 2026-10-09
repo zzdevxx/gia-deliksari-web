@@ -43,7 +43,7 @@ const GROUPS: Group[] = [
  subtitle: 'Pemuda & Remaja (PRBK)',
  icon: <Flame className="w-5 h-5" />,
  accentClass:
- 'border-[var(--border)] dark:border-[#334155] bg-[#F9FAFB] dark:bg-[#1E293B] text-[#475569] dark:text-[#64748B]',
+ 'border-[var(--border)] dark:border-[var(--border-strong)] bg-[var(--foreground)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)]',
  members: [
  { name: 'Sdri. Lara Tampubolon', role: 'Ketua' },
  { name: 'Sdr. Ravael', role: 'Sekretaris' },
@@ -59,7 +59,7 @@ const GROUPS: Group[] = [
  subtitle: 'Komunitas Kecil Persekutuan',
  icon: <Users className="w-5 h-5" />,
  accentClass:
- 'border-[var(--border)] dark:border-[var(--border)] bg-[#F9FAFB] dark:bg-[var(--surface-raised)] text-[#4B5563] dark:text-[var(--muted-foreground)]',
+ 'border-[var(--border)] dark:border-[var(--border)] bg-[var(--foreground)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)]',
  members: [
  { name: 'Bpk. Sidik', role: 'Ketua Komsel — Ekklesia Sel' },
  { name: 'Sdri. Yemima', role: 'Ketua Komsel — Amethyst' },

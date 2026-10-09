@@ -47,8 +47,8 @@ export default function InfoPrintPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[var(--background)] text-[var(--foreground)] p-4">
-        <div className="flex items-center gap-3 text-sm font-semibold text-[#731820]">
-          <div className="w-5 h-5 border-2 border-[#8B1E28] border-t-transparent rounded-full animate-spin" />
+        <div className="flex items-center gap-3 text-sm font-semibold text-[var(--brand-text-hover)]">
+          <div className="w-5 h-5 border-2 border-[var(--brand)] border-t-transparent rounded-full animate-spin" />
           <span>Menyiapkan Buletin Warta Cetak A4...</span>
         </div>
       </div>
@@ -75,7 +75,7 @@ export default function InfoPrintPage() {
             <button
               type="button"
               onClick={() => window.print()}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--brand)] dark:bg-[var(--brand)] text-white text-xs font-bold hover:bg-[#731820] shadow-sm transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--brand)] dark:bg-[var(--brand)] text-white text-xs font-bold hover:bg-[var(--brand-hover)] shadow-sm transition-all"
             >
               <Printer className="w-4 h-4" />
               <span>Cetak Sekarang / Simpan PDF</span>

@@ -292,7 +292,7 @@ export default function SuperPage() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FBF1F2] dark:bg-[#261517] text-[var(--brand-text)] dark:text-[var(--brand-text)] border border-[#E8C2C5] dark:border-[#52252A]">
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-[var(--brand-tint)] dark:bg-[var(--brand-tint-ink)] text-[var(--brand-text)] dark:text-[var(--brand-text)] border border-[var(--brand-tint-border)] dark:border-[var(--brand-tint-border)]">
                 🔑 Superuser Portal
               </span>
               <div className="flex items-center gap-1.5 text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
@@ -313,21 +313,21 @@ export default function SuperPage() {
             <button
               onClick={loadUsers}
               title="Refresh"
-              className="p-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors flex items-center gap-2 text-xs font-bold"
+              className="p-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised-hover)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)] transition-colors flex items-center gap-2 text-xs font-bold"
             >
               <RefreshCw className={`w-4 h-4 text-[var(--brand-text)] dark:text-[var(--brand-text)] ${usersLoading ? 'animate-spin' : ''}`} />
               <span className="hidden sm:inline">Refresh</span>
             </button>
             <Link
               href="/home"
-              className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
+              className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised-hover)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
             >
               <ExternalLink className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
               <span>Lihat Website</span>
             </Link>
             <button
               onClick={handleLogout}
-              className="px-4 py-3 rounded-2xl bg-white dark:bg-[var(--card)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
+              className="px-4 py-3 rounded-2xl bg-white dark:bg-[var(--card)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
             >
               <LogOut className="w-3.5 h-3.5" />
               <span>Keluar</span>
@@ -358,7 +358,7 @@ export default function SuperPage() {
           </div>
           <button
             onClick={openCreateModal}
-            className="px-5 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white text-xs sm:text-sm font-bold shadow-xs flex items-center justify-center gap-2"
+            className="px-5 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs sm:text-sm font-bold shadow-xs flex items-center justify-center gap-2"
           >
             <Plus className="w-4 h-4" />
             Tambah User Baru
@@ -392,7 +392,7 @@ export default function SuperPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
           <Link
             href="/admin"
-            className="p-5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] hover:border-[#8B1E28]/40 dark:hover:border-[#B8323D]/40 transition-all flex items-center justify-between group"
+            className="p-5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] hover:border-[var(--brand)]/40 dark:hover:border-[var(--brand)]/40 transition-all flex items-center justify-between group"
           >
             <div>
               <h3 className="font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">📋 Portal Admin</h3>
@@ -404,7 +404,7 @@ export default function SuperPage() {
           </Link>
           <Link
             href="/kas"
-            className="p-5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] hover:border-[#8B1E28]/40 dark:hover:border-[#B8323D]/40 transition-all flex items-center justify-between group"
+            className="p-5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] hover:border-[var(--brand)]/40 dark:hover:border-[var(--brand)]/40 transition-all flex items-center justify-between group"
           >
             <div>
               <h3 className="font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">💰 Portal Kas Youth</h3>

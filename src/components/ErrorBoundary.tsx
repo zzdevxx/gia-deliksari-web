@@ -75,14 +75,14 @@ export class ErrorBoundary extends React.Component<Props, State> {
  <button
  type="button"
  onClick={this.handleReset}
- className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white text-sm font-bold transition-all"
+ className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-sm font-bold transition-all"
  >
  <RefreshCw className="h-4 w-4" />
  Coba Lagi
  </button>
  <a
  href="/home"
- className="inline-flex items-center px-5 py-2.5 rounded-xl border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--card)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm font-bold hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] transition-all"
+ className="inline-flex items-center px-5 py-2.5 rounded-xl border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--card)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm font-bold hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] transition-all"
  >
  Ke Beranda
  </a>

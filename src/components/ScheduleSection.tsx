@@ -391,10 +391,10 @@ export default function ScheduleSection() {
  role="tab"
  aria-selected={isActive}
  onClick={() => setSelectedRosterCategory(tab.id as any)}
- className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B1E28] focus-visible:ring-offset-2 ${
+ className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 ${
  isActive
  ? 'bg-[var(--brand)] text-white shadow-xs'
- : 'bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)]'
+ : 'bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)]'
  }`}
  >
  {tab.label}
@@ -451,7 +451,7 @@ export default function ScheduleSection() {
  {filteredRoster.map((item) => (
  <tr
  key={item.id}
- className="hover:bg-[var(--background)] dark:hover:bg-[#2A2F3A] focus-within:bg-[var(--surface-raised)] dark:focus-within:bg-[#1F232D] transition-colors"
+ className="hover:bg-[var(--background)] dark:hover:bg-[var(--surface-raised-hover)] focus-within:bg-[var(--surface-raised)] dark:focus-within:bg-[var(--card)] transition-colors"
  >
  <td className="py-3.5 pr-3 font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">
  {item.serviceCategory === 'general'
