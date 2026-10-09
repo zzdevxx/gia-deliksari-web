@@ -212,10 +212,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="font-sans antialiased min-h-screen bg-[#FFFFFF] text-[#111827] dark:bg-[#0F1115] dark:text-[#F9FAFB] transition-colors duration-200">
+      <body className="font-sans antialiased min-h-screen bg-[var(--background)] text-[var(--foreground)] dark:bg-[var(--card-inverted-bg)] dark:text-[var(--foreground)] transition-colors duration-200">
         <a
           href="#beranda"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 px-4 py-2 bg-[#8B1E28] hover:bg-[#731820] text-white font-bold rounded-xl shadow-lg"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 px-4 py-2 bg-[var(--brand)] hover:bg-[#731820] text-white font-bold rounded-xl shadow-lg"
         >
           Lewati ke Konten Utama (Skip to Content)
         </a>

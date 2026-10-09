@@ -15,8 +15,8 @@ import dynamic from 'next/dynamic';
 const AdminDashboard = dynamic(() => import('@/components/admin/AdminDashboard'), {
   ssr: false,
   loading: () => (
-    <main className="min-h-screen flex items-center justify-center bg-[#FFFFFF] dark:bg-[#0F1115]">
-      <div className="animate-pulse text-[#5B6472] dark:text-[#9CA3AF] text-sm">
+    <main className="min-h-screen flex items-center justify-center bg-[var(--background)] dark:bg-[var(--card-inverted-bg)]">
+      <div className="animate-pulse text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-sm">
         Memuat Portal Admin…
       </div>
     </main>

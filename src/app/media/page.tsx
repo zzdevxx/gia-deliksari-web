@@ -18,20 +18,20 @@ export const metadata: Metadata = {
 
 export default function MediaPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#FFFFFF] dark:bg-[#0F1115] text-[#111827] dark:text-[#F9FAFB] transition-colors">
+    <div className="min-h-screen flex flex-col bg-[var(--background)] dark:bg-[var(--card-inverted-bg)] text-[var(--foreground)] dark:text-[var(--foreground)] transition-colors">
       <Navbar />
 
       {/* Header Banner */}
-      <section className="pt-28 pb-12 bg-gradient-to-b from-[#FFFFFF] via-[#FFFFFF] to-[#F3F4F6]/50 dark:from-[#0F1115] dark:via-[#0F1115] dark:to-[#12141A] border-b border-[#E5E7EB] dark:border-[#2A2F3A]">
+      <section className="pt-28 pb-12 bg-gradient-to-b from-[var(--background)] via-[var(--background)] to-[var(--surface-raised)]/50 dark:from-[var(--card-inverted-bg)] dark:via-[var(--card-inverted-bg)] dark:to-[#12141A] border-b border-[var(--border)] dark:border-[var(--border)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#8B1E28] dark:text-[#E88086] text-xs font-bold uppercase tracking-wider mb-4">
-            <Film className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#E88086]" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--brand-text)] dark:text-[#E88086] text-xs font-bold uppercase tracking-wider mb-4">
+            <Film className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[#E88086]" />
             <span>Pusat Media & Dokumentasi Pelayanan</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight mb-4">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] tracking-tight mb-4">
             Firman Tuhan & Momen Komunitas
           </h1>
-          <p className="text-base sm:text-lg text-[#5B6472] dark:text-[#9CA3AF] max-w-3xl leading-relaxed">
+          <p className="text-base sm:text-lg text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] max-w-3xl leading-relaxed">
             Saksikan kembali rekaman firman Tuhan, khotbah ibadah raya, serta potret perjalanan kebersamaan dan persekutuan jemaat GIA Deliksari Semarang.
           </p>
 
@@ -39,16 +39,16 @@ export default function MediaPage() {
           <div className="flex flex-wrap items-center gap-3 mt-6">
             <a
               href="#khotbah"
-              className="px-4 py-2 rounded-xl bg-[#8B1E28] dark:bg-[#B8323D] text-white text-xs font-bold hover:bg-[#731820] transition-colors flex items-center gap-1.5 shadow-xs"
+              className="px-4 py-2 rounded-xl bg-[var(--brand)] dark:bg-[var(--brand)] text-white text-xs font-bold hover:bg-[#731820] transition-colors flex items-center gap-1.5 shadow-xs"
             >
               <YouTubeIcon className="w-3.5 h-3.5 text-white" />
               <span>Video Khotbah Terbaru</span>
             </a>
             <a
               href="#galeri"
-              className="px-4 py-2 rounded-xl bg-white dark:bg-[#171A21] text-[#111827] dark:text-[#F9FAFB] border border-[#E5E7EB] dark:border-[#2A2F3A] hover:bg-[#F3F4F6] text-xs font-bold transition-colors flex items-center gap-1.5 shadow-xs"
+              className="px-4 py-2 rounded-xl bg-white dark:bg-[var(--card)] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] hover:bg-[var(--surface-raised)] text-xs font-bold transition-colors flex items-center gap-1.5 shadow-xs"
             >
-              <ImageIcon className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#E88086]" />
+              <ImageIcon className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[#E88086]" />
               <span>Galeri Foto Dokumentasi</span>
             </a>
           </div>

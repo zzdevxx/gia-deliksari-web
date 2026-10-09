@@ -46,7 +46,7 @@ export default function InfoPrintPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#FFFFFF] text-[#111827] p-4">
+      <div className="min-h-screen flex items-center justify-center bg-[var(--background)] text-[var(--foreground)] p-4">
         <div className="flex items-center gap-3 text-sm font-semibold text-[#731820]">
           <div className="w-5 h-5 border-2 border-[#8B1E28] border-t-transparent rounded-full animate-spin" />
           <span>Menyiapkan Buletin Warta Cetak A4...</span>
@@ -56,26 +56,26 @@ export default function InfoPrintPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FFFFFF] text-[#111827]">
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       {/* Top action bar - hidden during print */}
-      <div className="no-print sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#E5E7EB] px-4 py-3 shadow-xs">
+      <div className="no-print sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[var(--border)] px-4 py-3 shadow-xs">
         <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
           <Link
             href="/info"
-            className="inline-flex items-center gap-2 text-xs font-bold text-[#5B6472] hover:text-[#8B1E28] dark:hover:text-[#B8323D] transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-bold text-[var(--muted-foreground)] hover:text-[var(--brand-text)] dark:hover:text-[var(--brand-text)] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Kembali ke Halaman Info</span>
           </Link>
 
           <div className="flex items-center gap-3">
-            <span className="text-xs text-[#5B6472] hidden sm:inline">
+            <span className="text-xs text-[var(--muted-foreground)] hidden sm:inline">
               Format Kertas: <strong>A4 Portrait</strong>
             </span>
             <button
               type="button"
               onClick={() => window.print()}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#8B1E28] dark:bg-[#B8323D] text-white text-xs font-bold hover:bg-[#731820] shadow-sm transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--brand)] dark:bg-[var(--brand)] text-white text-xs font-bold hover:bg-[#731820] shadow-sm transition-all"
             >
               <Printer className="w-4 h-4" />
               <span>Cetak Sekarang / Simpan PDF</span>
