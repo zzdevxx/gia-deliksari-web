@@ -40,7 +40,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
         <h1 className="text-2xl sm:text-3xl font-extrabold text-[#111827] dark:text-white tracking-tight">
           Superuser Portal
         </h1>
-        <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
+        <p className="text-xs sm:text-sm text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
           Kelola akun pengurus gereja: superuser, admin/operator, dan bendahara youth.
           <br />
           <span className="text-[#8B1E28] dark:text-[#E88086] font-bold">

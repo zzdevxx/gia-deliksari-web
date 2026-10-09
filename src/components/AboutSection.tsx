@@ -50,14 +50,14 @@ export default function AboutSection() {
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#6B7280] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#5B6472] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
             <Heart className="w-3.5 h-3.5 text-[#4B5563]" />
             <span>Mengenal GIA Deliksari</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight">
             Bertumbuh Bersama Sebagai Keluarga Allah
           </h2>
-          <p className="text-[#6B7280] dark:text-[#9CA3AF] text-base sm:text-lg leading-relaxed">
+          <p className="text-[#5B6472] dark:text-[#9CA3AF] text-base sm:text-lg leading-relaxed">
             Gereja Isa Almasih (GIA) Deliksari adalah persekutuan keluarga Allah di kawasan Sekaran, Gunungpati, Semarang. Kami rindu membawa terang Kristus, memperlengkapi jemaat dengan firman kebenaran, dan mendampingi setiap generasi.
           </p>
         </div>
@@ -95,21 +95,21 @@ export default function AboutSection() {
                 <h4 className="font-bold text-lg text-[#111827] dark:text-[#F9FAFB]">
                   Berakar Firman
                 </h4>
-                <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
+                <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
                   Pengajaran Alkitab yang setia, kontekstual, dan membangun dasar hidup jemaat dalam menghadapi tantangan zaman.
                 </p>
               </div>
             </div>
 
             <div className="p-7 rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] flex flex-col justify-between space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-[#F3F4F6] dark:bg-[#1F232D] flex items-center justify-center text-[#6B7280] dark:text-[#9CA3AF]">
+              <div className="w-12 h-12 rounded-xl bg-[#F3F4F6] dark:bg-[#1F232D] flex items-center justify-center text-[#5B6472] dark:text-[#9CA3AF]">
                 <Users className="w-6 h-6" />
               </div>
               <div className="space-y-2">
                 <h4 className="font-bold text-lg text-[#111827] dark:text-[#F9FAFB]">
                   Persekutuan Kasih
                 </h4>
-                <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
+                <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
                   Komunitas hangat di mana jemaat lintas generasi saling menguatkan, mendoakan, dan melayani dengan tulus.
                 </p>
               </div>
@@ -123,21 +123,21 @@ export default function AboutSection() {
                 <h4 className="font-bold text-lg text-[#111827] dark:text-[#F9FAFB]">
                   Gedung & Fasilitas
                 </h4>
-                <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
+                <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
                   Gedung Sanctuary Utama, Ruang Bethel (anak & pemuda), serta Pastori di Jl. Kolonel HR Hadijanto Sekaran.
                 </p>
               </div>
             </div>
 
             <div className="p-7 rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] flex flex-col justify-between space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-[#F3F4F6] dark:bg-[#1F232D] flex items-center justify-center text-[#6B7280] dark:text-[#9CA3AF]">
+              <div className="w-12 h-12 rounded-xl bg-[#F3F4F6] dark:bg-[#1F232D] flex items-center justify-center text-[#5B6472] dark:text-[#9CA3AF]">
                 <GraduationCap className="w-6 h-6" />
               </div>
               <div className="space-y-2">
                 <h4 className="font-bold text-lg text-[#111827] dark:text-[#F9FAFB]">
                   Keluarga & Mahasiswa
                 </h4>
-                <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
+                <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
                   Terbuka bagi keluarga warga Semarang serta menjadi rumah kedua bagi rekan mahasiswa perantauan di sekitar kampus UNNES.
                 </p>
               </div>
@@ -151,7 +151,7 @@ export default function AboutSection() {
           <h3 className="text-2xl sm:text-3xl font-extrabold text-[#111827] dark:text-[#F9FAFB]">
             Tim Penggembalaan
           </h3>
-          <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#9CA3AF]">
+          <p className="text-xs sm:text-sm text-[#5B6472] dark:text-[#9CA3AF]">
             Hamba-hamba Tuhan yang melayani jemaat GIA Deliksari dengan keteladanan dan kerendahan hati.
           </p>
         </div>
@@ -173,7 +173,7 @@ export default function AboutSection() {
                       <div className="w-10 h-10 rounded-xl bg-white/70 dark:bg-[#171A21]/75 flex items-center justify-center text-[#4B5563] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A]">
                         <LeaderIcon className="w-5 h-5" />
                       </div>
-                      <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-white/70 dark:bg-[#171A21]/75 text-[#6B7280] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A]">
+                      <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-white/70 dark:bg-[#171A21]/75 text-[#5B6472] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A]">
                         {leader.badge}
                       </span>
                     </div>
@@ -186,7 +186,7 @@ export default function AboutSection() {
                     </div>
 
                     <div className="text-center">
-                      <span className="inline-block px-3 py-1 rounded-full bg-white/70 dark:bg-[#171A21]/75 text-[10px] font-medium text-[#6B7280] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A]">
+                      <span className="inline-block px-3 py-1 rounded-full bg-white/70 dark:bg-[#171A21]/75 text-[10px] font-medium text-[#5B6472] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A]">
                         Foto resmi belum tersedia
                       </span>
                     </div>
@@ -201,7 +201,7 @@ export default function AboutSection() {
                     </p>
                   </div>
 
-                  <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
+                  <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
                     {leader.desc}
                   </p>
                 </div>
@@ -211,7 +211,7 @@ export default function AboutSection() {
                     href={leader.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#8B1E28] dark:hover:text-[#B8323D] transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#5B6472] dark:text-[#9CA3AF] hover:text-[#8B1E28] dark:hover:text-[#B8323D] transition-colors"
                   >
                     <InstagramIcon className="w-3.5 h-3.5 text-[#4B5563] dark:text-[#9CA3AF]" />
                     <span>Media Sosial</span>

@@ -74,7 +74,7 @@ export default function MinistriesSection() {
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight">
             Wadah Bertumbuh Bagi Setiap Generasi
           </h2>
-          <p className="text-[#6B7280] dark:text-[#9CA3AF] text-base sm:text-lg leading-relaxed">
+          <p className="text-[#5B6472] dark:text-[#9CA3AF] text-base sm:text-lg leading-relaxed">
             Dari anak-anak, remaja, pemuda, hingga kaum wanita dan keluarga, temukan komunitas yang tepat untuk bertumbuh bersama kami.
           </p>
         </div>
@@ -91,7 +91,7 @@ export default function MinistriesSection() {
                   <div className="w-12 h-12 shrink-0 rounded-xl bg-[#F3F4F6] dark:bg-[#1F232D] flex items-center justify-center">
                     <MinistryIcon className={`w-6 h-6 ${ministry.tone}`} aria-hidden="true" />
                   </div>
-                  <span className="inline-flex items-center rounded-md bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] px-2.5 py-1 text-xs font-semibold text-[#6B7280] dark:text-[#9CA3AF]">
+                  <span className="inline-flex items-center rounded-md bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] px-2.5 py-1 text-xs font-semibold text-[#5B6472] dark:text-[#9CA3AF]">
                     {ministry.badge}
                   </span>
                 </div>
@@ -100,27 +100,27 @@ export default function MinistriesSection() {
                   <h3 className="text-xl sm:text-2xl font-bold text-[#111827] dark:text-[#F9FAFB]">
                     {ministry.title}
                   </h3>
-                  <p className="mt-1 text-sm font-semibold text-[#6B7280] dark:text-[#9CA3AF]">
+                  <p className="mt-1 text-sm font-semibold text-[#5B6472] dark:text-[#9CA3AF]">
                     {ministry.subtitle}
                   </p>
                 </div>
 
-                <p className="mt-4 text-sm text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
+                <p className="mt-4 text-sm text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
                   {ministry.desc}
                 </p>
 
                 <dl className="mt-6 space-y-3 rounded-xl bg-[#FFFFFF] dark:bg-[#1F232D] p-4">
                   <div className="flex items-start gap-3">
-                    <Clock className="mt-0.5 w-4 h-4 shrink-0 text-[#6B7280] dark:text-[#9CA3AF]" aria-hidden="true" />
+                    <Clock className="mt-0.5 w-4 h-4 shrink-0 text-[#5B6472] dark:text-[#9CA3AF]" aria-hidden="true" />
                     <div className="min-w-0">
-                      <dt className="text-xs font-semibold text-[#6B7280] dark:text-[#9CA3AF]">Jadwal</dt>
+                      <dt className="text-xs font-semibold text-[#5B6472] dark:text-[#9CA3AF]">Jadwal</dt>
                       <dd className="text-sm font-medium text-[#111827] dark:text-[#F9FAFB]">{ministry.schedule}</dd>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <MapPin className="mt-0.5 w-4 h-4 shrink-0 text-[#6B7280] dark:text-[#9CA3AF]" aria-hidden="true" />
+                    <MapPin className="mt-0.5 w-4 h-4 shrink-0 text-[#5B6472] dark:text-[#9CA3AF]" aria-hidden="true" />
                     <div className="min-w-0">
-                      <dt className="text-xs font-semibold text-[#6B7280] dark:text-[#9CA3AF]">Lokasi</dt>
+                      <dt className="text-xs font-semibold text-[#5B6472] dark:text-[#9CA3AF]">Lokasi</dt>
                       <dd className="text-sm font-medium text-[#111827] dark:text-[#F9FAFB]">{ministry.location}</dd>
                     </div>
                   </div>
@@ -131,7 +131,7 @@ export default function MinistriesSection() {
                     href={ministry.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-11 items-center gap-2 rounded-md px-2 text-sm font-semibold text-[#6B7280] hover:text-[#8B1E28] dark:text-[#9CA3AF] dark:hover:text-[#B8323D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8B1E28] dark:focus-visible:outline-[#B8323D] transition-colors"
+                    className="inline-flex min-h-11 items-center gap-2 rounded-md px-2 text-sm font-semibold text-[#5B6472] hover:text-[#8B1E28] dark:text-[#9CA3AF] dark:hover:text-[#B8323D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8B1E28] dark:focus-visible:outline-[#B8323D] transition-colors"
                   >
                     <InstagramIcon className="w-4 h-4 text-[#8B1E28] dark:text-[#B8323D]" />
                     <span>Instagram</span>

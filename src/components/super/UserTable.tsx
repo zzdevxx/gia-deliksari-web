@@ -48,7 +48,7 @@ const UserTable: React.FC<UserTableProps> = ({ users, loading, currentUsername, 
   if (loading) {
     return (
       <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-sm">
-        <div className="p-8 text-center text-xs text-[#6B7280] dark:text-[#9CA3AF]">Memuat daftar user…</div>
+        <div className="p-8 text-center text-xs text-[#5B6472] dark:text-[#9CA3AF]">Memuat daftar user…</div>
       </div>
     );
   }
@@ -69,7 +69,7 @@ const UserTable: React.FC<UserTableProps> = ({ users, loading, currentUsername, 
         <tbody className="divide-y divide-[#E5E7EB] dark:divide-[#2A2F3A]">
           {users.length === 0 ? (
             <tr>
-              <td colSpan={6} className="p-8 text-center text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+              <td colSpan={6} className="p-8 text-center text-xs text-[#5B6472] dark:text-[#9CA3AF]">
                 Belum ada user. Klik "Tambah User Baru" untuk mulai.
               </td>
             </tr>
@@ -92,13 +92,13 @@ const UserTable: React.FC<UserTableProps> = ({ users, loading, currentUsername, 
                     <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-bold border ${meta.color}`}>
                       {meta.label}
                     </span>
-                    <div className="text-[10px] text-[#6B7280] dark:text-[#9CA3AF] mt-0.5">
+                    <div className="text-[10px] text-[#5B6472] dark:text-[#9CA3AF] mt-0.5">
                       → {meta.portal}
                       {u.roles.length > 1 && ` (+${u.roles.length - 1})`}
                     </div>
                   </td>
                   <td className="p-4 text-[#111827] dark:text-[#F9FAFB]">
-                    {u.display_name || <span className="text-[#6B7280] dark:text-[#9CA3AF] italic">—</span>}
+                    {u.display_name || <span className="text-[#5B6472] dark:text-[#9CA3AF] italic">—</span>}
                   </td>
                   <td className="p-4">
                     {u.active ? (
@@ -111,7 +111,7 @@ const UserTable: React.FC<UserTableProps> = ({ users, loading, currentUsername, 
                       </span>
                     )}
                   </td>
-                  <td className="p-4 text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+                  <td className="p-4 text-xs text-[#5B6472] dark:text-[#9CA3AF]">
                     {u.last_login_at
                       ? new Date(u.last_login_at).toLocaleString('id-ID', {
                           day: 'numeric',

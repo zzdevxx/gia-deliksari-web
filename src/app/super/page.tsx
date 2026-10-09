@@ -263,7 +263,7 @@ export default function SuperPage() {
   if (!authChecked) {
     return (
       <main className="min-h-screen flex items-center justify-center bg-[#FFFFFF] dark:bg-[#0F1115]">
-        <div className="animate-pulse text-[#6B7280] dark:text-[#9CA3AF]">Memuat…</div>
+        <div className="animate-pulse text-[#5B6472] dark:text-[#9CA3AF]">Memuat…</div>
       </main>
     );
   }
@@ -295,7 +295,7 @@ export default function SuperPage() {
               <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FBF1F2] dark:bg-[#261517] text-[#8B1E28] dark:text-[#E88086] border border-[#E8C2C5] dark:border-[#52252A]">
                 🔑 Superuser Portal
               </span>
-              <div className="flex items-center gap-1.5 text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+              <div className="flex items-center gap-1.5 text-xs text-[#5B6472] dark:text-[#9CA3AF]">
                 <Users className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#E88086]" />
                 <span>{activeCount}/{users.length} user aktif</span>
               </div>
@@ -303,7 +303,7 @@ export default function SuperPage() {
             <h1 className="text-2xl sm:text-3xl font-extrabold text-[#111827] dark:text-white tracking-tight">
               Manajemen Akun Pengurus Gereja
             </h1>
-            <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+            <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">
               Kelola akun superuser, admin/operator, dan bendahara youth. Akun baru otomatis mendapat
               akses ke portal sesuai role-nya.
             </p>
@@ -327,7 +327,7 @@ export default function SuperPage() {
             </Link>
             <button
               onClick={handleLogout}
-              className="px-4 py-3 rounded-2xl bg-white dark:bg-[#171A21] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A] transition-colors text-xs font-bold flex items-center gap-2"
+              className="px-4 py-3 rounded-2xl bg-white dark:bg-[#171A21] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] text-[#5B6472] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A] transition-colors text-xs font-bold flex items-center gap-2"
             >
               <LogOut className="w-3.5 h-3.5" />
               <span>Keluar</span>
@@ -336,12 +336,12 @@ export default function SuperPage() {
         </div>
 
         {/* Greeting */}
-        <div className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+        <div className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">
           Login sebagai{' '}
           <span className="font-bold text-[#111827] dark:text-[#F9FAFB]">
             {authUser?.display_name || authUser?.username}
           </span>{' '}
-          <span className="text-[#6B7280] dark:text-[#9CA3AF]">
+          <span className="text-[#5B6472] dark:text-[#9CA3AF]">
             ({authUser?.roles?.join(', ') || authUser?.username})
           </span>
         </div>
@@ -352,7 +352,7 @@ export default function SuperPage() {
             <h2 className="text-xl font-extrabold text-[#111827] dark:text-white">
               Daftar Akun ({users.length})
             </h2>
-            <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+            <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">
               Tambah akun baru, ubah role, atau nonaktifkan akun yang tidak aktif.
             </p>
           </div>
@@ -396,7 +396,7 @@ export default function SuperPage() {
           >
             <div>
               <h3 className="font-bold text-[#111827] dark:text-[#F9FAFB]">📋 Portal Admin</h3>
-              <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] mt-0.5">
+              <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] mt-0.5">
                 Warta, Roster Pelayanan, Inventaris
               </p>
             </div>
@@ -408,7 +408,7 @@ export default function SuperPage() {
           >
             <div>
               <h3 className="font-bold text-[#111827] dark:text-[#F9FAFB]">💰 Portal Kas Youth</h3>
-              <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] mt-0.5">
+              <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] mt-0.5">
                 Manajemen keuangan Grow Generation
               </p>
             </div>

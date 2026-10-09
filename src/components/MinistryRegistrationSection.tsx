@@ -108,14 +108,14 @@ export default function MinistryRegistrationSection() {
         
         {/* Section Header */}
         <div className="text-center mb-12 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#6B7280] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#5B6472] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
             <HeartHandshake className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#E88086]" />
             <span>Layanan Jemaat & Formulir Digital</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight">
             Bagaimana Kami Dapat Melayani Anda?
           </h2>
-          <p className="text-[#6B7280] dark:text-[#9CA3AF] text-base sm:text-lg leading-relaxed">
+          <p className="text-[#5B6472] dark:text-[#9CA3AF] text-base sm:text-lg leading-relaxed">
             Sampaikan pokok doa, pendaftaran sakramen baptisan, gabung kelompok sel, atau kerinduan melayani pekerjaan Tuhan.
           </p>
         </div>
@@ -138,7 +138,7 @@ export default function MinistryRegistrationSection() {
                 className={`py-3 px-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold flex flex-col sm:flex-row items-center justify-center gap-1.5 transition-all ${
                   isActive
                     ? 'bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white shadow-sm'
-                    : 'text-[#6B7280] dark:text-[#9CA3AF] hover:bg-white/60 dark:hover:bg-[#1F232D]'
+                    : 'text-[#5B6472] dark:text-[#9CA3AF] hover:bg-white/60 dark:hover:bg-[#1F232D]'
                 }`}
               >
                 <Icon className="w-4 h-4 shrink-0" />
@@ -158,7 +158,7 @@ export default function MinistryRegistrationSection() {
               <h3 className="text-2xl font-extrabold text-[#111827] dark:text-[#F9FAFB]">
                 Formulir Berhasil Dikirim & Tersimpan!
               </h3>
-              <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#9CA3AF] max-w-md mx-auto">
+              <p className="text-xs sm:text-sm text-[#5B6472] dark:text-[#9CA3AF] max-w-md mx-auto">
                 Permohonan Anda telah tercatat dalam sistem layanan gereja dan diteruskan ke WhatsApp Tim Pastoral GIA Deliksari.
               </p>
             </div>
@@ -185,7 +185,7 @@ export default function MinistryRegistrationSection() {
                     <label className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB]">
                       Nomor WhatsApp / HP <span className="text-[#8B1E28] dark:text-[#E88086]">*</span>
                     </label>
-                    <span className="text-[10px] text-[#6B7280] dark:text-[#9CA3AF]">
+                    <span className="text-[10px] text-[#5B6472] dark:text-[#9CA3AF]">
                       Aktif WhatsApp
                     </span>
                   </div>
@@ -228,7 +228,7 @@ export default function MinistryRegistrationSection() {
                         <Clock className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#E88086]" />
                         <span>Kunjungan Pastoral Hari Selasa</span>
                       </div>
-                      <p className="text-[11px] text-[#6B7280] dark:text-[#9CA3AF]">
+                      <p className="text-[11px] text-[#5B6472] dark:text-[#9CA3AF]">
                         Centang jika Anda / keluarga memohon kunjungan doa hamba Tuhan ke rumah/rumah sakit di hari Selasa.
                       </p>
                     </div>

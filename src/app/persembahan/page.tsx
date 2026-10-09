@@ -29,7 +29,7 @@ export default function PersembahanPage() {
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight mb-4">
             Persembahan & Dukungan Pelayanan
           </h1>
-          <p className="text-base sm:text-lg text-[#6B7280] dark:text-[#9CA3AF] max-w-3xl leading-relaxed">
+          <p className="text-base sm:text-lg text-[#5B6472] dark:text-[#9CA3AF] max-w-3xl leading-relaxed">
             Terima kasih atas kemurahan hati dan kesetiaan Anda dalam menabur di ladang pelayanan Tuhan di GIA Deliksari Semarang. Setiap persembahan dikelola dengan transparansi dan penuh tanggung jawab.
           </p>
         </div>

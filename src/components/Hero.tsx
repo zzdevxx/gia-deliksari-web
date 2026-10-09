@@ -67,7 +67,7 @@ export default function Hero() {
             role="status"
             aria-live="polite"
             aria-label={`Ibadah Raya Minggu dalam ${timeLeft.days} hari ${timeLeft.hours} jam ${timeLeft.minutes} menit`}
-            className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-4 py-2 rounded-full bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-xs text-xs font-semibold text-[#6B7280] dark:text-[#9CA3AF]"
+            className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-4 py-2 rounded-full bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-xs text-xs font-semibold text-[#5B6472] dark:text-[#9CA3AF]"
           >
             <span className="flex items-center gap-1.5 text-[#4B5563] dark:text-[#9CA3AF] font-bold">
               <Calendar className="w-3.5 h-3.5" />
@@ -90,7 +90,7 @@ export default function Hero() {
           <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
 
             {/* Mission Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#6B7280] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#5B6472] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5 text-[#4B5563]" aria-hidden="true" />
               <span>Gerakan Tumbuh dalam Iman & Kasih</span>
             </div>
@@ -105,7 +105,7 @@ export default function Hero() {
             </h1>
 
             {/* Subtitle / Church Spirit */}
-            <p className="text-base sm:text-lg text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
+            <p className="text-base sm:text-lg text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
               Selamat datang di persekutuan jemaat yang berakar kuat dalam firman Tuhan, saling mengasihi, dan membimbing setiap generasi untuk bertumbuh dan berdampak nyata bagi sesama.
             </p>
 
@@ -114,7 +114,7 @@ export default function Hero() {
               <Button
                 as="link"
                 href="#kunjungan"
-                variant="maroon"
+                variant="primary"
                 size="lg"
                 iconRight={<ArrowRight className="w-4 h-4" />}
                 className="w-full sm:w-auto"
@@ -150,15 +150,15 @@ export default function Hero() {
             <div className="pt-6 border-t border-[#E5E7EB] dark:border-[#2A2F3A] grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0">
               <div className="space-y-1">
                 <span className="text-xl sm:text-2xl font-extrabold text-[#111827] dark:text-[#F9FAFB] font-mono">4</span>
-                <p className="text-[11px] sm:text-xs font-semibold text-[#6B7280] dark:text-[#9CA3AF]">Komunitas Ibadah</p>
+                <p className="text-[11px] sm:text-xs font-semibold text-[#5B6472] dark:text-[#9CA3AF]">Komunitas Ibadah</p>
               </div>
               <div className="space-y-1 border-x border-[#E5E7EB] dark:border-[#2A2F3A] px-2 sm:px-4">
                 <span className="text-xl sm:text-2xl font-extrabold text-[#8B1E28] dark:text-[#B8323D] font-mono">09.00</span>
-                <p className="text-[11px] sm:text-xs font-semibold text-[#6B7280] dark:text-[#9CA3AF]">WIB · Minggu</p>
+                <p className="text-[11px] sm:text-xs font-semibold text-[#5B6472] dark:text-[#9CA3AF]">WIB · Minggu</p>
               </div>
               <div className="space-y-1">
                 <span className="text-xl sm:text-2xl font-extrabold text-[#111827] dark:text-[#F9FAFB] font-mono">UNNES</span>
-                <p className="text-[11px] sm:text-xs font-semibold text-[#6B7280] dark:text-[#9CA3AF]">Kawasan Sekaran</p>
+                <p className="text-[11px] sm:text-xs font-semibold text-[#5B6472] dark:text-[#9CA3AF]">Kawasan Sekaran</p>
               </div>
             </div>
 
@@ -172,7 +172,7 @@ export default function Hero() {
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-xs bg-white dark:bg-[#171A21] p-6 sm:p-8 flex flex-col justify-between">
                 {/* Top Badge & Status */}
                 <div className="flex items-center justify-between">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] text-[11px] font-bold border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#6B7280] dark:text-[#9CA3AF]">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] text-[11px] font-bold border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#5B6472] dark:text-[#9CA3AF]">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                     <span>Ibadah Onsite & Persekutuan</span>
                   </div>
@@ -200,7 +200,7 @@ export default function Hero() {
                       &ldquo;A Growing Church in Faith, Love, and Hope&rdquo;
                     </p>
                   </div>
-                  <div className="inline-block px-3 py-1 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] text-[10px] font-medium text-[#6B7280] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A]">
+                  <div className="inline-block px-3 py-1 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] text-[10px] font-medium text-[#5B6472] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A]">
                     Kawasan Sekaran · UNNES Gunungpati
                   </div>
                 </div>
@@ -210,7 +210,7 @@ export default function Hero() {
                   <p className="text-xs sm:text-sm font-extrabold text-[#111827] dark:text-[#F9FAFB]">
                     Jl. Kolonel HR Hadijanto, Sekaran, Gunungpati
                   </p>
-                  <p className="text-[11px] text-[#6B7280] dark:text-[#9CA3AF]">
+                  <p className="text-[11px] text-[#5B6472] dark:text-[#9CA3AF]">
                     Gedung Sanctuary Utama & Ruang Bethel · Semarang 50229
                   </p>
                 </div>
@@ -227,7 +227,7 @@ export default function Hero() {
                   <span className="text-xs font-extrabold text-[#111827] dark:text-[#F9FAFB] block">
                     Ibadah Onsite Aktif
                   </span>
-                  <span className="text-[11px] font-medium text-[#6B7280] dark:text-[#9CA3AF]">
+                  <span className="text-[11px] font-medium text-[#5B6472] dark:text-[#9CA3AF]">
                     Datang & Beribadah Bersama
                   </span>
                 </div>
@@ -235,7 +235,7 @@ export default function Hero() {
 
               {/* Floating Quick Access — Jadwal Singkat */}
               <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 px-3.5 py-2.5 rounded-xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-sm hidden sm:block">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#9CA3AF]">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-[#5B6472] dark:text-[#9CA3AF]">
                   Ibadah Berikutnya
                 </p>
                 <p className="text-sm font-extrabold text-[#8B1E28] dark:text-[#B8323D]">
@@ -255,7 +255,7 @@ export default function Hero() {
         <a
           href="#kunjungan"
           aria-label="Scroll ke bawah untuk konten selanjutnya"
-          className="inline-flex flex-col items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#8B1E28] dark:hover:text-[#B8323D] transition-colors group"
+          className="inline-flex flex-col items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#5B6472] dark:text-[#9CA3AF] hover:text-[#8B1E28] dark:hover:text-[#B8323D] transition-colors group"
         >
           <span>Scroll</span>
           <span aria-hidden="true" className="block w-5 h-8 rounded-full border border-current relative overflow-hidden">

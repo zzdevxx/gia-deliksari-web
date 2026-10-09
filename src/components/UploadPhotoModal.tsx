@@ -116,7 +116,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
               <h3 className="text-lg sm:text-xl font-extrabold text-[#111827] dark:text-white">
                 Unggah Dokumentasi Momen
               </h3>
-              <p className="text-[11px] text-[#6B7280] dark:text-[#9CA3AF]">
+              <p className="text-[11px] text-[#5B6472] dark:text-[#9CA3AF]">
                 Foto akan diarsipkan di Google Drive & tampil di Galeri Web
               </p>
             </div>
@@ -137,7 +137,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
             <h4 className="text-xl font-extrabold text-[#111827] dark:text-white">
               Foto Berhasil Diunggah!
             </h4>
-            <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] max-w-sm mx-auto">
+            <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] max-w-sm mx-auto">
               Momen indah Anda telah berhasil ditambahkan ke galeri dan diarsipkan ke Google Drive GIA Deliksari.
             </p>
           </div>
@@ -195,7 +195,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
                     <p className="text-xs font-bold text-[#111827] dark:text-white">
                       Klik atau Seret Foto ke Sini
                     </p>
-                    <p className="text-[10px] text-[#6B7280] dark:text-[#9CA3AF]">
+                    <p className="text-[10px] text-[#5B6472] dark:text-[#9CA3AF]">
                       Format JPG, PNG, atau WebP (Maks. 10MB)
                     </p>
                   </div>
@@ -267,7 +267,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
                 type="button"
                 onClick={onClose}
                 disabled={isUploading}
-                className="px-4 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] text-xs font-bold"
+                className="px-4 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#5B6472] dark:text-[#9CA3AF] text-xs font-bold"
               >
                 Batal
               </button>

@@ -106,7 +106,7 @@ export default async function Image() {
             <div style={{ display: 'flex', fontSize: 32, fontWeight: 900, color: '#111827', letterSpacing: '-1px' }}>
               GIA DELIKSARI
             </div>
-            <div style={{ display: 'flex', fontSize: 18, color: '#6B7280', fontWeight: 600, marginTop: 4 }}>
+            <div style={{ display: 'flex', fontSize: 18, color: '#5B6472', fontWeight: 600, marginTop: 4 }}>
               Semarang · Growing Church!
             </div>
           </div>
@@ -138,7 +138,7 @@ export default async function Image() {
               }}
             >
               <div style={{ display: 'flex', fontSize: 28 }}>📅</div>
-              <div style={{ display: 'flex', fontSize: 22, color: '#6B7280', fontStyle: 'italic' }}>
+              <div style={{ display: 'flex', fontSize: 22, color: '#5B6472', fontStyle: 'italic' }}>
                 Warta jemaat akan tampil di sini setelah pengurus menginputnya.
               </div>
             </div>
@@ -190,7 +190,7 @@ export default async function Image() {
                   >
                     {a.title}
                   </div>
-                  <div style={{ display: 'flex', fontSize: 16, color: '#6B7280', marginTop: 4 }}>
+                  <div style={{ display: 'flex', fontSize: 16, color: '#5B6472', marginTop: 4 }}>
                     📅 {fmtDate(a.event_date)}
                   </div>
                 </div>
@@ -211,7 +211,7 @@ export default async function Image() {
           }}
         >
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <div style={{ display: 'flex', fontSize: 16, color: '#6B7280', fontWeight: 600 }}>
+            <div style={{ display: 'flex', fontSize: 16, color: '#5B6472', fontWeight: 600 }}>
               GIA Deliksari Web Portal · /info
             </div>
             {nextEvent ? (

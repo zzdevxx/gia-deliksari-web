@@ -107,21 +107,21 @@ export default function GivingSection() {
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#6B7280] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#5B6472] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
             <Heart className="w-3.5 h-3.5 fill-[#8B1E28] text-[#8B1E28] dark:text-[#E88086]" />
             <span>Persembahan Kasih & Persepuluhan</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight">
             Mendukung Pekerjaan Rumah Tuhan
           </h2>
-          <p className="text-[#6B7280] dark:text-[#9CA3AF] text-base sm:text-lg leading-relaxed">
+          <p className="text-[#5B6472] dark:text-[#9CA3AF] text-base sm:text-lg leading-relaxed">
             &ldquo;Hendaklah masing-masing memberikan menurut kerelaan hatinya, jangan dengan sedih hati atau karena paksaan, sebab Allah mengasihi orang yang memberi dengan sukacita.&rdquo; <span className="font-semibold">(2 Korintus 9:7)</span>
           </p>
         </div>
 
         {/* Pos Persembahan Selector Tabs */}
         <div className="mb-10 max-w-4xl mx-auto">
-          <div className="text-xs font-bold text-[#6B7280] dark:text-[#9CA3AF] uppercase tracking-wider text-center mb-3">
+          <div className="text-xs font-bold text-[#5B6472] dark:text-[#9CA3AF] uppercase tracking-wider text-center mb-3">
             Pilih Peruntukan Pos Persembahan:
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 p-1.5 rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-xs">
@@ -135,7 +135,7 @@ export default function GivingSection() {
                   className={`py-3 px-3 rounded-xl text-xs font-bold transition-all text-center flex flex-col items-center justify-center gap-1 ${
                     isActive
                       ? 'bg-[#8B1E28] dark:bg-[#B8323D] text-white shadow-xs scale-[1.02]'
-                      : 'text-[#6B7280] dark:text-[#9CA3AF] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D]'
+                      : 'text-[#5B6472] dark:text-[#9CA3AF] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D]'
                   }`}
                 >
                   <span>{cat.name}</span>
@@ -172,16 +172,16 @@ export default function GivingSection() {
                 <h3 className="font-extrabold text-lg text-[#111827] dark:text-[#F9FAFB]">
                   Kotak Persembahan
                 </h3>
-                <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] mt-0.5">
+                <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] mt-0.5">
                   Tersedia di Gedung Gereja
                 </p>
               </div>
 
-              <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
                 Dapat dimasukkan langsung ke kotak persembahan yang terletak di lobi utama depan pintu masuk ruang ibadah.
               </p>
 
-              <div className="p-3.5 rounded-2xl bg-[#F3F4F6]/80 dark:bg-[#1F232D]/80 border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs text-[#6B7280] dark:text-[#9CA3AF] space-y-1.5">
+              <div className="p-3.5 rounded-2xl bg-[#F3F4F6]/80 dark:bg-[#1F232D]/80 border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs text-[#5B6472] dark:text-[#9CA3AF] space-y-1.5">
                 <div className="font-bold text-[#111827] dark:text-[#F9FAFB]">
                   3 Kotak Tersedia:
                 </div>
@@ -192,7 +192,7 @@ export default function GivingSection() {
               </div>
             </div>
 
-            <div className="pt-2 text-center text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+            <div className="pt-2 text-center text-xs text-[#5B6472] dark:text-[#9CA3AF]">
               Amplop persembahan tersedia di meja usher.
             </div>
           </div>
@@ -213,7 +213,7 @@ export default function GivingSection() {
                 <h3 className="font-extrabold text-lg text-[#111827] dark:text-[#F9FAFB]">
                   Rekening Bank Resmi
                 </h3>
-                <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] mt-0.5">
+                <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] mt-0.5">
                   Salin nomor rekening dengan 1 klik
                 </p>
               </div>
@@ -255,7 +255,7 @@ export default function GivingSection() {
                         )}
                       </button>
                     </div>
-                    <div className="text-[11px] text-[#6B7280] dark:text-[#9CA3AF] mt-1">
+                    <div className="text-[11px] text-[#5B6472] dark:text-[#9CA3AF] mt-1">
                       a.n. {bank.accountHolder}
                     </div>
                   </div>
@@ -263,7 +263,7 @@ export default function GivingSection() {
               </div>
             </div>
 
-            <p className="text-[11px] text-[#6B7280] dark:text-[#9CA3AF] italic text-center">
+            <p className="text-[11px] text-[#5B6472] dark:text-[#9CA3AF] italic text-center">
               Mohon beri berita transfer: &ldquo;{currentCategoryObj.name}&rdquo;
             </p>
           </div>
@@ -284,7 +284,7 @@ export default function GivingSection() {
                 <h3 className="font-extrabold text-lg text-[#111827] dark:text-[#F9FAFB]">
                   QRIS Semua E-Wallet
                 </h3>
-                <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] mt-0.5">
+                <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] mt-0.5">
                   BCA, Mandiri, GoPay, OVO, Dana, ShopeePay
                 </p>
               </div>
@@ -319,7 +319,7 @@ export default function GivingSection() {
                 </div>
               </div>
 
-              <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] text-center">
+              <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] text-center">
                 Mendukung seluruh m-Banking dan dompet digital berlogo QRIS Nasional.
               </p>
             </div>
@@ -351,7 +351,7 @@ export default function GivingSection() {
                   Terpilih
                 </span>
               </div>
-              <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] mt-0.5">
+              <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] mt-0.5">
                 Kirimkan bukti transfer untuk pencatatan persembahan dan tanda terima warta jemaat.
               </p>
             </div>
@@ -400,7 +400,7 @@ export default function GivingSection() {
               <h3 className="text-lg font-black text-[#111827] dark:text-[#F9FAFB]">
                 GIA DELIKSARI SEMARANG
               </h3>
-              <p className="text-[11px] text-[#6B7280] dark:text-[#9CA3AF]">
+              <p className="text-[11px] text-[#5B6472] dark:text-[#9CA3AF]">
                 Tersedia di Meja Penerimaan & Lobi Ibadah Gereja
               </p>
             </div>
@@ -461,7 +461,7 @@ export default function GivingSection() {
               <div className="font-bold text-[#111827] dark:text-[#F9FAFB]">
                 Informasi Persembahan Non-Tunai:
               </div>
-              <ul className="list-disc pl-4 space-y-0.5 text-[11px] text-[#6B7280] dark:text-[#9CA3AF]">
+              <ul className="list-disc pl-4 space-y-0.5 text-[11px] text-[#5B6472] dark:text-[#9CA3AF]">
                 <li>Barcode QRIS fisik resmi terpasang di kotak persembahan dan lobi gereja.</li>
                 <li>Mendukung seluruh m-Banking (BCA, Mandiri, BRI, dll) dan dompet digital (GoPay, OVO, Dana).</li>
                 <li>Untuk info rekening gereja terkini, hubungi WhatsApp Pastoral: <strong>0896-2096-1103</strong>.</li>
@@ -473,7 +473,7 @@ export default function GivingSection() {
               <button
                 type="button"
                 onClick={() => setShowQrisModal(false)}
-                className="flex-1 py-2.5 rounded-xl border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs font-bold text-[#6B7280] dark:text-[#9CA3AF] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] transition-colors"
+                className="flex-1 py-2.5 rounded-xl border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs font-bold text-[#5B6472] dark:text-[#9CA3AF] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] transition-colors"
               >
                 Tutup
               </button>

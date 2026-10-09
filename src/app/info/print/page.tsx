@@ -62,14 +62,14 @@ export default function InfoPrintPage() {
         <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
           <Link
             href="/info"
-            className="inline-flex items-center gap-2 text-xs font-bold text-[#6B7280] hover:text-[#8B1E28] dark:hover:text-[#B8323D] transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-bold text-[#5B6472] hover:text-[#8B1E28] dark:hover:text-[#B8323D] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Kembali ke Halaman Info</span>
           </Link>
 
           <div className="flex items-center gap-3">
-            <span className="text-xs text-[#6B7280] hidden sm:inline">
+            <span className="text-xs text-[#5B6472] hidden sm:inline">
               Format Kertas: <strong>A4 Portrait</strong>
             </span>
             <button

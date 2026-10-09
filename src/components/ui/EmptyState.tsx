@@ -39,7 +39,7 @@ export function EmptyState({
         {title}
       </h3>
       {description && (
-        <p className="mt-2 max-w-md text-sm text-[#6B7280] dark:text-[#9CA3AF]">
+        <p className="mt-2 max-w-md text-sm text-[#5B6472] dark:text-[#9CA3AF]">
           {description}
         </p>
       )}

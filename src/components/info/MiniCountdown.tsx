@@ -35,7 +35,7 @@ const MiniCountdown: React.FC<MiniCountdownProps> = ({ targetDate }) => {
 
   if (!cd) return null;
   return (
-    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] text-[11px] font-bold border border-[#E5E7EB] dark:border-[#2A2F3A]">
+    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-[#F3F4F6] dark:bg-[#1F232D] text-[#5B6472] dark:text-[#9CA3AF] text-[11px] font-bold border border-[#E5E7EB] dark:border-[#2A2F3A]">
       <Hourglass className="w-3 h-3" />
       {cd.days > 0 ? `${cd.days} hari ` : ''}
       {cd.hours}j {cd.minutes}m lagi

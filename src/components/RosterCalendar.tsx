@@ -12,10 +12,10 @@ interface CalendarProps {
 const DAY_NAMES_ID = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
 
 const CAT_META: Record<string, { label: string; bg: string; border: string; text: string }> = {
-  general: { label: 'Ibadah Raya', bg: 'bg-[#F3F4F6] dark:bg-[#1F232D]', border: 'border-[#E5E7EB] dark:border-[#2A2F3A]', text: 'text-[#6B7280] dark:text-[#9CA3AF]' },
-  youth:   { label: 'Grow Youth',  bg: 'bg-[#F3F4F6] dark:bg-[#1F232D]', border: 'border-[#E5E7EB] dark:border-[#2A2F3A]', text: 'text-[#6B7280] dark:text-[#9CA3AF]' },
-  kidz:    { label: 'COC Kidz',    bg: 'bg-[#F3F4F6] dark:bg-[#1F232D]', border: 'border-[#E5E7EB] dark:border-[#2A2F3A]', text: 'text-[#6B7280] dark:text-[#9CA3AF]' },
-  hana:    { label: 'Wanita Hana', bg: 'bg-[#F3F4F6] dark:bg-[#1F232D]', border: 'border-[#E5E7EB] dark:border-[#2A2F3A]', text: 'text-[#6B7280] dark:text-[#9CA3AF]' },
+  general: { label: 'Ibadah Raya', bg: 'bg-[#F3F4F6] dark:bg-[#1F232D]', border: 'border-[#E5E7EB] dark:border-[#2A2F3A]', text: 'text-[#5B6472] dark:text-[#9CA3AF]' },
+  youth:   { label: 'Grow Youth',  bg: 'bg-[#F3F4F6] dark:bg-[#1F232D]', border: 'border-[#E5E7EB] dark:border-[#2A2F3A]', text: 'text-[#5B6472] dark:text-[#9CA3AF]' },
+  kidz:    { label: 'COC Kidz',    bg: 'bg-[#F3F4F6] dark:bg-[#1F232D]', border: 'border-[#E5E7EB] dark:border-[#2A2F3A]', text: 'text-[#5B6472] dark:text-[#9CA3AF]' },
+  hana:    { label: 'Wanita Hana', bg: 'bg-[#F3F4F6] dark:bg-[#1F232D]', border: 'border-[#E5E7EB] dark:border-[#2A2F3A]', text: 'text-[#5B6472] dark:text-[#9CA3AF]' },
 };
 
 /**
@@ -96,7 +96,7 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
       {/* Grid */}
       <div className="grid grid-cols-7 gap-1.5 text-center text-[10px] sm:text-xs">
         {DAY_NAMES_ID.map((d) => (
-          <div key={d} className="font-bold text-[#6B7280] dark:text-[#9CA3AF] py-1.5">
+          <div key={d} className="font-bold text-[#5B6472] dark:text-[#9CA3AF] py-1.5">
             {d}
           </div>
         ))}
@@ -137,11 +137,11 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
                   />
                 ))}
                 {cats.length > 3 && (
-                  <span className="text-[8px] text-[#6B7280] dark:text-[#9CA3AF]">+{cats.length - 3}</span>
+                  <span className="text-[8px] text-[#5B6472] dark:text-[#9CA3AF]">+{cats.length - 3}</span>
                 )}
               </div>
               {hasEntries && (
-                <div className="text-[9px] sm:text-[10px] text-[#6B7280] dark:text-[#9CA3AF] truncate">
+                <div className="text-[9px] sm:text-[10px] text-[#5B6472] dark:text-[#9CA3AF] truncate">
                   {entries.length} pelayan
                 </div>
               )}
@@ -160,13 +160,13 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
             </h4>
             <button
               onClick={() => setSelectedDay(null)}
-              className="text-[10px] font-bold text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#8B1E28]"
+              className="text-[10px] font-bold text-[#5B6472] dark:text-[#9CA3AF] hover:text-[#8B1E28]"
             >
               Tutup
             </button>
           </div>
           {dayEntries.length === 0 ? (
-            <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] italic">Tidak ada jadwal.</p>
+            <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] italic">Tidak ada jadwal.</p>
           ) : (
             <div className="space-y-2">
               {dayEntries.map((r) => {
@@ -180,16 +180,16 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
                       <span className={`text-[10px] font-bold uppercase tracking-wider ${meta.text}`}>
                         {meta.label}
                       </span>
-                      <span className="text-[10px] text-[#6B7280] dark:text-[#9CA3AF]">·</span>
+                      <span className="text-[10px] text-[#5B6472] dark:text-[#9CA3AF]">·</span>
                       <span className="text-xs font-extrabold text-[#111827] dark:text-[#F9FAFB]">{r.role}</span>
                     </div>
-                    <div className="text-xs text-[#6B7280] dark:text-[#9CA3AF] font-medium">
+                    <div className="text-xs text-[#5B6472] dark:text-[#9CA3AF] font-medium">
                       {r.servantName}
-                      {r.status === 'pending' && <span className="ml-2 text-[10px] italic text-[#6B7280] dark:text-[#9CA3AF]">(konfirmasi)</span>}
-                      {r.status === 'replacement' && <span className="ml-2 text-[10px] italic text-[#6B7280] dark:text-[#9CA3AF]">(pengganti)</span>}
+                      {r.status === 'pending' && <span className="ml-2 text-[10px] italic text-[#5B6472] dark:text-[#9CA3AF]">(konfirmasi)</span>}
+                      {r.status === 'replacement' && <span className="ml-2 text-[10px] italic text-[#5B6472] dark:text-[#9CA3AF]">(pengganti)</span>}
                     </div>
                     {r.notes && (
-                      <div className="text-[10px] text-[#6B7280] dark:text-[#9CA3AF] mt-1 italic">
+                      <div className="text-[10px] text-[#5B6472] dark:text-[#9CA3AF] mt-1 italic">
                         {r.notes}
                       </div>
                     )}
@@ -202,7 +202,7 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
       )}
 
       {/* Legend */}
-      <div className="flex flex-wrap items-center gap-3 pt-2 text-[10px] text-[#6B7280] dark:text-[#9CA3AF]">
+      <div className="flex flex-wrap items-center gap-3 pt-2 text-[10px] text-[#5B6472] dark:text-[#9CA3AF]">
         <span className="font-bold">Kategori:</span>
         {Object.entries(CAT_META).map(([key, m]) => (
           <span key={key} className="inline-flex items-center gap-1">

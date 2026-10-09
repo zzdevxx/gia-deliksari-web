@@ -129,14 +129,14 @@ export default function GallerySection() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div className="space-y-4 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#6B7280] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#5B6472] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
               <Camera className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#B8323D]" />
               <span>Dokumentasi Pelayanan & Momen Kebersamaan</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight">
               Galeri Sukacita Jemaat
             </h2>
-            <p className="text-[#6B7280] dark:text-[#9CA3AF] text-base leading-relaxed">
+            <p className="text-[#5B6472] dark:text-[#9CA3AF] text-base leading-relaxed">
               Momen-momen indah persekutuan, pujian penyembahan, dan kebersamaan keluarga Allah di GIA Deliksari.
               Etalase ini menampilkan cuplikan acak dari arsip Google Drive gereja.
             </p>
@@ -181,7 +181,7 @@ export default function GallerySection() {
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
                 activeFilter === filter.id
                   ? 'bg-[#8B1E28] dark:bg-[#B8323D] text-white shadow-xs'
-                  : 'bg-white dark:bg-[#171A21] text-[#6B7280] dark:text-[#9CA3AF] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A]'
+                  : 'bg-white dark:bg-[#171A21] text-[#5B6472] dark:text-[#9CA3AF] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A]'
               }`}
             >
               {filter.label}
@@ -191,7 +191,7 @@ export default function GallerySection() {
           {/* Tombol shuffle (acak ulang) di kanan chip */}
           <button
             onClick={handleShuffle}
-            className="ml-auto inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#8B1E28] dark:hover:text-[#B8323D] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] transition-all"
+            className="ml-auto inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-[#5B6472] dark:text-[#9CA3AF] hover:text-[#8B1E28] dark:hover:text-[#B8323D] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] transition-all"
             title="Tampilkan momen acak lainnya"
           >
             <RotateCw className="w-3.5 h-3.5" />
@@ -206,13 +206,13 @@ export default function GallerySection() {
               <Camera className="w-8 h-8" />
             </div>
             <div className="space-y-2">
-              <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A] uppercase tracking-wider">
+              <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold bg-[#F3F4F6] dark:bg-[#1F232D] text-[#5B6472] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A] uppercase tracking-wider">
                 Dokumentasi Kegiatan
               </span>
               <h3 className="text-xl sm:text-2xl font-extrabold text-[#111827] dark:text-[#F9FAFB]">
                 Arsip Foto Sedang Dipersiapkan
               </h3>
-              <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed max-w-lg mx-auto">
+              <p className="text-xs sm:text-sm text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed max-w-lg mx-auto">
                 Dokumentasi resmi ibadah raya, persekutuan pemuda, sekolah minggu, dan kegiatan jemaat GIA Deliksari akan segera diunggah oleh tim media gereja.
               </p>
             </div>
@@ -293,7 +293,7 @@ export default function GallerySection() {
             <h4 className="text-base font-extrabold text-[#111827] dark:text-[#F9FAFB]">
               Mencari foto kegiatan tahun lalu atau album beresolusi penuh?
             </h4>
-            <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+            <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">
               Semua arsip master dokumentasi pelayanan disimpan secara abadi di Google Drive GIA Deliksari.
             </p>
           </div>

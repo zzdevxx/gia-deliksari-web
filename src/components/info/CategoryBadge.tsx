@@ -26,7 +26,7 @@ const CONFIG: Record<MinistryCategory, { label: string; color: string }> = {
   },
   all: {
     label: 'Umum',
-    color: 'bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] border-[#E5E7EB] dark:border-[#2A2F3A]',
+    color: 'bg-[#F3F4F6] dark:bg-[#1F232D] text-[#5B6472] dark:text-[#9CA3AF] border-[#E5E7EB] dark:border-[#2A2F3A]',
   },
 };
 

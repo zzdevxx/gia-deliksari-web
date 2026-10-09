@@ -196,7 +196,7 @@ export default function InfoPage() {
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight mb-3">
             Warta Jemaat & Jadwal Pelayanan
           </h1>
-          <p className="text-base sm:text-lg text-[#6B7280] dark:text-[#9CA3AF] max-w-3xl leading-relaxed">
+          <p className="text-base sm:text-lg text-[#5B6472] dark:text-[#9CA3AF] max-w-3xl leading-relaxed">
             Informasi terbaru seputar kegiatan ibadah, pelayanan, dan susunan
             petugas gereja GIA Deliksari Semarang. Dikontrol langsung oleh
             pengurus gereja melalui Portal Admin.
@@ -210,7 +210,7 @@ export default function InfoPage() {
               <Printer className="w-4 h-4" />
               <span>Cetak Bulletin (A4 / PDF)</span>
             </Link>
-            <p className="text-[10px] text-[#6B7280] dark:text-[#9CA3AF] mt-2 max-w-2xl">
+            <p className="text-[10px] text-[#5B6472] dark:text-[#9CA3AF] mt-2 max-w-2xl">
               Buka tampilan print-friendly A4 formal. Pilih &quot;Save as PDF&quot; di dialog cetak browser untuk menyimpan PDF, atau cetak langsung ke printer fisik.
             </p>
           </div>
@@ -226,7 +226,7 @@ export default function InfoPage() {
                 <Bell className="w-7 h-7 text-[#8B1E28] dark:text-[#E88086]" />
                 Papan Pengumuman & Warta
               </h2>
-              <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+              <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">
                 Warta jemaat, pengumuman kegiatan, dan info terkini.
               </p>
             </div>
@@ -271,7 +271,7 @@ export default function InfoPage() {
                   className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                     annCategory === c.id
                       ? 'bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white shadow-sm'
-                      : 'bg-white dark:bg-[#171A21] text-[#6B7280] dark:text-[#9CA3AF] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A]'
+                      : 'bg-white dark:bg-[#171A21] text-[#5B6472] dark:text-[#9CA3AF] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A]'
                   }`}
                 >
                   {c.label}
@@ -285,7 +285,7 @@ export default function InfoPage() {
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                   timeFilter === 'upcoming'
                     ? 'bg-white dark:bg-[#1F232D] text-[#111827] dark:text-white shadow-xs'
-                    : 'text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#111827]'
+                    : 'text-[#5B6472] dark:text-[#9CA3AF] hover:text-[#111827]'
                 }`}
               >
                 <Hourglass className="w-3.5 h-3.5" />
@@ -296,7 +296,7 @@ export default function InfoPage() {
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                   timeFilter === 'all'
                     ? 'bg-white dark:bg-[#1F232D] text-[#111827] dark:text-white shadow-xs'
-                    : 'text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#111827]'
+                    : 'text-[#5B6472] dark:text-[#9CA3AF] hover:text-[#111827]'
                 }`}
               >
                 Semua
@@ -306,7 +306,7 @@ export default function InfoPage() {
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                   timeFilter === 'past'
                     ? 'bg-white dark:bg-[#1F232D] text-[#111827] dark:text-white shadow-xs'
-                    : 'text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#111827]'
+                    : 'text-[#5B6472] dark:text-[#9CA3AF] hover:text-[#111827]'
                 }`}
               >
                 <CheckCircle2 className="w-3.5 h-3.5" />
@@ -322,7 +322,7 @@ export default function InfoPage() {
               <h3 className="font-bold text-base text-[#111827] dark:text-[#F9FAFB]">
                 {timeFilter === 'past' ? 'Belum ada warta yang sudah berlalu.' : 'Belum ada warta untuk filter ini.'}
               </h3>
-              <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+              <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">
                 Warta diinput oleh pengurus gereja melalui Portal Admin.
               </p>
             </div>
@@ -351,12 +351,12 @@ export default function InfoPage() {
                       {item.title}
                     </h3>
 
-                    <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed line-clamp-4">
+                    <p className="text-xs sm:text-sm text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed line-clamp-4">
                       {item.content}
                     </p>
                   </div>
 
-                  <div className="pt-4 border-t border-[#E5E7EB]/60 dark:border-[#2A2F3A]/60 flex items-center justify-between text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+                  <div className="pt-4 border-t border-[#E5E7EB]/60 dark:border-[#2A2F3A]/60 flex items-center justify-between text-xs text-[#5B6472] dark:text-[#9CA3AF]">
                     <div className="flex items-center gap-1.5 font-medium">
                       <Calendar className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#E88086]" />
                       <span>{item.eventDate}</span>
@@ -385,7 +385,7 @@ export default function InfoPage() {
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111827] dark:text-[#F9FAFB]">
               Jadwal Ibadah Rutin GIA Deliksari
             </h2>
-            <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#9CA3AF]">
+            <p className="text-xs sm:text-sm text-[#5B6472] dark:text-[#9CA3AF]">
               Ibadah onsite di Gedung Utama / Ruang Bethel serta doa pagi online via Zoom.
             </p>
           </div>
@@ -403,11 +403,11 @@ export default function InfoPage() {
                 <h3 className="text-lg font-black text-[#111827] dark:text-[#F9FAFB]">
                   Ibadah Raya Minggu
                 </h3>
-                <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
+                <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
                   Ibadah persekutuan seluruh jemaat dan keluarga dengan firman penggembalaan dan perjamuan kudus.
                 </p>
               </div>
-              <div className="pt-3 border-t border-[#E5E7EB]/60 dark:border-[#2A2F3A]/60 flex items-center justify-between text-xs font-semibold text-[#6B7280] dark:text-[#9CA3AF]">
+              <div className="pt-3 border-t border-[#E5E7EB]/60 dark:border-[#2A2F3A]/60 flex items-center justify-between text-xs font-semibold text-[#5B6472] dark:text-[#9CA3AF]">
                 <span className="flex items-center gap-1 font-mono text-[#8B1E28] dark:text-[#E88086] font-bold">
                   <Clock className="w-3.5 h-3.5" /> 09.00 - 11.00 WIB
                 </span>
@@ -429,11 +429,11 @@ export default function InfoPage() {
                 <h3 className="text-lg font-black text-[#111827] dark:text-[#F9FAFB]">
                   COC Kidz
                 </h3>
-                <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
+                <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
                   Ibadah anak-anak (Balita - SD) dengan pujian sukacita dan aktivitas firman kreatif.
                 </p>
               </div>
-              <div className="pt-3 border-t border-[#E5E7EB]/60 dark:border-[#2A2F3A]/60 flex items-center justify-between text-xs font-semibold text-[#6B7280] dark:text-[#9CA3AF]">
+              <div className="pt-3 border-t border-[#E5E7EB]/60 dark:border-[#2A2F3A]/60 flex items-center justify-between text-xs font-semibold text-[#5B6472] dark:text-[#9CA3AF]">
                 <span className="flex items-center gap-1 font-mono text-[#4B5563] font-bold">
                   <Clock className="w-3.5 h-3.5" /> 09.30 - 10.30 WIB
                 </span>
@@ -455,11 +455,11 @@ export default function InfoPage() {
                 <h3 className="text-lg font-black text-[#111827] dark:text-[#F9FAFB]">
                   Grow Generation Youth
                 </h3>
-                <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
+                <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
                   Pola selang-seling 4 minggu: M1 & M3 Ibadah Youth, M2 & M4 Ibadah Komsel Sel.
                 </p>
               </div>
-              <div className="pt-3 border-t border-[#E5E7EB]/60 dark:border-[#2A2F3A]/60 flex items-center justify-between text-xs font-semibold text-[#6B7280] dark:text-[#9CA3AF]">
+              <div className="pt-3 border-t border-[#E5E7EB]/60 dark:border-[#2A2F3A]/60 flex items-center justify-between text-xs font-semibold text-[#5B6472] dark:text-[#9CA3AF]">
                 <span className="flex items-center gap-1 font-mono text-[#475569] font-bold">
                   <Clock className="w-3.5 h-3.5" /> 18.00 - 20.00 WIB
                 </span>
@@ -481,11 +481,11 @@ export default function InfoPage() {
                 <h3 className="text-lg font-black text-[#111827] dark:text-[#F9FAFB]">
                   Wanita HANA & Komsel
                 </h3>
-                <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
+                <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
                   Ibadah HANA Jumat 17.30 WIB (Pola 4-minggu: M1 & M3 HANA, M2 & M4 Komsel). Komsel Ekklesia Selasa 18.30 WIB.
                 </p>
               </div>
-              <div className="pt-3 border-t border-[#E5E7EB]/60 dark:border-[#2A2F3A]/60 flex items-center justify-between text-xs font-semibold text-[#6B7280] dark:text-[#9CA3AF]">
+              <div className="pt-3 border-t border-[#E5E7EB]/60 dark:border-[#2A2F3A]/60 flex items-center justify-between text-xs font-semibold text-[#5B6472] dark:text-[#9CA3AF]">
                 <span className="flex items-center gap-1 font-mono text-[#6D28D9] font-bold">
                   <Clock className="w-3.5 h-3.5" /> 17.30 / 18.30 WIB
                 </span>
@@ -507,7 +507,7 @@ export default function InfoPage() {
                 <h3 className="text-lg font-black text-[#111827] dark:text-[#F9FAFB]">
                   Ibadah Doa Pagi
                 </h3>
-                <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
+                <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
                   Mencari hadirat Tuhan di awal hari. Dapat diikuti onsite di gedung gereja atau online via Zoom.
                 </p>
               </div>
@@ -540,11 +540,11 @@ export default function InfoPage() {
                 <h3 className="text-lg font-black text-[#111827] dark:text-[#F9FAFB]">
                   Latihan Musik & Kantor Gereja
                 </h3>
-                <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
+                <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
                   Latihan Musik: Sabtu (10.00-12.00 & 20.00-22.00). Jam Kantor: Selasa–Sabtu 08.00–15.00 WIB di Ruang Gembala.
                 </p>
               </div>
-              <div className="pt-3 border-t border-[#E5E7EB]/60 dark:border-[#2A2F3A]/60 flex items-center justify-between text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+              <div className="pt-3 border-t border-[#E5E7EB]/60 dark:border-[#2A2F3A]/60 flex items-center justify-between text-xs text-[#5B6472] dark:text-[#9CA3AF]">
                 <span className="flex items-center gap-1">
                   <Music className="w-3.5 h-3.5 text-emerald-600" /> Tim Musik
                 </span>
@@ -566,7 +566,7 @@ export default function InfoPage() {
                 <Clock className="w-7 h-7 text-[#8B1E28] dark:text-[#E88086]" />
                 Jadwal Petugas Pelayanan (Roster)
               </h2>
-              <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+              <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">
                 Susunan pelayan firman, worship leader, band, multimedia, dan
                 usher untuk ibadah mendatang.
               </p>
@@ -605,7 +605,7 @@ export default function InfoPage() {
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                   rosterView === 'list'
                     ? 'bg-white dark:bg-[#1F232D] text-[#111827] dark:text-white shadow-xs'
-                    : 'text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#111827]'
+                    : 'text-[#5B6472] dark:text-[#9CA3AF] hover:text-[#111827]'
                 }`}
               >
                 📋 List
@@ -615,7 +615,7 @@ export default function InfoPage() {
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                   rosterView === 'calendar'
                     ? 'bg-white dark:bg-[#1F232D] text-[#111827] dark:text-white shadow-xs'
-                    : 'text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#111827]'
+                    : 'text-[#5B6472] dark:text-[#9CA3AF] hover:text-[#111827]'
                 }`}
               >
                 📅 Kalender
@@ -634,7 +634,7 @@ export default function InfoPage() {
                 className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
                   rosterCat === c.id
                     ? 'bg-[#8B1E28] dark:bg-[#B8323D] text-white shadow-sm'
-                    : 'bg-white dark:bg-[#171A21] text-[#6B7280] dark:text-[#9CA3AF] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A]'
+                    : 'bg-white dark:bg-[#171A21] text-[#5B6472] dark:text-[#9CA3AF] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A]'
                 }`}
               >
                 {c.label}
@@ -650,7 +650,7 @@ export default function InfoPage() {
           ) : (
             <div className="overflow-x-auto rounded-[2.5rem] bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-sm">
               {filteredRoster.length === 0 ? (
-                <div className="py-8 text-center text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+                <div className="py-8 text-center text-xs text-[#5B6472] dark:text-[#9CA3AF]">
                   Belum ada jadwal petugas pelayanan untuk kategori ini.
                 </div>
               ) : (
@@ -674,7 +674,7 @@ export default function InfoPage() {
                         <td className="p-4">
                           <RosterCategoryLabel category={item.serviceCategory} />
                         </td>
-                        <td className="p-4 text-[#6B7280] dark:text-[#9CA3AF] font-mono">
+                        <td className="p-4 text-[#5B6472] dark:text-[#9CA3AF] font-mono">
                           {item.serviceDate}
                         </td>
                         <td className="p-4 font-semibold text-[#8B1E28] dark:text-[#E88086]">
@@ -683,7 +683,7 @@ export default function InfoPage() {
                         <td className="p-4 text-[#111827] dark:text-[#F9FAFB] font-medium">
                           {item.servantName}
                         </td>
-                        <td className="p-4 text-xs text-[#6B7280] dark:text-[#9CA3AF] max-w-xs">
+                        <td className="p-4 text-xs text-[#5B6472] dark:text-[#9CA3AF] max-w-xs">
                           {item.notes || <span className="italic opacity-60">—</span>}
                         </td>
                         <td className="p-4 text-right">
@@ -720,7 +720,7 @@ export default function InfoPage() {
             <h3 className="text-2xl font-extrabold text-[#111827] dark:text-[#F9FAFB]">
               Ingin Melayani atau Punya Pertanyaan?
             </h3>
-            <p className="text-sm text-[#6B7280] dark:text-[#9CA3AF] max-w-2xl mx-auto">
+            <p className="text-sm text-[#5B6472] dark:text-[#9CA3AF] max-w-2xl mx-auto">
               Hubungi WhatsApp pastoral atau gunakan formulir pendaftaran di
               halaman beranda untuk terlibat dalam pelayanan GIA Deliksari.
             </p>

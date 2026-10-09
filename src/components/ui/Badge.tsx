@@ -28,7 +28,7 @@ const VARIANT_MAP: Record<Variant, string> = {
   danger:
     'bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300 ring-1 ring-inset ring-rose-200 dark:ring-rose-800/50',
   neutral:
-    'bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] ring-1 ring-inset ring-[#E5E7EB] dark:ring-[#2A2F3A]',
+    'bg-[#F3F4F6] dark:bg-[#1F232D] text-[#5B6472] dark:text-[#9CA3AF] ring-1 ring-inset ring-[#E5E7EB] dark:ring-[#2A2F3A]',
 };
 
 interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {

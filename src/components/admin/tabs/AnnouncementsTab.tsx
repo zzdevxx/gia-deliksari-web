@@ -40,7 +40,7 @@ const AnnouncementsTab: React.FC<AnnouncementsTabProps> = ({
           <h2 className="text-xl font-extrabold text-[#111827] dark:text-white">
             Kelola Warta & Pengumuman Jemaat
           </h2>
-          <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+          <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">
             Warta yang dipublish akan otomatis tayang di halaman utama website jemaat.
           </p>
         </div>
@@ -74,11 +74,11 @@ const AnnouncementsTab: React.FC<AnnouncementsTabProps> = ({
                   </span>
                 )}
                 {!item.isPublished && (
-                  <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#F3F4F6] text-[#6B7280] border border-[#E5E7EB] dark:bg-[#1F232D] dark:text-[#9CA3AF] dark:border-[#2A2F3A]">
+                  <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#F3F4F6] text-[#5B6472] border border-[#E5E7EB] dark:bg-[#1F232D] dark:text-[#9CA3AF] dark:border-[#2A2F3A]">
                     Draft (Tidak Tayang)
                   </span>
                 )}
-                <span className="text-xs text-[#6B7280] dark:text-[#9CA3AF] flex items-center gap-1">
+                <span className="text-xs text-[#5B6472] dark:text-[#9CA3AF] flex items-center gap-1">
                   <Calendar className="w-3 h-3 text-[#8B1E28] dark:text-[#E88086]" />
                   <span>{item.eventDate}</span>
                 </span>
@@ -87,7 +87,7 @@ const AnnouncementsTab: React.FC<AnnouncementsTabProps> = ({
               <h3 className="text-lg font-extrabold text-[#111827] dark:text-white">
                 {item.title}
               </h3>
-              <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] line-clamp-2 leading-relaxed">
+              <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] line-clamp-2 leading-relaxed">
                 {item.content}
               </p>
             </div>
@@ -99,7 +99,7 @@ const AnnouncementsTab: React.FC<AnnouncementsTabProps> = ({
                 className={`p-3 rounded-2xl border transition-colors ${
                   item.isPinned
                     ? 'bg-[#F9FAFB] text-[#4B5563] border-[#E5E7EB] dark:bg-[#1F232D] dark:text-[#9CA3AF] dark:border-[#2A2F3A]'
-                    : 'bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] border-[#E5E7EB] dark:border-[#2A2F3A]'
+                    : 'bg-[#F3F4F6] dark:bg-[#1F232D] text-[#5B6472] dark:text-[#9CA3AF] border-[#E5E7EB] dark:border-[#2A2F3A]'
                 }`}
               >
                 <Pin className="w-4 h-4" />

@@ -43,6 +43,46 @@ const config: Config = {
         border: 'var(--border)',
         input: 'var(--input)',
         ring: 'var(--ring)',
+
+        // ── Canonical Flat semantic layer ────────────────────────────────────
+        // Prefer these over raw hex. Each has a light/dark pair defined in
+        // globals.css, so a theme switch needs no per-component edits.
+        //
+        // `--brand` is the CTA *fill* (needs white text ≥4.5:1 on top).
+        // `--brand-text` is the brand colour used as *text/icon* on tinted or
+        // dark surfaces. One hex cannot do both jobs — hence two tokens.
+        brand: {
+          DEFAULT: 'var(--brand)',
+          hover: 'var(--brand-hover)',
+          text: 'var(--brand-text)',
+          'text-hover': 'var(--brand-text-hover)',
+          tint: 'var(--brand-tint)',
+          'tint-border': 'var(--brand-tint-border)',
+          'tint-ink': 'var(--brand-tint-ink)',
+        },
+        // Interactive boundary — WCAG 1.4.11 (≥3:1). Use for form fields,
+        // secondary buttons and any divider that carries meaning.
+        'border-strong': 'var(--border-strong)',
+        // Raised/inset surface: table rows, code blocks, sunken panels.
+        raised: 'var(--surface-raised)',
+        // Always-dark panels (vision banner, inverted cards). Separate from
+        // `card` so they don't flip to white in light mode.
+        inverted: {
+          bg: 'var(--card-inverted-bg)',
+          fg: 'var(--card-inverted-fg)',
+          border: 'var(--card-inverted-border)',
+        },
+        status: {
+          success: 'var(--status-success)',
+          'success-fg': 'var(--status-success-fg)',
+          danger: 'var(--status-danger)',
+          'danger-fg': 'var(--status-danger-fg)',
+          info: 'var(--status-info)',
+          'info-fg': 'var(--status-info-fg)',
+        },
+        // @deprecated — the warm palette was retired in commit 8d50985. Kept
+        // only so existing references keep resolving during migration; new
+        // code must use the semantic tokens above.
         sacred: {
           wine: '#8B1E28',
           wineDark: '#B8323D',

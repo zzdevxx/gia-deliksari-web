@@ -116,7 +116,7 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
         }
         .bulletin-header .subtitle {
           font-size: 12px;
-          color: #6B7280;
+          color: #5B6472;
           margin-bottom: 8px;
         }
         .bulletin-header .tagline {
@@ -151,7 +151,7 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
         }
         .warta-item .meta {
           font-size: 11px;
-          color: #6B7280;
+          color: #5B6472;
           margin-bottom: 4px;
         }
         .warta-item .badge {
@@ -207,7 +207,7 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
           border-top: 2px solid #E5E7EB;
           text-align: center;
           font-size: 10px;
-          color: #6B7280;
+          color: #5B6472;
         }
         .bulletin-footer .contact {
           margin-top: 4px;
@@ -239,7 +239,7 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
         }
         .btn-close {
           background: #F3F4F6;
-          color: #6B7280;
+          color: #5B6472;
         }
       `}</style>
 
@@ -270,7 +270,7 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
             Papan Warta
           </h2>
           {announcements.length === 0 ? (
-            <p style={{ fontSize: 12, color: '#6B7280', fontStyle: 'italic' }}>
+            <p style={{ fontSize: 12, color: '#5B6472', fontStyle: 'italic' }}>
               Belum ada warta untuk periode ini.
             </p>
           ) : (
@@ -301,7 +301,7 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
             Jadwal Pelayanan
           </h2>
           {Object.keys(byCat).length === 0 ? (
-            <p style={{ fontSize: 12, color: '#6B7280', fontStyle: 'italic' }}>
+            <p style={{ fontSize: 12, color: '#5B6472', fontStyle: 'italic' }}>
               Belum ada jadwal pelayanan untuk periode ini.
             </p>
           ) : (

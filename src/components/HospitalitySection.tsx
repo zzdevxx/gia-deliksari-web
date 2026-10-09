@@ -32,7 +32,7 @@ export default function HospitalitySection() {
       desc: 'Tim Usher & Welcoming siap menyambut Anda dengan hangat di pintu masuk sanctuary gereja.',
       icon: Smile,
       badge: 'Sambutan Hangat',
-      color: 'bg-[#F3F4F6] text-[#6B7280] border-[#E5E7EB] dark:bg-[#1F232D] dark:text-[#9CA3AF] dark:border-[#2A2F3A]',
+      color: 'bg-[#F3F4F6] text-[#5B6472] border-[#E5E7EB] dark:bg-[#1F232D] dark:text-[#9CA3AF] dark:border-[#2A2F3A]',
     },
     {
       step: '03',
@@ -58,14 +58,14 @@ export default function HospitalitySection() {
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#6B7280] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#5B6472] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
             <Compass className="w-3.5 h-3.5 text-[#4B5563]" />
             <span>Panduan Jemaat Baru & Tamu</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight">
             Baru Pertama Kali ke GIA Deliksari?
           </h2>
-          <p className="text-[#6B7280] dark:text-[#9CA3AF] text-base sm:text-lg leading-relaxed">
+          <p className="text-[#5B6472] dark:text-[#9CA3AF] text-base sm:text-lg leading-relaxed">
             Kami sangat bergembira menyambut kehadiran Anda. Berikut langkah sederhana untuk menikmati ibadah bersama kami hari Minggu ini.
           </p>
         </div>
@@ -81,7 +81,7 @@ export default function HospitalitySection() {
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-2xl font-black text-[#9CA3AF] dark:text-[#6B7280]">
+                    <span className="font-mono text-2xl font-black text-[#9CA3AF] dark:text-[#5B6472]">
                       {item.step}
                     </span>
                     <span className={`px-2.5 py-1 rounded-lg text-xs font-bold border ${item.color}`}>
@@ -97,7 +97,7 @@ export default function HospitalitySection() {
                     {item.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
                     {item.desc}
                   </p>
                 </div>

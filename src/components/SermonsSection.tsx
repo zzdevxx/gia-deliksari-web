@@ -62,7 +62,7 @@ export default function SermonsSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div className="space-y-4 max-w-2xl">
             <div className="flex flex-wrap items-center gap-2">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#6B7280] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#5B6472] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
                 <Radio className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#B8323D]" />
                 <span>Mimbar & Pengajaran Firman</span>
               </div>
@@ -78,7 +78,7 @@ export default function SermonsSection() {
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight">
               Arsip Khotbah & Renungan Rohani
             </h2>
-            <p className="text-[#6B7280] dark:text-[#9CA3AF] text-base leading-relaxed">
+            <p className="text-[#5B6472] dark:text-[#9CA3AF] text-base leading-relaxed">
               Dengarkan kembali firman kebenaran yang memberkati, menguatkan, dan menuntun langkah hidup Anda setiap hari.
             </p>
           </div>
@@ -138,7 +138,7 @@ export default function SermonsSection() {
 
                 {/* Content Details */}
                 <div className="p-7 space-y-4">
-                  <div className="flex items-center gap-2 text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+                  <div className="flex items-center gap-2 text-xs text-[#5B6472] dark:text-[#9CA3AF]">
                     <Calendar className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#B8323D]" />
                     <span>{sermon.date}</span>
                   </div>
@@ -148,11 +148,11 @@ export default function SermonsSection() {
                   </h3>
 
                   <div className="space-y-1.5 pt-1 text-xs">
-                    <div className="flex items-center gap-2 text-[#6B7280] dark:text-[#9CA3AF]">
+                    <div className="flex items-center gap-2 text-[#5B6472] dark:text-[#9CA3AF]">
                       <User className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#B8323D] shrink-0" />
                       <span className="font-semibold">{sermon.speaker}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-[#6B7280] dark:text-[#9CA3AF]">
+                    <div className="flex items-center gap-2 text-[#5B6472] dark:text-[#9CA3AF]">
                       <BookOpen className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#B8323D] shrink-0" />
                       <span className="line-clamp-1">{sermon.passage}</span>
                     </div>

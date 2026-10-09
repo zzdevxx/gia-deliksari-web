@@ -230,11 +230,11 @@ export default function ScheduleSection() {
 
   const getCategoryColor = (category: string) => {
     switch (category) {
-      case 'doa': return 'bg-[#F3F4F6] text-[#6B7280] border-[#E5E7EB] dark:bg-[#1F232D] dark:text-[#9CA3AF]';
-      case 'musik': return 'bg-[#F3F4F6] text-[#6B7280] border-[#E5E7EB] dark:bg-[#1F232D] dark:text-[#9CA3AF]';
-      case 'pastoral': return 'bg-[#F3F4F6] text-[#6B7280] border-[#E5E7EB] dark:bg-[#1F232D] dark:text-[#9CA3AF]';
+      case 'doa': return 'bg-[#F3F4F6] text-[#5B6472] border-[#E5E7EB] dark:bg-[#1F232D] dark:text-[#9CA3AF]';
+      case 'musik': return 'bg-[#F3F4F6] text-[#5B6472] border-[#E5E7EB] dark:bg-[#1F232D] dark:text-[#9CA3AF]';
+      case 'pastoral': return 'bg-[#F3F4F6] text-[#5B6472] border-[#E5E7EB] dark:bg-[#1F232D] dark:text-[#9CA3AF]';
       case 'administrasi': return 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300';
-      default: return 'bg-[#F3F4F6] text-[#6B7280] border-[#E5E7EB] dark:bg-[#1F232D] dark:text-[#9CA3AF]';
+      default: return 'bg-[#F3F4F6] text-[#5B6472] border-[#E5E7EB] dark:bg-[#1F232D] dark:text-[#9CA3AF]';
     }
   };
 
@@ -244,14 +244,14 @@ export default function ScheduleSection() {
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#6B7280] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#5B6472] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
             <Clock className="w-3.5 h-3.5 text-[#8B1E28]" />
             <span>Agenda & Waktu Beribadah</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight">
             Jadwal Ibadah & Pelayanan Mingguan
           </h2>
-          <p className="text-[#6B7280] dark:text-[#9CA3AF] text-base sm:text-lg leading-relaxed">
+          <p className="text-[#5B6472] dark:text-[#9CA3AF] text-base sm:text-lg leading-relaxed">
             Mari hadir bersama keluarga untuk menyembah Tuhan dan bersekutu dalam hadirat-Nya yang kudus di GIA Deliksari.
           </p>
         </div>
@@ -265,7 +265,7 @@ export default function ScheduleSection() {
             >
               <div className="space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="px-3 py-1 rounded-xl text-xs font-bold border bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] border-[#E5E7EB] dark:border-[#2A2F3A]">
+                  <span className="px-3 py-1 rounded-xl text-xs font-bold border bg-[#F3F4F6] dark:bg-[#1F232D] text-[#5B6472] dark:text-[#9CA3AF] border-[#E5E7EB] dark:border-[#2A2F3A]">
                     {service.category}
                   </span>
                   <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B1E28] dark:text-[#E88086]">
@@ -278,18 +278,18 @@ export default function ScheduleSection() {
                   <h3 className="text-xl sm:text-2xl font-extrabold text-[#111827] dark:text-[#F9FAFB]">
                     {service.name}
                   </h3>
-                  <p className="text-xs font-semibold text-[#6B7280] dark:text-[#9CA3AF] mt-0.5">
+                  <p className="text-xs font-semibold text-[#5B6472] dark:text-[#9CA3AF] mt-0.5">
                     {service.day}
                   </p>
                 </div>
 
-                <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
                   {service.description}
                 </p>
               </div>
 
               <div className="pt-4 border-t border-[#E5E7EB]/60 dark:border-[#2A2F3A]/60 flex items-center justify-between text-xs">
-                <div className="flex items-center gap-1.5 text-[#6B7280] dark:text-[#9CA3AF]">
+                <div className="flex items-center gap-1.5 text-[#5B6472] dark:text-[#9CA3AF]">
                   <MapPin className="w-3.5 h-3.5 text-[#8B1E28]" />
                   <span>{service.location}</span>
                 </div>
@@ -317,15 +317,15 @@ export default function ScheduleSection() {
               </div>
               <div className="space-y-2">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-xs font-bold text-[#6B7280] dark:text-[#9CA3AF] bg-[#F3F4F6] dark:bg-[#1F232D] px-2.5 py-0.5 rounded-lg border border-[#E5E7EB] dark:border-[#2A2F3A]">
+                  <span className="text-xs font-bold text-[#5B6472] dark:text-[#9CA3AF] bg-[#F3F4F6] dark:bg-[#1F232D] px-2.5 py-0.5 rounded-lg border border-[#E5E7EB] dark:border-[#2A2F3A]">
                     {act.day}
                   </span>
-                  <span className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">{act.time}</span>
+                  <span className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">{act.time}</span>
                 </div>
                 <h4 className="text-lg font-bold text-[#111827] dark:text-[#F9FAFB]">
                   {act.name}
                 </h4>
-                <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
                   {act.description}
                 </p>
               </div>
@@ -340,7 +340,7 @@ export default function ScheduleSection() {
               <h3 className="text-xl font-extrabold text-[#111827] dark:text-[#F9FAFB]">
                 Jadwal Petugas Pelayanan (Roster Ibadah)
               </h3>
-              <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+              <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">
                 Susunan pelayan firman, musik, multimedia, dan usher untuk ibadah mendatang
               </p>
             </div>
@@ -394,7 +394,7 @@ export default function ScheduleSection() {
                   className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B1E28] focus-visible:ring-offset-2 ${
                     isActive
                       ? 'bg-[#8B1E28] text-white shadow-xs'
-                      : 'bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] hover:bg-[#F3F4F6] dark:hover:bg-[#2A2F3A] border border-[#E5E7EB] dark:border-[#2A2F3A]'
+                      : 'bg-[#F3F4F6] dark:bg-[#1F232D] text-[#5B6472] dark:text-[#9CA3AF] hover:bg-[#F3F4F6] dark:hover:bg-[#2A2F3A] border border-[#E5E7EB] dark:border-[#2A2F3A]'
                   }`}
                 >
                   {tab.label}
@@ -439,7 +439,7 @@ export default function ScheduleSection() {
               <div className="overflow-x-auto -mx-2 px-2">
                 <table className="w-full text-left text-xs sm:text-sm">
                   <thead>
-                    <tr className="border-b border-[#E5E7EB] dark:border-[#2A2F3A] text-[#6B7280] dark:text-[#9CA3AF]">
+                    <tr className="border-b border-[#E5E7EB] dark:border-[#2A2F3A] text-[#5B6472] dark:text-[#9CA3AF]">
                       <th className="pb-3 font-bold">Kategori</th>
                       <th className="pb-3 font-bold">Tanggal</th>
                       <th className="pb-3 font-bold">Tugas / Peran</th>
@@ -462,7 +462,7 @@ export default function ScheduleSection() {
                             ? 'COC Kidz'
                             : 'Hana & Komsel'}
                         </td>
-                        <td className="py-3.5 pr-3 text-[#6B7280] dark:text-[#9CA3AF] font-mono">
+                        <td className="py-3.5 pr-3 text-[#5B6472] dark:text-[#9CA3AF] font-mono">
                           {item.serviceDate}
                         </td>
                         <td className="py-3.5 pr-3 font-semibold text-[#8B1E28] dark:text-[#E88086]">

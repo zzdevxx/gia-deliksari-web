@@ -5,40 +5,46 @@ import { cn } from '@/lib/cn';
 /**
  * Button — consistent CTA styles.
  *
- * Variants (use exactly these 4, max 1 primary per screen):
- *   - gold   : primary CTA (Lihat Warta, Submit)
- *   - maroon : secondary CTA (Login, Save)
- *   - outline: tertiary CTA (Cancel, Detail)
- *   - ghost  : minimal (Lewati, Skip)
+ * Variants (max 1 primary per screen):
+ *   - primary : primary CTA (Lihat Warta, Submit) — Sacred Wine
+ *   - neutral : secondary CTA (Login, Save) — cool slate
+ *   - outline : tertiary CTA (Cancel, Detail)
+ *   - ghost   : minimal (Lewati, Skip)
+ *
+ * Colours come from the semantic tokens in globals.css, so light/dark and any
+ * future palette change happen in one place. Never hardcode a hex here.
  *
  * Sizes match 8pt grid:
  *   - sm : h-8 / text-[13px]
  *   - md : h-10 / text-sm
  *   - lg : h-12 / text-base
  *
- * States: default, hover (-translate-y-0.5), active (scale-0.97), focus (gold ring),
+ * States: default, hover, active (scale-0.97), focus (wine ring),
  * disabled (50% opacity), loading (auto-disabled + triple-dot pulse).
  */
 
-type Variant = 'gold' | 'maroon' | 'outline' | 'ghost';
+type Variant = 'primary' | 'neutral' | 'outline' | 'ghost';
 type Size = 'sm' | 'md' | 'lg';
 
 const BASE =
   'group/btn relative inline-flex items-center justify-center gap-2 rounded-full font-semibold ' +
   'transition-all duration-200 ease-out ' +
-  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4B5563] dark:focus-visible:ring-[#9CA3AF] focus-visible:ring-offset-2 ' +
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-text)] focus-visible:ring-offset-2 ' +
   'active:scale-[0.97] active:translate-y-0 ' +
   'disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:active:scale-100';
 
 const VARIANT_MAP: Record<Variant, string> = {
-  gold:
-    'bg-[#4B5563] hover:bg-[#374151] text-white shadow-sm hover:-translate-y-0.5 hover:shadow-md dark:bg-[#9CA3AF] dark:text-[#0F1115] dark:hover:bg-[#4B5563]',
-  maroon:
-    'bg-[#8B1E28] hover:bg-[#731820] text-white shadow-sm hover:-translate-y-0.5 hover:shadow-md dark:bg-[#C04050] dark:hover:bg-[#AC3543]',
+  primary:
+    'bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white ' +
+    // Dark CTA fill (#B8323D) sits at 2.95:1 against the card surface, so it
+    // needs an explicit boundary to satisfy WCAG 1.4.11 in dark mode.
+    'dark:border dark:border-[var(--border-strong)]',
+  neutral:
+    'bg-[#4B5563] hover:bg-[#374151] text-white dark:bg-[#9CA3AF] dark:text-[#0F1115] dark:hover:bg-[#4B5563]',
   outline:
-    'border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#111827] dark:text-[#F9FAFB] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D]',
+    'border border-[var(--border-strong)] text-[var(--foreground)] hover:bg-[var(--surface-raised)]',
   ghost:
-    'text-[#111827] dark:text-[#F9FAFB] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D]',
+    'text-[var(--foreground)] hover:bg-[var(--surface-raised)]',
 };
 
 const SIZE_MAP: Record<Size, string> = {
@@ -104,7 +110,7 @@ function LoadingDot() {
 
 export function Button(props: ButtonComponentProps) {
   const {
-    variant = 'gold',
+    variant = 'primary',
     size = 'md',
     className,
     children,

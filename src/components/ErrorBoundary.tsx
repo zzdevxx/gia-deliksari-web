@@ -63,7 +63,7 @@ export class ErrorBoundary extends React.Component<Props, State> {
           <h2 className="text-2xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight">
             Terjadi kesalahan
           </h2>
-          <p className="mt-2 max-w-md text-sm text-[#6B7280] dark:text-[#9CA3AF]">
+          <p className="mt-2 max-w-md text-sm text-[#5B6472] dark:text-[#9CA3AF]">
             Halaman ini gagal dimuat. Coba muat ulang, atau kembali ke beranda jika masalah berlanjut.
           </p>
           {process.env.NODE_ENV !== 'production' && this.state.error && (

@@ -620,7 +620,7 @@ export default function AdminDashboard() {
       case 'komunitas':
         return 'bg-[#FAF5FF] text-[#6D28D9] border-[#E9D5FF] dark:bg-[#2E1065] dark:text-[#A78BFA] dark:border-[#4C1D95]';
       default:
-        return 'bg-[#F3F4F6] text-[#6B7280] border-[#E5E7EB] dark:bg-[#1F232D] dark:text-[#9CA3AF] dark:border-[#2A2F3A]';
+        return 'bg-[#F3F4F6] text-[#5B6472] border-[#E5E7EB] dark:bg-[#1F232D] dark:text-[#9CA3AF] dark:border-[#2A2F3A]';
     }
   };
 
@@ -652,7 +652,7 @@ export default function AdminDashboard() {
   if (!authChecked) {
     return (
       <main className="min-h-screen flex items-center justify-center bg-[#FFFFFF] dark:bg-[#0F1115]">
-        <div className="animate-pulse text-[#6B7280] dark:text-[#9CA3AF]">Memuat…</div>
+        <div className="animate-pulse text-[#5B6472] dark:text-[#9CA3AF]">Memuat…</div>
       </main>
     );
   }
@@ -672,7 +672,7 @@ export default function AdminDashboard() {
               <h1 className="text-2xl sm:text-3xl font-extrabold text-[#111827] dark:text-white tracking-tight">
                 Portal Majelis & Admin
               </h1>
-              <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
                 Kelola warta jemaat, plotting pelayan, permohonan doa, media khotbah, dan inventaris GIA Deliksari.
               </p>
             </div>
@@ -759,7 +759,7 @@ export default function AdminDashboard() {
               <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FBF1F2] dark:bg-[#261517] text-[#8B1E28] dark:text-[#E88086] border border-[#E8C2C5] dark:border-[#52252A]">
                 Majelis & Pastoral Portal
               </span>
-              <div className="flex items-center gap-1.5 text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+              <div className="flex items-center gap-1.5 text-xs text-[#5B6472] dark:text-[#9CA3AF]">
                 <Database className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#E88086]" />
                 <span>Cloudflare D1 Database</span>
               </div>
@@ -789,7 +789,7 @@ export default function AdminDashboard() {
 
             <button
               onClick={handleLogout}
-              className="px-4 py-3 rounded-2xl bg-white dark:bg-[#171A21] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A] transition-colors text-xs font-bold flex items-center gap-2"
+              className="px-4 py-3 rounded-2xl bg-white dark:bg-[#171A21] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] text-[#5B6472] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A] transition-colors text-xs font-bold flex items-center gap-2"
             >
               <LogOut className="w-3.5 h-3.5" />
               <span>Keluar</span>
@@ -815,7 +815,7 @@ export default function AdminDashboard() {
                 className={`py-3.5 px-3 rounded-2xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
                   isActive
                     ? 'bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white shadow-md'
-                    : 'text-[#6B7280] dark:text-[#9CA3AF] hover:bg-white/60 dark:hover:bg-[#1F232D]'
+                    : 'text-[#5B6472] dark:text-[#9CA3AF] hover:bg-white/60 dark:hover:bg-[#1F232D]'
                 }`}
               >
                 <Icon className="w-4 h-4 shrink-0" />
@@ -883,7 +883,7 @@ export default function AdminDashboard() {
                 <h2 className="text-xl font-extrabold text-[#111827] dark:text-white">
                   Plotting & Jadwal Pelayan Ibadah Mingguan
                 </h2>
-                <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+                <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">
                   Kelola nama pelayan, status konfirmasi tugas, dan broadcast pengingat WhatsApp.
                 </p>
               </div>
@@ -943,7 +943,7 @@ export default function AdminDashboard() {
                     className={`py-3 px-3 rounded-xl text-xs font-bold transition-all text-center ${
                       isActive
                         ? 'bg-white dark:bg-[#1F232D] text-[#8B1E28] dark:text-[#E88086] shadow-sm border border-[#E5E7EB] dark:border-[#2A2F3A]'
-                        : 'text-[#6B7280] dark:text-[#9CA3AF] hover:bg-white/40'
+                        : 'text-[#5B6472] dark:text-[#9CA3AF] hover:bg-white/40'
                     }`}
                   >
                     {cTab.label}
@@ -968,7 +968,7 @@ export default function AdminDashboard() {
                 <tbody className="divide-y divide-[#E5E7EB] dark:divide-[#2A2F3A]">
                   {currentCategoryRoster.length === 0 ? (
                     <tr>
-                      <td colSpan={6} className="p-8 text-center text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+                      <td colSpan={6} className="p-8 text-center text-xs text-[#5B6472] dark:text-[#9CA3AF]">
                         Belum ada petugas terjadwal untuk kategori ini. Klik "Tambah Petugas" di atas.
                       </td>
                     </tr>
@@ -992,7 +992,7 @@ export default function AdminDashboard() {
                             </a>
                           )}
                         </td>
-                        <td className="p-4 text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+                        <td className="p-4 text-xs text-[#5B6472] dark:text-[#9CA3AF]">
                           {item.serviceDate}
                         </td>
                         <td className="p-4">
@@ -1002,13 +1002,13 @@ export default function AdminDashboard() {
                                 ? 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/60'
                                 : item.status === 'replacement'
                                 ? 'bg-[#F9FAFB] text-[#4B5563] border-[#E5E7EB] dark:bg-[#1F232D] dark:text-[#9CA3AF] dark:border-[#2A2F3A]'
-                                : 'bg-[#F3F4F6] text-[#6B7280] border-[#E5E7EB] dark:bg-[#1F232D] dark:text-[#9CA3AF] dark:border-[#2A2F3A]'
+                                : 'bg-[#F3F4F6] text-[#5B6472] border-[#E5E7EB] dark:bg-[#1F232D] dark:text-[#9CA3AF] dark:border-[#2A2F3A]'
                             }`}
                           >
                             {item.status === 'confirmed' ? 'Siap Melayani' : item.status === 'replacement' ? 'Perlu Pengganti' : 'Menunggu Konfirmasi'}
                           </span>
                         </td>
-                        <td className="p-4 text-xs text-[#6B7280] dark:text-[#9CA3AF] max-w-xs truncate">
+                        <td className="p-4 text-xs text-[#5B6472] dark:text-[#9CA3AF] max-w-xs truncate">
                           {item.notes || '-'}
                         </td>
                         <td className="p-4 text-right">
@@ -1060,7 +1060,7 @@ export default function AdminDashboard() {
                 <h2 className="text-xl font-extrabold text-[#111827] dark:text-white">
                   Permohonan Jemaat & Formulir Masuk
                 </h2>
-                <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+                <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">
                   Daftar jemaat yang mengajukan pokok doa, pendaftaran baptisan, komsel, dan kerinduan melayani.
                 </p>
               </div>
@@ -1080,7 +1080,7 @@ export default function AdminDashboard() {
                     className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                       requestFilter === f.id
                         ? 'bg-[#8B1E28] dark:bg-[#B8323D] text-white shadow-sm'
-                        : 'bg-white dark:bg-[#171A21] text-[#6B7280] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A]'
+                        : 'bg-white dark:bg-[#171A21] text-[#5B6472] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A]'
                     }`}
                   >
                     {f.label}
@@ -1095,7 +1095,7 @@ export default function AdminDashboard() {
                 <div className="col-span-2 p-12 text-center rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] space-y-2">
                   <HeartHandshake className="w-10 h-10 text-[#8B1E28] dark:text-[#E88086] mx-auto opacity-60" />
                   <h3 className="font-bold text-base text-[#111827] dark:text-white">Belum Ada Permohonan Masuk</h3>
-                  <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">Formulir yang diisi jemaat di website akan otomatis muncul di sini.</p>
+                  <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">Formulir yang diisi jemaat di website akan otomatis muncul di sini.</p>
                 </div>
               ) : (
                 filteredRequests.map((req) => (
@@ -1114,7 +1114,7 @@ export default function AdminDashboard() {
                           }`}>
                             {req.type === 'prayer' ? 'Doa & Konseling' : req.type === 'sacrament' ? 'Sakramen' : req.type === 'komsel' ? 'Komsel' : 'Volunteer'}
                           </span>
-                          <span className="text-[11px] text-[#6B7280] dark:text-[#9CA3AF]">
+                          <span className="text-[11px] text-[#5B6472] dark:text-[#9CA3AF]">
                             {new Date(req.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}
                           </span>
                         </div>
@@ -1141,7 +1141,7 @@ export default function AdminDashboard() {
                     </div>
 
                     {req.message && (
-                      <div className="p-3.5 rounded-xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
+                      <div className="p-3.5 rounded-xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
                         "{req.message}"
                       </div>
                     )}
@@ -1192,7 +1192,7 @@ export default function AdminDashboard() {
                   className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
                     mediaSubTab === 'sermons'
                       ? 'bg-[#8B1E28] dark:bg-[#B8323D] text-white shadow-sm'
-                      : 'text-[#6B7280] dark:text-[#9CA3AF]'
+                      : 'text-[#5B6472] dark:text-[#9CA3AF]'
                   }`}
                 >
                   <Video className="w-3.5 h-3.5" />
@@ -1203,7 +1203,7 @@ export default function AdminDashboard() {
                   className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
                     mediaSubTab === 'gallery'
                       ? 'bg-[#8B1E28] dark:bg-[#B8323D] text-white shadow-sm'
-                      : 'text-[#6B7280] dark:text-[#9CA3AF]'
+                      : 'text-[#5B6472] dark:text-[#9CA3AF]'
                   }`}
                 >
                   <Camera className="w-3.5 h-3.5" />
@@ -1292,8 +1292,8 @@ export default function AdminDashboard() {
                         {sermon.title}
                       </h3>
                       <p className="text-xs font-bold text-[#8B1E28] dark:text-[#E88086]">{sermon.speaker}</p>
-                      <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">{sermon.passage}</p>
-                      <p className="text-[11px] text-[#6B7280] dark:text-[#9CA3AF]">{sermon.date}</p>
+                      <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">{sermon.passage}</p>
+                      <p className="text-[11px] text-[#5B6472] dark:text-[#9CA3AF]">{sermon.date}</p>
                     </div>
 
                     <div className="pt-3 border-t border-[#E5E7EB] dark:border-[#2A2F3A] flex items-center justify-between gap-2">
@@ -1402,7 +1402,7 @@ export default function AdminDashboard() {
                 <h2 className="text-xl font-extrabold text-[#111827] dark:text-white">
                   Inventaris & Checklist Alat Ibadah
                 </h2>
-                <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+                <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">
                   Checklist sound system, multimedia, instrumen musik, dan fasilitas ruangan sebelum ibadah dimulai.
                 </p>
               </div>
@@ -1439,7 +1439,7 @@ export default function AdminDashboard() {
                     className={`px-3 py-2 rounded-xl text-xs font-bold transition-all ${
                       invCategoryFilter === cat
                         ? 'bg-[#8B1E28] dark:bg-[#B8323D] text-white shadow-sm'
-                        : 'bg-white dark:bg-[#171A21] text-[#6B7280] dark:text-[#9CA3AF] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A]'
+                        : 'bg-white dark:bg-[#171A21] text-[#5B6472] dark:text-[#9CA3AF] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A]'
                     }`}
                   >
                     {cat === 'all' ? 'Semua Kategori' : cat}
@@ -1498,7 +1498,7 @@ export default function AdminDashboard() {
                           <div className="text-xs text-stone-500 font-mono">Kode: {item.code} • Jml: {item.quantity} unit</div>
                         </td>
                         <td className="p-4">
-                          <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#F3F4F6] text-[#6B7280] dark:bg-[#1F232D] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A] inline-block mb-1">
+                          <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#F3F4F6] text-[#5B6472] dark:bg-[#1F232D] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A] inline-block mb-1">
                             {item.category}
                           </span>
                           <div className="text-xs text-stone-500">{item.location}</div>
@@ -1677,7 +1677,7 @@ export default function AdminDashboard() {
                 <button
                   type="button"
                   onClick={() => setIsAnnModalOpen(false)}
-                  className="px-5 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] text-xs font-bold"
+                  className="px-5 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#5B6472] dark:text-[#9CA3AF] text-xs font-bold"
                 >
                   Batal
                 </button>
@@ -1801,7 +1801,7 @@ export default function AdminDashboard() {
                 <button
                   type="button"
                   onClick={() => setIsRosterModalOpen(false)}
-                  className="px-5 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] text-xs font-bold"
+                  className="px-5 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#5B6472] dark:text-[#9CA3AF] text-xs font-bold"
                 >
                   Batal
                 </button>
@@ -1835,7 +1835,7 @@ export default function AdminDashboard() {
               </button>
             </div>
 
-            <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+            <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">
               Salin pesan di bawah ini untuk dibagikan ke grup WhatsApp pelayan atau kirim pengingat tugas mingguan.
             </p>
 
@@ -2026,7 +2026,7 @@ export default function AdminDashboard() {
                 <button
                   type="button"
                   onClick={() => setIsSermonModalOpen(false)}
-                  className="px-5 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] text-xs font-bold"
+                  className="px-5 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#5B6472] dark:text-[#9CA3AF] text-xs font-bold"
                 >
                   Batal
                 </button>
@@ -2114,7 +2114,7 @@ export default function AdminDashboard() {
                 <button
                   type="button"
                   onClick={() => setIsGalleryModalOpen(false)}
-                  className="px-5 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] text-xs font-bold"
+                  className="px-5 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#5B6472] dark:text-[#9CA3AF] text-xs font-bold"
                 >
                   Batal
                 </button>
@@ -2239,7 +2239,7 @@ export default function AdminDashboard() {
                 <button
                   type="button"
                   onClick={() => setIsInvModalOpen(false)}
-                  className="px-5 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] text-xs font-bold"
+                  className="px-5 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#5B6472] dark:text-[#9CA3AF] text-xs font-bold"
                 >
                   Batal
                 </button>

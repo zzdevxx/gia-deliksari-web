@@ -30,7 +30,7 @@ export default function LayananPage() {
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight mb-4">
             Layanan Doa, Sakramen & Komunitas
           </h1>
-          <p className="text-base sm:text-lg text-[#6B7280] dark:text-[#9CA3AF] max-w-3xl leading-relaxed">
+          <p className="text-base sm:text-lg text-[#5B6472] dark:text-[#9CA3AF] max-w-3xl leading-relaxed">
             Gereja adalah keluarga Allah yang saling menopang. Apakah Anda memerlukan pokok doa, konseling pastoral, pendaftaran sakramen kudus, atau rindu bertumbuh dalam kelompok sel, tim pastoral kami siap melayani Anda.
           </p>
 
@@ -42,7 +42,7 @@ export default function LayananPage() {
               </div>
               <div>
                 <h4 className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB]">Doa & Konseling</h4>
-                <p className="text-[11px] text-[#6B7280] dark:text-[#9CA3AF]">Dukungan doa & kunjungan</p>
+                <p className="text-[11px] text-[#5B6472] dark:text-[#9CA3AF]">Dukungan doa & kunjungan</p>
               </div>
             </div>
 
@@ -52,7 +52,7 @@ export default function LayananPage() {
               </div>
               <div>
                 <h4 className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB]">Sakramen Kudus</h4>
-                <p className="text-[11px] text-[#6B7280] dark:text-[#9CA3AF]">Baptisan & penyerahan anak</p>
+                <p className="text-[11px] text-[#5B6472] dark:text-[#9CA3AF]">Baptisan & penyerahan anak</p>
               </div>
             </div>
 
@@ -62,7 +62,7 @@ export default function LayananPage() {
               </div>
               <div>
                 <h4 className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB]">Komsel Ekklesia</h4>
-                <p className="text-[11px] text-[#6B7280] dark:text-[#9CA3AF]">Kelompok sel & pemuridan</p>
+                <p className="text-[11px] text-[#5B6472] dark:text-[#9CA3AF]">Kelompok sel & pemuridan</p>
               </div>
             </div>
 
@@ -72,7 +72,7 @@ export default function LayananPage() {
               </div>
               <div>
                 <h4 className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB]">Volunteer Pelayan</h4>
-                <p className="text-[11px] text-[#6B7280] dark:text-[#9CA3AF]">Musik, media, usher, dll</p>
+                <p className="text-[11px] text-[#5B6472] dark:text-[#9CA3AF]">Musik, media, usher, dll</p>
               </div>
             </div>
           </div>

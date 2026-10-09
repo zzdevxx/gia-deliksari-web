@@ -48,7 +48,7 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
         <h1 className="text-2xl sm:text-3xl font-extrabold text-[#111827] dark:text-white tracking-tight">
           {heading}
         </h1>
-        <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">{subheading}</p>
+        <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">{subheading}</p>
       </div>
 
       <div className="flex flex-wrap items-center gap-2 sm:gap-3">
@@ -74,7 +74,7 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
         {onLogout && (
           <button
             onClick={onLogout}
-            className="px-4 py-3 rounded-2xl bg-white dark:bg-[#171A21] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A] transition-colors text-xs font-bold flex items-center gap-2"
+            className="px-4 py-3 rounded-2xl bg-white dark:bg-[#171A21] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] text-[#5B6472] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A] transition-colors text-xs font-bold flex items-center gap-2"
           >
             <LogOut className="w-3.5 h-3.5" />
             <span>Keluar</span>

@@ -79,7 +79,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
             <ScrollText className="w-5 h-5 text-[#8B1E28] dark:text-[#E88086]" />
             Audit Log ({total})
           </h2>
-          <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+          <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">
             Trail siapa melakukan apa di portal gereja. Append-only — hanya super yang bisa membaca.
           </p>
         </div>
@@ -95,7 +95,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
       {/* Filter Bar */}
       <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-3xl bg-[#F3F4F6] dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A]">
         <div className="space-y-1">
-          <label className="text-[10px] font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#9CA3AF]">Actor</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider text-[#5B6472] dark:text-[#9CA3AF]">Actor</label>
           <input
             type="text"
             placeholder="username"
@@ -105,7 +105,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
           />
         </div>
         <div className="space-y-1">
-          <label className="text-[10px] font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#9CA3AF]">Action</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider text-[#5B6472] dark:text-[#9CA3AF]">Action</label>
           <input
             type="text"
             placeholder="e.g. warta.create"
@@ -115,7 +115,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
           />
         </div>
         <div className="space-y-1">
-          <label className="text-[10px] font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#9CA3AF]">Dari</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider text-[#5B6472] dark:text-[#9CA3AF]">Dari</label>
           <input
             type="date"
             value={filter.since}
@@ -124,7 +124,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
           />
         </div>
         <div className="space-y-1">
-          <label className="text-[10px] font-bold uppercase tracking-wider text-[#6B7280] dark:text-[#9CA3AF]">Sampai</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider text-[#5B6472] dark:text-[#9CA3AF]">Sampai</label>
           <input
             type="date"
             value={filter.until}
@@ -158,11 +158,11 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
           <tbody className="divide-y divide-[#E5E7EB] dark:divide-[#2A2F3A]">
             {loading && entries.length === 0 ? (
               <tr>
-                <td colSpan={5} className="p-8 text-center text-xs text-[#6B7280] dark:text-[#9CA3AF]">Memuat…</td>
+                <td colSpan={5} className="p-8 text-center text-xs text-[#5B6472] dark:text-[#9CA3AF]">Memuat…</td>
               </tr>
             ) : entries.length === 0 ? (
               <tr>
-                <td colSpan={5} className="p-8 text-center text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+                <td colSpan={5} className="p-8 text-center text-xs text-[#5B6472] dark:text-[#9CA3AF]">
                   Belum ada entry. Aktivitas pertama akan muncul di sini setelah admin login.
                 </td>
               </tr>
@@ -176,7 +176,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
                 const ts = new Date(a.created_at);
                 return (
                   <tr key={a.id} className="hover:bg-[#FFFFFF] dark:hover:bg-[#261317] transition-colors">
-                    <td className="p-4 text-xs text-[#6B7280] dark:text-[#9CA3AF] whitespace-nowrap font-mono">
+                    <td className="p-4 text-xs text-[#5B6472] dark:text-[#9CA3AF] whitespace-nowrap font-mono">
                       {ts.toLocaleString('id-ID', {
                         day: '2-digit',
                         month: 'short',
@@ -197,7 +197,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
                     <td className="p-4 text-[#111827] dark:text-[#F9FAFB]">
                       {a.summary}
                       {a.target_table && (
-                        <div className="text-[10px] text-[#6B7280] dark:text-[#9CA3AF] mt-0.5 font-mono">
+                        <div className="text-[10px] text-[#5B6472] dark:text-[#9CA3AF] mt-0.5 font-mono">
                           {a.target_table}{a.target_id ? ` · ${String(a.target_id).slice(0, 8)}…` : ''}
                         </div>
                       )}
@@ -209,16 +209,16 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
                             {a.actor_username}
                           </div>
                           {a.actor_roles && a.actor_roles.length > 0 && (
-                            <div className="text-[10px] text-[#6B7280] dark:text-[#9CA3AF]">
+                            <div className="text-[10px] text-[#5B6472] dark:text-[#9CA3AF]">
                               {a.actor_roles.join(', ')}
                             </div>
                           )}
                         </>
                       ) : (
-                        <span className="italic text-[#6B7280] dark:text-[#9CA3AF]">anonim</span>
+                        <span className="italic text-[#5B6472] dark:text-[#9CA3AF]">anonim</span>
                       )}
                     </td>
-                    <td className="p-4 text-[10px] font-mono text-[#6B7280] dark:text-[#9CA3AF]">
+                    <td className="p-4 text-[10px] font-mono text-[#5B6472] dark:text-[#9CA3AF]">
                       {a.ip || <span className="italic">—</span>}
                     </td>
                   </tr>
@@ -232,7 +232,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
       {/* Pagination */}
       {total > limit && (
         <div className="flex items-center justify-between text-xs">
-          <span className="text-[#6B7280] dark:text-[#9CA3AF]">
+          <span className="text-[#5B6472] dark:text-[#9CA3AF]">
             Menampilkan {start}–{end} dari {total}
           </span>
           <div className="flex items-center gap-2">

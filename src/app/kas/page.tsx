@@ -13,7 +13,7 @@ const KasDashboard = dynamic(() => import('@/components/kas/KasDashboard'), {
   ssr: false,
   loading: () => (
     <main className="min-h-screen flex items-center justify-center bg-[#FFFFFF] dark:bg-[#0F1115]">
-      <div className="animate-pulse text-[#6B7280] dark:text-[#9CA3AF] text-sm">
+      <div className="animate-pulse text-[#5B6472] dark:text-[#9CA3AF] text-sm">
         Memuat Portal Kas…
       </div>
     </main>

@@ -31,7 +31,7 @@ export default function MediaPage() {
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight mb-4">
             Firman Tuhan & Momen Komunitas
           </h1>
-          <p className="text-base sm:text-lg text-[#6B7280] dark:text-[#9CA3AF] max-w-3xl leading-relaxed">
+          <p className="text-base sm:text-lg text-[#5B6472] dark:text-[#9CA3AF] max-w-3xl leading-relaxed">
             Saksikan kembali rekaman firman Tuhan, khotbah ibadah raya, serta potret perjalanan kebersamaan dan persekutuan jemaat GIA Deliksari Semarang.
           </p>
 

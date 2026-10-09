@@ -80,7 +80,7 @@ const UserModal: React.FC<UserModalProps> = ({ initial, editingId, onSave, onClo
               className="w-full px-4 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-sm text-[#111827] dark:text-[#F9FAFB] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 disabled:opacity-60 disabled:cursor-not-allowed"
             />
             {editingId && (
-              <p className="text-[10px] text-[#6B7280] dark:text-[#9CA3AF]">
+              <p className="text-[10px] text-[#5B6472] dark:text-[#9CA3AF]">
                 Username tidak bisa diubah. Buat user baru jika perlu ganti.
               </p>
             )}
@@ -99,7 +99,7 @@ const UserModal: React.FC<UserModalProps> = ({ initial, editingId, onSave, onClo
               minLength={4}
               className="w-full px-4 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-sm text-[#111827] dark:text-[#F9FAFB] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
             />
-            <p className="text-[10px] text-[#6B7280] dark:text-[#9CA3AF]">
+            <p className="text-[10px] text-[#5B6472] dark:text-[#9CA3AF]">
               Minimal 4 karakter. Disimpan dengan bcrypt (tidak bisa dibaca plain).
             </p>
           </div>
@@ -129,7 +129,7 @@ const UserModal: React.FC<UserModalProps> = ({ initial, editingId, onSave, onClo
                     />
                     <div className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB] leading-tight">
                       {meta.emoji} {meta.label}
-                      <div className="text-[10px] text-[#6B7280] dark:text-[#9CA3AF] font-normal mt-0.5">
+                      <div className="text-[10px] text-[#5B6472] dark:text-[#9CA3AF] font-normal mt-0.5">
                         {meta.description}
                       </div>
                     </div>
@@ -159,7 +159,7 @@ const UserModal: React.FC<UserModalProps> = ({ initial, editingId, onSave, onClo
             <button
               type="button"
               onClick={onClose}
-              className="px-5 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] text-xs font-bold"
+              className="px-5 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#5B6472] dark:text-[#9CA3AF] text-xs font-bold"
             >
               Batal
             </button>

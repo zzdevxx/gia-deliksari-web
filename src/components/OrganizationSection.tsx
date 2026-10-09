@@ -87,7 +87,7 @@ const GROUPS: Group[] = [
     subtitle: 'Persekutuan Kaum Wanita',
     icon: <HeartHandshake className="w-5 h-5" />,
     accentClass:
-      'border-[#E5E7EB] dark:border-[#2A2F3A] bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF]',
+      'border-[#E5E7EB] dark:border-[#2A2F3A] bg-[#F3F4F6] dark:bg-[#1F232D] text-[#5B6472] dark:text-[#9CA3AF]',
     members: [
       { name: 'Ibu Penskilla', role: 'Ketua' },
       { name: 'Ibu Siska', role: 'Sekretaris' },
@@ -105,14 +105,14 @@ export default function OrganizationSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#6B7280] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#5B6472] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
             <ShieldCheck className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#E88086]" />
             <span>Struktur Organisasi Pelayanan</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight">
             Tim Penggembalaan & Pelayanan
           </h2>
-          <p className="text-[#6B7280] dark:text-[#9CA3AF] text-base sm:text-lg leading-relaxed">
+          <p className="text-[#5B6472] dark:text-[#9CA3AF] text-base sm:text-lg leading-relaxed">
             Mengenal para hamba Tuhan dan tim pelayanan komunitas GIA Deliksari
             Semarang. Berbeda karunia, satu tujuan: melayani jemaat dengan kasih
             Kristus.
@@ -133,7 +133,7 @@ export default function OrganizationSection() {
                 <span>{group.title}</span>
               </div>
 
-              <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] font-semibold uppercase tracking-wider">
+              <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] font-semibold uppercase tracking-wider">
                 {group.subtitle}
               </p>
 
@@ -146,7 +146,7 @@ export default function OrganizationSection() {
                     <span className="font-bold text-[#111827] dark:text-[#F9FAFB] leading-snug">
                       {m.name}
                     </span>
-                    <span className="text-[#6B7280] dark:text-[#9CA3AF] text-right text-[11px] sm:text-xs whitespace-nowrap">
+                    <span className="text-[#5B6472] dark:text-[#9CA3AF] text-right text-[11px] sm:text-xs whitespace-nowrap">
                       {m.role}
                     </span>
                   </li>
@@ -158,7 +158,7 @@ export default function OrganizationSection() {
 
         {/* Footnote */}
         <div className="mt-12 text-center">
-          <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] max-w-2xl mx-auto leading-relaxed">
             Ingin melayani? Hubungi WhatsApp pastoral{' '}
             <a
               href="https://api.whatsapp.com/send?phone=6289620961103"

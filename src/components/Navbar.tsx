@@ -123,7 +123,7 @@ export default function Navbar() {
                 <span className="font-extrabold text-base tracking-tight text-[#111827] dark:text-[#F9FAFB] group-hover:text-[#8B1E28] dark:group-hover:text-[#B8323D] transition-colors">
                   GIA DELIKSARI
                 </span>
-                <span className="text-[10px] font-bold text-[#6B7280] dark:text-[#9CA3AF] bg-[#F3F4F6] dark:bg-[#1F232D] px-1.5 py-0.2 rounded border border-[#E5E7EB] dark:border-[#2A2F3A] hidden sm:inline-block">
+                <span className="text-[10px] font-bold text-[#5B6472] dark:text-[#9CA3AF] bg-[#F3F4F6] dark:bg-[#1F232D] px-1.5 py-0.2 rounded border border-[#E5E7EB] dark:border-[#2A2F3A] hidden sm:inline-block">
                   Semarang
                 </span>
               </div>
@@ -149,7 +149,7 @@ export default function Navbar() {
                   className={`relative px-3.5 py-2 rounded-xl text-xs font-semibold transition-all ${
                     isActive
                       ? 'text-[#111827] dark:text-[#F9FAFB] bg-[#F3F4F6] dark:bg-[#1F232D] font-bold shadow-xs'
-                      : 'text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#111827] dark:hover:text-[#F9FAFB] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D]'
+                      : 'text-[#5B6472] dark:text-[#9CA3AF] hover:text-[#111827] dark:hover:text-[#F9FAFB] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D]'
                   }`}
                 >
                   {link.name}
@@ -159,6 +159,11 @@ export default function Navbar() {
                 </Link>
               );
             })}
+            {/* Theme switch — desktop only. The drawer carries its own copy below,
+                and `hidden lg:flex` keeps the two from ever co-rendering. */}
+            <div className="ml-2 hidden lg:flex items-center">
+              <ThemeToggle />
+            </div>
           </nav>
 
           {/* Mobile / tablet menu trigger — single control, no overlap with desktop */}
@@ -194,7 +199,7 @@ export default function Navbar() {
         <div className="px-4 pt-3 pb-6 space-y-5">
           {MOBILE_GROUPS.map((group) => (
             <div key={group.title}>
-              <p className="text-[10px] font-extrabold uppercase tracking-widest text-[#6B7280] dark:text-[#9CA3AF] px-4 mb-2">
+              <p className="text-[10px] font-extrabold uppercase tracking-widest text-[#5B6472] dark:text-[#9CA3AF] px-4 mb-2">
                 {group.title}
               </p>
               <ul className="space-y-1">
@@ -210,7 +215,7 @@ export default function Navbar() {
                           {link.name}
                         </span>
                         {link.description && (
-                          <span className="block text-xs text-[#6B7280] dark:text-[#9CA3AF] mt-0.5">
+                          <span className="block text-xs text-[#5B6472] dark:text-[#9CA3AF] mt-0.5">
                             {link.description}
                           </span>
                         )}

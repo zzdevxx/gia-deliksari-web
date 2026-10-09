@@ -52,14 +52,14 @@ export default function LocationContactSection() {
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#6B7280] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#5B6472] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
             <MapPin className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#B8323D]" />
             <span>Lokasi Fisik, FAQ & Kontak Pastoral</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight">
             Kunjungi & Terhubung Bersama Kami
           </h2>
-          <p className="text-[#6B7280] dark:text-[#9CA3AF] text-base sm:text-lg leading-relaxed">
+          <p className="text-[#5B6472] dark:text-[#9CA3AF] text-base sm:text-lg leading-relaxed">
             Pintu gereja dan hati kami senantiasa terbuka menyambut kehadiran Anda dan keluarga di GIA Deliksari.
           </p>
         </div>
@@ -113,7 +113,7 @@ export default function LocationContactSection() {
                   <h4 className="font-bold text-base text-[#111827] dark:text-[#F9FAFB]">
                     Alamat Gedung Gereja
                   </h4>
-                  <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed mt-0.5">
+                  <p className="text-xs sm:text-sm text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed mt-0.5">
                     Jl. Kolonel HR Hadijanto, Sekaran, Kec. Gn. Pati, Kota Semarang, Jawa Tengah 50229 (Kawasan UNNES)
                   </p>
                 </div>
@@ -132,7 +132,7 @@ export default function LocationContactSection() {
 
                 <a
                   href="mailto:giadeliksarichurch@gmail.com"
-                  className="px-4 py-2.5 rounded-xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#8B1E28] dark:hover:text-[#B8323D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs font-bold flex items-center gap-2 transition-colors"
+                  className="px-4 py-2.5 rounded-xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#5B6472] dark:text-[#9CA3AF] hover:text-[#8B1E28] dark:hover:text-[#B8323D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs font-bold flex items-center gap-2 transition-colors"
                 >
                   <Mail className="w-4 h-4 text-[#8B1E28] dark:text-[#B8323D]" />
                   <span>giadeliksarichurch@gmail.com</span>
@@ -175,7 +175,7 @@ export default function LocationContactSection() {
                     </button>
 
                     {isOpen && (
-                      <div className="px-5 pb-5 text-xs sm:text-sm text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed border-t border-[#E5E7EB] dark:border-[#2A2F3A] pt-3 animate-in fade-in">
+                      <div className="px-5 pb-5 text-xs sm:text-sm text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed border-t border-[#E5E7EB] dark:border-[#2A2F3A] pt-3 animate-in fade-in">
                         {faq.a}
                       </div>
                     )}

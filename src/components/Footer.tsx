@@ -57,7 +57,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#FFFFFF] dark:bg-[#0F1115] border-t border-[#E5E7EB] dark:border-[#2A2F3A] text-[#6B7280] dark:text-[#9CA3AF] transition-colors">
+    <footer className="bg-[#FFFFFF] dark:bg-[#0F1115] border-t border-[#E5E7EB] dark:border-[#2A2F3A] text-[#5B6472] dark:text-[#9CA3AF] transition-colors">
       {/* Newsletter Strip */}
       <div className="border-b border-[#E5E7EB] dark:border-[#2A2F3A] bg-[#F3F4F6]/50 dark:bg-[#12141A]/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -66,7 +66,7 @@ export default function Footer() {
               <h3 className="font-extrabold text-lg sm:text-xl text-[#111827] dark:text-[#F9FAFB]">
                 Warta Mingguan di Inbox Anda
               </h3>
-              <p className="mt-1 text-sm text-[#6B7280] dark:text-[#9CA3AF]">
+              <p className="mt-1 text-sm text-[#5B6472] dark:text-[#9CA3AF]">
                 Dapatkan jadwal ibadah, renungan, dan info kegiatan jemaat setiap minggu.
               </p>
             </div>
@@ -163,7 +163,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram GIA Deliksari"
-                className="w-10 h-10 rounded-xl bg-[#F3F4F6] dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] flex items-center justify-center text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#8B1E28] dark:hover:text-[#B8323D] hover:border-[#8B1E28] dark:hover:border-[#B8323D] transition-colors"
+                className="w-10 h-10 rounded-xl bg-[#F3F4F6] dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] flex items-center justify-center text-[#5B6472] dark:text-[#9CA3AF] hover:text-[#8B1E28] dark:hover:text-[#B8323D] hover:border-[#8B1E28] dark:hover:border-[#B8323D] transition-colors"
               >
                 <InstagramIcon className="w-4 h-4" />
               </a>
@@ -172,7 +172,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube GIA Deliksari"
-                className="w-10 h-10 rounded-xl bg-[#F3F4F6] dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] flex items-center justify-center text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#8B1E28] dark:hover:text-[#B8323D] hover:border-[#8B1E28] dark:hover:border-[#B8323D] transition-colors"
+                className="w-10 h-10 rounded-xl bg-[#F3F4F6] dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] flex items-center justify-center text-[#5B6472] dark:text-[#9CA3AF] hover:text-[#8B1E28] dark:hover:text-[#B8323D] hover:border-[#8B1E28] dark:hover:border-[#B8323D] transition-colors"
               >
                 <YouTubeIcon className="w-4 h-4" />
               </a>
@@ -205,7 +205,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Copyright */}
-        <div className="mt-12 pt-6 border-t border-[#E5E7EB] dark:border-[#2A2F3A] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+        <div className="mt-12 pt-6 border-t border-[#E5E7EB] dark:border-[#2A2F3A] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#5B6472] dark:text-[#9CA3AF]">
           <p>
             © {currentYear} Gereja Isa Almasih (GIA) Deliksari Semarang.
             <span className="hidden sm:inline"> Hak Cipta Dilindungi.</span>

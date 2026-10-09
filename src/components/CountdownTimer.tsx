@@ -75,7 +75,7 @@ export function CountdownTimer({
   if (!countdown || !currentService || !youthInfo || !hanaInfo) {
     return (
       <div className={`text-center py-4 ${className}`}>
-        <div className="animate-pulse text-[#6B7280] dark:text-[#9CA3AF]">
+        <div className="animate-pulse text-[#5B6472] dark:text-[#9CA3AF]">
           Memuat jadwal...
         </div>
       </div>
@@ -118,7 +118,7 @@ export function CountdownTimer({
       </div>
 
       {/* Description */}
-      <p className={`text-sm md:text-base text-[#6B7280] dark:text-[#9CA3AF] mb-3 md:mb-4`}>
+      <p className={`text-sm md:text-base text-[#5B6472] dark:text-[#9CA3AF] mb-3 md:mb-4`}>
         {info.description}
       </p>
 
@@ -148,25 +148,25 @@ export function CountdownTimer({
 
       {showFullDetails && (
         <div className="pt-3 md:pt-4 border-t border-[#E5E7EB] dark:border-[#2A2F3A] space-y-2 text-sm">
-          <div className="flex justify-between text-[#6B7280] dark:text-[#9CA3AF]">
+          <div className="flex justify-between text-[#5B6472] dark:text-[#9CA3AF]">
             <span>Perubahan berikutnya:</span>
             <span className="font-medium text-[#111827] dark:text-[#F9FAFB]">
               {formatIndonesianDate(info.nextChangeDate)}
             </span>
           </div>
-          <div className="flex justify-between text-[#6B7280] dark:text-[#9CA3AF]">
+          <div className="flex justify-between text-[#5B6472] dark:text-[#9CA3AF]">
             <span>Sisa waktu:</span>
             <span className="font-medium text-[#111827] dark:text-[#F9FAFB]">
               {info.daysUntilChange} hari lagi
             </span>
           </div>
-          <div className="flex justify-between text-[#6B7280] dark:text-[#9CA3AF]">
+          <div className="flex justify-between text-[#5B6472] dark:text-[#9CA3AF]">
             <span>Hari ini:</span>
             <span className="font-medium text-[#111827] dark:text-[#F9FAFB]">
               {isYouth ? 'Sabtu' : 'Minggu'}
             </span>
           </div>
-          <div className="flex justify-between text-[#6B7280] dark:text-[#9CA3AF]">
+          <div className="flex justify-between text-[#5B6472] dark:text-[#9CA3AF]">
             <span>Waktu:</span>
             <span className="font-medium text-[#111827] dark:text-[#F9FAFB]">
               {isYouth ? '18.00 - 20.00 WIB' : '18.00 / 18.30 WIB'}
@@ -192,7 +192,7 @@ function CountdownItem({
       <div className={`${color} font-mono font-bold text-2xl md:text-3xl leading-tight`}>
         {value.toString().padStart(2, '0')}
       </div>
-      <div className={`text-xs md:text-sm text-[#6B7280] dark:text-[#9CA3AF] mt-1 ${color}/80`}>
+      <div className={`text-xs md:text-sm text-[#5B6472] dark:text-[#9CA3AF] mt-1 ${color}/80`}>
         {label}
       </div>
     </div>

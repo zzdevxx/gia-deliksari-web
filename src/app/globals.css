@@ -2,8 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================================
+   GIA Deliksari — Canonical Flat design tokens
+   ----------------------------------------------------------------------------
+   Layer 1 (primitive) → Layer 2 (semantic) → consumed via Tailwind utilities.
+
+   Brand rule: the crimson logo (#8B1E28) is fixed. Themes only shift its
+   LIGHTNESS, never its hue — OKLCH hue stays within 15.9°–21.4° (spread 5.5°).
+
+   Asymmetry that is intentional, not a bug:
+     --brand      → background fill for CTA (needs white text ≥ 4.5:1)
+     --brand-text → text/icon on tinted or dark surfaces (needs ≥ 4.5:1 as fg)
+   One hex cannot serve both jobs.
+   ========================================================================== */
+
 @layer base {
   :root {
+    /* Layer 1 — primitives */
+    --lch-wine-base: #8B1E28;        /* the logo, verbatim */
+    --lch-wine-deep: #261517;
+    --lch-wine-tint: #FBF1F2;
+    --lch-wine-tint-brd: #E8C2C5;
+    --lch-white: #FFFFFF;
+
+    /* Layer 2 — semantic (light) */
     --background: #FFFFFF;
     --foreground: #111827;
     --card: #FFFFFF;
@@ -15,18 +37,39 @@
     --secondary: #F3F4F6;
     --secondary-foreground: #111827;
     --muted: #F3F4F6;
-    --muted-foreground: #6B7280;
+    --muted-foreground: #5B6472;      /* 5.83:1 on canvas — AA (was #6B7280 @ 4.39 FAIL) */
     --accent: #4B5563;
     --accent-foreground: #FFFFFF;
     --destructive: #991B1B;
     --destructive-foreground: #FFFFFF;
-    --border: #E5E7EB;
+    --border: #E5E7EB;                /* decorative — 1.24:1, intentional */
     --input: #E5E7EB;
     --ring: #8B1E28;
     --radius: 1rem;
+
+    /* Extended semantic — light */
+    --brand: #8B1E28;                 /* CTA fill   — white on this = 9.07:1 */
+    --brand-hover: #731820;           /*            white on this = 11.17:1 */
+    --brand-text: #8B1E28;            /* text/icon  — 8.85:1 on canvas */
+    --brand-text-hover: #731820;
+    --brand-tint: #FBF1F2;
+    --brand-tint-border: #E8C2C5;
+    --brand-tint-ink: #261517;
+    --border-strong: #848B94;         /* interactive boundary — 3.44:1 (WCAG 1.4.11) */
+    --surface-raised: #F3F4F6;
+    --card-inverted-bg: #171A21;     /* always-dark panels (130 call sites) */
+    --card-inverted-fg: #F9FAFB;
+    --card-inverted-border: #6B7480;
+    --status-success: #166534;
+    --status-success-fg: #FFFFFF;
+    --status-danger: #991B1B;
+    --status-danger-fg: #FFFFFF;
+    --status-info: #1D4ED8;
+    --status-info-fg: #FFFFFF;
   }
 
   .dark {
+    /* Layer 2 — semantic (dark) */
     --background: #0F1115;
     --foreground: #F9FAFB;
     --card: #171A21;
@@ -38,14 +81,34 @@
     --secondary: #1F232D;
     --secondary-foreground: #F9FAFB;
     --muted: #1F232D;
-    --muted-foreground: #9CA3AF;
+    --muted-foreground: #9CA3AF;      /* 7.44:1 on canvas — AA on every surface */
     --accent: #9CA3AF;
     --accent-foreground: #0F1115;
     --destructive: #EF4444;
     --destructive-foreground: #FFFFFF;
     --border: #2A2F3A;
     --input: #2A2F3A;
-    --ring: #B8323D;
+    --ring: #E88086;
+
+    /* Extended semantic — dark */
+    --brand: #B8323D;                 /* CTA fill   — white on this = 5.90:1 */
+    --brand-hover: #A32C36;           /*            white on this = 7.07:1 */
+    --brand-text: #E88086;            /* text/icon  — 7.08:1 on canvas */
+    --brand-text-hover: #E8919A;      /*            8.05:1 on canvas */
+    --brand-tint: #52252A;
+    --brand-tint-border: #52252A;
+    --brand-tint-ink: #FBF1F2;
+    --border-strong: #6B7480;         /* interactive boundary — 3.99:1 */
+    --surface-raised: #1F232D;
+    --card-inverted-bg: #171A21;
+    --card-inverted-fg: #F9FAFB;
+    --card-inverted-border: #6B7480;
+    --status-success: #4ADE80;
+    --status-success-fg: #052E16;
+    --status-danger: #F87171;
+    --status-danger-fg: #450A0A;
+    --status-info: #93C5FD;
+    --status-info-fg: #172554;
   }
 }
 

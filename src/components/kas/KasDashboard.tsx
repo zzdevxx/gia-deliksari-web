@@ -318,7 +318,7 @@ export default function KasDashboard() {
               <h1 className="text-2xl sm:text-3xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight">
                 Kas Grow Generation
               </h1>
-              <p className="text-xs sm:text-sm text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
                 Portal manajemen keuangan pemuda & remaja GIA Deliksari.
                 <br />
                 <span className="text-[#8B1E28] dark:text-[#E88086] font-bold">
@@ -393,7 +393,7 @@ export default function KasDashboard() {
   if (!authChecked) {
     return (
       <main className="min-h-screen flex items-center justify-center bg-[#FFFFFF] dark:bg-[#0F1115]">
-        <div className="animate-pulse text-[#6B7280] dark:text-[#9CA3AF]">Memuat…</div>
+        <div className="animate-pulse text-[#5B6472] dark:text-[#9CA3AF]">Memuat…</div>
       </main>
     );
   }
@@ -413,7 +413,7 @@ export default function KasDashboard() {
               <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#F9FAFB] dark:bg-[#1F232D] text-[#4B5563] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A]">
                 💰 Portal Kas Grow Generation
               </span>
-              <div className="flex items-center gap-1.5 text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+              <div className="flex items-center gap-1.5 text-xs text-[#5B6472] dark:text-[#9CA3AF]">
                 <Coins className="w-3.5 h-3.5 text-[#4B5563]" />
                 <span>{transactions.length} transaksi tercatat</span>
               </div>
@@ -421,7 +421,7 @@ export default function KasDashboard() {
             <h1 className="text-2xl sm:text-3xl font-extrabold text-[#111827] dark:text-white tracking-tight">
               Manajemen Kas Youth
             </h1>
-            <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+            <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">
               Login sebagai{' '}
               <span className="font-bold text-[#111827] dark:text-[#F9FAFB]">
                 {authUser?.display_name || authUser?.username}
@@ -450,7 +450,7 @@ export default function KasDashboard() {
 
             <button
               onClick={handleLogout}
-              className="px-4 py-3 rounded-2xl bg-white dark:bg-[#171A21] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A] transition-colors text-xs font-bold flex items-center gap-2"
+              className="px-4 py-3 rounded-2xl bg-white dark:bg-[#171A21] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] text-[#5B6472] dark:text-[#9CA3AF] border border-[#E5E7EB] dark:border-[#2A2F3A] transition-colors text-xs font-bold flex items-center gap-2"
             >
               <LogOut className="w-3.5 h-3.5" />
               <span>Keluar</span>
@@ -470,7 +470,7 @@ export default function KasDashboard() {
             <div className="text-3xl font-extrabold text-[#111827] dark:text-[#F9FAFB] font-mono">
               {formatIDR(Number(balance.total_income))}
             </div>
-            <div className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+            <div className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">
               {balance.income_count} transaksi pemasukan
             </div>
           </div>
@@ -485,7 +485,7 @@ export default function KasDashboard() {
             <div className="text-3xl font-extrabold text-[#111827] dark:text-[#F9FAFB] font-mono">
               {formatIDR(Number(balance.total_expense))}
             </div>
-            <div className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+            <div className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">
               {balance.expense_count} transaksi pengeluaran
             </div>
           </div>
@@ -514,7 +514,7 @@ export default function KasDashboard() {
             >
               {formatIDR(Number(balance.balance))}
             </div>
-            <div className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+            <div className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">
               {Number(balance.balance) < 0 ? '⚠️ Saldo negatif — perlu top-up' : '✓ Kas Grow Generation'}
             </div>
           </div>
@@ -524,7 +524,7 @@ export default function KasDashboard() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 className="text-xl font-extrabold text-[#111827] dark:text-white">Buku Kas</h2>
-            <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+            <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">
               Catat pemasukan & pengeluaran Grow Generation.
             </p>
           </div>
@@ -560,7 +560,7 @@ export default function KasDashboard() {
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                   filterType === f.id
                     ? 'bg-white dark:bg-[#1F232D] text-[#111827] dark:text-white shadow-xs'
-                    : 'text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#111827]'
+                    : 'text-[#5B6472] dark:text-[#9CA3AF] hover:text-[#111827]'
                 }`}
               >
                 {f.label}
@@ -588,7 +588,7 @@ export default function KasDashboard() {
               <h3 className="font-bold text-base text-[#111827] dark:text-[#F9FAFB]">
                 {transactions.length === 0 ? 'Belum ada transaksi' : 'Tidak ada transaksi sesuai filter'}
               </h3>
-              <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+              <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">
                 Klik "Catat Pemasukan" atau "Catat Pengeluaran" untuk mulai.
               </p>
             </div>
@@ -611,7 +611,7 @@ export default function KasDashboard() {
                       <div className="font-mono text-xs font-bold text-[#111827] dark:text-[#F9FAFB]">
                         {t.transaction_date}
                       </div>
-                      <div className="text-[10px] text-[#6B7280] dark:text-[#9CA3AF] mt-0.5">
+                      <div className="text-[10px] text-[#5B6472] dark:text-[#9CA3AF] mt-0.5">
                         oleh {t.created_by?.slice(0, 8) || '—'}
                       </div>
                     </td>
@@ -642,7 +642,7 @@ export default function KasDashboard() {
                     >
                       {t.type === 'income' ? '+' : '−'} {formatIDR(Number(t.amount))}
                     </td>
-                    <td className="p-4 text-xs text-[#6B7280] dark:text-[#9CA3AF] max-w-xs">
+                    <td className="p-4 text-xs text-[#5B6472] dark:text-[#9CA3AF] max-w-xs">
                       {t.description || <span className="italic-">—</span>}
                     </td>
                     <td className="p-4 text-right">
@@ -731,7 +731,7 @@ export default function KasDashboard() {
                     <option key={c} value={c} />
                   ))}
                 </datalist>
-                <p className="text-[10px] text-[#6B7280] dark:text-[#9CA3AF]">
+                <p className="text-[10px] text-[#5B6472] dark:text-[#9CA3AF]">
                   Saran: {SUGGESTED_CATEGORIES.join(', ')}
                 </p>
               </div>
@@ -769,7 +769,7 @@ export default function KasDashboard() {
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-5 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#6B7280] dark:text-[#9CA3AF] text-xs font-bold"
+                  className="px-5 py-3 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#5B6472] dark:text-[#9CA3AF] text-xs font-bold"
                 >
                   Batal
                 </button>
