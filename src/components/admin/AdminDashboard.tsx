@@ -814,7 +814,10 @@ export default function AdminDashboard() {
  onClick={() => setActiveTab(tab.id as any)}
  className={`py-3.5 px-3 rounded-2xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
  isActive
- ? 'bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white shadow-md'
+ // The dark fill sits at 2.95:1 against the card surface, so it carries the
+ // same explicit boundary the primary Button uses — the shadow was doing
+ // this job badly and is now gone.
+ ? 'bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white border border-transparent dark:border-[var(--border-strong)]'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-white/60 dark:hover:bg-[var(--surface-raised-hover)]'
  }`}
  >
