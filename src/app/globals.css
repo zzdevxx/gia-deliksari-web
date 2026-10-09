@@ -47,6 +47,13 @@
     --ring: #8E1533;
     --radius: 1rem;
 
+    /* Navbar veil. Tailwind 3 cannot apply an opacity modifier to a var() —
+       `bg-[var(--background)]/95` silently emits nothing, so the navbar was
+       sitting on a transparent header with only a blur behind it. These are
+       literal rgba() values so the utility resolves. */
+    --nav-bg: rgba(250, 249, 248, 0.72);
+    --nav-border: rgba(227, 223, 221, 0.60);
+
     /* Extended semantic — light */
     --brand: #8E1533;                 /* CTA fill   — white on this = 9.11:1 */
     --brand-hover: #6B1029;           /*            white on this = 12.13:1 */
@@ -95,6 +102,9 @@
     --border: #31313E;
     --input: #31313E;
     --ring: #F08AA4;
+
+    --nav-bg: rgba(10, 10, 14, 0.72);
+    --nav-border: rgba(49, 49, 62, 0.60);
 
     /* Extended semantic — dark */
     --brand: #8E1533;                 /* CTA fill   — white on this = 9.11:1 */

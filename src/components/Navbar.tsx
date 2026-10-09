@@ -94,10 +94,10 @@ export default function Navbar() {
 
  return (
  <header
- className={`sticky top-0 z-50 transition-all duration-300 ${
+ className={`sticky top-0 z-50 transition-all duration-300 backdrop-blur-md ${
  scrolled
- ? 'bg-[var(--background)]/95 dark:bg-[var(--card-inverted-bg)]/95 backdrop-blur-md shadow-xs border-b border-[var(--border)] dark:border-[var(--border)]'
- : 'bg-[var(--background)]/85 dark:bg-[var(--card-inverted-bg)]/85 backdrop-blur-sm border-b border-[var(--border)]/60 dark:border-[var(--border)]/60'
+ ? 'bg-[var(--nav-bg)] border-b border-[var(--nav-border)] shadow-xs'
+ : 'bg-[var(--nav-bg)] border-b border-[var(--nav-border)]'
  }`}
  >
  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
