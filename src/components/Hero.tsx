@@ -55,7 +55,17 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="beranda" className="relative pt-8 pb-20 sm:pt-14 sm:pb-28 overflow-hidden bg-[var(--background)] dark:bg-[var(--card-inverted-bg)] transition-colors">
+    <section id="beranda" className="relative pt-8 pb-20 sm:pt-14 sm:pb-28 overflow-hidden">
+      {/* The Crimson Field — the one place a gradient is allowed, and only as
+          the furthest back layer. Everything inside stays flat. */}
+      <div className="gia-field" aria-hidden="true" />
+      {/* Veil between the gradient and the type. Without it the crimson sits
+          directly under the headline and the page has no place for the eye to
+          rest. This is a legibility surface, not decoration. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 z-[1] bg-[var(--field-veil)] pointer-events-none"
+      />
       {/* Geometric brand anchor — flat, no glow. A blurred orb at 4% opacity
           read as a smudge on a white canvas rather than as depth. */}
       <div

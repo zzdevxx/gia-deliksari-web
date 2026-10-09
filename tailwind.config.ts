@@ -56,6 +56,9 @@ const config: Config = {
           hover: 'var(--brand-hover)',
           text: 'var(--brand-text)',
           'text-hover': 'var(--brand-text-hover)',
+          // Brand-coloured TEXT sitting on a brand FILL. --brand-text only
+          // reaches 3.85:1 there; this reaches 4.59:1.
+          'text-on-brand': 'var(--brand-text-on-brand)',
           tint: 'var(--brand-tint)',
           'tint-border': 'var(--brand-tint-border)',
           'tint-ink': 'var(--brand-tint-ink)',

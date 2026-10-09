@@ -18,40 +18,50 @@ description: Flat, calm, reverent digital home for the GIA Deliksari congregatio
 # ─────────────────────────────────────────────────────────────────────────────
 colors:
   # ── brand (the only saturated colour in the product) ────────────────────
-  wine: "#8B1E28"             # --brand       light CTA fill; white on it = 9.07:1
-  wine-hover: "#731820"       # --brand-hover                   white = 11.17:1
-  wine-dark: "#B8323D"        # --brand       dark CTA fill;  white on it = 5.90:1
-  wine-dark-hover: "#A32C36"  # --brand-hover                   white = 7.07:1
-  wine-text: "#E88086"        # --brand-text  brand AS TEXT on dark  = 7.08:1
-  wine-text-dark: "#8B1E28"   # --brand-text  brand AS TEXT on light = 8.85:1
-  wine-tint: "#FBF1F2"        # --brand-tint         light tinted panel
+  wine: "#8E1533"             # --brand       CTA fill; white on it = 9.11:1
+  wine-hover: "#6B1029"       # --brand-hover                 white = 12.13:1
+  wine-text: "#F08AA4"        # --brand-text      brand AS TEXT on dark  = 8.35:1
+  wine-text-hover: "#FFA8BE"  # --brand-text-hover
+  wine-text-on-brand: "#F5A0B6" # --brand-text-on-brand, ON a brand fill = 4.59:1
+  wine-tint: "#FAF0F3"        # --brand-tint         light tinted panel
   wine-tint-ink: "#261517"    # --brand-tint-ink     ink on a light tint
-  wine-tint-dark: "#52252A"   # --brand-tint         dark tinted panel
-  wine-tint-border: "#E8C2C5" # --brand-tint-border  light tint outline
-  wine-tint-border-dark: "#52252A"
+  wine-tint-dark: "#401A20"   # --brand-tint         dark tinted panel
+  wine-tint-border: "#E3B4C1" # --brand-tint-border  light tint outline
+  wine-tint-border-dark: "#7A2839"
+  # ── Crimson Field gradient stops (dark) ─────────────────────────────────
+  # Hue is 14.1deg, NOT the logo's 21.4deg. That 7-degree shift is the whole
+  # trick: at 21deg the gradient passes through mud, at 14deg it stays red.
+  field-deep: "#8E1533"       # L=0.422 C=0.154  white text = 9.11:1
+  field-mid: "#5A0F24"        # L=0.312 C=0.107  white text = 13.74:1
+  field-low: "#26090F"        # L=0.192 C=0.049  white text = 18.61:1
+  field-base: "#0A0A0E"       # L=0.147 C=0.009 — achromatic
   # ── light surface ramp ───────────────────────────────────────────────────
-  canvas: "#FFFFFF"           # --background
-  surface: "#F3F4F6"          # --surface-raised   inset: table rows, chips
-  surface-hover: "#E5E7EB"    # --surface-raised-hover
-  border-light: "#E5E7EB"     # --border           decorative only (1.24:1)
+  canvas: "#FAF9F8"           # --background   warm neutral, not pure white
+  card: "#FFFFFF"             # --card
+  surface: "#F1EFEE"          # --surface-raised   inset: table rows, chips
+  surface-hover: "#E7E4E2"    # --surface-raised-hover
+  border-light: "#E3DFDD"     # --border           decorative hairline
   # ── dark surface ramp ────────────────────────────────────────────────────
-  canvas-dark: "#0F1115"      # --card-inverted-bg
-  surface-dark: "#171A21"     # --card
-  surface-raised-dark: "#1F232D" # --surface-raised
-  surface-raised-hover-dark: "#2A2F3A"
-  border-dark: "#2A2F3A"      # --border
+  canvas-dark: "#0A0A0E"      # --background
+  card-dark: "#1B1B24"        # --card              1.16:1 off canvas
+  surface-raised-dark: "#24242F"
+  surface-raised-hover-dark: "#2E2E3B"
+  border-dark: "#31313E"      # --border
+  inverted-dark: "#17171E"    # --card-inverted-bg (light-mode dark panels)
   # ── ink ──────────────────────────────────────────────────────────────────
-  ink: "#111827"              # --foreground       light primary text
-  ink-muted: "#5B6472"        # --muted-foreground light secondary   = 5.83:1
-  ink-strong: "#4B5563"       # --ink-strong       light subheading    = 7.03:1
-  ink-strong-hover: "#374151"  # hover state of the neutral Button fill
-  ink-dark: "#F9FAFB"         # --foreground       dark primary text
-  ink-muted-dark: "#9CA3AF"   # --muted-foreground dark secondary     = 7.44:1
-  ink-strong-dark: "#64748B"
+  ink: "#17161A"              # --foreground       light primary text
+  ink-muted: "#5C5654"        # --muted-foreground light secondary
+  ink-strong: "#3A3532"       # --ink-strong       light subheading
+  ink-strong-hover: "#4B4441"  # hover state of the neutral Button fill
+  ink-dark: "#F5F5F7"         # --foreground       dark primary text
+  ink-muted-dark: "#A5A5B2"   # --muted-foreground dark secondary     = 8.12:1
+  ink-strong-dark: "#D8D8E2"
   ink-on-wine: "#FFFFFF"      # text that sits ON a brand fill
   # ── non-text boundaries (WCAG 1.4.11 needs ≥3:1) ─────────────────────────
-  boundary-light: "#848B94"   # --border-strong   form fields, secondary btn = 3.44:1
-  boundary-dark: "#6B7480"    # --border-strong                        = 3.99:1
+  boundary-light: "#8C8683"   # --border-strong   form fields, secondary btn
+  boundary-dark: "#73738A"    # --border-strong                        = 4.28:1
+  inverted-border: "#4A4A58"  # --card-inverted-border
+  inverted-border-dark: "#50505F"
   # ── status (semantic: "dana keluar = merah" must survive) ───────────────
   success: "#166534"
   success-tint: "#F0FDF4"
@@ -59,10 +69,10 @@ colors:
   success-dark: "#4ADE80"
   success-tint-dark: "#142A1B"
   success-border-dark: "#052E16"
-  danger: "#991B1B"
-  danger-dark: "#F87171"
+  danger: "#C4362C"           # was #991B1B — only 1.09:1 from --brand
+  danger-dark: "#F97066"
   info: "#1D4ED8"
-  info-dark: "#93C5FD"
+  info-dark: "#8FB8F0"
 typography:
   # `scale` is the canonical set of permitted steps. `impeccable detect`
   # allow-lists exactly these px values (±0.5). Anything else in a component

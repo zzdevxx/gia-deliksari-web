@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* ============================================================================
-   GIA Deliksari — Canonical Flat design tokens
+   GIA Deliksari — Crimson Field design tokens
    ----------------------------------------------------------------------------
    Layer 1 (primitive) → Layer 2 (semantic) → consumed via Tailwind utilities.
 
@@ -26,51 +26,49 @@
     --lch-white: #FFFFFF;
 
     /* Layer 2 — semantic (light) */
-    --background: #FFFFFF;
-    --foreground: #111827;
+    --background: #FAF9F8;
+    --foreground: #17161A;
     --card: #FFFFFF;
-    --card-foreground: #111827;
+    --card-foreground: #17161A;
     --popover: #FFFFFF;
-    --popover-foreground: #111827;
-    --primary: #8B1E28;
+    --popover-foreground: #17161A;
+    --primary: #8E1533;
     --primary-foreground: #FFFFFF;
-    --secondary: #F3F4F6;
-    --secondary-foreground: #111827;
-    --muted: #F3F4F6;
-    --muted-foreground: #5B6472;      /* 5.83:1 on canvas — AA (was #6B7280 @ 4.39 FAIL) */
-    --accent: #4B5563;
+    --secondary: #F1EFEE;
+    --secondary-foreground: #17161A;
+    --muted: #F1EFEE;
+    --muted-foreground: #5C5654;
+    --accent: #3A3532;
     --accent-foreground: #FFFFFF;
-    --destructive: #991B1B;
+    --destructive: #C4362C;
     --destructive-foreground: #FFFFFF;
-    --border: #E5E7EB;                /* decorative — 1.24:1, intentional */
-    --input: #E5E7EB;
-    --ring: #8B1E28;
+    --border: #E3DFDD;                /* decorative hairline */
+    --input: #E3DFDD;
+    --ring: #8E1533;
     --radius: 1rem;
 
     /* Extended semantic — light */
-    --brand: #8B1E28;                 /* CTA fill   — white on this = 9.07:1 */
-    --brand-hover: #731820;           /*            white on this = 11.17:1 */
-    --brand-text: #8B1E28;            /* text/icon  — 8.85:1 on canvas */
-    --brand-text-hover: #731820;
-    --brand-tint: #FBF1F2;
-    --brand-tint-border: #E8C2C5;
+    --brand: #8E1533;                 /* CTA fill   — white on this = 9.11:1 */
+    --brand-hover: #6B1029;           /*            white on this = 12.13:1 */
+    --brand-text: #8E1533;            /* text/icon  — 8.85:1 on canvas */
+    --brand-text-hover: #6B1029;
+    --brand-text-on-brand: #F5A0B6;
+    --brand-tint: #FAF0F3;
+    --brand-tint-border: #E3B4C1;
     --brand-tint-ink: #261517;
-    --border-strong: #848B94;         /* interactive boundary — 3.44:1 (WCAG 1.4.11) */
-    --surface-raised: #F3F4F6;
-    --surface-raised-hover: #E5E7EB;
-    /* Deepest neutral. Sits just above `--brand-tint-ink` on the ramp, and is
-       the darkest ink that still clears 4.5:1 on the white canvas — so it is
-       the one extra colour a component may reach for. Everything lighter must
-       use `--muted-foreground`, or headings lose their contrast advantage. */
-    --ink-strong: #4B5563;
-    --card-inverted-bg: #171A21;     /* always-dark panels (130 call sites) */
-    --card-inverted-fg: #F9FAFB;
-    --card-inverted-border: #6B7480;
+    --border-strong: #8C8683;         /* interactive boundary — 3:1 (WCAG 1.4.11) */
+    --surface-raised: #F1EFEE;
+    --surface-raised-hover: #E7E4E2;
+    /* Deepest warm neutral that still clears 4.5:1 on the light canvas. */
+    --ink-strong: #3A3532;
+    --card-inverted-bg: #17171E;     /* always-dark panels (130 call sites) */
+    --card-inverted-fg: #F5F5F7;
+    --card-inverted-border: #4A4A58;
     --status-success: #166534;
     --status-success-fg: #FFFFFF;
     --status-success-tint: #F0FDF4;
     --status-success-border: #BBF7D0;
-    --status-danger: #991B1B;
+    --status-danger: #C4362C;         /* was #991B1B — 1.09:1 from --brand */
     --status-danger-fg: #FFFFFF;
     --status-info: #1D4ED8;
     --status-info-fg: #FFFFFF;
@@ -78,49 +76,167 @@
 
   .dark {
     /* Layer 2 — semantic (dark) */
-    --background: #0F1115;
-    --foreground: #F9FAFB;
-    --card: #171A21;
-    --card-foreground: #F9FAFB;
-    --popover: #171A21;
-    --popover-foreground: #F9FAFB;
-    --primary: #B8323D;
+    --background: #0A0A0E;
+    --foreground: #F5F5F7;
+    --card: #1B1B24;
+    --card-foreground: #F5F5F7;
+    --popover: #1B1B24;
+    --popover-foreground: #F5F5F7;
+    --primary: #8E1533;
     --primary-foreground: #FFFFFF;
-    --secondary: #1F232D;
-    --secondary-foreground: #F9FAFB;
-    --muted: #1F232D;
-    --muted-foreground: #9CA3AF;      /* 7.44:1 on canvas — AA on every surface */
-    --accent: #9CA3AF;
-    --accent-foreground: #0F1115;
-    --destructive: #EF4444;
-    --destructive-foreground: #FFFFFF;
-    --border: #2A2F3A;
-    --input: #2A2F3A;
-    --ring: #E88086;
+    --secondary: #24242F;
+    --secondary-foreground: #F5F5F7;
+    --muted: #24242F;
+    --muted-foreground: #A5A5B2;      /* 8.12:1 on canvas — AA on every surface */
+    --accent: #A5A5B2;
+    --accent-foreground: #0A0A0E;
+    --destructive: #F97066;
+    --destructive-foreground: #0A0A0E;
+    --border: #31313E;
+    --input: #31313E;
+    --ring: #F08AA4;
 
     /* Extended semantic — dark */
-    --brand: #B8323D;                 /* CTA fill   — white on this = 5.90:1 */
-    --brand-hover: #A32C36;           /*            white on this = 7.07:1 */
-    --brand-text: #E88086;            /* text/icon  — 7.08:1 on canvas */
-    --brand-text-hover: #E8919A;      /*            8.05:1 on canvas */
-    --brand-tint: #52252A;
-    --brand-tint-border: #52252A;
+    --brand: #8E1533;                 /* CTA fill   — white on this = 9.11:1 */
+    --brand-hover: #6B1029;           /*            white on this = 12.13:1 */
+    --brand-text: #F08AA4;            /* text/icon  — 8.35:1 on canvas */
+    --brand-text-hover: #FFA8BE;      /*            text on a brand fill */
+    /* Text ON a brand fill. --brand-text fails here (3.85:1) and --brand
+       cannot be text at all, so the hero subtitle needs its own step. */
+    --brand-text-on-brand: #F5A0B6;
+    --brand-tint: #401A20;
+    --brand-tint-border: #7A2839;
     --brand-tint-ink: #FBF1F2;
-    --border-strong: #6B7480;         /* interactive boundary — 3.99:1 */
-    --surface-raised: #1F232D;
-    --surface-raised-hover: #2A2F3A;
-    --ink-strong: #64748B;
-    --card-inverted-bg: #171A21;
-    --card-inverted-fg: #F9FAFB;
-    --card-inverted-border: #6B7480;
+    --border-strong: #73738A;         /* interactive boundary — 4.28:1 */
+    --surface-raised: #24242F;
+    --surface-raised-hover: #2E2E3B;
+    --ink-strong: #D8D8E2;
+    --card-inverted-bg: #24242F;
+    --card-inverted-fg: #F5F5F7;
+    --card-inverted-border: #50505F;
     --status-success: #4ADE80;
     --status-success-fg: #052E16;
     --status-success-tint: #142A1B;
     --status-success-border: #052E16;
-    --status-danger: #F87171;
+    --status-danger: #F97066;
     --status-danger-fg: #450A0A;
-    --status-info: #93C5FD;
+    --status-info: #8FB8F0;
     --status-info-fg: #172554;
+  }
+
+  /* ==========================================================================
+     CRIMSON FIELD — the gradient atmosphere
+     --------------------------------------------------------------------------
+     This is the one place gradients are allowed, and only as the furthest
+     back layer. Cards, buttons, text and every control stay flat.
+
+     WHY THE HUE SHIFTED. The logo is #8B1E28, which sits at OKLCH hue 21.4°
+     — that is the ORANGE quadrant, i.e. brick. Darkening it toward black
+     drags every midtone through mud: at 30% over near-black it lands at
+     #2F0F14, chroma 0.053, and reads brown. That is why a "red + black"
+     gradient cannot work from this red.
+
+     Shifting to #8E1533 (hue 14.1°) keeps the same identity but stays
+     chromatic when darkened: #5A0F24 holds chroma 0.107. Same gradient
+     structure, crimson instead of mud.
+
+     The three brand text tokens exist because three jobs need three colours:
+       --brand-text         → brand as text on a canvas        (8.35:1)
+       --brand-text-on-brand→ brand as text on a BRAND FILL    (4.59:1)
+       --brand-text-hover   → the hover of either
+     ========================================================================== */
+  :root {
+    /* Gradient stops, dark. Measured OKLCH — none drift into brown. */
+    --field-top: #8E1533;              /* L=0.422 C=0.154 H=14.1  white = 9.11:1 */
+    --field-mid: #5A0F24;              /* L=0.312 C=0.107 H=10.1  white = 13.74:1 */
+    --field-low: #26090F;              /* L=0.192 C=0.049 H=10.3  white = 18.61:1 */
+    --field-base: #0A0A0E;             /* L=0.147 C=0.009 — achromatic, hue n/a */
+    --field-aurora-a: rgba(142, 21, 51, 0.34);
+    --field-aurora-b: rgba(95, 19, 48, 0.26);
+
+    /* Hero veil — sits between the gradient and the headline. White text on
+       the crimson band alone is 9.11:1, so this is about keeping the band
+       present without letting it flatten the type. */
+    --field-veil: rgba(10, 10, 14, 0.28);
+    --field-blur: 88px;
+  }
+
+  .dark {
+    --field-veil: rgba(10, 10, 14, 0.18);
+  }
+
+  /* Light mode has no crimson field — a red gradient at low alpha on white
+     reads pink, not subtle (measured: alpha 0.07 already lands at #F2EBE9,
+     hue 36.6°). Light mode keeps a flat warm-neutral canvas with a faint
+     crimson wash only at the very top. */
+  :root:not(.dark) {
+    --field-top: #FDFBFB;
+    --field-mid: #FAF7F7;
+    --field-low: #F6F2F2;
+    --field-base: #FAF9F8;
+    --field-aurora-a: rgba(142, 21, 51, 0.055);
+    --field-aurora-b: rgba(142, 21, 51, 0.035);
+    --field-veil: rgba(250, 249, 248, 0);
+    --field-blur: 96px;
+  }
+}
+
+/* The field itself.
+   Lives inside <Hero>, which renders on exactly one route. Not fixed: a fixed
+   gradient would pin the crimson band to the top of the viewport forever, so
+   content sections far down the page would sit on top of crimson. It is
+   absolutely positioned behind the hero and scrolls away with it.
+
+   Height is 100svh so mobile browser chrome does not clip it. */
+.gia-field {
+  position: absolute;
+  inset: 0;
+  /* z-index: -1 would drop this behind the <body> background, which is
+     opaque — the gradient would never be seen. It sits at 0 like a normal
+     layer and the hero's content is lifted above it with z-10. */
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      178deg,
+      var(--field-top) 0%,
+      var(--field-mid) 26%,
+      var(--field-low) 52%,
+      var(--field-base) 78%,
+      var(--field-base) 100%
+    );
+}
+
+/* The aurora: two blurred crimson lobes over the gradient. Both the top and
+   bottom edges get a clear one, otherwise the midtones still drift. */
+.gia-field::before,
+.gia-field::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(var(--field-blur));
+}
+
+.gia-field::before {
+  width: 620px;
+  height: 620px;
+  top: -260px;
+  right: -180px;
+  background: radial-gradient(circle, var(--field-aurora-a) 0%, transparent 68%);
+}
+
+.gia-field::after {
+  width: 540px;
+  height: 540px;
+  bottom: -300px;
+  left: -190px;
+  background: radial-gradient(circle, var(--field-aurora-b) 0%, transparent 70%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gia-field::before,
+  .gia-field::after {
+    filter: blur(var(--field-blur)) saturate(0.85);
   }
 }
 
@@ -142,43 +258,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::selection {
-  background-color: #8B1E28;
+  background-color: var(--brand);
   color: #FFFFFF;
 }
 
 .dark ::selection {
-  background-color: #B8323D;
+  background-color: var(--brand);
   color: #FFFFFF;
 }
 
-/* Custom Scrollbar - Warm Stone & Restrained Wine Theme */
+/* Scrollbar — tracked to tokens so it follows the theme instead of
+   carrying its own frozen copy of the palette. */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #FFFFFF;
-}
-
-.dark ::-webkit-scrollbar-track {
-  background: #0F1115;
+  background: var(--background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #E5E7EB;
+  background: var(--border-strong);
   border-radius: 9999px;
-  border: 2px solid #FFFFFF;
-}
-
-.dark ::-webkit-scrollbar-thumb {
-  background: #374151;
-  border: 2px solid #0F1115;
+  border: 2px solid var(--background);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #8B1E28;
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #B8323D;
+  background: var(--brand);
 }
