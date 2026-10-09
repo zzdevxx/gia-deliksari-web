@@ -90,7 +90,6 @@ export default function Hero() {
             <span className="flex items-center gap-1.5 text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] font-bold">
               <Calendar className="w-3.5 h-3.5" />
               <span className="sr-only sm:not-sr-only">Ibadah Raya Berikutnya · Minggu 09.00 WIB:</span>
-              <span aria-hidden="true" className="hidden sm:inline">Ibadah Raya Berikutnya · Minggu 09.00 WIB:</span>
             </span>
             <span
               aria-hidden="true"
@@ -234,8 +233,13 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Floating Pastoral Card */}
-              <div className="absolute -bottom-5 -left-5 sm:-bottom-6 sm:-left-6 p-4 sm:p-5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex items-center gap-3.5 max-w-[260px]">
+              {/* Floating Pastoral Card — sits clear BELOW the address block.
+                  It was -bottom-5/-bottom-6, which parked it on top of the
+                  street address at every width (28–31px of overlap). The card
+                  carries the 4/5 aspect ratio, so padding the address cannot
+                  help: the height is fixed and my-auto absorbs the slack. The
+                  only lever is where the float is anchored. */}
+              <div className="absolute -bottom-14 -left-5 sm:-left-6 p-4 sm:p-5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex items-center gap-3.5 max-w-[260px]">
                 <div className="w-11 h-11 rounded-xl bg-[var(--brand)] dark:bg-[var(--brand)] flex items-center justify-center text-white shadow-xs" aria-hidden="true">
                   <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current">
                     <path d="M10.5 3.5h3v7h7v3h-3v7h-3v-7h-7v-3h3z" />
@@ -268,8 +272,10 @@ export default function Hero() {
 
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="flex justify-center pb-6 sm:pb-10">
+      {/* Scroll Indicator — the top padding keeps it clear of the pastoral card,
+          which now hangs below the hero card; without it they overlap by
+          33–53px on the single-column layouts. */}
+      <div className="flex justify-center pt-16 pb-6 sm:pb-10">
         <a
           href="#kunjungan"
           aria-label="Scroll ke bawah untuk konten selanjutnya"
