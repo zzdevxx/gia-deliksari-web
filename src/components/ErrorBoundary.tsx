@@ -60,10 +60,10 @@ export class ErrorBoundary extends React.Component<Props, State> {
           <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 to-red-700 text-white shadow-lg mb-5">
             <X className="h-7 w-7" />
           </div>
-          <h2 className="text-2xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight">
+          <h2 className="text-2xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] tracking-tight">
             Terjadi kesalahan
           </h2>
-          <p className="mt-2 max-w-md text-sm text-[#5B6472] dark:text-[#9CA3AF]">
+          <p className="mt-2 max-w-md text-sm text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
             Halaman ini gagal dimuat. Coba muat ulang, atau kembali ke beranda jika masalah berlanjut.
           </p>
           {process.env.NODE_ENV !== 'production' && this.state.error && (
@@ -75,14 +75,14 @@ export class ErrorBoundary extends React.Component<Props, State> {
             <button
               type="button"
               onClick={this.handleReset}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white text-sm font-bold shadow-md hover:shadow-lg transition-all"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white text-sm font-bold shadow-md hover:shadow-lg transition-all"
             >
               <RefreshCw className="h-4 w-4" />
               Coba Lagi
             </button>
             <a
               href="/home"
-              className="inline-flex items-center px-5 py-2.5 rounded-xl border border-[#E5E7EB] dark:border-[#2A2F3A] bg-white dark:bg-[#171A21] text-[#111827] dark:text-[#F9FAFB] text-sm font-bold hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] transition-all"
+              className="inline-flex items-center px-5 py-2.5 rounded-xl border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--card)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm font-bold hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] transition-all"
             >
               Ke Beranda
             </a>

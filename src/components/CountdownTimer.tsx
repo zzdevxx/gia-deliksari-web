@@ -75,7 +75,7 @@ export function CountdownTimer({
   if (!countdown || !currentService || !youthInfo || !hanaInfo) {
     return (
       <div className={`text-center py-4 ${className}`}>
-        <div className="animate-pulse text-[#5B6472] dark:text-[#9CA3AF]">
+        <div className="animate-pulse text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
           Memuat jadwal...
         </div>
       </div>
@@ -86,9 +86,9 @@ export function CountdownTimer({
   const isYouth = currentService === 'youth';
   
   // Keep service identity in the heading; the shared warm-stone surfaces carry the countdown.
-  const serviceColor = 'text-[#8B1E28] dark:text-[#E88086]';
-  const serviceBg = 'bg-[#F3F4F6] dark:bg-[#171A21]';
-  const serviceBorder = 'border-[#E5E7EB] dark:border-[#2A2F3A]';
+  const serviceColor = 'text-[var(--brand-text)] dark:text-[#E88086]';
+  const serviceBg = 'bg-[var(--surface-raised)] dark:bg-[var(--card)]';
+  const serviceBorder = 'border-[var(--border)] dark:border-[var(--border)]';
 
   const serviceIcon = isYouth ? (
     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -118,7 +118,7 @@ export function CountdownTimer({
       </div>
 
       {/* Description */}
-      <p className={`text-sm md:text-base text-[#5B6472] dark:text-[#9CA3AF] mb-3 md:mb-4`}>
+      <p className={`text-sm md:text-base text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] mb-3 md:mb-4`}>
         {info.description}
       </p>
 
@@ -147,28 +147,28 @@ export function CountdownTimer({
       </div>
 
       {showFullDetails && (
-        <div className="pt-3 md:pt-4 border-t border-[#E5E7EB] dark:border-[#2A2F3A] space-y-2 text-sm">
-          <div className="flex justify-between text-[#5B6472] dark:text-[#9CA3AF]">
+        <div className="pt-3 md:pt-4 border-t border-[var(--border)] dark:border-[var(--border)] space-y-2 text-sm">
+          <div className="flex justify-between text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
             <span>Perubahan berikutnya:</span>
-            <span className="font-medium text-[#111827] dark:text-[#F9FAFB]">
+            <span className="font-medium text-[var(--foreground)] dark:text-[var(--foreground)]">
               {formatIndonesianDate(info.nextChangeDate)}
             </span>
           </div>
-          <div className="flex justify-between text-[#5B6472] dark:text-[#9CA3AF]">
+          <div className="flex justify-between text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
             <span>Sisa waktu:</span>
-            <span className="font-medium text-[#111827] dark:text-[#F9FAFB]">
+            <span className="font-medium text-[var(--foreground)] dark:text-[var(--foreground)]">
               {info.daysUntilChange} hari lagi
             </span>
           </div>
-          <div className="flex justify-between text-[#5B6472] dark:text-[#9CA3AF]">
+          <div className="flex justify-between text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
             <span>Hari ini:</span>
-            <span className="font-medium text-[#111827] dark:text-[#F9FAFB]">
+            <span className="font-medium text-[var(--foreground)] dark:text-[var(--foreground)]">
               {isYouth ? 'Sabtu' : 'Minggu'}
             </span>
           </div>
-          <div className="flex justify-between text-[#5B6472] dark:text-[#9CA3AF]">
+          <div className="flex justify-between text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
             <span>Waktu:</span>
-            <span className="font-medium text-[#111827] dark:text-[#F9FAFB]">
+            <span className="font-medium text-[var(--foreground)] dark:text-[var(--foreground)]">
               {isYouth ? '18.00 - 20.00 WIB' : '18.00 / 18.30 WIB'}
             </span>
           </div>
@@ -192,7 +192,7 @@ function CountdownItem({
       <div className={`${color} font-mono font-bold text-2xl md:text-3xl leading-tight`}>
         {value.toString().padStart(2, '0')}
       </div>
-      <div className={`text-xs md:text-sm text-[#5B6472] dark:text-[#9CA3AF] mt-1 ${color}/80`}>
+      <div className={`text-xs md:text-sm text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] mt-1 ${color}/80`}>
         {label}
       </div>
     </div>

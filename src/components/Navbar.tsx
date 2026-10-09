@@ -96,8 +96,8 @@ export default function Navbar() {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#FFFFFF]/95 dark:bg-[#0F1115]/95 backdrop-blur-md shadow-xs border-b border-[#E5E7EB] dark:border-[#2A2F3A]'
-          : 'bg-[#FFFFFF]/85 dark:bg-[#0F1115]/85 backdrop-blur-sm border-b border-[#E5E7EB]/60 dark:border-[#2A2F3A]/60'
+          ? 'bg-[var(--background)]/95 dark:bg-[var(--card-inverted-bg)]/95 backdrop-blur-md shadow-xs border-b border-[var(--border)] dark:border-[var(--border)]'
+          : 'bg-[var(--background)]/85 dark:bg-[var(--card-inverted-bg)]/85 backdrop-blur-sm border-b border-[var(--border)]/60 dark:border-[var(--border)]/60'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -108,7 +108,7 @@ export default function Navbar() {
             className="flex items-center gap-3.5 group transition-transform active:scale-95"
             aria-label="Gereja Isa Almasih Deliksari Semarang - Kembali ke Beranda"
           >
-            <div className="relative w-11 h-11 rounded-2xl overflow-hidden shadow-xs border border-[#E5E7EB] dark:border-[#2A2F3A] bg-white dark:bg-[#171A21] p-0.5 group-hover:border-[#8B1E28] dark:group-hover:border-[#B8323D] transition-colors">
+            <div className="relative w-11 h-11 rounded-2xl overflow-hidden shadow-xs border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--card)] p-0.5 group-hover:border-[#8B1E28] dark:group-hover:border-[#B8323D] transition-colors">
               <Image
                 src="/images/logo.png"
                 alt="Logo Resmi GIA Deliksari Semarang"
@@ -120,14 +120,14 @@ export default function Navbar() {
             </div>
             <div className="flex flex-col">
               <div className="flex items-center gap-1.5">
-                <span className="font-extrabold text-base tracking-tight text-[#111827] dark:text-[#F9FAFB] group-hover:text-[#8B1E28] dark:group-hover:text-[#B8323D] transition-colors">
+                <span className="font-extrabold text-base tracking-tight text-[var(--foreground)] dark:text-[var(--foreground)] group-hover:text-[var(--brand-text)] dark:group-hover:text-[var(--brand-text)] transition-colors">
                   GIA DELIKSARI
                 </span>
-                <span className="text-[10px] font-bold text-[#5B6472] dark:text-[#9CA3AF] bg-[#F3F4F6] dark:bg-[#1F232D] px-1.5 py-0.2 rounded border border-[#E5E7EB] dark:border-[#2A2F3A] hidden sm:inline-block">
+                <span className="text-[10px] font-bold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] bg-[var(--surface-raised)] dark:bg-[#1F232D] px-1.5 py-0.2 rounded border border-[var(--border)] dark:border-[var(--border)] hidden sm:inline-block">
                   Semarang
                 </span>
               </div>
-              <span className="text-[11px] font-bold tracking-wide text-[#8B1E28] dark:text-[#B8323D]">
+              <span className="text-[11px] font-bold tracking-wide text-[var(--brand-text)] dark:text-[var(--brand-text)]">
                 Growing Church! 🔥
               </span>
             </div>
@@ -148,13 +148,13 @@ export default function Navbar() {
                   aria-current={isActive ? 'page' : undefined}
                   className={`relative px-3.5 py-2 rounded-xl text-xs font-semibold transition-all ${
                     isActive
-                      ? 'text-[#111827] dark:text-[#F9FAFB] bg-[#F3F4F6] dark:bg-[#1F232D] font-bold shadow-xs'
-                      : 'text-[#5B6472] dark:text-[#9CA3AF] hover:text-[#111827] dark:hover:text-[#F9FAFB] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D]'
+                      ? 'text-[var(--foreground)] dark:text-[var(--foreground)] bg-[var(--surface-raised)] dark:bg-[#1F232D] font-bold shadow-xs'
+                      : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)] dark:hover:text-[var(--foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D]'
                   }`}
                 >
                   {link.name}
                   {isActive && (
-                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-[#8B1E28] dark:bg-[#B8323D]" />
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-[var(--brand)] dark:bg-[var(--brand)]" />
                   )}
                 </Link>
               );
@@ -170,18 +170,18 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden shrink-0 p-2.5 rounded-xl text-[#111827] dark:text-[#F9FAFB] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B1E28]"
+            className="lg:hidden shrink-0 p-2.5 rounded-xl text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B1E28]"
             aria-label={isOpen ? 'Tutup navigasi' : 'Buka navigasi'}
             aria-expanded={isOpen}
           >
-            {isOpen ? <X className="w-5 h-5 text-[#8B1E28] dark:text-[#B8323D]" /> : <Menu className="w-5 h-5" />}
+            {isOpen ? <X className="w-5 h-5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
       {/* Scroll Progress Bar at bottom of header */}
       <div
-        className="h-[2px] bg-gradient-to-r from-[#8B1E28] to-[#8B1E28] transition-all duration-150 origin-left"
+        className="h-[2px] bg-gradient-to-r from-[var(--brand)] to-[var(--brand)] transition-all duration-150 origin-left"
         style={{ transform: `scaleX(${scrollProgress})` }}
         aria-hidden="true"
       />
@@ -192,14 +192,14 @@ export default function Navbar() {
         aria-label="Menu navigasi"
         aria-modal="true"
         hidden={!isOpen}
-        className={`lg:hidden bg-[#FFFFFF] dark:bg-[#0F1115] border-t border-[#E5E7EB] dark:border-[#2A2F3A] shadow-lg overflow-hidden transition-[max-height] duration-300 ease-out ${
+        className={`lg:hidden bg-[var(--background)] dark:bg-[var(--card-inverted-bg)] border-t border-[var(--border)] dark:border-[var(--border)] shadow-lg overflow-hidden transition-[max-height] duration-300 ease-out ${
           isOpen ? 'max-h-[85vh] overflow-y-auto' : 'max-h-0'
         }`}
       >
         <div className="px-4 pt-3 pb-6 space-y-5">
           {MOBILE_GROUPS.map((group) => (
             <div key={group.title}>
-              <p className="text-[10px] font-extrabold uppercase tracking-widest text-[#5B6472] dark:text-[#9CA3AF] px-4 mb-2">
+              <p className="text-[10px] font-extrabold uppercase tracking-widest text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] px-4 mb-2">
                 {group.title}
               </p>
               <ul className="space-y-1">
@@ -208,20 +208,20 @@ export default function Navbar() {
                     <Link
                       href={link.href}
                       onClick={closeSheet}
-                      className="flex items-start gap-3 px-4 py-2.5 rounded-xl hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] transition-colors group"
+                      className="flex items-start gap-3 px-4 py-2.5 rounded-xl hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] transition-colors group"
                     >
                       <span className="flex-1 min-w-0">
-                        <span className="block text-sm font-semibold text-[#111827] dark:text-[#F9FAFB] group-hover:text-[#8B1E28] dark:group-hover:text-[#B8323D] transition-colors">
+                        <span className="block text-sm font-semibold text-[var(--foreground)] dark:text-[var(--foreground)] group-hover:text-[var(--brand-text)] dark:group-hover:text-[var(--brand-text)] transition-colors">
                           {link.name}
                         </span>
                         {link.description && (
-                          <span className="block text-xs text-[#5B6472] dark:text-[#9CA3AF] mt-0.5">
+                          <span className="block text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] mt-0.5">
                             {link.description}
                           </span>
                         )}
                       </span>
                       <ChevronDown
-                        className="w-4 h-4 -rotate-90 text-[#9CA3AF] dark:text-[#9CA3AF] group-hover:text-[#8B1E28] dark:group-hover:text-[#B8323D] transition-colors shrink-0 mt-1"
+                        className="w-4 h-4 -rotate-90 text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] group-hover:text-[var(--brand-text)] dark:group-hover:text-[var(--brand-text)] transition-colors shrink-0 mt-1"
                         aria-hidden="true"
                       />
                     </Link>
@@ -230,15 +230,15 @@ export default function Navbar() {
               </ul>
             </div>
           ))}
-          <div className="pt-3 space-y-2 border-t border-[#E5E7EB] dark:border-[#2A2F3A]">
-            <div className="flex items-center justify-between px-4 py-2 rounded-xl bg-[#F3F4F6] dark:bg-[#1F232D]">
-              <span className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB]">Mode Tampilan</span>
+          <div className="pt-3 space-y-2 border-t border-[var(--border)] dark:border-[var(--border)]">
+            <div className="flex items-center justify-between px-4 py-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D]">
+              <span className="text-xs font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">Mode Tampilan</span>
               <ThemeToggle />
             </div>
             <Link
               href="/admin"
               onClick={closeSheet}
-              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-xs font-bold bg-[#8B1E28] hover:bg-[#731820] text-white shadow-xs"
+              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-xs font-bold bg-[var(--brand)] hover:bg-[#731820] text-white shadow-xs"
             >
               <ShieldCheck className="w-4 h-4" />
               <span>Masuk Admin Portal</span>

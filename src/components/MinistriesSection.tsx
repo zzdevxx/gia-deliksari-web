@@ -21,7 +21,7 @@ export default function MinistriesSection() {
       location: 'Gedung Utama (Sanctuary)',
       desc: 'Ibadah puncak persekutuan jemaat dengan pujian penyembahan DS Worship, firman penggembalaan, dan sakramen perjamuan kudus.',
       icon: Users,
-      tone: 'text-[#8B1E28] dark:text-[#B8323D]',
+      tone: 'text-[var(--brand-text)] dark:text-[var(--brand-text)]',
       badge: 'Ibadah Utama',
       instagram: 'https://www.instagram.com/giadeliksari/',
     },
@@ -45,7 +45,7 @@ export default function MinistriesSection() {
       location: 'Ruang Bethel',
       desc: 'Pendidikan karakter kristiani yang interaktif, puji-pujian sukacita, dan pengenalan firman Tuhan sejak usia dini sesuai kelompok umur.',
       icon: Baby,
-      tone: 'text-[#4B5563] dark:text-[#9CA3AF]',
+      tone: 'text-[#4B5563] dark:text-[var(--muted-foreground)]',
       badge: 'Sekolah Minggu',
       instagram: 'https://www.instagram.com/cockidz/',
     },
@@ -64,17 +64,17 @@ export default function MinistriesSection() {
   ];
 
   return (
-    <section id="pelayanan" className="py-20 sm:py-24 bg-[#F3F4F6]/50 dark:bg-[#0F1115] border-y border-[#E5E7EB] dark:border-[#2A2F3A] transition-colors">
+    <section id="pelayanan" className="py-20 sm:py-24 bg-[var(--surface-raised)]/50 dark:bg-[var(--card-inverted-bg)] border-y border-[var(--border)] dark:border-[var(--border)] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 text-sm font-semibold text-[#4B5563] dark:text-[#9CA3AF]">
+          <div className="inline-flex items-center gap-2 text-sm font-semibold text-[#4B5563] dark:text-[var(--muted-foreground)]">
             <Users className="w-4 h-4" aria-hidden="true" />
             <span>4 Komunitas Ibadah &amp; Pelayanan</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] tracking-tight">
             Wadah Bertumbuh Bagi Setiap Generasi
           </h2>
-          <p className="text-[#5B6472] dark:text-[#9CA3AF] text-base sm:text-lg leading-relaxed">
+          <p className="text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-base sm:text-lg leading-relaxed">
             Dari anak-anak, remaja, pemuda, hingga kaum wanita dan keluarga, temukan komunitas yang tepat untuk bertumbuh bersama kami.
           </p>
         </div>
@@ -85,55 +85,55 @@ export default function MinistriesSection() {
             return (
               <article
                 key={ministry.id}
-                className="rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] p-6 sm:p-8 flex flex-col"
+                className="rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] p-6 sm:p-8 flex flex-col"
               >
                 <div className="flex items-start justify-between gap-4">
-                  <div className="w-12 h-12 shrink-0 rounded-xl bg-[#F3F4F6] dark:bg-[#1F232D] flex items-center justify-center">
+                  <div className="w-12 h-12 shrink-0 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] flex items-center justify-center">
                     <MinistryIcon className={`w-6 h-6 ${ministry.tone}`} aria-hidden="true" />
                   </div>
-                  <span className="inline-flex items-center rounded-md bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] px-2.5 py-1 text-xs font-semibold text-[#5B6472] dark:text-[#9CA3AF]">
+                  <span className="inline-flex items-center rounded-md bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] px-2.5 py-1 text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
                     {ministry.badge}
                   </span>
                 </div>
 
                 <div className="mt-6">
-                  <h3 className="text-xl sm:text-2xl font-bold text-[#111827] dark:text-[#F9FAFB]">
+                  <h3 className="text-xl sm:text-2xl font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">
                     {ministry.title}
                   </h3>
-                  <p className="mt-1 text-sm font-semibold text-[#5B6472] dark:text-[#9CA3AF]">
+                  <p className="mt-1 text-sm font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
                     {ministry.subtitle}
                   </p>
                 </div>
 
-                <p className="mt-4 text-sm text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
+                <p className="mt-4 text-sm text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] leading-relaxed">
                   {ministry.desc}
                 </p>
 
-                <dl className="mt-6 space-y-3 rounded-xl bg-[#FFFFFF] dark:bg-[#1F232D] p-4">
+                <dl className="mt-6 space-y-3 rounded-xl bg-[var(--background)] dark:bg-[#1F232D] p-4">
                   <div className="flex items-start gap-3">
-                    <Clock className="mt-0.5 w-4 h-4 shrink-0 text-[#5B6472] dark:text-[#9CA3AF]" aria-hidden="true" />
+                    <Clock className="mt-0.5 w-4 h-4 shrink-0 text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]" aria-hidden="true" />
                     <div className="min-w-0">
-                      <dt className="text-xs font-semibold text-[#5B6472] dark:text-[#9CA3AF]">Jadwal</dt>
-                      <dd className="text-sm font-medium text-[#111827] dark:text-[#F9FAFB]">{ministry.schedule}</dd>
+                      <dt className="text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">Jadwal</dt>
+                      <dd className="text-sm font-medium text-[var(--foreground)] dark:text-[var(--foreground)]">{ministry.schedule}</dd>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <MapPin className="mt-0.5 w-4 h-4 shrink-0 text-[#5B6472] dark:text-[#9CA3AF]" aria-hidden="true" />
+                    <MapPin className="mt-0.5 w-4 h-4 shrink-0 text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]" aria-hidden="true" />
                     <div className="min-w-0">
-                      <dt className="text-xs font-semibold text-[#5B6472] dark:text-[#9CA3AF]">Lokasi</dt>
-                      <dd className="text-sm font-medium text-[#111827] dark:text-[#F9FAFB]">{ministry.location}</dd>
+                      <dt className="text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">Lokasi</dt>
+                      <dd className="text-sm font-medium text-[var(--foreground)] dark:text-[var(--foreground)]">{ministry.location}</dd>
                     </div>
                   </div>
                 </dl>
 
-                <div className="mt-6 border-t border-[#E5E7EB] dark:border-[#2A2F3A] pt-3">
+                <div className="mt-6 border-t border-[var(--border)] dark:border-[var(--border)] pt-3">
                   <a
                     href={ministry.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-11 items-center gap-2 rounded-md px-2 text-sm font-semibold text-[#5B6472] hover:text-[#8B1E28] dark:text-[#9CA3AF] dark:hover:text-[#B8323D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8B1E28] dark:focus-visible:outline-[#B8323D] transition-colors"
+                    className="inline-flex min-h-11 items-center gap-2 rounded-md px-2 text-sm font-semibold text-[var(--muted-foreground)] hover:text-[var(--brand-text)] dark:text-[var(--muted-foreground)] dark:hover:text-[var(--brand-text)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8B1E28] dark:focus-visible:outline-[#B8323D] transition-colors"
                   >
-                    <InstagramIcon className="w-4 h-4 text-[#8B1E28] dark:text-[#B8323D]" />
+                    <InstagramIcon className="w-4 h-4 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
                     <span>Instagram</span>
                   </a>
                 </div>

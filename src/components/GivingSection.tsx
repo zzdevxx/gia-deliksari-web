@@ -66,7 +66,7 @@ export default function GivingSection() {
       accountNumber: '2521151515',
       accountHolder: 'GIA DELIKSARI SEMARANG',
       note: 'Transfer via ATM / Mobile Banking / Internet Banking',
-      color: 'border-[#E5E7EB] dark:border-[#2A2F3A]',
+      color: 'border-[var(--border)] dark:border-[var(--border)]',
     },
     {
       id: 'bri',
@@ -74,7 +74,7 @@ export default function GivingSection() {
       accountNumber: '034201001515150',
       accountHolder: 'GIA DELIKSARI SEMARANG',
       note: 'Dapat transfer dari seluruh jaringan ATM Bersama / Prima',
-      color: 'border-[#E5E7EB] dark:border-[#2A2F3A]',
+      color: 'border-[var(--border)] dark:border-[var(--border)]',
     },
   ];
 
@@ -102,29 +102,29 @@ export default function GivingSection() {
   )}`;
 
   return (
-    <section id="persembahan" className="py-24 bg-[#F3F4F6]/60 dark:bg-[#12141A]/60 border-y border-[#E5E7EB] dark:border-[#2A2F3A] transition-colors">
+    <section id="persembahan" className="py-24 bg-[var(--surface-raised)]/60 dark:bg-[#12141A]/60 border-y border-[var(--border)] dark:border-[var(--border)] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#5B6472] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
-            <Heart className="w-3.5 h-3.5 fill-[#8B1E28] text-[#8B1E28] dark:text-[#E88086]" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
+            <Heart className="w-3.5 h-3.5 fill-[var(--brand)] text-[var(--brand-text)] dark:text-[#E88086]" />
             <span>Persembahan Kasih & Persepuluhan</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] tracking-tight">
             Mendukung Pekerjaan Rumah Tuhan
           </h2>
-          <p className="text-[#5B6472] dark:text-[#9CA3AF] text-base sm:text-lg leading-relaxed">
+          <p className="text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-base sm:text-lg leading-relaxed">
             &ldquo;Hendaklah masing-masing memberikan menurut kerelaan hatinya, jangan dengan sedih hati atau karena paksaan, sebab Allah mengasihi orang yang memberi dengan sukacita.&rdquo; <span className="font-semibold">(2 Korintus 9:7)</span>
           </p>
         </div>
 
         {/* Pos Persembahan Selector Tabs */}
         <div className="mb-10 max-w-4xl mx-auto">
-          <div className="text-xs font-bold text-[#5B6472] dark:text-[#9CA3AF] uppercase tracking-wider text-center mb-3">
+          <div className="text-xs font-bold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] uppercase tracking-wider text-center mb-3">
             Pilih Peruntukan Pos Persembahan:
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 p-1.5 rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-xs">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 p-1.5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-xs">
             {categories.map((cat) => {
               const isActive = selectedCategory === cat.id;
               return (
@@ -134,8 +134,8 @@ export default function GivingSection() {
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`py-3 px-3 rounded-xl text-xs font-bold transition-all text-center flex flex-col items-center justify-center gap-1 ${
                     isActive
-                      ? 'bg-[#8B1E28] dark:bg-[#B8323D] text-white shadow-xs scale-[1.02]'
-                      : 'text-[#5B6472] dark:text-[#9CA3AF] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D]'
+                      ? 'bg-[var(--brand)] dark:bg-[var(--brand)] text-white shadow-xs scale-[1.02]'
+                      : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D]'
                   }`}
                 >
                   <span>{cat.name}</span>
@@ -144,10 +144,10 @@ export default function GivingSection() {
             })}
           </div>
           <div className="mt-3.5 text-center px-4">
-            <p className="text-xs sm:text-sm text-[#111827] dark:text-[#F9FAFB] font-medium">
+            <p className="text-xs sm:text-sm text-[var(--foreground)] dark:text-[var(--foreground)] font-medium">
               {currentCategoryObj.desc}
             </p>
-            <p className="text-[11px] text-[#8B1E28] dark:text-[#E88086] italic mt-1">
+            <p className="text-[11px] text-[var(--brand-text)] dark:text-[#E88086] italic mt-1">
               {currentCategoryObj.verse}
             </p>
           </div>
@@ -157,32 +157,32 @@ export default function GivingSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
 
           {/* 1. Kotak Persembahan (Offline) */}
-          <div className="p-7 rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-6 ">
+          <div className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-6 ">
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white bg-[#8B1E28] dark:bg-[#B8323D]">
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white bg-[var(--brand)] dark:bg-[var(--brand)]">
                   <Box className="w-8 h-8" />
                 </div>
-                <span className="inline-block px-3 py-1 rounded-xl text-xs font-bold border bg-[#FBF1F2] text-[#8B1E28] border-[#E8C2C5] dark:bg-[#261517] dark:text-[#E88086] dark:border-[#52252A]">
+                <span className="inline-block px-3 py-1 rounded-xl text-xs font-bold border bg-[#FBF1F2] text-[var(--brand-text)] border-[#E8C2C5] dark:bg-[#261517] dark:text-[#E88086] dark:border-[#52252A]">
                   Ibadah Onsite
                 </span>
               </div>
 
               <div>
-                <h3 className="font-extrabold text-lg text-[#111827] dark:text-[#F9FAFB]">
+                <h3 className="font-extrabold text-lg text-[var(--foreground)] dark:text-[var(--foreground)]">
                   Kotak Persembahan
                 </h3>
-                <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] mt-0.5">
+                <p className="text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] mt-0.5">
                   Tersedia di Gedung Gereja
                 </p>
               </div>
 
-              <p className="text-xs sm:text-sm text-[#5B6472] dark:text-[#9CA3AF] leading-relaxed">
+              <p className="text-xs sm:text-sm text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] leading-relaxed">
                 Dapat dimasukkan langsung ke kotak persembahan yang terletak di lobi utama depan pintu masuk ruang ibadah.
               </p>
 
-              <div className="p-3.5 rounded-2xl bg-[#F3F4F6]/80 dark:bg-[#1F232D]/80 border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs text-[#5B6472] dark:text-[#9CA3AF] space-y-1.5">
-                <div className="font-bold text-[#111827] dark:text-[#F9FAFB]">
+              <div className="p-3.5 rounded-2xl bg-[var(--surface-raised)]/80 dark:bg-[#1F232D]/80 border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] space-y-1.5">
+                <div className="font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">
                   3 Kotak Tersedia:
                 </div>
                 <ul className="list-disc pl-4 space-y-1 text-[11px]">
@@ -192,28 +192,28 @@ export default function GivingSection() {
               </div>
             </div>
 
-            <div className="pt-2 text-center text-xs text-[#5B6472] dark:text-[#9CA3AF]">
+            <div className="pt-2 text-center text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
               Amplop persembahan tersedia di meja usher.
             </div>
           </div>
 
           {/* 2. Transfer Bank (BCA & BRI) */}
-          <div className="p-7 rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-6 ">
+          <div className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-6 ">
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white bg-[#475569]">
                   <CreditCard className="w-8 h-8" />
                 </div>
-                <span className="inline-block px-3 py-1 rounded-xl text-xs font-bold border bg-[#F9FAFB] text-[#475569] border-[#E5E7EB] dark:bg-[#1E293B] dark:text-[#64748B] dark:border-[#334155]">
+                <span className="inline-block px-3 py-1 rounded-xl text-xs font-bold border bg-[#F9FAFB] text-[#475569] border-[var(--border)] dark:bg-[#1E293B] dark:text-[#64748B] dark:border-[#334155]">
                   Transfer Bank
                 </span>
               </div>
 
               <div>
-                <h3 className="font-extrabold text-lg text-[#111827] dark:text-[#F9FAFB]">
+                <h3 className="font-extrabold text-lg text-[var(--foreground)] dark:text-[var(--foreground)]">
                   Rekening Bank Resmi
                 </h3>
-                <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] mt-0.5">
+                <p className="text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] mt-0.5">
                   Salin nomor rekening dengan 1 klik
                 </p>
               </div>
@@ -223,13 +223,13 @@ export default function GivingSection() {
                 {bankAccounts.map((bank) => (
                   <div
                     key={bank.id}
-                    className={`p-3.5 rounded-2xl bg-[#FFFFFF] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] ${bank.color}`}
+                    className={`p-3.5 rounded-2xl bg-[var(--background)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] ${bank.color}`}
                   >
-                    <div className="flex items-center justify-between text-xs font-bold text-[#111827] dark:text-[#F9FAFB] mb-1">
+                    <div className="flex items-center justify-between text-xs font-bold text-[var(--foreground)] dark:text-[var(--foreground)] mb-1">
                       <span>{bank.bankName}</span>
                     </div>
                     <div className="flex items-center justify-between gap-2">
-                      <span className="font-mono text-base font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-wider">
+                      <span className="font-mono text-base font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] tracking-wider">
                         {bank.accountNumber}
                       </span>
                       <button
@@ -238,7 +238,7 @@ export default function GivingSection() {
                         className={`px-2.5 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all ${
                           copiedKey === bank.id
                             ? 'bg-emerald-600 text-white'
-                            : 'bg-[#F3F4F6] dark:bg-[#1F232D] text-[#111827] dark:text-[#F9FAFB] hover:bg-[#F3F4F6] dark:hover:bg-[#4A161D]'
+                            : 'bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#4A161D]'
                         }`}
                         title="Salin Nomor Rekening"
                       >
@@ -249,13 +249,13 @@ export default function GivingSection() {
                           </>
                         ) : (
                           <>
-                            <Copy className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#E88086]" />
+                            <Copy className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[#E88086]" />
                             <span>Salin</span>
                           </>
                         )}
                       </button>
                     </div>
-                    <div className="text-[11px] text-[#5B6472] dark:text-[#9CA3AF] mt-1">
+                    <div className="text-[11px] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] mt-1">
                       a.n. {bank.accountHolder}
                     </div>
                   </div>
@@ -263,13 +263,13 @@ export default function GivingSection() {
               </div>
             </div>
 
-            <p className="text-[11px] text-[#5B6472] dark:text-[#9CA3AF] italic text-center">
+            <p className="text-[11px] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] italic text-center">
               Mohon beri berita transfer: &ldquo;{currentCategoryObj.name}&rdquo;
             </p>
           </div>
 
           {/* 3. QRIS Digital Payment */}
-          <div className="p-7 rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-6 ">
+          <div className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-6 ">
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white bg-[#16A34A]">
@@ -281,10 +281,10 @@ export default function GivingSection() {
               </div>
 
               <div>
-                <h3 className="font-extrabold text-lg text-[#111827] dark:text-[#F9FAFB]">
+                <h3 className="font-extrabold text-lg text-[var(--foreground)] dark:text-[var(--foreground)]">
                   QRIS Semua E-Wallet
                 </h3>
-                <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] mt-0.5">
+                <p className="text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] mt-0.5">
                   BCA, Mandiri, GoPay, OVO, Dana, ShopeePay
                 </p>
               </div>
@@ -292,7 +292,7 @@ export default function GivingSection() {
               {/* QR Code Card Preview */}
               <div
                 onClick={() => setShowQrisModal(true)}
-                className="group relative cursor-pointer p-4 rounded-2xl bg-[#FFFFFF] dark:bg-[#1F232D] border-2 border-dashed border-emerald-300 dark:border-emerald-800 flex flex-col items-center justify-center hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 transition-all"
+                className="group relative cursor-pointer p-4 rounded-2xl bg-[var(--background)] dark:bg-[#1F232D] border-2 border-dashed border-emerald-300 dark:border-emerald-800 flex flex-col items-center justify-center hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 transition-all"
               >
                 <div className="w-32 h-32 rounded-xl bg-white p-2 border border-slate-200 flex flex-col items-center justify-center shadow-xs">
                   {/* Stylized QR Code SVG */}
@@ -319,7 +319,7 @@ export default function GivingSection() {
                 </div>
               </div>
 
-              <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] text-center">
+              <p className="text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-center">
                 Mendukung seluruh m-Banking dan dompet digital berlogo QRIS Nasional.
               </p>
             </div>
@@ -337,21 +337,21 @@ export default function GivingSection() {
         </div>
 
         {/* Dynamic WhatsApp Confirmation Strip */}
-        <div className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3.5 text-center sm:text-left">
-            <div className="w-11 h-11 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] flex items-center justify-center text-[#8B1E28] dark:text-[#E88086] shrink-0">
+            <div className="w-11 h-11 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] flex items-center justify-center text-[var(--brand-text)] dark:text-[#E88086] shrink-0">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h4 className="text-sm font-bold text-[#111827] dark:text-[#F9FAFB]">
+                <h4 className="text-sm font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">
                   Konfirmasi Persembahan {currentCategoryObj.name}
                 </h4>
-                <span className="hidden sm:inline-block px-2 py-0.5 rounded-md bg-[#F3F4F6] dark:bg-[#1F232D] text-[10px] font-bold text-[#8B1E28] dark:text-[#E88086] border border-[#E5E7EB] dark:border-[#2A2F3A]">
+                <span className="hidden sm:inline-block px-2 py-0.5 rounded-md bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[10px] font-bold text-[var(--brand-text)] dark:text-[#E88086] border border-[var(--border)] dark:border-[var(--border)]">
                   Terpilih
                 </span>
               </div>
-              <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF] mt-0.5">
+              <p className="text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] mt-0.5">
                 Kirimkan bukti transfer untuk pencatatan persembahan dan tanda terima warta jemaat.
               </p>
             </div>
@@ -361,7 +361,7 @@ export default function GivingSection() {
             href={whatsappConfirmUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto px-5 py-3 rounded-xl bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] hover:from-[#A81B26] hover:to-[#6E0F16] text-white text-xs font-bold shadow-xs flex items-center justify-center gap-2 shrink-0 transition-all active:scale-95"
+            className="w-full sm:w-auto px-5 py-3 rounded-xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] hover:from-[#A81B26] hover:to-[#6E0F16] text-white text-xs font-bold shadow-xs flex items-center justify-center gap-2 shrink-0 transition-all active:scale-95"
           >
             <WhatsAppIcon className="w-4 h-4 text-emerald-400" />
             <span>Konfirmasi {currentCategoryObj.name}</span>
@@ -379,7 +379,7 @@ export default function GivingSection() {
           onClick={() => setShowQrisModal(false)}
         >
           <div
-            className="relative w-full max-w-sm rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-2xl p-6 sm:p-7 flex flex-col items-center text-center space-y-4 animate-in zoom-in-95 duration-200"
+            className="relative w-full max-w-sm rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-2xl p-6 sm:p-7 flex flex-col items-center text-center space-y-4 animate-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
@@ -394,13 +394,13 @@ export default function GivingSection() {
 
             {/* Header Modal */}
             <div className="space-y-1">
-              <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#8B1E28] dark:text-[#E88086]">
+              <span className="text-[10px] font-extrabold uppercase tracking-widest text-[var(--brand-text)] dark:text-[#E88086]">
                 QRIS Pembayaran Nasional
               </span>
-              <h3 className="text-lg font-black text-[#111827] dark:text-[#F9FAFB]">
+              <h3 className="text-lg font-black text-[var(--foreground)] dark:text-[var(--foreground)]">
                 GIA DELIKSARI SEMARANG
               </h3>
-              <p className="text-[11px] text-[#5B6472] dark:text-[#9CA3AF]">
+              <p className="text-[11px] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
                 Tersedia di Meja Penerimaan & Lobi Ibadah Gereja
               </p>
             </div>
@@ -457,11 +457,11 @@ export default function GivingSection() {
             </div>
 
             {/* Instruction Steps */}
-            <div className="w-full text-left p-3.5 rounded-xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs space-y-1.5">
-              <div className="font-bold text-[#111827] dark:text-[#F9FAFB]">
+            <div className="w-full text-left p-3.5 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-xs space-y-1.5">
+              <div className="font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">
                 Informasi Persembahan Non-Tunai:
               </div>
-              <ul className="list-disc pl-4 space-y-0.5 text-[11px] text-[#5B6472] dark:text-[#9CA3AF]">
+              <ul className="list-disc pl-4 space-y-0.5 text-[11px] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
                 <li>Barcode QRIS fisik resmi terpasang di kotak persembahan dan lobi gereja.</li>
                 <li>Mendukung seluruh m-Banking (BCA, Mandiri, BRI, dll) dan dompet digital (GoPay, OVO, Dana).</li>
                 <li>Untuk info rekening gereja terkini, hubungi WhatsApp Pastoral: <strong>0896-2096-1103</strong>.</li>
@@ -473,7 +473,7 @@ export default function GivingSection() {
               <button
                 type="button"
                 onClick={() => setShowQrisModal(false)}
-                className="flex-1 py-2.5 rounded-xl border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs font-bold text-[#5B6472] dark:text-[#9CA3AF] hover:bg-[#F3F4F6] dark:hover:bg-[#1F232D] transition-colors"
+                className="flex-1 py-2.5 rounded-xl border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] transition-colors"
               >
                 Tutup
               </button>

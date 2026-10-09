@@ -57,16 +57,16 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#FFFFFF] dark:bg-[#0F1115] border-t border-[#E5E7EB] dark:border-[#2A2F3A] text-[#5B6472] dark:text-[#9CA3AF] transition-colors">
+    <footer className="bg-[var(--background)] dark:bg-[var(--card-inverted-bg)] border-t border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] transition-colors">
       {/* Newsletter Strip */}
-      <div className="border-b border-[#E5E7EB] dark:border-[#2A2F3A] bg-[#F3F4F6]/50 dark:bg-[#12141A]/50">
+      <div className="border-b border-[var(--border)] dark:border-[var(--border)] bg-[var(--surface-raised)]/50 dark:bg-[#12141A]/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-md">
-              <h3 className="font-extrabold text-lg sm:text-xl text-[#111827] dark:text-[#F9FAFB]">
+              <h3 className="font-extrabold text-lg sm:text-xl text-[var(--foreground)] dark:text-[var(--foreground)]">
                 Warta Mingguan di Inbox Anda
               </h3>
-              <p className="mt-1 text-sm text-[#5B6472] dark:text-[#9CA3AF]">
+              <p className="mt-1 text-sm text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
                 Dapatkan jadwal ibadah, renungan, dan info kegiatan jemaat setiap minggu.
               </p>
             </div>
@@ -80,7 +80,7 @@ export default function Footer() {
               </label>
               <div className="relative flex-1">
                 <Mail
-                  className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8B1E28] dark:text-[#B8323D] pointer-events-none"
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--brand-text)] dark:text-[var(--brand-text)] pointer-events-none"
                   aria-hidden="true"
                 />
                 <input
@@ -90,13 +90,13 @@ export default function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="email@contoh.com"
-                  className="w-full rounded-full border border-[#E5E7EB] dark:border-[#2A2F3A] bg-white dark:bg-[#171A21] pl-10 pr-4 py-3 text-sm text-[#111827] dark:text-[#F9FAFB] placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28]"
+                  className="w-full rounded-full border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--card)] pl-10 pr-4 py-3 text-sm text-[var(--foreground)] dark:text-[var(--foreground)] placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28]"
                 />
               </div>
               <button
                 type="submit"
                 disabled={subscribed}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full font-bold text-sm bg-[#8B1E28] hover:bg-[#731820] text-white shadow-xs hover:-translate-y-0.5 active:scale-[0.97] transition-all disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full font-bold text-sm bg-[var(--brand)] hover:bg-[#731820] text-white shadow-xs hover:-translate-y-0.5 active:scale-[0.97] transition-all disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {subscribed ? (
                   <>
@@ -121,7 +121,7 @@ export default function Footer() {
           {/* Col 1: Church Brand */}
           <div className="lg:col-span-4 space-y-4">
             <Link href="/home" className="flex items-center gap-3 group" aria-label="GIA Deliksari - Beranda">
-              <div className="relative w-12 h-12 rounded-2xl overflow-hidden border border-[#E5E7EB] dark:border-[#2A2F3A] bg-white dark:bg-[#171A21] p-0.5 shadow-xs group-hover:scale-105 transition-transform">
+              <div className="relative w-12 h-12 rounded-2xl overflow-hidden border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--card)] p-0.5 shadow-xs group-hover:scale-105 transition-transform">
                 <Image
                   src="/images/logo.png"
                   alt="Logo GIA Deliksari"
@@ -131,10 +131,10 @@ export default function Footer() {
                 />
               </div>
               <div>
-                <span className="font-extrabold text-base text-[#111827] dark:text-[#F9FAFB] block">
+                <span className="font-extrabold text-base text-[var(--foreground)] dark:text-[var(--foreground)] block">
                   GIA Deliksari Semarang
                 </span>
-                <span className="text-xs font-bold text-[#8B1E28] dark:text-[#B8323D]">
+                <span className="text-xs font-bold text-[var(--brand-text)] dark:text-[var(--brand-text)]">
                   Growing Church! 🔥
                 </span>
               </div>
@@ -147,11 +147,11 @@ export default function Footer() {
 
             <ul className="space-y-2 text-sm">
               <li className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-[#4B5563] dark:text-[#9CA3AF] shrink-0 mt-0.5" aria-hidden="true" />
+                <MapPin className="w-4 h-4 text-[#4B5563] dark:text-[var(--muted-foreground)] shrink-0 mt-0.5" aria-hidden="true" />
                 <span>Jl. Kolonel Hadijanto, Deliksari, Gunungpati, Semarang 50229</span>
               </li>
               <li className="flex items-start gap-2">
-                <Clock className="w-4 h-4 text-[#4B5563] dark:text-[#9CA3AF] shrink-0 mt-0.5" aria-hidden="true" />
+                <Clock className="w-4 h-4 text-[#4B5563] dark:text-[var(--muted-foreground)] shrink-0 mt-0.5" aria-hidden="true" />
                 <span>Ibadah Raya: Minggu, 09.00 WIB</span>
               </li>
             </ul>
@@ -163,7 +163,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram GIA Deliksari"
-                className="w-10 h-10 rounded-xl bg-[#F3F4F6] dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] flex items-center justify-center text-[#5B6472] dark:text-[#9CA3AF] hover:text-[#8B1E28] dark:hover:text-[#B8323D] hover:border-[#8B1E28] dark:hover:border-[#B8323D] transition-colors"
+                className="w-10 h-10 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex items-center justify-center text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--brand-text)] dark:hover:text-[var(--brand-text)] hover:border-[#8B1E28] dark:hover:border-[#B8323D] transition-colors"
               >
                 <InstagramIcon className="w-4 h-4" />
               </a>
@@ -172,7 +172,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube GIA Deliksari"
-                className="w-10 h-10 rounded-xl bg-[#F3F4F6] dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] flex items-center justify-center text-[#5B6472] dark:text-[#9CA3AF] hover:text-[#8B1E28] dark:hover:text-[#B8323D] hover:border-[#8B1E28] dark:hover:border-[#B8323D] transition-colors"
+                className="w-10 h-10 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex items-center justify-center text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--brand-text)] dark:hover:text-[var(--brand-text)] hover:border-[#8B1E28] dark:hover:border-[#B8323D] transition-colors"
               >
                 <YouTubeIcon className="w-4 h-4" />
               </a>
@@ -183,7 +183,7 @@ export default function Footer() {
           <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-8">
             {FOOTER_NAV.map((group) => (
               <div key={group.title}>
-                <h4 className="font-extrabold text-xs uppercase tracking-wider text-[#111827] dark:text-[#F9FAFB] mb-3">
+                <h4 className="font-extrabold text-xs uppercase tracking-wider text-[var(--foreground)] dark:text-[var(--foreground)] mb-3">
                   {group.title}
                 </h4>
                 <ul className="space-y-2">
@@ -191,9 +191,9 @@ export default function Footer() {
                     <li key={link.href}>
                       <a
                         href={link.href}
-                        className="text-sm hover:text-[#8B1E28] dark:hover:text-[#B8323D] transition-colors inline-flex items-center gap-1.5 group"
+                        className="text-sm hover:text-[var(--brand-text)] dark:hover:text-[var(--brand-text)] transition-colors inline-flex items-center gap-1.5 group"
                       >
-                        <span className="w-1 h-1 rounded-full bg-[#4B5563]/60 group-hover:w-3 group-hover:bg-[#8B1E28] dark:group-hover:bg-[#B8323D] transition-all" />
+                        <span className="w-1 h-1 rounded-full bg-[#4B5563]/60 group-hover:w-3 group-hover:bg-[var(--brand)] dark:group-hover:bg-[var(--brand)] transition-all" />
                         {link.name}
                       </a>
                     </li>
@@ -205,14 +205,14 @@ export default function Footer() {
         </div>
 
         {/* Bottom Copyright */}
-        <div className="mt-12 pt-6 border-t border-[#E5E7EB] dark:border-[#2A2F3A] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#5B6472] dark:text-[#9CA3AF]">
+        <div className="mt-12 pt-6 border-t border-[var(--border)] dark:border-[var(--border)] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
           <p>
             © {currentYear} Gereja Isa Almasih (GIA) Deliksari Semarang.
             <span className="hidden sm:inline"> Hak Cipta Dilindungi.</span>
           </p>
           <p className="flex items-center gap-1.5">
             <span>Dibuat dengan</span>
-            <Heart className="w-3.5 h-3.5 fill-[#8B1E28] text-[#8B1E28] dark:fill-[#B8323D] dark:text-[#B8323D]" aria-hidden="true" />
+            <Heart className="w-3.5 h-3.5 fill-[var(--brand)] text-[var(--brand-text)] dark:fill-[var(--brand)] dark:text-[var(--brand-text)]" aria-hidden="true" />
             <span>untuk Kemuliaan Kristus</span>
           </p>
         </div>

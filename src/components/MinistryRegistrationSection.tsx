@@ -103,25 +103,25 @@ export default function MinistryRegistrationSection() {
   };
 
   return (
-    <section id="layanan" className="py-24 bg-[#FFFFFF] dark:bg-[#0F1115] transition-colors">
+    <section id="layanan" className="py-24 bg-[var(--background)] dark:bg-[var(--card-inverted-bg)] transition-colors">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center mb-12 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#5B6472] dark:text-[#9CA3AF] text-xs font-bold uppercase tracking-wider">
-            <HeartHandshake className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#E88086]" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
+            <HeartHandshake className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[#E88086]" />
             <span>Layanan Jemaat & Formulir Digital</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111827] dark:text-[#F9FAFB] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] tracking-tight">
             Bagaimana Kami Dapat Melayani Anda?
           </h2>
-          <p className="text-[#5B6472] dark:text-[#9CA3AF] text-base sm:text-lg leading-relaxed">
+          <p className="text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-base sm:text-lg leading-relaxed">
             Sampaikan pokok doa, pendaftaran sakramen baptisan, gabung kelompok sel, atau kerinduan melayani pekerjaan Tuhan.
           </p>
         </div>
 
         {/* 4 Tabs Selector */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 p-2 bg-[#F3F4F6] dark:bg-[#171A21] rounded-2xl sm:rounded-3xl border border-[#E5E7EB] dark:border-[#2A2F3A] mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 p-2 bg-[var(--surface-raised)] dark:bg-[var(--card)] rounded-2xl sm:rounded-3xl border border-[var(--border)] dark:border-[var(--border)] mb-8">
           {[
             { id: 'prayer', label: 'Doa & Konseling', icon: HeartHandshake },
             { id: 'sacrament', label: 'Sakramen Kudus', icon: Droplet },
@@ -137,8 +137,8 @@ export default function MinistryRegistrationSection() {
                 onClick={() => setActiveTab(tab.id as ServiceType)}
                 className={`py-3 px-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold flex flex-col sm:flex-row items-center justify-center gap-1.5 transition-all ${
                   isActive
-                    ? 'bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white shadow-sm'
-                    : 'text-[#5B6472] dark:text-[#9CA3AF] hover:bg-white/60 dark:hover:bg-[#1F232D]'
+                    ? 'bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white shadow-sm'
+                    : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-white/60 dark:hover:bg-[#1F232D]'
                 }`}
               >
                 <Icon className="w-4 h-4 shrink-0" />
@@ -149,16 +149,16 @@ export default function MinistryRegistrationSection() {
         </div>
 
         {/* Form Container */}
-        <div className="p-8 sm:p-12 rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-sm">
+        <div className="p-8 sm:p-12 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm">
           {isSubmitted ? (
             <div className="py-12 text-center space-y-4 animate-in fade-in zoom-in-95">
               <div className="w-16 h-16 rounded-3xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 flex items-center justify-center mx-auto shadow-xs">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-extrabold text-[#111827] dark:text-[#F9FAFB]">
+              <h3 className="text-2xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)]">
                 Formulir Berhasil Dikirim & Tersimpan!
               </h3>
-              <p className="text-xs sm:text-sm text-[#5B6472] dark:text-[#9CA3AF] max-w-md mx-auto">
+              <p className="text-xs sm:text-sm text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] max-w-md mx-auto">
                 Permohonan Anda telah tercatat dalam sistem layanan gereja dan diteruskan ke WhatsApp Tim Pastoral GIA Deliksari.
               </p>
             </div>
@@ -167,8 +167,8 @@ export default function MinistryRegistrationSection() {
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB]">
-                    Nama Lengkap <span className="text-[#8B1E28] dark:text-[#E88086]">*</span>
+                  <label className="text-xs font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">
+                    Nama Lengkap <span className="text-[var(--brand-text)] dark:text-[#E88086]">*</span>
                   </label>
                   <input
                     type="text"
@@ -176,16 +176,16 @@ export default function MinistryRegistrationSection() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Contoh: Andreas Handoko"
-                    className="w-full px-4 py-3.5 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-sm text-[#111827] dark:text-[#F9FAFB] focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28] outline-none transition-all"
+                    className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28] outline-none transition-all"
                   />
                 </div>
 
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <label className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB]">
-                      Nomor WhatsApp / HP <span className="text-[#8B1E28] dark:text-[#E88086]">*</span>
+                    <label className="text-xs font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">
+                      Nomor WhatsApp / HP <span className="text-[var(--brand-text)] dark:text-[#E88086]">*</span>
                     </label>
-                    <span className="text-[10px] text-[#5B6472] dark:text-[#9CA3AF]">
+                    <span className="text-[10px] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
                       Aktif WhatsApp
                     </span>
                   </div>
@@ -197,7 +197,7 @@ export default function MinistryRegistrationSection() {
                     placeholder="Contoh: 081234567890"
                     pattern="^(\+62|62|0)8[1-9][0-9]{6,11}$"
                     title="Masukkan nomor WhatsApp Indonesia yang valid (contoh: 081234567890)"
-                    className="w-full px-4 py-3.5 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-sm text-[#111827] dark:text-[#F9FAFB] focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28] outline-none transition-all"
+                    className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28] outline-none transition-all"
                   />
                 </div>
               </div>
@@ -206,13 +206,13 @@ export default function MinistryRegistrationSection() {
               {activeTab === 'prayer' && (
                 <div className="space-y-6 animate-in fade-in">
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB]">
+                    <label className="text-xs font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">
                       Kategori Permohonan Doa
                     </label>
                     <select
                       value={prayerType}
                       onChange={(e) => setPrayerType(e.target.value)}
-                      className="w-full px-4 py-3.5 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-sm text-[#111827] dark:text-[#F9FAFB] focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28] outline-none transition-all"
+                      className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28] outline-none transition-all"
                     >
                       <option value="Doa Kesembuhan">Doa Kesembuhan / Sakit Penyakit</option>
                       <option value="Pemulihan Keluarga / Pernikahan">Pemulihan Keluarga / Pernikahan</option>
@@ -222,13 +222,13 @@ export default function MinistryRegistrationSection() {
                     </select>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] flex items-center justify-between gap-4">
+                  <div className="p-4 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] flex items-center justify-between gap-4">
                     <div className="space-y-0.5">
-                      <div className="text-xs font-bold text-[#8B1E28] dark:text-[#E88086] flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5 text-[#8B1E28] dark:text-[#E88086]" />
+                      <div className="text-xs font-bold text-[var(--brand-text)] dark:text-[#E88086] flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[#E88086]" />
                         <span>Kunjungan Pastoral Hari Selasa</span>
                       </div>
-                      <p className="text-[11px] text-[#5B6472] dark:text-[#9CA3AF]">
+                      <p className="text-[11px] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
                         Centang jika Anda / keluarga memohon kunjungan doa hamba Tuhan ke rumah/rumah sakit di hari Selasa.
                       </p>
                     </div>
@@ -239,7 +239,7 @@ export default function MinistryRegistrationSection() {
                         onChange={(e) => setNeedPastoralVisit(e.target.checked)}
                         className="sr-only peer"
                       />
-                      <div className="w-11 h-6 bg-stone-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-stone-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#8B1E28]"></div>
+                      <div className="w-11 h-6 bg-stone-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-stone-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[var(--brand)]"></div>
                     </label>
                   </div>
                 </div>
@@ -247,13 +247,13 @@ export default function MinistryRegistrationSection() {
 
               {activeTab === 'sacrament' && (
                 <div className="space-y-2 animate-in fade-in">
-                  <label className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB]">
+                  <label className="text-xs font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">
                     Pilih Pelayanan Sakramen / Upacara Kudus
                   </label>
                   <select
                     value={sacramentType}
                     onChange={(e) => setSacramentType(e.target.value)}
-                    className="w-full px-4 py-3.5 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-sm text-[#111827] dark:text-[#F9FAFB] focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28] outline-none transition-all"
+                    className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28] outline-none transition-all"
                   >
                     <option value="Baptisan Selam">Baptisan Selam Dewasa</option>
                     <option value="Penyerahan Anak / Bayi">Penyerahan Anak / Bayi Dedication</option>
@@ -265,13 +265,13 @@ export default function MinistryRegistrationSection() {
 
               {activeTab === 'komsel' && (
                 <div className="space-y-2 animate-in fade-in">
-                  <label className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB]">
+                  <label className="text-xs font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">
                     Wilayah / Area Domisili Tempat Tinggal
                   </label>
                   <select
                     value={komselArea}
                     onChange={(e) => setKomselArea(e.target.value)}
-                    className="w-full px-4 py-3.5 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-sm text-[#111827] dark:text-[#F9FAFB] focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28] outline-none transition-all"
+                    className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28] outline-none transition-all"
                   >
                     <option value="Deliksari / Sukorejo">Komsel Wilayah Deliksari / Sukorejo</option>
                     <option value="Sekaran / Kampus UNNES (Mahasiswa)">Komsel Mahasiswa Sekaran / Sekitar UNNES</option>
@@ -283,13 +283,13 @@ export default function MinistryRegistrationSection() {
 
               {activeTab === 'volunteer' && (
                 <div className="space-y-2 animate-in fade-in">
-                  <label className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB]">
+                  <label className="text-xs font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">
                     Bidang Pelayanan yang Dirindukan
                   </label>
                   <select
                     value={volunteerRole}
                     onChange={(e) => setVolunteerRole(e.target.value)}
-                    className="w-full px-4 py-3.5 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-sm text-[#111827] dark:text-[#F9FAFB] focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28] outline-none transition-all"
+                    className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28] outline-none transition-all"
                   >
                     <option value="Pujian & Penyembahan (Worship/Musisi)">Pujian & Penyembahan (WL / Singer / Pemain Musik)</option>
                     <option value="Multimedia, Slide & Live Streaming">Multimedia (Slide Operator, Sound System, Camera Streaming)</option>
@@ -302,7 +302,7 @@ export default function MinistryRegistrationSection() {
 
               {/* Message Details */}
               <div className="space-y-2">
-                <label className="text-xs font-bold text-[#111827] dark:text-[#F9FAFB]">
+                <label className="text-xs font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">
                   Pesan atau Catatan Tambahan (Opsional)
                 </label>
                 <textarea
@@ -310,7 +310,7 @@ export default function MinistryRegistrationSection() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Tuliskan pokok doa, pertanyaan, atau catatan khusus Anda di sini..."
-                  className="w-full px-4 py-3.5 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-sm text-[#111827] dark:text-[#F9FAFB] focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28] outline-none transition-all resize-none"
+                  className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[#8B1E28]/30 focus:border-[#8B1E28] outline-none transition-all resize-none"
                 />
               </div>
 
@@ -318,7 +318,7 @@ export default function MinistryRegistrationSection() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 rounded-2xl bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-xs transition-all cursor-pointer disabled:opacity-70"
+                className="w-full py-4 rounded-2xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-xs transition-all cursor-pointer disabled:opacity-70"
               >
                 <WhatsAppIcon className="w-5 h-5 text-white" />
                 <span>{isSubmitting ? 'Menyimpan & Menghubungkan...' : 'Kirim Formulir ke Tim Pastoral'}</span>
