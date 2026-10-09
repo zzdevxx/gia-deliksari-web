@@ -57,7 +57,7 @@ export default function MinistriesSection() {
       location: 'Gedung Utama',
       desc: 'Persekutuan wanita Hana (Jumat 17.30 WIB, pola 4-minggu) dan Komsel Ekklesia Sel (Selasa 18.30 WIB) yang saling menguatkan dalam doa dan kasih.',
       icon: HeartHandshake,
-      tone: 'text-[#6D28D9] dark:text-[#A78BFA]',
+      tone: 'text-[var(--brand-text)] dark:text-[var(--brand-text)]',
       badge: 'Wanita & Komsel',
       instagram: 'https://www.instagram.com/pwkhana_/',
     },

@@ -294,7 +294,7 @@ export default function GivingSection() {
  onClick={() => setShowQrisModal(true)}
  className="group relative cursor-pointer p-4 rounded-2xl bg-[var(--background)] dark:bg-[#1F232D] border-2 border-dashed border-emerald-300 dark:border-emerald-800 flex flex-col items-center justify-center hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 transition-all"
  >
- <div className="w-32 h-32 rounded-xl bg-white p-2 border border-slate-200 flex flex-col items-center justify-center shadow-xs">
+ <div className="w-32 h-32 rounded-xl bg-[var(--card)] dark:bg-[var(--card)] p-2 border border-[var(--border-strong)] flex flex-col items-center justify-center">
  {/* Stylized QR Code SVG */}
  <svg className="w-full h-full text-slate-800" viewBox="0 0 100 100" fill="currentColor">
  <rect x="0" y="0" width="30" height="30" rx="4" fill="currentColor" />
@@ -406,7 +406,7 @@ export default function GivingSection() {
  </div>
 
  {/* QR Code Container */}
- <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-inner w-full flex flex-col items-center">
+ <div className="p-4 rounded-2xl bg-[var(--card)] dark:bg-[var(--card)] border border-[var(--border-strong)] w-full flex flex-col items-center">
  <div className="w-56 h-56 flex items-center justify-center">
  {/* Clear Stylized QR SVG with Church Monogram Center */}
  <svg className="w-full h-full text-slate-900" viewBox="0 0 100 100" fill="currentColor">

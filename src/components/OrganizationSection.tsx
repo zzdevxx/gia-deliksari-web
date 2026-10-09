@@ -74,7 +74,7 @@ const GROUPS: Group[] = [
  subtitle: 'Pelayanan Anak-anak',
  icon: <Baby className="w-5 h-5" />,
  accentClass:
- 'border-[#E9D5FF] dark:border-[#4C1D95] bg-[#FAF5FF] dark:bg-[#2E1065] text-[#6D28D9] dark:text-[#A78BFA]',
+ 'border-[var(--brand-tint-border)] dark:border-[var(--brand-tint-border)] bg-[var(--brand-tint)] dark:bg-[var(--brand-tint)] text-[var(--brand-text)] dark:text-[var(--brand-text)]',
  members: [
  { name: 'Sdri. Yemima Purnamasari', role: 'Ketua' },
  { name: 'Sdri. Kesya', role: 'Sekretaris' },

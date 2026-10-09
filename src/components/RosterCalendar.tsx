@@ -128,10 +128,14 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
                   <span
                     key={c}
                     className={`w-1.5 h-1.5 rounded-full ${
+                      // Four communities need four distinguishable dots, but
+                      // violet was never part of this brand. Spread them across
+                      // the wine → slate ramp instead: wine stays reserved for
+                      // the main service, the rest step down into neutrals.
                       c === 'general' ? 'bg-[var(--brand)]' :
                       c === 'youth' ? 'bg-[#475569]' :
-                      c === 'kidz' ? 'bg-[#4B5563]' :
-                      'bg-[#6D28D9]'
+                      c === 'kidz' ? 'bg-[#6B7280]' :
+                      'bg-[#9CA3AF]'
                     }`}
                     title={CAT_META[c]?.label ?? c}
                   />

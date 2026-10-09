@@ -48,7 +48,7 @@ export default function HospitalitySection() {
       desc: 'Bergabung dalam Komsel Ekklesia, Youth Grow Generation, dan Persekutuan Wanita Hana.',
       icon: Users,
       badge: 'Persekutuan Intim',
-      color: 'bg-[#FAF5FF] text-[#6D28D9] border-[#E9D5FF] dark:bg-[#2E1065] dark:text-[#A78BFA] dark:border-[#4C1D95]',
+      color: 'bg-[var(--brand-tint)] text-[var(--brand-text)] border-[var(--brand-tint-border)] dark:bg-[var(--brand-tint)] dark:text-[var(--brand-text)] dark:border-[var(--brand-tint-border)]',
     },
   ];
 
@@ -122,7 +122,7 @@ export default function HospitalitySection() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3.5 rounded-xl bg-white text-[var(--foreground)] hover:bg-[var(--background)] font-bold text-xs sm:text-sm shadow-xs flex items-center gap-2 transition-transform active:scale-95"
+              className="px-6 py-3.5 rounded-xl bg-[var(--card)] dark:bg-[var(--card)] text-[var(--foreground)] hover:bg-[var(--surface-raised)] font-bold text-xs sm:text-sm shadow-xs flex items-center gap-2 transition-transform active:scale-95"
             >
               <WhatsAppIcon className="w-4 h-4 text-emerald-600" />
               <span>Chat WhatsApp Pastoral</span>

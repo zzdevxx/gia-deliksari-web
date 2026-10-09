@@ -22,7 +22,7 @@ const CONFIG: Record<MinistryCategory, { label: string; color: string }> = {
   },
   hana: {
     label: 'Wanita Hana',
-    color: 'bg-[#FAF5FF] dark:bg-[#2E1065] text-[#6D28D9] dark:text-[#A78BFA] border-[#E9D5FF] dark:border-[#4C1D95]',
+    color: 'bg-[var(--brand-tint)] dark:bg-[var(--brand-tint)] text-[var(--brand-text)] dark:text-[var(--brand-text)] border-[var(--brand-tint-border)] dark:border-[var(--brand-tint-border)]',
   },
   all: {
     label: 'Umum',

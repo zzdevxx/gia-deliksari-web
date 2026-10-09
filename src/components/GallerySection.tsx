@@ -361,7 +361,9 @@ export default function GallerySection() {
  href={selectedItem.driveWebViewLink}
  target="_blank"
  rel="noopener noreferrer"
- className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#4B5563] hover:text-[var(--muted-foreground)] transition-colors mt-1"
+ // This link sits on the lightbox dark scrim, not on a page surface —
+            // slate-on-dark measured 2.37:1, invisible until hover.
+            className="inline-flex items-center gap-1.5 text-[11px] font-bold text-white/90 hover:text-white transition-colors mt-1"
  onClick={(e) => e.stopPropagation()}
  >
  <ExternalLink className="w-3 h-3" />

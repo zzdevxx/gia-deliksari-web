@@ -191,7 +191,7 @@ export default function Hero() {
 
                 {/* Center: Clean Official Church Logo */}
                 <div className="my-auto py-4 text-center space-y-4">
-                  <div className="relative w-28 h-28 sm:w-32 sm:h-32 mx-auto rounded-2xl overflow-hidden shadow-xs border border-[var(--border)] dark:border-[var(--border)] bg-white p-2">
+                  <div className="relative w-28 h-28 sm:w-32 sm:h-32 mx-auto rounded-2xl overflow-hidden border border-[var(--border)] dark:border-[var(--border)] bg-[var(--card)] dark:bg-[var(--card)] p-2">
                     <Image
                       src="/images/logo.png"
                       alt="Logo Resmi GIA Deliksari"

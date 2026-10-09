@@ -618,7 +618,7 @@ export default function AdminDashboard() {
  return 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]';
  case 'hana':
  case 'komunitas':
- return 'bg-[#FAF5FF] text-[#6D28D9] border-[#E9D5FF] dark:bg-[#2E1065] dark:text-[#A78BFA] dark:border-[#4C1D95]';
+ return 'bg-[var(--brand-tint)] text-[var(--brand-text)] border-[var(--brand-tint-border)] dark:bg-[var(--brand-tint)] dark:text-[var(--brand-text)] dark:border-[var(--brand-tint-border)]';
  default:
  return 'bg-[var(--surface-raised)] text-[var(--muted-foreground)] border-[var(--border)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]';
  }
@@ -1109,7 +1109,7 @@ export default function AdminDashboard() {
  <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase border ${
  req.type === 'prayer' ? 'bg-[#FBF1F2] text-[var(--brand-text)] border-[#E8C2C5] dark:bg-[#261517] dark:text-[#E88086] dark:border-[#52252A]' :
  req.type === 'sacrament' ? 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]' :
- req.type === 'komsel' ? 'bg-[#FAF5FF] text-[#6D28D9] border-[#E9D5FF] dark:bg-[#2E1065] dark:text-[#A78BFA] dark:border-[#4C1D95]' :
+ req.type === 'komsel' ? 'bg-[var(--brand-tint)] text-[var(--brand-text)] border-[var(--brand-tint-border)] dark:bg-[var(--brand-tint)] dark:text-[var(--brand-text)] dark:border-[var(--brand-tint-border)]' :
  'bg-[#F9FAFB] text-[#475569] border-[var(--border)] dark:bg-[#1E293B] dark:text-[#64748B] dark:border-[#334155]'
  }`}>
  {req.type === 'prayer' ? 'Doa & Konseling' : req.type === 'sacrament' ? 'Sakramen' : req.type === 'komsel' ? 'Komsel' : 'Volunteer'}
@@ -1865,7 +1865,7 @@ export default function AdminDashboard() {
  {/* ========================================================================= */}
  {isPrintModalOpen && (
  <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in">
- <div className="w-full max-w-2xl bg-white text-stone-900 rounded-2xl p-8 space-y-6 max-h-[90vh] overflow-y-auto">
+ <div className="w-full max-w-2xl bg-[var(--card)] dark:bg-[var(--card)] text-[var(--foreground)] rounded-2xl p-8 space-y-6 max-h-[90vh] overflow-y-auto">
  <div className="flex items-center justify-between border-b pb-4">
  <div>
  <h3 className="text-xl font-extrabold text-[var(--brand-text)] dark:text-[#E88086]">
