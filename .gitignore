@@ -39,6 +39,7 @@ tsconfig.tsbuildinfo
 
 # Backup / log artifacts (do not commit)
 /backups/*.json
+/backups/*.sql
 !/backups/README.md
 backups/old-images-backup/
 *.log
