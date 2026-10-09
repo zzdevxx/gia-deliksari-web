@@ -75,67 +75,67 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
     <div className="space-y-4 pt-4">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-extrabold text-[#111827] dark:text-white flex items-center gap-2">
-            <ScrollText className="w-5 h-5 text-[#8B1E28] dark:text-[#E88086]" />
+          <h2 className="text-xl font-extrabold text-[var(--foreground)] dark:text-white flex items-center gap-2">
+            <ScrollText className="w-5 h-5 text-[var(--brand-text)] dark:text-[#E88086]" />
             Audit Log ({total})
           </h2>
-          <p className="text-xs text-[#5B6472] dark:text-[#9CA3AF]">
+          <p className="text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
             Trail siapa melakukan apa di portal gereja. Append-only — hanya super yang bisa membaca.
           </p>
         </div>
         <button
           onClick={onRefresh}
-          className="px-4 py-2 rounded-2xl bg-[#F3F4F6] dark:bg-[#1F232D] text-[#111827] dark:text-[#F9FAFB] border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs font-bold flex items-center gap-2"
+          className="px-4 py-2 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold flex items-center gap-2"
         >
-          <RefreshCw className={`w-3.5 h-3.5 text-[#8B1E28] dark:text-[#E88086] ${loading ? 'animate-spin' : ''}`} />
+          <RefreshCw className={`w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[#E88086] ${loading ? 'animate-spin' : ''}`} />
           Refresh
         </button>
       </div>
 
       {/* Filter Bar */}
-      <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-3xl bg-[#F3F4F6] dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A]">
+      <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-3xl bg-[var(--surface-raised)] dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)]">
         <div className="space-y-1">
-          <label className="text-[10px] font-bold uppercase tracking-wider text-[#5B6472] dark:text-[#9CA3AF]">Actor</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">Actor</label>
           <input
             type="text"
             placeholder="username"
             value={filter.actor}
             onChange={(e) => onFilterChange({ ...filter, actor: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs text-[#111827] dark:text-[#F9FAFB] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
+            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
           />
         </div>
         <div className="space-y-1">
-          <label className="text-[10px] font-bold uppercase tracking-wider text-[#5B6472] dark:text-[#9CA3AF]">Action</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">Action</label>
           <input
             type="text"
             placeholder="e.g. warta.create"
             value={filter.action}
             onChange={(e) => onFilterChange({ ...filter, action: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs text-[#111827] dark:text-[#F9FAFB] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 font-mono"
+            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 font-mono"
           />
         </div>
         <div className="space-y-1">
-          <label className="text-[10px] font-bold uppercase tracking-wider text-[#5B6472] dark:text-[#9CA3AF]">Dari</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">Dari</label>
           <input
             type="date"
             value={filter.since}
             onChange={(e) => onFilterChange({ ...filter, since: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs text-[#111827] dark:text-[#F9FAFB] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
+            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
           />
         </div>
         <div className="space-y-1">
-          <label className="text-[10px] font-bold uppercase tracking-wider text-[#5B6472] dark:text-[#9CA3AF]">Sampai</label>
+          <label className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">Sampai</label>
           <input
             type="date"
             value={filter.until}
             onChange={(e) => onFilterChange({ ...filter, until: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-xs text-[#111827] dark:text-[#F9FAFB] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
+            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
           />
         </div>
         <div className="sm:col-span-4 flex justify-end">
           <button
             onClick={onApplyFilter}
-            className="px-4 py-2 rounded-xl bg-[#8B1E28] hover:bg-[#731820] dark:bg-[#B8323D] dark:hover:bg-[#A32C36] text-white text-xs font-bold flex items-center gap-2"
+            className="px-4 py-2 rounded-xl bg-[var(--brand)] hover:bg-[#731820] dark:bg-[var(--brand)] dark:hover:bg-[#A32C36] text-white text-xs font-bold flex items-center gap-2"
           >
             <Search className="w-3.5 h-3.5" />
             Terapkan Filter
@@ -144,9 +144,9 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
       </div>
 
       {/* Audit Table */}
-      <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-sm">
+      <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm">
         <table className="w-full text-left text-xs">
-          <thead className="bg-[#F3F4F6] dark:bg-[#1F232D] text-[#111827] dark:text-[#F9FAFB] border-b border-[#E5E7EB] dark:border-[#2A2F3A]">
+          <thead className="bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] border-b border-[var(--border)] dark:border-[var(--border)]">
             <tr>
               <th className="p-4 font-bold w-40">Waktu (WIB)</th>
               <th className="p-4 font-bold w-44">Action</th>
@@ -155,14 +155,14 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
               <th className="p-4 font-bold w-32">IP</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#E5E7EB] dark:divide-[#2A2F3A]">
+          <tbody className="divide-y divide-[var(--border)] dark:divide-[var(--border)]">
             {loading && entries.length === 0 ? (
               <tr>
-                <td colSpan={5} className="p-8 text-center text-xs text-[#5B6472] dark:text-[#9CA3AF]">Memuat…</td>
+                <td colSpan={5} className="p-8 text-center text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">Memuat…</td>
               </tr>
             ) : entries.length === 0 ? (
               <tr>
-                <td colSpan={5} className="p-8 text-center text-xs text-[#5B6472] dark:text-[#9CA3AF]">
+                <td colSpan={5} className="p-8 text-center text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
                   Belum ada entry. Aktivitas pertama akan muncul di sini setelah admin login.
                 </td>
               </tr>
@@ -175,8 +175,8 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
                 };
                 const ts = new Date(a.created_at);
                 return (
-                  <tr key={a.id} className="hover:bg-[#FFFFFF] dark:hover:bg-[#261317] transition-colors">
-                    <td className="p-4 text-xs text-[#5B6472] dark:text-[#9CA3AF] whitespace-nowrap font-mono">
+                  <tr key={a.id} className="hover:bg-[var(--background)] dark:hover:bg-[#261317] transition-colors">
+                    <td className="p-4 text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] whitespace-nowrap font-mono">
                       {ts.toLocaleString('id-ID', {
                         day: '2-digit',
                         month: 'short',
@@ -194,10 +194,10 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
                         {meta.label}
                       </span>
                     </td>
-                    <td className="p-4 text-[#111827] dark:text-[#F9FAFB]">
+                    <td className="p-4 text-[var(--foreground)] dark:text-[var(--foreground)]">
                       {a.summary}
                       {a.target_table && (
-                        <div className="text-[10px] text-[#5B6472] dark:text-[#9CA3AF] mt-0.5 font-mono">
+                        <div className="text-[10px] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] mt-0.5 font-mono">
                           {a.target_table}{a.target_id ? ` · ${String(a.target_id).slice(0, 8)}…` : ''}
                         </div>
                       )}
@@ -205,20 +205,20 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
                     <td className="p-4 text-xs">
                       {a.actor_username ? (
                         <>
-                          <div className="font-mono font-bold text-[#111827] dark:text-[#F9FAFB]">
+                          <div className="font-mono font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">
                             {a.actor_username}
                           </div>
                           {a.actor_roles && a.actor_roles.length > 0 && (
-                            <div className="text-[10px] text-[#5B6472] dark:text-[#9CA3AF]">
+                            <div className="text-[10px] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
                               {a.actor_roles.join(', ')}
                             </div>
                           )}
                         </>
                       ) : (
-                        <span className="italic text-[#5B6472] dark:text-[#9CA3AF]">anonim</span>
+                        <span className="italic text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">anonim</span>
                       )}
                     </td>
-                    <td className="p-4 text-[10px] font-mono text-[#5B6472] dark:text-[#9CA3AF]">
+                    <td className="p-4 text-[10px] font-mono text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
                       {a.ip || <span className="italic">—</span>}
                     </td>
                   </tr>
@@ -232,14 +232,14 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
       {/* Pagination */}
       {total > limit && (
         <div className="flex items-center justify-between text-xs">
-          <span className="text-[#5B6472] dark:text-[#9CA3AF]">
+          <span className="text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
             Menampilkan {start}–{end} dari {total}
           </span>
           <div className="flex items-center gap-2">
             <button
               onClick={onPrev}
               disabled={!hasPrev || loading}
-              className="px-3 py-2 rounded-xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#111827] dark:text-[#F9FAFB] font-bold flex items-center gap-1 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="px-3 py-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] font-bold flex items-center gap-1 disabled:opacity-40 disabled:cursor-not-allowed"
             >
               <ChevronLeft className="w-3.5 h-3.5" />
               Sebelumnya
@@ -247,7 +247,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
             <button
               onClick={onNext}
               disabled={!hasNext || loading}
-              className="px-3 py-2 rounded-xl bg-[#F3F4F6] dark:bg-[#1F232D] border border-[#E5E7EB] dark:border-[#2A2F3A] text-[#111827] dark:text-[#F9FAFB] font-bold flex items-center gap-1 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="px-3 py-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] font-bold flex items-center gap-1 disabled:opacity-40 disabled:cursor-not-allowed"
             >
               Berikutnya
               <ChevronRight className="w-3.5 h-3.5" />
