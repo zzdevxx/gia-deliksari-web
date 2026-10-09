@@ -189,8 +189,8 @@ export default function InfoPage() {
  {/* Page Header */}
  <section className="pt-24 pb-12 bg-[var(--background)] dark:bg-[var(--card-inverted-bg)] border-b border-[var(--border)] dark:border-[var(--border)]">
  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
- <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--brand-text)] dark:text-[#E88086] text-xs font-bold uppercase tracking-wider mb-4">
- <Sparkles className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[#E88086]" />
+ <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--brand-text)] dark:text-[var(--brand-text)] text-xs font-bold uppercase tracking-wider mb-4">
+ <Sparkles className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  <span>Informasi Pelayanan Gereja</span>
  </div>
  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] tracking-tight mb-3">
@@ -223,7 +223,7 @@ export default function InfoPage() {
  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
  <div className="space-y-1">
  <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] flex items-center gap-3">
- <Bell className="w-7 h-7 text-[var(--brand-text)] dark:text-[#E88086]" />
+ <Bell className="w-7 h-7 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  Papan Pengumuman & Warta
  </h2>
  <p className="text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
@@ -284,7 +284,7 @@ export default function InfoPage() {
  onClick={() => setTimeFilter('upcoming')}
  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
  timeFilter === 'upcoming'
- ? 'bg-white dark:bg-[#1F232D] text-[var(--foreground)] dark:text-white shadow-xs'
+ ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white shadow-xs'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
  }`}
  >
@@ -295,7 +295,7 @@ export default function InfoPage() {
  onClick={() => setTimeFilter('all')}
  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
  timeFilter === 'all'
- ? 'bg-white dark:bg-[#1F232D] text-[var(--foreground)] dark:text-white shadow-xs'
+ ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white shadow-xs'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
  }`}
  >
@@ -305,7 +305,7 @@ export default function InfoPage() {
  onClick={() => setTimeFilter('past')}
  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
  timeFilter === 'past'
- ? 'bg-white dark:bg-[#1F232D] text-[var(--foreground)] dark:text-white shadow-xs'
+ ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white shadow-xs'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
  }`}
  >
@@ -318,7 +318,7 @@ export default function InfoPage() {
  {/* Announcements list */}
  {upcomingAnn.length === 0 ? (
  <div className="p-12 text-center rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] space-y-3">
- <Bell className="w-10 h-10 text-[var(--brand-text)] dark:text-[#E88086] mx-auto opacity-40" />
+ <Bell className="w-10 h-10 text-[var(--brand-text)] dark:text-[var(--brand-text)] mx-auto opacity-40" />
  <h3 className="font-bold text-base text-[var(--foreground)] dark:text-[var(--foreground)]">
  {timeFilter === 'past' ? 'Belum ada warta yang sudah berlalu.' : 'Belum ada warta untuk filter ini.'}
  </h3>
@@ -339,7 +339,7 @@ export default function InfoPage() {
  <div className="flex items-center justify-between flex-wrap gap-2">
  <CategoryBadge category={item.category} />
  {item.isPinned && (
- <span className="text-[11px] font-bold text-[var(--brand-text)] dark:text-[#E88086]">
+ <span className="text-[11px] font-bold text-[var(--brand-text)] dark:text-[var(--brand-text)]">
  📌 Penting
  </span>
  )}
@@ -358,7 +358,7 @@ export default function InfoPage() {
 
  <div className="pt-4 border-t border-[var(--border)]/60 dark:border-[var(--border)]/60 flex items-center justify-between text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
  <div className="flex items-center gap-1.5 font-medium">
- <Calendar className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[#E88086]" />
+ <Calendar className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  <span>{item.eventDate}</span>
  </div>
  {item.author && (
@@ -378,8 +378,8 @@ export default function InfoPage() {
  <section id="agenda" className="py-16 bg-[var(--background)] dark:bg-[var(--card-inverted-bg)] border-t border-[var(--border)] dark:border-[var(--border)]">
  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
  <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
- <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--brand-text)] dark:text-[#E88086] text-xs font-bold uppercase tracking-wider">
- <Clock className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[#E88086]" />
+ <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--brand-text)] dark:text-[var(--brand-text)] text-xs font-bold uppercase tracking-wider">
+ <Clock className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  <span>Agenda Ibadah & Kegiatan Sepekan</span>
  </div>
  <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)]">
@@ -395,10 +395,10 @@ export default function InfoPage() {
  <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex flex-col justify-between space-y-4">
  <div className="space-y-3">
  <div className="flex items-center justify-between">
- <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--surface-raised)] text-[var(--brand-text)] dark:bg-[#1F232D] dark:text-[#E88086] border border-[var(--border)] dark:border-[var(--border)]">
+ <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--surface-raised)] text-[var(--brand-text)] dark:bg-[var(--surface-raised)] dark:text-[var(--brand-text)] border border-[var(--border)] dark:border-[var(--border)]">
  Ibadah Raya Umum
  </span>
- <span className="text-xs font-bold text-[var(--brand-text)] dark:text-[#E88086]">Minggu</span>
+ <span className="text-xs font-bold text-[var(--brand-text)] dark:text-[var(--brand-text)]">Minggu</span>
  </div>
  <h3 className="text-lg font-black text-[var(--foreground)] dark:text-[var(--foreground)]">
  Ibadah Raya Minggu
@@ -408,11 +408,11 @@ export default function InfoPage() {
  </p>
  </div>
  <div className="pt-3 border-t border-[var(--border)]/60 dark:border-[var(--border)]/60 flex items-center justify-between text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
- <span className="flex items-center gap-1 font-mono text-[var(--brand-text)] dark:text-[#E88086] font-bold">
+ <span className="flex items-center gap-1 font-mono text-[var(--brand-text)] dark:text-[var(--brand-text)] font-bold">
  <Clock className="w-3.5 h-3.5" /> 09.00 - 11.00 WIB
  </span>
  <span className="flex items-center gap-1">
- <MapPin className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[#E88086]" /> Gedung Utama
+ <MapPin className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" /> Gedung Utama
  </span>
  </div>
  </div>
@@ -421,7 +421,7 @@ export default function InfoPage() {
  <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex flex-col justify-between space-y-4">
  <div className="space-y-3">
  <div className="flex items-center justify-between">
- <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[#F9FAFB] text-[#4B5563] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)]">
+ <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[#F9FAFB] text-[#4B5563] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)]">
  Sekolah Minggu (KAA)
  </span>
  <span className="text-xs font-bold text-[#4B5563]">Minggu</span>
@@ -447,7 +447,7 @@ export default function InfoPage() {
  <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex flex-col justify-between space-y-4">
  <div className="space-y-3">
  <div className="flex items-center justify-between">
- <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--surface-raised)] text-[#475569] dark:bg-[#1F232D] dark:text-[#64748B] border border-[var(--border)] dark:border-[var(--border)]">
+ <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--surface-raised)] text-[#475569] dark:bg-[var(--surface-raised)] dark:text-[#64748B] border border-[var(--border)] dark:border-[var(--border)]">
  Pemuda & Komsel (4-Minggu)
  </span>
  <span className="text-xs font-bold text-[#475569]">Sabtu</span>
@@ -563,7 +563,7 @@ export default function InfoPage() {
  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
  <div className="space-y-1">
  <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] flex items-center gap-3">
- <Clock className="w-7 h-7 text-[var(--brand-text)] dark:text-[#E88086]" />
+ <Clock className="w-7 h-7 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  Jadwal Petugas Pelayanan (Roster)
  </h2>
  <p className="text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
@@ -604,7 +604,7 @@ export default function InfoPage() {
  onClick={() => setRosterView('list')}
  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
  rosterView === 'list'
- ? 'bg-white dark:bg-[#1F232D] text-[var(--foreground)] dark:text-white shadow-xs'
+ ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white shadow-xs'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
  }`}
  >
@@ -614,7 +614,7 @@ export default function InfoPage() {
  onClick={() => setRosterView('calendar')}
  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
  rosterView === 'calendar'
- ? 'bg-white dark:bg-[#1F232D] text-[var(--foreground)] dark:text-white shadow-xs'
+ ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white shadow-xs'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
  }`}
  >
@@ -655,7 +655,7 @@ export default function InfoPage() {
  </div>
  ) : (
  <table className="w-full text-left text-xs sm:text-sm">
- <thead className="bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] border-b border-[var(--border)] dark:border-[var(--border)]">
+ <thead className="bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] border-b border-[var(--border)] dark:border-[var(--border)]">
  <tr>
  <th className="p-4 font-bold">Kategori</th>
  <th className="p-4 font-bold">Tanggal</th>
@@ -677,7 +677,7 @@ export default function InfoPage() {
  <td className="p-4 text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] font-mono">
  {item.serviceDate}
  </td>
- <td className="p-4 font-semibold text-[var(--brand-text)] dark:text-[#E88086]">
+ <td className="p-4 font-semibold text-[var(--brand-text)] dark:text-[var(--brand-text)]">
  {item.role}
  </td>
  <td className="p-4 text-[var(--foreground)] dark:text-[var(--foreground)] font-medium">
@@ -716,7 +716,7 @@ export default function InfoPage() {
  {/* Footer CTA */}
  <section className="py-16 bg-[var(--background)] dark:bg-[var(--card-inverted-bg)]">
  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
- <div className="p-8 sm:p-10 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-center space-y-4">
+ <div className="p-8 sm:p-10 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-center space-y-4">
  <h3 className="text-2xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)]">
  Ingin Melayani atau Punya Pertanyaan?
  </h3>

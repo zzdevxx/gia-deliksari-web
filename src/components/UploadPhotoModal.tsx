@@ -109,7 +109,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  {/* Header */}
  <div className="flex items-center justify-between">
  <div className="flex items-center gap-2">
- <div className="w-10 h-10 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--brand-text)] dark:text-[#E88086] flex items-center justify-center">
+ <div className="w-10 h-10 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--brand-text)] dark:text-[var(--brand-text)] flex items-center justify-center">
  <Camera className="w-5 h-5" />
  </div>
  <div>
@@ -145,7 +145,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  <form onSubmit={handleSubmit} className="space-y-4">
  
  {/* Storage Policy Notice */}
- <div className="p-3.5 rounded-2xl bg-[#F9FAFB] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] flex items-start gap-2.5 text-[11px] text-[#4B5563] dark:text-[var(--muted-foreground)] leading-relaxed">
+ <div className="p-3.5 rounded-2xl bg-[#F9FAFB] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] flex items-start gap-2.5 text-[11px] text-[#4B5563] dark:text-[var(--muted-foreground)] leading-relaxed">
  <HardDrive className="w-4 h-4 shrink-0 mt-0.5" />
  <span>
  <strong>Sistem Rolling Cloud</strong>: Foto disimpan abadi di Google Drive gereja, dan 50 foto terkini ditampilkan otomatis di website.
@@ -153,7 +153,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  </div>
 
  {errorMsg && (
- <div className="p-3 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--brand-text)] dark:text-[#E88086] text-xs font-bold flex items-center gap-2">
+ <div className="p-3 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--brand-text)] dark:text-[var(--brand-text)] text-xs font-bold flex items-center gap-2">
  <AlertCircle className="w-4 h-4 shrink-0" />
  <span>{errorMsg}</span>
  </div>
@@ -162,7 +162,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  {/* Dropzone / Preview Area */}
  <div 
  onClick={() => fileInputRef.current?.click()}
- className="group border-2 border-dashed border-[var(--border)] dark:border-[var(--border)] hover:border-[#8B1E28] rounded-2xl p-4 text-center cursor-pointer transition-colors bg-[var(--surface-raised)] dark:bg-[#1F232D] relative overflow-hidden flex flex-col items-center justify-center min-h-[160px]"
+ className="group border-2 border-dashed border-[var(--border)] dark:border-[var(--border)] hover:border-[#8B1E28] rounded-2xl p-4 text-center cursor-pointer transition-colors bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] relative overflow-hidden flex flex-col items-center justify-center min-h-[160px]"
  >
  <input
  ref={fileInputRef}
@@ -188,7 +188,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  </div>
  ) : (
  <div className="space-y-2 py-4">
- <div className="w-12 h-12 rounded-2xl bg-white dark:bg-[var(--card)] text-[var(--brand-text)] dark:text-[#E88086] flex items-center justify-center mx-auto shadow-xs group-hover:scale-110 transition-transform">
+ <div className="w-12 h-12 rounded-2xl bg-white dark:bg-[var(--card)] text-[var(--brand-text)] dark:text-[var(--brand-text)] flex items-center justify-center mx-auto shadow-xs group-hover:scale-110 transition-transform">
  <Upload className="w-6 h-6" />
  </div>
  <div>
@@ -206,7 +206,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  {/* Title */}
  <div className="space-y-1">
  <label className="text-xs font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">
- Judul / Keterangan Momen <span className="text-[var(--brand-text)] dark:text-[#E88086]">*</span>
+ Judul / Keterangan Momen <span className="text-[var(--brand-text)] dark:text-[var(--brand-text)]">*</span>
  </label>
  <input
  type="text"
@@ -214,7 +214,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  value={title}
  onChange={(e) => setTitle(e.target.value)}
  placeholder="Contoh: Persekutuan Pemuda Youth Camp 2026"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-xs sm:text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs sm:text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30"
  />
  </div>
 
@@ -225,7 +225,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  <select
  value={category}
  onChange={(e) => setCategory(e.target.value as any)}
- className="w-full px-3 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-3 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  >
  <option value="ibadah">Ibadah Raya</option>
  <option value="worship">Praise & Worship</option>
@@ -242,7 +242,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  value={date}
  onChange={(e) => setDate(e.target.value)}
  placeholder="Agustus 2026"
- className="w-full px-3 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-3 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  />
  </div>
  </div>
@@ -257,7 +257,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  value={uploaderName}
  onChange={(e) => setUploaderName(e.target.value)}
  placeholder="Contoh: Tim Multimedia / Andreas"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-xs sm:text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs sm:text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  />
  </div>
 
@@ -267,7 +267,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  type="button"
  onClick={onClose}
  disabled={isUploading}
- className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold"
+ className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold"
  >
  Batal
  </button>

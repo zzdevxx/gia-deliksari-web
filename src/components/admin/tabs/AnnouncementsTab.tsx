@@ -68,18 +68,18 @@ const AnnouncementsTab: React.FC<AnnouncementsTabProps> = ({
                   {getCategoryLabel(item.category)}
                 </span>
                 {item.isPinned && (
-                  <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#F9FAFB] text-[#4B5563] border border-[var(--border)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)] dark:border-[var(--border)] flex items-center gap-1">
+                  <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#F9FAFB] text-[#4B5563] border border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)] flex items-center gap-1">
                     <Pin className="w-3 h-3" />
                     <span>Tersemat (Pinned)</span>
                   </span>
                 )}
                 {!item.isPublished && (
-                  <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[var(--surface-raised)] text-[var(--muted-foreground)] border border-[var(--border)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]">
+                  <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[var(--surface-raised)] text-[var(--muted-foreground)] border border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]">
                     Draft (Tidak Tayang)
                   </span>
                 )}
                 <span className="text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] flex items-center gap-1">
-                  <Calendar className="w-3 h-3 text-[var(--brand-text)] dark:text-[#E88086]" />
+                  <Calendar className="w-3 h-3 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
                   <span>{item.eventDate}</span>
                 </span>
               </div>
@@ -98,8 +98,8 @@ const AnnouncementsTab: React.FC<AnnouncementsTabProps> = ({
                 title={item.isPinned ? 'Lepas Pin' : 'Sematkan Warta'}
                 className={`p-3 rounded-2xl border transition-colors ${
                   item.isPinned
-                    ? 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]'
-                    : 'bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border)]'
+                    ? 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]'
+                    : 'bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border)]'
                 }`}
               >
                 <Pin className="w-4 h-4" />
@@ -107,7 +107,7 @@ const AnnouncementsTab: React.FC<AnnouncementsTabProps> = ({
 
               <button
                 onClick={() => onEdit(item)}
-                className="p-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors"
+                className="p-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors"
                 title="Edit Warta"
               >
                 <Edit2 className="w-4 h-4" />

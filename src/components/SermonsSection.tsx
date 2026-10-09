@@ -62,7 +62,7 @@ export default function SermonsSection() {
  <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
  <div className="space-y-4 max-w-2xl">
  <div className="flex flex-wrap items-center gap-2">
- <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
+ <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
  <Radio className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  <span>Mimbar & Pengajaran Firman</span>
  </div>
@@ -106,7 +106,7 @@ export default function SermonsSection() {
  >
  <div>
  {/* Thumbnail Container */}
- <div className="relative aspect-[16/10] w-full overflow-hidden bg-[var(--surface-raised)] dark:bg-[#1F232D]">
+ <div className="relative aspect-[16/10] w-full overflow-hidden bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)]">
  <Image
  src={sermon.thumbnail && !sermon.thumbnail.includes('gallery-') ? sermon.thumbnail : '/images/logo.png'}
  alt={sermon.title}
@@ -166,7 +166,7 @@ export default function SermonsSection() {
  href={sermon.youtubeUrl}
  target="_blank"
  rel="noopener noreferrer"
- className="w-full py-3 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] hover:bg-[var(--surface-raised)] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold text-[var(--foreground)] dark:text-[var(--foreground)] flex items-center justify-center gap-2 transition-colors"
+ className="w-full py-3 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold text-[var(--foreground)] dark:text-[var(--foreground)] flex items-center justify-center gap-2 transition-colors"
  >
  <YouTubeIcon className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  <span>Tonton di YouTube</span>

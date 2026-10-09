@@ -107,8 +107,8 @@ export default function GivingSection() {
 
  {/* Section Header */}
  <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
- <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
- <Heart className="w-3.5 h-3.5 fill-[var(--brand)] text-[var(--brand-text)] dark:text-[#E88086]" />
+ <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
+ <Heart className="w-3.5 h-3.5 fill-[var(--brand)] text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  <span>Persembahan Kasih & Persepuluhan</span>
  </div>
  <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] tracking-tight">
@@ -147,7 +147,7 @@ export default function GivingSection() {
  <p className="text-xs sm:text-sm text-[var(--foreground)] dark:text-[var(--foreground)] font-medium">
  {currentCategoryObj.desc}
  </p>
- <p className="text-[11px] text-[var(--brand-text)] dark:text-[#E88086] italic mt-1">
+ <p className="text-[11px] text-[var(--brand-text)] dark:text-[var(--brand-text)] italic mt-1">
  {currentCategoryObj.verse}
  </p>
  </div>
@@ -163,7 +163,7 @@ export default function GivingSection() {
  <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white bg-[var(--brand)] dark:bg-[var(--brand)]">
  <Box className="w-8 h-8" />
  </div>
- <span className="inline-block px-3 py-1 rounded-xl text-xs font-bold border bg-[#FBF1F2] text-[var(--brand-text)] border-[#E8C2C5] dark:bg-[#261517] dark:text-[#E88086] dark:border-[#52252A]">
+ <span className="inline-block px-3 py-1 rounded-xl text-xs font-bold border bg-[#FBF1F2] text-[var(--brand-text)] border-[#E8C2C5] dark:bg-[#261517] dark:text-[var(--brand-text)] dark:border-[#52252A]">
  Ibadah Onsite
  </span>
  </div>
@@ -181,7 +181,7 @@ export default function GivingSection() {
  Dapat dimasukkan langsung ke kotak persembahan yang terletak di lobi utama depan pintu masuk ruang ibadah.
  </p>
 
- <div className="p-3.5 rounded-2xl bg-[var(--surface-raised)]/80 dark:bg-[#1F232D]/80 border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] space-y-1.5">
+ <div className="p-3.5 rounded-2xl bg-[var(--surface-raised)]/80 dark:bg-[var(--surface-raised)]/80 border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] space-y-1.5">
  <div className="font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">
  3 Kotak Tersedia:
  </div>
@@ -223,7 +223,7 @@ export default function GivingSection() {
  {bankAccounts.map((bank) => (
  <div
  key={bank.id}
- className={`p-3.5 rounded-2xl bg-[var(--background)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] ${bank.color}`}
+ className={`p-3.5 rounded-2xl bg-[var(--background)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] ${bank.color}`}
  >
  <div className="flex items-center justify-between text-xs font-bold text-[var(--foreground)] dark:text-[var(--foreground)] mb-1">
  <span>{bank.bankName}</span>
@@ -238,7 +238,7 @@ export default function GivingSection() {
  className={`px-2.5 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all ${
  copiedKey === bank.id
  ? 'bg-emerald-600 text-white'
- : 'bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#4A161D]'
+ : 'bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#4A161D]'
  }`}
  title="Salin Nomor Rekening"
  >
@@ -249,7 +249,7 @@ export default function GivingSection() {
  </>
  ) : (
  <>
- <Copy className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[#E88086]" />
+ <Copy className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  <span>Salin</span>
  </>
  )}
@@ -292,7 +292,7 @@ export default function GivingSection() {
  {/* QR Code Card Preview */}
  <div
  onClick={() => setShowQrisModal(true)}
- className="group relative cursor-pointer p-4 rounded-2xl bg-[var(--background)] dark:bg-[#1F232D] border-2 border-dashed border-emerald-300 dark:border-emerald-800 flex flex-col items-center justify-center hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 transition-all"
+ className="group relative cursor-pointer p-4 rounded-2xl bg-[var(--background)] dark:bg-[var(--surface-raised)] border-2 border-dashed border-emerald-300 dark:border-emerald-800 flex flex-col items-center justify-center hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 transition-all"
  >
  <div className="w-32 h-32 rounded-xl bg-[var(--card)] dark:bg-[var(--card)] p-2 border border-[var(--border-strong)] flex flex-col items-center justify-center">
  {/* Stylized QR Code SVG */}
@@ -339,7 +339,7 @@ export default function GivingSection() {
  {/* Dynamic WhatsApp Confirmation Strip */}
  <div className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
  <div className="flex items-center gap-3.5 text-center sm:text-left">
- <div className="w-11 h-11 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] flex items-center justify-center text-[var(--brand-text)] dark:text-[#E88086] shrink-0">
+ <div className="w-11 h-11 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] flex items-center justify-center text-[var(--brand-text)] dark:text-[var(--brand-text)] shrink-0">
  <ShieldCheck className="w-6 h-6" />
  </div>
  <div>
@@ -347,7 +347,7 @@ export default function GivingSection() {
  <h4 className="text-sm font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">
  Konfirmasi Persembahan {currentCategoryObj.name}
  </h4>
- <span className="hidden sm:inline-block px-2 py-0.5 rounded-md bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[10px] font-bold text-[var(--brand-text)] dark:text-[#E88086] border border-[var(--border)] dark:border-[var(--border)]">
+ <span className="hidden sm:inline-block px-2 py-0.5 rounded-md bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[10px] font-bold text-[var(--brand-text)] dark:text-[var(--brand-text)] border border-[var(--border)] dark:border-[var(--border)]">
  Terpilih
  </span>
  </div>
@@ -394,7 +394,7 @@ export default function GivingSection() {
 
  {/* Header Modal */}
  <div className="space-y-1">
- <span className="text-[10px] font-extrabold uppercase tracking-widest text-[var(--brand-text)] dark:text-[#E88086]">
+ <span className="text-[10px] font-extrabold uppercase tracking-widest text-[var(--brand-text)] dark:text-[var(--brand-text)]">
  QRIS Pembayaran Nasional
  </span>
  <h3 className="text-lg font-black text-[var(--foreground)] dark:text-[var(--foreground)]">
@@ -457,7 +457,7 @@ export default function GivingSection() {
  </div>
 
  {/* Instruction Steps */}
- <div className="w-full text-left p-3.5 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-xs space-y-1.5">
+ <div className="w-full text-left p-3.5 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs space-y-1.5">
  <div className="font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">
  Informasi Persembahan Non-Tunai:
  </div>

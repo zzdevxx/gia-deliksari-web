@@ -610,17 +610,17 @@ export default function AdminDashboard() {
  switch (category) {
  case 'general':
  case 'ibadah':
- return 'bg-[#FBF1F2] text-[var(--brand-text)] border-[#E8C2C5] dark:bg-[#261517] dark:text-[#E88086] dark:border-[#52252A]';
+ return 'bg-[#FBF1F2] text-[var(--brand-text)] border-[#E8C2C5] dark:bg-[#261517] dark:text-[var(--brand-text)] dark:border-[#52252A]';
  case 'youth':
  return 'bg-[#F9FAFB] text-[#475569] border-[var(--border)] dark:bg-[#1E293B] dark:text-[#64748B] dark:border-[#334155]';
  case 'kidz':
  case 'worship':
- return 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]';
+ return 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]';
  case 'hana':
  case 'komunitas':
  return 'bg-[var(--brand-tint)] text-[var(--brand-text)] border-[var(--brand-tint-border)] dark:bg-[var(--brand-tint)] dark:text-[var(--brand-text)] dark:border-[var(--brand-tint-border)]';
  default:
- return 'bg-[var(--surface-raised)] text-[var(--muted-foreground)] border-[var(--border)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]';
+ return 'bg-[var(--surface-raised)] text-[var(--muted-foreground)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]';
  }
  };
 
@@ -696,7 +696,7 @@ export default function AdminDashboard() {
  value={username}
  onChange={(e) => setUsername(e.target.value)}
  placeholder="nama pengurus"
- className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400"
+ className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400"
  />
  </div>
 
@@ -711,7 +711,7 @@ export default function AdminDashboard() {
  value={password}
  onChange={(e) => setPassword(e.target.value)}
  placeholder="Masukkan password admin..."
- className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400"
+ className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400"
  />
  </div>
 
@@ -727,7 +727,7 @@ export default function AdminDashboard() {
  <div className="pt-2 text-center">
  <Link
  href="/home"
- className="inline-flex items-center gap-2 text-xs font-bold text-[var(--brand-text)] dark:text-[#E88086] hover:underline"
+ className="inline-flex items-center gap-2 text-xs font-bold text-[var(--brand-text)] dark:text-[var(--brand-text)] hover:underline"
  >
  <ArrowLeft className="w-3.5 h-3.5" />
  <span>Kembali ke Halaman Beranda Jemaat</span>
@@ -756,11 +756,11 @@ export default function AdminDashboard() {
  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm">
  <div className="space-y-1">
  <div className="flex items-center gap-2">
- <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FBF1F2] dark:bg-[#261517] text-[var(--brand-text)] dark:text-[#E88086] border border-[#E8C2C5] dark:border-[#52252A]">
+ <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FBF1F2] dark:bg-[#261517] text-[var(--brand-text)] dark:text-[var(--brand-text)] border border-[#E8C2C5] dark:border-[#52252A]">
  Majelis & Pastoral Portal
  </span>
  <div className="flex items-center gap-1.5 text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
- <Database className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[#E88086]" />
+ <Database className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  <span>Cloudflare D1 Database</span>
  </div>
  </div>
@@ -773,17 +773,17 @@ export default function AdminDashboard() {
  <button
  onClick={loadAllData}
  title="Refresh Data"
- className="p-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors flex items-center gap-2 text-xs font-bold"
+ className="p-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors flex items-center gap-2 text-xs font-bold"
  >
- <RefreshCw className={`w-4 h-4 text-[var(--brand-text)] dark:text-[#E88086] ${loading ? 'animate-spin' : ''}`} />
+ <RefreshCw className={`w-4 h-4 text-[var(--brand-text)] dark:text-[var(--brand-text)] ${loading ? 'animate-spin' : ''}`} />
  <span className="hidden sm:inline">Refresh Data</span>
  </button>
 
  <Link
  href="/home"
- className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
+ className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
  >
- <ExternalLink className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[#E88086]" />
+ <ExternalLink className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  <span>Lihat Website</span>
  </Link>
 
@@ -822,7 +822,7 @@ export default function AdminDashboard() {
  <span className="truncate">{tab.label}</span>
  {tab.count > 0 && (
  <span className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold ${
- isActive ? 'bg-white/20 text-white' : 'bg-[#E5E7EB] dark:bg-[#2A2F3A] text-[var(--foreground)] dark:text-[var(--foreground)]'
+ isActive ? 'bg-white/20 text-white' : 'bg-[#E5E7EB] dark:bg-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)]'
  }`}>
  {tab.count}
  </span>
@@ -891,15 +891,15 @@ export default function AdminDashboard() {
  <div className="flex flex-wrap items-center gap-2">
  <button
  onClick={() => setIsPrintModalOpen(true)}
- className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
+ className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
  >
- <Printer className="w-4 h-4 text-[var(--brand-text)] dark:text-[#E88086]" />
+ <Printer className="w-4 h-4 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  <span>Cetak / Export Jadwal</span>
  </button>
 
  <button
  onClick={() => setIsBroadcastModalOpen(true)}
- className="px-4 py-3 rounded-2xl bg-[#F9FAFB] dark:bg-[#1F232D] text-[#4B5563] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold flex items-center gap-2"
+ className="px-4 py-3 rounded-2xl bg-[#F9FAFB] dark:bg-[var(--surface-raised)] text-[#4B5563] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold flex items-center gap-2"
  >
  <Share2 className="w-4 h-4" />
  <span>Broadcast WA Pelayan</span>
@@ -942,7 +942,7 @@ export default function AdminDashboard() {
  onClick={() => setRosterCategoryTab(cTab.id as any)}
  className={`py-3 px-3 rounded-xl text-xs font-bold transition-all text-center ${
  isActive
- ? 'bg-white dark:bg-[#1F232D] text-[var(--brand-text)] dark:text-[#E88086] shadow-sm border border-[var(--border)] dark:border-[var(--border)]'
+ ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--brand-text)] dark:text-[var(--brand-text)] shadow-sm border border-[var(--border)] dark:border-[var(--border)]'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-white/40'
  }`}
  >
@@ -955,7 +955,7 @@ export default function AdminDashboard() {
  {/* Roster Table */}
  <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm">
  <table className="w-full text-left text-xs sm:text-sm">
- <thead className="bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] border-b border-[var(--border)] dark:border-[var(--border)]">
+ <thead className="bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] border-b border-[var(--border)] dark:border-[var(--border)]">
  <tr>
  <th className="p-4 font-bold">Peran / Tugas</th>
  <th className="p-4 font-bold">Nama Pelayan</th>
@@ -985,7 +985,7 @@ export default function AdminDashboard() {
  href={`https://wa.me/${item.phone.replace(/[^0-9]/g, '')}`}
  target="_blank"
  rel="noopener noreferrer"
- className="text-[11px] text-[var(--brand-text)] dark:text-[#E88086] hover:underline flex items-center gap-1 mt-0.5"
+ className="text-[11px] text-[var(--brand-text)] dark:text-[var(--brand-text)] hover:underline flex items-center gap-1 mt-0.5"
  >
  <Phone className="w-3 h-3" />
  <span>{item.phone}</span>
@@ -1001,8 +1001,8 @@ export default function AdminDashboard() {
  item.status === 'confirmed'
  ? 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/60'
  : item.status === 'replacement'
- ? 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]'
- : 'bg-[var(--surface-raised)] text-[var(--muted-foreground)] border-[var(--border)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]'
+ ? 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]'
+ : 'bg-[var(--surface-raised)] text-[var(--muted-foreground)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]'
  }`}
  >
  {item.status === 'confirmed' ? 'Siap Melayani' : item.status === 'replacement' ? 'Perlu Pengganti' : 'Menunggu Konfirmasi'}
@@ -1027,7 +1027,7 @@ export default function AdminDashboard() {
  });
  setIsRosterModalOpen(true);
  }}
- className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)]"
+ className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)]"
  title="Edit"
  >
  <Edit2 className="w-3.5 h-3.5" />
@@ -1093,7 +1093,7 @@ export default function AdminDashboard() {
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  {filteredRequests.length === 0 ? (
  <div className="col-span-2 p-12 text-center rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] space-y-2">
- <HeartHandshake className="w-10 h-10 text-[var(--brand-text)] dark:text-[#E88086] mx-auto opacity-60" />
+ <HeartHandshake className="w-10 h-10 text-[var(--brand-text)] dark:text-[var(--brand-text)] mx-auto opacity-60" />
  <h3 className="font-bold text-base text-[var(--foreground)] dark:text-white">Belum Ada Permohonan Masuk</h3>
  <p className="text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">Formulir yang diisi jemaat di website akan otomatis muncul di sini.</p>
  </div>
@@ -1107,8 +1107,8 @@ export default function AdminDashboard() {
  <div className="space-y-1">
  <div className="flex items-center gap-2">
  <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase border ${
- req.type === 'prayer' ? 'bg-[#FBF1F2] text-[var(--brand-text)] border-[#E8C2C5] dark:bg-[#261517] dark:text-[#E88086] dark:border-[#52252A]' :
- req.type === 'sacrament' ? 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]' :
+ req.type === 'prayer' ? 'bg-[#FBF1F2] text-[var(--brand-text)] border-[#E8C2C5] dark:bg-[#261517] dark:text-[var(--brand-text)] dark:border-[#52252A]' :
+ req.type === 'sacrament' ? 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]' :
  req.type === 'komsel' ? 'bg-[var(--brand-tint)] text-[var(--brand-text)] border-[var(--brand-tint-border)] dark:bg-[var(--brand-tint)] dark:text-[var(--brand-text)] dark:border-[var(--brand-tint-border)]' :
  'bg-[#F9FAFB] text-[#475569] border-[var(--border)] dark:bg-[#1E293B] dark:text-[#64748B] dark:border-[#334155]'
  }`}>
@@ -1119,7 +1119,7 @@ export default function AdminDashboard() {
  </span>
  </div>
  <h3 className="text-base font-extrabold text-[var(--foreground)] dark:text-white">{req.name}</h3>
- <p className="text-xs font-bold text-[var(--brand-text)] dark:text-[#E88086]">{req.subType}</p>
+ <p className="text-xs font-bold text-[var(--brand-text)] dark:text-[var(--brand-text)]">{req.subType}</p>
  </div>
 
  {/* Status Selector */}
@@ -1130,8 +1130,8 @@ export default function AdminDashboard() {
  req.status === 'completed'
  ? 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300'
  : req.status === 'in_progress'
- ? 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)]'
- : 'bg-[#FBF1F2] text-[var(--brand-text)] border-[#E8C2C5] dark:bg-[#261517] dark:text-[#E88086] dark:border-[#52252A]'
+ ? 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)]'
+ : 'bg-[#FBF1F2] text-[var(--brand-text)] border-[#E8C2C5] dark:bg-[#261517] dark:text-[var(--brand-text)] dark:border-[#52252A]'
  }`}
  >
  <option value="new">🔴 Baru Masuk</option>
@@ -1141,13 +1141,13 @@ export default function AdminDashboard() {
  </div>
 
  {req.message && (
- <div className="p-3.5 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] leading-relaxed">
+ <div className="p-3.5 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] leading-relaxed">
  "{req.message}"
  </div>
  )}
 
  {req.needPastoralVisit && (
- <div className="flex items-center gap-1.5 text-xs font-bold text-[var(--brand-text)] dark:text-[#E88086]">
+ <div className="flex items-center gap-1.5 text-xs font-bold text-[var(--brand-text)] dark:text-[var(--brand-text)]">
  <Clock className="w-3.5 h-3.5" />
  <span>Memohon Kunjungan Doa Hari Selasa</span>
  </div>
@@ -1216,9 +1216,9 @@ export default function AdminDashboard() {
  <button
  onClick={handleSyncYouTube}
  disabled={isSyncingYouTube}
- className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] hover:bg-[#E5E7EB] dark:hover:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold transition-all flex items-center gap-2 disabled:opacity-60 cursor-pointer"
+ className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] hover:bg-[#E5E7EB] dark:hover:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold transition-all flex items-center gap-2 disabled:opacity-60 cursor-pointer"
  >
- <RefreshCw className={`w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[#E88086] ${isSyncingYouTube ? 'animate-spin' : ''}`} />
+ <RefreshCw className={`w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)] ${isSyncingYouTube ? 'animate-spin' : ''}`} />
  <span>{isSyncingYouTube ? 'Sinkronisasi...' : 'Tarik dari YouTube Data API'}</span>
  </button>
 
@@ -1248,7 +1248,7 @@ export default function AdminDashboard() {
  href={process.env.NEXT_PUBLIC_GOOGLE_DRIVE_GALLERY_URL || "https://drive.google.com/drive/folders/1T_ahqCtmOjdFl0L-MNu7bIQo-8Oz8y9h"}
  target="_blank"
  rel="noopener noreferrer"
- className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] hover:bg-[#E5E7EB] dark:hover:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold transition-all flex items-center gap-2"
+ className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] hover:bg-[#E5E7EB] dark:hover:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold transition-all flex items-center gap-2"
  >
  <FolderOpen className="w-3.5 h-3.5 text-[#4B5563]" />
  <span>Arsip Google Drive</span>
@@ -1267,7 +1267,7 @@ export default function AdminDashboard() {
  </div>
 
  {/* Storage Info Banner */}
- <div className="p-4 rounded-2xl bg-[#F9FAFB] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] flex items-center justify-between gap-3 text-xs text-[#4B5563] dark:text-[var(--muted-foreground)]">
+ <div className="p-4 rounded-2xl bg-[#F9FAFB] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] flex items-center justify-between gap-3 text-xs text-[#4B5563] dark:text-[var(--muted-foreground)]">
  <div className="flex items-center gap-2.5">
  <HardDrive className="w-4 h-4 shrink-0" />
  <span>
@@ -1285,13 +1285,13 @@ export default function AdminDashboard() {
  className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex flex-col justify-between space-y-4"
  >
  <div className="space-y-2">
- <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FBF1F2] text-[var(--brand-text)] border border-[#E8C2C5] dark:bg-[#261517] dark:text-[#E88086] dark:border-[#52252A]">
+ <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FBF1F2] text-[var(--brand-text)] border border-[#E8C2C5] dark:bg-[#261517] dark:text-[var(--brand-text)] dark:border-[#52252A]">
  {sermon.category}
  </span>
  <h3 className="text-base font-extrabold text-[var(--foreground)] dark:text-white leading-snug">
  {sermon.title}
  </h3>
- <p className="text-xs font-bold text-[var(--brand-text)] dark:text-[#E88086]">{sermon.speaker}</p>
+ <p className="text-xs font-bold text-[var(--brand-text)] dark:text-[var(--brand-text)]">{sermon.speaker}</p>
  <p className="text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">{sermon.passage}</p>
  <p className="text-[11px] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">{sermon.date}</p>
  </div>
@@ -1301,7 +1301,7 @@ export default function AdminDashboard() {
  href={sermon.youtubeUrl}
  target="_blank"
  rel="noopener noreferrer"
- className="text-xs font-bold text-[var(--brand-text)] dark:text-[#E88086] flex items-center gap-1 hover:underline"
+ className="text-xs font-bold text-[var(--brand-text)] dark:text-[var(--brand-text)] flex items-center gap-1 hover:underline"
  >
  <Play className="w-3.5 h-3.5" />
  <span>Link YouTube</span>
@@ -1322,7 +1322,7 @@ export default function AdminDashboard() {
  });
  setIsSermonModalOpen(true);
  }}
- className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)]"
+ className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)]"
  >
  <Edit2 className="w-3.5 h-3.5" />
  </button>
@@ -1347,7 +1347,7 @@ export default function AdminDashboard() {
  key={item.id}
  className="rounded-2xl overflow-hidden bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex flex-col justify-between"
  >
- <div className="relative aspect-[16/10] w-full bg-[var(--surface-raised)] dark:bg-[#1F232D]">
+ <div className="relative aspect-[16/10] w-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)]">
  <Image
  src={item.image || '/images/logo.png'}
  alt={item.title}
@@ -1356,7 +1356,7 @@ export default function AdminDashboard() {
  />
  </div>
  <div className="p-5 space-y-2">
- <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--brand)] dark:bg-[var(--brand)]/10 text-[var(--brand-text)] dark:text-[#E88086] border border-[#8B1E28]/20">
+ <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--brand)] dark:bg-[var(--brand)]/10 text-[var(--brand-text)] dark:text-[var(--brand-text)] border border-[#8B1E28]/20">
  {item.category.toUpperCase()} • {item.date}
  </span>
  <h4 className="text-sm font-bold text-[var(--foreground)] dark:text-white leading-snug">{item.title}</h4>
@@ -1374,7 +1374,7 @@ export default function AdminDashboard() {
  });
  setIsGalleryModalOpen(true);
  }}
- className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)]"
+ className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)]"
  >
  <Edit2 className="w-3.5 h-3.5" />
  </button>
@@ -1462,7 +1462,7 @@ export default function AdminDashboard() {
  {/* Inventory Table */}
  <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm">
  <table className="w-full text-left text-xs sm:text-sm">
- <thead className="bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] border-b border-[var(--border)] dark:border-[var(--border)]">
+ <thead className="bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] border-b border-[var(--border)] dark:border-[var(--border)]">
  <tr>
  <th className="p-4 font-bold">Checklist</th>
  <th className="p-4 font-bold">Nama & Kode Barang</th>
@@ -1484,7 +1484,7 @@ export default function AdminDashboard() {
  <td className="p-4">
  <button
  onClick={() => handleToggleInventoryCheck(item)}
- className="p-1 rounded-lg text-[var(--brand-text)] dark:text-[#E88086] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] transition-colors"
+ className="p-1 rounded-lg text-[var(--brand-text)] dark:text-[var(--brand-text)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] transition-colors"
  >
  {item.isChecked ? (
  <CheckSquare className="w-5 h-5 text-emerald-600" />
@@ -1498,7 +1498,7 @@ export default function AdminDashboard() {
  <div className="text-xs text-stone-500 font-mono">Kode: {item.code} • Jml: {item.quantity} unit</div>
  </td>
  <td className="p-4">
- <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)] inline-block mb-1">
+ <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)] inline-block mb-1">
  {item.category}
  </span>
  <div className="text-xs text-stone-500">{item.location}</div>
@@ -1509,7 +1509,7 @@ export default function AdminDashboard() {
  item.condition === 'good'
  ? 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300'
  : item.condition === 'maintenance'
- ? 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)]'
+ ? 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)]'
  : 'bg-rose-50 text-rose-800 border-rose-200 dark:bg-rose-950/40 dark:text-rose-300'
  }`}
  >
@@ -1537,7 +1537,7 @@ export default function AdminDashboard() {
  });
  setIsInvModalOpen(true);
  }}
- className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)]"
+ className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)]"
  >
  <Edit2 className="w-3.5 h-3.5" />
  </button>
@@ -1583,7 +1583,7 @@ export default function AdminDashboard() {
  value={annForm.title}
  onChange={(e) => setAnnForm({ ...annForm, title: e.target.value })}
  placeholder="Contoh: Ibadah Padang Pemuda & Remaja"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
  />
  </div>
 
@@ -1593,7 +1593,7 @@ export default function AdminDashboard() {
  <select
  value={annForm.category}
  onChange={(e) => setAnnForm({ ...annForm, category: e.target.value as any })}
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  >
  <option value="general">Ibadah Raya / Umum</option>
  <option value="youth">Grow Generation (Youth)</option>
@@ -1610,7 +1610,7 @@ export default function AdminDashboard() {
  required
  value={annForm.eventDate}
  onChange={(e) => setAnnForm({ ...annForm, eventDate: e.target.value })}
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  />
  </div>
  </div>
@@ -1623,7 +1623,7 @@ export default function AdminDashboard() {
  value={annForm.content}
  onChange={(e) => setAnnForm({ ...annForm, content: e.target.value })}
  placeholder="Tuliskan detail pengumuman warta jemaat..."
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none resize-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none resize-none"
  />
  </div>
 
@@ -1635,7 +1635,7 @@ export default function AdminDashboard() {
  value={annForm.badgeText}
  onChange={(e) => setAnnForm({ ...annForm, badgeText: e.target.value })}
  placeholder="Contoh: Khusus, Penting, Youth Event"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  />
  </div>
 
@@ -1646,7 +1646,7 @@ export default function AdminDashboard() {
  value={annForm.author}
  onChange={(e) => setAnnForm({ ...annForm, author: e.target.value })}
  placeholder="Sekretariat GIA Deliksari"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  />
  </div>
  </div>
@@ -1657,7 +1657,7 @@ export default function AdminDashboard() {
  type="checkbox"
  checked={annForm.isPinned}
  onChange={(e) => setAnnForm({ ...annForm, isPinned: e.target.checked })}
- className="rounded text-[var(--brand-text)] dark:text-[#E88086] focus:ring-[#8B1E28] dark:focus:ring-[#B8323D]"
+ className="rounded text-[var(--brand-text)] dark:text-[var(--brand-text)] focus:ring-[#8B1E28] dark:focus:ring-[#B8323D]"
  />
  <span>Sematkan ke Paling Atas (Pinned)</span>
  </label>
@@ -1667,7 +1667,7 @@ export default function AdminDashboard() {
  type="checkbox"
  checked={annForm.isPublished}
  onChange={(e) => setAnnForm({ ...annForm, isPublished: e.target.checked })}
- className="rounded text-[var(--brand-text)] dark:text-[#E88086] focus:ring-[#8B1E28] dark:focus:ring-[#B8323D]"
+ className="rounded text-[var(--brand-text)] dark:text-[var(--brand-text)] focus:ring-[#8B1E28] dark:focus:ring-[#B8323D]"
  />
  <span>Tayangkan Langsung (Publish)</span>
  </label>
@@ -1677,7 +1677,7 @@ export default function AdminDashboard() {
  <button
  type="button"
  onClick={() => setIsAnnModalOpen(false)}
- className="px-5 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold"
+ className="px-5 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold"
  >
  Batal
  </button>
@@ -1714,7 +1714,7 @@ export default function AdminDashboard() {
  <select
  value={rosterForm.serviceCategory}
  onChange={(e) => setRosterForm({ ...rosterForm, serviceCategory: e.target.value as any })}
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  >
  <option value="general">Ibadah Raya (Umum)</option>
  <option value="youth">Grow Generation (Youth)</option>
@@ -1732,7 +1732,7 @@ export default function AdminDashboard() {
  value={rosterForm.role}
  onChange={(e) => setRosterForm({ ...rosterForm, role: e.target.value })}
  placeholder="Worship Leader, Pemain Musik, Usher"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  />
  </div>
 
@@ -1743,7 +1743,7 @@ export default function AdminDashboard() {
  required
  value={rosterForm.serviceDate}
  onChange={(e) => setRosterForm({ ...rosterForm, serviceDate: e.target.value })}
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  />
  </div>
  </div>
@@ -1756,7 +1756,7 @@ export default function AdminDashboard() {
  value={rosterForm.servantName}
  onChange={(e) => setRosterForm({ ...rosterForm, servantName: e.target.value })}
  placeholder="Nama lengkap pelayan / nama tim..."
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  />
  </div>
 
@@ -1768,7 +1768,7 @@ export default function AdminDashboard() {
  value={rosterForm.phone}
  onChange={(e) => setRosterForm({ ...rosterForm, phone: e.target.value })}
  placeholder="081234567890"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  />
  </div>
 
@@ -1777,7 +1777,7 @@ export default function AdminDashboard() {
  <select
  value={rosterForm.status}
  onChange={(e) => setRosterForm({ ...rosterForm, status: e.target.value as any })}
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  >
  <option value="confirmed">🟢 Siap Melayani</option>
  <option value="pending">⏳ Menunggu Konfirmasi</option>
@@ -1793,7 +1793,7 @@ export default function AdminDashboard() {
  value={rosterForm.notes}
  onChange={(e) => setRosterForm({ ...rosterForm, notes: e.target.value })}
  placeholder="Jadwal soundcheck, briefing, atau tema..."
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none resize-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none resize-none"
  />
  </div>
 
@@ -1801,7 +1801,7 @@ export default function AdminDashboard() {
  <button
  type="button"
  onClick={() => setIsRosterModalOpen(false)}
- className="px-5 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold"
+ className="px-5 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold"
  >
  Batal
  </button>
@@ -1825,7 +1825,7 @@ export default function AdminDashboard() {
  <div className="w-full max-w-lg bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] rounded-2xl p-6 sm:p-8 space-y-6">
  <div className="flex items-center justify-between">
  <div className="flex items-center gap-2">
- <Share2 className="w-5 h-5 text-[var(--brand-text)] dark:text-[#E88086]" />
+ <Share2 className="w-5 h-5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  <h3 className="text-xl font-extrabold text-[var(--foreground)] dark:text-white">
  Template Broadcast WhatsApp
  </h3>
@@ -1839,7 +1839,7 @@ export default function AdminDashboard() {
  Salin pesan di bawah ini untuk dibagikan ke grup WhatsApp pelayan atau kirim pengingat tugas mingguan.
  </p>
 
- <div className="p-4 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-xs font-mono text-[var(--foreground)] dark:text-[var(--foreground)] whitespace-pre-wrap max-h-60 overflow-y-auto leading-relaxed">
+ <div className="p-4 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-mono text-[var(--foreground)] dark:text-[var(--foreground)] whitespace-pre-wrap max-h-60 overflow-y-auto leading-relaxed">
  {broadcastText}
  </div>
 
@@ -1868,7 +1868,7 @@ export default function AdminDashboard() {
  <div className="w-full max-w-2xl bg-[var(--card)] dark:bg-[var(--card)] text-[var(--foreground)] rounded-2xl p-8 space-y-6 max-h-[90vh] overflow-y-auto">
  <div className="flex items-center justify-between border-b pb-4">
  <div>
- <h3 className="text-xl font-extrabold text-[var(--brand-text)] dark:text-[#E88086]">
+ <h3 className="text-xl font-extrabold text-[var(--brand-text)] dark:text-[var(--brand-text)]">
  Jadwal Petugas Pelayanan GIA Deliksari
  </h3>
  <p className="text-xs text-stone-500">
@@ -1953,7 +1953,7 @@ export default function AdminDashboard() {
  value={sermonForm.title}
  onChange={(e) => setSermonForm({ ...sermonForm, title: e.target.value })}
  placeholder="Contoh: Bertumbuh Kuat di Tengah Badai"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  />
  </div>
 
@@ -1966,7 +1966,7 @@ export default function AdminDashboard() {
  value={sermonForm.speaker}
  onChange={(e) => setSermonForm({ ...sermonForm, speaker: e.target.value })}
  placeholder="Ps. Yohanes Sutono"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  />
  </div>
 
@@ -1978,7 +1978,7 @@ export default function AdminDashboard() {
  value={sermonForm.passage}
  onChange={(e) => setSermonForm({ ...sermonForm, passage: e.target.value })}
  placeholder="Kolose 2:6-7"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  />
  </div>
  </div>
@@ -1991,7 +1991,7 @@ export default function AdminDashboard() {
  value={sermonForm.date}
  onChange={(e) => setSermonForm({ ...sermonForm, date: e.target.value })}
  placeholder="Minggu, 30 Agustus 2026"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  />
  </div>
 
@@ -2000,7 +2000,7 @@ export default function AdminDashboard() {
  <select
  value={sermonForm.category}
  onChange={(e) => setSermonForm({ ...sermonForm, category: e.target.value })}
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  >
  <option value="Ibadah Raya">Ibadah Raya</option>
  <option value="Grow Generation Youth">Grow Generation Youth</option>
@@ -2018,7 +2018,7 @@ export default function AdminDashboard() {
  value={sermonForm.youtubeUrl}
  onChange={(e) => setSermonForm({ ...sermonForm, youtubeUrl: e.target.value })}
  placeholder="https://www.youtube.com/watch?v=..."
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  />
  </div>
 
@@ -2026,7 +2026,7 @@ export default function AdminDashboard() {
  <button
  type="button"
  onClick={() => setIsSermonModalOpen(false)}
- className="px-5 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold"
+ className="px-5 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold"
  >
  Batal
  </button>
@@ -2066,7 +2066,7 @@ export default function AdminDashboard() {
  value={galleryForm.title}
  onChange={(e) => setGalleryForm({ ...galleryForm, title: e.target.value })}
  placeholder="Contoh: Praise & Worship Ibadah Minggu"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  />
  </div>
 
@@ -2076,7 +2076,7 @@ export default function AdminDashboard() {
  <select
  value={galleryForm.category}
  onChange={(e) => setGalleryForm({ ...galleryForm, category: e.target.value as any })}
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  >
  <option value="ibadah">Ibadah</option>
  <option value="worship">Worship</option>
@@ -2093,7 +2093,7 @@ export default function AdminDashboard() {
  value={galleryForm.date}
  onChange={(e) => setGalleryForm({ ...galleryForm, date: e.target.value })}
  placeholder="Agustus 2026"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  />
  </div>
  </div>
@@ -2106,7 +2106,7 @@ export default function AdminDashboard() {
  value={galleryForm.image}
  onChange={(e) => setGalleryForm({ ...galleryForm, image: e.target.value })}
  placeholder="https://... atau /images/logo.png"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  />
  </div>
 
@@ -2114,7 +2114,7 @@ export default function AdminDashboard() {
  <button
  type="button"
  onClick={() => setIsGalleryModalOpen(false)}
- className="px-5 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold"
+ className="px-5 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold"
  >
  Batal
  </button>
@@ -2154,7 +2154,7 @@ export default function AdminDashboard() {
  value={invForm.name}
  onChange={(e) => setInvForm({ ...invForm, name: e.target.value })}
  placeholder="Contoh: Shure Beta 58A Wireless"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  />
  </div>
 
@@ -2164,7 +2164,7 @@ export default function AdminDashboard() {
  <select
  value={invForm.category}
  onChange={(e) => setInvForm({ ...invForm, category: e.target.value as any })}
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  >
  <option value="Sound System">Sound System</option>
  <option value="Multimedia & Kamera">Multimedia & Kamera</option>
@@ -2181,7 +2181,7 @@ export default function AdminDashboard() {
  value={invForm.code}
  onChange={(e) => setInvForm({ ...invForm, code: e.target.value })}
  placeholder="MIC-01"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none font-mono"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none font-mono"
  />
  </div>
  </div>
@@ -2194,7 +2194,7 @@ export default function AdminDashboard() {
  min={1}
  value={invForm.quantity}
  onChange={(e) => setInvForm({ ...invForm, quantity: parseInt(e.target.value) || 1 })}
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  />
  </div>
 
@@ -2203,7 +2203,7 @@ export default function AdminDashboard() {
  <select
  value={invForm.condition}
  onChange={(e) => setInvForm({ ...invForm, condition: e.target.value as any })}
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  >
  <option value="good">🟢 Baik / Normal</option>
  <option value="maintenance">🟡 Perlu Pengecekan</option>
@@ -2220,7 +2220,7 @@ export default function AdminDashboard() {
  value={invForm.location}
  onChange={(e) => setInvForm({ ...invForm, location: e.target.value })}
  placeholder="Meja Sound, Ruang Pastori, dsb."
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
  />
  </div>
 
@@ -2231,7 +2231,7 @@ export default function AdminDashboard() {
  value={invForm.notes}
  onChange={(e) => setInvForm({ ...invForm, notes: e.target.value })}
  placeholder="Kabel, adaptor, baterai, dsb."
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none resize-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none resize-none"
  />
  </div>
 
@@ -2239,7 +2239,7 @@ export default function AdminDashboard() {
  <button
  type="button"
  onClick={() => setIsInvModalOpen(false)}
- className="px-5 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold"
+ className="px-5 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold"
  >
  Batal
  </button>

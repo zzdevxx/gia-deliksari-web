@@ -24,7 +24,7 @@ export default function HospitalitySection() {
       desc: 'Lokasi gereja mudah dijangkau di Deliksari Gunungpati dengan area parkir aman untuk motor & mobil.',
       icon: MapPin,
       badge: 'Lokasi Strategis',
-      color: 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]',
+      color: 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]',
     },
     {
       step: '02',
@@ -32,7 +32,7 @@ export default function HospitalitySection() {
       desc: 'Tim Usher & Welcoming siap menyambut Anda dengan hangat di pintu masuk sanctuary gereja.',
       icon: Smile,
       badge: 'Sambutan Hangat',
-      color: 'bg-[var(--surface-raised)] text-[var(--muted-foreground)] border-[var(--border)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]',
+      color: 'bg-[var(--surface-raised)] text-[var(--muted-foreground)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]',
     },
     {
       step: '03',
@@ -40,7 +40,7 @@ export default function HospitalitySection() {
       desc: 'Anak-anak Anda dididik dalam firman Tuhan dengan penuh sukacita di kelas Sekolah Minggu (09.30 WIB).',
       icon: Baby,
       badge: 'Ramah Keluarga',
-      color: 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]',
+      color: 'bg-[#F9FAFB] text-[#4B5563] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]',
     },
     {
       step: '04',
@@ -58,7 +58,7 @@ export default function HospitalitySection() {
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
             <Compass className="w-3.5 h-3.5 text-[#4B5563]" />
             <span>Panduan Jemaat Baru & Tamu</span>
           </div>
@@ -89,7 +89,7 @@ export default function HospitalitySection() {
                     </span>
                   </div>
 
-                  <div className="w-12 h-12 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] flex items-center justify-center text-[var(--foreground)] dark:text-[var(--foreground)]">
+                  <div className="w-12 h-12 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] flex items-center justify-center text-[var(--foreground)] dark:text-[var(--foreground)]">
                     <Icon className="w-6 h-6" />
                   </div>
 

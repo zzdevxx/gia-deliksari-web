@@ -52,7 +52,7 @@ export default function LocationContactSection() {
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
             <MapPin className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
             <span>Lokasi Fisik, FAQ & Kontak Pastoral</span>
           </div>
@@ -106,7 +106,7 @@ export default function LocationContactSection() {
             {/* Address & Quick Contacts Card */}
             <div className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-xs space-y-4">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] flex items-center justify-center text-[var(--brand-text)] dark:text-[var(--brand-text)] shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] flex items-center justify-center text-[var(--brand-text)] dark:text-[var(--brand-text)] shrink-0">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
@@ -124,7 +124,7 @@ export default function LocationContactSection() {
                   href="https://api.whatsapp.com/send?phone=6289620961103"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2.5 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold flex items-center gap-2 transition-colors"
+                  className="px-4 py-2.5 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold flex items-center gap-2 transition-colors"
                 >
                   <WhatsAppIcon className="w-4 h-4 text-emerald-600" />
                   <span>WhatsApp: 0896-2096-1103</span>
@@ -132,7 +132,7 @@ export default function LocationContactSection() {
 
                 <a
                   href="mailto:giadeliksarichurch@gmail.com"
-                  className="px-4 py-2.5 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--brand-text)] dark:hover:text-[var(--brand-text)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold flex items-center gap-2 transition-colors"
+                  className="px-4 py-2.5 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--brand-text)] dark:hover:text-[var(--brand-text)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold flex items-center gap-2 transition-colors"
                 >
                   <Mail className="w-4 h-4 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
                   <span>giadeliksarichurch@gmail.com</span>
@@ -185,7 +185,7 @@ export default function LocationContactSection() {
             </div>
 
             {/* Social Channels Card */}
-            <div className="p-6 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] space-y-4">
+            <div className="p-6 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] space-y-4">
               <h4 className="font-bold text-sm text-[var(--foreground)] dark:text-[var(--foreground)]">
                 Kanal Media Sosial Resmi
               </h4>

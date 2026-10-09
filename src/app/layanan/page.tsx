@@ -23,8 +23,8 @@ export default function LayananPage() {
       {/* Header Banner */}
       <section className="pt-28 pb-12 bg-[var(--background)] dark:bg-[var(--card-inverted-bg)] border-b border-[var(--border)] dark:border-[var(--border)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--brand-text)] dark:text-[#E88086] text-xs font-bold uppercase tracking-wider mb-4">
-            <HeartHandshake className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[#E88086]" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--brand-text)] dark:text-[var(--brand-text)] text-xs font-bold uppercase tracking-wider mb-4">
+            <HeartHandshake className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
             <span>Pusat Pelayanan & Pendampingan Jemaat</span>
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] tracking-tight mb-4">
@@ -37,7 +37,7 @@ export default function LayananPage() {
           {/* Quick Pillars Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
             <div className="p-4 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-xs flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] flex items-center justify-center text-[var(--brand-text)] dark:text-[#E88086] shrink-0 font-bold">
+              <div className="w-10 h-10 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] flex items-center justify-center text-[var(--brand-text)] dark:text-[var(--brand-text)] shrink-0 font-bold">
                 🙏
               </div>
               <div>

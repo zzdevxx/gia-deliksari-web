@@ -292,11 +292,11 @@ export default function SuperPage() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FBF1F2] dark:bg-[#261517] text-[var(--brand-text)] dark:text-[#E88086] border border-[#E8C2C5] dark:border-[#52252A]">
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FBF1F2] dark:bg-[#261517] text-[var(--brand-text)] dark:text-[var(--brand-text)] border border-[#E8C2C5] dark:border-[#52252A]">
                 🔑 Superuser Portal
               </span>
               <div className="flex items-center gap-1.5 text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
-                <Users className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[#E88086]" />
+                <Users className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
                 <span>{activeCount}/{users.length} user aktif</span>
               </div>
             </div>
@@ -313,16 +313,16 @@ export default function SuperPage() {
             <button
               onClick={loadUsers}
               title="Refresh"
-              className="p-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors flex items-center gap-2 text-xs font-bold"
+              className="p-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors flex items-center gap-2 text-xs font-bold"
             >
-              <RefreshCw className={`w-4 h-4 text-[var(--brand-text)] dark:text-[#E88086] ${usersLoading ? 'animate-spin' : ''}`} />
+              <RefreshCw className={`w-4 h-4 text-[var(--brand-text)] dark:text-[var(--brand-text)] ${usersLoading ? 'animate-spin' : ''}`} />
               <span className="hidden sm:inline">Refresh</span>
             </button>
             <Link
               href="/home"
-              className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
+              className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
             >
-              <ExternalLink className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[#E88086]" />
+              <ExternalLink className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
               <span>Lihat Website</span>
             </Link>
             <button
@@ -400,7 +400,7 @@ export default function SuperPage() {
                 Warta, Roster Pelayanan, Inventaris
               </p>
             </div>
-            <ExternalLink className="w-4 h-4 text-[var(--brand-text)] dark:text-[#E88086] group-hover:translate-x-0.5 transition-transform" />
+            <ExternalLink className="w-4 h-4 text-[var(--brand-text)] dark:text-[var(--brand-text)] group-hover:translate-x-0.5 transition-transform" />
           </Link>
           <Link
             href="/kas"
@@ -412,7 +412,7 @@ export default function SuperPage() {
                 Manajemen keuangan Grow Generation
               </p>
             </div>
-            <ExternalLink className="w-4 h-4 text-[var(--brand-text)] dark:text-[#E88086] group-hover:translate-x-0.5 transition-transform" />
+            <ExternalLink className="w-4 h-4 text-[var(--brand-text)] dark:text-[var(--brand-text)] group-hover:translate-x-0.5 transition-transform" />
           </Link>
         </div>
       </div>

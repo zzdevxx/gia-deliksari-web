@@ -50,7 +50,7 @@ export default function AboutSection() {
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
             <Heart className="w-3.5 h-3.5 text-[#4B5563]" />
             <span>Mengenal GIA Deliksari</span>
           </div>
@@ -88,7 +88,7 @@ export default function AboutSection() {
           {/* Context & Ministry Characteristics */}
           <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] flex items-center justify-center text-[var(--brand-text)] dark:text-[var(--brand-text)]">
+              <div className="w-12 h-12 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] flex items-center justify-center text-[var(--brand-text)] dark:text-[var(--brand-text)]">
                 <BookOpen className="w-6 h-6" />
               </div>
               <div className="space-y-2">
@@ -102,7 +102,7 @@ export default function AboutSection() {
             </div>
 
             <div className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] flex items-center justify-center text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
+              <div className="w-12 h-12 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] flex items-center justify-center text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
                 <Users className="w-6 h-6" />
               </div>
               <div className="space-y-2">
@@ -116,7 +116,7 @@ export default function AboutSection() {
             </div>
 
             <div className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-[#F9FAFB] dark:bg-[#1F232D] flex items-center justify-center text-[#4B5563] dark:text-[var(--muted-foreground)]">
+              <div className="w-12 h-12 rounded-xl bg-[#F9FAFB] dark:bg-[var(--surface-raised)] flex items-center justify-center text-[#4B5563] dark:text-[var(--muted-foreground)]">
                 <Church className="w-6 h-6" />
               </div>
               <div className="space-y-2">
@@ -130,7 +130,7 @@ export default function AboutSection() {
             </div>
 
             <div className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] flex items-center justify-center text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
+              <div className="w-12 h-12 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] flex items-center justify-center text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
                 <GraduationCap className="w-6 h-6" />
               </div>
               <div className="space-y-2">
@@ -167,8 +167,8 @@ export default function AboutSection() {
               >
                 <div className="space-y-4">
                   {/* Clean Monogram / Avatar Visual Card */}
-                  <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-[var(--surface-raised)] dark:bg-[#1F232D] p-6 flex flex-col justify-between text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)]">
-                    <div className="absolute top-0 right-0 w-28 h-28 rounded-bl-full border-b border-l border-[#4B5563]/30 dark:border-[#9CA3AF]/30" aria-hidden="true" />
+                  <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] p-6 flex flex-col justify-between text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)]">
+                    <div className="absolute top-0 right-0 w-28 h-28 rounded-bl-full border-b border-l border-[#4B5563]/30 dark:border-[var(--muted-foreground)]/30" aria-hidden="true" />
                     <div className="flex items-center justify-between">
                       <div className="w-10 h-10 rounded-xl bg-white/70 dark:bg-[var(--card)]/75 flex items-center justify-center text-[#4B5563] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)]">
                         <LeaderIcon className="w-5 h-5" />

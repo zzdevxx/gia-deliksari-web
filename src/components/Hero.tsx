@@ -84,7 +84,7 @@ export default function Hero() {
             </span>
             <span
               aria-hidden="true"
-              className="font-mono font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] bg-[var(--surface-raised)] dark:bg-[#1F232D] px-2.5 py-0.5 rounded-lg border border-[var(--border)] dark:border-[var(--border)]"
+              className="font-mono font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] px-2.5 py-0.5 rounded-lg border border-[var(--border)] dark:border-[var(--border)]"
             >
               {timeLeft.days}h {timeLeft.hours}j {timeLeft.minutes}m {timeLeft.seconds}d
             </span>
@@ -98,7 +98,7 @@ export default function Hero() {
           <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
 
             {/* Mission Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5 text-[#4B5563]" aria-hidden="true" />
               <span>Gerakan Tumbuh dalam Iman & Kasih</span>
             </div>
@@ -180,7 +180,7 @@ export default function Hero() {
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-[var(--border)] dark:border-[var(--border)] shadow-xs bg-white dark:bg-[var(--card)] p-6 sm:p-8 flex flex-col justify-between">
                 {/* Top Badge & Status */}
                 <div className="flex items-center justify-between">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[11px] font-bold border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[11px] font-bold border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                     <span>Ibadah Onsite & Persekutuan</span>
                   </div>
@@ -208,7 +208,7 @@ export default function Hero() {
                       &ldquo;A Growing Church in Faith, Love, and Hope&rdquo;
                     </p>
                   </div>
-                  <div className="inline-block px-3 py-1 rounded-full bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[10px] font-medium text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)]">
+                  <div className="inline-block px-3 py-1 rounded-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[10px] font-medium text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)]">
                     Kawasan Sekaran · UNNES Gunungpati
                   </div>
                 </div>

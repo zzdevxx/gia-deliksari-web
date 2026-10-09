@@ -43,7 +43,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
  <p className="text-xs sm:text-sm text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] leading-relaxed">
  Kelola akun pengurus gereja: superuser, admin/operator, dan bendahara youth.
  <br />
- <span className="text-[var(--brand-text)] dark:text-[#E88086] font-bold">
+ <span className="text-[var(--brand-text)] dark:text-[var(--brand-text)] font-bold">
  Akses khusus role = super.
  </span>
  </p>
@@ -68,7 +68,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
  value={username}
  onChange={(e) => setUsername(e.target.value)}
  placeholder="namapengurus"
- className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400"
+ className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400"
  />
  </div>
 
@@ -83,7 +83,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
  value={password}
  onChange={(e) => setPassword(e.target.value)}
  placeholder="••••"
- className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400 tracking-widest"
+ className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 focus:border-[#8B1E28] dark:focus:border-[#B8323D] outline-none transition-all placeholder:text-stone-400 tracking-widest"
  />
  </div>
 
@@ -100,7 +100,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
  <div className="pt-2 text-center space-y-1">
  <Link
  href="/home"
- className="inline-flex items-center gap-2 text-xs font-bold text-[var(--brand-text)] dark:text-[#E88086] hover:underline"
+ className="inline-flex items-center gap-2 text-xs font-bold text-[var(--brand-text)] dark:text-[var(--brand-text)] hover:underline"
  >
  <ArrowLeft className="w-3.5 h-3.5" />
  <span>Kembali ke Beranda Jemaat</span>

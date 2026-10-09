@@ -76,7 +76,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-xl font-extrabold text-[var(--foreground)] dark:text-white flex items-center gap-2">
-            <ScrollText className="w-5 h-5 text-[var(--brand-text)] dark:text-[#E88086]" />
+            <ScrollText className="w-5 h-5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
             Audit Log ({total})
           </h2>
           <p className="text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
@@ -85,9 +85,9 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
         </div>
         <button
           onClick={onRefresh}
-          className="px-4 py-2 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold flex items-center gap-2"
+          className="px-4 py-2 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold flex items-center gap-2"
         >
-          <RefreshCw className={`w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[#E88086] ${loading ? 'animate-spin' : ''}`} />
+          <RefreshCw className={`w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)] ${loading ? 'animate-spin' : ''}`} />
           Refresh
         </button>
       </div>
@@ -101,7 +101,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
             placeholder="username"
             value={filter.actor}
             onChange={(e) => onFilterChange({ ...filter, actor: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
+            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
           />
         </div>
         <div className="space-y-1">
@@ -111,7 +111,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
             placeholder="e.g. warta.create"
             value={filter.action}
             onChange={(e) => onFilterChange({ ...filter, action: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 font-mono"
+            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 font-mono"
           />
         </div>
         <div className="space-y-1">
@@ -120,7 +120,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
             type="date"
             value={filter.since}
             onChange={(e) => onFilterChange({ ...filter, since: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
+            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
           />
         </div>
         <div className="space-y-1">
@@ -129,7 +129,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
             type="date"
             value={filter.until}
             onChange={(e) => onFilterChange({ ...filter, until: e.target.value })}
-            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
+            className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
           />
         </div>
         <div className="sm:col-span-4 flex justify-end">
@@ -146,7 +146,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
       {/* Audit Table */}
       <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm">
         <table className="w-full text-left text-xs">
-          <thead className="bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] border-b border-[var(--border)] dark:border-[var(--border)]">
+          <thead className="bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] border-b border-[var(--border)] dark:border-[var(--border)]">
             <tr>
               <th className="p-4 font-bold w-40">Waktu (WIB)</th>
               <th className="p-4 font-bold w-44">Action</th>
@@ -239,7 +239,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
             <button
               onClick={onPrev}
               disabled={!hasPrev || loading}
-              className="px-3 py-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] font-bold flex items-center gap-1 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="px-3 py-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] font-bold flex items-center gap-1 disabled:opacity-40 disabled:cursor-not-allowed"
             >
               <ChevronLeft className="w-3.5 h-3.5" />
               Sebelumnya
@@ -247,7 +247,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({
             <button
               onClick={onNext}
               disabled={!hasNext || loading}
-              className="px-3 py-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] font-bold flex items-center gap-1 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="px-3 py-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] font-bold flex items-center gap-1 disabled:opacity-40 disabled:cursor-not-allowed"
             >
               Berikutnya
               <ChevronRight className="w-3.5 h-3.5" />

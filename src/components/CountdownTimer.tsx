@@ -86,7 +86,7 @@ export function CountdownTimer({
   const isYouth = currentService === 'youth';
   
   // Keep service identity in the heading; the shared warm-stone surfaces carry the countdown.
-  const serviceColor = 'text-[var(--brand-text)] dark:text-[#E88086]';
+  const serviceColor = 'text-[var(--brand-text)] dark:text-[var(--brand-text)]';
   const serviceBg = 'bg-[var(--surface-raised)] dark:bg-[var(--card)]';
   const serviceBorder = 'border-[var(--border)] dark:border-[var(--border)]';
 
@@ -112,7 +112,7 @@ export function CountdownTimer({
             {info.serviceName}
           </span>
         </div>
-        <span className={`${serviceColor} text-xs md:text-sm font-medium px-2 py-1 rounded-full bg-white/80 dark:bg-[#1F232D]/80`}>
+        <span className={`${serviceColor} text-xs md:text-sm font-medium px-2 py-1 rounded-full bg-white/80 dark:bg-[var(--surface-raised)]/80`}>
           Minggu ke-{info.currentWeek}
         </span>
       </div>
@@ -188,7 +188,7 @@ function CountdownItem({
   color: string;
 }) {
   return (
-    <div className="text-center p-2 md:p-3 bg-white/60 dark:bg-[#1F232D]/60 rounded-xl">
+    <div className="text-center p-2 md:p-3 bg-white/60 dark:bg-[var(--surface-raised)]/60 rounded-xl">
       <div className={`${color} font-mono font-bold text-2xl md:text-3xl leading-tight`}>
         {value.toString().padStart(2, '0')}
       </div>

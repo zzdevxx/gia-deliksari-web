@@ -65,7 +65,7 @@ export function SkeletonCard({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        'rounded-2xl border border-[#E5E7EB] dark:border-[#2A2F3A] bg-white dark:bg-[#171A21] p-6 space-y-4',
+        'rounded-2xl border border-[#E5E7EB] dark:border-[var(--border)] bg-white dark:bg-[var(--card)] p-6 space-y-4',
         className,
       )}
     >

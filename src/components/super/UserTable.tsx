@@ -16,7 +16,7 @@ interface User {
 const ROLE_META: Record<Role, { label: string; color: string; portal: string }> = {
   super: {
     label: 'Superuser',
-    color: 'bg-[#FBF1F2] dark:bg-[#261517] text-[var(--brand-text)] dark:text-[#E88086] border-[#E8C2C5] dark:border-[#52252A]',
+    color: 'bg-[#FBF1F2] dark:bg-[#261517] text-[var(--brand-text)] dark:text-[var(--brand-text)] border-[#E8C2C5] dark:border-[#52252A]',
     portal: '/super',
   },
   admin: {
@@ -26,7 +26,7 @@ const ROLE_META: Record<Role, { label: string; color: string; portal: string }> 
   },
   treasurer: {
     label: 'Bendahara Youth',
-    color: 'bg-[#F9FAFB] dark:bg-[#1F232D] text-[#4B5563] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border)]',
+    color: 'bg-[#F9FAFB] dark:bg-[var(--surface-raised)] text-[#4B5563] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border)]',
     portal: '/kas',
   },
 };
@@ -56,7 +56,7 @@ const UserTable: React.FC<UserTableProps> = ({ users, loading, currentUsername, 
   return (
     <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm">
       <table className="w-full text-left text-xs sm:text-sm">
-        <thead className="bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] border-b border-[var(--border)] dark:border-[var(--border)]">
+        <thead className="bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] border-b border-[var(--border)] dark:border-[var(--border)]">
           <tr>
             <th className="p-4 font-bold">Username</th>
             <th className="p-4 font-bold">Role</th>
@@ -85,7 +85,7 @@ const UserTable: React.FC<UserTableProps> = ({ users, loading, currentUsername, 
                   <td className="p-4">
                     <div className="font-mono font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">{u.username}</div>
                     {u.username === currentUsername && (
-                      <span className="text-[10px] uppercase font-bold text-[var(--brand-text)] dark:text-[#E88086]">← Anda</span>
+                      <span className="text-[10px] uppercase font-bold text-[var(--brand-text)] dark:text-[var(--brand-text)]">← Anda</span>
                     )}
                   </td>
                   <td className="p-4">
@@ -128,7 +128,7 @@ const UserTable: React.FC<UserTableProps> = ({ users, loading, currentUsername, 
                         <button
                           onClick={() => onEdit(u)}
                           title="Edit role / password"
-                          className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)]"
+                          className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)]"
                         >
                           <Edit2 className="w-3.5 h-3.5" />
                         </button>

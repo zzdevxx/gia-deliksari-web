@@ -45,7 +45,7 @@ function MiniCountdown({ targetDate }: { targetDate: string }) {
  }, [targetDate]);
  if (!cd) return null;
  return (
- <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-[11px] font-bold border border-[var(--border)] dark:border-[var(--border)]">
+ <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-[11px] font-bold border border-[var(--border)] dark:border-[var(--border)]">
  <Hourglass className="w-3 h-3" />
  {cd.days > 0 ? `${cd.days} hari ` : ''}
  {cd.hours}j {cd.minutes}m lagi
@@ -74,7 +74,7 @@ export default function AnnouncementBoard() {
  }, []);
 
  const getCategoryBadge = (category: MinistryCategory) => {
- const color = 'bg-[var(--surface-raised)] text-[var(--muted-foreground)] border-[var(--border)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]';
+ const color = 'bg-[var(--surface-raised)] text-[var(--muted-foreground)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]';
  switch (category) {
  case 'general':
  return { label: 'Umum & Ibadah Raya', color };
@@ -129,7 +129,7 @@ export default function AnnouncementBoard() {
  {/* Section Header */}
  <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
  <div className="space-y-4 max-w-2xl">
- <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
+ <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
  <Bell className="w-3.5 h-3.5 text-[var(--brand-text)]" />
  <span>Warta Jemaat & Informasi Kegiatan</span>
  </div>
@@ -146,7 +146,7 @@ export default function AnnouncementBoard() {
  onClick={() => setIsPrintModalOpen(true)}
  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] text-xs sm:text-sm font-bold shadow-xs transition-all"
  >
- <Printer className="w-4 h-4 text-[var(--brand-text)] dark:text-[#E88086]" />
+ <Printer className="w-4 h-4 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  <span>Cetak Lembar Warta</span>
  </button>
  </div>
@@ -189,7 +189,7 @@ export default function AnnouncementBoard() {
  onClick={() => setTimeFilter('upcoming')}
  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
  timeFilter === 'upcoming'
- ? 'bg-white dark:bg-[#1F232D] text-[var(--foreground)] dark:text-white shadow-xs'
+ ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white shadow-xs'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
  }`}
  >
@@ -200,7 +200,7 @@ export default function AnnouncementBoard() {
  onClick={() => setTimeFilter('all')}
  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
  timeFilter === 'all'
- ? 'bg-white dark:bg-[#1F232D] text-[var(--foreground)] dark:text-white shadow-xs'
+ ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white shadow-xs'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
  }`}
  >
@@ -210,7 +210,7 @@ export default function AnnouncementBoard() {
  onClick={() => setTimeFilter('past')}
  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
  timeFilter === 'past'
- ? 'bg-white dark:bg-[#1F232D] text-[var(--foreground)] dark:text-white shadow-xs'
+ ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white shadow-xs'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
  }`}
  >
@@ -278,7 +278,7 @@ export default function AnnouncementBoard() {
  {badgeInfo.label}
  </span>
  {item.isPinned && (
- <span className="flex items-center gap-1 text-[11px] font-bold text-[var(--brand-text)] dark:text-[#E88086]">
+ <span className="flex items-center gap-1 text-[11px] font-bold text-[var(--brand-text)] dark:text-[var(--brand-text)]">
  <Pin className="w-3.5 h-3.5 fill-[var(--brand)] dark:fill-[#E88086]" />
  <span>Penting</span>
  </span>
@@ -304,7 +304,7 @@ export default function AnnouncementBoard() {
 
  <a
  href="#layanan"
- className="font-bold text-[var(--brand-text)] dark:text-[#E88086] hover:underline flex items-center gap-0.5"
+ className="font-bold text-[var(--brand-text)] dark:text-[var(--brand-text)] hover:underline flex items-center gap-0.5"
  >
  <span>Layanan</span>
  <ChevronRight className="w-3.5 h-3.5" />
@@ -406,7 +406,7 @@ export default function AnnouncementBoard() {
  {/* Modal Header */}
  <div className="flex items-center justify-between pb-4 border-b border-[var(--border)] dark:border-[var(--border)]">
  <div className="flex items-center gap-3">
- <div className="w-10 h-10 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] flex items-center justify-center text-[var(--brand-text)]">
+ <div className="w-10 h-10 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] flex items-center justify-center text-[var(--brand-text)]">
  <BookOpen className="w-5 h-5" />
  </div>
  <div>
@@ -428,7 +428,7 @@ export default function AnnouncementBoard() {
  </div>
 
  {/* Bulletin Content Preview */}
- <div className="p-6 rounded-2xl bg-[var(--background)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] space-y-6">
+ <div className="p-6 rounded-2xl bg-[var(--background)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] space-y-6">
  
  {/* Header Bulletin */}
  <div className="text-center pb-4 border-b border-[var(--border)] dark:border-[var(--border)] space-y-1">

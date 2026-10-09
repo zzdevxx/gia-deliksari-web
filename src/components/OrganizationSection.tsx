@@ -30,7 +30,7 @@ const GROUPS: Group[] = [
  subtitle: 'Tim Penggembalaan & Pelayanan',
  icon: <Crown className="w-5 h-5" />,
  accentClass:
- 'border-[var(--border)] dark:border-[var(--border)] bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--brand-text)] dark:text-[var(--brand-text)]',
+ 'border-[var(--border)] dark:border-[var(--border)] bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--brand-text)] dark:text-[var(--brand-text)]',
  members: [
  { name: 'Pdt. Yohanes Sutono, S.Th., M.Ag.', role: 'Bapak Gembala / Senior Pastor' },
  { name: 'Ibu Santini Lidyawati', role: 'Ibu Gembala' },
@@ -59,7 +59,7 @@ const GROUPS: Group[] = [
  subtitle: 'Komunitas Kecil Persekutuan',
  icon: <Users className="w-5 h-5" />,
  accentClass:
- 'border-[var(--border)] dark:border-[var(--border)] bg-[#F9FAFB] dark:bg-[#1F232D] text-[#4B5563] dark:text-[var(--muted-foreground)]',
+ 'border-[var(--border)] dark:border-[var(--border)] bg-[#F9FAFB] dark:bg-[var(--surface-raised)] text-[#4B5563] dark:text-[var(--muted-foreground)]',
  members: [
  { name: 'Bpk. Sidik', role: 'Ketua Komsel — Ekklesia Sel' },
  { name: 'Sdri. Yemima', role: 'Ketua Komsel — Amethyst' },
@@ -87,7 +87,7 @@ const GROUPS: Group[] = [
  subtitle: 'Persekutuan Kaum Wanita',
  icon: <HeartHandshake className="w-5 h-5" />,
  accentClass:
- 'border-[var(--border)] dark:border-[var(--border)] bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]',
+ 'border-[var(--border)] dark:border-[var(--border)] bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]',
  members: [
  { name: 'Ibu Penskilla', role: 'Ketua' },
  { name: 'Ibu Siska', role: 'Sekretaris' },
@@ -105,8 +105,8 @@ export default function OrganizationSection() {
  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
  {/* Section Header */}
  <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
- <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
- <ShieldCheck className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[#E88086]" />
+ <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
+ <ShieldCheck className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  <span>Struktur Organisasi Pelayanan</span>
  </div>
  <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] tracking-tight">
@@ -164,12 +164,12 @@ export default function OrganizationSection() {
  href="https://api.whatsapp.com/send?phone=6289620961103"
  target="_blank"
  rel="noopener noreferrer"
- className="font-bold text-[var(--brand-text)] dark:text-[#E88086] hover:underline"
+ className="font-bold text-[var(--brand-text)] dark:text-[var(--brand-text)] hover:underline"
  >
  0896-2096-1103
  </a>{' '}
  atau gunakan formulir pendaftaran di section{' '}
- <a href="#layanan" className="font-bold text-[var(--brand-text)] dark:text-[#E88086] hover:underline">
+ <a href="#layanan" className="font-bold text-[var(--brand-text)] dark:text-[var(--brand-text)] hover:underline">
  Layanan Jemaat
  </a>
  .

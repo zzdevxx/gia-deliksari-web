@@ -88,10 +88,10 @@ export default function MinistriesSection() {
                 className="rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] p-6 sm:p-8 flex flex-col"
               >
                 <div className="flex items-start justify-between gap-4">
-                  <div className="w-12 h-12 shrink-0 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] flex items-center justify-center">
+                  <div className="w-12 h-12 shrink-0 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] flex items-center justify-center">
                     <MinistryIcon className={`w-6 h-6 ${ministry.tone}`} aria-hidden="true" />
                   </div>
-                  <span className="inline-flex items-center rounded-md bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] px-2.5 py-1 text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
+                  <span className="inline-flex items-center rounded-md bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] px-2.5 py-1 text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
                     {ministry.badge}
                   </span>
                 </div>
@@ -109,7 +109,7 @@ export default function MinistriesSection() {
                   {ministry.desc}
                 </p>
 
-                <dl className="mt-6 space-y-3 rounded-xl bg-[var(--background)] dark:bg-[#1F232D] p-4">
+                <dl className="mt-6 space-y-3 rounded-xl bg-[var(--background)] dark:bg-[var(--surface-raised)] p-4">
                   <div className="flex items-start gap-3">
                     <Clock className="mt-0.5 w-4 h-4 shrink-0 text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]" aria-hidden="true" />
                     <div className="min-w-0">

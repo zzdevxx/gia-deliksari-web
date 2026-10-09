@@ -77,7 +77,7 @@ const UserModal: React.FC<UserModalProps> = ({ initial, editingId, onSave, onClo
  value={form.username}
  onChange={(e) => setForm({ ...form, username: e.target.value })}
  placeholder="contoh: noel"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 disabled:opacity-60 disabled:cursor-not-allowed"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30 disabled:opacity-60 disabled:cursor-not-allowed"
  />
  {editingId && (
  <p className="text-[10px] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
@@ -97,7 +97,7 @@ const UserModal: React.FC<UserModalProps> = ({ initial, editingId, onSave, onClo
  onChange={(e) => setForm({ ...form, password: e.target.value })}
  placeholder="••••"
  minLength={4}
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
  />
  <p className="text-[10px] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
  Minimal 4 karakter. Disimpan dengan bcrypt (tidak bisa dibaca plain).
@@ -118,14 +118,14 @@ const UserModal: React.FC<UserModalProps> = ({ initial, editingId, onSave, onClo
  className={`flex items-start gap-2 p-3 rounded-2xl border-2 cursor-pointer transition-all ${
  isChecked
  ? 'border-[#8B1E28] bg-[#FBF1F2] dark:border-[#B8323D] dark:bg-[#261517]'
- : 'border-[var(--border)] dark:border-[var(--border)] bg-[var(--surface-raised)] dark:bg-[#1F232D] hover:border-[#8B1E28]/40 dark:hover:border-[#B8323D]/40'
+ : 'border-[var(--border)] dark:border-[var(--border)] bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] hover:border-[#8B1E28]/40 dark:hover:border-[#B8323D]/40'
  }`}
  >
  <input
  type="checkbox"
  checked={isChecked}
  onChange={() => toggleRole(r)}
- className="mt-0.5 rounded text-[var(--brand-text)] dark:text-[#E88086] focus:ring-[#8B1E28] dark:focus:ring-[#B8323D]"
+ className="mt-0.5 rounded text-[var(--brand-text)] dark:text-[var(--brand-text)] focus:ring-[#8B1E28] dark:focus:ring-[#B8323D]"
  />
  <div className="text-xs font-bold text-[var(--foreground)] dark:text-[var(--foreground)] leading-tight">
  {meta.emoji} {meta.label}
@@ -151,7 +151,7 @@ const UserModal: React.FC<UserModalProps> = ({ initial, editingId, onSave, onClo
  value={form.display_name}
  onChange={(e) => setForm({ ...form, display_name: e.target.value })}
  placeholder="contoh: Noel Yosan (Admin)"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[#8B1E28]/30 dark:focus:ring-[#B8323D]/30"
  />
  </div>
 
@@ -159,7 +159,7 @@ const UserModal: React.FC<UserModalProps> = ({ initial, editingId, onSave, onClo
  <button
  type="button"
  onClick={onClose}
- className="px-5 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold"
+ className="px-5 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold"
  >
  Batal
  </button>

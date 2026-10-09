@@ -56,18 +56,18 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
           <button
             onClick={onRefresh}
             title="Refresh"
-            className="p-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors flex items-center gap-2 text-xs font-bold"
+            className="p-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors flex items-center gap-2 text-xs font-bold"
           >
-            <RefreshCw className={`w-4 h-4 text-[var(--brand-text)] dark:text-[#E88086] ${loading ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`w-4 h-4 text-[var(--brand-text)] dark:text-[var(--brand-text)] ${loading ? 'animate-spin' : ''}`} />
             <span className="hidden sm:inline">Refresh</span>
           </button>
         )}
 
         <Link
           href={websiteLink}
-          className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
+          className="px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)] transition-colors text-xs font-bold flex items-center gap-2"
         >
-          <ExternalLink className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[#E88086]" />
+          <ExternalLink className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
           <span>Lihat Website</span>
         </Link>
 

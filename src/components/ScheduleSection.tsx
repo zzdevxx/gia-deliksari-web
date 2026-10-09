@@ -230,11 +230,11 @@ export default function ScheduleSection() {
 
  const getCategoryColor = (category: string) => {
  switch (category) {
- case 'doa': return 'bg-[var(--surface-raised)] text-[var(--muted-foreground)] border-[var(--border)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)]';
- case 'musik': return 'bg-[var(--surface-raised)] text-[var(--muted-foreground)] border-[var(--border)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)]';
- case 'pastoral': return 'bg-[var(--surface-raised)] text-[var(--muted-foreground)] border-[var(--border)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)]';
+ case 'doa': return 'bg-[var(--surface-raised)] text-[var(--muted-foreground)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)]';
+ case 'musik': return 'bg-[var(--surface-raised)] text-[var(--muted-foreground)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)]';
+ case 'pastoral': return 'bg-[var(--surface-raised)] text-[var(--muted-foreground)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)]';
  case 'administrasi': return 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300';
- default: return 'bg-[var(--surface-raised)] text-[var(--muted-foreground)] border-[var(--border)] dark:bg-[#1F232D] dark:text-[var(--muted-foreground)]';
+ default: return 'bg-[var(--surface-raised)] text-[var(--muted-foreground)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)]';
  }
  };
 
@@ -244,7 +244,7 @@ export default function ScheduleSection() {
 
  {/* Section Header */}
  <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
- <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
+ <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
  <Clock className="w-3.5 h-3.5 text-[var(--brand-text)]" />
  <span>Agenda & Waktu Beribadah</span>
  </div>
@@ -265,10 +265,10 @@ export default function ScheduleSection() {
  >
  <div className="space-y-4">
  <div className="flex flex-wrap items-center justify-between gap-2">
- <span className="px-3 py-1 rounded-xl text-xs font-bold border bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border)]">
+ <span className="px-3 py-1 rounded-xl text-xs font-bold border bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border)]">
  {service.category}
  </span>
- <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[var(--brand-text)] dark:text-[#E88086]">
+ <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[var(--brand-text)] dark:text-[var(--brand-text)]">
  <Clock className="w-3.5 h-3.5" />
  <span>{service.time}</span>
  </div>
@@ -295,7 +295,7 @@ export default function ScheduleSection() {
  </div>
  <a
  href="#layanan"
- className="font-bold text-[var(--brand-text)] dark:text-[#E88086] hover:underline flex items-center gap-0.5"
+ className="font-bold text-[var(--brand-text)] dark:text-[var(--brand-text)] hover:underline flex items-center gap-0.5"
  >
  <span>Daftar Pelayanan</span>
  <ChevronRight className="w-3.5 h-3.5" />
@@ -317,7 +317,7 @@ export default function ScheduleSection() {
  </div>
  <div className="space-y-2">
  <div className="flex flex-wrap items-center gap-2">
- <span className="text-xs font-bold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] bg-[var(--surface-raised)] dark:bg-[#1F232D] px-2.5 py-0.5 rounded-lg border border-[var(--border)] dark:border-[var(--border)]">
+ <span className="text-xs font-bold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] px-2.5 py-0.5 rounded-lg border border-[var(--border)] dark:border-[var(--border)]">
  {act.day}
  </span>
  <span className="text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">{act.time}</span>
@@ -370,7 +370,7 @@ export default function ScheduleSection() {
 
  <a
  href="#layanan"
- className="px-4 py-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--brand-text)] dark:text-[#E88086] hover:bg-[var(--surface-raised)] text-xs font-bold transition-colors"
+ className="px-4 py-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--brand-text)] dark:text-[var(--brand-text)] hover:bg-[var(--surface-raised)] text-xs font-bold transition-colors"
  >
  Ajukan Jadwal Pelayanan
  </a>
@@ -394,7 +394,7 @@ export default function ScheduleSection() {
  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B1E28] focus-visible:ring-offset-2 ${
  isActive
  ? 'bg-[var(--brand)] text-white shadow-xs'
- : 'bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)]'
+ : 'bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#2A2F3A] border border-[var(--border)] dark:border-[var(--border)]'
  }`}
  >
  {tab.label}
@@ -465,7 +465,7 @@ export default function ScheduleSection() {
  <td className="py-3.5 pr-3 text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] font-mono">
  {item.serviceDate}
  </td>
- <td className="py-3.5 pr-3 font-semibold text-[var(--brand-text)] dark:text-[#E88086]">
+ <td className="py-3.5 pr-3 font-semibold text-[var(--brand-text)] dark:text-[var(--brand-text)]">
  {item.role}
  </td>
  <td className="py-3.5 pr-3 text-[var(--foreground)] dark:text-[var(--foreground)]">

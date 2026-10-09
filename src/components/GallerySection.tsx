@@ -129,7 +129,7 @@ export default function GallerySection() {
  {/* Section Header */}
  <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
  <div className="space-y-4 max-w-2xl">
- <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
+ <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
  <Camera className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  <span>Dokumentasi Pelayanan & Momen Kebersamaan</span>
  </div>
@@ -202,11 +202,11 @@ export default function GallerySection() {
  {/* Gallery Grid - 12 foto random, 2/3/4 cols responsif */}
  {displayed.length === 0 ? (
  <div className="p-12 sm:p-16 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-xs text-center max-w-2xl mx-auto space-y-5">
- <div className="w-16 h-16 rounded-2xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] flex items-center justify-center text-[var(--brand-text)] dark:text-[var(--brand-text)] mx-auto shadow-xs">
+ <div className="w-16 h-16 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] flex items-center justify-center text-[var(--brand-text)] dark:text-[var(--brand-text)] mx-auto shadow-xs">
  <Camera className="w-8 h-8" />
  </div>
  <div className="space-y-2">
- <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)] uppercase tracking-wider">
+ <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)] uppercase tracking-wider">
  Dokumentasi Kegiatan
  </span>
  <h3 className="text-xl sm:text-2xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)]">
@@ -227,7 +227,7 @@ export default function GallerySection() {
  href={googleDriveFolderUrl}
  target="_blank"
  rel="noopener noreferrer"
- className="px-5 py-2.5 rounded-xl bg-white dark:bg-[#1F232D] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold hover:bg-[var(--surface-raised)] transition-all flex items-center gap-2"
+ className="px-5 py-2.5 rounded-xl bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold hover:bg-[var(--surface-raised)] transition-all flex items-center gap-2"
  >
  <FolderOpen className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  <span>Google Drive Master</span>
@@ -302,7 +302,7 @@ export default function GallerySection() {
  href={googleDriveFolderUrl}
  target="_blank"
  rel="noopener noreferrer"
- className="px-6 py-3.5 rounded-2xl bg-white dark:bg-[#1F232D] hover:bg-[var(--background)] dark:hover:bg-[#2A2F3A] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold flex items-center gap-2 shadow-xs shrink-0"
+ className="px-6 py-3.5 rounded-2xl bg-white dark:bg-[var(--surface-raised)] hover:bg-[var(--background)] dark:hover:bg-[#2A2F3A] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold flex items-center gap-2 shadow-xs shrink-0"
  >
  <FolderOpen className="w-4 h-4 text-[#4B5563]" />
  <span>Buka Folder Google Drive</span>

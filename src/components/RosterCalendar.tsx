@@ -12,10 +12,10 @@ interface CalendarProps {
 const DAY_NAMES_ID = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
 
 const CAT_META: Record<string, { label: string; bg: string; border: string; text: string }> = {
-  general: { label: 'Ibadah Raya', bg: 'bg-[var(--surface-raised)] dark:bg-[#1F232D]', border: 'border-[var(--border)] dark:border-[var(--border)]', text: 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]' },
-  youth:   { label: 'Grow Youth',  bg: 'bg-[var(--surface-raised)] dark:bg-[#1F232D]', border: 'border-[var(--border)] dark:border-[var(--border)]', text: 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]' },
-  kidz:    { label: 'COC Kidz',    bg: 'bg-[var(--surface-raised)] dark:bg-[#1F232D]', border: 'border-[var(--border)] dark:border-[var(--border)]', text: 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]' },
-  hana:    { label: 'Wanita Hana', bg: 'bg-[var(--surface-raised)] dark:bg-[#1F232D]', border: 'border-[var(--border)] dark:border-[var(--border)]', text: 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]' },
+  general: { label: 'Ibadah Raya', bg: 'bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)]', border: 'border-[var(--border)] dark:border-[var(--border)]', text: 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]' },
+  youth:   { label: 'Grow Youth',  bg: 'bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)]', border: 'border-[var(--border)] dark:border-[var(--border)]', text: 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]' },
+  kidz:    { label: 'COC Kidz',    bg: 'bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)]', border: 'border-[var(--border)] dark:border-[var(--border)]', text: 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]' },
+  hana:    { label: 'Wanita Hana', bg: 'bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)]', border: 'border-[var(--border)] dark:border-[var(--border)]', text: 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]' },
 };
 
 /**
@@ -76,7 +76,7 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
       <div className="flex items-center justify-between">
         <button
           onClick={() => setCursor(new Date(cursor.getFullYear(), cursor.getMonth() - 1, 1))}
-          className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A]"
+          className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A]"
           aria-label="Bulan sebelumnya"
         >
           <ChevronLeft className="w-4 h-4" />
@@ -86,7 +86,7 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
         </h3>
         <button
           onClick={() => setCursor(new Date(cursor.getFullYear(), cursor.getMonth() + 1, 1))}
-          className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A]"
+          className="p-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[#E5E7EB] dark:hover:bg-[#2A2F3A]"
           aria-label="Bulan berikutnya"
         >
           <ChevronRight className="w-4 h-4" />
@@ -116,7 +116,7 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
                 'min-h-[60px] sm:min-h-[78px] p-1.5 rounded-2xl border text-left flex flex-col gap-1 transition-all',
                 inMonth ? '' : 'opacity-40',
                 isToday ? 'ring-2 ring-[#8B1E28]/40' : '',
-                isSelected ? 'border-[#8B1E28] bg-[var(--surface-raised)] dark:bg-[#1F232D]' : 'border-[var(--border)] dark:border-[var(--border)]',
+                isSelected ? 'border-[#8B1E28] bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)]' : 'border-[var(--border)] dark:border-[var(--border)]',
                 hasEntries ? 'cursor-pointer hover:border-[#8B1E28]/40 hover:bg-[var(--background)] dark:hover:bg-[#1F232D]' : 'cursor-default',
               ].join(' ')}
             >

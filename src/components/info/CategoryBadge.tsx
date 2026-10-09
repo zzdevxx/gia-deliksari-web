@@ -10,7 +10,7 @@ interface CategoryBadgeProps {
 const CONFIG: Record<MinistryCategory, { label: string; color: string }> = {
   general: {
     label: 'Ibadah Raya',
-    color: 'bg-[#FBF1F2] dark:bg-[#261517] text-[var(--brand-text)] dark:text-[#E88086] border-[#E8C2C5] dark:border-[#52252A]',
+    color: 'bg-[#FBF1F2] dark:bg-[#261517] text-[var(--brand-text)] dark:text-[var(--brand-text)] border-[#E8C2C5] dark:border-[#52252A]',
   },
   youth: {
     label: 'Grow Youth',
@@ -18,7 +18,7 @@ const CONFIG: Record<MinistryCategory, { label: string; color: string }> = {
   },
   kidz: {
     label: 'COC Kidz',
-    color: 'bg-[#F9FAFB] dark:bg-[#1F232D] text-[#4B5563] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border)]',
+    color: 'bg-[#F9FAFB] dark:bg-[var(--surface-raised)] text-[#4B5563] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border)]',
   },
   hana: {
     label: 'Wanita Hana',
@@ -26,7 +26,7 @@ const CONFIG: Record<MinistryCategory, { label: string; color: string }> = {
   },
   all: {
     label: 'Umum',
-    color: 'bg-[var(--surface-raised)] dark:bg-[#1F232D] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border)]',
+    color: 'bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border)]',
   },
 };
 

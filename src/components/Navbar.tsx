@@ -123,7 +123,7 @@ export default function Navbar() {
  <span className="font-extrabold text-base tracking-tight text-[var(--foreground)] dark:text-[var(--foreground)] group-hover:text-[var(--brand-text)] dark:group-hover:text-[var(--brand-text)] transition-colors">
  GIA DELIKSARI
  </span>
- <span className="text-[10px] font-bold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] bg-[var(--surface-raised)] dark:bg-[#1F232D] px-1.5 py-0.2 rounded border border-[var(--border)] dark:border-[var(--border)] hidden sm:inline-block">
+ <span className="text-[10px] font-bold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] px-1.5 py-0.2 rounded border border-[var(--border)] dark:border-[var(--border)] hidden sm:inline-block">
  Semarang
  </span>
  </div>
@@ -148,7 +148,7 @@ export default function Navbar() {
  aria-current={isActive ? 'page' : undefined}
  className={`relative px-3.5 py-2 rounded-xl text-xs font-semibold transition-all ${
  isActive
- ? 'text-[var(--foreground)] dark:text-[var(--foreground)] bg-[var(--surface-raised)] dark:bg-[#1F232D] font-bold shadow-xs'
+ ? 'text-[var(--foreground)] dark:text-[var(--foreground)] bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] font-bold shadow-xs'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)] dark:hover:text-[var(--foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[#1F232D]'
  }`}
  >
@@ -231,7 +231,7 @@ export default function Navbar() {
  </div>
  ))}
  <div className="pt-3 space-y-2 border-t border-[var(--border)] dark:border-[var(--border)]">
- <div className="flex items-center justify-between px-4 py-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[#1F232D]">
+ <div className="flex items-center justify-between px-4 py-2 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)]">
  <span className="text-xs font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">Mode Tampilan</span>
  <ThemeToggle />
  </div>

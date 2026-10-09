@@ -19,9 +19,9 @@ type Variant = 'elevated' | 'flat' | 'outlined' | 'inverted';
 
 const VARIANT_MAP: Record<Variant, string> = {
   elevated:
-    'bg-white dark:bg-[#171A21] border border-[#E5E7EB] dark:border-[#2A2F3A] shadow-xs',
-  flat: 'bg-[#FFFFFF] dark:bg-[#0F1115] border border-[#E5E7EB]/80 dark:border-[#2A2F3A]/80',
-  outlined: 'bg-transparent border border-[#E5E7EB] dark:border-[#2A2F3A]',
+    'bg-white dark:bg-[var(--card)] border border-[#E5E7EB] dark:border-[var(--border)] shadow-xs',
+  flat: 'bg-[#FFFFFF] dark:bg-[var(--card-inverted-bg)] border border-[#E5E7EB]/80 dark:border-[var(--border)]/80',
+  outlined: 'bg-transparent border border-[#E5E7EB] dark:border-[var(--border)]',
   inverted: 'bg-[#171A21] text-[#F9FAFB] border border-[#4B5563]/30',
 };
 
