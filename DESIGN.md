@@ -1,24 +1,90 @@
 ---
 name: GIA Deliksari Web Portal
-description: Clean, reverent digital home for the GIA Deliksari congregation.
+description: Flat, calm, reverent digital home for the GIA Deliksari congregation.
+# ─────────────────────────────────────────────────────────────────────────────
+# The frontmatter below is a MACHINE CONTRACT, not documentation.
+# `npm run lint:design` (impeccable detect) parses ONLY this YAML — it reads
+# exactly four keys: `colors`, `typography`, `rounded`, and per-role
+# `fontSize`. Prose further down the file changes nothing.
+#
+# Adding a hex or a font size to a component means adding it HERE first.
+# That inversion is the point: the palette is reviewable in one place.
+#
+# Two rules that follow from how the detector matches:
+#   • colors match per-channel within ±6/255, so near-duplicates are accepted
+#     deliberately rather than by accident.
+#   • `var(--token)` values are unconditionally allowed — which is why every
+#     colour in `src/` is a token reference and none is a literal.
+# ─────────────────────────────────────────────────────────────────────────────
 colors:
-  primary: "#8B1E28"
-  primary-dark: "#B8323D"
-  primary-hover: "#731820"
-  gold: "#4B5563"
-  gold-dark: "#9CA3AF"
-  alabaster: "#FFFFFF"
-  cream: "#F3F4F6"
-  card: "#FFFFFF"
-  ink: "#111827"
-  ink-muted: "#6B7280"
-  charcoal: "#0F1115"
-  slate-card: "#171A21"
-  slate-raised: "#1F232D"
-  slate-border: "#2A2F3A"
-  linen: "#F9FAFB"
-  linen-muted: "#9CA3AF"
+  # ── brand (the only saturated colour in the product) ────────────────────
+  wine: "#8B1E28"             # --brand       light CTA fill; white on it = 9.07:1
+  wine-hover: "#731820"       # --brand-hover                   white = 11.17:1
+  wine-dark: "#B8323D"        # --brand       dark CTA fill;  white on it = 5.90:1
+  wine-dark-hover: "#A32C36"  # --brand-hover                   white = 7.07:1
+  wine-text: "#E88086"        # --brand-text  brand AS TEXT on dark  = 7.08:1
+  wine-text-dark: "#8B1E28"   # --brand-text  brand AS TEXT on light = 8.85:1
+  wine-tint: "#FBF1F2"        # --brand-tint         light tinted panel
+  wine-tint-ink: "#261517"    # --brand-tint-ink     ink on a light tint
+  wine-tint-dark: "#52252A"   # --brand-tint         dark tinted panel
+  wine-tint-border: "#E8C2C5" # --brand-tint-border  light tint outline
+  wine-tint-border-dark: "#52252A"
+  # ── light surface ramp ───────────────────────────────────────────────────
+  canvas: "#FFFFFF"           # --background
+  surface: "#F3F4F6"          # --surface-raised   inset: table rows, chips
+  surface-hover: "#E5E7EB"    # --surface-raised-hover
+  border-light: "#E5E7EB"     # --border           decorative only (1.24:1)
+  # ── dark surface ramp ────────────────────────────────────────────────────
+  canvas-dark: "#0F1115"      # --card-inverted-bg
+  surface-dark: "#171A21"     # --card
+  surface-raised-dark: "#1F232D" # --surface-raised
+  surface-raised-hover-dark: "#2A2F3A"
+  border-dark: "#2A2F3A"      # --border
+  # ── ink ──────────────────────────────────────────────────────────────────
+  ink: "#111827"              # --foreground       light primary text
+  ink-muted: "#5B6472"        # --muted-foreground light secondary   = 5.83:1
+  ink-strong: "#4B5563"       # --ink-strong       light subheading    = 7.03:1
+  ink-strong-hover: "#374151"  # hover state of the neutral Button fill
+  ink-dark: "#F9FAFB"         # --foreground       dark primary text
+  ink-muted-dark: "#9CA3AF"   # --muted-foreground dark secondary     = 7.44:1
+  ink-strong-dark: "#64748B"
+  ink-on-wine: "#FFFFFF"      # text that sits ON a brand fill
+  # ── non-text boundaries (WCAG 1.4.11 needs ≥3:1) ─────────────────────────
+  boundary-light: "#848B94"   # --border-strong   form fields, secondary btn = 3.44:1
+  boundary-dark: "#6B7480"    # --border-strong                        = 3.99:1
+  # ── status (semantic: "dana keluar = merah" must survive) ───────────────
+  success: "#166534"
+  success-tint: "#F0FDF4"
+  success-border: "#BBF7D0"
+  success-dark: "#4ADE80"
+  success-tint-dark: "#142A1B"
+  success-border-dark: "#052E16"
+  danger: "#991B1B"
+  danger-dark: "#F87171"
+  info: "#1D4ED8"
+  info-dark: "#93C5FD"
 typography:
+  # `scale` is the canonical set of permitted steps. `impeccable detect`
+  # allow-lists exactly these px values (±0.5). Anything else in a component
+  # is a finding.
+  #
+  # The sub-12px steps are deliberate and audited: the congregation skews
+  # 60–70, and every 8–11px usage in this repo is a fixed-format badge
+  # (date, count, category chip) that never carries running prose. Anything
+  # a person reads in a sentence is ≥12px.
+  scale:
+    micro: "0.5rem"     # 8px  — superscript mark, "1/3" pager fraction
+    nano: "0.5625rem"   # 9px  — dot-matrix tally
+    badge: "0.625rem"   # 10px — category chip, date stamp, stat caption
+    caption: "0.6875rem" # 11px — metadata under a heading
+    label: "0.75rem"    # 12px — control labels (the floor for any real text)
+    fine: "0.8125rem"   # 13px — dense table cells
+    small: "0.875rem"   # 14px
+    base: "1rem"        # 16px — body copy
+    section: "1.125rem" # 18px — sub-heading
+    title: "1.375rem"   # 22px
+    display-sm: "1.625rem" # 26px
+    title-lg: "1.875rem"   # 30px
   body:
     fontFamily: "var(--font-sans), system-ui, sans-serif"
     fontSize: "1rem"
@@ -34,29 +100,39 @@ typography:
     fontSize: "0.75rem"
     fontWeight: 700
 rounded:
-  control: "0.75rem"
-  card: "1rem"
-  badge: "9999px"
+  # 4px/6px exist only for the print bulletin's inline pills and chips, which
+  # must stay visually distinct from the 16px cards printed around them.
+  # No screen component uses them.
+  chip: "0.25rem"          # 4px  — print bulletin inline chip
+  chip-lg: "0.375rem"      # 6px  — print bulletin inline block
+  control: "0.5rem"      # 8px  — inputs, small chips
+  control-lg: "0.75rem"   # 12px — buttons, inner cards
+  card: "1rem"            # 16px — content cards
+  panel: "1.5rem"         # 24px — feature panels (rounded-3xl)
+  badge: "9999px"        # pills, avatars, status dots
+  # `full` is what the detector matches on to grant the pill exemption —
+  # without a key by that name, `rounded-full` needs 9999px listed outright.
+  full: "9999px"
 spacing:
   unit: "0.25rem"
   section: "6rem"
 components:
   button-primary:
-    backgroundColor: "{colors.primary}"
-    textColor: "#FFFFFF"
-    rounded: "{rounded.badge}"
+    backgroundColor: "{colors.wine}"
+    textColor: "{colors.ink-on-wine}"
+    rounded: "{rounded.control-lg}"
     height: "3rem"
   button-primary-hover:
-    backgroundColor: "#731820"
+    backgroundColor: "{colors.wine-hover}"
   button-secondary:
-    backgroundColor: "{colors.card}"
+    backgroundColor: "{colors.canvas}"
     textColor: "{colors.ink}"
-    rounded: "{rounded.control}"
+    rounded: "{rounded.control-lg}"
   card:
-    backgroundColor: "{colors.card}"
+    backgroundColor: "{colors.canvas}"
     rounded: "{rounded.card}"
   badge-neutral:
-    backgroundColor: "{colors.cream}"
+    backgroundColor: "{colors.surface}"
     textColor: "{colors.ink-muted}"
     rounded: "{rounded.badge}"
 ---
@@ -67,97 +143,168 @@ components:
 
 **Creative North Star: "The Clean Sanctuary"**
 
-GIA Deliksari's web portal should feel like arriving at a familiar church home: calm, welcoming, and grounded in real community life around Sekaran and UNNES. Pure white surfaces and cool neutral greys hold the page; the official crimson identity remains visible, but only where it helps people find an action or recognize a meaningful church detail.
+GIA Deliksari's portal should feel like arriving at a familiar church home:
+calm, welcoming, grounded in real community life around Sekaran and UNNES.
+White surfaces and cool neutral greys hold the page. The official crimson
+identity stays visible, but only where it helps someone find an action or
+recognise a meaningful detail.
 
-The public pages invite visitors and communicate schedules. The admin, superuser, and treasury portals help church operators finish practical work. Their visual density may differ, but both share the same neutral foundations, legible text, and restrained identity accents.
+The system is **flat**: hierarchy comes from space, weight, and hairline
+borders, never from drop shadows or gradients. This is a deliberate
+constraint, not a stylistic accident — see §Flat Rules, which is the part
+of this document most worth enforcing.
 
-**Key Characteristics:**
-- Pure white canvas and cool neutral greys carry most of the interface. No sepia, cream, or caramel surfaces.
-- Sacred wine `#8B1E28` is reserved for primary actions and a few meaningful highlights — the only saturated colour on the page.
-- Warm gold is gone; liturgical emphasis uses cool slate `#4B5563` instead, so the palette never drifts toward brown.
-- Flat, composed surfaces keep attention on people, schedules, and service information.
+**Key characteristics**
+- White canvas, cool neutral greys. No sepia, cream, or caramel.
+- Sacred wine is the only saturated colour, and it is rationed.
+- Two themes (light + dark), both hand-tuned — not an algorithmic inverse.
+- Elevation is expressed with a 1px border and a surface step, not a shadow.
+
+## Flat Rules
+
+Enforced by review today, by `lint:design` for everything it can see.
+
+| Rule | Status | Why |
+|---|---|---|
+| `shadow-lg` / `xl` / `2xl` | **banned** | Reads as "card lift" — the single loudest tell of a template-driven UI |
+| `shadow-md` | **banned** | A hairline border already separates the surface |
+| `shadow-xs` / `shadow-sm` | sticky header, modals only | These need to sit above content; without them they lose the layering |
+| `bg-gradient-*` | **banned** in components | Flat = solid fill |
+| gradients | image/video scrims, skeleton shimmer, error icon | Legibility surfaces, not decoration. A photo caption needs a scrim to be readable |
+| `blur-3xl` glow orbs | **banned** | At 4% opacity a blurred orb reads as a smudge, not depth |
+| `backdrop-blur` | sticky header, modal scrims | Functional (frosted chrome) |
+| `rounded-[2rem]` and larger | **banned** | Too soft to read as flat. One survives, in the gallery lightbox — a scrim, not a card |
+| `rounded-full` | badges, pills, avatars, dots only | A shape carrying meaning |
+
+Shadow is not absent; it is rationed. The only legitimate use is lifting an
+element *out of* the page's plane — a sticky header, an open dialog.
 
 ## Colors
 
-A cool neutral foundation supports a single intentional church identity accent. Light and dark themes use distinct surface ramps; dark mode is cool slate, not a mechanical inverse, and never a warm brown-black.
+A cool neutral foundation carrying one intentional identity accent. Every
+token has a light and a dark value defined in `globals.css`; a theme switch
+needs no per-component edits.
 
-### Primary
-- **Sacred Wine** (`{colors.primary}`): Primary actions, selected navigation, and a limited set of church identity highlights.
-- **Night Wine** (`{colors.primary-dark}`): Primary-action counterpart on dark surfaces.
+### The two-wine rule
 
-### Secondary
-- **Cool Slate** (`{colors.gold}`): Small liturgical emphasis and schedule cues, replacing the former warm brass. Keep labels readable and verify each foreground/background pair.
-- **Mist Slate** (`{colors.gold-dark}`): Slate accent on dark surfaces.
+One hex cannot be both a button fill and body text. Measured:
 
-### Neutral
-- **Pure White** (`{colors.alabaster}`): Main light-mode canvas.
-- **Cool Mist** (`{colors.cream}`): Secondary light surface and neutral badge fill.
-- **White Linen** (`{colors.card}`): Light-mode cards and raised content surfaces.
-- **Graphite Ink** (`{colors.ink}`): Primary light-mode text.
-- **Graphite Muted** (`{colors.ink-muted}`): Secondary light-mode text; verify on each actual surface.
-- **Cathedral Charcoal** (`{colors.charcoal}`): Main dark-mode canvas, cool near-black.
-- **Slate Card** (`{colors.slate-card}`): Dark cards and popovers.
-- **Raised Slate** (`{colors.slate-raised}`): Elevated dark surfaces and controls.
-- **Chiseled Edge** (`{colors.slate-border}`): Dark-mode borders and separators.
-- **Linen Text** (`{colors.linen}`): Primary dark-mode text.
-- **Mineral Text** (`{colors.linen-muted}`): Secondary dark-mode text; verify on each actual surface.
+| Role | Light | Dark |
+|---|---|---|
+| `--brand` — CTA **fill**, white text on top | `#8B1E28` → 9.07:1 | `#B8323D` → 5.90:1 |
+| `--brand-text` — brand as **text/icon** | `#8B1E28` → 8.85:1 | `#E88086` → 7.08:1 |
 
-**The Rare Wine Rule.** Sacred wine communicates identity and action. Ordinary categories, information badges, and structural borders remain neutral. Warm, sepia, cream, and caramel tones are not part of this palette — if a surface reads brown, it is wrong.
+So dark mode necessarily carries two wine tokens. They are not
+inconsistency — they are the same brand measured against two canvases. The
+light value (8.85:1) passes as text but the dark value (3.20:1 against the
+canvas) does not, which is exactly why `--brand-text` exists.
+
+Hue is deliberately preserved across themes: in OKLCH the wine moves only
+5.5° (15.9° → 21.4°); only lightness moves (42% → 53% → 72%). The colour
+you see in dark mode is the same colour, lit differently.
+
+### Surfaces
+
+| Token | Light | Dark | Role |
+|---|---|---|---|
+| `--background` | `#FFFFFF` | `#0F1115` | page canvas |
+| `--card` | `#FFFFFF` | `#171A21` | cards, popovers |
+| `--surface-raised` | `#F3F4F6` | `#1F232D` | inset: table rows, chips |
+| `--card-inverted-*` | `#171A21` | `#171A21` | always-dark panels (vision banner, toasts) — never flips |
+
+`--card-inverted-*` exists because ~130 call sites paint a permanently dark
+panel. Pointing them at `--card` would turn those white in light mode.
+
+### Ink
+
+Three steps, not two. `--muted-foreground` is the workhorse secondary.
+`--ink-strong` is the darkest neutral that still clears 4.5:1 on the white
+canvas (7.03:1) — the one exception a subheading may take without promoting
+itself to a heading. Anything lighter belongs to `--muted-foreground`.
+
+`--border` (`#E5E7EB`) measures 1.24:1 and is **intentionally decorative**.
+Interactive boundaries use `--border-strong` (3.44:1 light / 3.99:1 dark)
+to satisfy WCAG 1.4.11.
+
+### The Rare Wine Rule
+
+Wine communicates identity and action. Ordinary categories, informational
+badges, and structural borders stay neutral. When in doubt, the answer is
+grey — a page with too much wine reads as an error state.
+
+**Status colours** (`--status-success` / `-danger` / `-info`) are semantic
+and stay. "Dana keluar = merah" is a hard convention, not decoration, and
+must survive any palette change.
 
 ## Typography
 
-The existing sans and display font variables remain the base system. Print bulletins use a bookish serif face suited to paper and longer reading.
+One sans family throughout, plus a display face used for headings.
+Georgia is declared but unreachable in practice — treat serif as the print
+bulletin's own system (see §Print bulletin), not the web default.
 
 ### Hierarchy
-- **Display** (bold, fluid up to 3.75rem, line-height 1.12): Public page headlines.
-- **Title** (semibold or bold, 1.25–1.875rem): Page and section titles.
-- **Body** (regular, 1rem, line-height 1.6): Explanatory text and service details.
-- **Label** (bold, 0.75rem): Compact categories, metadata, and control labels.
 
-Body copy should remain comfortably readable; avoid long unbroken measures, and use tabular numerals where schedules, dates, and financial figures need alignment.
+Driven by `typography.scale` in the frontmatter. The steps below 12px exist
+and are audited: every 8–11px usage in the repo is a fixed-format badge
+(date, count, category chip) that never carries running prose. Anything a
+person reads in a sentence is ≥12px, with body copy at 16px/1.6.
+
+Use tabular numerals where schedules, dates, and financial figures need
+column alignment.
 
 ## Layout
 
-Public sections use a centered content width up to 80rem with responsive side gutters (`px-4 sm:px-6 lg:px-8`). Content groups are compact internally and separated by generous vertical space. Cards use a purposeful grid only where comparison helps, such as ministry schedules or service methods. Small screens stack those groups without horizontal overflow.
+Public sections use a centred content width up to 80rem with responsive
+gutters (`px-4 sm:px-6 lg:px-8`). Compact inside a group, generous between
+groups. Cards form a grid only where comparison genuinely helps — ministry
+schedules, service methods. Small screens stack without horizontal overflow.
 
-Operator surfaces prioritize task completion and readable data density rather than public-page spaciousness.
-
-## Elevation & Depth
-
-At rest, use tonal surface changes and a subtle border to separate content. Do not combine heavy borders and prominent shadows. Reserve soft shadow for floating controls and dialogs; dark mode uses lighter surface steps rather than shadow glow.
+Operator surfaces (admin, super, treasury) trade public-page spaciousness
+for task completion and data density.
 
 ## Shapes
 
-Cards have gently rounded corners (16px). Controls use a smaller, clear radius (12px); pills are reserved for compact labels and controls. Avoid oversized radii on large content panels.
+| Scale | Value | Use |
+|---|---|---|
+| `rounded-control` | 8px | inputs, small chips |
+| `rounded-control-lg` | 12px | buttons, inner cards |
+| `rounded-card` | 16px | content cards |
+| `rounded-panel` | 24px | feature panels |
+| `rounded-full` | — | badges, pills, avatars, status dots |
 
 ## Components
 
 ### Buttons
-Primary actions use a solid Sacred Wine fill, white text, and a visible focus ring. Secondary actions use a neutral surface and border. Slate-filled controls use a sufficiently dark foreground; white text on light slate is not an approved pairing. Hover states should be restrained and preserve contrast.
 
-### Chips and badges
-Neutral is the default for ordinary categories and metadata. Wine variants are used only where their meaning is specific. Slate variants mark liturgical emphasis. Status color is paired with a readable label and is never the sole carrier of meaning.
-
-### Cards and containers
-Content cards use white linen in light mode and slate card in dark mode with a fine neutral border. Category is communicated through headings, compact badges, and explicit labels rather than thick colored edge bars.
+`variant="primary"` is wine with white text and a visible focus ring — and
+the default, so nobody has to ask which variant to reach for. `neutral`,
+`outline`, and `ghost` follow. In dark mode the primary fill measures
+2.95:1 against the card surface, so it carries an explicit border to satisfy
+1.4.11.
 
 ### Navigation
-Navigation backgrounds follow the active theme. The active route uses clear text weight and one restrained indicator. The header exposes exactly one control on small screens — the menu trigger. Theme and admin entry points live inside the mobile drawer, never as duplicate floating buttons, so no breakpoint can render two of them at once. Mobile navigation remains grouped and discoverable.
 
-### Print bulletin
-The `/info/print` route uses an editorial serif face, clear section hierarchy, and print-safe contrast on white paper. Its layout must remain usable as an A4 printout.
+The header exposes **exactly one** control below `lg` — the menu trigger.
+Theme and admin entry points live inside that drawer. At `lg` and above the
+desktop nav carries the theme toggle and no hamburger. The two sets must
+never co-render: an earlier revision had `hidden sm:flex` against
+`flex lg:hidden`, which overlapped between 640–1024px and produced four
+buttons with Admin floating in the middle.
 
 ## Do's and Don'ts
 
-### Do:
-- **Do** keep schedules, service contacts, and giving details factual and consistent with `INFO.md`.
-- **Do** verify text, icons, and focus indicators against the surface where they actually render in both themes.
-- **Do** reserve gold foreground on filled gold surfaces for dark text.
-- **Do** make neutral category and status labels understandable without color.
+### Do
+- Keep schedules, service contacts, and giving details factual and consistent
+  with `INFO.md`.
+- Verify text, icons, and focus indicators against the surface where they
+  actually render, in **both** themes.
+- Add a colour to this file's frontmatter before using it in a component.
+- Make neutral category and status labels understandable without colour.
 
-### Don't:
-- **Don't** use wine-red as the default canvas, card, or structural border color.
-- **Don't** make an ordinary informational badge look like an error state.
-- **Don't** use large decorative crimson gradients, gradient text, or colored glow as filler.
-- **Don't** use thick colored top or side bars on rounded cards.
-- **Don't** present a stylized placeholder QR pattern as a real scannable payment code; display only a verified production QR asset.
+### Don't
+- Use wine-red as a canvas, card, or structural border.
+- Make an ordinary informational badge look like an error state.
+- Use decorative crimson gradients, gradient text, or coloured glow as filler.
+- Use thick coloured top or side bars on rounded cards.
+- Add a new drop shadow when a 1px border would do the same job.
+- Present a stylised placeholder QR pattern as a real scannable payment code.
