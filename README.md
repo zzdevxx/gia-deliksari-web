@@ -92,7 +92,7 @@ graph TD
 
 - **Framework**: Next.js 16.3.3 (App Router, Server Components & Static Site Generation)
 - **Runtime**: Cloudflare Workers via OpenNext (`@opennextjs/cloudflare`)
-- **UI & Styling**: React 19, Tailwind CSS 3 (Warm Alabaster & Sacred Wine palette + Impeccable design system, Dark/Light mode)
+- **UI & Styling**: React 19, Tailwind CSS 3 (Crimson Field palette — Sacred Wine hue 14.1° + warm neutral, Dark/Light mode)
 - **Database**: Cloudflare D1 (Serverless SQLite Edge) 9 tables + 1 view (24/7 Always Active)
 - **Auth**: bcrypt (cost 10) + HMAC-SHA256 signed session cookie + rate limit
 - **Storage**: Google Drive master archive + Cloudflare edge delivery
@@ -159,7 +159,7 @@ gia-deliksari-web/
 ├── backups/                    # Auto-generated SQL / JSON snapshots
 ├── INFO.md                     # Single source of truth (identitas, jadwal, struktur)
 ├── PRD.md                      # Product Requirements Document
-├── DESIGN.md                   # Design System & Token Specification (Warm Alabaster & Sacred Wine)
+├── DESIGN.md                   # Design System & Token Specification (Crimson Field, mesin-kontrak lint:design)
 ├── LICENSE                     # Proprietary & Private
 └── package.json
 ```

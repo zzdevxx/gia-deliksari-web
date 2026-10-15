@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ShieldCheck, ChevronDown } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import { useFocusTrap } from '@/lib/useFocusTrap';
 
 type NavItem = { name: string; href: string; description?: string };
 
@@ -91,6 +92,10 @@ export default function Navbar() {
  }, [isOpen]);
 
  const closeSheet = useCallback(() => setIsOpen(false), []);
+
+ // The drawer advertises aria-modal="true", so it must actually trap focus —
+ // Tab returning to the page behind it would make the modal claim a lie.
+ const drawerRef = useFocusTrap<HTMLDivElement>(isOpen, closeSheet);
 
  return (
  <header
@@ -188,9 +193,11 @@ export default function Navbar() {
 
  {/* Mobile Drawer Navigation */}
  <div
+ ref={drawerRef}
  role="dialog"
  aria-label="Menu navigasi"
  aria-modal="true"
+ tabIndex={-1}
  hidden={!isOpen}
  className={`lg:hidden bg-[var(--background)] dark:bg-[var(--card-inverted-bg)] border-t border-[var(--border)] dark:border-[var(--border)] overflow-hidden transition-[max-height] duration-300 ease-out ${
  isOpen ? 'max-h-[85vh] overflow-y-auto' : 'max-h-0'

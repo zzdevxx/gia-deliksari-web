@@ -85,7 +85,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ table, items: data });
   } catch (err: any) {
     console.error(`[admin/data] GET ${table} failed:`, err);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    return NextResponse.json({ error: 'Terjadi kesalahan pada server' }, { status: 500 });
   }
 }
 
@@ -125,6 +125,7 @@ export async function POST(req: NextRequest) {
 
       for (const [k, v] of Object.entries(item)) {
         if (k === 'id') continue;
+        if (k === 'created_at') continue; // Server-owned: never let a client set or forge it.
         if (!allowedCols.has(k)) continue; // Whitelist security: skip unknown/injection keys
 
         // SQLite booleans coercion
@@ -139,7 +140,7 @@ export async function POST(req: NextRequest) {
       const cols = keys.map((k) => `"${k}"`).join(', ');
       const placeholders = keys.map(() => '?').join(', ');
       const updates = keys
-        .filter((k) => k !== 'id' && k !== 'created_at')
+        .filter((k) => k !== 'id')
         .map((k) => `"${k}" = excluded."${k}"`)
         .join(', ');
 
@@ -166,7 +167,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true, table, count: items.length });
   } catch (err: any) {
     console.error(`[admin/data] POST ${table} failed:`, err);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    return NextResponse.json({ error: 'Terjadi kesalahan pada server' }, { status: 500 });
   }
 }
 
@@ -199,6 +200,6 @@ export async function DELETE(req: NextRequest) {
     return NextResponse.json({ success: true, table, id });
   } catch (err: any) {
     console.error(`[admin/data] DELETE ${table} failed:`, err);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    return NextResponse.json({ error: 'Terjadi kesalahan pada server' }, { status: 500 });
   }
 }

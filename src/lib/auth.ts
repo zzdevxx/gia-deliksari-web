@@ -54,7 +54,12 @@ const COOKIE_NAME = 'gia_session';
 const SESSION_DURATION_SECONDS = 60 * 60 * 12; // 12 hours
 const BCRYPT_COST = 10;
 const PIN_MIN = 4;    // PIN minimal 4 digit (per user requirement)
-const PIN_MAX = 64;   // Max password length (allow longer for super)
+const PIN_MAX = 64;   // Max password length
+// A super account can mint and revoke every other identity, so it may not use
+// the 4-digit PIN the treasurer/kidz-facing roles are allowed. This is a floor
+// only — it deliberately does not demand symbols, which would push operators
+// toward a weak-but-complex password they must write down.
+const SUPER_MIN = 8;
 
 // ---------------------------------------------------------------------------
 // Session signing
@@ -144,20 +149,26 @@ export async function verifyPassword(plain: string, hash: string): Promise<boole
 
 /**
  * Validate a new PIN/password before hashing & storing.
- * - Must be 4-64 chars
+ * - Must be 4-64 chars (super accounts: 8-64 — see SUPER_MIN)
  * - Whitespace trimmed
  * - Returns trimmed value on success, error message string on failure
+ *
+ * `minLength` lets createUser raise the floor for super accounts while the
+ * treasurer/kidz PIN flow keeps its 4-digit requirement.
  */
-export function validateNewPassword(plain: unknown): { ok: true; value: string } | { ok: false; error: string } {
+export function validateNewPassword(
+  plain: unknown,
+  minLength: number = PIN_MIN,
+): { ok: true; value: string } | { ok: false; error: string } {
   if (typeof plain !== 'string') {
     return { ok: false, error: 'Password harus string' };
   }
   const trimmed = plain.trim();
-  if (trimmed.length < PIN_MIN) {
-    return { ok: false, error: `PIN/password minimal ${PIN_MIN} karakter` };
+  if (trimmed.length < minLength) {
+    return { ok: false, error: `Password minimal ${minLength} karakter` };
   }
   if (trimmed.length > PIN_MAX) {
-    return { ok: false, error: `PIN/password maksimal ${PIN_MAX} karakter` };
+    return { ok: false, error: `Password maksimal ${PIN_MAX} karakter` };
   }
   return { ok: true, value: trimmed };
 }
@@ -344,10 +355,8 @@ export async function createUser(input: CreateUserInput): Promise<{ ok: true; id
   if (!/^[a-zA-Z0-9._-]+$/.test(username)) {
     return { ok: false, error: 'Username hanya boleh huruf, angka, dot, underscore, dash' };
   }
-  // Password validation
-  const pwCheck = validateNewPassword(trimmed);
-  if (!pwCheck.ok) return { ok: false, error: pwCheck.error };
-  // Roles validation
+  // Roles validation — must happen before password validation so the floor can
+  // depend on whether the new account is a super.
   if (!Array.isArray(input.roles) || input.roles.length === 0) {
     return { ok: false, error: 'Pilih minimal 1 role' };
   }
@@ -356,6 +365,9 @@ export async function createUser(input: CreateUserInput): Promise<{ ok: true; id
   if (roles.length === 0) {
     return { ok: false, error: 'Role tidak valid' };
   }
+  // Password validation — super accounts may not use a 4-digit PIN.
+  const pwCheck = validateNewPassword(trimmed, roles.includes('super') ? SUPER_MIN : PIN_MIN);
+  if (!pwCheck.ok) return { ok: false, error: pwCheck.error };
   // Check duplicate
   try {
     const existing = await queryFirst<{ id: string }>(
@@ -392,6 +404,7 @@ export async function createUser(input: CreateUserInput): Promise<{ ok: true; id
 
 export const SESSION_COOKIE_NAME = COOKIE_NAME;
 export const SESSION_MAX_AGE_SECONDS = SESSION_DURATION_SECONDS;
+export const SUPER_MIN_PASSWORD_LENGTH = SUPER_MIN;
 
 // ---------------------------------------------------------------------------
 // Rate limiting (login attempt lockout)

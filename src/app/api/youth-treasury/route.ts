@@ -60,7 +60,7 @@ export async function GET(req: NextRequest) {
     });
   } catch (err: any) {
     console.error('[youth-treasury] GET failed:', err);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    return NextResponse.json({ error: 'Terjadi kesalahan pada server' }, { status: 500 });
   }
 }
 
@@ -136,6 +136,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true, transaction });
   } catch (err: any) {
     console.error('[youth-treasury] POST failed:', err);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    return NextResponse.json({ error: 'Terjadi kesalahan pada server' }, { status: 500 });
   }
 }

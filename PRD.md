@@ -1,5 +1,5 @@
 # Product Requirements Document (PRD) — GIA Deliksari Web Portal
-**Versi:** 4.1.0 (Cloudflare Native, Custom Domain & Impeccable Design System Edition)
+**Versi:** 4.2.0 (Cloudflare Native, Custom Domain & Crimson Field Design System Edition)
 **Status:** Production Live (https://giadeliksari.my.id)
 **Tanggal Diperbarui:** 7 Oktober 2026
 **Identitas Gereja:** Gereja Isa Almasih (GIA) Deliksari Semarang — *"Growing Church!"*
@@ -18,7 +18,7 @@ GIA Deliksari Web Portal adalah platform pelayanan digital terintegrasi untuk je
 
 4. **Treasury Portal** — Portal kas (`/kas`) untuk bendahara youth Grow Generation mencatat pemasukan & pengeluaran kas.
 
-**Design System (sejak 7 Okt 2026, v4.1.0)** — Seluruh permukaan mengikuti sistem visual **Warm Alabaster & Sacred Wine** yang dijelaskan di `DESIGN.md` (token normatif) dan digrounding di `PRODUCT.md` (Impeccable). Aturan inti: kanvas netral hangat (light `#FAF7F2` / dark `#141312`), aksen Sacred Wine `#8B1E28` maksimal 10% hanya untuk CTA primer & nav aktif, semantik rose = bahaya/pengeluaran dan emerald = pemasukan, kategori komunitas memakai tone wine/terracotta/gold/plum yang diredam. Verifikasi wajib sebelum rilis: `npm run lint:design` (Impeccable, target 0 anti-pattern), `npm test`, `npm run typecheck`.
+**Design System (Crimson Field, v4.2.0)** — Seluruh permukaan mengikuti sistem visual **Crimson Field** yang dijelaskan di `DESIGN.md` (token normatif, mesin-kontrak untuk `lint:design`) dan digrounding di `PRODUCT.md`. Aturan inti: kanvas netral hangat (light `#FAF9F8` / dark `#0A0A0E`), aksen tunggal **Sacred Wine hue kanonik 14.1°** — `#8E1533` untuk fill CTA (teks putih 9.11:1) dan `#F08AA4` untuk teks/ikon di dark — maksimal 10% hanya untuk CTA primer & nav aktif. Gradien `.gia-field` (`#8E1533` → `#5A0F24` → `#26090F` → `#0A0A0E`) diizinkan **hanya** sebagai layer terdalam hero beranda. Semantik: rose = bahaya/pengeluaran, emerald = pemasukan. Verifikasi wajib sebelum rilis: `npm run lint:design` (target 0 anti-pattern), `npm test` (26 lulus), `npm run typecheck` (0 error).
 
 ---
 

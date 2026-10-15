@@ -63,9 +63,38 @@ describe('Cloudflare D1 Database Abstraction', () => {
 describe('Authentication & Password Hashing', () => {
   it('should validate PIN correctly (minimum 4 digits)', () => {
     expect(validateNewPassword('5050')).toEqual({ ok: true, value: '5050' });
-    expect(validateNewPassword('12')).toEqual({ ok: false, error: 'PIN/password minimal 4 karakter' });
+    expect(validateNewPassword('12')).toEqual({ ok: false, error: 'Password minimal 4 karakter' });
     expect(validateNewPassword(1234)).toEqual({ ok: false, error: 'Password harus string' });
   });
+
+  it('should enforce a longer floor when a caller raises it (super accounts)', () => {
+    // A super can mint and revoke every identity, so it may not use the
+    // treasurer/kidz 4-digit PIN. The floor is passed explicitly, not inferred.
+    expect(validateNewPassword('short', 8)).toEqual({
+      ok: false,
+      error: 'Password minimal 8 karakter',
+    });
+    expect(validateNewPassword('longenough', 8)).toEqual({ ok: true, value: 'longenough' });
+  });
+
+  it('should trim the stored value but measure the raw length', () => {
+    // Documented behaviour, not an accident: min-length is checked before the
+    // trim, so a caller cannot pad a short secret with spaces to clear it.
+    expect(validateNewPassword('  padded  ', 8)).toEqual({
+      ok: false,
+      error: 'Password minimal 8 karakter',
+    });
+    expect(validateNewPassword('         ', 8)).toEqual({
+      ok: false,
+      error: 'Password minimal 8 karakter',
+    });
+    // Once it clears the floor, the stored value is the trimmed one.
+    expect(validateNewPassword('  longenough  ', 8)).toEqual({ ok: true, value: 'longenough' });
+  });
+
+  // hashPassword/verifyPassword are covered below; the self-escalation and
+  // last-super guards live in the route handler and are exercised by the
+  // Playwright mutation suite, which runs against a real session + D1.
 
   it('should hash and verify passwords using bcryptjs', async () => {
     const plain = '5050';

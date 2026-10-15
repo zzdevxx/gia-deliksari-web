@@ -70,15 +70,22 @@ export async function POST(req: NextRequest) {
       console.warn('Cloudflare R2 upload skipped or unavailable:', r2Err);
     }
 
-    // 3. Fallback: Drive thumbnail atau Base64 data URL
+    // 3. Fallback: Drive thumbnail. Never base64 into D1 — a 10MB photo becomes
+    // a ~13MB data URL, far past D1's ~2MB row limit, so the insert would fail
+    // after the file was already accepted. If neither archive is reachable the
+    // upload is refused loudly instead of half-succeeding.
     if (!imageUrl) {
       if (driveResult?.success && driveResult.fileId) {
         imageUrl = `https://drive.google.com/thumbnail?id=${driveResult.fileId}&sz=w2000`;
         thumbUrl = `https://drive.google.com/thumbnail?id=${driveResult.fileId}&sz=w800`;
       } else {
-        const base64 = buffer.toString('base64');
-        imageUrl = `data:${file.type || 'image/jpeg'};base64,${base64}`;
-        thumbUrl = imageUrl;
+        return NextResponse.json(
+          {
+            error:
+              'Penyimpanan gambar tidak tersedia (R2 bucket belum terpasang dan arsip Google Drive gagal). Hubungi pengurus teknis.',
+          },
+          { status: 503 },
+        );
       }
     }
 

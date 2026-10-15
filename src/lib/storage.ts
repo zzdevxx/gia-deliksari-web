@@ -200,6 +200,19 @@ function toRequestDB(model: MinistryRequest) {
 
 type AnyModel = Announcement | ServantRoster | InventoryItem | Sermon | GalleryItem | MinistryRequest;
 
+/**
+ * Thrown when the server rejects the read because the caller is not (or no
+ * longer) authorised. Callers must surface this as "please log in again" —
+ * falling back to cached or seeded rows would show an operator a stale edit
+ * screen that looks real and silently discards their work on save.
+ */
+export class UnauthorizedError extends Error {
+  constructor(public readonly status: number) {
+    super('Sesi admin tidak valid atau sudah berakhir');
+    this.name = 'UnauthorizedError';
+  }
+}
+
 async function readViaApi<T>(
   endpoint: string,
   cacheKey: string,
@@ -209,6 +222,14 @@ async function readViaApi<T>(
   // 1. Primary source: server API (public sanitized or admin session-gated)
   try {
     const res = await fetch(endpoint, { cache: 'no-store' });
+
+    // 401/403 are NOT "no data" — they mean the session is gone. Do not mask
+    // them behind localStorage or the bundled seed; surface them so the portal
+    // can send the operator back to the login screen.
+    if (res.status === 401 || res.status === 403) {
+      throw new UnauthorizedError(res.status);
+    }
+
     if (res.ok) {
       const json = await res.json();
       if (Array.isArray(json.items)) {
@@ -227,6 +248,7 @@ async function readViaApi<T>(
       }
     }
   } catch (err) {
+    if (err instanceof UnauthorizedError) throw err;
     console.warn(`Fetch ${endpoint} failed, falling back:`, err);
   }
 
@@ -319,14 +341,6 @@ export const dataStore = {
 
   /** Public form submission — validated & rate-limited server-side. */
   saveMinistryRequest: async (item: MinistryRequest): Promise<boolean> => {
-    let list: MinistryRequest[] = INITIAL_MINISTRY_REQUESTS;
-    if (typeof window !== 'undefined') {
-      const local = localStorage.getItem(REQUESTS_KEY);
-      list = local ? JSON.parse(local) : INITIAL_MINISTRY_REQUESTS;
-      list = [item, ...list.filter(r => r.id !== item.id)];
-      try { localStorage.setItem(REQUESTS_KEY, JSON.stringify(list)); } catch {}
-    }
-
     try {
       const res = await fetch('/api/public/ministry-requests', {
         method: 'POST',
@@ -336,6 +350,16 @@ export const dataStore = {
       if (!res.ok) {
         const body = await res.json().catch(() => null);
         throw new Error(body?.error || `HTTP ${res.status}`);
+      }
+      // Only mirror into localStorage once the server has accepted the row.
+      // Writing first meant a rejected submission (rate limit, validation)
+      // still showed the visitor a success state, and the request was lost.
+      if (typeof window !== 'undefined') {
+        let list: MinistryRequest[] = INITIAL_MINISTRY_REQUESTS;
+        const local = localStorage.getItem(REQUESTS_KEY);
+        list = local ? JSON.parse(local) : INITIAL_MINISTRY_REQUESTS;
+        list = [item, ...list.filter(r => r.id !== item.id)];
+        try { localStorage.setItem(REQUESTS_KEY, JSON.stringify(list)); } catch {}
       }
       return true;
     } catch (err) {

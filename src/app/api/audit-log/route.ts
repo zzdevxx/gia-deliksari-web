@@ -68,6 +68,6 @@ export async function GET(req: NextRequest) {
     });
   } catch (err: any) {
     console.error('[audit-log] GET failed:', err);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    return NextResponse.json({ error: 'Terjadi kesalahan pada server' }, { status: 500 });
   }
 }

@@ -81,14 +81,11 @@ export type MinistryRequestType = 'prayer' | 'sacrament' | 'komsel' | 'volunteer
 export interface MinistryRequest {
   id: string;
   type: MinistryRequestType;
-  requestType?: string; // For database compatibility (request_type column)
   name: string;
   phone: string;
-  email?: string; // For database compatibility (email column)
   subType?: string;
   message?: string;
   needPastoralVisit?: boolean;
   status: 'new' | 'in_progress' | 'completed' | 'pending' | 'contacted' | 'cancelled';
-  notes?: string; // For database compatibility (notes column)
   createdAt: string;
 }

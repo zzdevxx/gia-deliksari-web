@@ -5,6 +5,70 @@ All notable changes to GIA Deliksari Web will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.0] - 2026-10-15 — Security Hardening, A11y Focus Containment & Cycle Arithmetic Repair
+
+Audit lima dimensi (security, data-layer, correctness, performance, a11y) dengan verifikasi
+adversarial per temuan. Yang benar-benar nyata diperbaiki di bawah; yang hanya teori dibuang.
+
+### Security & Data Integrity
+- **Self-escalation guard di `/api/users/[id]`**: super tidak lagi bisa mengubah role akunnya
+  sendiri lewat endpoint ini. Sebelumnya satu sesi super yang bocor cukup untuk mencetak
+  identitas berhak tambahan, dan jejak audit hanya menampilkan "self-update".
+- **Proteksi super terakhir**: menonaktifkan super aktif terakhir kini ditolak (409) — mencegah
+  portal `/super` terkunci permanen tanpa jalur pemulihan di D1.
+- **`created_at` tidak lagi bisa ditulis klien** di `/api/admin/data`: kolom milik server,
+  di-strip dari INSERT maupun UPDATE (sebelumnya hanya di-strip dari UPDATE).
+- **Kebijakan panjang kredensial berjenjang**: akun `super` wajib 8+ karakter (baru: `SUPER_MIN`),
+  sementara PIN 4 digit untuk treasurer/kidz tetap. Berlaku di create dan ganti password.
+- **Pesan error internal tidak lagi bocor**: 11 titik `{ error: err.message }` diganti pesan
+  generik; detail tetap masuk log server.
+- **`saveMinistryRequest` tidak lagi menukar Error jadi boolean** tanpa jejak `res.status` —
+  dan localStorage baru ditulis **setelah** server menerima, sehingga permohonan doa/sakramen
+  yang ditolak tidak lagi tampil "sukses" lalu hilang.
+- **Upload galeri menolak, bukan mengarang**: fallback base64 ke D1 dihapus (10MB foto → ~13MB
+  data URL, jauh di atas limit baris D1 ~2MB). Bila R2 dan Drive sama-sama gagal → 503 jujur.
+- **`UnauthorizedError`**: `readViaApi` tidak lagi menelan 401/403 menjadi data seed palsu —
+  sesi admin yang mati kini memunculkan pesan "Sesi admin sudah berakhir", bukan suntingan
+  hantu yang hilang saat disimpan.
+
+### Accessibility (WCAG 2.1 AA)
+- **`useFocusTrap`** (baru): hook tanpa dependensi untuk containment fokus — Tab/Shift+Tab
+  berputar di dalam dialog, ESC menutup, fokus kembali ke pemicu saat tutup.
+- Dipasang di **Navbar drawer** (`aria-modal="true"` sebelumnya berbohong — Tab bisa keluar),
+  **QRIS modal**, **UserModal**, dan **UploadPhotoModal**.
+- `role="dialog"`, `aria-modal`, `aria-labelledby`, dan `tabIndex={-1}` ditambahkan pada modal
+  yang belum memilikinya.
+
+### Correctness
+- **Siklus Youth/HANA off-by-one diperbaiki** (`scheduleUtils`): `7 - getDay()` bernilai 0 pada
+  hari Sabtu (dan `6 - getDay()` pada Jumat), sehingga badge "ganti dalam N hari" menunjuk
+  *hari ini tengah malam* dan selalu melaporkan 0 pada hari pergantian. Kini menghitung maju
+  ke hari Sabtu/Jumat berikutnya, minimal 1 hari.
+- **Legenda `RosterCalendar` diperbaiki**: keempat swatch legenda memakai kelas konstan
+  `bg-[var(--brand)]` (sisa ekspresi `{ '...' }`) sehingga semuanya tampil wine; kini
+  memakai `DOT_CLASS` bersama dengan grid, jadi legenda dan grid tak bisa lagi berbeda arti.
+- **`MinistryRequest` type contract dibersihkan**: klaim kolom `email`/`notes`/`requestType`
+  yang tidak pernah ada di migrasi dihapus.
+
+### Documentation (SSOT)
+- **PRD.md** naik ke v4.2.0: klaim palet lama "Warm Alabaster `#FAF7F2` / `#8B1E28`" (v4.1.0)
+  diganti deskripsi **Crimson Field v5** yang benar-benar dilayani produksi (`#FAF9F8` /
+  `#0A0A0E` / hue 14.1° `#8E1533`). Drift antara commit `e8f2719` dan dokumen ditutup.
+- **PRODUCT.md & README** disinkronkan ke Crimson Field (menghapus referensi emas altar /
+  Warm Alabaster / Sanctuary Slate).
+
+### Tests
+- 26 → **35 unit test**. Tambahan: `tests/unit/scheduleUtils.test.ts` mengunci aritmetika
+  siklus 4-minggu Youth & HANA (termasuk kasus hari pergantian), plus cakupan `validateNewPassword`
+  bertingkat dan semantik trim-vs-panjang.
+
+### Diverifikasi di Produksi (bukan asumsi)
+- `/api/public/data?table=servant_rosters` **tidak** mengirim `phone`/`notes` (santiasi akurat).
+- `/api/debug/env`, `/api/admin/data`, `/api/users` → **401** tanpa sesi; tabel tak dikenal → 400.
+- Endpoint data bercache `s-maxage=60, stale-while-revalidate=300`; shell statis 1 tahun
+  (benar — data dinamis lewat `fetch()` klien, bukan HTML).
+- Palet produksi = token v5 (`--brand:#8e1533`), `npm audit --omit=dev` 0 kerentanan.
+
 ## [2.4.0] - 2026-10-09 — Crimson Field Theme, Hero Geometry Repair & Frosted Glass Navbar
 
 ### Visual & Color Architecture (Crimson Field)

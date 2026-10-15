@@ -15,6 +15,7 @@ import {
  Tag
 } from 'lucide-react';
 import { GalleryItem } from '@/types';
+import { useFocusTrap } from '@/lib/useFocusTrap';
 
 interface UploadPhotoModalProps {
  isOpen: boolean;
@@ -33,6 +34,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  const [uploadSuccess, setUploadSuccess] = useState(false);
  const [errorMsg, setErrorMsg] = useState<string | null>(null);
  const fileInputRef = useRef<HTMLInputElement>(null);
+ const dialogRef = useFocusTrap<HTMLDivElement>(isOpen, onClose);
 
  if (!isOpen) return null;
 
@@ -101,9 +103,15 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  };
 
  return (
- <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in">
- <div 
- onClick={(e) => e.stopPropagation()} 
+ <div
+ ref={dialogRef}
+ role="dialog"
+ aria-modal="true"
+ aria-labelledby="upload-modal-title"
+ tabIndex={-1}
+ className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in">
+ <div
+ onClick={(e) => e.stopPropagation()}
  className="w-full max-w-lg bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] rounded-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto"
  >
  {/* Header */}
@@ -113,7 +121,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  <Camera className="w-5 h-5" />
  </div>
  <div>
- <h3 className="text-lg sm:text-xl font-extrabold text-[var(--foreground)] dark:text-white">
+ <h3 id="upload-modal-title" className="text-lg sm:text-xl font-extrabold text-[var(--foreground)] dark:text-white">
  Unggah Dokumentasi Momen
  </h3>
  <p className="text-[11px] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">

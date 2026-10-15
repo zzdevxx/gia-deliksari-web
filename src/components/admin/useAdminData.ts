@@ -9,7 +9,7 @@ import {
   GalleryItem,
   MinistryRequest,
 } from '@/types';
-import { adminDataStore } from '@/lib/storage';
+import { adminDataStore, UnauthorizedError } from '@/lib/storage';
 
 /**
  * Aggregated admin data state: load all 6 tables + their setters.
@@ -49,8 +49,15 @@ export function useAdminData(isAuthenticated: boolean, onError: (msg: string) =>
       setGallery(gal);
       setRequests(req);
     } catch (err) {
-      console.error('Error fetching admin data:', err);
-      onError('Gagal memuat data dari database');
+      // A dead session must not look like a transient load failure — say what
+      // happened so the operator re-authenticates instead of editing seed rows.
+      if (err instanceof UnauthorizedError) {
+        console.warn('Admin data load rejected:', err.status);
+        onError('Sesi admin sudah berakhir. Silakan masuk kembali.');
+      } else {
+        console.error('Error fetching admin data:', err);
+        onError('Gagal memuat data dari database');
+      }
     } finally {
       setLoading(false);
     }

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
+import { useFocusTrap } from '@/lib/useFocusTrap';
 
 export type Role = 'super' | 'admin' | 'treasurer';
 
@@ -31,6 +32,7 @@ const ROLE_DESCRIPTIONS: Record<Role, { label: string; emoji: string; descriptio
 const UserModal: React.FC<UserModalProps> = ({ initial, editingId, onSave, onClose }) => {
  const [form, setForm] = useState<UserFormData>(initial);
  const [submitting, setSubmitting] = useState(false);
+ const dialogRef = useFocusTrap<HTMLDivElement>(true, onClose);
 
  const handleSubmit = async (e: React.FormEvent) => {
  e.preventDefault();
@@ -50,10 +52,16 @@ const UserModal: React.FC<UserModalProps> = ({ initial, editingId, onSave, onClo
  };
 
  return (
- <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
+ <div
+ ref={dialogRef}
+ role="dialog"
+ aria-modal="true"
+ aria-labelledby="user-modal-title"
+ tabIndex={-1}
+ className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
  <div className="w-full max-w-lg bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] rounded-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
  <div className="flex items-center justify-between">
- <h3 className="text-xl font-extrabold text-[var(--foreground)] dark:text-white">
+ <h3 id="user-modal-title" className="text-xl font-extrabold text-[var(--foreground)] dark:text-white">
  {editingId ? 'Edit User' : 'Tambah User Baru'}
  </h3>
  <button

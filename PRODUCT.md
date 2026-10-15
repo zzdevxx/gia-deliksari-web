@@ -66,10 +66,10 @@ Portal web resmi dan platform operasional digital terpadu untuk Gereja Isa Almas
 1. **Sacred Reverence over SaaS Novelty**: Menampilkan atmosfer yang tenang, kudus, hangat, dan bermartabat. Menolak efek generik AI-slop seperti neon glow, floating orbs, glassmorphism berlebihan, dan animasi bounce yang mengganggu kekhidmatan.
 2. **Accessible for All Generations**: Desain harus sangat mudah dibaca oleh jemaat senior/lansia (kontras teks tinggi WCAG AAA, ukuran font jelas) sekaligus segar dan relevan bagi mahasiswa serta pemuda.
 3. **Data Integrity & Truthfulness**: Informasi jadwal, nomor rekening persembahan (BCA & BRI), dan kontak pastoral harus 100% valid dan faktual sesuai naskah `INFO.md`. Dilarang menampilkan data simulasi palsu pada halaman publik.
-4. **Restrained Liturgical Color (10% Rule)**: Warna merah tua sakral (Sacred Deep Wine) dan emas altar (Burnished Gold) digunakan secara bijak dan hemat sebagai aksen fokus (<=10%), sementara 90% kanvas didominasi warna netral hangat (Warm Alabaster dan Cathedral Stone).
+4. **Restrained Liturgical Color (10% Rule)**: Satu warna jenuh — Sacred Wine pada hue kanonik 14.1° (`#8E1533`) — dipakai hemat sebagai aksen fokus (≤10%), sementara 90% kanvas didominasi netral hangat (light `#FAF9F8` / dark `#0A0A0E`). Tidak ada emas maupun tone wine/terakota/plum sebagai keluarga kategori.
 
 ## Accessibility & Inclusion
 
 - Standar kepatuhan kontras minimum WCAG AA (rasio kontras teks utama terhadap kanvas >= 7:1; teks sekunder >= 4.5:1).
 - Target sentuh kontrol tombol dan navigasi mobile minimum 44x44px.
-- Dukungan mode terang (Warm Alabaster) dan mode gelap (Sanctuary Slate Stone) yang nyaman di mata tanpa silau dan tanpa bias merah pekat.
+- Dukungan mode terang (`#FAF9F8`) dan mode gelap (`#0A0A0E`) yang nyaman di mata tanpa silau dan tanpa bias merah pekat.

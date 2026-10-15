@@ -64,11 +64,15 @@ export function getYouthServiceType(date: Date = new Date()): AlternatingSchedul
     ? 'Ibadah pemuda & remaja Grow Generation' 
     : 'Komsel persekutuan generasi muda (selang-seling dengan Youth)';
   
-  // Calculate next change date
+  // Calculate next change date.
+  // The cycle flips on Saturday. On Saturday itself `7 - getDay()` is 0, which
+  // used to land the target on *today at midnight* — already in the past — so
+  // every Saturday reported "ganti dalam 0 hari". Count whole weeks forward
+  // from the upcoming Saturday instead.
   const nextChangeDate = new Date(date);
-  const daysUntilWeekEnd = 7 - date.getDay(); // Days until next Saturday
-  const daysInCurrentWeek = isYouthWeek ? 7 - daysUntilWeekEnd : daysUntilWeekEnd + 7;
-  
+  const daysUntilSaturday = (6 - date.getDay() + 7) % 7 || 7; // 1..7, never 0
+  const daysInCurrentWeek = isYouthWeek ? daysUntilSaturday : daysUntilSaturday + 7;
+
   nextChangeDate.setDate(date.getDate() + daysInCurrentWeek);
   nextChangeDate.setHours(0, 0, 0, 0);
   
@@ -100,11 +104,14 @@ export function getHANAServiceType(date: Date = new Date()): AlternatingSchedule
     ? 'Persekutuan wanita HANA (Hati Nurani Allah)'
     : 'Komsel Ekklesia wanita (selang-seling dengan HANA)';
   
-  // Calculate next change date
+  // Calculate next change date.
+  // Same Saturday bug, Friday edition: on Friday `6 - getDay()` is 0, so the
+  // old expression pointed at today-at-midnight and reported "0 hari" on the
+  // very day the HANA cycle turns over. Count forward from the next Friday.
   const nextChangeDate = new Date(date);
-  const daysUntilWeekEnd = 6 - date.getDay(); // Days until next Friday (0=Sun, 6=Sat)
-  const daysInCurrentWeek = isHANAWeek ? 7 - daysUntilWeekEnd : daysUntilWeekEnd + 7;
-  
+  const daysUntilFriday = (5 - date.getDay() + 7) % 7 || 7; // 1..7, never 0
+  const daysInCurrentWeek = isHANAWeek ? daysUntilFriday : daysUntilFriday + 7;
+
   nextChangeDate.setDate(date.getDate() + daysInCurrentWeek);
   nextChangeDate.setHours(0, 0, 0, 0);
   

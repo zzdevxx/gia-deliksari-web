@@ -72,7 +72,7 @@ export async function PATCH(
     return NextResponse.json({ success: true, transaction });
   } catch (err: any) {
     console.error('[youth-treasury/patch] failed:', err);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    return NextResponse.json({ error: 'Terjadi kesalahan pada server' }, { status: 500 });
   }
 }
 
@@ -110,6 +110,6 @@ export async function DELETE(
     return NextResponse.json({ success: true, id });
   } catch (err: any) {
     console.error('[youth-treasury/delete] failed:', err);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    return NextResponse.json({ error: 'Terjadi kesalahan pada server' }, { status: 500 });
   }
 }

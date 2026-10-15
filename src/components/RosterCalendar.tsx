@@ -19,6 +19,20 @@ const CAT_META: Record<string, { label: string; bg: string; border: string; text
 };
 
 /**
+ * Dot colour per community. Four communities need four distinguishable dots,
+ * but violet was never part of this brand — they spread across the wine → slate
+ * ramp instead: wine stays reserved for the main service, the rest step down
+ * into neutrals. Shared by the calendar grid and its legend so the two can
+ * never disagree about what a colour means.
+ */
+const DOT_CLASS: Record<string, string> = {
+  general: 'bg-[var(--brand)]',
+  youth: 'bg-[var(--ink-strong)]',
+  kidz: 'bg-[var(--muted-foreground)]',
+  hana: 'bg-[var(--border-strong)]',
+};
+
+/**
  * Compact monthly calendar grid for roster viewing.
  * Renders 6 weeks (42 cells) at a time. Each cell shows up to 2 dots/entries
  * representing services on that day. Click a day to expand the list of
@@ -127,16 +141,7 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
                 {cats.slice(0, 3).map((c) => (
                   <span
                     key={c}
-                    className={`w-1.5 h-1.5 rounded-full ${
-                      // Four communities need four distinguishable dots, but
-                      // violet was never part of this brand. Spread them across
-                      // the wine → slate ramp instead: wine stays reserved for
-                      // the main service, the rest step down into neutrals.
-                      c === 'general' ? 'bg-[var(--brand)]' :
-                      c === 'youth' ? 'bg-[var(--ink-strong)]' :
-                      c === 'kidz' ? 'bg-[var(--muted-foreground)]' :
-                      'bg-[var(--muted-foreground)]'
-                    }`}
+                    className={`w-1.5 h-1.5 rounded-full ${DOT_CLASS[c] ?? 'bg-[var(--muted-foreground)]'}`}
                     title={CAT_META[c]?.label ?? c}
                   />
                 ))}
@@ -210,9 +215,7 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
         <span className="font-bold">Kategori:</span>
         {Object.entries(CAT_META).map(([key, m]) => (
           <span key={key} className="inline-flex items-center gap-1">
-            <span className={`w-1.5 h-1.5 rounded-full ${
-              'bg-[var(--brand)]'
-            }`} />
+            <span className={`w-1.5 h-1.5 rounded-full ${DOT_CLASS[key] ?? 'bg-[var(--muted-foreground)]'}`} aria-hidden="true" />
             {m.label}
           </span>
         ))}

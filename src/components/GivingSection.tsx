@@ -16,6 +16,7 @@ import {
  Info
 } from 'lucide-react';
 import { WhatsAppIcon } from './Icons';
+import { useFocusTrap } from '@/lib/useFocusTrap';
 
 type GivingCategory = 'umum' | 'perpuluhan' | 'pembangunan' | 'diakonia';
 
@@ -88,6 +89,9 @@ export default function GivingSection() {
  window.addEventListener('keydown', handleKeyDown);
  return () => window.removeEventListener('keydown', handleKeyDown);
  }, [showQrisModal]);
+
+ // Contain Tab inside the QRIS dialog and restore focus to the trigger on close.
+ const qrisDialogRef = useFocusTrap<HTMLDivElement>(showQrisModal, () => setShowQrisModal(false));
 
  const handleCopy = (text: string, key: string) => {
  navigator.clipboard.writeText(text);
@@ -373,8 +377,11 @@ export default function GivingSection() {
  {/* QRIS High-Res Modal Dialog */}
  {showQrisModal && (
  <div
+ ref={qrisDialogRef}
  role="dialog"
  aria-modal="true"
+ aria-label="QRIS Pembayaran Nasional"
+ tabIndex={-1}
  className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs animate-in fade-in duration-200"
  onClick={() => setShowQrisModal(false)}
  >
