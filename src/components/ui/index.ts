@@ -9,4 +9,5 @@ export { Badge } from './Badge';
 export { Card, LinkCard } from './Card';
 export { Skeleton, SkeletonText, SkeletonCard } from './Skeleton';
 export { EmptyState } from './EmptyState';
+export { Disclosure } from './Disclosure';
 export { ErrorBoundary } from '../ErrorBoundary';

@@ -52,10 +52,6 @@ export default function LocationContactSection() {
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
-            <MapPin className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
-            <span>Lokasi Fisik, FAQ & Kontak Pastoral</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] tracking-tight">
             Kunjungi & Terhubung Bersama Kami
           </h2>

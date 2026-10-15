@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { ShieldCheck, Flame, Users, Baby, HeartHandshake, Crown } from 'lucide-react';
+import { Disclosure } from '@/components/ui';
 
 interface Member {
  name: string;
@@ -105,10 +106,6 @@ export default function OrganizationSection() {
  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
  {/* Section Header */}
  <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
- <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
- <ShieldCheck className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
- <span>Struktur Organisasi Pelayanan</span>
- </div>
  <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] tracking-tight">
  Tim Penggembalaan & Pelayanan
  </h2>
@@ -119,8 +116,15 @@ export default function OrganizationSection() {
  </p>
  </div>
 
- {/* Groups Grid */}
- <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+ {/* Groups Grid, collapsed by default.
+ Five team cards is detail a visitor can choose to open rather than
+ scroll past. Names, roles, and contacts all stay one tap away. */}
+ <div className="max-w-5xl mx-auto">
+ <Disclosure
+ summary="Lihat susunan tim pelayanan"
+ description="Youth, Sekolah Minggu, Komsel, Wanita HANA, dan tim multimedia."
+ >
+ <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
  {GROUPS.map((group) => (
  <div
  key={group.id}
@@ -174,6 +178,8 @@ export default function OrganizationSection() {
  </a>
  .
  </p>
+ </div>
+ </Disclosure>
  </div>
  </div>
  </section>

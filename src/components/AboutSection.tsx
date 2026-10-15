@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { Disclosure } from '@/components/ui';
 import {
   Heart,
   Sparkles,
@@ -50,10 +51,6 @@ export default function AboutSection() {
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-xs font-bold uppercase tracking-wider">
-            <Heart className="w-3.5 h-3.5 text-[var(--ink-strong)]" />
-            <span>Mengenal GIA Deliksari</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] tracking-tight">
             Bertumbuh Bersama Sebagai Keluarga Allah
           </h2>
@@ -146,18 +143,17 @@ export default function AboutSection() {
 
         </div>
 
-        {/* Pastoral Leadership Team */}
-        <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
-          <h3 className="text-2xl sm:text-3xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)]">
-            Tim Penggembalaan
-          </h3>
-          <p className="text-xs sm:text-sm text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
-            Hamba-hamba Tuhan yang melayani jemaat GIA Deliksari dengan keteladanan dan kerendahan hati.
-          </p>
-        </div>
-
+        {/* Pastoral Leadership Team.
+            Collapsed by default: three tall monogram cards is a lot of scroll
+            for a first-time visitor who is looking for a service time. The
+            names and roles stay one tap away, and nothing is removed. */}
+        <div className="max-w-5xl mx-auto">
+          <Disclosure
+            summary="Tim Penggembalaan"
+            description="Hamba-hamba Tuhan yang melayani jemaat GIA Deliksari dengan keteladanan dan kerendahan hati."
+          >
         {/* 3 Pastoral Leaders Centered */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {pastoralTeam.map((leader) => {
             const LeaderIcon = leader.icon;
             return (
@@ -221,6 +217,8 @@ export default function AboutSection() {
               </div>
             );
           })}
+            </div>
+          </Disclosure>
         </div>
 
       </div>
