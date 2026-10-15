@@ -167,6 +167,7 @@ gia-deliksari-web/
 ├── INFO.md                     # Single source of truth (identitas, jadwal, struktur)
 ├── PRD.md                      # Product Requirements Document
 ├── DESIGN.md                   # Design System & Token Specification (Crimson Field, mesin-kontrak lint:design)
+├── DOKUMENTASI.md              # ⭐ INDEKS: mulai dari sini kalau bingung baca yang mana
 ├── RUNBOOK.md                  # ⭐ Panduan operasional: backup, pemulihan, R2, observabilitas
 ├── HANDOFF.md                  # Briefing untuk agent/developer penerus
 ├── PANDUAN-MANUAL.md           # Panduan klik-klik untuk operator non-teknis
