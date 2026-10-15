@@ -1,0 +1,158 @@
+name: Health Check — production
+
+# The audit on 15 Oct 2026 found a backup job that had been reporting success
+# while writing empty snapshots for weeks, and nobody noticed. Nothing here
+# would have caught that; this workflow exists so the same class of silent
+# failure — a portal that is down, a route that started 5xx-ing, an API that
+# stopped answering — surfaces within the hour instead of when a visitor
+# complains.
+#
+# Deliberately dependency-free: `curl` and exit codes only, so it cannot itself
+# break from a bad npm install.
+
+on:
+  schedule:
+    # Every 2 hours. Offset from :00 so this does not pile onto every other
+    # scheduled job on the platform at the top of the hour.
+    - cron: '23 */2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: health-check
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    name: Probe live routes
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Probe public routes and API
+        id: probe
+        run: |
+          set -uo pipefail
+          BASE="https://giadeliksari.my.id"
+          FAILED=""
+
+          check() {
+            local path="$1" want="$2" note="$3"
+            # -4: this dev machine and CI both occasionally fail on IPv6 routes.
+            local code
+            code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 25 -4 "$BASE$path" || echo "000")
+            if [ "$code" = "$want" ]; then
+              echo "OK   $path -> $code  ($note)"
+            else
+              echo "FAIL $path -> $code (expected $want)  ($note)"
+              FAILED="$FAILED\n- \`$path\` returned $code (expected $want)"
+            fi
+          }
+
+          # Public pages
+          check "/home"         200 "landing page"
+          check "/info"         200 "warta + roster"
+          check "/media"        200 "sermons + gallery"
+          check "/layanan"      200 "ministry request form"
+          check "/persembahan"  200 "giving"
+          check "/sitemap.xml"  200 "SEO sitemap"
+          check "/robots.txt"   200 "crawler policy"
+
+          # Data layer must actually serve rows, not just 200 with an empty body.
+          ANN=$(curl -sS --max-time 25 -4 "$BASE/api/public/data?table=announcements" | head -c 200 || echo "")
+          if printf '%s' "$ANN" | grep -q '"items":\[\]'; then
+            echo "FAIL /api/public/data?table=announcements returned an empty items array"
+            FAILED="$FAILED\n- data API returned 0 announcements"
+          elif printf '%s' "$ANN" | grep -q '"items"'; then
+            echo "OK   data API serves announcements"
+          else
+            echo "FAIL data API response was not JSON items: $ANN"
+            FAILED="$FAILED\n- data API response was unreadable"
+          fi
+
+          # An unauthenticated admin route must be refused. A 200 here would mean
+          # the session guard stopped working.
+          ADMIN=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 25 -4 "$BASE/api/admin/data?table=sermons" || echo "000")
+          if [ "$ADMIN" = "401" ]; then
+            echo "OK   /api/admin/data refuses unauthenticated callers (401)"
+          else
+            echo "FAIL /api/admin/data returned $ADMIN unauthenticated — expected 401"
+            FAILED="$FAILED\n- admin API returned $ADMIN without a session (expected 401)"
+          fi
+
+          if [ -n "$FAILED" ]; then
+            printf 'failed<<EOF\n%b\nEOF\n' "$FAILED" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
+      - name: Open or update an issue when unhealthy
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const failed = `${{ steps.probe.outputs.failed }}` || 'health check failed';
+            const title = '🔴 Health check failing on production';
+            const body = [
+              'The scheduled production probe failed.',
+              '',
+              'Failed checks:',
+              failed,
+              '',
+              `Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              `Time: ${new Date().toISOString()}`,
+            ].join('\n');
+
+            const open = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'health-check',
+            });
+            const existing = open.data.find((i) => i.title === title);
+
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ['health-check'],
+              });
+            }
+
+      - name: Close the issue once healthy again
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const open = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'health-check',
+            });
+            for (const issue of open.data) {
+              if (issue.title === '🔴 Health check failing on production') {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  body: `Recovered at ${new Date().toISOString()}.`,
+                });
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  state: 'closed',
+                });
+              }
+            }

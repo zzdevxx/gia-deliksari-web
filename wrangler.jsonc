@@ -45,6 +45,22 @@
     { "pattern": "giadeliksari.my.id", "custom_domain": true },
     { "pattern": "www.giadeliksari.my.id", "custom_domain": true }
   ],
+  // Runtime observability. Enabled 15 Okt 2026 after the audit found this portal
+  // had none: a backup job wrote 17 empty snapshots over weeks and nothing
+  // surfaced it. `persist` keeps invocation logs queryable in the dashboard
+  // instead of only streaming them live, and sampling is 1.0 because this is a
+  // low-traffic congregational site — the volume is affordable and a sampled-out
+  // error is exactly the one you needed.
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "persist": true,
+      "invocation_logs": true
+    }
+  },
   "vars": {
     "NEXT_PUBLIC_SITE_URL": "https://giadeliksari.my.id",
     "R2_PUBLIC_URL": "https://gallery.giadeliksari.org",
