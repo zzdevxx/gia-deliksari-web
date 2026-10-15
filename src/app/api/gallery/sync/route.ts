@@ -85,8 +85,12 @@ export async function POST(req: NextRequest) {
       }
 
       try {
-        let imageUrl = `https://drive.google.com/thumbnail?id=${file.id}&sz=w2000`;
-        let thumbUrl = `https://drive.google.com/thumbnail?id=${file.id}&sz=w800`;
+        // Drive's image CDN, not the /thumbnail preview endpoint. The preview
+        // endpoint rate-limits and sometimes answers with HTML instead of bytes,
+        // which left gallery tiles blank. This is the no-R2 serving path and it
+        // is the expected one for this project (R2 needs a payment method).
+        let imageUrl = `https://lh3.googleusercontent.com/d/${file.id}=w2000`;
+        let thumbUrl = `https://lh3.googleusercontent.com/d/${file.id}=w800`;
 
         if (ctx?.env?.GALLERY_BUCKET) {
           try {

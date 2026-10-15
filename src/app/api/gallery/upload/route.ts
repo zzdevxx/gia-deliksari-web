@@ -55,7 +55,15 @@ export async function POST(req: NextRequest) {
       console.warn('Google Drive direct upload warning:', gdriveErr);
     }
 
-    // 2. Upload ke Cloudflare R2 (jika binding GALLERY_BUCKET tersedia)
+    // 2. Optional mirror to Cloudflare R2.
+    //
+    // R2 is deliberately OPTIONAL and this project runs without it. Enabling R2
+    // requires a payment method on the Cloudflare account (it is a metered
+    // service with a free allowance, not a cardless free plan), which this
+    // project's operator has chosen not to add. When GALLERY_BUCKET is absent
+    // — which is the expected state — Google Drive is the storage layer and the
+    // `lh3.googleusercontent.com` URLs below are the serving layer. Nothing is
+    // lost: Drive already holds the master archive.
     try {
       const ctx = await getCloudflareContext({ async: true });
       if (ctx?.env?.GALLERY_BUCKET) {
@@ -70,19 +78,25 @@ export async function POST(req: NextRequest) {
       console.warn('Cloudflare R2 upload skipped or unavailable:', r2Err);
     }
 
-    // 3. Fallback: Drive thumbnail. Never base64 into D1 — a 10MB photo becomes
-    // a ~13MB data URL, far past D1's ~2MB row limit, so the insert would fail
-    // after the file was already accepted. If neither archive is reachable the
-    // upload is refused loudly instead of half-succeeding.
+    // 3. Google Drive as the store and CDN — the no-R2 path.
+    //
+    // Serves through `lh3.googleusercontent.com`, which is Drive's real image
+    // CDN and hotlink-friendly. The `/thumbnail?id=…` form used before is a
+    // preview endpoint: it rate-limits and intermittently returns HTML instead
+    // of image bytes, so some gallery tiles rendered blank.
+    //
+    // Never base64 into D1 — a 10MB photo becomes a ~13MB data URL, far past
+    // D1's ~2MB row limit, so the insert would fail after the file was accepted.
     if (!imageUrl) {
       if (driveResult?.success && driveResult.fileId) {
-        imageUrl = `https://drive.google.com/thumbnail?id=${driveResult.fileId}&sz=w2000`;
-        thumbUrl = `https://drive.google.com/thumbnail?id=${driveResult.fileId}&sz=w800`;
+        const id = driveResult.fileId;
+        imageUrl = `https://lh3.googleusercontent.com/d/${id}=w2000`;
+        thumbUrl = `https://lh3.googleusercontent.com/d/${id}=w800`;
       } else {
         return NextResponse.json(
           {
             error:
-              'Penyimpanan gambar tidak tersedia (R2 bucket belum terpasang dan arsip Google Drive gagal). Hubungi pengurus teknis.',
+              'Arsip Google Drive gagal menerima berkas, dan tidak ada penyimpanan cadangan. Hubungi pengurus teknis.',
           },
           { status: 503 },
         );

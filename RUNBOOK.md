@@ -144,39 +144,66 @@ npx wrangler d1 delete gia-restore-drill
 
 ---
 
-## 2. 🔴 R2 (penyimpanan galeri) — SATU-SATUNYA LANGKAH MANUAL YANG TERSISA
+## 2. ✅ R2 — DIPUTUSKAN TIDAK DIPAKAI, SELAMANYA (15 Okt 2026)
 
-`npx wrangler r2 bucket list` → **error 10042**: R2 belum diaktifkan di akun.
-Sudah dicoba: REST API, `wrangler r2`, create-langsung. **Semua ditolak.**
+**Keputusan: portal ini berjalan tanpa R2. Galeri memakai Google Drive.**
 
-```
-{"success":false,"errors":[{"code":10042,
-  "message":"Please enable R2 through the Cloudflare Dashboard."}]}
-```
+### Kenapa
 
-Ini **entitlement akun**, bukan bug dan bukan soal permission token — Cloudflare
-mewajibkan persetujuan ToS lewat dashboard karena R2 punya implikasi billing.
-Tidak ada jalur API. Dibandingkan dengan langkah lain di runbook ini, hanya ini
-yang benar-benar tidak bisa diotomatiskan.
+Operator memilih prinsip **"full free — tanpa kartu sama sekali"**. R2 tidak
+kompatibel dengan itu, meski halaman marketingnya berkata sebaliknya:
 
-👉 **<https://dash.cloudflare.com/b3646e9d901e18b382b3f961d2b98f69/r2>**
+- `cloudflare.com/products/r2` → *"Start building for free — no credit card required."*
+- Dashboard + dokumentasi billing → R2 **wajib punya metode pembayaran** sebelum
+  bisa diaktifkan. R2 adalah layanan **metered** dengan jatah gratis — bukan
+  *free plan* seperti Workers/D1.
 
-Akibatnya `ctx.env.GALLERY_BUCKET` selalu `undefined`, dan unggah/sinkron galeri
-selalu jatuh ke URL thumbnail Google Drive.
+Dilaporkan banyak pengguna:
 
-**Untuk mengaktifkan:**
+> *"R2 requires a credit card even if it's free. The credit card is required for
+> account verification and service provisioning."*
 
-1. <https://dash.cloudflare.com/> → **R2** → aktifkan (setuju ToS)
-2. `npx wrangler r2 bucket create gia-deliksari-gallery`
-3. Buka komentar blok `r2_buckets` di `wrangler.jsonc` (sudah disiapkan)
-4. `npm run deploy`
-5. Arahkan `gallery.giadeliksari.org` → R2 custom domain
-   > Hostname ini **tidak resolve** hari ini (dicek 15 Okt 2026). Selama itu,
-   > biarkan `R2_PUBLIC_URL` kosong/konsisten — kalau R2 aktif tapi hostname
-   > belum, gambar akan tampil sebagai URL rusak.
+> *"R2 — advertised as 10GB free, but object storage tab is disabled without a card"*
 
-Catatan: `gallery_items` **0 baris**, jadi tidak ada galeri yang rusak saat ini.
-Ini pekerjaan pencegahan, bukan perbaikan darurat.
+Jadi `error 10042` adalah **entitlement akun** — bukan bug, bukan soal permission
+token. Sudah dicoba 4 jalur (REST API, `wrangler r2`, create langsung, list) dan
+semuanya ditolak dengan cara yang sama.
+
+### Apa yang hilang? Tidak ada yang penting
+
+| | Tanpa R2 |
+|---|---|
+| Foto asli | ✅ Google Drive — OAuth sudah terpasang di produksi |
+| Menyajikan gambar | ✅ `lh3.googleusercontent.com` (CDN asli Drive) |
+| Biaya | ✅ Rp 0 |
+| Perlu kartu | ✅ Tidak |
+
+R2 hanya akan jadi **cermin tambahan** (redundansi). Berguna, tapi bukan syarat
+portal berfungsi.
+
+### ⚠️ WAJIB diingat kalau nanti berubah pikiran
+
+`R2_PUBLIC_URL` di `wrangler.jsonc` menunjuk `gallery.giadeliksari.org` — dan
+**domain itu TIDAK resolve** (dicek 15 Okt 2026). Kalau R2 kelak diaktifkan tanpa
+memperbaiki domain ini lebih dulu, **semua gambar galeri jadi URL rusak.**
+
+### Perbaikan yang menyertainya
+
+URL gambar diubah dari `/thumbnail?id=…` → `lh3.googleusercontent.com/d/<id>=wN`
+di **dua** tempat (`gallery/upload`, `gallery/sync`). `/thumbnail` adalah endpoint
+*preview* yang rate-limit dan kadang membalas HTML alih-alih byte gambar — itu
+penyebab ubin galeri tampil kosong.
+
+<details>
+<summary>Cara mengaktifkan R2 seandainya strategi berubah</summary>
+
+1. Pasang metode pembayaran di dashboard Cloudflare
+2. Aktifkan R2: `dash.cloudflare.com/<account>/r2`
+3. Daftarkan `gallery.giadeliksari.org` sebagai R2 custom domain
+4. `npx wrangler r2 bucket create gia-deliksari-gallery`
+5. Buka komentar blok `r2_buckets` di `wrangler.jsonc` (sudah disiapkan)
+6. `npm run deploy`
+</details>
 
 ---
 
