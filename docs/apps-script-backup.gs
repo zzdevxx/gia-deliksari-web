@@ -59,7 +59,7 @@ var SECRET = 'GANTI-DENGAN-KATA-SANDI-RAHASIA-20-KARAKTER';
  *
  * Aturan: setiap kali tempel kode baru, angka ini WAJIB berubah.
  */
-var KODE_VERSI = 'v4-final';
+var KODE_VERSI = 'v5-meta-fix';
 
 
 /**
@@ -271,10 +271,26 @@ function writeMeta(stamp, ditulis) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName('Info Backup') || ss.insertSheet('Info Backup', 0);
 
-  var baris = [['Backup Terakhir', stamp]];
-  baris.push(['']);
+  // SETIAP baris WAJIB punya 2 kolom.
+  //
+  // Baris kosong ditulis sebagai ['', ''] — bukan ['']. Sebuah baris dengan satu
+  // sel ke dalam rentang dua kolom membuat setValues() melempar
+  // "Data ini memiliki 1 kolom, tetapi rentang memiliki 2 kolom", dan pesan itu
+  // tidak menyebut baris mana. Itu persis yang membuat backup gagal 3x berturut.
+  var baris = [['Backup Terakhir', String(stamp)]];
+  baris.push(['', '']);
   baris.push(['Sheet', 'Jumlah Baris']);
-  Object.keys(ditulis).forEach(function (k) { baris.push([k, ditulis[k]]); });
+  Object.keys(ditulis).forEach(function (k) {
+    var v = ditulis[k];
+    // Nilai string panjang (mis. pesan error per-sheet) dipotong supaya rapi.
+    if (typeof v === 'string' && v.length > 200) v = v.slice(0, 197) + '...';
+    baris.push([k, v === null || v === undefined ? '' : v]);
+  });
+
+  // Jaring pengaman: pastikan seluruh matriks 2 kolom sebelum ditulis.
+  baris = baris.map(function (r) {
+    return [r[0] === undefined ? '' : r[0], r[1] === undefined ? '' : r[1]];
+  });
 
   sheet.clear();
   sheet.getRange(1, 1, baris.length, 2).setValues(baris);
