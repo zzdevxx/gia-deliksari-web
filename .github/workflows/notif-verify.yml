@@ -1,0 +1,17 @@
+name: Cek Notifikasi
+# Workflow sementara untuk membuktikan notifikasi email benar-benar sampai.
+# Sengaja gagal. Hapus setelah operator mengonfirmasi emailnya masuk.
+
+"on":
+  workflow_dispatch:
+
+jobs:
+  deliberate-failure:
+    name: Sengaja gagal
+    runs-on: ubuntu-latest
+    steps:
+      - name: Gagal dengan sengaja untuk menguji notifikasi
+        run: |
+          echo "Ini tes notifikasi — kegagalan ini disengaja."
+          echo "Kalau kamu menerima email dari GitHub, berarti setting sudah benar."
+          exit 1
