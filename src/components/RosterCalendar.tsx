@@ -161,7 +161,7 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
 
       {/* Selected day detail */}
       {selectedDay && (
-        <div className="p-5 rounded-3xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm space-y-3 animate-in fade-in">
+        <div className="p-5 rounded-3xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] space-y-3 animate-in fade-in">
           <div className="flex items-center justify-between">
             <h4 className="font-extrabold text-sm text-[var(--foreground)] dark:text-[var(--foreground)] flex items-center gap-2">
               <Users className="w-4 h-4 text-[var(--brand-text)]" />

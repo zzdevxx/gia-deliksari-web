@@ -153,7 +153,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  <form onSubmit={handleSubmit} className="space-y-4">
  
  {/* Storage Policy Notice */}
- <div className="p-3.5 rounded-2xl bg-[var(--foreground)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] flex items-start gap-2.5 text-[11px] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] leading-relaxed">
+ <div className="p-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] flex items-start gap-2.5 text-[11px] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] leading-relaxed">
  <HardDrive className="w-4 h-4 shrink-0 mt-0.5" />
  <span>
  <strong>Sistem Rolling Cloud</strong>: Foto disimpan abadi di Google Drive gereja, dan 50 foto terkini ditampilkan otomatis di website.
@@ -196,7 +196,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  </div>
  ) : (
  <div className="space-y-2 py-4">
- <div className="w-12 h-12 rounded-2xl bg-white dark:bg-[var(--card)] text-[var(--brand-text)] dark:text-[var(--brand-text)] flex items-center justify-center mx-auto shadow-xs group-hover:scale-110 transition-transform">
+ <div className="w-12 h-12 rounded-2xl bg-white dark:bg-[var(--card)] text-[var(--brand-text)] dark:text-[var(--brand-text)] flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
  <Upload className="w-6 h-6" />
  </div>
  <div>

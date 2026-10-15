@@ -146,7 +146,7 @@ export default function GallerySection() {
  <div className="flex flex-wrap items-center gap-3">
  <button
  onClick={() => setIsUploadModalOpen(true)}
- className="px-5 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs sm:text-sm font-bold shadow-xs transition-all flex items-center gap-2 cursor-pointer"
+ className="px-5 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer"
  >
  <Upload className="w-4 h-4" />
  <span>Unggah Foto Momen</span>
@@ -180,7 +180,7 @@ export default function GallerySection() {
  onClick={() => handleFilterChange(filter.id as any)}
  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
  activeFilter === filter.id
- ? 'bg-[var(--brand)] dark:bg-[var(--brand)] text-white shadow-xs'
+ ? 'bg-[var(--brand)] dark:bg-[var(--brand)] text-white'
  : 'bg-white dark:bg-[var(--card)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)]'
  }`}
  >
@@ -201,8 +201,8 @@ export default function GallerySection() {
 
  {/* Gallery Grid - 12 foto random, 2/3/4 cols responsif */}
  {displayed.length === 0 ? (
- <div className="p-12 sm:p-16 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-xs text-center max-w-2xl mx-auto space-y-5">
- <div className="w-16 h-16 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] flex items-center justify-center text-[var(--brand-text)] dark:text-[var(--brand-text)] mx-auto shadow-xs">
+ <div className="p-12 sm:p-16 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] text-center max-w-2xl mx-auto space-y-5">
+ <div className="w-16 h-16 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] flex items-center justify-center text-[var(--brand-text)] dark:text-[var(--brand-text)] mx-auto">
  <Camera className="w-8 h-8" />
  </div>
  <div className="space-y-2">
@@ -219,7 +219,7 @@ export default function GallerySection() {
  <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
  <a
  href="#khotbah"
- className="px-5 py-2.5 rounded-xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs font-bold shadow-xs transition-all"
+ className="px-5 py-2.5 rounded-xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs font-bold transition-all"
  >
  Tonton Video Khotbah
  </a>
@@ -240,7 +240,7 @@ export default function GallerySection() {
  <div
  key={item.id}
  onClick={() => setSelectedPhotoIndex(index)}
- className="group relative aspect-square rounded-2xl overflow-hidden bg-[var(--surface-raised)] dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-xs hover:shadow-sm cursor-pointer transition-all"
+ className="group relative aspect-square rounded-2xl overflow-hidden bg-[var(--surface-raised)] dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] hover:shadow-sm cursor-pointer transition-all"
  >
  <Image
  src={item.thumbUrl || item.image || '/images/logo.png'}
@@ -275,7 +275,7 @@ export default function GallerySection() {
  <div className="flex justify-center mt-10">
  <button
  onClick={handleLoadMore}
- className="px-7 py-3.5 rounded-2xl bg-white dark:bg-[var(--card)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs sm:text-sm font-bold transition-all flex items-center gap-2 shadow-xs"
+ className="px-7 py-3.5 rounded-2xl bg-white dark:bg-[var(--card)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs sm:text-sm font-bold transition-all flex items-center gap-2"
  >
  <Images className="w-4 h-4 text-[var(--ink-strong)]" />
  <span>Tampilkan Lebih Banyak</span>
@@ -302,7 +302,7 @@ export default function GallerySection() {
  href={googleDriveFolderUrl}
  target="_blank"
  rel="noopener noreferrer"
- className="px-6 py-3.5 rounded-2xl bg-white dark:bg-[var(--surface-raised)] hover:bg-[var(--background)] dark:hover:bg-[var(--surface-raised-hover)] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold flex items-center gap-2 shadow-xs shrink-0"
+ className="px-6 py-3.5 rounded-2xl bg-white dark:bg-[var(--surface-raised)] hover:bg-[var(--background)] dark:hover:bg-[var(--surface-raised-hover)] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold flex items-center gap-2 shrink-0"
  >
  <FolderOpen className="w-4 h-4 text-[var(--ink-strong)]" />
  <span>Buka Folder Google Drive</span>

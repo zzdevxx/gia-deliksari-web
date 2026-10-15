@@ -205,7 +205,7 @@ export default function InfoPage() {
  <Link
  href="/info/print"
  target="_blank"
- className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs sm:text-sm font-bold shadow-xs"
+ className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs sm:text-sm font-bold"
  >
  <Printer className="w-4 h-4" />
  <span>Cetak Bulletin (A4 / PDF)</span>
@@ -234,7 +234,7 @@ export default function InfoPage() {
  <button
  type="button"
  onClick={handleCopyWartaWa}
- className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 shadow-xs self-start sm:self-auto ${
+ className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 self-start sm:self-auto ${
  copiedWartaWa
  ? 'bg-emerald-600 text-white'
  : 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/40'
@@ -270,7 +270,7 @@ export default function InfoPage() {
  onClick={() => setAnnCategory(c.id as MinistryCategory)}
  className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
  annCategory === c.id
- ? 'bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white shadow-sm'
+ ? 'bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white'
  : 'bg-white dark:bg-[var(--card)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)]'
  }`}
  >
@@ -284,7 +284,7 @@ export default function InfoPage() {
  onClick={() => setTimeFilter('upcoming')}
  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
  timeFilter === 'upcoming'
- ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white shadow-xs'
+ ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
  }`}
  >
@@ -295,7 +295,7 @@ export default function InfoPage() {
  onClick={() => setTimeFilter('all')}
  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
  timeFilter === 'all'
- ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white shadow-xs'
+ ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
  }`}
  >
@@ -305,7 +305,7 @@ export default function InfoPage() {
  onClick={() => setTimeFilter('past')}
  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
  timeFilter === 'past'
- ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white shadow-xs'
+ ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
  }`}
  >
@@ -331,7 +331,7 @@ export default function InfoPage() {
  {upcomingAnn.map((item) => (
  <div
  key={item.id}
- className={`p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm transition-all flex flex-col justify-between space-y-6 ${
+ className={`p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] transition-all flex flex-col justify-between space-y-6 ${
  item.isPinned ? 'ring-2 ring-[var(--brand)]/40' : ''
  }`}
  >
@@ -392,7 +392,7 @@ export default function InfoPage() {
 
  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
  {/* 1. Ibadah Raya Minggu */}
- <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex flex-col justify-between space-y-4">
+ <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
  <div className="space-y-3">
  <div className="flex items-center justify-between">
  <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--surface-raised)] text-[var(--brand-text)] dark:bg-[var(--surface-raised)] dark:text-[var(--brand-text)] border border-[var(--border)] dark:border-[var(--border)]">
@@ -418,10 +418,10 @@ export default function InfoPage() {
  </div>
 
  {/* 2. COC Kidz (Sekolah Minggu) */}
- <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex flex-col justify-between space-y-4">
+ <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
  <div className="space-y-3">
  <div className="flex items-center justify-between">
- <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--foreground)] text-[var(--ink-strong)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)]">
+ <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)]">
  Sekolah Minggu (KAA)
  </span>
  <span className="text-xs font-bold text-[var(--ink-strong)]">Minggu</span>
@@ -444,7 +444,7 @@ export default function InfoPage() {
  </div>
 
  {/* 3. Grow Generation Youth / PRBK */}
- <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex flex-col justify-between space-y-4">
+ <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
  <div className="space-y-3">
  <div className="flex items-center justify-between">
  <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)]">
@@ -470,7 +470,7 @@ export default function InfoPage() {
  </div>
 
  {/* 4. Wanita HANA & Komsel Ekklesia */}
- <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex flex-col justify-between space-y-4">
+ <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
  <div className="space-y-3">
  <div className="flex items-center justify-between">
  <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--brand-tint)] text-[var(--brand-text)] dark:bg-[var(--brand-tint)] dark:text-[var(--brand-text)] border border-[var(--brand-tint-border)] dark:border-[var(--brand-tint-border)]">
@@ -496,7 +496,7 @@ export default function InfoPage() {
  </div>
 
  {/* 5. Ibadah Doa Pagi (Onsite + Zoom) */}
- <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex flex-col justify-between space-y-4">
+ <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
  <div className="space-y-3">
  <div className="flex items-center justify-between">
  <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
@@ -519,7 +519,7 @@ export default function InfoPage() {
  href="https://us06web.zoom.us/j/83715591277?pwd=Qc52Xla9k68ZjD3rViMRIaDiXgaWkf.1"
  target="_blank"
  rel="noopener noreferrer"
- className="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-bold flex items-center gap-1 transition-colors shadow-xs"
+ className="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-bold flex items-center gap-1 transition-colors"
  >
  <Video className="w-3 h-3" />
  <span>Join Zoom</span>
@@ -529,7 +529,7 @@ export default function InfoPage() {
  </div>
 
  {/* 6. Latihan Musik & Jam Pelayanan Kantor */}
- <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex flex-col justify-between space-y-4">
+ <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
  <div className="space-y-3">
  <div className="flex items-center justify-between">
  <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
@@ -575,7 +575,7 @@ export default function InfoPage() {
  <button
  type="button"
  onClick={handleCopyWaBroadcast}
- className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 shadow-xs self-start sm:self-auto ${
+ className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 self-start sm:self-auto ${
  copiedWa
  ? 'bg-emerald-600 text-white'
  : 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/40'
@@ -604,7 +604,7 @@ export default function InfoPage() {
  onClick={() => setRosterView('list')}
  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
  rosterView === 'list'
- ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white shadow-xs'
+ ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
  }`}
  >
@@ -614,7 +614,7 @@ export default function InfoPage() {
  onClick={() => setRosterView('calendar')}
  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
  rosterView === 'calendar'
- ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white shadow-xs'
+ ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
  }`}
  >
@@ -633,7 +633,7 @@ export default function InfoPage() {
  onClick={() => setRosterCat(c.id as any)}
  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
  rosterCat === c.id
- ? 'bg-[var(--brand)] dark:bg-[var(--brand)] text-white shadow-sm'
+ ? 'bg-[var(--brand)] dark:bg-[var(--brand)] text-white'
  : 'bg-white dark:bg-[var(--card)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)]'
  }`}
  >
@@ -644,11 +644,11 @@ export default function InfoPage() {
 
  {/* Roster View: List | Calendar */}
  {rosterView === 'calendar' ? (
- <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm">
+ <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)]">
  <RosterCalendar rosters={filteredRoster} filterCategory={rosterCat} />
  </div>
  ) : (
- <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm">
+ <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)]">
  {filteredRoster.length === 0 ? (
  <div className="py-8 text-center text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
  Belum ada jadwal petugas pelayanan untuk kategori ini.

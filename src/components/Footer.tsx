@@ -96,7 +96,7 @@ export default function Footer() {
               <button
                 type="submit"
                 disabled={subscribed}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full font-bold text-sm bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white shadow-xs hover:-translate-y-0.5 active:scale-[0.97] transition-all disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full font-bold text-sm bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white hover:-translate-y-0.5 active:scale-[0.97] transition-all disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {subscribed ? (
                   <>
@@ -121,7 +121,7 @@ export default function Footer() {
           {/* Col 1: Church Brand */}
           <div className="lg:col-span-4 space-y-4">
             <Link href="/home" className="flex items-center gap-3 group" aria-label="GIA Deliksari - Beranda">
-              <div className="relative w-12 h-12 rounded-2xl overflow-hidden border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--card)] p-0.5 shadow-xs group-hover:scale-105 transition-transform">
+              <div className="relative w-12 h-12 rounded-2xl overflow-hidden border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--card)] p-0.5 group-hover:scale-105 transition-transform">
                 <Image
                   src="/images/logo.avif"
                   alt="Logo GIA Deliksari"

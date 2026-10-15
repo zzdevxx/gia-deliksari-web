@@ -69,7 +69,7 @@ export default function LocationContactSection() {
 
           {/* Left Column: Interactive Google Map */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-xs">
+            <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)]">
               <div className="flex items-center justify-between pb-4 px-2">
                 <div className="flex items-center gap-2">
                   <span className="w-3 h-3 rounded-full bg-[var(--brand)] dark:bg-[var(--brand)]" />
@@ -104,7 +104,7 @@ export default function LocationContactSection() {
             </div>
 
             {/* Address & Quick Contacts Card */}
-            <div className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-xs space-y-4">
+            <div className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] space-y-4">
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] flex items-center justify-center text-[var(--brand-text)] dark:text-[var(--brand-text)] shrink-0">
                   <MapPin className="w-5 h-5" />

@@ -24,7 +24,7 @@ export default function HospitalitySection() {
       desc: 'Lokasi gereja mudah dijangkau di Deliksari Gunungpati dengan area parkir aman untuk motor & mobil.',
       icon: MapPin,
       badge: 'Lokasi Strategis',
-      color: 'bg-[var(--foreground)] text-[var(--ink-strong)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]',
+      color: 'bg-[var(--surface-raised)] text-[var(--ink-strong)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]',
     },
     {
       step: '02',
@@ -40,7 +40,7 @@ export default function HospitalitySection() {
       desc: 'Anak-anak Anda dididik dalam firman Tuhan dengan penuh sukacita di kelas Sekolah Minggu (09.30 WIB).',
       icon: Baby,
       badge: 'Ramah Keluarga',
-      color: 'bg-[var(--foreground)] text-[var(--ink-strong)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]',
+      color: 'bg-[var(--surface-raised)] text-[var(--ink-strong)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]',
     },
     {
       step: '04',
@@ -77,7 +77,7 @@ export default function HospitalitySection() {
             return (
               <div
                 key={item.step}
-                className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-xs hover:border-[var(--ink-strong)]/50 transition-all flex flex-col justify-between space-y-6"
+                className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] hover:border-[var(--ink-strong)]/50 transition-all flex flex-col justify-between space-y-6"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
@@ -107,7 +107,7 @@ export default function HospitalitySection() {
         </div>
 
         {/* Banner CTA Box: Altar Stone Invitation Box */}
-        <div className="p-8 sm:p-10 rounded-2xl bg-[var(--card)] dark:bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)] shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="p-8 sm:p-10 rounded-2xl bg-[var(--card)] dark:bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)] flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center md:text-left">
             <h3 className="text-xl sm:text-2xl font-extrabold text-[var(--foreground)]">
               Punya Pertanyaan Sebelum Hadir?
@@ -122,7 +122,7 @@ export default function HospitalitySection() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3.5 rounded-xl bg-[var(--card)] dark:bg-[var(--card)] text-[var(--foreground)] hover:bg-[var(--surface-raised)] font-bold text-xs sm:text-sm shadow-xs flex items-center gap-2 transition-transform active:scale-95"
+              className="px-6 py-3.5 rounded-xl bg-[var(--card)] dark:bg-[var(--card)] text-[var(--foreground)] hover:bg-[var(--surface-raised)] font-bold text-xs sm:text-sm flex items-center gap-2 transition-transform active:scale-95"
             >
               <WhatsAppIcon className="w-4 h-4 text-emerald-600" />
               <span>Chat WhatsApp Pastoral</span>

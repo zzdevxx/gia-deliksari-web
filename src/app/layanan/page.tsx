@@ -36,7 +36,7 @@ export default function LayananPage() {
 
           {/* Quick Pillars Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
-            <div className="p-4 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-xs flex items-center gap-3">
+            <div className="p-4 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] flex items-center justify-center text-[var(--brand-text)] dark:text-[var(--brand-text)] shrink-0 font-bold">
                 🙏
               </div>
@@ -46,7 +46,7 @@ export default function LayananPage() {
               </div>
             </div>
 
-            <div className="p-4 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-xs flex items-center gap-3">
+            <div className="p-4 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/40 flex items-center justify-center text-blue-600 shrink-0 font-bold">
                 💧
               </div>
@@ -56,7 +56,7 @@ export default function LayananPage() {
               </div>
             </div>
 
-            <div className="p-4 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-xs flex items-center gap-3">
+            <div className="p-4 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-950/40 flex items-center justify-center text-amber-600 shrink-0 font-bold">
                 🏘️
               </div>
@@ -66,7 +66,7 @@ export default function LayananPage() {
               </div>
             </div>
 
-            <div className="p-4 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-xs flex items-center gap-3">
+            <div className="p-4 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 flex items-center justify-center text-emerald-600 shrink-0 font-bold">
                 ✨
               </div>

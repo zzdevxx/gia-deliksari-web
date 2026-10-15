@@ -128,7 +128,7 @@ export default function GivingSection() {
  <div className="text-xs font-bold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] uppercase tracking-wider text-center mb-3">
  Pilih Peruntukan Pos Persembahan:
  </div>
- <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 p-1.5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-xs">
+ <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 p-1.5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)]">
  {categories.map((cat) => {
  const isActive = selectedCategory === cat.id;
  return (
@@ -138,7 +138,7 @@ export default function GivingSection() {
  onClick={() => setSelectedCategory(cat.id)}
  className={`py-3 px-3 rounded-xl text-xs font-bold transition-all text-center flex flex-col items-center justify-center gap-1 ${
  isActive
- ? 'bg-[var(--brand)] dark:bg-[var(--brand)] text-white shadow-xs scale-[1.02]'
+ ? 'bg-[var(--brand)] dark:bg-[var(--brand)] text-white scale-[1.02]'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)]'
  }`}
  >
@@ -161,7 +161,7 @@ export default function GivingSection() {
  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
 
  {/* 1. Kotak Persembahan (Offline) */}
- <div className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm transition-all flex flex-col justify-between space-y-6 ">
+ <div className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] transition-all flex flex-col justify-between space-y-6">
  <div className="space-y-4">
  <div className="flex items-center gap-3">
  <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white bg-[var(--brand)] dark:bg-[var(--brand)]">
@@ -202,13 +202,13 @@ export default function GivingSection() {
  </div>
 
  {/* 2. Transfer Bank (BCA & BRI) */}
- <div className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm transition-all flex flex-col justify-between space-y-6 ">
+ <div className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] transition-all flex flex-col justify-between space-y-6">
  <div className="space-y-4">
  <div className="flex items-center gap-3">
  <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white bg-[var(--ink-strong)]">
  <CreditCard className="w-8 h-8" />
  </div>
- <span className="inline-block px-3 py-1 rounded-xl text-xs font-bold border bg-[var(--foreground)] text-[var(--ink-strong)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border-strong)]">
+ <span className="inline-block px-3 py-1 rounded-xl text-xs font-bold border bg-[var(--surface-raised)] text-[var(--ink-strong)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border-strong)]">
  Transfer Bank
  </span>
  </div>
@@ -273,7 +273,7 @@ export default function GivingSection() {
  </div>
 
  {/* 3. QRIS Digital Payment */}
- <div className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm transition-all flex flex-col justify-between space-y-6 ">
+ <div className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] transition-all flex flex-col justify-between space-y-6">
  <div className="space-y-4">
  <div className="flex items-center gap-3">
  <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white bg-[var(--status-success)]">
@@ -331,7 +331,7 @@ export default function GivingSection() {
  <button
  type="button"
  onClick={() => setShowQrisModal(true)}
- className="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-xs"
+ className="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-2 transition-all"
  >
  <QrCode className="w-4 h-4" />
  <span>Buka QRIS Layar Penuh</span>
@@ -341,7 +341,7 @@ export default function GivingSection() {
  </div>
 
  {/* Dynamic WhatsApp Confirmation Strip */}
- <div className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+ <div className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col sm:flex-row items-center justify-between gap-4">
  <div className="flex items-center gap-3.5 text-center sm:text-left">
  <div className="w-11 h-11 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] flex items-center justify-center text-[var(--brand-text)] dark:text-[var(--brand-text)] shrink-0">
  <ShieldCheck className="w-6 h-6" />
@@ -365,7 +365,7 @@ export default function GivingSection() {
  href={whatsappConfirmUrl}
  target="_blank"
  rel="noopener noreferrer"
- className="w-full sm:w-auto px-5 py-3 rounded-xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] hover:from-[var(--brand-hover)] hover:to-[var(--brand-hover)] text-white text-xs font-bold shadow-xs flex items-center justify-center gap-2 shrink-0 transition-all active:scale-95"
+ className="w-full sm:w-auto px-5 py-3 rounded-xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] hover:from-[var(--brand-hover)] hover:to-[var(--brand-hover)] text-white text-xs font-bold flex items-center justify-center gap-2 shrink-0 transition-all active:scale-95"
  >
  <WhatsAppIcon className="w-4 h-4 text-emerald-400" />
  <span>Konfirmasi {currentCategoryObj.name}</span>

@@ -312,7 +312,7 @@ export default function KasDashboard() {
  <div className="flex-1 flex items-center justify-center p-4 sm:p-6 py-20 relative overflow-hidden">
  <div className="w-full max-w-md bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] rounded-2xl p-8 sm:p-10 relative z-10 space-y-6 animate-in fade-in zoom-in-95 duration-300">
  <div className="text-center space-y-3">
- <div className="w-16 h-16 rounded-2xl bg-[var(--brand)] dark:bg-[var(--brand)] text-white flex items-center justify-center mx-auto shadow-sm">
+ <div className="w-16 h-16 rounded-2xl bg-[var(--brand)] dark:bg-[var(--brand)] text-white flex items-center justify-center mx-auto">
  <Wallet className="w-8 h-8" />
  </div>
  <h1 className="text-2xl sm:text-3xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] tracking-tight">
@@ -367,7 +367,7 @@ export default function KasDashboard() {
 
  <button
  type="submit"
- className="w-full py-4 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white font-extrabold text-sm shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
+ className="w-full py-4 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white font-extrabold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
  >
  <KeyRound className="w-4 h-4" />
  <span>Masuk Portal Kas</span>
@@ -407,10 +407,10 @@ export default function KasDashboard() {
 
  <div className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-8">
  {/* Top Header Bar */}
- <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm">
+ <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)]">
  <div className="space-y-1">
  <div className="flex items-center gap-2">
- <span className="px-3 py-1 rounded-full text-xs font-bold bg-[var(--foreground)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)]">
+ <span className="px-3 py-1 rounded-full text-xs font-bold bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)]">
  💰 Portal Kas Grow Generation
  </span>
  <div className="flex items-center gap-1.5 text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
@@ -538,7 +538,7 @@ export default function KasDashboard() {
  </button>
  <button
  onClick={() => openCreateModal('expense')}
- className="px-5 py-3 rounded-2xl bg-rose-700 hover:bg-rose-800 dark:bg-rose-700 dark:hover:bg-rose-600 text-white text-xs sm:text-sm font-bold shadow-xs flex items-center gap-2"
+ className="px-5 py-3 rounded-2xl bg-rose-700 hover:bg-rose-800 dark:bg-rose-700 dark:hover:bg-rose-600 text-white text-xs sm:text-sm font-bold flex items-center gap-2"
  >
  <Plus className="w-4 h-4" />
  <span>Catat Pengeluaran</span>
@@ -559,7 +559,7 @@ export default function KasDashboard() {
  onClick={() => setFilterType(f.id as any)}
  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
  filterType === f.id
- ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white shadow-xs'
+ ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
  }`}
  >
@@ -581,7 +581,7 @@ export default function KasDashboard() {
  </div>
 
  {/* Transactions Table */}
- <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm">
+ <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)]">
  {filtered.length === 0 ? (
  <div className="p-12 text-center space-y-3">
  <Wallet className="w-10 h-10 text-[var(--ink-strong)] mx-auto opacity-60" />

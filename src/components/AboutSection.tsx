@@ -116,7 +116,7 @@ export default function AboutSection() {
             </div>
 
             <div className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-[var(--foreground)] dark:bg-[var(--surface-raised)] flex items-center justify-center text-[var(--ink-strong)] dark:text-[var(--muted-foreground)]">
+              <div className="w-12 h-12 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] flex items-center justify-center text-[var(--ink-strong)] dark:text-[var(--muted-foreground)]">
                 <Church className="w-6 h-6" />
               </div>
               <div className="space-y-2">

@@ -46,7 +46,7 @@ const AnnouncementsTab: React.FC<AnnouncementsTabProps> = ({
         </div>
         <button
           onClick={onCreate}
-          className="px-5 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs sm:text-sm font-bold shadow-xs flex items-center justify-center gap-2"
+          className="px-5 py-3 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2"
         >
           <Plus className="w-4 h-4" />
           <span>Tambah Warta Baru</span>
@@ -58,7 +58,7 @@ const AnnouncementsTab: React.FC<AnnouncementsTabProps> = ({
         {announcements.map((item) => (
           <div
             key={item.id}
-            className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-[var(--brand)]/40 dark:hover:border-[var(--brand)]/40 transition-colors"
+            className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-[var(--brand)]/40 dark:hover:border-[var(--brand)]/40 transition-colors"
           >
             <div className="space-y-2 flex-1">
               <div className="flex flex-wrap items-center gap-2">
@@ -68,7 +68,7 @@ const AnnouncementsTab: React.FC<AnnouncementsTabProps> = ({
                   {getCategoryLabel(item.category)}
                 </span>
                 {item.isPinned && (
-                  <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[var(--foreground)] text-[var(--ink-strong)] border border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)] flex items-center gap-1">
+                  <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[var(--surface-raised)] text-[var(--ink-strong)] border border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)] flex items-center gap-1">
                     <Pin className="w-3 h-3" />
                     <span>Tersemat (Pinned)</span>
                   </span>
@@ -98,7 +98,7 @@ const AnnouncementsTab: React.FC<AnnouncementsTabProps> = ({
                 title={item.isPinned ? 'Lepas Pin' : 'Sematkan Warta'}
                 className={`p-3 rounded-2xl border transition-colors ${
                   item.isPinned
-                    ? 'bg-[var(--foreground)] text-[var(--ink-strong)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]'
+                    ? 'bg-[var(--surface-raised)] text-[var(--ink-strong)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]'
                     : 'bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border)]'
                 }`}
               >

@@ -90,7 +90,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
  <button
  type="submit"
  disabled={submitting}
- className="w-full py-4 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white font-extrabold text-sm shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+ className="w-full py-4 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white font-extrabold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
  >
  <ShieldCheck className="w-4 h-4" />
  <span>{submitting ? 'Memproses…' : 'Masuk Superuser Portal'}</span>

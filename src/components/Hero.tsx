@@ -85,7 +85,7 @@ export default function Hero() {
             role="status"
             aria-live="polite"
             aria-label={`Ibadah Raya Minggu dalam ${timeLeft.days} hari ${timeLeft.hours} jam ${timeLeft.minutes} menit`}
-            className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-4 py-2 rounded-full bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-xs text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]"
+            className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-4 py-2 rounded-full bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]"
           >
             <span className="flex items-center gap-1.5 text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] font-bold">
               <Calendar className="w-3.5 h-3.5" />
@@ -186,7 +186,7 @@ export default function Hero() {
             <div className="relative mx-auto max-w-md lg:max-w-none">
 
               {/* Main Visual Sanctuary Card */}
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-[var(--border)] dark:border-[var(--border)] shadow-xs bg-white dark:bg-[var(--card)] p-6 sm:p-8 flex flex-col justify-between">
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--card)] p-6 sm:p-8 flex flex-col justify-between">
                 {/* Top Badge & Status */}
                 <div className="flex items-center justify-between">
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[11px] font-bold border border-[var(--border)] dark:border-[var(--border)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
@@ -239,8 +239,8 @@ export default function Hero() {
                   carries the 4/5 aspect ratio, so padding the address cannot
                   help: the height is fixed and my-auto absorbs the slack. The
                   only lever is where the float is anchored. */}
-              <div className="absolute -bottom-14 -left-5 sm:-left-6 p-4 sm:p-5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex items-center gap-3.5 max-w-[260px]">
-                <div className="w-11 h-11 rounded-xl bg-[var(--brand)] dark:bg-[var(--brand)] flex items-center justify-center text-white shadow-xs" aria-hidden="true">
+              <div className="absolute -bottom-14 -left-5 sm:-left-6 p-4 sm:p-5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex items-center gap-3.5 max-w-[260px]">
+                <div className="w-11 h-11 rounded-xl bg-[var(--brand)] dark:bg-[var(--brand)] flex items-center justify-center text-white" aria-hidden="true">
                   <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current">
                     <path d="M10.5 3.5h3v7h7v3h-3v7h-3v-7h-7v-3h3z" />
                   </svg>
@@ -256,7 +256,7 @@ export default function Hero() {
               </div>
 
               {/* Floating Quick Access — Jadwal Singkat */}
-              <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 px-3.5 py-2.5 rounded-xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm hidden sm:block">
+              <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 px-3.5 py-2.5 rounded-xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] hidden sm:block">
                 <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
                   Ibadah Berikutnya
                 </p>

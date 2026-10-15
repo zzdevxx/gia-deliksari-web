@@ -261,7 +261,7 @@ export default function ScheduleSection() {
  {primaryServices.map((service) => (
  <div
  key={service.id}
- className="p-7 sm:p-8 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm transition-all flex flex-col justify-between space-y-6"
+ className="p-7 sm:p-8 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] transition-all flex flex-col justify-between space-y-6"
  >
  <div className="space-y-4">
  <div className="flex flex-wrap items-center justify-between gap-2">
@@ -310,7 +310,7 @@ export default function ScheduleSection() {
  {weeklyActivities.map((act) => (
  <div
  key={act.id}
- className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm flex items-start gap-5"
+ className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex items-start gap-5"
  >
  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border ${getCategoryColor(act.category)}`}>
  {getCategoryIcon(act.category)}
@@ -334,7 +334,7 @@ export default function ScheduleSection() {
  </div>
 
  {/* Servant Roster Table */}
- <div className="rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] p-6 sm:p-8 shadow-sm space-y-6">
+ <div className="rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] p-6 sm:p-8 space-y-6">
  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[var(--border)] dark:border-[var(--border)]">
  <div>
  <h3 className="text-xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)]">
@@ -348,7 +348,7 @@ export default function ScheduleSection() {
  <button
  type="button"
  onClick={handleCopyWaBroadcast}
- className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-xs ${
+ className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
  copiedWa
  ? 'bg-emerald-600 text-white'
  : 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/40'
@@ -393,7 +393,7 @@ export default function ScheduleSection() {
  onClick={() => setSelectedRosterCategory(tab.id as any)}
  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 ${
  isActive
- ? 'bg-[var(--brand)] text-white shadow-xs'
+ ? 'bg-[var(--brand)] text-white'
  : 'bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)]'
  }`}
  >

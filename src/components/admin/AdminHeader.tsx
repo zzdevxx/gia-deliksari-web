@@ -38,10 +38,10 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
   websiteLink = '/home',
 }) => {
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm">
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)]">
       <div className="space-y-1">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="px-3 py-1 rounded-full text-xs font-bold bg-[var(--foreground)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border-strong)]">
+          <span className="px-3 py-1 rounded-full text-xs font-bold bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border-strong)]">
             {badge}
           </span>
         </div>

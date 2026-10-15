@@ -12,13 +12,19 @@ const CONFIG: Record<MinistryCategory, { label: string; color: string }> = {
     label: 'Ibadah Raya',
     color: 'bg-[var(--brand-tint)] dark:bg-[var(--brand-tint-ink)] text-[var(--brand-text)] dark:text-[var(--brand-text)] border-[var(--brand-tint-border)] dark:border-[var(--brand-tint-border)]',
   },
+  // `youth` and `kidz` used to pair `bg-[var(--foreground)]` (#17161A) with
+  // `text-[var(--ink-strong)]` (#3A3532). That is 1.49:1 in light mode: dark
+  // text on a near-black fill, which reads as an unlabelled dark smudge. All
+  // four categories now use the surface ramp, which is the same treatment the
+  // `all` variant already had, and which survives a theme switch without a
+  // per-case override.
   youth: {
     label: 'Grow Youth',
-    color: 'bg-[var(--foreground)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border-strong)]',
+    color: 'bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--card-inverted-fg)] border-[var(--border-strong)] dark:border-[var(--border-strong)]',
   },
   kidz: {
     label: 'COC Kidz',
-    color: 'bg-[var(--foreground)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border)]',
+    color: 'bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--card-inverted-fg)] border-[var(--border-strong)] dark:border-[var(--border-strong)]',
   },
   hana: {
     label: 'Wanita Hana',

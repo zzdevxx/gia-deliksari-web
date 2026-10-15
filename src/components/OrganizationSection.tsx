@@ -43,7 +43,7 @@ const GROUPS: Group[] = [
  subtitle: 'Pemuda & Remaja (PRBK)',
  icon: <Flame className="w-5 h-5" />,
  accentClass:
- 'border-[var(--border)] dark:border-[var(--border-strong)] bg-[var(--foreground)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)]',
+ 'border-[var(--border)] dark:border-[var(--border-strong)] bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)]',
  members: [
  { name: 'Sdri. Lara Tampubolon', role: 'Ketua' },
  { name: 'Sdr. Ravael', role: 'Sekretaris' },
@@ -59,7 +59,7 @@ const GROUPS: Group[] = [
  subtitle: 'Komunitas Kecil Persekutuan',
  icon: <Users className="w-5 h-5" />,
  accentClass:
- 'border-[var(--border)] dark:border-[var(--border)] bg-[var(--foreground)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)]',
+ 'border-[var(--border)] dark:border-[var(--border)] bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)]',
  members: [
  { name: 'Bpk. Sidik', role: 'Ketua Komsel — Ekklesia Sel' },
  { name: 'Sdri. Yemima', role: 'Ketua Komsel — Amethyst' },
@@ -124,7 +124,7 @@ export default function OrganizationSection() {
  {GROUPS.map((group) => (
  <div
  key={group.id}
- className="p-6 sm:p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm transition-all space-y-5"
+ className="p-6 sm:p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] transition-all space-y-5"
  >
  <div
  className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-bold border ${group.accentClass}`}

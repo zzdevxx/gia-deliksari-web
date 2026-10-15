@@ -39,14 +39,14 @@ export default function MediaPage() {
           <div className="flex flex-wrap items-center gap-3 mt-6">
             <a
               href="#khotbah"
-              className="px-4 py-2 rounded-xl bg-[var(--brand)] dark:bg-[var(--brand)] text-white text-xs font-bold hover:bg-[var(--brand-hover)] transition-colors flex items-center gap-1.5 shadow-xs"
+              className="px-4 py-2 rounded-xl bg-[var(--brand)] dark:bg-[var(--brand)] text-white text-xs font-bold hover:bg-[var(--brand-hover)] transition-colors flex items-center gap-1.5"
             >
               <YouTubeIcon className="w-3.5 h-3.5 text-white" />
               <span>Video Khotbah Terbaru</span>
             </a>
             <a
               href="#galeri"
-              className="px-4 py-2 rounded-xl bg-white dark:bg-[var(--card)] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] hover:bg-[var(--surface-raised)] text-xs font-bold transition-colors flex items-center gap-1.5 shadow-xs"
+              className="px-4 py-2 rounded-xl bg-white dark:bg-[var(--card)] text-[var(--foreground)] dark:text-[var(--foreground)] border border-[var(--border)] dark:border-[var(--border)] hover:bg-[var(--surface-raised)] text-xs font-bold transition-colors flex items-center gap-1.5"
             >
               <ImageIcon className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
               <span>Galeri Foto Dokumentasi</span>

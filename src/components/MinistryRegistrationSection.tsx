@@ -137,7 +137,7 @@ export default function MinistryRegistrationSection() {
                 onClick={() => setActiveTab(tab.id as ServiceType)}
                 className={`py-3 px-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold flex flex-col sm:flex-row items-center justify-center gap-1.5 transition-all ${
                   isActive
-                    ? 'bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white shadow-sm'
+                    ? 'bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white'
                     : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-white/60 dark:hover:bg-[var(--surface-raised-hover)]'
                 }`}
               >
@@ -149,10 +149,10 @@ export default function MinistryRegistrationSection() {
         </div>
 
         {/* Form Container */}
-        <div className="p-8 sm:p-12 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm">
+        <div className="p-8 sm:p-12 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)]">
           {isSubmitted ? (
             <div className="py-12 text-center space-y-4 animate-in fade-in zoom-in-95">
-              <div className="w-16 h-16 rounded-3xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 flex items-center justify-center mx-auto shadow-xs">
+              <div className="w-16 h-16 rounded-3xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 flex items-center justify-center mx-auto">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
               <h3 className="text-2xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)]">
@@ -318,7 +318,7 @@ export default function MinistryRegistrationSection() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-xs transition-all cursor-pointer disabled:opacity-70"
+                className="w-full py-4 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 transition-all cursor-pointer disabled:opacity-70"
               >
                 <WhatsAppIcon className="w-5 h-5 text-white" />
                 <span>{isSubmitting ? 'Menyimpan & Menghubungkan...' : 'Kirim Formulir ke Tim Pastoral'}</span>

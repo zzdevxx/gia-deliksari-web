@@ -101,7 +101,7 @@ export default function Navbar() {
  <header
  className={`sticky top-0 z-50 transition-all duration-300 backdrop-blur-md ${
  scrolled
- ? 'bg-[var(--nav-bg)] border-b border-[var(--nav-border)] shadow-xs'
+ ? 'bg-[var(--nav-bg)] border-b border-[var(--nav-border)]'
  : 'bg-[var(--nav-bg)] border-b border-[var(--nav-border)]'
  }`}
  >
@@ -113,7 +113,7 @@ export default function Navbar() {
  className="flex items-center gap-3.5 group transition-transform active:scale-95"
  aria-label="Gereja Isa Almasih Deliksari Semarang - Kembali ke Beranda"
  >
- <div className="relative w-11 h-11 rounded-2xl overflow-hidden shadow-xs border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--card)] p-0.5 group-hover:border-[var(--brand)] dark:group-hover:border-[var(--brand)] transition-colors">
+ <div className="relative w-11 h-11 rounded-2xl overflow-hidden border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--card)] p-0.5 group-hover:border-[var(--brand)] dark:group-hover:border-[var(--brand)] transition-colors">
  {/* AVIF first: this is the LCP element on every route and it preloads, so the
      format choice is paid on each first visit. logo.avif is 13.2KB against the
      37KB PNG it replaces for a 44px slot. */}
@@ -156,7 +156,7 @@ export default function Navbar() {
  aria-current={isActive ? 'page' : undefined}
  className={`relative px-3.5 py-2 rounded-xl text-xs font-semibold transition-all ${
  isActive
- ? 'text-[var(--foreground)] dark:text-[var(--foreground)] bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] font-bold shadow-xs'
+ ? 'text-[var(--foreground)] dark:text-[var(--foreground)] bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] font-bold'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)] dark:hover:text-[var(--foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)]'
  }`}
  >
@@ -248,7 +248,7 @@ export default function Navbar() {
  <Link
  href="/admin"
  onClick={closeSheet}
- className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-xs font-bold bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white shadow-xs"
+ className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-xs font-bold bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white"
  >
  <ShieldCheck className="w-4 h-4" />
  <span>Masuk Admin Portal</span>

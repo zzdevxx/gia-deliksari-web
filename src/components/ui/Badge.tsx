@@ -22,7 +22,7 @@ const VARIANT_MAP: Record<Variant, string> = {
   maroon:
     'bg-[var(--brand-tint)] dark:bg-[var(--brand-tint)] text-[var(--brand-text)] dark:text-[var(--brand-text)] ring-1 ring-inset ring-[var(--brand-tint-border)] dark:ring-[var(--brand-tint-border)]',
   gold:
-    'bg-[var(--foreground)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] ring-1 ring-inset ring-[var(--border-strong)] dark:ring-[var(--border-strong)]',
+    'bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] ring-1 ring-inset ring-[var(--border-strong)] dark:ring-[var(--border-strong)]',
   outline:
     'bg-transparent text-[var(--foreground)] dark:text-[var(--foreground)] ring-1 ring-inset ring-[var(--border-strong)] dark:ring-[var(--border-strong)]',
   success:

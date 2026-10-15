@@ -122,7 +122,7 @@ export default function SermonsSection() {
  href="https://www.youtube.com/@GIADeliksariSemarang"
  target="_blank"
  rel="noopener noreferrer"
- className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs sm:text-sm font-bold shadow-xs transition-all"
+ className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand-hover)] dark:bg-[var(--brand)] dark:hover:bg-[var(--brand-hover)] text-white text-xs sm:text-sm font-bold transition-all"
  >
  <YouTubeIcon className="w-4 h-4 text-white" />
  <span>Channel YouTube GIA Deliksari</span>
@@ -136,7 +136,7 @@ export default function SermonsSection() {
  {sermons.map((sermon) => (
  <div
  key={sermon.id}
- className="rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] overflow-hidden shadow-xs hover:border-[var(--ink-strong)]/50 transition-all flex flex-col justify-between group"
+ className="rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] overflow-hidden hover:border-[var(--ink-strong)]/50 transition-all flex flex-col justify-between group"
  >
  <div>
  {/* Thumbnail Container */}

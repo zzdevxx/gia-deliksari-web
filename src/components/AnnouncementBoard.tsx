@@ -144,7 +144,7 @@ export default function AnnouncementBoard() {
  <div className="flex items-center gap-3">
  <button
  onClick={() => setIsPrintModalOpen(true)}
- className="inline-flex items-center gap-2 px-5 py-3.5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] text-[var(--foreground)] dark:text-[var(--foreground)] text-xs sm:text-sm font-bold shadow-xs transition-all"
+ className="inline-flex items-center gap-2 px-5 py-3.5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] text-[var(--foreground)] dark:text-[var(--foreground)] text-xs sm:text-sm font-bold transition-all"
  >
  <Printer className="w-4 h-4 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
  <span>Cetak Lembar Warta</span>
@@ -174,7 +174,7 @@ export default function AnnouncementBoard() {
  onClick={() => setSelectedCategory(tab.id as any)}
  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
  selectedCategory === tab.id
- ? 'bg-[var(--brand)] text-white shadow-xs'
+ ? 'bg-[var(--brand)] text-white'
  : 'bg-white dark:bg-[var(--card)] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)]'
  }`}
  >
@@ -189,7 +189,7 @@ export default function AnnouncementBoard() {
  onClick={() => setTimeFilter('upcoming')}
  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
  timeFilter === 'upcoming'
- ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white shadow-xs'
+ ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
  }`}
  >
@@ -200,7 +200,7 @@ export default function AnnouncementBoard() {
  onClick={() => setTimeFilter('all')}
  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
  timeFilter === 'all'
- ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white shadow-xs'
+ ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
  }`}
  >
@@ -210,7 +210,7 @@ export default function AnnouncementBoard() {
  onClick={() => setTimeFilter('past')}
  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
  timeFilter === 'past'
- ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white shadow-xs'
+ ? 'bg-white dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-white'
  : 'text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
  }`}
  >
@@ -268,7 +268,7 @@ export default function AnnouncementBoard() {
  return (
  <div
  key={item.id}
- className={`p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm transition-all flex flex-col justify-between space-y-6 ${
+ className={`p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] transition-all flex flex-col justify-between space-y-6 ${
  item.isPinned ? 'ring-2 ring-[var(--brand)]/40' : ''
  }`}
  >
@@ -366,7 +366,7 @@ export default function AnnouncementBoard() {
  return (
  <div
  key={item.id}
- className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm transition-all flex flex-col justify-between space-y-6 opacity-70"
+ className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] transition-all flex flex-col justify-between space-y-6 opacity-70"
  >
  <div className="space-y-4">
  <div className="flex items-center justify-between flex-wrap gap-2">
@@ -498,7 +498,7 @@ export default function AnnouncementBoard() {
  </button>
  <button
  onClick={() => window.print()}
- className="px-6 py-2.5 rounded-xl bg-[var(--brand)] text-white text-xs font-bold shadow-sm flex items-center gap-2"
+ className="px-6 py-2.5 rounded-xl bg-[var(--brand)] text-white text-xs font-bold flex items-center gap-2"
  >
  <Printer className="w-4 h-4" />
  <span>Cetak Lembar Warta (PDF)</span>

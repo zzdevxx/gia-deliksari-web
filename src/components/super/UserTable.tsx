@@ -21,12 +21,12 @@ const ROLE_META: Record<Role, { label: string; color: string; portal: string }> 
   },
   admin: {
     label: 'Admin / Operator',
-    color: 'bg-[var(--foreground)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border-strong)]',
+    color: 'bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border-strong)]',
     portal: '/admin',
   },
   treasurer: {
     label: 'Bendahara Youth',
-    color: 'bg-[var(--foreground)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border)]',
+    color: 'bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] border-[var(--border)] dark:border-[var(--border)]',
     portal: '/kas',
   },
 };
@@ -47,14 +47,14 @@ interface UserTableProps {
 const UserTable: React.FC<UserTableProps> = ({ users, loading, currentUsername, onEdit, onDeactivate }) => {
   if (loading) {
     return (
-      <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm">
+      <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)]">
         <div className="p-8 text-center text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">Memuat daftar user…</div>
       </div>
     );
   }
 
   return (
-    <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] shadow-sm">
+    <div className="overflow-x-auto rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)]">
       <table className="w-full text-left text-xs sm:text-sm">
         <thead className="bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] text-[var(--foreground)] dark:text-[var(--foreground)] border-b border-[var(--border)] dark:border-[var(--border)]">
           <tr>
