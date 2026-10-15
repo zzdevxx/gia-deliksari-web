@@ -56,13 +56,40 @@ untuk keamanan, tapi kolomnya `NOT NULL`. Script mengisi hash bcrypt valid yang
 **mati** sampai direset. Itu perilaku yang benar: portal hasil restore tidak
 boleh diam-diam menerima kredensial lama. Script mencetak peringatan eksplisit.
 
-### Lapisan 3 — Google Sheets
+### Lapisan 3 — ✅ Google Sheets AKTIF (15 Okt 2026)
 
-Lihat `docs/PANDUAN-BACKUP-SHEETS.md`. Status: **kode siap, menunggu operator
-men-deploy Apps Script** (butuh klik manual di Google, tidak bisa diotomatiskan).
+Spreadsheet: **"GIA Deliksari - Backup Database"**
+Secret `GOOGLE_SHEETS_WEBHOOK_URL` + `GOOGLE_SHEETS_WEBHOOK_SECRET` terpasang.
 
-Setelah dipasang, setiap malam spreadsheet menampilkan jumlah baris per tabel —
-sehingga masalah terlihat **tanpa membuka terminal**.
+Setiap malam spreadsheet menampilkan jumlah baris per tabel — masalah terlihat
+**tanpa membuka terminal**.
+
+**⚠️ Setiap mengubah kode Apps Script, WAJIB:**
+`[Deploy] → [New deployment]` (atau Manage deployments → Version → **New version**).
+Kalau kolom Version tetap "Version 1", kode baru **tidak dipakai** — ini terjadi
+3× dan menghabiskan banyak waktu.
+
+**Cara memastikan versi yang jalan** — buka URL `/exec` di browser, harus muncul
+`"kode_versi":"v5-meta-fix"`. Kalau tidak ada, itu versi lama.
+
+**Cara melihat apakah backup berhasil** — buka sheet **"Log"**. Google selalu
+membalas HTTP 302 sebelum script jalan, jadi **status code tidak bisa dipakai**
+untuk verifikasi. Satu-satunya bukti yang sah ada di sheet Log:
+
+| Peristiwa | Artinya |
+|---|---|
+| `PENERIMAAN` | POST sampai, secret cocok |
+| `SELESAI` | Berhasil, semua sheet ditulis |
+| `GAGAL TOTAL` | Ada error — kolom Detail menyebut fungsinya |
+
+#### Dua bug yang ditemukan sheet Log (keduanya di kode kita, bukan setelan)
+
+1. **`writeSheet` mengirim matriks tidak persegi** — `youth_balance` berbentuk
+   objek (VIEW satu baris, bukan array) dan baris `audit_log` tidak selalu
+   punya kolom lengkap → `setValues` menolak.
+2. **`writeMeta` menulis baris kosong `['']`** ke rentang 2 kolom. Karena
+   `writeMeta` jalan **setelah** loop sheet, ini gagal di **setiap** backup yang
+   sebenarnya berhasil — 9 sheet sudah tertulis, tapi dilaporkan GAGAL TOTAL.
 
 ---
 
