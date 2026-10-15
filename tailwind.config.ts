@@ -125,10 +125,45 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
         display: ['var(--font-display)', 'system-ui', 'sans-serif'],
-      }
+      },
+
+      // ── Motion ────────────────────────────────────────────────────────────
+      //
+      // `tailwindcss-animate` supplies the `animate-in` / `fade-in` /
+      // `zoom-in-95` / `slide-in-from-*` family. Those classes were already
+      // used in 67 places across this codebase, but the plugin was never
+      // installed and no matching keyframes existed in globals.css, so every
+      // one of them rendered as a no-op: modals simply appeared, toasts
+      // popped, and the login error banner never shook.
+      //
+      // Registering the plugin is therefore the whole fix for those 67 sites.
+      keyframes: {
+        // Not in tailwindcss-animate. Used by the login/error banners
+        // (AdminDashboard, KasDashboard, LoginForm) to signal a rejected
+        // submission. Small amplitude on purpose: a large shake reads as a
+        // broken layout rather than a nudge.
+        shake: {
+          '0%, 100%': { transform: 'translateX(0)' },
+          '20%': { transform: 'translateX(-4px)' },
+          '40%': { transform: 'translateX(4px)' },
+          '60%': { transform: 'translateX(-3px)' },
+          '80%': { transform: 'translateX(3px)' },
+        },
+      },
+      animation: {
+        shake: 'shake 320ms cubic-bezier(0.23, 1, 0.32, 1)',
+      },
+
+      // Strong easing curves. The CSS built-ins (ease, ease-in-out) are too
+      // weak to read as intentional; ease-in in particular delays the first
+      // frame, which is exactly the moment the user is watching.
+      transitionTimingFunction: {
+        'out-strong': 'cubic-bezier(0.23, 1, 0.32, 1)',
+        drawer: 'cubic-bezier(0.32, 0.72, 0, 1)',
+      },
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-animate')],
 };
 
 export default config;

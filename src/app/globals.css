@@ -248,6 +248,24 @@
   .gia-field::after {
     filter: blur(var(--field-blur)) saturate(0.85);
   }
+
+  /* `tailwindcss-animate` now powers 67 entrance animations (modals, toasts,
+     dropdowns, step reveals). Without this block, a user who has asked their OS
+     for reduced motion would get every single one of them at once, which is the
+     opposite of the accommodation they requested.
+
+     The animations are collapsed rather than removed: `animation-duration: 0.01ms`
+     lets the keyframe sit at its final state instantly, so the element still ends
+     up visible and correctly positioned. Setting `animation: none` would leave
+     anything that starts at `opacity: 0` permanently invisible. */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 html {
