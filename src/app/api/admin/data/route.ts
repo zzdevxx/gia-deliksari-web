@@ -40,7 +40,7 @@ const TABLE_DELETE_ACTION: Record<TableName, AuditAction> = {
 
 const TABLE_COLUMNS: Record<TableName, Set<string>> = {
   announcements: new Set([
-    'id', 'title', 'category', 'content', 'event_date',
+    'id', 'title', 'category', 'content', 'event_date', 'end_date',
     'is_pinned', 'is_published', 'badge_text', 'author', 'created_at',
   ]),
   servant_rosters: new Set([

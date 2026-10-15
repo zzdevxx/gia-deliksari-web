@@ -60,9 +60,23 @@ export async function GET(req: NextRequest) {
 
       if (random) {
         const shuffled = rows.slice();
+        // Seed from the full date, not just getDate(). With day-of-month alone
+        // the shuffle had only 31 distinct orderings, so across a month the
+        // showcase could never surface every photo — 11 of 60 were unreachable.
+        // A full-date seed keeps the order stable for the whole day (so the
+        // 300s cache and repeat visits agree) while cycling through all rows.
+        const now = new Date();
+        let seed = (now.getFullYear() * 10000) + ((now.getMonth() + 1) * 100) + now.getDate();
+        const nextRandom = () => {
+          // Mulberry32 — deterministic, no dependency, good enough for display order.
+          seed |= 0;
+          seed = (seed + 0x6d2b79f5) | 0;
+          let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+          t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
         for (let i = shuffled.length - 1; i > 0; i--) {
-          const seed = (i * 9301 + 49297 + new Date().getDate()) % 233280;
-          const j = seed % (i + 1);
+          const j = Math.floor(nextRandom() * (i + 1));
           [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
         }
         const sliced = shuffled.slice(0, Math.min(limitParam, 12));
@@ -82,7 +96,7 @@ export async function GET(req: NextRequest) {
   } catch (err: any) {
     console.error(`[public/data] ${table} error:`, err);
     return NextResponse.json(
-      { error: 'Gagal memuat data', detail: err.message },
+      { error: 'Gagal memuat data' },
       { status: 500 },
     );
   }

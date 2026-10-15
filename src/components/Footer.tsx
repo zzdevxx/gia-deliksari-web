@@ -123,7 +123,7 @@ export default function Footer() {
             <Link href="/home" className="flex items-center gap-3 group" aria-label="GIA Deliksari - Beranda">
               <div className="relative w-12 h-12 rounded-2xl overflow-hidden border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--card)] p-0.5 shadow-xs group-hover:scale-105 transition-transform">
                 <Image
-                  src="/images/logo.png"
+                  src="/images/logo.avif"
                   alt="Logo GIA Deliksari"
                   fill
                   sizes="48px"

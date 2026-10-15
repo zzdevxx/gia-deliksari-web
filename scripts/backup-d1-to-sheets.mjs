@@ -14,15 +14,30 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID || 'b3646e9d901e18b382b3f961d2b98f69';
+const ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
 const API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
 const DATABASE_ID = process.env.CLOUDFLARE_D1_DATABASE_ID || '0f8a9e42-0a14-4a45-9cbb-55f7d8b2f5f1';
 const SHEETS_WEBHOOK_URL = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
 const WEBHOOK_SECRET = process.env.GOOGLE_SHEETS_WEBHOOK_SECRET;
 const SYNC_SHEETS = process.env.SYNC_SHEETS !== 'false';
 
-if (!API_TOKEN) {
-  console.warn('PERINGATAN: CLOUDFLARE_API_TOKEN belum di-set di environment.');
+/**
+ * Refuse to run without credentials.
+ *
+ * This script used to warn and continue when CLOUDFLARE_API_TOKEN was absent,
+ * which meant every scheduled run wrote a snapshot whose every table was empty
+ * and every count zero — then committed it. A backup that silently succeeds
+ * while capturing nothing is worse than no backup: it looks like coverage in
+ * the git history while the real data was never copied. Missing credentials are
+ * a configuration error, not a soft condition.
+ */
+if (!API_TOKEN || !ACCOUNT_ID) {
+  console.error(
+    'FATAL: CLOUDFLARE_API_TOKEN dan CLOUDFLARE_ACCOUNT_ID wajib di-set. ' +
+      'Tanpa keduanya snapshot akan kosong, jadi backup dibatalkan alih-alih ' +
+      'menulis snapshot palsu. Set via GitHub repo secrets atau environment lokal.',
+  );
+  process.exit(1);
 }
 
 const OUT_DIR = path.resolve(process.cwd(), 'backups', 'd1');
@@ -55,44 +70,29 @@ async function main() {
   const timestamp = new Date().toISOString();
   console.log(`[${timestamp}] Memulai backup Cloudflare D1 (${DATABASE_ID})...`);
 
-  let treasury = [];
-  let balanceArr = [];
-  let announcements = [];
-  let rosters = [];
-  let inventory = [];
-  let sermons = [];
-  let gallery = [];
-  let ministryRequests = [];
-  let users = [];
-  let auditLog = [];
-
-  if (API_TOKEN) {
-    [
-      treasury,
-      balanceArr,
-      announcements,
-      rosters,
-      inventory,
-      sermons,
-      gallery,
-      ministryRequests,
-      users,
-      auditLog,
-    ] = await Promise.all([
-      queryD1('SELECT * FROM youth_treasury_transactions ORDER BY transaction_date DESC, created_at DESC'),
-      queryD1('SELECT * FROM youth_treasury_balance LIMIT 1'),
-      queryD1('SELECT * FROM announcements ORDER BY event_date DESC'),
-      queryD1('SELECT * FROM servant_rosters ORDER BY service_date DESC'),
-      queryD1('SELECT * FROM inventory_items ORDER BY category ASC, code ASC'),
-      queryD1('SELECT * FROM sermons ORDER BY created_at DESC'),
-      queryD1('SELECT * FROM gallery_items ORDER BY created_at DESC'),
-      queryD1('SELECT * FROM ministry_requests ORDER BY created_at DESC'),
-      queryD1('SELECT id, username, roles, display_name, active, last_login_at, created_at FROM users ORDER BY created_at ASC'),
-      queryD1('SELECT * FROM audit_log ORDER BY created_at DESC LIMIT 1000'),
-    ]);
-  } else {
-    console.log('Skipping remote D1 query karena API token belum di-set.');
-  }
+  const [
+    treasury,
+    balanceArr,
+    announcements,
+    rosters,
+    inventory,
+    sermons,
+    gallery,
+    ministryRequests,
+    users,
+    auditLog,
+  ] = await Promise.all([
+    queryD1('SELECT * FROM youth_treasury_transactions ORDER BY transaction_date DESC, created_at DESC'),
+    queryD1('SELECT * FROM youth_treasury_balance LIMIT 1'),
+    queryD1('SELECT * FROM announcements ORDER BY event_date DESC'),
+    queryD1('SELECT * FROM servant_rosters ORDER BY service_date DESC'),
+    queryD1('SELECT * FROM inventory_items ORDER BY category ASC, code ASC'),
+    queryD1('SELECT * FROM sermons ORDER BY created_at DESC'),
+    queryD1('SELECT * FROM gallery_items ORDER BY created_at DESC'),
+    queryD1('SELECT * FROM ministry_requests ORDER BY created_at DESC'),
+    queryD1('SELECT id, username, roles, display_name, active, last_login_at, created_at FROM users ORDER BY created_at ASC'),
+    queryD1('SELECT * FROM audit_log ORDER BY created_at DESC LIMIT 1000'),
+  ]);
 
   const balance = balanceArr[0] || { total_income: 0, total_expense: 0, balance: 0 };
 
@@ -126,11 +126,26 @@ async function main() {
     },
   };
 
+  // Guard against the silent-empty failure mode this script shipped with: a
+  // snapshot where every table is empty is almost always a bad token, a wrong
+  // database id, or a scoped-down API key — not a genuinely empty church DB.
+  // The portal is live and serves announcements, so refuse to record "nothing".
+  const totalRows =
+    treasury.length + announcements.length + rosters.length + inventory.length +
+    sermons.length + gallery.length + ministryRequests.length + users.length + auditLog.length;
+  if (totalRows === 0) {
+    console.error(
+      'FATAL: snapshot kosong (0 baris di semua tabel). Ini hampir selalu berarti ' +
+        'token/DB id salah, bukan database yang benar-benar kosong. Backup dibatalkan.',
+    );
+    process.exit(1);
+  }
+
   // 1. Simpan snapshot file lokal
   const fileDate = timestamp.replace(/[-:T.Z]/g, '').slice(0, 14);
   const filePath = path.join(OUT_DIR, `${fileDate}.json`);
   fs.writeFileSync(filePath, JSON.stringify(snapshot, null, 2), 'utf8');
-  console.log(`Snapshot berhasil disimpan di: ${filePath}`);
+  console.log(`Snapshot berhasil disimpan di: ${filePath} (${totalRows} baris)`);
 
   // 2. Kirim ke Google Apps Script Webhook
   if (SYNC_SHEETS && SHEETS_WEBHOOK_URL) {

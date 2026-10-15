@@ -1,0 +1,22 @@
+-- ============================================================================
+-- GIA DELIKSARI SEMARANG — MIGRATION 0003
+-- Add announcements.end_date
+-- ============================================================================
+--
+-- WHY: `Announcement.endDate` has existed in src/types/index.ts and drives the
+-- "lampau / sudah lewat" filter on /info, but the column was never created and
+-- storage.ts never mapped it. The value was therefore erased on every load and
+-- the next save wrote the row back without it.
+--
+-- The D1 upsert in /api/admin/data emits `end_date` only when the client sends
+-- it, so applying this migration is backward compatible: rows and callers that
+-- do not carry an end date keep working unchanged.
+--
+-- Apply:
+--   npm run d1:migrate:remote:0003      (or the wrangler command below)
+--   npx wrangler d1 execute gia-deliksari-db --remote --file=./migrations/0003_add_announcement_end_date.sql
+--
+-- SQLite has no `ADD COLUMN IF NOT EXISTS`; re-running this file is a harmless
+-- error ("duplicate column name") and nothing else in it depends on the result.
+
+ALTER TABLE announcements ADD COLUMN end_date TEXT;

@@ -16,7 +16,16 @@ import {
  MinistryRequest,
  MinistryRequestType
 } from '@/types';
-import { adminDataStore, clearClientCachesOnLogout } from '@/lib/storage';
+import {
+  adminDataStore,
+  clearClientCachesOnLogout,
+  ANNOUNCEMENTS_KEY,
+  ROSTER_KEY,
+  REQUESTS_KEY,
+  SERMONS_KEY,
+  GALLERY_KEY,
+  INVENTORY_KEY,
+} from '@/lib/storage';
 import {
  Bell,
  Users,
@@ -340,7 +349,7 @@ export default function AdminDashboard() {
  }
  const updated = announcements.filter((item) => item.id !== id);
  setAnnouncements(updated);
- try { localStorage.setItem('gia_deliksari_announcements_v1', JSON.stringify(updated)); } catch {}
+ try { localStorage.setItem(ANNOUNCEMENTS_KEY, JSON.stringify(updated)); } catch {}
  showToast('Warta Jemaat berhasil dihapus');
  }
  };
@@ -399,7 +408,7 @@ export default function AdminDashboard() {
  }
  const updated = roster.filter((item) => item.id !== id);
  setRoster(updated);
- try { localStorage.setItem('gia_deliksari_roster_v1', JSON.stringify(updated)); } catch {}
+ try { localStorage.setItem(ROSTER_KEY, JSON.stringify(updated)); } catch {}
  showToast('Petugas berhasil dihapus dari jadwal');
  }
  };
@@ -425,7 +434,7 @@ export default function AdminDashboard() {
  }
  const updated = requests.filter(r => r.id !== id);
  setRequests(updated);
- try { localStorage.setItem('gia_deliksari_requests_v1', JSON.stringify(updated)); } catch {}
+ try { localStorage.setItem(REQUESTS_KEY, JSON.stringify(updated)); } catch {}
  showToast('Permohonan berhasil dihapus');
  }
  };
@@ -464,7 +473,7 @@ export default function AdminDashboard() {
  }
  const updated = sermons.filter(s => s.id !== id);
  setSermons(updated);
- try { localStorage.setItem('gia_deliksari_sermons_v1', JSON.stringify(updated)); } catch {}
+ try { localStorage.setItem(SERMONS_KEY, JSON.stringify(updated)); } catch {}
  showToast('Khotbah berhasil dihapus');
  }
  };
@@ -533,7 +542,7 @@ export default function AdminDashboard() {
  }
  const updated = gallery.filter(g => g.id !== id);
  setGallery(updated);
- try { localStorage.setItem('gia_deliksari_gallery_v1', JSON.stringify(updated)); } catch {}
+ try { localStorage.setItem(GALLERY_KEY, JSON.stringify(updated)); } catch {}
  showToast('Foto galeri berhasil dihapus');
  }
  };
@@ -600,7 +609,7 @@ export default function AdminDashboard() {
  }
  const updated = inventory.filter((inv) => inv.id !== id);
  setInventory(updated);
- try { localStorage.setItem('gia_deliksari_inventory_v1', JSON.stringify(updated)); } catch {}
+ try { localStorage.setItem(INVENTORY_KEY, JSON.stringify(updated)); } catch {}
  showToast('Barang inventaris berhasil dihapus');
  }
  };

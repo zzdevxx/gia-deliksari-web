@@ -32,7 +32,11 @@ export default function ScrollToTop() {
  <button
  onClick={scrollToTop}
  aria-label="Kembali ke atas halaman"
- className="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-amber-600 hover:bg-amber-500 text-white shadow-amber-600/30 hover:scale-110 active:scale-95 transition-all duration-300 backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-amber-400"
+ // Was bg-amber-600 — an undoclumented off-palette hue on the one control
+ // present on every route, and amber at this lightness reads orange-brown
+ // against the warm canvas (the exact failure the palette notes warn about).
+ // The brand fill is the documented answer: white on #8E1533 is 9.11:1.
+ className="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white shadow-lg hover:scale-110 active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-text)] focus-visible:ring-offset-2"
  >
  <ArrowUp className="w-5 h-5" />
  </button>

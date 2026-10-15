@@ -78,6 +78,16 @@ colors:
   danger-dark: "#F97066"
   info: "#1D4ED8"
   info-dark: "#8FB8F0"
+  # ── warning (pending / attention) ────────────────────────────────────────
+  # Amber is the one hue outside the wine ramp, and it is admitted ONLY in this
+  # role: a pending/attention status. It is never a fill for a neutral control
+  # (ScrollToTop used to be amber; it is brand now). Tailwind's amber-50/800
+  # pairs below are the light surfaces these tokens stand for.
+  warning: "#991B1B"
+  warning-tint: "#FFFBEB"
+  warning-border: "#FDE68A"
+  warning-dark: "#FCD34D"
+  warning-tint-dark: "#2A1F05"
 typography:
   # `scale` is the canonical set of permitted steps. `impeccable detect`
   # allow-lists exactly these px values (±0.5). Anything else in a component

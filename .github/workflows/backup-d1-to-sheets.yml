@@ -48,6 +48,29 @@ jobs:
         run: |
           find backups/d1/ -name "*.json" -type f -mtime +30 -delete 2>/dev/null || true
 
+      # A snapshot whose every table is empty means the token/DB id is wrong, not
+      # that the church has no data. Committing it would put a fake "backup" in
+      # permanent git history and hide the outage, so this step fails the job —
+      # and because the commit step below never runs, history stays clean.
+      - name: Verify snapshot is not empty
+        run: |
+          LATEST=$(ls -t backups/d1/*.json 2>/dev/null | head -1)
+          if [ -z "$LATEST" ]; then
+            echo "::error::Tidak ada file snapshot yang dihasilkan."
+            exit 1
+          fi
+          ROWS=$(node -e "
+            const s = require('./$LATEST');
+            const t = s.tables || {};
+            const n = Object.values(t).reduce((a, v) => a + (Array.isArray(v) ? v.length : 0), 0);
+            process.stdout.write(String(n));
+          ")
+          echo "Snapshot $LATEST berisi $ROWS baris."
+          if [ "$ROWS" = "0" ]; then
+            echo "::error::Snapshot kosong. Kemungkinan CLOUDFLARE_API_TOKEN atau CLOUDFLARE_ACCOUNT_ID salah/tidak diset."
+            exit 1
+          fi
+
       - name: Commit & push local D1 snapshot
         run: |
           git config user.name "github-actions[bot]"

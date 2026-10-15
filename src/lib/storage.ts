@@ -8,12 +8,12 @@ import {
   INITIAL_MINISTRY_REQUESTS
 } from './seedData';
 
-const ANNOUNCEMENTS_KEY = 'gia_deliksari_announcements_v1';
-const ROSTER_KEY = 'gia_deliksari_roster_v1';
-const INVENTORY_KEY = 'gia_deliksari_inventory_v1';
-const SERMONS_KEY = 'gia_deliksari_sermons_v1';
-const GALLERY_KEY = 'gia_deliksari_gallery_v1';
-const REQUESTS_KEY = 'gia_deliksari_requests_v1';
+export const ANNOUNCEMENTS_KEY = 'gia_deliksari_announcements_v1';
+export const ROSTER_KEY = 'gia_deliksari_roster_v1';
+export const INVENTORY_KEY = 'gia_deliksari_inventory_v1';
+export const SERMONS_KEY = 'gia_deliksari_sermons_v1';
+export const GALLERY_KEY = 'gia_deliksari_gallery_v1';
+export const REQUESTS_KEY = 'gia_deliksari_requests_v1';
 
 // ============================================================================
 // MAPPERS (DB snake_case <-> App models)
@@ -26,6 +26,10 @@ function toAnnouncementModel(db: any): Announcement {
     category: db.category,
     content: db.content,
     eventDate: db.event_date || db.eventDate,
+    // endDate is declared on the Announcement type and drives the "lampau"
+    // filter on /info. Dropping it here meant every load silently erased it and
+    // the next save wrote the row back without it.
+    endDate: db.end_date || db.endDate,
     isPinned: Boolean(db.is_pinned ?? db.isPinned),
     isPublished: db.is_published === 1 || db.is_published === true || (db.is_published === undefined && db.isPublished !== false),
     badgeText: db.badge_text || db.badgeText,
@@ -41,6 +45,7 @@ function toAnnouncementDB(model: Announcement) {
     category: model.category,
     content: model.content,
     event_date: model.eventDate,
+    end_date: model.endDate || null,
     is_pinned: model.isPinned ? 1 : 0,
     is_published: model.isPublished ? 1 : 0,
     badge_text: model.badgeText,

@@ -15,8 +15,12 @@ import { cn } from '@/lib/cn';
 type Variant = 'maroon' | 'gold' | 'outline' | 'success' | 'warning' | 'danger' | 'neutral';
 
 const VARIANT_MAP: Record<Variant, string> = {
+  // Dark used to pair --brand-text (#F08AA4, pink) with --brand-tint-ink
+  // (#FBF1F2, near-white) as the fill — pink on white, ~2.1:1, unreadable.
+  // The tinted page is --brand-tint (#401A20 dark wine); against it the rose
+  // text clears AA at 8.35:1, which is the pairing the light theme already uses.
   maroon:
-    'bg-[var(--brand-tint)] dark:bg-[var(--brand-tint-ink)] text-[var(--brand-text)] dark:text-[var(--brand-text)] ring-1 ring-inset ring-[var(--brand)] dark:ring-[var(--brand)]',
+    'bg-[var(--brand-tint)] dark:bg-[var(--brand-tint)] text-[var(--brand-text)] dark:text-[var(--brand-text)] ring-1 ring-inset ring-[var(--brand-tint-border)] dark:ring-[var(--brand-tint-border)]',
   gold:
     'bg-[var(--foreground)] dark:bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:text-[var(--muted-foreground)] ring-1 ring-inset ring-[var(--border-strong)] dark:ring-[var(--border-strong)]',
   outline:

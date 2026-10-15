@@ -114,8 +114,11 @@ export default function Navbar() {
  aria-label="Gereja Isa Almasih Deliksari Semarang - Kembali ke Beranda"
  >
  <div className="relative w-11 h-11 rounded-2xl overflow-hidden shadow-xs border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--card)] p-0.5 group-hover:border-[var(--brand)] dark:group-hover:border-[var(--brand)] transition-colors">
+ {/* AVIF first: this is the LCP element on every route and it preloads, so the
+     format choice is paid on each first visit. logo.avif is 13.2KB against the
+     37KB PNG it replaces for a 44px slot. */}
  <Image
- src="/images/logo.png"
+ src="/images/logo.avif"
  alt="Logo Resmi GIA Deliksari Semarang"
  fill
  sizes="44px"

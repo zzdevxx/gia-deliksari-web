@@ -167,7 +167,7 @@ export async function POST(req: NextRequest) {
   } catch (err: any) {
     console.error('[gallery/sync] error:', err);
     return NextResponse.json(
-      { error: 'Sinkronisasi gagal: ' + (err.message || 'unknown') },
+      { error: 'Sinkronisasi gagal. Periksa log server untuk detail.' },
       { status: 500 },
     );
   }
