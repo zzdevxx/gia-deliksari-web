@@ -40,7 +40,44 @@ ministry_requests 3 · users 4 · audit_log 103 · treasury 0 · gallery 0
 
 `password_hash` **tidak** diekspor (memang diredaksi oleh script).
 
-### ⚠️ Yang masih harus kamu lakukan
+### ✅ Sudah dikerjakan (15 Okt 2026)
+
+Secret sudah terpasang dan backup CI **terbukti bekerja**:
+
+```
+gh secret list
+CLOUDFLARE_ACCOUNT_ID   2026-10-15T17:20:25Z
+CLOUDFLARE_API_TOKEN    2026-10-15T17:20:27Z
+```
+
+Token `gia-deliksari-d1-backup-readonly` (id `21547ef2…`) dibuat dengan
+**least-privilege**: hanya `D1 Read` + `D1 Metadata Read`. Bukan Global Key.
+
+Run pertama: **143 baris**, lolos step verifikasi. Riwayat di bawah hanya
+sebagai catatan cara token itu dibuat.
+
+<details>
+<summary>Cara token dibuat (kalau perlu dibuat ulang)</summary>
+
+Global API Key **bisa** membuat token API lewat REST (ternyata tidak harus
+dashboard), asalkan `permission_groups` diisi:
+
+```bash
+# cari id permission group
+curl -sS "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/tokens/permission_groups" \
+  -H "X-Auth-Email: $CLOUDFLARE_EMAIL" -H "X-Auth-Key: $CLOUDFLARE_API_KEY" \
+  | python3 -c "import sys,json;[print(g['id'],g['name']) for g in json.load(sys.stdin)['result'] if 'D1' in g['name']]"
+```
+
+Hasil: `5b4da8a35efa4fe8be684070183cdb32` (D1 Metadata Read),
+`192192df92ee43ac90f2aeeffce67e35` (D1 Read).
+
+Lalu `POST /user/tokens` dengan kedua id itu, dan pasang nilai yang dikembalikan
+lewat `gh secret set CLOUDFLARE_API_TOKEN`.
+
+</details>
+
+### 📜 Prosedur manual (riwayat)
 
 **a. Buat Cloudflare API Token** (sekali saja):
 
@@ -107,10 +144,22 @@ npx wrangler d1 delete gia-restore-drill
 
 ---
 
-## 2. 🟠 R2 (penyimpanan galeri) — belum aktif
+## 2. 🔴 R2 (penyimpanan galeri) — SATU-SATUNYA LANGKAH MANUAL YANG TERSISA
 
 `npx wrangler r2 bucket list` → **error 10042**: R2 belum diaktifkan di akun.
-Cloudflare minta persetujuan ToS sekali lewat dashboard.
+Sudah dicoba: REST API, `wrangler r2`, create-langsung. **Semua ditolak.**
+
+```
+{"success":false,"errors":[{"code":10042,
+  "message":"Please enable R2 through the Cloudflare Dashboard."}]}
+```
+
+Ini **entitlement akun**, bukan bug dan bukan soal permission token — Cloudflare
+mewajibkan persetujuan ToS lewat dashboard karena R2 punya implikasi billing.
+Tidak ada jalur API. Dibandingkan dengan langkah lain di runbook ini, hanya ini
+yang benar-benar tidak bisa diotomatiskan.
+
+👉 **<https://dash.cloudflare.com/b3646e9d901e18b382b3f961d2b98f69/r2>**
 
 Akibatnya `ctx.env.GALLERY_BUCKET` selalu `undefined`, dan unggah/sinkron galeri
 selalu jatuh ke URL thumbnail Google Drive.
@@ -131,26 +180,45 @@ Ini pekerjaan pencegahan, bukan perbaikan darurat.
 
 ---
 
-## 3. 🟠 Observabilitas — nol saat ini
+## 3. ✅ Observabilitas — AKTIF (15 Okt 2026)
 
-Tidak ada error tracking, tidak ada uptime monitor. Kegagalan seperti backup
-kosong di atas terjadi **tanpa ada yang tahu** selama berminggu-minggu. Itu
-alasan utama observabilitas masuk daftar ini.
-
-**Opsi termurah (gratis, native Cloudflare):**
+**Workers Logs menyala** dengan sampling 100% dan `persist: true`, dikomit ke
+`wrangler.jsonc` supaya tidak hilang saat deploy berikutnya.
 
 ```
-Cloudflare Dashboard → Workers & Pages → gia-deliksari-web → Logs
-  → Enable Workers Logs (observability)
+observability: {
+  enabled: true, head_sampling_rate: 1,
+  logs: { enabled: true, persist: true, invocation_logs: true }
+}
 ```
 
-Lalu tambahkan **Tail Worker** untuk menangkap exception runtime ke tempat yang
-bisa dilihat. Alternatif: pasang **UptimeRobot** (gratis) untuk ping
-`https://giadeliksari.my.id/home` tiap 5 menit dan kirim email kalau turun.
+Buka: <https://dash.cloudflare.com/b3646e9d901e18b382b3f961d2b98f69/workers/services/view/gia-deliksari-web/production/observability>
 
-**Minimum yang sebaiknya ada:** satu alert ke email kalau
-`backup-d1-to-sheets` gagal. GitHub Actions bisa kirim notifikasi kegagalan
-workflow ke email otomatis (`Settings → Notifications`).
+**Langsung berguna.** Analytics API menunjukkan **9 error dari 817 request**
+yang sebelumnya sama sekali tak terlihat. Setelah ditelusuri, semuanya perilaku
+benar yang memang belum pernah dihitung: `401` dari penjaga sesi
+(`/api/admin/data`, `/api/users`), `400` dari probe tabel tak dikenal, dan `503`
+transien selama jendela deploy. Semua endpoint dicek ulang → sehat.
+
+Query cepat (butuh Global Key atau token Analytics:Read):
+
+```bash
+curl -sS -X POST "https://api.cloudflare.com/client/v4/graphql" \
+  -H "X-Auth-Email: $CLOUDFLARE_EMAIL" -H "X-Auth-Key: $CLOUDFLARE_API_KEY" \
+  -H "Content-Type: application/json" -d '{
+  "query": "query { viewer { zones(filter: {zoneTag: \"b5955189f916b4dc8582cd07635d21b3\"}) { httpRequestsAdaptiveGroups(limit: 20, filter: {datetime_geq: \"2026-10-15T00:00:00Z\", edgeResponseStatus_geq: 400}) { count dimensions { edgeResponseStatus clientRequestPath } } } } }"
+}'
+```
+
+**Health probe otomatis** (`.github/workflows/health-check.yml`): tiap 2 jam,
+cek 5 rute publik + sitemap + robots + API data benar-benar mengembalikan baris +
+`/api/admin/data` tetap menolak tanpa sesi (401). Gagal → buka/komentari issue
+berlabel `health-check`; pulih → komentar & tutup. **Tanpa dependensi** (curl
+saja) supaya tidak bisa rusak karena `npm install` bermasalah.
+
+**Yang masih disarankan:** nyalakan notifikasi email kegagalan workflow
+(`Settings → Notifications`) — probe membuka issue, tapi issue hanya terlihat
+kalau kamu membukanya.
 
 ---
 
