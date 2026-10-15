@@ -171,9 +171,27 @@ function writeSheet(nama, rows) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName(nama) || ss.insertSheet(nama);
 
+  // Bentuk data dijaga di sini, bukan diasumsikan.
+  //
+  // Dua bentuk aneh nyata dari snapshot:
+  //   - youth_balance adalah OBJEK, bukan array (itu VIEW satu baris)
+  //   - baris audit_log tidak selalu punya kolom yang sama lengkapnya
+  // Keduanya dulu membuat setValues() gagal dengan "Jumlah kolom pada data
+  // tidak cocok", dan pesan itu tidak menunjukkan baris mana yang salah.
+  if (rows === null || rows === undefined) return 0;
+  if (typeof rows === 'object' && !Array.isArray(rows)) rows = [rows];
+  if (!Array.isArray(rows) || rows.length === 0) return 0;
+
+  // Buang entri non-objek (angka/string/null di dalam array) — tidak bisa
+  // dipetakan ke kolom, dan menyisakannya merusak perhitungan union kolom.
+  var baris = rows.filter(function (r) {
+    return r !== null && typeof r === 'object' && !Array.isArray(r);
+  });
+  if (!baris.length) return 0;
+
   // Urutkan kolom: yang diinginkan dulu, sisanya menyusul.
   var semuaKolom = {};
-  rows.forEach(function (r) {
+  baris.forEach(function (r) {
     for (var k in r) {
       if (Object.prototype.hasOwnProperty.call(r, k)) semuaKolom[k] = true;
     }
@@ -184,13 +202,30 @@ function writeSheet(nama, rows) {
 
   if (!kolom.length) return 0;
 
-  // Bangun matriks nilai.
+  // Bangun matriks persis persegi: setiap baris WAJIB punya panjang = kolom.
+  // Kolom yang tidak ada di sebuah baris menjadi '' (bukan dilewati).
   var nilai = [kolom]; // header
-  rows.forEach(function (r) {
-    nilai.push(kolom.map(function (c) { return formatNilai(r[c]); }));
+  baris.forEach(function (r) {
+    nilai.push(kolom.map(function (c) {
+      var v = Object.prototype.hasOwnProperty.call(r, c) ? r[c] : null;
+      return formatNilai(v);
+    }));
   });
 
   sheet.clear();
+
+  // setValues() menolak sel dengan string > 50.000 karakter (batas sel Google
+  // Sheets). Potong kolom teks panjang supaya satu isi warta raksasa tidak
+  // menggagalkan seluruh sheet.
+  for (var a = 0; a < nilai.length; a++) {
+    for (var b = 0; b < nilai[a].length; b++) {
+      var sel = nilai[a][b];
+      if (typeof sel === 'string' && sel.length > 50000) {
+        nilai[a][b] = sel.slice(0, 49997) + '...';
+      }
+    }
+  }
+
   sheet.getRange(1, 1, nilai.length, kolom.length).setValues(nilai);
 
   // Percantik header.
