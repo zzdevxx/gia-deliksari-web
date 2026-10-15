@@ -29,7 +29,15 @@ export function Skeleton({
   return (
     <div
       className={cn(
-        'animate-pulse bg-gradient-to-r from-[var(--surface-raised-hover)] via-[var(--surface-raised)] to-[var(--surface-raised-hover)] bg-[length:200%_100%]',
+        // `animate-shimmer` translates the gradient with `background-position`
+        // instead of pulsing opacity. The previous class set
+        // `bg-[length:200%_100%]` and then animated `opacity`, so the wide
+        // gradient never moved: it read as a static two-tone block rather than
+        // a sweep. `background-position` is not a compositor property, but a
+        // shimmer is a small, short-lived element, and the alternative
+        // (animating a pseudo-element's transform) would need an extra node per
+        // skeleton.
+        'animate-shimmer bg-gradient-to-r from-[var(--surface-raised-hover)] via-[var(--surface-raised)] to-[var(--surface-raised-hover)] bg-[length:200%_100%]',
         'dark:from-[var(--surface-raised-hover)] dark:via-[var(--surface-raised)] dark:to-[var(--surface-raised-hover)]',
         VARIANT_MAP[variant],
         className,

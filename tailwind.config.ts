@@ -149,9 +149,17 @@ const config: Config = {
           '60%': { transform: 'translateX(-3px)' },
           '80%': { transform: 'translateX(3px)' },
         },
+        // Sweeps the 200%-wide skeleton gradient. Previously the Skeleton set
+        // `bg-[length:200%_100%]` and then animated opacity, so the gradient
+        // never moved.
+        shimmer: {
+          '0%': { backgroundPosition: '200% 0' },
+          '100%': { backgroundPosition: '-200% 0' },
+        },
       },
       animation: {
         shake: 'shake 320ms cubic-bezier(0.23, 1, 0.32, 1)',
+        shimmer: 'shimmer 1.8s ease-in-out infinite',
       },
 
       // Strong easing curves. The CSS built-ins (ease, ease-in-out) are too

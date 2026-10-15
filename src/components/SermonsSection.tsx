@@ -18,6 +18,40 @@ import { dataStore } from '@/lib/storage';
 import { Sermon } from '@/types';
 import { INITIAL_SERMONS } from '@/lib/seedData';
 
+/**
+ * Resolve a usable thumbnail URL for a sermon.
+ *
+ * The previous check was `!thumbnail.includes('gallery-')`, which tested for a
+ * CSS class name that has nothing to do with image URLs. It let through any
+ * value that happened to omit that substring, so a sermon row whose thumbnail
+ * was the site logo (three of them are, in D1) rendered as a washed-out grey
+ * tile instead of falling back cleanly.
+ *
+ * Three things are accepted, in order:
+ *   1. A YouTube thumbnail, derived from the video id when the stored
+ *      thumbnail is missing or is the logo placeholder. `i.ytimg.com` is
+ *      already permitted by the CSP's `img-src https:`.
+ *   2. Any real absolute or root-relative image URL already stored.
+ *   3. The brand logo, as an honest placeholder rather than a broken tile.
+ */
+export function sermonThumbnail(thumbnail?: string | null, youtubeUrl?: string | null): string {
+  const isPlaceholder =
+    !thumbnail ||
+    thumbnail === '/images/logo.png' ||
+    thumbnail === '/images/logo.jpg' ||
+    thumbnail === '/images/logo.webp' ||
+    thumbnail === '/images/logo.avif';
+
+  if (isPlaceholder && youtubeUrl) {
+    const id = youtubeUrl.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([A-Za-z0-9_-]{11})/);
+    if (id) return `https://i.ytimg.com/vi/${id[1]}/hqdefault.jpg`;
+  }
+
+  if (!isPlaceholder) return thumbnail as string;
+
+  return '/images/logo.png';
+}
+
 export default function SermonsSection() {
  const [sermons, setSermons] = useState<Sermon[]>(INITIAL_SERMONS);
  const [isLiveSync, setIsLiveSync] = useState(false);
@@ -108,12 +142,15 @@ export default function SermonsSection() {
  {/* Thumbnail Container */}
  <div className="relative aspect-[16/10] w-full overflow-hidden bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)]">
  <Image
- src={sermon.thumbnail && !sermon.thumbnail.includes('gallery-') ? sermon.thumbnail : '/images/logo.png'}
- alt={sermon.title}
+ src={sermonThumbnail(sermon.thumbnail, sermon.youtubeUrl)}
+ alt={`Thumbnail khotbah: ${sermon.title}`}
  fill
- className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+ className="object-cover group-hover:scale-105 transition-transform duration-500"
  />
- <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+ {/* Scrim so the play button and the caption below stay legible over any
+ thumbnail. Kept to the lower third: a full-frame wash desaturated the
+ whole image and made every card look washed out. */}
+ <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent" />
  
  {/* Play Button Overlay */}
  <a
