@@ -10,6 +10,7 @@ import {
   MapPin
 } from 'lucide-react';
 import { InstagramIcon } from './Icons';
+import { RevealGroup, RevealItem } from '@/components/motion';
 
 export default function MinistriesSection() {
   const ministries = [
@@ -79,12 +80,12 @@ export default function MinistriesSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        <RevealGroup className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {ministries.map((ministry) => {
             const MinistryIcon = ministry.icon;
             return (
+              <RevealItem key={ministry.id}>
               <article
-                key={ministry.id}
                 className="rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] p-6 sm:p-8 flex flex-col"
               >
                 <div className="flex items-start justify-between gap-4">
@@ -138,9 +139,10 @@ export default function MinistriesSection() {
                   </a>
                 </div>
               </article>
+            </RevealItem>
             );
           })}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );

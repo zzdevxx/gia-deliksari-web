@@ -54,6 +54,17 @@
     --nav-bg: rgba(250, 249, 248, 0.72);
     --nav-border: rgba(227, 223, 221, 0.60);
 
+    /* Frosted content surfaces. Same idea as --nav-bg, but a HIGHER alpha
+       (0.86 against the nav's 0.72) because these sit under body copy, not
+       just a nav label. The nav can afford to be nearly transparent since it
+       only ever carries short labels; a card holding a paragraph cannot, or
+       the text contrast depends on whatever happens to scroll behind it.
+       A 1px top highlight is what actually reads as glass: an edge catching
+       light. Blur alone just looks like a smudge. */
+    --glass-bg: rgba(250, 249, 248, 0.86);
+    --glass-border: rgba(227, 223, 221, 0.80);
+    --glass-highlight: rgba(255, 255, 255, 0.70);
+
     /* Extended semantic — light */
     --brand: #8E1533;                 /* CTA fill   — white on this = 9.11:1 */
     --brand-hover: #6B1029;           /*            white on this = 12.13:1 */
@@ -105,6 +116,10 @@
 
     --nav-bg: rgba(10, 10, 14, 0.72);
     --nav-border: rgba(49, 49, 62, 0.60);
+
+    --glass-bg: rgba(20, 20, 27, 0.82);
+    --glass-border: rgba(49, 49, 62, 0.80);
+    --glass-highlight: rgba(255, 255, 255, 0.06);
 
     /* Extended semantic — dark */
     --brand: #8E1533;                 /* CTA fill   — white on this = 9.11:1 */
@@ -189,6 +204,33 @@
     --field-veil: rgba(250, 249, 248, 0);
     --field-blur: 96px;
   }
+}
+
+/* ── Frosted glass surface ──────────────────────────────────────────────
+   The single sanctioned way to render glass in this product. Components use
+   `.glass` rather than assembling backdrop-blur + bg + border by hand, so the
+   treatment cannot drift and there is one place to audit it.
+
+   DESIGN.md caps glass at 1-2 elements per page per Anti-Slop rule R-10, and
+   the reason is measurable: a `backdrop-filter` is re-composited on every
+   scroll frame, so stacking it across a grid is what makes a mobile page drop
+   frames. Contrast is the other reason: text over a translucent surface takes
+   its legibility from whatever passes behind it.
+
+   Two details that separate real glass from a blur smear:
+     - the alpha is high (0.86) because this carries body copy, not a nav label
+     - `inset 0 1px 0` draws a 1px highlight along the top edge, which is the
+       lit edge that makes a surface read as a pane rather than a haze
+
+   There is no `fallback` for browsers without backdrop-filter: those get the
+   solid-ish rgba background, which is legible on its own. Degradation is
+   graceful by construction, not by a @supports branch. */
+.glass {
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  backdrop-filter: blur(12px) saturate(1.4);
+  box-shadow: inset 0 1px 0 0 var(--glass-highlight);
 }
 
 /* The field itself.

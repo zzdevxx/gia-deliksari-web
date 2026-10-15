@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { YouTubeIcon } from './Icons';
 import { Button } from '@/components/ui/Button';
+import { CountUp } from '@/components/motion';
 
 export default function Hero() {
   const [timeLeft, setTimeLeft] = useState<{
@@ -166,11 +167,15 @@ export default function Hero() {
             {/* 3 Quick Micro Stats — meaningful numbers only */}
             <div className="pt-6 border-t border-[var(--border)] dark:border-[var(--border)] grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0">
               <div className="space-y-1">
-                <span className="text-xl sm:text-2xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] font-mono">4</span>
+                <CountUp value={4} className="text-xl sm:text-2xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] font-mono" />
                 <p className="text-[11px] sm:text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">Komunitas Ibadah</p>
               </div>
               <div className="space-y-1 border-x border-[var(--border)] dark:border-[var(--border)] px-2 sm:px-4">
-                <span className="text-xl sm:text-2xl font-extrabold text-[var(--brand-text)] dark:text-[var(--brand-text)] font-mono">09.00</span>
+                <span className="text-xl sm:text-2xl font-extrabold text-[var(--brand-text)] dark:text-[var(--brand-text)] font-mono">
+                  <CountUp value={9} pad={2} />
+                  <span className="opacity-60">.</span>
+                  <CountUp value={0} pad={2} delay={85} />
+                </span>
                 <p className="text-[11px] sm:text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">WIB · Minggu</p>
               </div>
               <div className="space-y-1">
@@ -239,7 +244,10 @@ export default function Hero() {
                   carries the 4/5 aspect ratio, so padding the address cannot
                   help: the height is fixed and my-auto absorbs the slack. The
                   only lever is where the float is anchored. */}
-              <div className="absolute -bottom-14 -left-5 sm:-left-6 p-4 sm:p-5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex items-center gap-3.5 max-w-[260px]">
+              {/* One of the two sanctioned glass surfaces in this product (the navbar is
+                  the other). It genuinely floats: the crimson field scrolls behind it,
+                  which is the only situation where a blur communicates anything. */}
+              <div className="glass absolute -bottom-14 -left-5 sm:-left-6 p-4 sm:p-5 rounded-2xl flex items-center gap-3.5 max-w-[260px]">
                 <div className="w-11 h-11 rounded-xl bg-[var(--brand)] dark:bg-[var(--brand)] flex items-center justify-center text-white" aria-hidden="true">
                   <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current">
                     <path d="M10.5 3.5h3v7h7v3h-3v7h-3v-7h-7v-3h3z" />
@@ -256,7 +264,7 @@ export default function Hero() {
               </div>
 
               {/* Floating Quick Access — Jadwal Singkat */}
-              <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 px-3.5 py-2.5 rounded-xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] hidden sm:block">
+              <div className="glass absolute -top-3 -right-3 sm:-top-4 sm:-right-4 px-3.5 py-2.5 rounded-xl hidden sm:block">
                 <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
                   Ibadah Berikutnya
                 </p>
