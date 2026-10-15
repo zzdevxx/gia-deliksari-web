@@ -6,143 +6,109 @@ backup D1 yang bertahun-tahun menulis snapshot kosong.
 
 ---
 
-## 1. 🔴 Backups — status & pemulihan
+## 1. 🟢 Backups — 3 lapisan, semuanya terverifikasi
 
-### Kondisi saat audit (15 Okt 2026)
+### Peta lapisan
 
-Git history berisi **17 snapshot, total 0 baris**. Setiap file `backups/d1/*.json`
-punya `"counts"` semua nol dan `"tables"` semua `[]`, tetapi workflow melaporkan
-**sukses** setiap malam.
+| # | Lapisan | Cakupan | Retensi | Biaya | Untuk siapa |
+|---|---|---|---|---|---|
+| 1 | **D1 Time Travel** | **Seluruh DB, 10 tabel** | **23 hari** (usia DB) | Rp 0 | Teknis |
+| 2 | **Snapshot git** | 9 tabel (`password_hash` diredaksi) | 30 hari, digilir | Rp 0 | Teknis |
+| 3 | **Google Sheets** | 9 tabel, bisa dibaca | Selama spreadsheet ada | Rp 0 | **Pengurus** |
 
-**Sebab:** repo tidak punya secret `CLOUDFLARE_API_TOKEN` maupun
-`CLOUDFLARE_ACCOUNT_ID`. Script lama hanya `console.warn` saat token absen, lalu
-menulis snapshot kosong dan `exit 0`. Workflow meng-commit-nya.
+### Lapisan 1 — D1 Time Travel (paling kuat)
 
-**Dampak:** jika D1 hilang, **tidak ada** yang bisa dipulihkan.
-
-### Perbaikan yang sudah dipasang
-
-| Lapis | Perilaku |
-|---|---|
-| Script, kredensial absen | `exit 1` — tidak menulis apa pun |
-| Script, snapshot 0 baris | `exit 1` — menolak menulis "backup" palsu |
-| Workflow, step verifikasi | Snapshot 0 baris → job GAGAL → step commit tidak jalan |
-| Fallback account-id | Dihapus (default truthy yang salah = membaca tenant keliru) |
-
-### ✅ Snapshot nyata pertama
-
-`backups/d1/20261015165216.json` — **131 baris**:
-
-```
-announcements 4 · servant_rosters 7 · inventory_items 7 · sermons 3
-ministry_requests 3 · users 4 · audit_log 103 · treasury 0 · gallery 0
-```
-
-`password_hash` **tidak** diekspor (memang diredaksi oleh script).
-
-### ✅ Sudah dikerjakan (15 Okt 2026)
-
-Secret sudah terpasang dan backup CI **terbukti bekerja**:
-
-```
-gh secret list
-CLOUDFLARE_ACCOUNT_ID   2026-10-15T17:20:25Z
-CLOUDFLARE_API_TOKEN    2026-10-15T17:20:27Z
-```
-
-Token `gia-deliksari-d1-backup-readonly` (id `21547ef2…`) dibuat dengan
-**least-privilege**: hanya `D1 Read` + `D1 Metadata Read`. Bukan Global Key.
-
-Run pertama: **143 baris**, lolos step verifikasi. Riwayat di bawah hanya
-sebagai catatan cara token itu dibuat.
-
-<details>
-<summary>Cara token dibuat (kalau perlu dibuat ulang)</summary>
-
-Global API Key **bisa** membuat token API lewat REST (ternyata tidak harus
-dashboard), asalkan `permission_groups` diisi:
+Bawaan Cloudflare, **gratis, tanpa setup**. Bisa mundur ke **menit mana pun**
+dalam jendela retensi.
 
 ```bash
-# cari id permission group
-curl -sS "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/tokens/permission_groups" \
-  -H "X-Auth-Email: $CLOUDFLARE_EMAIL" -H "X-Auth-Key: $CLOUDFLARE_API_KEY" \
-  | python3 -c "import sys,json;[print(g['id'],g['name']) for g in json.load(sys.stdin)['result'] if 'D1' in g['name']]"
+# lihat bookmark saat ini
+npx wrangler d1 time-travel info gia-deliksari-db
+
+# bookmark pada waktu tertentu
+TS=$(python3 -c "import datetime;print(int((datetime.datetime.now(datetime.UTC)-datetime.timedelta(days=3)).timestamp()))")
+npx wrangler d1 time-travel info gia-deliksari-db --timestamp="$TS"
+
+# PULIHKAN (berhati-hati — ini menimpa database produksi)
+npx wrangler d1 time-travel restore gia-deliksari-db --bookmark=<bookmark>
+
+# batalkan restore (kalau salah)
+# Time Travel mencatat restore sebagai perubahan, jadi bookmark sebelum
+# restore masih bisa dipakai untuk kembali.
 ```
 
-Hasil: `5b4da8a35efa4fe8be684070183cdb32` (D1 Metadata Read),
-`192192df92ee43ac90f2aeeffce67e35` (D1 Read).
+**Jendela retensi dicek 15 Okt 2026:** mundur 23 hari ✅, 25 hari ❌.
+Database dibuat 22 Sep 2026, jadi jendela 30 hari belum terisi penuh.
 
-Lalu `POST /user/tokens` dengan kedua id itu, dan pasang nilai yang dikembalikan
-lewat `gh secret set CLOUDFLARE_API_TOKEN`.
-
-</details>
-
-### 📜 Prosedur manual (riwayat)
-
-**a. Buat Cloudflare API Token** (sekali saja):
-
-1. Buka <https://dash.cloudflare.com/profile/api-tokens>
-2. **Create Token** → template **"Read all resources"** atau **Custom token**
-3. Permissions: `Account` → `D1` → **Read**
-4. Account Resources: `Andreasr35tu@gmail.com's Account`
-5. Copy token-nya (hanya tampil sekali)
-
-> Global API Key **tidak bisa** dipakai sebagai Bearer token, jadi harus dibuat
-> token baru. Token yang lama di `~/.bashrc` sudah invalid (dikomentari).
-
-**b. Pasang sebagai repo secret:**
+### Lapisan 2 — Snapshot + script restore
 
 ```bash
-gh secret set CLOUDFLARE_ACCOUNT_ID --repo zzdree/gia-deliksari-web
-gh secret set CLOUDFLARE_API_TOKEN --repo zzdree/gia-deliksari-web
+# 1. Hasilkan SQL dari snapshot
+node scripts/restore-d1-from-snapshot.mjs backups/d1/20261015172056.json > restore.sql
+
+# 2. Terapkan ke database TUJUAN (perhatikan nama DB-nya!)
+npx wrangler d1 execute <db-tujuan> --remote --file=restore.sql
 ```
 
-**c. Uji manual:**
+⚠️ **`password_hash` diisi placeholder inert.** Snapshot meredaksi kolom itu
+untuk keamanan, tapi kolomnya `NOT NULL`. Script mengisi hash bcrypt valid yang
+**tidak akan cocok dengan password apa pun** — jadi semua akun hasil restore
+**mati** sampai direset. Itu perilaku yang benar: portal hasil restore tidak
+boleh diam-diam menerima kredensial lama. Script mencetak peringatan eksplisit.
 
-```bash
-gh workflow run "D1 Backup and Google Sheets Sync" --repo zzdree/gia-deliksari-web
-gh run watch $(gh run list --workflow="D1 Backup and Google Sheets Sync" --limit 1 --json databaseId --jq '.[0].databaseId')
-```
+### Lapisan 3 — Google Sheets
 
-Harus **sukses** dan menghasilkan snapshot dengan total baris **> 0**.
+Lihat `docs/PANDUAN-BACKUP-SHEETS.md`. Status: **kode siap, menunggu operator
+men-deploy Apps Script** (butuh klik manual di Google, tidak bisa diotomatiskan).
 
-**d. Bersihkan snapshot kosong** dari `backups/d1/` (17 file), supaya history
-tidak lagi menyimpan bukti backup yang tidak pernah menyalin apa pun:
-
-```bash
-git rm backups/d1/20260929000440.json backups/d1/20260929231735.json \
-       backups/d1/20260930232129.json backups/d1/20261001233528.json \
-       backups/d1/20261002232726.json backups/d1/20261003223351.json \
-       backups/d1/20261004223752.json backups/d1/20261006010321.json \
-       backups/d1/202606232822.json   2>/dev/null || true
-# (sisakan snapshot nyata 20261015165216.json)
-git commit -m "chore(backup): drop empty snapshots that captured no data"
-git push
-```
-
-### 🔁 Prosedur pemulihan (belum pernah diuji!)
-
-**Jalankan ini setidaknya sekali** sebelum kamu benar-benar membutuhkannya.
-Backup yang belum pernah dipulihkan bukan backup.
-
-```bash
-# 1. Buat D1 sementara, restore ke sana — JANGAN ke produksi
-npx wrangler d1 create gia-restore-drill
-
-# 2. Terapkan schema
-npx wrangler d1 execute gia-restore-drill --remote \
-  --file=./migrations/0001_initial_schema.sql
-npx wrangler d1 execute gia-restore-drill --remote \
-  --file=./migrations/0003_add_announcement_end_date.sql
-
-# 3. Muat snapshot nyata (butuh konversi JSON→SQL; lihat scripts/)
-#    Bandingkan jumlah baris dengan sumber.
-
-# 4. Setelah cocok, hapus
-npx wrangler d1 delete gia-restore-drill
-```
+Setelah dipasang, setiap malam spreadsheet menampilkan jumlah baris per tabel —
+sehingga masalah terlihat **tanpa membuka terminal**.
 
 ---
+
+## ✅ Hasil drill restore (15 Okt 2026)
+
+Dijalankan ke database D1 sementara, atas izin anak gembala.
+
+```
+Restored : 143 baris, 145 query
+Database : gia-restore-drill (dibuat → diisi → dihapus)
+Produksi : TIDAK TERSENTUH (diverifikasi sesudahnya)
+```
+
+| Tabel | Produksi | Restore | |
+|---|---|---|---|
+| announcements | 4 | 4 | ✅ |
+| servant_rosters | 7 | 7 | ✅ |
+| inventory_items | 7 | 7 | ✅ |
+| sermons | 3 | 3 | ✅ |
+| ministry_requests | 3 | 3 | ✅ |
+| users | 4 | 4 | ✅ |
+| audit_log | 149 | 115 | ✅ snapshot lebih tua |
+| VIEW balance | 0/0/0 | 0/0/0 | ✅ |
+| TRIGGER updated_at | 1 | 1 | ✅ |
+
+**Isi data identik**, termasuk kutip ganda di judul (`"Unstoppable Faith"`) —
+escaping SQL terbukti benar.
+
+### Tiga masalah yang ditemukan drill ini
+
+Inilah alasan drill bukan formalitas:
+
+1. **D1 menolak `BEGIN TRANSACTION`** di file .sql → setiap restore akan gagal
+2. **`password_hash` NOT NULL tapi diredaksi** → restore gagal; sekarang pakai
+   placeholder inert
+3. **Tidak ada script restore sama sekali** → sekarang ada
+
+Ketiganya **baru akan ketemu saat D1 benar-benar hilang** — momen terburuk
+untuk mencari solusinya.
+
+---
+
+## Masih perlu dilakukan
+
+**Pasang Apps Script** (`docs/PANDUAN-BACKUP-SHEETS.md`) supaya lapisan 3 aktif.
+Butuh klik manual di Google — tidak bisa diotomatiskan dari sini.
 
 ## 2. ✅ R2 — DIPUTUSKAN TIDAK DIPAKAI, SELAMANYA (15 Okt 2026)
 
