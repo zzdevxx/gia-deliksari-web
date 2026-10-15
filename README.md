@@ -96,7 +96,7 @@ graph TD
 - **Database**: Cloudflare D1 (Serverless SQLite Edge) 9 tables + 1 view (24/7 Always Active)
 - **Auth**: bcrypt (cost 10) + HMAC-SHA256 signed session cookie + rate limit
 - **Storage**: Google Drive master archive + Cloudflare edge delivery
-- **Integrations**: YouTube Data API v3 (khotbah auto-sync), Google Sheets (transparansi pengurus)
+- **Integrations**: YouTube Data API v3 (khotbah auto-sync), Google Sheets (transparansi pengurus), Cloudflare Workers Logs (observabilitas)
 - **Icons & Assets**: Lucide React Icons & Custom Church Brand SVG Icons
 - **Optimization**: `next/image` modern AVIF/WebP image pipeline, edge caching via Cloudflare CDN
 
@@ -149,17 +149,27 @@ gia-deliksari-web/
 │   │   └── seedData.ts         # Initial placeholder per table
 │   └── types/index.ts          # TypeScript interfaces
 ├── migrations/                 # Cloudflare D1 SQL migrations
-│   ├── 0001_initial_schema.sql # 9 tables + 1 view D1 schema
-│   └── 0002_initial_seed.sql   # Initial seed data
-├── scripts/                    # Ops tooling (D1 backup to sheets, drive diagnostic)
+│   ├── 0001_initial_schema.sql # 9 tables + 1 view + 1 trigger
+│   ├── 0002_initial_seed.sql   # Initial seed data
+│   └── 0003_add_announcement_end_date.sql
+├── scripts/                    # Ops tooling
+│   ├── backup-d1-to-sheets.mjs # Snapshot D1 → git + Google Sheets
+│   └── restore-d1-from-snapshot.mjs  # Snapshot JSON → SQL restore
+├── docs/
+│   ├── apps-script-backup.gs   # Kode Apps Script (9 sheet + Log)
+│   └── PANDUAN-BACKUP-SHEETS.md # Panduan pasang lapisan Sheets
 ├── .github/workflows/
-│   ├── backup-d1-to-sheets.yml # GH Actions daily D1 → Google Sheets
+│   ├── backup-d1-to-sheets.yml # Harian 03:00 WIB → Sheets
+│   ├── health-check.yml        # Probe produksi tiap 2 jam → buka issue
 │   ├── ci.yml                  # TypeScript + Vitest + Playwright CI
 │   └── lighthouse.yml          # Lighthouse CI audit
-├── backups/                    # Auto-generated SQL / JSON snapshots
+├── backups/                    # Snapshot JSON (auto-generated)
 ├── INFO.md                     # Single source of truth (identitas, jadwal, struktur)
 ├── PRD.md                      # Product Requirements Document
 ├── DESIGN.md                   # Design System & Token Specification (Crimson Field, mesin-kontrak lint:design)
+├── RUNBOOK.md                  # ⭐ Panduan operasional: backup, pemulihan, R2, observabilitas
+├── HANDOFF.md                  # Briefing untuk agent/developer penerus
+├── PANDUAN-MANUAL.md           # Panduan klik-klik untuk operator non-teknis
 ├── LICENSE                     # Proprietary & Private
 └── package.json
 ```

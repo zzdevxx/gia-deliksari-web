@@ -5,6 +5,107 @@ All notable changes to GIA Deliksari Web will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2026-10-16 — Backup Bertingkat, Observabilitas & Pemulihan Teruji
+
+Rilis ini bukan tentang fitur baru, tapi tentang **membuat sistem bisa dipercaya**.
+Semua temuan berasal dari audit mendalam + drill restore yang benar-benar dijalankan.
+
+### 🔴 Temuan terbesar: backup menulis snapshot KOSONG
+- Git history berisi **17 snapshot "sukses" dengan total 0 baris**, sementara D1 live
+  menyajikan 123 baris. Penyebab: repo tidak punya secret `CLOUDFLARE_API_TOKEN`, dan
+  script hanya `console.warn` lalu menulis snapshot kosong dan `exit 0`.
+- **Dampak:** jika D1 hilang, tidak ada satu pun yang bisa dipulihkan.
+
+### Perbaikan backup (3 lapisan)
+- **Kredensial absen → `exit 1`**, bukan menulis snapshot palsu. Cabang `else` pembuat
+  snapshot kosong dihapus. Script menolak menulis snapshot 0 baris.
+- **Workflow diberi step verifikasi**: 0 baris → job GAGAL → commit tidak jalan.
+- **Fallback account-id hardcoded dihapus** (default truthy yang salah = membaca tenant keliru).
+- **Token Cloudflare least-privilege** dibuat (D1 Read saja) dan dipasang sebagai secret.
+- **Snapshot nyata pertama**: 143 baris. `password_hash` tetap diredaksi.
+- **17 snapshot kosong dihapus** dari repo.
+
+### Script restore (baru) + drill yang menemukan 3 masalah
+- `scripts/restore-d1-from-snapshot.mjs` — JSON snapshot → SQL. **Sebelumnya tidak ada
+  jalur pemulihan sama sekali.**
+- Drill dijalankan ke database D1 sementara (**143 baris, semua tabel cocok persis**),
+  lalu database drill dihapus. Produksi diverifikasi tidak tersentuh.
+- Tiga masalah yang **hanya ketemu saat drill**:
+  1. **D1 menolak `BEGIN TRANSACTION`** di file .sql → setiap restore akan gagal
+  2. **`password_hash` NOT NULL tapi diredaksi** → restore gagal; kini placeholder bcrypt
+     inert (akun hasil restore WAJIB direset operator)
+  3. Tidak ada dokumentasi dari mana VIEW balance berasal
+
+### Google Sheets (lapisan ke-3) — AKTIF
+- Webhook Apps Script lengkap: **9 sheet + sheet `Log`**. Sebelumnya hanya 4 sheet dan
+  tidak pernah jalan (`GOOGLE_SHEETS_WEBHOOK_URL` tidak pernah dipasang).
+- **`kode_versi` di `doGet`** — penanda versi agar deployment bisa diverifikasi dari luar.
+  Tanpa ini, **3 ronde** pengujian diam-diam memakai kode lama.
+- **Sheet `Log`** mencatat setiap panggilan (`PENERIMAAN`/`SELESAI`/`GAGAL TOTAL`).
+  Ini yang akhirnya menemukan bug, karena **HTTP status tidak bisa dipakai** —
+  Apps Script selalu membalas `302` sebelum scriptnya jalan.
+- **Dua bug matriks yang diperbaiki** (keduanya di kode, bukan setelan operator):
+  - `writeSheet` mengirim matriks tidak persegi — `youth_balance` berbentuk **objek**
+    (VIEW satu baris), dan baris `audit_log` tidak seragam kolomnya
+  - `writeMeta` menulis baris kosong `['']` ke rentang 2 kolom → gagal di **setiap**
+    backup yang sebenarnya berhasil (9 sheet sudah tertulis, tetap dilaporkan GAGAL)
+
+### Observabilitas — dari nol
+- **Workers Logs aktif**, sampling 100%, `persist: true`.
+  Langsung mengungkap **9 error / 817 request** yang sebelumnya tak terlihat.
+- **Health probe** tiap 2 jam: cek 5 rute publik + sitemap + robots + API data benar-benar
+  berisi + `/api/admin/data` tetap `401` tanpa sesi. Gagal → buka issue; pulih → tutup.
+  Tanpa dependensi (curl saja) supaya tidak bisa rusak karena `npm install`.
+- **Notifikasi email kegagalan workflow** — **terbukti masuk <1 menit**.
+
+### Keamanan
+- **Rate limit dipindah ke D1.** Sebelumnya `Map` in-memory yang di Cloudflare Workers
+  bersifat **per-isolate** → lockout tidak pernah aktif, dan pada PIN 4 digit itu jendela
+  brute-force. **Terbukti live: `401 → 401 → 429 → 429`**.
+- Limiter form publik juga di D1 (endpoint tanpa autentikasi yang menulis baris).
+- Self role-escalation di `/api/users/[id]` dicegah; super terakhir tidak bisa dinonaktifkan.
+- `created_at` tidak lagi bisa ditulis klien. Akun `super` wajib password 8+ karakter.
+- `err.message` tidak lagi bocor ke klien (11 titik).
+
+### A11y & correctness
+- **`useFocusTrap`** (baru): Tab-cycle, ESC, restore focus. Dipasang di Navbar drawer,
+  QRIS modal, UserModal, UploadPhotoModal.
+- **Siklus Youth/HANA off-by-one**: `7 - getDay()` = 0 di hari Sabtu → badge
+  "ganti dalam 0 hari" di hari pergantian. Diperbaiki + test.
+- **Legenda RosterCalendar**: keempat swatch konstan wine → kini berbagi `DOT_CLASS`
+  dengan grid.
+- **Badge `maroon` dark mode ~2.1:1** (pink di atas near-white) → 8.35:1.
+- **Logo Navbar** (`priority`, elemen LCP di semua rute): 37KB PNG → `logo.avif` 13.2KB.
+- **`announcements.end_date`**: kolom tidak ada di schema dan mapper tak pernah
+  membacanya → `endDate` **terhapus setiap load**. Migrasi `0003` + mapper dua arah.
+- **Galeri pakai `lh3.googleusercontent.com`** (CDN asli Drive), bukan endpoint
+  `/thumbnail` yang rate-limit dan kadang membalas HTML → penyebab ubin kosong.
+
+### CI
+- **Smoke test auth diubah ke API** (dulu menunggu render browser): **33s dari 1.8 menit**,
+  dan assert-nya lebih kuat (cookie benar-benar di-set + benar-benar memberi akses).
+- **Test lockout yang dulu di-`skip` sekarang aktif dan lulus** (401,401,429,429).
+
+### Dokumentasi
+- **`RUNBOOK.md`** (baru) — panduan operasional: 3 lapisan backup + prosedur pemulihan,
+  keputusan R2, observabilitas, UU PDP, deploy, migrasi.
+- **`PANDUAN-MANUAL.md`** (baru) — panduan klik-klik untuk operator non-teknis.
+- **`docs/PANDUAN-BACKUP-SHEETS.md`** + `docs/apps-script-backup.gs`
+- Dihapus: `docs/google-apps-script.gs` (usang, 4 sheet), `docs/DIAGNOSIS-WEBHOOK.md`
+  (diagnosis sementara), `docs/B2-MIRROR-SETUP.md` (B2 tidak dipakai)
+
+### Keputusan: R2 TIDAK dipakai
+Operator memilih prinsip **"full free tanpa kartu"**. R2 adalah layanan *metered* dengan
+jatah gratis — **bukan** free plan seperti Workers/D1 — dan menolak aktivasi tanpa metode
+pembayaran (`error 10042`). Galeri tetap berfungsi penuh via Google Drive, **Rp 0**.
+⚠️ Kalau kelak berubah pikiran: `R2_PUBLIC_URL` menunjuk `gallery.giadeliksari.org` yang
+**tidak resolve** — aktifkan R2 tanpa memperbaiki domain itu → semua gambar jadi URL rusak.
+
+### Tests
+- **26 → 35 unit test** (`tests/unit/scheduleUtils.test.ts` mengunci aritmetika siklus 4-minggu)
+
+---
+
 ## [2.5.0] - 2026-10-15 — Security Hardening, A11y Focus Containment & Cycle Arithmetic Repair
 
 Audit lima dimensi (security, data-layer, correctness, performance, a11y) dengan verifikasi

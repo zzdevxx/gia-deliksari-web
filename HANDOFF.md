@@ -1,64 +1,143 @@
 # 🤝 HANDOFF BRIEFING — GIA DELIKSARI WEB PORTAL
-**Tanggal Update**: 9 Oktober 2026  
-**Status**: 100% HIJAU & LIVE DI PRODUKSI  
-**URL Live**: [https://giadeliksari.my.id](https://giadeliksari.my.id) (Fallback Edge: `https://gia-deliksari-web.zzdree.workers.dev`)  
-**Current Worker Version ID**: `38dc955c-4d2c-4080-89fc-a893f231eb29`  
-**Git Branch**: `main` (In-Sync dengan `origin/main`)
+
+**Tanggal Update**: 16 Oktober 2026
+**Status**: 100% HIJAU · LIVE · 3 LAPISAN BACKUP AKTIF · OBSERVABILITAS AKTIF
+**URL Live**: [giadeliksari.my.id](https://giadeliksari.my.id) (fallback: `gia-deliksari-web.zzdree.workers.dev`)
+**Git Branch**: `main` (in-sync dengan `origin/main`)
+
+> Sebelum mengubah kode, baca **`RUNBOOK.md`** — itu panduan operasional lengkap.
+> Dokumen ini adalah ringkasan status untuk agent penerus.
 
 ---
 
-## 📌 Ringkasan Eksekutif untuk Agent Berikutnya
+## ⚠️ Aturan yang WAJIB dipatuhi
 
-Sesi 9 Oktober 2026 menyelesaikan gelombang modernisasi visual dan perbaikan struktural:
-1. **Design System "Crimson Field"**:
-   - Logo `#8B1E28` berada di OKLCH hue 21.4° (zona oranye). Digeser ke hue kanonik 14.1° (`#8E1533`) agar saat digelapkan ke hitam tidak berubah jadi coklat lumpur (`#5A0F24` mempertahankan chroma 0.107 murni crimson).
-   - Gradien `.gia-field` terisolasi di background Hero (`overflow-hidden`, scroll away). Semua elemen lain (kartu, tombol, typography) tetap 100% flat minimalis.
-   - Zero hex literals di `src/` (444 utility dimigrasikan ke semantic tokens).
-2. **Perbaikan Geometri Hero (`Hero.tsx`)**:
-   - Duplikasi teks status countdown dibersihkan (hanya 1 render di semua breakpoint).
-   - Floating pastoral card dipindah dari `-bottom-5/-bottom-6` ke `-bottom-14` (+5px clearance di atas teks alamat di breakpoint 375–1440px).
-   - Scroll indicator diberi `pt-16` agar tidak tertabrak kartu floating pada mobile.
-3. **Frosted Glass Navbar (`Navbar.tsx` & `globals.css`)**:
-   - Memperbaiki keterbatasan Tailwind 3 di mana `bg-[var(--background)]/95` silently gagal menghasilkan rules CSS (sehingga navbar sebelumnya 100% transparan).
-   - Dibuat semantic token eksplisit `--nav-bg` (`rgba(250, 249, 248, 0.72)` light / `rgba(10, 10, 14, 0.72)` dark) dan `--nav-border`.
-   - Mengikuti aturan Anti-Slop R-10: efek glass hanya dipasang pada sticky Navbar yang melayang di atas konten scroll. Kartu warta & modul lain tetap solid/flat.
-4. **Sinkronisasi Dark Mode (`ThemeProvider.tsx`)**:
-   - `ThemeProvider` mengevaluasi `localStorage` dan `prefers-color-scheme` saat initial mount sehingga sinkron dengan OS dark mode tanpa kilatan putih.
+1. **DILARANG menghidupkan Vercel/Supabase.** 100% Cloudflare native (Workers + D1).
+2. **DILARANG mengaktifkan R2.** Keputusan sadar: operator memilih prinsip
+   "full free tanpa kartu". R2 butuh metode pembayaran. Galeri pakai Google Drive.
+3. **DILARANG warna coklat/krem/sepia.** Palet = **Crimson Field** (hue kanonik
+   14.1°, `#8E1533`). Lihat `DESIGN.md` (frontmatter = kontrak mesin `lint:design`).
+4. **Glassmorphism hanya untuk Navbar.** Flat di semua tempat lain.
+5. **JANGAN percaya HTTP status code untuk verifikasi Apps Script.** Google selalu
+   membalas `302` sebelum script jalan. Bukti sah = sheet `Log`.
+6. **Setiap ubah kode Apps Script → `Deploy → New deployment`.**
+   Kalau kolom Version tetap "Version 1", kode baru **tidak dipakai** (terjadi 3×).
 
 ---
 
-## 🛠️ Stack & Infrastruktur Kunci
+## 🛠️ Stack
 
-- **Framework**: Next.js 16.3.8 (App Router, Turbopack)
-- **Runtime**: Cloudflare Workers via `@opennextjs/cloudflare` v1.20.6 (`nodejs_compat`)
-- **Database**: Cloudflare D1 Serverless SQLite (`gia-deliksari-db`, binding: `DB`)
-- **Deployment**: `npm run deploy` (`opennextjs-cloudflare build && wrangler deploy`)
-- **Testing**:
-  - Unit tests: `npm test` (Vitest, 26/26 passing)
-  - Typecheck: `npm run typecheck` (`tsc --noEmit`, 0 error)
-  - Design Linter: `npm run lint:design` (`impeccable detect src/`, 0 anti-pattern)
-  - CI: GitHub Actions (`.github/workflows/ci.yml` & `lighthouse.yml`), 100% HIJAU
+| | |
+|---|---|
+| Framework | Next.js 16.3.8 (App Router, Turbopack) |
+| Runtime | Cloudflare Workers via `@opennextjs/cloudflare` (`nodejs_compat`) |
+| Database | Cloudflare D1 `gia-deliksari-db` (`0f8a9e42-…`) |
+| Deploy | `npm run deploy` |
+| Test | `npm test` (**35/35**) · `npm run typecheck` (0 error) · `npm run lint:design` (0 anti-pattern) |
 
 ---
 
-## 🚦 Aturan & Guardrail yang WAJIB Dipatuhi
+## ✅ Yang sudah aktif (per 16 Okt 2026)
 
-1. **Dilarang Menghidupkan Vercel/Supabase**:
-   Proyek ini 100% Cloudflare Native (Workers + D1 + R2). Vercel dan Supabase telah di-purge total.
-2. **Dilarang Warna Coklat / Krem / Sepia**:
-   Kanvas light adalah `#FAF9F8` (warm neutral), dark adalah `#0A0A0E`. Jangan kembalikan palet v4 Warm Alabaster (`#FAF7F2`, `#F3EFE6`, `#8C6826`).
-3. **Aturan Flat & Anti-Slop R-10**:
-   - Glassmorphism **hanya untuk Navbar**. Jangan pasang backdrop-blur di kartu warta, jadwal, form, atau modal background.
-   - Jangan pasang gradien di komponen/kartu/teks. Satu-satunya gradien yang diizinkan adalah `.gia-field` di hero beranda.
-4. **IPv4-First untuk Tooling Wrangler**:
-   Jaringan dev Linux terkadang mengalami masalah koneksi IPv6. Bila `wrangler` mengalami fetch failure, pastikan resolve DNS via IPv4.
-5. **Port Dev Server**:
-   Jika menjalankan `next dev`, periksa proses yang sudah aktif. Port default bisa bergeser ke `:3100` jika port `:3000` sedang dipakai proses lain.
+### 1. Tiga lapisan backup — semuanya terbukti
+
+| Lapisan | Cakupan | Retensi | Verifikasi |
+|---|---|---|---|
+| **D1 Time Travel** | Seluruh DB, 10 tabel | 23 hari (usia DB) | bookmark aktif |
+| **Snapshot git** | 9 tabel, `password_hash` diredaksi | 30 hari | drill restore 143 baris ✅ |
+| **Google Sheets** | 9 sheet + Log | selama spreadsheet ada | `SELESAI` di sheet Log ✅ |
+
+- **Script restore ada dan teruji**: `scripts/restore-d1-from-snapshot.mjs`
+- **Drill restore pernah dijalankan** ke DB sementara (izin anak gembala diberikan).
+  Hasil: semua tabel cocok persis. Lihat `RUNBOOK.md` §1.
+- **⚠️ Akun hasil restore MATI** — `password_hash` diisi placeholder inert.
+  Harus direset operator setelah restore. Ini perilaku yang benar.
+
+### 2. Observabilitas
+
+- **Workers Logs aktif**, sampling 100%, `persist: true` (dikomit di `wrangler.jsonc`)
+- **Health probe** tiap 2 jam (`.github/workflows/health-check.yml`) → buka issue
+  berlabel `health-check` kalau gagal, tutup otomatis kalau pulih
+- **Notifikasi email kegagalan workflow TERBUKTI** masuk <1 menit
+
+### 3. Keamanan
+
+- **Lockout login di D1** (bukan in-memory — Map per-isolate itu bug, sudah diperbaiki).
+  Terbukti live: `401 → 401 → 429 → 429`
+- Self role-escalation dicegah; super terakhir tidak bisa dinonaktifkan
+- `err.message` tidak lagi bocor ke klien (11 titik diperbaiki)
+- Rate limit form publik juga di D1
+
+### 4. CI
+
+```
+CI — TypeScript + Playwright smoke   35 unit + 7 smoke
+Lighthouse CI                         desktop, hijau
+D1 Backup and Google Sheets Sync      harian 03:00 WIB
+Health Check — production             tiap 2 jam
+```
+
+**Smoke test pakai API, bukan form browser** — 33s (dulu 1.8 menit, sering flake).
+Test lockout yang dulu di-`skip` sekarang **aktif dan lulus**.
 
 ---
 
-## 📋 Sisa Pekerjaan / Backlog Opsional
+## 📋 Sisa pekerjaan
 
-1. **Observabilitas**: Belum ada error tracking terintegrasi (Sentry / Cloudflare Logpush) untuk exception runtime di edge.
-2. **Accessibility Lanjutan**: Focus trap pada modal mobile drawer dan modal QRIS.
-3. **Data Warta di D1**: Data warta asli di D1 bertanggal September 2026 (terfilter sebagai past). Admin gereja nantinya akan menginput warta baru via `/admin`.
+### Butuh keputusan/keterlibatan manusia
+- **Drill restore ulang** secara berkala (prosedur di RUNBOOK §1). Terakhir: 15 Okt.
+- **UU PDP**: `ministry_requests` menyimpan nomor WA + isi permohonan doa. Belum ada
+  kebijakan retensi / consent / jalur penghapusan. Butuh keputusan pengurus.
+- **Data warta** di D1 masih September 2026 (terfilter "lampau"). Pengurus input via `/admin`.
+
+### Teknis (belum dikerjakan siapa pun)
+- **Sheet `Sheet1`** di spreadsheet backup — sisa percobaan awal, kosong. Hapus manual.
+- 131 advisory `lint:design` non-blocking (font-size di luar ramp)
+- `docs/PLAN-FLAT-MINIMAL.md` — dokumen perencanaan lama, bisa diarsipkan
+
+---
+
+## 🧠 Pelajaran penting dari sesi 15-16 Okt
+
+Tiga bug terbesar **tidak akan pernah ketemu lewat linter/typecheck/CI**:
+
+1. **Backup menulis 0 baris selama berminggu-minggu.** 17 snapshot "sukses" di git,
+   total **0 baris**, sementara D1 punya **123**. Sebab: secret CF tidak ada, script
+   hanya `warn` lalu menulis snapshot kosong dan `exit 0`.
+
+2. **Lockout login tidak pernah aktif.** `Map` di Cloudflare Workers = per-isolate,
+   jadi hilang tiap request. Kode *terlihat* benar, test dasar lulus, tapi mati di runtime.
+
+3. **Dua bug di Apps Script backup** — keduanya di kode, bukan setelan operator:
+   - `writeSheet` kirim matriks tidak persegi (`audit_log` kolom tak seragam,
+     `youth_balance` berbentuk objek bukan array)
+   - `writeMeta` tulis baris kosong `['']` ke rentang 2 kolom → gagal di **setiap**
+     backup yang sebenarnya berhasil
+
+**Akar bersama: sistem gagal tanpa memberi tahu siapa pun.**
+Semua perbaikan di sesi ini bermuara pada satu prinsip: **FAIL LOUD, NOT SILENT.**
+
+**Dua alat yang akhirnya memecahkan masalah** (keduanya tidak ada di awal):
+- **Penanda versi** (`kode_versi` di doGet) — membuktikan kode mana yang jalan
+- **Sheet Log** — menyebut fungsi yang gagal saat HTTP status tidak bisa dipercaya
+
+---
+
+## 🔑 Akses & kredensial
+
+**GitHub secrets** (repo `zzdree/gia-deliksari-web`):
+```
+CLOUDFLARE_ACCOUNT_ID · CLOUDFLARE_API_TOKEN (D1 Read saja)
+GOOGLE_SHEETS_WEBHOOK_URL · GOOGLE_SHEETS_WEBHOOK_SECRET
+TEST_SUPER_USER · TEST_SUPER_PASS
+NOTIFY_EMAIL
+```
+
+**Lokal** (`~/.bashrc`): `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_EMAIL`,
+`CLOUDFLARE_API_KEY` (Global API Key — **bekerja**).
+`CLOUDFLARE_API_TOKEN` di baris 194 **invalid & dikomentari** — jangan dipakai.
+
+**Global API Key bisa membuat token API** via REST (`POST /user/tokens`) asalkan
+`permission_groups` diisi. Daftar ID-nya: `GET /accounts/<id>/tokens/permission_groups`.
+
+**Wrangler**: prefix IPv4-first kalau `fetch failed` (IPv6 mati di mesin dev).

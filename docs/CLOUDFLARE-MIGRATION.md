@@ -63,14 +63,33 @@ Agar pengurus gereja (Bapak Gembala, Majelis, Bendahara) yang awam teknologi dap
 
 1. Buat Google Spreadsheet baru.
 2. Buka menu **Ekstensi -> Apps Script**.
-3. Tempel seluruh kode dari `docs/google-apps-script.gs`.
+3. Tempel seluruh kode dari `docs/apps-script-backup.gs`.
+   (Panduan langkah-demi-langkah: `docs/PANDUAN-BACKUP-SHEETS.md`.)
 4. Tambahkan Script Property: `WEBHOOK_SECRET` di Apps Script.
 5. Deploy sebagai **Web App** (akses: Anyone).
 6. Masukkan URL hasil deploy ke GitHub Secrets:
    * `GOOGLE_SHEETS_WEBHOOK_URL`
    * `GOOGLE_SHEETS_WEBHOOK_SECRET`
-7. Workflow `.github/workflows/backup-d1-to-sheets.yml` akan berjalan otomatis setiap hari pukul 03:00 WIB (atau manual via tab Actions) untuk mengisi 4 sheet:
-   * **Kas Youth** (rekap saldo, warna pemasukan/pengeluaran otomatis)
-   * **Warta Jemaat**
-   * **Jadwal Pelayanan**
-   * **Inventaris**
+7. Workflow `.github/workflows/backup-d1-to-sheets.yml` berjalan otomatis setiap hari pukul 03:00 WIB (atau manual via tab Actions) dan mengisi **9 sheet**:
+
+   | Sheet | Isi |
+   |---|---|
+   | Info Backup | Ringkasan: waktu backup + jumlah baris per tabel |
+   | Log | Jejak setiap panggilan (`PENERIMAAN` / `SELESAI` / `GAGAL TOTAL`) |
+   | Warta | announcements |
+   | Roster | servant_rosters |
+   | Inventaris | inventory_items |
+   | Khotbah | sermons |
+   | Galeri | gallery_items |
+   | Permohonan | ministry_requests |
+   | Pengurus | users (tanpa password_hash) |
+   | Kas Youth | youth_treasury_transactions |
+   | Audit Log | audit_log |
+
+   **Cara memeriksa berhasil/tidak:** buka sheet **Log**. Google selalu membalas
+   HTTP 302 untuk Apps Script sebelum scriptnya jalan, jadi status code TIDAK
+   bisa dipakai untuk verifikasi. Satu-satunya bukti yang sah ada di sheet Log.
+
+   **Setiap kali mengubah kode Apps Script**, wajib
+   `Deploy → New deployment` (atau Manage deployments → Version → **New version**).
+   Kalau kolom Version tetap "Version 1", kode baru tidak dipakai.
