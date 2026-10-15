@@ -30,6 +30,11 @@
  *  7. SALIN  "Web app URL"  yang muncul.
  *     Bentuknya:  https://script.google.com/macros/s/AKfycb..../exec
  *
+ *  7b. ⚠️ SETIAP KALI ubah kode, WAJIB:
+ *        [Deploy] → [Manage deployments] → ✏️ → Version: [New version] → [Deploy]
+ *      Kalau kolom Version masih "Version 1", kode baru TIDAK dipakai.
+ *      Cara cek: buka URL di browser — harus ada "kode_versi":"v4-final".
+ *
  *  8. Kirim URL itu + SECRET yang kamu pilih ke Claude, atau pasang sendiri:
  *       gh secret set GOOGLE_SHEETS_WEBHOOK_URL --repo zzdree/gia-deliksari-web
  *       gh secret set GOOGLE_SHEETS_WEBHOOK_SECRET --repo zzdree/gia-deliksari-web
@@ -54,7 +59,7 @@ var SECRET = 'GANTI-DENGAN-KATA-SANDI-RAHASIA-20-KARAKTER';
  *
  * Aturan: setiap kali tempel kode baru, angka ini WAJIB berubah.
  */
-var KODE_VERSI = 'v3-matriks-persegi';
+var KODE_VERSI = 'v4-final';
 
 
 /**
