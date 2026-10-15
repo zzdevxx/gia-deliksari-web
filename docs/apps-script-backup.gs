@@ -89,28 +89,76 @@ function doPost(e) {
     var stamp = body.timestamp || new Date().toISOString();
     var ditulis = {};
 
+    // Catat SETIAP panggilan, berhasil atau gagal, ke sheet "Log".
+    // Ini penting: Google SELALU membalas 302 untuk Apps Script sebelum
+    // scriptnya jalan, jadi pemanggil tidak bisa tahu berhasil/tidak dari
+    // status HTTP. Satu-satunya bukti yang bisa dipercaya ada di sini.
+    catatLog('PENERIMAAN', 'POST diterima. secret cocok.', stamp, '');
+
     for (var key in SHEET_NAMES) {
       if (!Object.prototype.hasOwnProperty.call(SHEET_NAMES, key)) continue;
       var rows = data[key];
       if (!rows || !rows.length) { ditulis[SHEET_NAMES[key]] = 0; continue; }
-      ditulis[SHEET_NAMES[key]] = writeSheet(SHEET_NAMES[key], rows);
+      try {
+        ditulis[SHEET_NAMES[key]] = writeSheet(SHEET_NAMES[key], rows);
+      } catch (sheetErr) {
+        // Satu sheet gagal tidak boleh membatalkan sheet lain.
+        ditulis[SHEET_NAMES[key]] = 'GAGAL: ' + sheetErr;
+        catatLog('GAGAL SHEET', SHEET_NAMES[key], stamp, String(sheetErr));
+      }
     }
 
     // 2. Catat waktu backup terakhir.
     writeMeta(stamp, ditulis);
+    catatLog('SELESAI', 'Semua sheet ditulis.', stamp, JSON.stringify(ditulis));
 
     return jsonOut({ ok: true, ditulis: ditulis, timestamp: stamp });
   } catch (err) {
+    catatLog('GAGAL TOTAL', 'Error di doPost', new Date().toISOString(), String(err));
     return jsonOut({ ok: false, error: String(err) }, 500);
   }
 }
 
+/**
+ * Tulis satu baris ke sheet "Log" — halaman bukti.
+ * Hanya menyimpan 200 baris terakhir supaya sheet tidak tumbuh selamanya.
+ */
+function catatLog(peristiwa, keterangan, stamp, detail) {
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheetByName('Log') || ss.insertSheet('Log');
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(['Waktu', 'Peristiwa', 'Keterangan', 'Detail']);
+      sheet.getRange(1, 1, 1, 4).setFontWeight('bold').setBackground('#8E1533').setFontColor('#FFFFFF');
+      sheet.setFrozenRows(1);
+    }
+    sheet.appendRow([stamp, peristiwa, keterangan, String(detail || '').slice(0, 400)]);
+
+    // Simpan hanya 200 baris terakhir.
+    var extra = sheet.getLastRow() - 201;
+    if (extra > 0) sheet.deleteRows(2, extra);
+  } catch (e) {
+    // Log tidak boleh menggagalkan backup.
+  }
+}
+
 /** Terima GET — berguna untuk cek "apakah webhook hidup?" dari browser. */
-function doGet() {
+function doGet(e) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var logSheet = ss.getSheetByName('Log');
+  var terakhir = [];
+  if (logSheet && logSheet.getLastRow() > 1) {
+    var mulai = Math.max(2, logSheet.getLastRow() - 4);
+    var n = logSheet.getLastRow() - mulai + 1;
+    terakhir = logSheet.getRange(mulai, 1, n, 4).getValues();
+  }
   return jsonOut({
     ok: true,
     pesan: 'Webhook backup GIA Deliksari aktif. Kirim POST untuk mengisi data.',
-    waktu: new Date().toISOString()
+    waktu: new Date().toISOString(),
+    spreadsheet: ss.getName(),
+    sheet: ss.getSheets().map(function (s) { return s.getName(); }),
+    log_terakhir: terakhir
   }, 200);
 }
 
