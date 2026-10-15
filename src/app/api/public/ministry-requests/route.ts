@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { execute } from '@/lib/d1';
+import { execute, queryFirst } from '@/lib/d1';
 
 /**
  * Public submission endpoint for prayer / sacrament / komsel / volunteer
@@ -10,22 +10,69 @@ const ALLOWED_TYPES = new Set(['prayer', 'sacrament', 'komsel', 'volunteer']);
 const MAX_LENGTHS = { name: 120, phone: 32, message: 2000, subType: 80 };
 const RATE_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
 const RATE_MAX = 5; // submissions per IP per window
+const RL_TABLE = 'public_form_rate_limit';
 
-const hits = new Map<string, number[]>();
+/**
+ * Per-IP throttle, persisted in D1.
+ *
+ * This was a module-scope Map, which on Cloudflare Workers is per-isolate: an
+ * IP-rotating flood simply landed on fresh isolates with empty counters, so the
+ * "5 per 10 minutes" limit did not hold. On an unauthenticated endpoint that
+ * inserts rows pastoral staff then read, the effect was an unbounded queue that
+ * real requests get buried under.
+ */
+let rlTableReady: Promise<void> | null = null;
+function ensureRlTable(): Promise<void> {
+  if (!rlTableReady) {
+    rlTableReady = execute(
+      `CREATE TABLE IF NOT EXISTS ${RL_TABLE} (
+         ip TEXT PRIMARY KEY,
+         hits TEXT NOT NULL DEFAULT '[]',
+         updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
+       )`,
+    )
+      .then(() => undefined)
+      .catch((err) => {
+        rlTableReady = null;
+        throw err;
+      });
+  }
+  return rlTableReady;
+}
 
-function rateLimited(ip: string): boolean {
+async function rateLimited(ip: string): Promise<boolean> {
   const now = Date.now();
-  const list = (hits.get(ip) || []).filter((t) => now - t < RATE_WINDOW_MS);
-  if (list.length >= RATE_MAX) {
-    return true;
+  try {
+    await ensureRlTable();
+    const row = await queryFirst<{ hits: string }>(
+      `SELECT hits FROM ${RL_TABLE} WHERE ip = ?`,
+      [ip],
+    );
+    let list: number[] = [];
+    if (row?.hits) {
+      try {
+        const parsed = JSON.parse(row.hits);
+        if (Array.isArray(parsed)) list = parsed.filter((t) => typeof t === 'number');
+      } catch {
+        list = [];
+      }
+    }
+    list = list.filter((t) => now - t < RATE_WINDOW_MS);
+    if (list.length >= RATE_MAX) {
+      return true;
+    }
+    list.push(now);
+    await execute(
+      `INSERT INTO ${RL_TABLE} (ip, hits, updated_at) VALUES (?, ?, ?)
+       ON CONFLICT(ip) DO UPDATE SET hits = excluded.hits, updated_at = excluded.updated_at`,
+      [ip, JSON.stringify(list), new Date().toISOString()],
+    );
+    return false;
+  } catch (err) {
+    // Storage trouble must not block a genuine prayer request. Fail open and log.
+    console.error('[ministry-requests] rate-limit check failed:', err);
+    return false;
   }
-  list.push(now);
-  hits.set(ip, list);
-  if (hits.size > 5000) {
-    const keys = [...hits.keys()].slice(0, 2500);
-    keys.forEach((k) => hits.delete(k));
-  }
-  return false;
 }
 
 function clean(value: unknown, maxLen: number): string {
@@ -38,7 +85,7 @@ export async function POST(req: NextRequest) {
     req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
     req.headers.get('x-real-ip') ||
     'unknown';
-  if (rateLimited(ip)) {
+  if (await rateLimited(ip)) {
     return NextResponse.json(
       { error: 'Terlalu banyak pengiriman. Coba lagi dalam beberapa menit.' },
       { status: 429 },

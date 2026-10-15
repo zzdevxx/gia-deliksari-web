@@ -31,11 +31,10 @@ const SYNC_SHEETS = process.env.SYNC_SHEETS !== 'false';
  * the git history while the real data was never copied. Missing credentials are
  * a configuration error, not a soft condition.
  */
-if (!API_TOKEN || !ACCOUNT_ID) {
+if (!ACCOUNT_ID) {
   console.error(
-    'FATAL: CLOUDFLARE_API_TOKEN dan CLOUDFLARE_ACCOUNT_ID wajib di-set. ' +
-      'Tanpa keduanya snapshot akan kosong, jadi backup dibatalkan alih-alih ' +
-      'menulis snapshot palsu. Set via GitHub repo secrets atau environment lokal.',
+    'FATAL: CLOUDFLARE_ACCOUNT_ID wajib di-set. Tanpa itu query akan menuju akun ' +
+      'yang salah (atau gagal), jadi backup dibatalkan alih-alih menulis snapshot palsu.',
   );
   process.exit(1);
 }
@@ -43,12 +42,33 @@ if (!API_TOKEN || !ACCOUNT_ID) {
 const OUT_DIR = path.resolve(process.cwd(), 'backups', 'd1');
 fs.mkdirSync(OUT_DIR, { recursive: true });
 
+/**
+ * Two ways to authenticate, because the two environments differ:
+ *   - CI uses a scoped API Token (`Bearer`), which is the right thing to hold
+ *     as a repo secret — it can be revoked and limited to D1:Read.
+ *   - A workstation has a Global API Key, which is NOT a Bearer token; it goes
+ *     in `X-Auth-Email` + `X-Auth-Key`. Supporting it lets a maintainer run and
+ *     verify this script locally without minting a second credential.
+ * Prefer the token when both are present.
+ */
+function authHeaders() {
+  if (API_TOKEN) return { Authorization: `Bearer ${API_TOKEN}` };
+  const email = process.env.CLOUDFLARE_EMAIL;
+  const globalKey = process.env.CLOUDFLARE_API_KEY || process.env.CLOUDFLARE_GLOBAL_KEY;
+  if (email && globalKey) return { 'X-Auth-Email': email, 'X-Auth-Key': globalKey };
+  console.error(
+    'FATAL: tidak ada kredensial Cloudflare. Set CLOUDFLARE_API_TOKEN (disarankan), ' +
+      'atau CLOUDFLARE_EMAIL + CLOUDFLARE_API_KEY untuk pemakaian lokal.',
+  );
+  process.exit(1);
+}
+
 async function queryD1(sql) {
   const url = `https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/d1/database/${DATABASE_ID}/query`;
   const res = await fetch(url, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${API_TOKEN}`,
+      ...authHeaders(),
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ sql }),

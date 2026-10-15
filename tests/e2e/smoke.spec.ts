@@ -100,12 +100,23 @@ test.describe('Admin / Super auth flow', () => {
   const getPasswordInput = (page: import('@playwright/test').Page) =>
     page.locator('input[type="password"]').first();
 
+  /**
+   * Login is the slowest thing in this suite: every attempt runs bcrypt at cost
+   * 10 inside an edge isolate, and the CI runner fires these tests in parallel
+   * against live production. Under that load a single attempt has been observed
+   * to take 15-40s, which blew the 30s navigation budget and made both auth
+   * tests flap (they passed on Playwright's retry, so the suite looked green
+   * while hiding it). Give the two auth tests a budget that reflects the real
+   * latency instead of relying on retries to paper over it.
+   */
+  test.describe.configure({ timeout: 90_000 });
+
   // Wait for the login form to be ready (page checks /api/auth/check on mount
   // and only renders the form after authChecked=true with no session).
   const waitForLoginForm = async (page: import('@playwright/test').Page) => {
-    await page.goto('/super');
-    await page.getByRole('heading', { name: /Superuser Portal/i }).waitFor({ timeout: 15_000 });
-    await getUsernameInput(page).waitFor({ timeout: 10_000 });
+    await page.goto('/super', { waitUntil: 'domcontentloaded' });
+    await page.getByRole('heading', { name: /Superuser Portal/i }).waitFor({ timeout: 30_000 });
+    await getUsernameInput(page).waitFor({ timeout: 20_000 });
   };
 
   test('super login with correct password succeeds', async ({ page }) => {
@@ -116,7 +127,7 @@ test.describe('Admin / Super auth flow', () => {
     await page.getByRole('button', { name: /Masuk Superuser Portal/i }).click();
     // Dashboard heading should appear
     await expect(page.getByRole('heading', { name: /Manajemen Akun/i })).toBeVisible({
-      timeout: 15_000,
+      timeout: 45_000,
     });
     // Audit log section also visible
     await expect(page.getByRole('heading', { name: /Audit Log/i })).toBeVisible();
@@ -124,11 +135,16 @@ test.describe('Admin / Super auth flow', () => {
 
   test('super login with wrong password shows error', async ({ page }) => {
     test.skip(!HAVE_CREDS, 'TEST_SUPER_USER / TEST_SUPER_PASS not set');
+    // Use a username that no test logs into successfully. Sharing the real
+    // superuser here means this test depends on the lockout Map's state left by
+    // the success test — and that Map is per-isolate, so the outcome varies by
+    // which Worker instance answers. A distinct name keeps the assertion about
+    // what it claims to test: that a rejected login renders an error.
     await waitForLoginForm(page);
-    await getUsernameInput(page).fill(SUPER_USER!);
+    await getUsernameInput(page).fill(`${SUPER_USER!}-nonexistent`);
     await getPasswordInput(page).fill('0000');
     await page.getByRole('button', { name: /Masuk Superuser Portal/i }).click();
-    await expect(page.getByText(/salah|gagal/i).first()).toBeVisible({ timeout: 5_000 });
+    await expect(page.getByText(/salah|gagal|kunci/i).first()).toBeVisible({ timeout: 45_000 });
   });
 
   // Skipped: rate limit lives in an in-memory Map inside the serverless isolate.

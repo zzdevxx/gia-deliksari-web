@@ -408,37 +408,133 @@ export const SUPER_MIN_PASSWORD_LENGTH = SUPER_MIN;
 
 // ---------------------------------------------------------------------------
 // Rate limiting (login attempt lockout)
-// In-memory sliding window per (ip + username). After MAX_FAILS, lock the
-// key for LOCKOUT_MS.
+//
+// The counter lives in D1, not memory.
+//
+// It used to be a module-scope Map, which on Cloudflare Workers is per-isolate
+// state: a fresh isolate saw an empty map, so a lockout recorded in one instance
+// was invisible to the next. With requests spread across instances the 429
+// branch almost never fired, so the documented "3 failed attempts -> 1 minute
+// lockout" was effectively dead. It also made the smoke suite flap, because its
+// outcome depended on which isolate happened to answer.
+//
+// A 2-second in-process memo sits in front of D1 so a burst against one isolate
+// does not hit the database on every request. The memo is an optimisation only.
 // ---------------------------------------------------------------------------
+
+const LOGIN_MAX_FAILS = 3;
+const LOGIN_LOCKOUT_MS = 60_000; // 1 minute
+const LOGIN_WINDOW_MS = 5 * 60_000; // 5 minutes
+const RL_TABLE = 'login_rate_limit';
 
 interface RateLimitState {
   failures: number[];
   lockedUntil: number;
 }
-const loginAttempts = new Map<string, RateLimitState>();
-const LOGIN_MAX_FAILS = 3;
-const LOGIN_LOCKOUT_MS = 60_000; // 1 minute
-const LOGIN_WINDOW_MS = 5 * 60_000; // 5 minutes
+
+const localRlCache = new Map<string, RateLimitState & { readAt: number }>();
+const LOCAL_RL_TTL_MS = 2_000;
+
+let rlTableReady: Promise<void> | null = null;
+/**
+ * Create the rate-limit table on first use. `IF NOT EXISTS` is idempotent and
+ * the promise is cached, so this costs one round trip per isolate rather than
+ * one per login. Lazy, so no migration ordering is imposed on deploys.
+ */
+function ensureRateLimitTable(): Promise<void> {
+  if (!rlTableReady) {
+    rlTableReady = execute(
+      `CREATE TABLE IF NOT EXISTS ${RL_TABLE} (
+         key TEXT PRIMARY KEY,
+         failures TEXT NOT NULL DEFAULT '[]',
+         locked_until INTEGER NOT NULL DEFAULT 0,
+         updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
+       )`,
+    )
+      .then(() => undefined)
+      .catch((err) => {
+        rlTableReady = null; // let a later request retry rather than cache the failure
+        throw err;
+      });
+  }
+  return rlTableReady;
+}
+
+async function readRateLimit(key: string): Promise<RateLimitState> {
+  const now = Date.now();
+  const cached = localRlCache.get(key);
+  if (cached && now - cached.readAt < LOCAL_RL_TTL_MS) {
+    return { failures: cached.failures, lockedUntil: cached.lockedUntil };
+  }
+  try {
+    await ensureRateLimitTable();
+    const row = await queryFirst<{ failures: string; locked_until: number }>(
+      `SELECT failures, locked_until FROM ${RL_TABLE} WHERE key = ?`,
+      [key],
+    );
+    let failures: number[] = [];
+    if (row?.failures) {
+      try {
+        const parsed = JSON.parse(row.failures);
+        if (Array.isArray(parsed)) failures = parsed.filter((t) => typeof t === 'number');
+      } catch {
+        failures = [];
+      }
+    }
+    const state: RateLimitState = { failures, lockedUntil: row?.locked_until ?? 0 };
+    localRlCache.set(key, { ...state, readAt: now });
+    return state;
+  } catch (err) {
+    // A storage problem must not lock every operator out. Fail open, exactly as
+    // a fresh isolate did before, and leave the reason in the log.
+    console.error('[auth] rate-limit read failed:', err);
+    return { failures: [], lockedUntil: 0 };
+  }
+}
+
+async function writeRateLimit(key: string, state: RateLimitState): Promise<void> {
+  localRlCache.set(key, { ...state, readAt: Date.now() });
+  try {
+    await ensureRateLimitTable();
+    await execute(
+      `INSERT INTO ${RL_TABLE} (key, failures, locked_until, updated_at)
+       VALUES (?, ?, ?, ?)
+       ON CONFLICT(key) DO UPDATE SET
+         failures = excluded.failures,
+         locked_until = excluded.locked_until,
+         updated_at = excluded.updated_at`,
+      [key, JSON.stringify(state.failures), state.lockedUntil, new Date().toISOString()],
+    );
+  } catch (err) {
+    console.error('[auth] rate-limit write failed:', err);
+  }
+}
 
 /** Returns { ok: true } if not locked, else { ok: false, retryAfterSec } */
-export function checkLoginRateLimit(key: string): { ok: true } | { ok: false; retryAfterSec: number } {
+export async function checkLoginRateLimit(
+  key: string,
+): Promise<{ ok: true } | { ok: false; retryAfterSec: number }> {
   const now = Date.now();
-  const state = loginAttempts.get(key);
-  if (!state) return { ok: true };
+  const state = await readRateLimit(key);
   if (state.lockedUntil > now) {
     return { ok: false, retryAfterSec: Math.ceil((state.lockedUntil - now) / 1000) };
   }
-  // Lock expired; clean failures older than window
-  state.failures = state.failures.filter((t) => now - t < LOGIN_WINDOW_MS);
+  // Lock expired or window moved: prune stale failures so the key can re-arm.
+  const pruned = state.failures.filter((t) => now - t < LOGIN_WINDOW_MS);
+  if (state.lockedUntil !== 0 || pruned.length !== state.failures.length) {
+    await writeRateLimit(key, { failures: pruned, lockedUntil: 0 });
+  }
   return { ok: true };
 }
 
-export function recordLoginFailure(key: string): { locked: boolean; retryAfterSec: number } {
+export async function recordLoginFailure(
+  key: string,
+): Promise<{ locked: boolean; retryAfterSec: number }> {
   const now = Date.now();
-  const state = loginAttempts.get(key) || { failures: [], lockedUntil: 0 };
+  const state = await readRateLimit(key);
   state.failures = state.failures.filter((t) => now - t < LOGIN_WINDOW_MS);
   state.failures.push(now);
+
   let locked = false;
   let retryAfterSec = 0;
   if (state.failures.length >= LOGIN_MAX_FAILS) {
@@ -446,22 +542,16 @@ export function recordLoginFailure(key: string): { locked: boolean; retryAfterSe
     locked = true;
     retryAfterSec = Math.ceil(LOGIN_LOCKOUT_MS / 1000);
   }
-  loginAttempts.set(key, state);
+  await writeRateLimit(key, state);
   return { locked, retryAfterSec };
 }
 
-export function clearLoginFailures(key: string) {
-  loginAttempts.delete(key);
-}
-
-// Periodic cleanup to avoid memory leak
-if (typeof setInterval !== 'undefined') {
-  setInterval(() => {
-    const now = Date.now();
-    for (const [k, v] of loginAttempts) {
-      if (v.lockedUntil < now && v.failures.every((t) => now - t > LOGIN_WINDOW_MS)) {
-        loginAttempts.delete(k);
-      }
-    }
-  }, 60_000);
+export async function clearLoginFailures(key: string) {
+  localRlCache.delete(key);
+  try {
+    await ensureRateLimitTable();
+    await execute(`DELETE FROM ${RL_TABLE} WHERE key = ?`, [key]);
+  } catch (err) {
+    console.error('[auth] rate-limit clear failed:', err);
+  }
 }

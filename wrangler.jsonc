@@ -16,6 +16,31 @@
       "database_id": "0f8a9e42-0a14-4a45-9cbb-55f7d8b2f5f1"
     }
   ],
+  // Gallery master storage.
+  //
+  // OPERATOR ACTION REQUIRED — this binding is committed but INERT until R2 is
+  // enabled on the account (Cloudflare requires a one-time ToS acceptance in the
+  // dashboard before the R2 API will answer; `wrangler r2 bucket list` currently
+  // returns error 10042 "Please enable R2 through the Cloudflare Dashboard").
+  //
+  // Until then `ctx.env.GALLERY_BUCKET` is undefined and both the upload and
+  // sync routes fall through to Google Drive thumbnail URLs. Nothing breaks —
+  // the gallery is just not mirrored to R2.
+  //
+  // To activate, once R2 is enabled:
+  //   1. npx wrangler r2 bucket create gia-deliksari-gallery
+  //   2. uncomment the r2_buckets block below
+  //   3. npm run deploy
+  //   4. point gallery.giadeliksari.org at the bucket (R2 custom domain) —
+  //      that hostname does not resolve today, so R2_PUBLIC_URL must stay
+  //      correct or the gallery will serve broken image URLs.
+  //
+  // "r2_buckets": [
+  //   {
+  //     "binding": "GALLERY_BUCKET",
+  //     "bucket_name": "gia-deliksari-gallery"
+  //   }
+  // ],
   "routes": [
     { "pattern": "giadeliksari.my.id", "custom_domain": true },
     { "pattern": "www.giadeliksari.my.id", "custom_domain": true }

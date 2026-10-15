@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
   // Rate limit check (per IP + username to prevent both brute force
   // on single account AND multi-account abuse from one IP)
   const rateKey = `${ip}::${username.toLowerCase()}`;
-  const rateCheck = checkLoginRateLimit(rateKey);
+  const rateCheck = await checkLoginRateLimit(rateKey);
   if (!rateCheck.ok) {
     await logAudit({
       actor: null,
@@ -73,7 +73,7 @@ export async function POST(req: NextRequest) {
 
   const result = await login(username, password);
   if (!result) {
-    const failure = recordLoginFailure(rateKey);
+    const failure = await recordLoginFailure(rateKey);
     await logAudit({
       actor: null,
       action: failure.locked ? 'auth.login_lockout' : 'auth.login_failure',
@@ -103,7 +103,7 @@ export async function POST(req: NextRequest) {
   }
 
   // Successful login — clear any prior failures for this key
-  clearLoginFailures(rateKey);
+  await clearLoginFailures(rateKey);
 
   const { user, token } = result;
   await logAudit({
