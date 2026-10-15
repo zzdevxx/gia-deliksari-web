@@ -42,6 +42,20 @@
 var SECRET = 'GANTI-DENGAN-KATA-SANDI-RAHASIA-20-KARAKTER';
 // ⬆️⬆️⬆️  GANTI DENGAN KATA SANDI RAHASMU  ⬆️⬆️⬆️
 
+/**
+ * Penanda versi kode.
+ *
+ * Naikkan angka ini setiap kali kamu mengubah kode, lalu deploy ulang.
+ * `doGet` mengembalikannya, jadi bisa DIPASTIKAN dari luar apakah versi baru
+ * benar-benar sudah ter-deploy — tanpa menebak.
+ *
+ * Ini ditambahkan setelah dua kali "sudah saya deploy" ternyata masih
+ * menjalankan versi lama, dan tidak ada cara membedakannya dari luar.
+ *
+ * Aturan: setiap kali tempel kode baru, angka ini WAJIB berubah.
+ */
+var KODE_VERSI = 'v3-matriks-persegi';
+
 
 /**
  * Nama sheet yang dipakai, dipetakan dari kunci payload.
@@ -155,6 +169,7 @@ function doGet(e) {
   return jsonOut({
     ok: true,
     pesan: 'Webhook backup GIA Deliksari aktif. Kirim POST untuk mengisi data.',
+    kode_versi: KODE_VERSI,
     waktu: new Date().toISOString(),
     spreadsheet: ss.getName(),
     sheet: ss.getSheets().map(function (s) { return s.getName(); }),
