@@ -2,16 +2,13 @@
 
 import React, { useState } from 'react';
 import {
- Heart,
- Copy,
- Check,
- ShieldCheck,
- ExternalLink,
- CreditCard,
- QrCode,
- Box,
- Download,
- Info
+  Heart,
+  Copy,
+  Check,
+  ShieldCheck,
+  CreditCard,
+  QrCode,
+  Box,
 } from 'lucide-react';
 import { WhatsAppIcon } from './Icons';
 
