@@ -98,8 +98,8 @@ describe('buildServiceCalendar', () => {
     expect(ics.startsWith('BEGIN:VCALENDAR\r\n')).toBe(true);
     expect(ics.endsWith('END:VCALENDAR\r\n')).toBe(true);
     expect(ics).toContain('BEGIN:VEVENT');
-    expect(ics).toContain('DTSTART:20261018T020000Z');
-    expect(ics).toContain('DTEND:20261018T040000Z'); // 2 hours
+    expect(ics).toContain('DTSTART;TZID=Asia/Jakarta:20261018T090000');
+    expect(ics).toContain('DTEND;TZID=Asia/Jakarta:20261018T110000'); // 2 hours
     expect(ics).toContain('RRULE:FREQ=WEEKLY;INTERVAL=1;BYDAY=SU');
     // No bare LF anywhere: some clients reject the file otherwise.
     expect(ics.replace(/\r\n/g, '')).not.toContain('\n');
@@ -135,7 +135,7 @@ describe('buildServiceCalendar', () => {
 
     expect(ics).toContain('RRULE:FREQ=WEEKLY;INTERVAL=1;BYDAY=TU,WE,TH,FR');
     // Mon 19 Oct 2026: the next 05.00 WIB prayer is Tuesday the 20th.
-    expect(ics).toContain('DTSTART:20261019T220000Z');
+    expect(ics).toContain('DTSTART;TZID=Asia/Jakarta:20261020T050000');
   });
 
   it('uses a stable per-service UID so re-downloading updates rather than duplicates', () => {
@@ -180,5 +180,21 @@ describe('the existing countdown helper and this module agree', () => {
     const expectsYouth = index === 0 || index === 2;
 
     expect(fromHelper === 'youth').toBe(expectsYouth);
+  });
+});
+
+describe('the timezone definition accompanies the zoned timestamps', () => {
+  const sunday = WEEKLY_SERVICES.find((s) => s.id === 'ibadah-raya')!;
+
+  it('declares Asia/Jakarta before any event, since DTSTART references it', () => {
+    const ics = buildServiceCalendar(sunday, { now: new Date('2026-10-16T00:00:00Z') });
+
+    const vtimezone = ics.indexOf('BEGIN:VTIMEZONE');
+    const firstEvent = ics.indexOf('BEGIN:VEVENT');
+    expect(vtimezone).toBeGreaterThan(-1);
+    expect(vtimezone).toBeLessThan(firstEvent);
+    expect(ics).toContain('TZID:Asia/Jakarta');
+    // The whole point of the zoned form: no UTC designator on the anchor.
+    expect(ics).not.toMatch(/DTSTART:\d{8}T\d{6}Z/);
   });
 });

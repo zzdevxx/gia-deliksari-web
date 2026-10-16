@@ -1,11 +1,20 @@
 /**
  * RFC 5545 calendar generation for the weekly service schedule.
  *
- * Why UTC and not `TZID=Asia/Jakarta` plus a VTIMEZONE block: WIB has no
- * daylight saving and has held a fixed +7 offset since 1964, so the mapping
- * from wall-clock to instant never moves. Emitting `...Z` timestamps keeps the
- * file valid for every client without a timezone definition that would have to
- * be maintained by hand and could silently drift.
+ * Why `TZID=Asia/Jakarta` rather than plain UTC stamps. A recurrence rule's
+ * BYDAY is evaluated in the frame of DTSTART, so the two have to agree about
+ * what day it is. An earlier version wrote DTSTART in UTC and BYDAY in WIB,
+ * which quietly broke the morning prayer: 05.00 WIB is 22.00 UTC the day
+ * before, so a DTSTART that was Tuesday in Jakarta carried Monday's timestamp,
+ * and the rule generated the wrong days from the second week on. Every other
+ * service happens to fall after 07.00 WIB, where the UTC and WIB dates
+ * coincide, which is why the bug stayed invisible until a service early enough
+ * to cross midnight UTC was added.
+ *
+ * Pinning both to Jakarta time also means the file says what the page says.
+ * UTC stamps that encode local times are correct but unreadable: a maintainer
+ * comparing the file against the schedule would see Monday where the schedule
+ * says Tuesday and have no way to tell whether that was the bug.
  *
  * Why a .ics file and not a Google Calendar link: a link covers one vendor.
  * Congregants here are split across Android (Google Calendar), iPhone (Apple
@@ -14,7 +23,30 @@
  */
 
 const WIB_OFFSET_HOURS = 7;
+const WIB_TZID = 'Asia/Jakarta';
 const CRLF = '\r\n';
+
+/**
+ * VTIMEZONE for WIB.
+ *
+ * A single STANDARD component with no RRULE is the canonical way to describe
+ * a zone that has never observed daylight saving: the offset applies from the
+ * DTSTART onward with no transitions to enumerate. Indonesia has held +07:00
+ * since 1964, so there is nothing to describe. Clients that resolve TZID by
+ * name would work without this block, but RFC 5545 expects it and Apple
+ * Calendar in particular is happier with it present.
+ */
+const VTIMEZONE = [
+  'BEGIN:VTIMEZONE',
+  `TZID:${WIB_TZID}`,
+  'BEGIN:STANDARD',
+  'DTSTART:19700101T000000',
+  'TZOFFSETFROM:+0700',
+  'TZOFFSETTO:+0700',
+  'TZNAME:WIB',
+  'END:STANDARD',
+  'END:VTIMEZONE',
+];
 
 /** RFC 5545 §3.3.11 reserves these four sequences inside a TEXT value. */
 function escapeText(value: string): string {
@@ -71,11 +103,28 @@ function wibParts(instant: Date) {
   };
 }
 
-function toIcsStamp(instant: Date): string {
+/** UTC instant, for DTSTAMP (which is always UTC by definition). */
+function toUtcStamp(instant: Date): string {
   const pad = (n: number) => String(n).padStart(2, '0');
   return (
     `${instant.getUTCFullYear()}${pad(instant.getUTCMonth() + 1)}${pad(instant.getUTCDate())}` +
     `T${pad(instant.getUTCHours())}${pad(instant.getUTCMinutes())}${pad(instant.getUTCSeconds())}Z`
+  );
+}
+
+/**
+ * Local WIB wall-clock, for DTSTART and DTEND.
+ *
+ * No trailing `Z`: a local-time value is written as-is and qualified by the
+ * TZID parameter on the property. Writing the UTC instant here instead is what
+ * made BYDAY disagree with the anchor day.
+ */
+function toWibStamp(instant: Date): string {
+  const p = wibParts(instant);
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return (
+    `${p.year}${pad(p.month + 1)}${pad(p.day)}` +
+    `T${pad(p.hour)}${pad(p.minute)}00`
   );
 }
 
@@ -198,9 +247,9 @@ function vevent(service: WeeklyService, now: Date): string[] {
   const lines = [
     'BEGIN:VEVENT',
     `UID:${escapeText(service.id)}@giadeliksari.my.id`,
-    `DTSTAMP:${toIcsStamp(now)}`,
-    `DTSTART:${toIcsStamp(start)}`,
-    `DTEND:${toIcsStamp(end)}`,
+    `DTSTAMP:${toUtcStamp(now)}`,
+    `DTSTART;TZID=${WIB_TZID}:${toWibStamp(start)}`,
+    `DTEND;TZID=${WIB_TZID}:${toWibStamp(end)}`,
     `SUMMARY:${escapeText(service.title)}`,
   ];
 
@@ -247,6 +296,9 @@ function assemble(services: WeeklyService[], now: Date, calendarName: string): s
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     `X-WR-CALNAME:${escapeText(calendarName)}`,
+    // The zone definition has to be present because DTSTART and DTEND carry
+    // TZID=Asia/Jakarta. Emitted once per file, before any VEVENT.
+    ...VTIMEZONE,
     ...services.flatMap((service) => vevent(service, now)),
     'END:VCALENDAR',
   ];

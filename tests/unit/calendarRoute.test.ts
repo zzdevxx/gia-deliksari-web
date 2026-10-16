@@ -63,11 +63,20 @@ describe('GET /api/public/calendar', () => {
   it('emits a DTSTART in the future, not at build time', async () => {
     const res = await GET(request('?service=ibadah-raya'));
     const body = await res.text();
-    const match = body.match(/DTSTART:(\d{8}T\d{6}Z)/);
+    const match = body.match(/DTSTART;TZID=Asia\/Jakarta:(\d{8})T(\d{6})/);
 
     expect(match).not.toBeNull();
-    const stamp = match![1];
-    const iso = `${stamp.slice(0, 4)}-${stamp.slice(4, 6)}-${stamp.slice(6, 8)}T${stamp.slice(9, 11)}:${stamp.slice(11, 13)}:${stamp.slice(13, 15)}Z`;
-    expect(new Date(iso).getTime()).toBeGreaterThan(Date.now());
+    const [, date, time] = match!;
+    // WIB is a fixed +07:00, so the instant is the local stamp minus the offset.
+    const startMs =
+      Date.UTC(
+        Number(date.slice(0, 4)),
+        Number(date.slice(4, 6)) - 1,
+        Number(date.slice(6, 8)),
+        Number(time.slice(0, 2)),
+        Number(time.slice(2, 4)),
+      ) - 7 * 3_600_000;
+
+    expect(startMs).toBeGreaterThan(Date.now());
   });
 });
