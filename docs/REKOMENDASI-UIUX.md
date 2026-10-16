@@ -199,3 +199,62 @@ supaya bisa diganti tanpa deploy.
 **Rekomendasi: kerjakan A sekarang, siapkan B** saat pengurus mengirim
 gambar QRIS resminya. Membiarkan keadaan sekarang berarti setiap jemaat yang
 mencoba memindai mengalami kegagalan yang tidak bisa mereka jelaskan.
+
+---
+
+## 🔴 TEMUAN REVIEW ADVERSARIAL (16 Okt 2026)
+
+Review 26 agen (4 lensa × verifikasi 2 hakim) atas pekerjaan sesi ini menemukan
+**5 bug nyata** yang lolos dari semua test dan pemeriksaan manual sebelumnya.
+
+### 1. Focus ring tidak terlihat di dark mode — 48 tempat, 11 file
+
+`--brand` bernilai `#8E1533` **di kedua tema**. Di atas kartu gelap (`#1B1B24`)
+kontrasnya **1.88:1**, jauh di bawah lantai 3:1 yang WCAG 1.4.11 tetapkan untuk
+indikator fokus. Artinya **pengguna keyboard di dark mode tidak bisa melihat
+posisi fokusnya sama sekali**.
+
+Kenapa lolos: di light mode rasionya **9.11:1** (tampak benar), dan nilainya
+token brand, bukan angka yang mencurigakan.
+
+**Perbaikan:** semua pakai `--ring` — token yang **sudah ada** di `globals.css`
+(`#8E1533` light / `#F08AA4` dark) untuk tugas ini, tapi **0 pemakaian** sejak
+dibuat. Sekarang 36 pemakaian. Dikunci `tests/unit/focus-contrast.test.ts` yang
+memindai seluruh `src/`.
+
+### 2. Ikon kalender di 45% opacity = 2.48:1
+
+Lulus hanya saat hover — dan **HP tidak punya hover**. Dinaikkan ke 60%
+(≥3.5:1 di semua warna kartu, kedua tema); hover kini menambah ketegasan,
+bukan satu-satunya cara melihat.
+
+### 3. Kartu Youth punya bug yang sama dengan kartu HANA
+
+Prosa menyebut "M2 & M4 Ibadah Komsel Sel" tapi unduhannya cuma
+`grow-generation`. **Test lama tidak menangkapnya** karena hanya memeriksa
+kartu yang labelnya mengandung kata "dan" — label kartu Youth tidak
+mengandungnya, jadi tidak ada yang membandingkan label dengan isi. Test
+sekarang menurunkan pasangan dari **sumber jadwal**, bukan frasa label.
+
+### 4. Empat dokumen mengiklankan "modal QRIS digital" yang sudah dihapus
+
+Termasuk `INFO.md:263` yang **mendeklarasikan dirinya Single Source of Truth**,
+sementara `PRD.md:223` menyuruh maintainer *"update INFO.md dulu sebelum ubah
+code"*. Jadi baris basi itu duduk di dokumen yang paling dipercaya. Diperbaiki
+di `README.md` (2 baris), `INFO.md`, `PRD.md`, `PRODUCT.md`.
+
+### 5. Petunjuk arah salah di HP
+
+Kartu QRIS bilang "transfer bank **di samping**". Di HP kartu bertumpuk dan
+kartu bank ada **di atas**, jadi arahnya menunjuk ke tempat yang salah.
+Diganti "kartu transfer bank di halaman ini".
+
+### Pelajaran yang berlaku umum
+
+- **Test yang hanya memeriksa satu kasus akan lolos pada kasus kedua.** Kedua
+  bug kartu (HANA lalu Youth) berbentuk sama; test pertama terlalu spesifik
+  sehingga memberi rasa aman palsu.
+- **Uji nilai warna dan opacity, bukan hanya perilaku.** Tiga dari lima temuan
+  hanya bisa ditangkap dengan mengukur kontras.
+- **Token yang benar sering sudah ada tapi tidak dipakai.** `--ring` sudah
+  didefinisikan sejak awal dengan nilai yang tepat per tema.
