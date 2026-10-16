@@ -294,21 +294,14 @@ export default function Hero() {
 
       </div>
 
-      {/* Scroll Indicator — the top padding keeps it clear of the pastoral card,
-          which now hangs below the hero card; without it they overlap by
-          33–53px on the single-column layouts. */}
-      <div className="flex justify-center pt-16 pb-6 sm:pb-10">
-        <a
-          href="#kunjungan"
-          aria-label="Scroll ke bawah untuk konten selanjutnya"
-          className="inline-flex flex-col items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:text-[var(--brand-text)] dark:hover:text-[var(--brand-text)] transition-colors group"
-        >
-          <span>Scroll</span>
-          <span aria-hidden="true" className="block w-5 h-8 rounded-full border border-current relative overflow-hidden">
-            <span className="absolute top-1.5 left-1/2 -translate-x-1/2 w-1 h-2 rounded-full bg-current transition-transform duration-300 group-hover:translate-y-1" />
-          </span>
-        </a>
-      </div>
+      {/* The scroll cue was removed rather than restyled.
+          "Scroll" with an animated mouse wheel is on the banned list for good
+          reason: the visitor is already looking at the hero, and telling them
+          that a page scrolls is not information. Worse, it competed for
+          attention with the primary CTA directly above it.
+          The space it occupied is kept as padding, because the pastoral card
+          hangs below the hero card and needs the clearance. */}
+      <div aria-hidden="true" className="pt-16 pb-6 sm:pb-10" />
     </section>
   );
 }

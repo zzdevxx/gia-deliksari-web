@@ -86,7 +86,7 @@ export default function MinistriesSection() {
             return (
               <RevealItem key={ministry.id}>
               <article
-                className="rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] p-6 sm:p-8 flex flex-col"
+                className="group/card rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] p-6 sm:p-8 flex flex-col transition-[box-shadow,border-color] duration-200 ease-out-strong hover:border-[var(--border-strong)] hover:shadow-sm"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="w-12 h-12 shrink-0 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] flex items-center justify-center">
