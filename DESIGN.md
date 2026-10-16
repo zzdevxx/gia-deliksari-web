@@ -140,7 +140,12 @@ rounded:
   full: "9999px"
 spacing:
   unit: "0.25rem"
+  # `section` is the gap above and below a page section. It has two values
+  # because the same 96px reads as airy on a 1280px canvas and as wasted height
+  # on a 390px one, where six stacked sections spent more than a full screen on
+  # nothing but space. Above `sm` keep 6rem; below it, half.
   section: "6rem"
+  section-compact: "3.5rem"
 components:
   button-primary:
     backgroundColor: "{colors.wine}"
