@@ -80,13 +80,29 @@ export default function MinistriesSection() {
           </p>
         </div>
 
+        {/* One card deliberately spans both columns.
+            A uniform grid of four identical cards gives the eye no entry point,
+            and the reader has to scan all four to learn there is nothing to
+            choose between them. Letting the first pillar take the full width
+            establishes which community the page leads with, and the remaining
+            three then read as the alternatives rather than as a set.
+
+            Applied to the first item by position rather than by data so the
+            emphasis stays put if the list is ever reordered. */}
         <RevealGroup className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {ministries.map((ministry) => {
+          {ministries.map((ministry, index) => {
             const MinistryIcon = ministry.icon;
             return (
-              <RevealItem key={ministry.id}>
+              // col-span lives on the RevealItem, not the <article>: RevealItem
+              // is the direct grid child, so a span set on the article inside it
+              // has no effect. Verified: before this, every card measured 592px
+              // at desktop width.
+              <RevealItem
+                key={ministry.id}
+                className={index === 0 ? 'md:col-span-2' : undefined}
+              >
               <article
-                className="group/card rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] p-6 sm:p-8 flex flex-col transition-[box-shadow,border-color] duration-200 ease-out-strong hover:border-[var(--border-strong)] hover:shadow-sm"
+                className="group/card h-full rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] p-6 sm:p-8 flex flex-col transition-[box-shadow,border-color] duration-200 ease-out-strong hover:border-[var(--border-strong)] hover:shadow-sm"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="w-12 h-12 shrink-0 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] flex items-center justify-center">

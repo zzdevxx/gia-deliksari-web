@@ -181,15 +181,29 @@ export default function Hero() {
                 <p className="text-[11px] sm:text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">Komunitas Ibadah</p>
               </div>
               <div className="space-y-1 border-x border-[var(--border)] dark:border-[var(--border)] px-2 sm:px-4">
-                {/* `flex` rather than inline spans: in `font-mono` every glyph is the same
-                    width, so a whitespace text node between two inline elements shows up
-                    as a visible gap after the dot ("09. 00"). Flexbox removes the
-                    whitespace entirely and keeps the dot and the seconds tight. */}
-                <span className="text-xl sm:text-2xl font-extrabold text-[var(--brand-text)] dark:text-[var(--brand-text)] font-mono inline-flex items-baseline">
+                {/* Time-as-button. The service time is the single highest-intent
+                    fact on this page, so it should be actionable rather than
+                    inert text: a visitor taps "09.00" and lands on the visit
+                    form, instead of reading the time and then hunting for a
+                    way to act on it.
+
+                    Kept visually identical to the neighbouring stats, so the
+                    row still reads as one set of figures. The only addition is
+                    the underline that appears on hover, which is what tells a
+                    pointer user this figure behaves differently.
+
+                    `flex` rather than inline spans: in `font-mono` every glyph
+                    has the same advance width, so a whitespace text node
+                    between two inline elements showed as a gap ("09. 00"). */}
+                <a
+                  href="#kunjungan"
+                  className="inline-flex items-baseline font-mono text-xl sm:text-2xl font-extrabold text-[var(--brand-text)] dark:text-[var(--brand-text)] hover:underline decoration-2 underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-text)] focus-visible:ring-offset-2 rounded-sm transition-colors"
+                  aria-label="Ibadah Minggu pukul 09.00 WIB — lihat cara berkunjung"
+                >
                   <CountUp value={9} pad={2} />
                   <span className="opacity-60">.</span>
                   <CountUp value={0} pad={2} delay={85} />
-                </span>
+                </a>
                 <p className="text-[11px] sm:text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">WIB · Minggu</p>
               </div>
               <div className="space-y-1">
