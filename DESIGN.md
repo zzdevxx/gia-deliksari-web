@@ -185,6 +185,34 @@ of this document most worth enforcing.
 - Two themes (light + dark), both hand-tuned — not an algorithmic inverse.
 - Elevation is expressed with a 1px border and a surface step, not a shadow.
 
+## Material Layers
+
+Depth in this system comes from a surface ramp, not from shadows. Four layers,
+and the rule for choosing between them:
+
+| Layer | Treatment | Use |
+|---|---|---|
+| **Ground** | 1px border, no shadow | Default. Anything sitting in the document flow. |
+| **Raised** | 1px border at `--border-strong`, surface step | Cards that are clickable, so they read as interactive before the pointer arrives. |
+| **Floating** | `.glass` (blur + translucent fill + lit top edge) | Surfaces genuinely lifted out of the page plane, over content that scrolls behind them. |
+| **Overlay** | `.glass` + `shadow-sm` | Modal panels and toasts. |
+
+**Why a border instead of a shadow.** A 1px border paired with a soft drop
+shadow is the "ghost-card" pattern: the border already separates the surface, so
+the shadow adds weight without adding information. Repeated across a grid, it is
+what makes a page of cards read as one undifferentiated field. This was applied
+119 times in an earlier revision and removed.
+
+**Glass is capped at 1-2 elements per page** (Anti-Slop R-10). The cap is not
+arbitrary: a `backdrop-filter` is re-composited on every scroll frame, so
+stacking it across a grid is what drops frames on a mid-range phone, and text
+over a translucent surface takes its contrast from whatever passes behind it.
+
+Where glass is legitimate here: the sticky navbar, the sticky print toolbar, and
+the two Hero floating cards. Modal panels stay solid even though the scrim
+behind them blurs, because a panel carrying paragraphs cannot depend on scroll
+position for its legibility.
+
 ## Flat Rules
 
 Enforced by review today, by `lint:design` for everything it can see.
@@ -197,7 +225,7 @@ Enforced by review today, by `lint:design` for everything it can see.
 | `bg-gradient-*` | **banned** in components | Flat = solid fill |
 | gradients | image/video scrims, skeleton shimmer, error icon | Legibility surfaces, not decoration. A photo caption needs a scrim to be readable |
 | `blur-3xl` glow orbs | **banned** | At 4% opacity a blurred orb reads as a smudge, not depth |
-| `backdrop-blur` | sticky header, modal scrims | Functional (frosted chrome) |
+| `backdrop-blur` | sticky header, modal scrims, floating cards (max 1-2 per page) | Functional (frosted chrome). See §Material Layers. |
 | `rounded-[2rem]` and larger | **banned** | Too soft to read as flat. One survives, in the gallery lightbox — a scrim, not a card |
 | `rounded-full` | badges, pills, avatars, dots only | A shape carrying meaning |
 
