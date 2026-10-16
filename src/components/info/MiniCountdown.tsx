@@ -15,7 +15,13 @@ interface MiniCountdownProps {
  */
 const MiniCountdown: React.FC<MiniCountdownProps> = ({ targetDate }) => {
   const compute = () => {
-    const target = new Date(`${targetDate}T00:00:00`).getTime();
+    // `targetDate` is a bare `YYYY-MM-DD`. Parsed without a zone it becomes
+    // local midnight, which is a different instant on the Workers runtime
+    // (UTC) than on a congregant's phone (WIB); the two then disagree about
+    // the day count near a boundary and React reports a hydration mismatch.
+    // Pinning to UTC midnight keeps both sides on the same instant. A day
+    // either way makes no difference to a "N days to go" chip.
+    const target = new Date(`${String(targetDate).slice(0, 10)}T00:00:00Z`).getTime();
     const now = Date.now();
     const diff = target - now;
     if (diff <= 0) return null;

@@ -46,10 +46,27 @@ import { Announcement, ServantRoster, MinistryCategory } from '@/types';
 
 type TimeFilter = 'all' | 'upcoming' | 'past';
 
+const WIB_OFFSET_MS = 7 * 3_600_000;
+
+/**
+ * Midnight today in Jakarta, as an instant.
+ *
+ * Not `new Date().setHours(0, 0, 0, 0)`, which reads the host timezone: the
+ * Workers runtime is UTC while a congregant's phone is WIB, so the two
+ * disagree about where "today" starts by seven hours. A warta dated inside
+ * that window lands in the upcoming list on one side and the past list on the
+ * other, and React reports the mismatch as a hydration error before
+ * re-rendering. Anchoring to a fixed offset makes both sides compute the same
+ * boundary.
+ */
 function todayStart(): Date {
- const d = new Date();
- d.setHours(0, 0, 0, 0);
- return d;
+ const shifted = new Date(Date.now() + WIB_OFFSET_MS);
+ const localMidnight = Date.UTC(
+ shifted.getUTCFullYear(),
+ shifted.getUTCMonth(),
+ shifted.getUTCDate(),
+ );
+ return new Date(localMidnight - WIB_OFFSET_MS);
 }
 
 export default function InfoPage() {
@@ -88,8 +105,9 @@ export default function InfoPage() {
  .filter((a) => {
  if (a.isPublished === false) return false;
  if (annCategory !== 'all' && a.category !== annCategory) return false;
- const d = new Date(a.eventDate);
- d.setHours(0, 0, 0, 0);
+ // `eventDate` is a bare `YYYY-MM-DD`, so it parses as UTC midnight; compare
+ // against a UTC midnight too rather than normalizing through the host zone.
+ const d = new Date(`${String(a.eventDate).slice(0, 10)}T00:00:00Z`);
  return timeFilter === 'past' ? d < today : d >= today;
  })
  .sort((a, b) => {
