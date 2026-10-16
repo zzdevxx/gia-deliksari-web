@@ -99,14 +99,13 @@ Test lockout yang dulu di-`skip` sekarang **aktif dan lulus**.
   sebagai `<img>`; opsi kedua adalah menambah kolom unggah di `/admin`.
 
 ### Teknis (belum dikerjakan siapa pun)
-- **CSP memblokir Cloudflare Web Analytics.** Console browser menampilkan
-  `Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/...' violates
-  CSP directive "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube.com"`.
-  Cloudflare menyuntikkan beacon itu di edge, jadi `next.config.ts` tidak tahu soal itu.
-  Efeknya: analitik tidak mencatat apa pun. Perbaikan satu baris (tambahkan host ke
-  `script-src`), tapi **putuskan dulu apakah analytics memang diinginkan** — kalau ya,
-  tambahkan host-nya; kalau tidak, matikan Web Analytics di dashboard Cloudflare.
-  Bukan regresi: sudah begitu sebelum 16 Okt.
+- ~~CSP memblokir Cloudflare Web Analytics~~ — **DIPERIKSA 16 Okt, bukan masalah.**
+  Pesan CSP di console berasal dari beacon yang disuntik Cloudflare **hanya pada
+  sebagian request** (Playwright yang memicunya). HTML produksi sendiri **tidak**
+  memuat `cloudflareinsights.com`: `curl https://giadeliksari.my.id/ | grep cloudflareinsights`
+  → kosong. Artinya Web Analytics tidak aktif di worker ini, jadi tidak ada data yang
+  hilang. Kalau nanti analytics diaktifkan di dashboard, barulah host-nya perlu
+  ditambahkan ke `script-src` — bukan sebelumnya.
 - **Sheet `Sheet1`** di spreadsheet backup — sisa percobaan awal, kosong. Hapus manual.
 - 131 advisory `lint:design` non-blocking (font-size di luar ramp). Sebagian besar
   badge uppercase 10px yang masih terbaca; yang prosa sudah dinaikkan ke 12px.
@@ -153,6 +152,13 @@ sudah dua kali menghasilkan bug berbeda dalam satu hari:**
   ini; `verify-cycle-crosscheck.test.ts` memeriksa 56 kombinasi (8 waktu unduh ×
   7 layanan).
 - Navigasi "Time-as-Button" di hero dan `/info`; kartu pilar span-2 di `/home`.
+- **Padding section responsif** (commit `a7c5e61`): `py-14 sm:py-24`. Hemat 400px di
+  HP (0,47 layar) — **kecil, dan itu wajar**: padding bukan penyumbang utama tinggi
+  `/home`. Total 14,1 → 13,6 layar, jumlah kata 896 tetap sama (nol konten hilang).
+  Desktop tidak berubah (tetap 96px).
+  **Kalau ingin `/home` jauh lebih pendek, yang harus dipangkas adalah KONTEN,
+  bukan margin** — dan itu keputusan pengurus, bukan keputusan teknis. Lihat
+  `docs/REKOMENDASI-UIUX.md` untuk perbandingan dengan situs gereja lain.
 
 ---
 
