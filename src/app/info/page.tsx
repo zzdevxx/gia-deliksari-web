@@ -211,7 +211,7 @@ export default function InfoPage() {
  <Printer className="w-4 h-4" />
  <span>Cetak Bulletin (A4 / PDF)</span>
  </Link>
- <p className="text-[10px] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] mt-2 max-w-2xl">
+ <p className="text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] mt-2 max-w-2xl">
  Buka tampilan print-friendly A4 formal. Pilih &quot;Save as PDF&quot; di dialog cetak browser untuk menyimpan PDF, atau cetak langsung ke printer fisik.
  </p>
  </div>
@@ -718,7 +718,7 @@ export default function InfoPage() {
  ? 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/60'
  : item.status === 'replacement'
  ? 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-800/60'
- : 'bg-slate-50 text-slate-700 border-slate-200 dark:bg-slate-900/40 dark:text-slate-300 dark:border-slate-800/60'
+ : 'bg-[var(--surface-raised)] text-[var(--muted-foreground)] border-[var(--border)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] dark:border-[var(--border)]'
  }`}
  >
  {item.status === 'confirmed'
