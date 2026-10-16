@@ -99,6 +99,14 @@ Test lockout yang dulu di-`skip` sekarang **aktif dan lulus**.
   sebagai `<img>`; opsi kedua adalah menambah kolom unggah di `/admin`.
 
 ### Teknis (belum dikerjakan siapa pun)
+- **CSP memblokir Cloudflare Web Analytics.** Console browser menampilkan
+  `Loading the script 'https://static.cloudflareinsights.com/beacon.min.js/...' violates
+  CSP directive "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube.com"`.
+  Cloudflare menyuntikkan beacon itu di edge, jadi `next.config.ts` tidak tahu soal itu.
+  Efeknya: analitik tidak mencatat apa pun. Perbaikan satu baris (tambahkan host ke
+  `script-src`), tapi **putuskan dulu apakah analytics memang diinginkan** — kalau ya,
+  tambahkan host-nya; kalau tidak, matikan Web Analytics di dashboard Cloudflare.
+  Bukan regresi: sudah begitu sebelum 16 Okt.
 - **Sheet `Sheet1`** di spreadsheet backup — sisa percobaan awal, kosong. Hapus manual.
 - 131 advisory `lint:design` non-blocking (font-size di luar ramp). Sebagian besar
   badge uppercase 10px yang masih terbaca; yang prosa sudah dinaikkan ke 12px.
