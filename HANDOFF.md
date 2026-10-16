@@ -104,6 +104,28 @@ Test lockout yang dulu di-`skip` sekarang **aktif dan lulus**.
   badge uppercase 10px yang masih terbaca; yang prosa sudah dinaikkan ke 12px.
 - `docs/PLAN-FLAT-MINIMAL.md` — dokumen perencanaan lama, bisa diarsipkan
 
+### ⚠️ Aturan zona waktu (pelajaran mahal, 16 Okt 2026)
+
+**Runtime Cloudflare Workers itu UTC, jemaat pakai WIB (+7). Selisih 7 jam ini
+sudah dua kali menghasilkan bug berbeda dalam satu hari:**
+
+1. **Kalender** — `BYDAY` dievaluasi di kerangka `DTSTART`. Menulis DTSTART
+   sebagai instant UTC sementara BYDAY dalam hari WIB membuat Doa Pagi 05.00
+   bergeser sehari (Selasa hilang mulai minggu ke-2). Lihat §sisa pekerjaan.
+2. **Hydration** — `todayStart()` pakai `new Date().setHours(0,0,0,0)` yang
+   membaca TZ host, jadi server dan klien menghitung batas hari berbeda;
+   warta di dalam jendela 7 jam itu masuk daftar "mendatang" di server dan
+   "lampau" di browser → React error #418 tiap muat `/info`.
+
+**Aturannya:**
+- Untuk **batas hari / tanggal sipil**, JANGAN pakai `setHours(0,0,0,0)`.
+  Pakai offset tetap: `Date.now() + 7*3600_000`, baca field UTC, kurangi offset.
+- Untuk **string `YYYY-MM-DD`**, parse dengan `T00:00:00Z` supaya tidak
+  bergantung zona host. Bandingkan dengan batas yang **juga** UTC.
+- Hitung waktu di dalam `useEffect`/handler (hanya jalan di klien), bukan saat
+  render, kalau memang butuh waktu lokal sebenarnya (contoh benar: `Hero.tsx`).
+- `tests/unit/hydration-tz.test.ts` membaca sumber dan mengunci pola ini.
+
 ### Sudah selesai (16 Okt sore)
 - **Unduh jadwal ke kalender HP** — `/api/public/calendar`, tombol di jam tiap kartu
   `/info`. Menangani layanan selang-seling 4 minggu (Youth/Komsel, HANA/Ekklesia)
