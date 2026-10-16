@@ -506,7 +506,7 @@ export default function InfoPage() {
  </div>
  <div className="pt-3 border-t border-[var(--border)]/60 dark:border-[var(--border)]/60 flex items-center justify-between text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
  <AddToCalendar
-                    serviceIds={["hana"]}
+                    serviceIds={["hana", "komsel-ekklesia"]}
                     label="Unduh jadwal Ibadah Wanita HANA dan Komsel Ekklesia ke kalender: Jumat 17.30 WIB dan Selasa 18.30 WIB"
                     className="text-[var(--brand-text)] dark:text-[var(--brand-text)]"
                   >
