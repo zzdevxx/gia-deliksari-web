@@ -263,10 +263,40 @@ bukan keputusan teknis.
 
 ```bash
 npm run typecheck     # 0 error
-npm test              # 35/35
+npm test              # 62/62
 npm run lint:design   # 0 pelanggaran
 npm audit --omit=dev  # 0 kerentanan
 npm run build:cf      # build OpenNext
+```
+
+### ⚠️ Sebelum deploy: cek RAM, dan JANGAN pkill next-server
+
+Mesin ini hanya punya 3,6 GB, dan build butuh >1 GB puncak. Kalau `available`
+di bawah ~1 GB, build mati dengan exit 143 **tanpa pesan error**.
+
+**Jangan `pkill -f next-server`** — 9router (gateway AI) berjalan sebagai proses
+bernama persis itu. Identifikasi dulu:
+
+```bash
+for p in $(pgrep -f "next-server"); do echo "$p -> $(readlink /proc/$p/cwd)"; done
+# cwd mengandung /9router/  -> JANGAN dibunuh
+# cwd mengandung proyek ini -> aman
+```
+
+Hentikan hanya `hindsight-api` kalau ada. Memori akan pulih sendiri setelah
+build selesai (terukur: 176 MB → 1,5 GB dalam ~2 menit).
+
+### Verifikasi kalender setelah deploy
+
+```bash
+curl -s https://giadeliksari.my.id/api/public/calendar | head -20
+# Harus ada BEGIN:VTIMEZONE dengan TZID:Asia/Jakarta SEBELUM VEVENT pertama,
+# dan DTSTART harus berformat  DTSTART;TZID=Asia/Jakarta:YYYYMMDDTHHMMSS
+# (TANPA akhiran Z). Kalau ada 'Z' di DTSTART, bug zona waktu kembali:
+# BYDAY dievaluasi di kerangka DTSTART, jadi doa pagi 05.00 WIB akan bergeser
+# sehari dan Selasa hilang mulai minggu ke-2.
+curl -s "https://giadeliksari.my.id/api/public/calendar?service=doa-pagi" | grep DTSTART
+# Harus 05.00 dan harinya TU (Selasa), bukan hari sebelumnya.
 ```
 
 CI di GitHub menjalankan typecheck + unit + audit + design gate + Playwright

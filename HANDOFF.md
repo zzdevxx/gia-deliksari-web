@@ -90,10 +90,39 @@ Test lockout yang dulu di-`skip` sekarang **aktif dan lulus**.
   kebijakan retensi / consent / jalur penghapusan. Butuh keputusan pengurus.
 - **Data warta** di D1 masih September 2026 (terfilter "lampau"). Pengurus input via `/admin`.
 
+### Menunggu aset dari pengurus
+- **QRIS digital belum ada gambarnya.** Halaman `/persembahan` sekarang menyatakan
+  jujur bahwa QRIS hanya tersedia **fisik di gedung** (lihat `docs/REKOMENDASI-UIUX.md`).
+  Sebelumnya halaman itu menampilkan SVG hiasan 27 kotak yang **tidak bisa dipindai**,
+  tapi berlabel "Scan & Bayar" — jemaat yang mencoba pasti gagal tanpa tahu sebabnya.
+  Kalau pengurus mengirim gambar QRIS resmi (PNG dari m-banking), tinggal dipasang
+  sebagai `<img>`; opsi kedua adalah menambah kolom unggah di `/admin`.
+
 ### Teknis (belum dikerjakan siapa pun)
 - **Sheet `Sheet1`** di spreadsheet backup — sisa percobaan awal, kosong. Hapus manual.
-- 131 advisory `lint:design` non-blocking (font-size di luar ramp)
+- 131 advisory `lint:design` non-blocking (font-size di luar ramp). Sebagian besar
+  badge uppercase 10px yang masih terbaca; yang prosa sudah dinaikkan ke 12px.
 - `docs/PLAN-FLAT-MINIMAL.md` — dokumen perencanaan lama, bisa diarsipkan
+
+### Sudah selesai (16 Okt sore)
+- **Unduh jadwal ke kalender HP** — `/api/public/calendar`, tombol di jam tiap kartu
+  `/info`. Menangani layanan selang-seling 4 minggu (Youth/Komsel, HANA/Ekklesia)
+  dengan predikat minggu siklus, dihitung dalam hari sipil WIB supaya server (UTC)
+  dan HP jemaat (WIB) tidak berbeda pendapat. Doa pagi Selasa-Jumat pakai `BYDAY`
+  multi-hari. Test: `tests/unit/ics.test.ts`, `tests/unit/calendarRoute.test.ts`,
+  `tests/unit/verify-cycle-crosscheck.test.ts`.
+
+  ⚠️ **Jangan kembalikan DTSTART ke format UTC (`...Z`).** `BYDAY` dievaluasi klien
+  **di kerangka DTSTART**. Versi pertama menulis instant UTC + hari WIB; untuk 6
+  layanan sore itu kebetulan benar (lewat 07.00 WIB → tanggal UTC = WIB), tapi Doa
+  Pagi 05.00 WIB = 22.00 UTC **hari sebelumnya**, jadi anchor-nya "Senin" sementara
+  aturannya "Selasa". Instance pertama tetap benar (itu anchor-nya), **instance
+  berikutnya geser 1 hari — Selasa hilang mulai minggu ke-2**, tanpa petunjuk apa pun
+  di halaman. Sekarang `DTSTART;TZID=Asia/Jakarta:<waktu lokal>` + blok `VTIMEZONE`.
+  Test yang hanya memeriksa event **pertama** tidak akan pernah menangkap kelas bug
+  ini; `verify-cycle-crosscheck.test.ts` memeriksa 56 kombinasi (8 waktu unduh ×
+  7 layanan).
+- Navigasi "Time-as-Button" di hero dan `/info`; kartu pilar span-2 di `/home`.
 
 ---
 
