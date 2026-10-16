@@ -53,7 +53,7 @@ export default function HospitalitySection() {
   ];
 
   return (
-    <section id="kunjungan" className="py-24 bg-[var(--surface-raised)]/50 dark:bg-[var(--card)]/50 border-y border-[var(--border)] dark:border-[var(--border)] transition-colors">
+    <section id="kunjungan" className="py-14 sm:py-24 bg-[var(--surface-raised)]/50 dark:bg-[var(--card)]/50 border-y border-[var(--border)] dark:border-[var(--border)] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}

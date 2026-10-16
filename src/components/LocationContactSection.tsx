@@ -47,7 +47,7 @@ export default function LocationContactSection() {
   ];
 
   return (
-    <section id="kontak" className="py-24 bg-[var(--surface-raised)]/60 dark:bg-[var(--card)]/60 border-y border-[var(--border)] dark:border-[var(--border)] transition-colors">
+    <section id="kontak" className="py-14 sm:py-24 bg-[var(--surface-raised)]/60 dark:bg-[var(--card)]/60 border-y border-[var(--border)] dark:border-[var(--border)] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}

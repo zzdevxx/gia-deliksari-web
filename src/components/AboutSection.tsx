@@ -46,7 +46,7 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="tentang" className="py-24 bg-[var(--background)] dark:bg-[var(--card-inverted-bg)] transition-colors">
+    <section id="tentang" className="py-14 sm:py-24 bg-[var(--background)] dark:bg-[var(--card-inverted-bg)] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
