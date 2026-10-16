@@ -76,7 +76,10 @@ export async function POST(req: NextRequest) {
     const existingIds = new Set(existingRows.map((r) => r.drive_file_id));
 
     let ctx: any = null;
-    try { ctx = await getCloudflareContext({ async: true }); } catch {}
+    try { ctx = await getCloudflareContext({ async: true }); } catch {
+      // Absent when this route runs outside the Workers runtime (tests, builds).
+      // The caller below handles a null context rather than failing here.
+    }
 
     for (const file of driveFiles) {
       if (!file.id || existingIds.has(file.id)) {

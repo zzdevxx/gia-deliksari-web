@@ -36,11 +36,11 @@ export default function SuperPage() {
   const router = useRouter();
   const { showToast, ToastView } = useToast();
 
-  // --- Auth state ---
+  // Auth state.
   const [authUser, setAuthUser] = useState<AuthUser | null>(null);
   const [authChecked, setAuthChecked] = useState(false);
 
-  // --- User CRUD state ---
+  // User CRUD state.
   const [users, setUsers] = useState<User[]>([]);
   const [usersLoading, setUsersLoading] = useState(true);
   const [modalState, setModalState] = useState<{
@@ -53,14 +53,14 @@ export default function SuperPage() {
     initial: { username: '', password: '', roles: ['admin'], display_name: '' },
   });
 
-  // --- Audit log state ---
+  // Audit log state.
   const [auditItems, setAuditItems] = useState<AuditEntry[]>([]);
   const [auditTotal, setAuditTotal] = useState(0);
   const [auditOffset, setAuditOffset] = useState(0);
   const [auditLoading, setAuditLoading] = useState(false);
   const [auditFilter, setAuditFilter] = useState({ actor: '', action: '', since: '', until: '' });
 
-  // ---------- Auth ----------
+  // Auth.
   useEffect(() => {
     fetch('/api/auth/check')
       .then((r) => r.json())
@@ -78,7 +78,7 @@ export default function SuperPage() {
       .catch(() => setAuthChecked(true));
   }, [router, showToast]);
 
-  // ---------- User CRUD ----------
+  // User CRUD.
   const loadUsers = async () => {
     setUsersLoading(true);
     try {
@@ -121,14 +121,17 @@ export default function SuperPage() {
   const handleLogout = async () => {
     try {
       await fetch('/api/auth/login', { method: 'DELETE' });
-    } catch {}
+    } catch {
+      // Best-effort server-side session clear. If it fails the user is still sent
+      // to the login screen, and a stale cookie expiring on its own is acceptable.
+    }
     clearClientCachesOnLogout();
     setAuthUser(null);
     setUsers([]);
     showToast('Berhasil logout');
   };
 
-  // ---------- Modal handlers ----------
+  // Modal handlers.
   const openCreateModal = () => {
     setModalState({
       open: true,
@@ -213,7 +216,7 @@ export default function SuperPage() {
     }
   };
 
-  // ---------- Audit log ----------
+  // Audit log.
   const fetchAudit = async (offsetToUse: number, reset = false) => {
     setAuditLoading(true);
     try {
@@ -259,7 +262,7 @@ export default function SuperPage() {
     fetchAudit(newOffset);
   };
 
-  // ---------- Render ----------
+  // Render.
   if (!authChecked) {
     return (
       <main className="min-h-screen flex items-center justify-center bg-[var(--background)] dark:bg-[var(--card-inverted-bg)]">

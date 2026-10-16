@@ -304,7 +304,7 @@ export default function KasDashboard() {
  return true;
  });
 
- // ---------------------- LOGIN SCREEN ----------------------
+ // LOGIN SCREEN.
  if (authChecked && !authUser) {
  return (
  <main className="min-h-screen bg-[var(--background)] dark:bg-[var(--card-inverted-bg)] text-[var(--foreground)] dark:text-[var(--foreground)] flex flex-col justify-between selection:bg-[var(--brand)] selection:text-white">
@@ -398,7 +398,7 @@ export default function KasDashboard() {
  );
  }
 
- // ---------------------- DASHBOARD ----------------------
+ // DASHBOARD.
  return (
  <main className="min-h-screen bg-[var(--background)] dark:bg-[var(--card-inverted-bg)] text-[var(--foreground)] dark:text-[var(--foreground)] flex flex-col justify-between selection:bg-[var(--brand)] selection:text-white">
  <Navbar />
@@ -515,7 +515,7 @@ export default function KasDashboard() {
  {formatIDR(Number(balance.balance))}
  </div>
  <div className="text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
- {Number(balance.balance) < 0 ? '⚠️ Saldo negatif — perlu top-up' : '✓ Kas Grow Generation'}
+ {Number(balance.balance) < 0 ? '⚠️ Saldo negatif, perlu top-up' : '✓ Kas Grow Generation'}
  </div>
  </div>
  </div>

@@ -19,7 +19,10 @@ export async function GET(req: NextRequest) {
   try {
     const ctx = await getCloudflareContext({ async: true });
     r2Configured = Boolean(ctx?.env?.GALLERY_BUCKET);
-  } catch {}
+  } catch {
+    // This endpoint reports what is configured, so a missing context is itself
+    // the answer: r2Configured stays false instead of the request erroring.
+  }
 
   return NextResponse.json({
     timestamp: new Date().toISOString(),

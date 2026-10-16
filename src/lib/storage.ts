@@ -15,9 +15,8 @@ export const SERMONS_KEY = 'gia_deliksari_sermons_v1';
 export const GALLERY_KEY = 'gia_deliksari_gallery_v1';
 export const REQUESTS_KEY = 'gia_deliksari_requests_v1';
 
-// ============================================================================
 // MAPPERS (DB snake_case <-> App models)
-// ============================================================================
+
 
 function toAnnouncementModel(db: any): Announcement {
   return {
@@ -199,9 +198,8 @@ function toRequestDB(model: MinistryRequest) {
   };
 }
 
-// ============================================================================
 // SHARED HELPERS
-// ============================================================================
+
 
 type AnyModel = Announcement | ServantRoster | InventoryItem | Sermon | GalleryItem | MinistryRequest;
 
@@ -241,13 +239,19 @@ async function readViaApi<T>(
         if (json.items.length === 0) {
           // Table is intentionally empty in DB
           if (typeof window !== 'undefined') {
-            try { localStorage.setItem(cacheKey, JSON.stringify([])); } catch {}
+            try { localStorage.setItem(cacheKey, JSON.stringify([])); } catch {
+        // Mirrors only. Private mode and quota errors are expected here and
+        // must not abort the caller, which writes through the API next.
+      }
           }
           return [];
         }
         const list = json.items.map(mapper);
         if (typeof window !== 'undefined') {
-          try { localStorage.setItem(cacheKey, JSON.stringify(list)); } catch {}
+          try { localStorage.setItem(cacheKey, JSON.stringify(list)); } catch {
+        // Mirrors only. Private mode and quota errors are expected here and
+        // must not abort the caller, which writes through the API next.
+      }
         }
         return list;
       }
@@ -261,9 +265,15 @@ async function readViaApi<T>(
   if (typeof window !== 'undefined') {
     const local = localStorage.getItem(cacheKey);
     if (local) {
-      try { return JSON.parse(local); } catch {}
+      try { return JSON.parse(local); } catch {
+        // A malformed or half-written entry is a cache miss, not a failure.
+        // Falling through to the network is the correct recovery.
+      }
     }
-    try { localStorage.setItem(cacheKey, JSON.stringify(fallbackSeed)); } catch {}
+    try { localStorage.setItem(cacheKey, JSON.stringify(fallbackSeed)); } catch {
+        // Mirrors only. Private mode and quota errors are expected here and
+        // must not abort the caller, which writes through the API next.
+      }
   }
   return fallbackSeed;
 }
@@ -302,11 +312,10 @@ async function deleteViaApi(table: string, id: string): Promise<boolean> {
   }
 }
 
-// ============================================================================
-// PUBLIC DATA STORE — safe for visitors & shared components.
+// PUBLIC DATA STORE, safe for visitors & shared components.
 // Reads go through the sanitized public API (no phones, no request inbox);
 // the only write is submitting one's own prayer/ministry request.
-// ============================================================================
+
 export const dataStore = {
   getAnnouncements: (): Promise<Announcement[]> =>
     readViaApi<Announcement>('/api/public/data?table=announcements', ANNOUNCEMENTS_KEY, toAnnouncementModel, INITIAL_ANNOUNCEMENTS),
@@ -364,7 +373,10 @@ export const dataStore = {
         const local = localStorage.getItem(REQUESTS_KEY);
         list = local ? JSON.parse(local) : INITIAL_MINISTRY_REQUESTS;
         list = [item, ...list.filter(r => r.id !== item.id)];
-        try { localStorage.setItem(REQUESTS_KEY, JSON.stringify(list)); } catch {}
+        try { localStorage.setItem(REQUESTS_KEY, JSON.stringify(list)); } catch {
+        // Mirrors only. Private mode and quota errors are expected here and
+        // must not abort the caller, which writes through the API next.
+      }
       }
       return true;
     } catch (err) {
@@ -374,10 +386,9 @@ export const dataStore = {
   },
 };
 
-// ============================================================================
-// ADMIN DATA STORE — every operation flows through /api/admin/data, which
+// ADMIN DATA STORE, every operation flows through /api/admin/data, which
 // enforces the signed admin session cookie server-side with Cloudflare D1.
-// ============================================================================
+
 export const adminDataStore = {
   getAnnouncements: async (): Promise<Announcement[]> => {
     const list = await readViaApi<Announcement>('/api/admin/data?table=announcements', ANNOUNCEMENTS_KEY, toAnnouncementModel, INITIAL_ANNOUNCEMENTS);
@@ -386,7 +397,10 @@ export const adminDataStore = {
 
   saveAnnouncements: async (items: Announcement[]): Promise<boolean> => {
     if (typeof window !== 'undefined') {
-      try { localStorage.setItem(ANNOUNCEMENTS_KEY, JSON.stringify(items)); } catch {}
+      try { localStorage.setItem(ANNOUNCEMENTS_KEY, JSON.stringify(items)); } catch {
+        // Mirrors only. Private mode and quota errors are expected here and
+        // must not abort the caller, which writes through the API next.
+      }
     }
     return await writeViaApi('announcements', items.map(toAnnouncementDB));
   },
@@ -399,7 +413,10 @@ export const adminDataStore = {
 
   saveRoster: async (items: ServantRoster[]): Promise<boolean> => {
     if (typeof window !== 'undefined') {
-      try { localStorage.setItem(ROSTER_KEY, JSON.stringify(items)); } catch {}
+      try { localStorage.setItem(ROSTER_KEY, JSON.stringify(items)); } catch {
+        // Mirrors only. Private mode and quota errors are expected here and
+        // must not abort the caller, which writes through the API next.
+      }
     }
     return await writeViaApi('servant_rosters', items.map(toRosterDB));
   },
@@ -412,7 +429,10 @@ export const adminDataStore = {
 
   saveInventory: async (items: InventoryItem[]): Promise<boolean> => {
     if (typeof window !== 'undefined') {
-      try { localStorage.setItem(INVENTORY_KEY, JSON.stringify(items)); } catch {}
+      try { localStorage.setItem(INVENTORY_KEY, JSON.stringify(items)); } catch {
+        // Mirrors only. Private mode and quota errors are expected here and
+        // must not abort the caller, which writes through the API next.
+      }
     }
     return await writeViaApi('inventory_items', items.map(toInventoryDB));
   },
@@ -425,7 +445,10 @@ export const adminDataStore = {
 
   saveSermons: async (items: Sermon[]): Promise<boolean> => {
     if (typeof window !== 'undefined') {
-      try { localStorage.setItem(SERMONS_KEY, JSON.stringify(items)); } catch {}
+      try { localStorage.setItem(SERMONS_KEY, JSON.stringify(items)); } catch {
+        // Mirrors only. Private mode and quota errors are expected here and
+        // must not abort the caller, which writes through the API next.
+      }
     }
     return await writeViaApi('sermons', items.map(toSermonDB));
   },
@@ -438,7 +461,10 @@ export const adminDataStore = {
 
   saveGallery: async (items: GalleryItem[]): Promise<boolean> => {
     if (typeof window !== 'undefined') {
-      try { localStorage.setItem(GALLERY_KEY, JSON.stringify(items)); } catch {}
+      try { localStorage.setItem(GALLERY_KEY, JSON.stringify(items)); } catch {
+        // Mirrors only. Private mode and quota errors are expected here and
+        // must not abort the caller, which writes through the API next.
+      }
     }
     return await writeViaApi('gallery_items', items.map(toGalleryDB));
   },
@@ -451,7 +477,10 @@ export const adminDataStore = {
 
   updateMinistryRequests: async (items: MinistryRequest[]): Promise<boolean> => {
     if (typeof window !== 'undefined') {
-      try { localStorage.setItem(REQUESTS_KEY, JSON.stringify(items)); } catch {}
+      try { localStorage.setItem(REQUESTS_KEY, JSON.stringify(items)); } catch {
+        // Mirrors only. Private mode and quota errors are expected here and
+        // must not abort the caller, which writes through the API next.
+      }
     }
     return await writeViaApi('ministry_requests', items.map(toRequestDB));
   },
@@ -470,7 +499,10 @@ export function clearClientCachesOnLogout() {
     localStorage.removeItem(REQUESTS_KEY);
     localStorage.removeItem(INVENTORY_KEY);
     localStorage.removeItem(ROSTER_KEY);
-  } catch {}
+  } catch {
+    // Clearing cached copies is best-effort: if storage is unavailable there is
+    // nothing cached to clear, which is the state we wanted anyway.
+  }
 
   try {
     if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
@@ -480,6 +512,9 @@ export function clearClientCachesOnLogout() {
       caches.delete('gia-v1-api').catch(() => {});
       caches.delete('gia-v2-api').catch(() => {});
     }
-  } catch {}
+  } catch {
+    // A browser without the Cache API, or a service worker that is not yet
+    // controlling this page. Neither is an error worth surfacing.
+  }
 }
 

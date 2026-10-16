@@ -233,7 +233,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  <select
  value={category}
  onChange={(e) => setCategory(e.target.value as any)}
- className="w-full px-3 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-3 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ring)]/30 focus:border-[var(--brand)]"
  >
  <option value="ibadah">Ibadah Raya</option>
  <option value="worship">Praise & Worship</option>
@@ -250,7 +250,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  value={date}
  onChange={(e) => setDate(e.target.value)}
  placeholder="Agustus 2026"
- className="w-full px-3 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-3 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ring)]/30 focus:border-[var(--brand)]"
  />
  </div>
  </div>

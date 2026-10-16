@@ -113,7 +113,7 @@ export async function PATCH(
           );
           if (!remaining || remaining.n === 0) {
             return NextResponse.json(
-              { error: 'Tidak dapat menonaktifkan super terakhir — akan mengunci portal /super' },
+              { error: 'Tidak dapat menonaktifkan super terakhir, karena akan mengunci portal /super' },
               { status: 409 },
             );
           }

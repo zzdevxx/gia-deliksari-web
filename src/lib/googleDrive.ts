@@ -55,9 +55,8 @@ export function getDriveClient() {
   }
 }
 
-// ============================================================================
 // SMART FOLDER RESOLUTION (Rolling Cloud Gallery v2)
-// ============================================================================
+
 // Church may have several candidate folders. We probe them in order and use
 // the first one the current credentials can WRITE to. This makes the upload
 // route resilient whether uploads land in a Shared Drive, a folder that the

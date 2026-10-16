@@ -232,7 +232,7 @@ export const INITIAL_INVENTORY: InventoryItem[] = [
     location: 'Panggung Kanan',
     lastCheckedAt: '2026-08-22 17:51',
     checkedBy: 'Tim Musik',
-    notes: 'Drum elektronik tambahan — 1 ekosistem dengan drum akustik',
+    notes: 'Drum elektronik tambahan, 1 ekosistem dengan drum akustik',
     createdAt: '2026-08-01T00:00:00Z',
   },
   {

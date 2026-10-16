@@ -216,7 +216,7 @@ export default async function Image() {
             </div>
             {nextEvent ? (
               <div style={{ display: 'flex', fontSize: 14, color: '#3A3532', marginTop: 4 }}>
-                ⏰ Ibadah terdekat: {fmtDate(nextEvent.service_date)} —{' '}
+                ⏰ Ibadah terdekat: {fmtDate(nextEvent.service_date)},{' '}
                 {CATEGORY_LABEL[nextEvent.service_category] || nextEvent.service_category}
               </div>
             ) : null}

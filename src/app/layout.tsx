@@ -208,7 +208,7 @@ export default function RootLayout({
  <script
  id="theme-init"
  dangerouslySetInnerHTML={{
- __html: `(function(){try{var t=localStorage.getItem('gia_theme');var d=t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',d);document.documentElement.dataset.theme=d?'dark':'light';}catch(e){}})();`,
+ __html: `(function(){try{var t=localStorage.getItem('gia_theme');var d=t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',d);document.documentElement.dataset.theme=d?'dark':'light';}catch(e){/* storage disabled, e.g. private mode: keep the default light theme */}})();`,
  }}
  />
  </head>

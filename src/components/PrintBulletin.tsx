@@ -345,7 +345,7 @@ const PrintBulletin: React.FC<BulletinProps> = ({ announcements, rosters, weekLa
         </div>
 
         <div className="bulletin-footer">
-          <div>Dicetak dari Portal GIA Deliksari — {new Date().toLocaleString('id-ID')}</div>
+          <div>Dicetak dari Portal GIA Deliksari, {new Date().toLocaleString('id-ID')}</div>
           <div className="contact">
             Pastoral: 0896-2096-1103 · Email: giadeliksarichurch@gmail.com
           </div>

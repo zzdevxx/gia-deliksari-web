@@ -198,7 +198,7 @@ export default function Hero() {
                 <a
                   href="#kunjungan"
                   className="inline-flex items-baseline font-mono text-xl sm:text-2xl font-extrabold text-[var(--brand-text)] dark:text-[var(--brand-text)] hover:underline decoration-2 underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-text)] focus-visible:ring-offset-2 rounded-sm transition-colors"
-                  aria-label="Ibadah Minggu pukul 09.00 WIB — lihat cara berkunjung"
+                  aria-label="Ibadah Minggu pukul 09.00 WIB, lihat cara berkunjung"
                 >
                   <CountUp value={9} pad={2} />
                   <span className="opacity-60">.</span>

@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'GIA Deliksari Semarang — Growing Church',
+    name: 'GIA Deliksari Semarang: Growing Church',
     short_name: 'GIA Deliksari',
     description:
       'Website Resmi Gereja Isa Almasih Deliksari Semarang. Jadwal Ibadah, Warta Jemaat, Roster Pelayanan, Permohonan Doa & Khotbah.',

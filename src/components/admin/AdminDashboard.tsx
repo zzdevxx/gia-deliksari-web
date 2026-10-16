@@ -349,7 +349,10 @@ export default function AdminDashboard() {
  }
  const updated = announcements.filter((item) => item.id !== id);
  setAnnouncements(updated);
- try { localStorage.setItem(ANNOUNCEMENTS_KEY, JSON.stringify(updated)); } catch {}
+ try { localStorage.setItem(ANNOUNCEMENTS_KEY, JSON.stringify(updated)); } catch {
+      // Local mirror only, kept so a reload shows data before the API answers.
+      // Private mode blocks it; the request that follows is the real write.
+    }
  showToast('Warta Jemaat berhasil dihapus');
  }
  };
@@ -408,7 +411,10 @@ export default function AdminDashboard() {
  }
  const updated = roster.filter((item) => item.id !== id);
  setRoster(updated);
- try { localStorage.setItem(ROSTER_KEY, JSON.stringify(updated)); } catch {}
+ try { localStorage.setItem(ROSTER_KEY, JSON.stringify(updated)); } catch {
+      // Local mirror only, kept so a reload shows data before the API answers.
+      // Private mode blocks it; the request that follows is the real write.
+    }
  showToast('Petugas berhasil dihapus dari jadwal');
  }
  };
@@ -434,7 +440,10 @@ export default function AdminDashboard() {
  }
  const updated = requests.filter(r => r.id !== id);
  setRequests(updated);
- try { localStorage.setItem(REQUESTS_KEY, JSON.stringify(updated)); } catch {}
+ try { localStorage.setItem(REQUESTS_KEY, JSON.stringify(updated)); } catch {
+      // Local mirror only, kept so a reload shows data before the API answers.
+      // Private mode blocks it; the request that follows is the real write.
+    }
  showToast('Permohonan berhasil dihapus');
  }
  };
@@ -473,7 +482,10 @@ export default function AdminDashboard() {
  }
  const updated = sermons.filter(s => s.id !== id);
  setSermons(updated);
- try { localStorage.setItem(SERMONS_KEY, JSON.stringify(updated)); } catch {}
+ try { localStorage.setItem(SERMONS_KEY, JSON.stringify(updated)); } catch {
+      // Local mirror only, kept so a reload shows data before the API answers.
+      // Private mode blocks it; the request that follows is the real write.
+    }
  showToast('Khotbah berhasil dihapus');
  }
  };
@@ -542,7 +554,10 @@ export default function AdminDashboard() {
  }
  const updated = gallery.filter(g => g.id !== id);
  setGallery(updated);
- try { localStorage.setItem(GALLERY_KEY, JSON.stringify(updated)); } catch {}
+ try { localStorage.setItem(GALLERY_KEY, JSON.stringify(updated)); } catch {
+      // Local mirror only, kept so a reload shows data before the API answers.
+      // Private mode blocks it; the request that follows is the real write.
+    }
  showToast('Foto galeri berhasil dihapus');
  }
  };
@@ -609,7 +624,10 @@ export default function AdminDashboard() {
  }
  const updated = inventory.filter((inv) => inv.id !== id);
  setInventory(updated);
- try { localStorage.setItem(INVENTORY_KEY, JSON.stringify(updated)); } catch {}
+ try { localStorage.setItem(INVENTORY_KEY, JSON.stringify(updated)); } catch {
+      // Local mirror only, kept so a reload shows data before the API answers.
+      // Private mode blocks it; the request that follows is the real write.
+    }
  showToast('Barang inventaris berhasil dihapus');
  }
  };
@@ -655,9 +673,7 @@ export default function AdminDashboard() {
  ? requests 
  : requests.filter(r => r.type === requestFilter);
 
- // ----------------------------------------------------
- // LOGIN SCREEN
- // ----------------------------------------------------
+ // LOGIN SCREEN.
  if (!authChecked) {
  return (
  <main className="min-h-screen flex items-center justify-center bg-[var(--background)] dark:bg-[var(--card-inverted-bg)]">
@@ -749,9 +765,7 @@ export default function AdminDashboard() {
  );
  }
 
- // ----------------------------------------------------
- // MAIN ADMIN DASHBOARD
- // ----------------------------------------------------
+ // MAIN ADMIN DASHBOARD.
  return (
  <main className="min-h-screen bg-[var(--background)] dark:bg-[var(--card-inverted-bg)] text-[var(--foreground)] dark:text-[var(--foreground)] flex flex-col justify-between selection:bg-[var(--brand)] selection:text-white">
  <Navbar />
@@ -1895,7 +1909,7 @@ export default function AdminDashboard() {
  <div id="printable-roster" className="space-y-4 text-xs sm:text-sm">
  <div className="p-4 rounded-xl bg-stone-50 border text-center space-y-1">
  <h4 className="font-extrabold text-base uppercase tracking-wider">{getCategoryLabel(rosterCategoryTab)}</h4>
- <p className="text-stone-600 text-xs">GIA Deliksari — "Growing Church!" • Jl. Deliksari Gunungpati Semarang</p>
+ <p className="text-stone-600 text-xs">GIA Deliksari "Growing Church!" • Jl. Deliksari Gunungpati Semarang</p>
  </div>
 
  <table className="w-full text-left border-collapse border border-stone-200">

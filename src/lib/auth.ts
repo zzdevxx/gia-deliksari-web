@@ -61,9 +61,7 @@ const PIN_MAX = 64;   // Max password length
 // toward a weak-but-complex password they must write down.
 const SUPER_MIN = 8;
 
-// ---------------------------------------------------------------------------
-// Session signing
-// ---------------------------------------------------------------------------
+// Session signing.
 
 function getSessionSecret(): string {
   const secret = process.env.ADMIN_SESSION_SECRET;
@@ -105,9 +103,7 @@ export function decodeSession(token: string | undefined | null): SessionPayload 
   }
 }
 
-// ---------------------------------------------------------------------------
-// Cookie helpers
-// ---------------------------------------------------------------------------
+// Cookie helpers.
 
 export function setSessionCookie(res: { cookies: { set(name: string, value: string, opts: any): void } }, token: string) {
   res.cookies.set(COOKIE_NAME, token, {
@@ -129,11 +125,11 @@ export function clearSessionCookie(res: { cookies: { set(name: string, value: st
   });
 }
 
-// ---------------------------------------------------------------------------
+// -.
 // Password / PIN helpers — bcrypt cost 10
 // PIN must be 4-64 chars; canonical PIN is exactly 4 digits but we accept
 // longer passwords for superuser accounts.
-// ---------------------------------------------------------------------------
+// -.
 
 export async function hashPassword(plain: string): Promise<string> {
   return bcrypt.hash(plain, BCRYPT_COST);
@@ -173,9 +169,7 @@ export function validateNewPassword(
   return { ok: true, value: trimmed };
 }
 
-// ---------------------------------------------------------------------------
-// User lookup
-// ---------------------------------------------------------------------------
+// User lookup.
 
 interface UserCacheEntry {
   user: User;
@@ -243,12 +237,15 @@ async function fetchUserByCredential(username: string, plainPassword: string): P
       [username],
     );
     if (!data) {
-      console.warn('[auth] no user found for', username);
+      // The attempted name is deliberately not logged: these lines are readable
+      // through `wrangler tail`, and the two distinct messages would together
+      // reveal which usernames exist. Counts still reach the rate limiter.
+      console.warn('[auth] login rejected: no matching active user');
       return null;
     }
     const ok = await verifyPassword(plainPassword, data.password_hash);
     if (!ok) {
-      console.warn('[auth] bcrypt mismatch for', username);
+      console.warn('[auth] login rejected: password mismatch');
       return null;
     }
     return normalizeUser(data);
@@ -258,9 +255,7 @@ async function fetchUserByCredential(username: string, plainPassword: string): P
   }
 }
 
-// ---------------------------------------------------------------------------
-// Cookie reader
-// ---------------------------------------------------------------------------
+// Cookie reader.
 
 export function readSessionFromCookie(req: { cookies: { get(name: string): { value: string } | undefined } }): SessionPayload | null {
   const cookie = req.cookies.get(COOKIE_NAME)?.value;
@@ -294,7 +289,7 @@ export async function requireRole(
   if (!hasRole) {
     return new Response(
       JSON.stringify({
-        error: `Forbidden — roles [${user.roles.join(', ')}] not in [${allowed.join(', ')}]`,
+        error: `Forbidden: roles [${user.roles.join(', ')}] not in [${allowed.join(', ')}]`,
       }),
       { status: 403, headers: { 'Content-Type': 'application/json' } },
     );
@@ -302,9 +297,7 @@ export async function requireRole(
   return user;
 }
 
-// ---------------------------------------------------------------------------
-// Login
-// ---------------------------------------------------------------------------
+// Login.
 
 export async function login(
   username: string,
@@ -333,9 +326,7 @@ export async function login(
   return { user, token };
 }
 
-// ---------------------------------------------------------------------------
-// User creation
-// ---------------------------------------------------------------------------
+// User creation.
 
 export interface CreateUserInput {
   username: string;
@@ -406,7 +397,7 @@ export const SESSION_COOKIE_NAME = COOKIE_NAME;
 export const SESSION_MAX_AGE_SECONDS = SESSION_DURATION_SECONDS;
 export const SUPER_MIN_PASSWORD_LENGTH = SUPER_MIN;
 
-// ---------------------------------------------------------------------------
+// -.
 // Rate limiting (login attempt lockout)
 //
 // The counter lives in D1, not memory.
@@ -420,7 +411,7 @@ export const SUPER_MIN_PASSWORD_LENGTH = SUPER_MIN;
 //
 // A 2-second in-process memo sits in front of D1 so a burst against one isolate
 // does not hit the database on every request. The memo is an optimisation only.
-// ---------------------------------------------------------------------------
+// -.
 
 const LOGIN_MAX_FAILS = 3;
 const LOGIN_LOCKOUT_MS = 60_000; // 1 minute
