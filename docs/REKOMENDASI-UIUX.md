@@ -143,3 +143,59 @@ ditandai berguna; The Haven Church ditandai tidak berguna)
 
 **Pola 2026:** NN/g dan lain-lain soal card vs list, scroll-driven animation,
 dan status glassmorphism
+
+---
+
+## 🔴 TEMUAN BARU (16 Okt 2026) — QRIS di `/persembahan` tidak bisa dipindai
+
+Saat membereskan warna hardcoded di `GivingSection.tsx`, ditemukan hal yang
+jauh lebih penting daripada warnanya:
+
+**QR yang ditampilkan adalah SVG hiasan, bukan kode QR.**
+
+- `GivingSection.tsx:305` dan `:420` — komentar di kode sendiri menyebutnya
+  *"Stylized QR Code SVG"*.
+- Isinya **27 `<rect>` tangan**, bukan matriks modul. QR asli butuh ratusan
+  modul (versi terendah pun 21×21 = 441 sel); 27 kotak tidak bisa meng-encode
+  apa pun.
+- **Tidak ada data terenkode di dalamnya.** Titik tengahnya malah monogram
+  gereja (lingkaran + garis salib).
+
+**Kenapa ini serius:** label di sekitarnya berbunyi:
+
+| Teks di UI | Kenyataannya |
+|---|---|
+| "Scan & Bayar (QRIS)" | tidak ada yang bisa dipindai |
+| "Klik untuk Perbesar QRIS" | memperbesar gambar hiasan |
+| "Buka QRIS Layar Penuh" | memperbesar gambar hiasan |
+| "SCAN QRIS RESMI DI MEJA PENERIMAAN GEREJA" | ⚠️ kontradiksi: gambar di layar bukan QR resmi |
+
+Jemaat yang membuka `/persembahan` di HP akan mencoba memindai layarnya,
+gagal, dan tidak tahu kenapa. Yang lebih buruk: keterangan
+*"SCAN QRIS RESMI DI MEJA PENERIMAAN GEREJA"* menempel pada gambar yang
+**bukan** QR resmi, sehingga layar dan kenyataan saling bertentangan.
+
+**Yang masih benar di halaman itu:** transfer bank BCA (`2521151515`) dan BRI
+(`034201001515150`) dengan tombol salin — nomornya nyata dan berfungsi. Jadi
+jemaat masih punya jalur yang sah; hanya jalur QRIS yang menyesatkan.
+
+**Catatan tambahan:** admin **tidak punya** tempat mengunggah QRIS asli
+(dicari di `src/components/admin/` dan `src/components/super/` — nol hasil).
+`seedData.ts:296` menyebut "QRIS Standee" sebagai **inventaris fisik**
+(`IBD-QRIS-01`, "Code QR ditempel di standee"), bukan aset digital.
+
+### Dua pilihan perbaikan
+
+**A. Jujur tanpa aset baru (bisa dikerjakan sekarang):**
+Ganti blok QR dengan keterangan bahwa QRIS hanya tersedia **fisik di gedung**,
+dan arahkan ke transfer bank + WhatsApp pastoral. Menghapus gambar yang tidak
+berfungsi lebih baik daripada membiarkannya terlihat bisa dipindai.
+
+**B. QRIS asli (butuh aset dari pengurus):**
+Minta gambar QRIS resmi dari pengurus gereja (PNG dari m-banking), unggah ke
+`public/`, dan tampilkan sebagai `<img>`. Sekaligus tambahkan kolom di admin
+supaya bisa diganti tanpa deploy.
+
+**Rekomendasi: kerjakan A sekarang, siapkan B** saat pengurus mengirim
+gambar QRIS resminya. Membiarkan keadaan sekarang berarti setiap jemaat yang
+mencoba memindai mengalami kegagalan yang tidak bisa mereka jelaskan.

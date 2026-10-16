@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
  Heart,
  Copy,
@@ -10,13 +10,10 @@ import {
  CreditCard,
  QrCode,
  Box,
- X,
- Maximize2,
  Download,
  Info
 } from 'lucide-react';
 import { WhatsAppIcon } from './Icons';
-import { useFocusTrap } from '@/lib/useFocusTrap';
 
 type GivingCategory = 'umum' | 'perpuluhan' | 'pembangunan' | 'diakonia';
 
@@ -30,7 +27,6 @@ interface CategoryOption {
 export default function GivingSection() {
  const [selectedCategory, setSelectedCategory] = useState<GivingCategory>('umum');
  const [copiedKey, setCopiedKey] = useState<string | null>(null);
- const [showQrisModal, setShowQrisModal] = useState(false);
 
  const categories: CategoryOption[] = [
  {
@@ -78,20 +74,6 @@ export default function GivingSection() {
  color: 'border-[var(--border)] dark:border-[var(--border)]',
  },
  ];
-
- // Handle escape key to close QRIS modal
- useEffect(() => {
- const handleKeyDown = (e: KeyboardEvent) => {
- if (e.key === 'Escape' && showQrisModal) {
- setShowQrisModal(false);
- }
- };
- window.addEventListener('keydown', handleKeyDown);
- return () => window.removeEventListener('keydown', handleKeyDown);
- }, [showQrisModal]);
-
- // Contain Tab inside the QRIS dialog and restore focus to the trigger on close.
- const qrisDialogRef = useFocusTrap<HTMLDivElement>(showQrisModal, () => setShowQrisModal(false));
 
  const handleCopy = (text: string, key: string) => {
  navigator.clipboard.writeText(text);
@@ -280,7 +262,7 @@ export default function GivingSection() {
  <QrCode className="w-8 h-8" />
  </div>
  <span className="inline-block px-3 py-1 rounded-xl text-xs font-bold border bg-[var(--status-success-tint)] text-[var(--status-success)] border-[var(--status-success-border)] dark:bg-[var(--status-success-tint)] dark:text-[var(--status-success)] dark:border-[var(--status-success-border)]">
- Scan & Bayar (QRIS)
+ QRIS di Gedung
  </span>
  </div>
 
@@ -293,52 +275,25 @@ export default function GivingSection() {
  </p>
  </div>
 
- {/* QR Code Card Preview */}
- <div
- onClick={() => setShowQrisModal(true)}
- className="group relative cursor-pointer p-4 rounded-2xl bg-[var(--background)] dark:bg-[var(--surface-raised)] border-2 border-dashed border-emerald-300 dark:border-emerald-800 flex flex-col items-center justify-center hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 transition-all"
- >
- <div className="w-32 h-32 rounded-xl bg-[var(--card)] dark:bg-[var(--card)] p-2 border border-[var(--border-strong)] flex flex-col items-center justify-center">
- {/* Stylized QR Code SVG */}
- <svg className="w-full h-full text-slate-800" viewBox="0 0 100 100" fill="currentColor">
- <rect x="0" y="0" width="30" height="30" rx="4" fill="currentColor" />
- <rect x="5" y="5" width="20" height="20" rx="2" fill="white" />
- <rect x="10" y="10" width="10" height="10" fill="currentColor" />
- <rect x="70" y="0" width="30" height="30" rx="4" fill="currentColor" />
- <rect x="75" y="5" width="20" height="20" rx="2" fill="white" />
- <rect x="80" y="10" width="10" height="10" fill="currentColor" />
- <rect x="0" y="70" width="30" height="30" rx="4" fill="currentColor" />
- <rect x="5" y="75" width="20" height="20" rx="2" fill="white" />
- <rect x="10" y="80" width="10" height="10" fill="currentColor" />
- <rect x="40" y="10" width="20" height="10" fill="currentColor" />
- <rect x="40" y="30" width="10" height="20" fill="currentColor" />
- <rect x="60" y="35" width="15" height="15" fill="currentColor" />
- <rect x="35" y="60" width="25" height="15" fill="currentColor" />
- <rect x="70" y="70" width="20" height="20" rx="2" fill="currentColor" />
- </svg>
- </div>
- <div className="mt-2.5 flex items-center gap-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-400 group-hover:underline">
- <Maximize2 className="w-3.5 h-3.5" />
- <span>Klik untuk Perbesar QRIS</span>
- </div>
- </div>
-
- <p className="text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] text-center">
- Mendukung seluruh m-Banking dan dompet digital berlogo QRIS Nasional.
+ {/* QRIS is physical only, so this card says so rather than drawing a code.
+ A previous version showed a hand-built SVG with the finder squares of a QR
+ but no encoded data, captioned "Scan & Bayar". It could not be scanned, and
+ the caption gave no hint why. A picture that cannot do what its caption
+ promises is worse than no picture. */}
+ <div className="p-4 rounded-2xl bg-[var(--background)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] space-y-2.5">
+ <p className="text-xs font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">
+ QRIS tersedia di gedung gereja
+ </p>
+ <p className="text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] leading-relaxed">
+ Barcode QRIS resmi terpasang fisik di meja penerimaan dan lobi
+ ibadah. Untuk memberi dari rumah, gunakan transfer bank di
+ samping, atau hubungi WhatsApp pastoral.
  </p>
  </div>
-
- <button
- type="button"
- onClick={() => setShowQrisModal(true)}
- className="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-2 transition-all"
- >
- <QrCode className="w-4 h-4" />
- <span>Buka QRIS Layar Penuh</span>
- </button>
+ </div>
+ </div>
  </div>
 
- </div>
 
  {/* Dynamic WhatsApp Confirmation Strip */}
  <div className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -374,130 +329,6 @@ export default function GivingSection() {
 
  </div>
 
- {/* QRIS High-Res Modal Dialog */}
- {showQrisModal && (
- <div
- ref={qrisDialogRef}
- role="dialog"
- aria-modal="true"
- aria-label="QRIS Pembayaran Nasional"
- tabIndex={-1}
- className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs animate-in fade-in duration-200"
- onClick={() => setShowQrisModal(false)}
- >
- <div
- className="relative w-full max-w-sm rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] p-6 sm:p-7 flex flex-col items-center text-center space-y-4 animate-in zoom-in-95 duration-200"
- onClick={(e) => e.stopPropagation()}
- >
- {/* Close Button */}
- <button
- type="button"
- onClick={() => setShowQrisModal(false)}
- className="absolute top-4 right-4 p-2 rounded-full text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
- aria-label="Tutup QRIS"
- >
- <X className="w-5 h-5" />
- </button>
-
- {/* Header Modal */}
- <div className="space-y-1">
- <span className="text-[10px] font-extrabold uppercase tracking-widest text-[var(--brand-text)] dark:text-[var(--brand-text)]">
- QRIS Pembayaran Nasional
- </span>
- <h3 className="text-lg font-black text-[var(--foreground)] dark:text-[var(--foreground)]">
- GIA DELIKSARI SEMARANG
- </h3>
- <p className="text-[11px] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
- Tersedia di Meja Penerimaan & Lobi Ibadah Gereja
- </p>
- </div>
-
- {/* QR Code Container */}
- <div className="p-4 rounded-2xl bg-[var(--card)] dark:bg-[var(--card)] border border-[var(--border-strong)] w-full flex flex-col items-center">
- <div className="w-56 h-56 flex items-center justify-center">
- {/* Clear Stylized QR SVG with Church Monogram Center */}
- <svg className="w-full h-full text-slate-900" viewBox="0 0 100 100" fill="currentColor">
- {/* Corner Position Markers */}
- <rect x="2" y="2" width="28" height="28" rx="4" fill="currentColor" />
- <rect x="6" y="6" width="20" height="20" rx="2" fill="white" />
- <rect x="10" y="10" width="12" height="12" rx="1" fill="#8B1E28" />
-
- <rect x="70" y="2" width="28" height="28" rx="4" fill="currentColor" />
- <rect x="74" y="6" width="20" height="20" rx="2" fill="white" />
- <rect x="78" y="10" width="12" height="12" rx="1" fill="#8B1E28" />
-
- <rect x="2" y="70" width="28" height="28" rx="4" fill="currentColor" />
- <rect x="6" y="74" width="20" height="20" rx="2" fill="white" />
- <rect x="10" y="78" width="12" height="12" rx="1" fill="#8B1E28" />
-
- {/* QR Pattern Elements */}
- <rect x="36" y="6" width="8" height="8" rx="1" fill="currentColor" />
- <rect x="48" y="6" width="6" height="6" rx="1" fill="currentColor" />
- <rect x="58" y="6" width="6" height="6" rx="1" fill="currentColor" />
- <rect x="36" y="18" width="12" height="6" rx="1" fill="currentColor" />
- <rect x="52" y="18" width="12" height="8" rx="1" fill="currentColor" />
-
- <rect x="8" y="36" width="18" height="6" rx="1" fill="currentColor" />
- <rect x="8" y="48" width="8" height="14" rx="1" fill="currentColor" />
- <rect x="20" y="46" width="12" height="6" rx="1" fill="currentColor" />
- <rect x="20" y="56" width="8" height="8" rx="1" fill="currentColor" />
-
- {/* Center Monogram Shield */}
- <circle cx="50" cy="50" r="14" fill="#8B1E28" />
- <path d="M50 40 L50 60 M44 46 L56 46" stroke="white" strokeWidth="3" strokeLinecap="round" />
-
- <rect x="70" y="36" width="10" height="8" rx="1" fill="currentColor" />
- <rect x="84" y="36" width="10" height="18" rx="1" fill="currentColor" />
- <rect x="68" y="48" width="12" height="12" rx="1" fill="currentColor" />
-
- <rect x="36" y="72" width="10" height="12" rx="1" fill="currentColor" />
- <rect x="50" y="72" width="14" height="6" rx="1" fill="currentColor" />
- <rect x="36" y="88" width="28" height="6" rx="1" fill="currentColor" />
- <rect x="68" y="72" width="10" height="10" rx="1" fill="currentColor" />
- <rect x="82" y="72" width="12" height="22" rx="1" fill="currentColor" />
- <rect x="68" y="86" width="10" height="8" rx="1" fill="currentColor" />
- </svg>
- </div>
- <div className="text-[10px] font-bold text-slate-500 mt-2">
- SCAN QRIS RESMI DI MEJA PENERIMAAN GEREJA
- </div>
- </div>
-
- {/* Instruction Steps */}
- <div className="w-full text-left p-3.5 rounded-xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs space-y-1.5">
- <div className="font-bold text-[var(--foreground)] dark:text-[var(--foreground)]">
- Informasi Persembahan Non-Tunai:
- </div>
- <ul className="list-disc pl-4 space-y-0.5 text-[11px] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
- <li>Barcode QRIS fisik resmi terpasang di kotak persembahan dan lobi gereja.</li>
- <li>Mendukung seluruh m-Banking (BCA, Mandiri, BRI, dll) dan dompet digital (GoPay, OVO, Dana).</li>
- <li>Untuk info rekening gereja terkini, hubungi WhatsApp Pastoral: <strong>0896-2096-1103</strong>.</li>
- </ul>
- </div>
-
- {/* Buttons */}
- <div className="w-full flex items-center gap-2">
- <button
- type="button"
- onClick={() => setShowQrisModal(false)}
- className="flex-1 py-2.5 rounded-xl border border-[var(--border)] dark:border-[var(--border)] text-xs font-bold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] transition-colors"
- >
- Tutup
- </button>
- <a
- href={whatsappConfirmUrl}
- target="_blank"
- rel="noopener noreferrer"
- className="flex-1 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-colors"
- >
- <WhatsAppIcon className="w-4 h-4 text-emerald-200" />
- <span>Konfirmasi</span>
- </a>
- </div>
-
- </div>
- </div>
- )}
 
  </section>
  );
