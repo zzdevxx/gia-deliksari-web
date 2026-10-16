@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import MiniCountdown from '@/components/info/MiniCountdown';
+import { AddToCalendar } from '@/components/info/AddToCalendar';
 import CategoryBadge from '@/components/info/CategoryBadge';
 import RosterCategoryLabel from '@/components/info/RosterCategoryLabel';
 import {
@@ -392,7 +393,7 @@ export default function InfoPage() {
 
  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
  {/* 1. Ibadah Raya Minggu */}
- <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
+ <div className="group/card p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
  <div className="space-y-3">
  <div className="flex items-center justify-between">
  <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--surface-raised)] text-[var(--brand-text)] dark:bg-[var(--surface-raised)] dark:text-[var(--brand-text)] border border-[var(--border)] dark:border-[var(--border)]">
@@ -408,17 +409,23 @@ export default function InfoPage() {
  </p>
  </div>
  <div className="pt-3 border-t border-[var(--border)]/60 dark:border-[var(--border)]/60 flex items-center justify-between text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
- <span className="flex items-center gap-1 font-mono text-[var(--brand-text)] dark:text-[var(--brand-text)] font-bold">
+ <AddToCalendar
+                    serviceIds={["ibadah-raya"]}
+                    label="Unduh jadwal Ibadah Raya Minggu ke kalender: Minggu 09.00 WIB"
+                    className="text-[var(--brand-text)] dark:text-[var(--brand-text)]"
+                  >
+                    <span className="inline-flex items-center gap-1">
  <Clock className="w-3.5 h-3.5" /> 09.00 - 11.00 WIB
  </span>
+                  </AddToCalendar>
  <span className="flex items-center gap-1">
  <MapPin className="w-3.5 h-3.5 text-[var(--brand-text)] dark:text-[var(--brand-text)]" /> Gedung Utama
  </span>
- </div>
+                 </div>
  </div>
 
  {/* 2. COC Kidz (Sekolah Minggu) */}
- <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
+ <div className="group/card p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
  <div className="space-y-3">
  <div className="flex items-center justify-between">
  <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)]">
@@ -434,17 +441,23 @@ export default function InfoPage() {
  </p>
  </div>
  <div className="pt-3 border-t border-[var(--border)]/60 dark:border-[var(--border)]/60 flex items-center justify-between text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
- <span className="flex items-center gap-1 font-mono text-[var(--ink-strong)] font-bold">
+ <AddToCalendar
+                    serviceIds={["coc-kidz"]}
+                    label="Unduh jadwal COC Kidz ke kalender: Minggu 09.30 WIB"
+                    className="text-[var(--ink-strong)]"
+                  >
+                    <span className="inline-flex items-center gap-1">
  <Clock className="w-3.5 h-3.5" /> 09.30 - 10.30 WIB
  </span>
+                  </AddToCalendar>
  <span className="flex items-center gap-1">
  <MapPin className="w-3.5 h-3.5 text-[var(--ink-strong)]" /> Ruang Bethel
  </span>
- </div>
+                 </div>
  </div>
 
  {/* 3. Grow Generation Youth / PRBK */}
- <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
+ <div className="group/card p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
  <div className="space-y-3">
  <div className="flex items-center justify-between">
  <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--surface-raised)] text-[var(--ink-strong)] dark:bg-[var(--surface-raised)] dark:text-[var(--muted-foreground)] border border-[var(--border)] dark:border-[var(--border)]">
@@ -460,17 +473,23 @@ export default function InfoPage() {
  </p>
  </div>
  <div className="pt-3 border-t border-[var(--border)]/60 dark:border-[var(--border)]/60 flex items-center justify-between text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
- <span className="flex items-center gap-1 font-mono text-[var(--ink-strong)] font-bold">
+ <AddToCalendar
+                    serviceIds={["grow-generation"]}
+                    label="Unduh jadwal Grow Generation Youth ke kalender: Sabtu 18.00 WIB"
+                    className="text-[var(--ink-strong)]"
+                  >
+                    <span className="inline-flex items-center gap-1">
  <Clock className="w-3.5 h-3.5" /> 18.00 - 20.00 WIB
  </span>
+                  </AddToCalendar>
  <span className="flex items-center gap-1">
  <MapPin className="w-3.5 h-3.5 text-[var(--ink-strong)]" /> Sanctuary / Bethel
  </span>
- </div>
+                 </div>
  </div>
 
  {/* 4. Wanita HANA & Komsel Ekklesia */}
- <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
+ <div className="group/card p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
  <div className="space-y-3">
  <div className="flex items-center justify-between">
  <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-[var(--brand-tint)] text-[var(--brand-text)] dark:bg-[var(--brand-tint)] dark:text-[var(--brand-text)] border border-[var(--brand-tint-border)] dark:border-[var(--brand-tint-border)]">
@@ -486,17 +505,23 @@ export default function InfoPage() {
  </p>
  </div>
  <div className="pt-3 border-t border-[var(--border)]/60 dark:border-[var(--border)]/60 flex items-center justify-between text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
- <span className="flex items-center gap-1 font-mono text-[var(--brand-text)] font-bold">
+ <AddToCalendar
+                    serviceIds={["hana"]}
+                    label="Unduh jadwal Ibadah Wanita HANA dan Komsel Ekklesia ke kalender: Jumat 17.30 WIB dan Selasa 18.30 WIB"
+                    className="text-[var(--brand-text)] dark:text-[var(--brand-text)]"
+                  >
+                    <span className="inline-flex items-center gap-1">
  <Clock className="w-3.5 h-3.5" /> 17.30 / 18.30 WIB
  </span>
+                  </AddToCalendar>
  <span className="flex items-center gap-1">
  <MapPin className="w-3.5 h-3.5 text-[var(--brand-text)]" /> Gedung Utama
  </span>
- </div>
+                 </div>
  </div>
 
  {/* 5. Ibadah Doa Pagi (Onsite + Zoom) */}
- <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
+ <div className="group/card p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
  <div className="space-y-3">
  <div className="flex items-center justify-between">
  <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
@@ -529,7 +554,7 @@ export default function InfoPage() {
  </div>
 
  {/* 6. Latihan Musik & Jam Pelayanan Kantor */}
- <div className="p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
+ <div className="group/card p-6 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] flex flex-col justify-between space-y-4">
  <div className="space-y-3">
  <div className="flex items-center justify-between">
  <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">

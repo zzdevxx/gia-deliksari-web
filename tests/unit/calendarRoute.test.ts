@@ -1,0 +1,73 @@
+import { describe, it, expect } from 'vitest';
+import { GET } from '@/app/api/public/calendar/route';
+
+function request(query = '') {
+  return new Request(`https://giadeliksari.my.id/api/public/calendar${query}`);
+}
+
+describe('GET /api/public/calendar', () => {
+  it('returns a valid multi-event calendar by default', async () => {
+    const res = await GET(request());
+    const body = await res.text();
+
+    expect(res.status).toBe(200);
+    expect(res.headers.get('content-type')).toContain('text/calendar');
+    expect(res.headers.get('content-disposition')).toContain('attachment');
+    expect(body.startsWith('BEGIN:VCALENDAR\r\n')).toBe(true);
+    // Every service in the shared schedule must appear.
+    expect(body.match(/BEGIN:VEVENT/g)?.length).toBe(7);
+    expect(body).toContain('SUMMARY:Ibadah Raya GIA Deliksari');
+    expect(body).toContain('SUMMARY:Ibadah Doa Pagi');
+  });
+
+  it('returns exactly one event for a single service', async () => {
+    const res = await GET(request('?service=ibadah-raya'));
+    const body = await res.text();
+
+    expect(res.status).toBe(200);
+    expect(body.match(/BEGIN:VEVENT/g)?.length).toBe(1);
+    expect(res.headers.get('content-disposition')).toContain('ibadah-raya.ics');
+  });
+
+  it('accepts a comma-separated pair, for the HANA card that covers two services', async () => {
+    const res = await GET(request('?service=hana,komsel-ekklesia'));
+    const body = await res.text();
+
+    expect(res.status).toBe(200);
+    expect(body.match(/BEGIN:VEVENT/g)?.length).toBe(2);
+    expect(body).toContain('SUMMARY:Ibadah Wanita HANA');
+    expect(body).toContain('SUMMARY:Komsel Ekklesia');
+  });
+
+  it('rejects an unknown slug with a list of what exists, not a stack trace', async () => {
+    const res = await GET(request('?service=tidak-ada'));
+    const payload = await res.json();
+
+    expect(res.status).toBe(404);
+    expect(payload.error).toBeTruthy();
+    expect(payload.available).toContain('ibadah-raya');
+  });
+
+  it('rejects a pair where only one slug is unknown', async () => {
+    const res = await GET(request('?service=hana,tidak-ada'));
+
+    expect(res.status).toBe(404);
+  });
+
+  it('never caches for long, because the start date is computed per request', async () => {
+    const res = await GET(request());
+
+    expect(res.headers.get('cache-control')).not.toContain('s-maxage=3600');
+  });
+
+  it('emits a DTSTART in the future, not at build time', async () => {
+    const res = await GET(request('?service=ibadah-raya'));
+    const body = await res.text();
+    const match = body.match(/DTSTART:(\d{8}T\d{6}Z)/);
+
+    expect(match).not.toBeNull();
+    const stamp = match![1];
+    const iso = `${stamp.slice(0, 4)}-${stamp.slice(4, 6)}-${stamp.slice(6, 8)}T${stamp.slice(9, 11)}:${stamp.slice(11, 13)}:${stamp.slice(13, 15)}Z`;
+    expect(new Date(iso).getTime()).toBeGreaterThan(Date.now());
+  });
+});
