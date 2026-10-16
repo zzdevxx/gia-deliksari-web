@@ -31,7 +31,11 @@ export function EmptyState({
       )}
     >
       {icon && (
-        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--brand)] dark:bg-[var(--brand)] text-white">
+        // Muted tile, not a solid brand fill. A wine-filled square reads as an
+        // alert, which is the wrong signal for "nothing here yet" — the state
+        // is normal, not a problem. The tint carries enough presence to anchor
+        // the block without raising its voice.
+        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--brand-tint)] dark:bg-[var(--brand-tint)] text-[var(--brand-text)] dark:text-[var(--brand-text)] border border-[var(--brand-tint-border)] dark:border-[var(--brand-tint-border)]">
           {icon}
         </div>
       )}

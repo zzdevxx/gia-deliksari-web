@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import { YouTubeIcon } from './Icons';
 import { Button } from '@/components/ui/Button';
-import { CountUp } from '@/components/motion';
+import { CountUp, SplitText } from '@/components/motion';
 
 export default function Hero() {
   const [timeLeft, setTimeLeft] = useState<{
@@ -114,12 +114,22 @@ export default function Hero() {
             </div>
 
             {/* Main Editorial Headline */}
+            {/* The one authored entrance on the site. Every heading elsewhere
+                uses a plain scroll reveal; revealing all of them word by word
+                would read as a template rather than as a decision. */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[var(--foreground)] dark:text-[var(--foreground)] leading-[1.12] tracking-tight">
-              Rumah Kasih, <br className="hidden sm:inline" />
-              <span className="text-[var(--brand-text)] dark:text-[var(--brand-text)]">
-                Pertumbuhan Rohani
-              </span>{' '}
-              & Pengharapan
+              <SplitText text="Rumah Kasih," />
+              {/* The <br> is hidden below sm, so at mobile widths the two
+                  halves would run together ("Kasih,Pertumbuhan") without a
+                  space that survives the hidden break. */}
+              <br className="hidden sm:inline" />
+              <span className="sm:hidden">{' '}</span>
+              <SplitText
+                text="Pertumbuhan Rohani"
+                className="text-[var(--brand-text)] dark:text-[var(--brand-text)]"
+                delay={0.12}
+              />{' '}
+              <SplitText text="& Pengharapan" delay={0.24} />
             </h1>
 
             {/* Subtitle / Church Spirit */}

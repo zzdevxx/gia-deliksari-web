@@ -269,6 +269,36 @@
   filter: blur(var(--field-blur));
 }
 
+/* Drift: a very slow, very small movement on the two aurora lobes.
+   Purpose is that the hero should not look like a still image. Amplitude is
+   18px on a 620px lobe (under 3%) so it reads as atmosphere, not as motion;
+   a normal-amplitude drift would turn the hero into a distraction and would
+   also keep the compositor busy for no informational gain.
+
+   Both lobes share one 40s cycle, offset by half so they never move in unison.
+   Only `translate3d` is animated, which stays on the compositor and costs
+   nothing per frame beyond the layer it already has from `filter: blur()`.
+
+   Under `prefers-reduced-motion` these are stopped outright by the global
+   rule below, which collapses animation-duration to 0.01ms. */
+.gia-field::before {
+  animation: aurora-drift-a 40s ease-in-out infinite;
+}
+
+.gia-field::after {
+  animation: aurora-drift-b 40s ease-in-out infinite;
+}
+
+@keyframes aurora-drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(-18px, 12px, 0) scale(1.04); }
+}
+
+@keyframes aurora-drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.02); }
+  50%      { transform: translate3d(14px, -10px, 0) scale(1); }
+}
+
 .gia-field::before {
   width: 620px;
   height: 620px;

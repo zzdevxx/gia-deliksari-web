@@ -140,14 +140,89 @@ export function RevealItem({
 }
 
 /**
+ * SplitText — reveals a heading word by word.
+ *
+ * Used once, on the hero headline. Deliberately not generalised into a
+ * site-wide heading treatment: revealing every heading on every page is the
+ * kind of uniform entrance that stops reading as intentional and starts
+ * reading as a template. One authored moment beats an effect applied
+ * everywhere.
+ *
+ * Each word is wrapped in an inline-block span so it can be transformed
+ * independently; a plain inline element cannot carry a transform. The parent
+ * keeps the original text flow, so line breaking and wrapping are unchanged.
+ *
+ * Accessible by construction: the words are real text nodes, not a canvas or
+ * an aria-label, so a screen reader reads the sentence normally. Under reduced
+ * motion the whole thing renders as one plain heading.
+ */
+export function SplitText({
+  text,
+  className,
+  wordClassName,
+  delay = 0,
+  stagger = 0.045,
+}: {
+  text: string;
+  className?: string;
+  /** Applied to each word, for per-word colour (the hero tints its middle line). */
+  wordClassName?: string;
+  delay?: number;
+  stagger?: number;
+}) {
+  const reduce = useReducedMotion();
+  const words = text.split(' ');
+
+  if (reduce) {
+    return <span className={className}>{text}</span>;
+  }
+
+  const container: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: stagger, delayChildren: delay } },
+  };
+  const word: Variants = {
+    hidden: { opacity: 0, y: '0.35em' },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: [0.23, 1, 0.32, 1] },
+    },
+  };
+
+  return (
+    <motion.span
+      className={cn('inline', className)}
+      variants={container}
+      initial="hidden"
+      animate="show"
+    >
+      {words.map((w, i) => (
+        <motion.span
+          key={`${w}-${i}`}
+          variants={word}
+          className={cn('inline-block', wordClassName)}
+        >
+          {/* The separator lives INSIDE the span, as a real character in the
+              same text node as the word. Rendering it as a sibling JSX
+              expression (`{' '}`) does not work: React drops whitespace-only
+              children between elements, so the headline came out as
+              "RumahKasih,PertumbuhanRohani". A trailing non-breaking space
+              keeps the gap in both cases, including when the next element is a
+              <br> that is hidden at small viewports. */}
+          {i < words.length - 1 ? `${w}\u00A0` : w}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+}
+
+/**
  * CountUp — counts a numeric part of a label up when it scrolls into view.
  *
- * The label is often mixed, e.g. "09.00" or "4". Only the digits animate; the
- * wrapper text is passed through untouched. The final value is rendered
- * immediately under reduced motion, so nobody is left staring at a zero.
- *
- * `tabular-nums` is applied by the caller where column alignment matters; it is
- * not forced here because a standalone stat does not need it.
+ * The label is often mixed, e.g. "09.00". Only the digits animate; the
+ * surrounding text is untouched. Under reduced motion the final value renders
+ * immediately, so nobody is left staring at a zero.
  */
 export function CountUp({
   value,
