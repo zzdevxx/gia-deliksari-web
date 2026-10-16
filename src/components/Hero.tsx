@@ -181,7 +181,11 @@ export default function Hero() {
                 <p className="text-[11px] sm:text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">Komunitas Ibadah</p>
               </div>
               <div className="space-y-1 border-x border-[var(--border)] dark:border-[var(--border)] px-2 sm:px-4">
-                <span className="text-xl sm:text-2xl font-extrabold text-[var(--brand-text)] dark:text-[var(--brand-text)] font-mono">
+                {/* `flex` rather than inline spans: in `font-mono` every glyph is the same
+                    width, so a whitespace text node between two inline elements shows up
+                    as a visible gap after the dot ("09. 00"). Flexbox removes the
+                    whitespace entirely and keeps the dot and the seconds tight. */}
+                <span className="text-xl sm:text-2xl font-extrabold text-[var(--brand-text)] dark:text-[var(--brand-text)] font-mono inline-flex items-baseline">
                   <CountUp value={9} pad={2} />
                   <span className="opacity-60">.</span>
                   <CountUp value={0} pad={2} delay={85} />
