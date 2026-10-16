@@ -251,6 +251,42 @@ npm run build
 npm run start
 ```
 
+### 7. Gate Kualitas
+
+Semua gate ini harus lulus sebelum rilis. Ada juga di `RUNBOOK.md` §5.
+
+```bash
+npm run typecheck     # 0 error
+npm test              # 75/75
+npm run lint:design   # 0 pelanggaran (impeccable, kontrak DESIGN.md)
+npm run lint:slop     # 0 Slop Errors (anti-slop)
+npm run lint:contrast # cek kontras WCAG (butuh dua argumen hex)
+npm audit --omit=dev  # 0 kerentanan
+```
+
+**`npm run lint:slop`** menjalankan pemindai anti-AI-slop dari
+`scripts/check-anti-slop.js` terhadap `src/`. Pemindai ini bisa dijalankan siapa pun
+tanpa instalasi tambahan, termasuk untuk keperluan audit pihak ketiga:
+
+```bash
+node scripts/check-anti-slop.js src/            # daftar temuan
+node scripts/check-anti-slop.js src/ --summary  # ringkasan saja
+node scripts/check-anti-slop.js src/ --strict   # exit 1 kalau ada temuan
+```
+
+Contoh cek kontras dua warna:
+```bash
+python3 scripts/contrast-check.py "#8E1533" "#FAF9F8"
+```
+
+⚠️ **Jalankan pemindai pada `src/`, bukan direktori akar.** Tanpa argumen, ia ikut
+memindai `.open-next/` (hasil build) dan melaporkan ratusan temuan dari kode pihak
+ketiga yang bukan milik kita.
+
+**Baca temuan pemindai, jangan langsung percaya.** Pada audit 16 Okt 2026, pemindai
+melewatkan 2 focus ring yang benar-benar hilang sambil menandai 2 yang sudah aman.
+Hasilnya di `anti-slop/audit-001-2026-10-16.md`.
+
 ---
 
 ## 📱 Media Sosial & Kontak Resmi Gereja

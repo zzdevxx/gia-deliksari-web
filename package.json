@@ -25,7 +25,9 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "test:e2e:headed": "playwright test --headed"
+    "test:e2e:headed": "playwright test --headed",
+    "lint:slop": "node scripts/check-anti-slop.js src/ --summary",
+    "lint:contrast": "python3 scripts/contrast-check.py"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
