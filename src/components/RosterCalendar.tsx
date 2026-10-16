@@ -129,7 +129,7 @@ const RosterCalendar: React.FC<CalendarProps> = ({ rosters, filterCategory }) =>
               className={[
                 'min-h-[60px] sm:min-h-[78px] p-1.5 rounded-2xl border text-left flex flex-col gap-1 transition-all',
                 inMonth ? '' : 'opacity-40',
-                isToday ? 'ring-2 ring-[var(--brand)]/40' : '',
+                isToday ? 'ring-2 ring-[var(--ring)]/40' : '',
                 isSelected ? 'border-[var(--brand)] bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)]' : 'border-[var(--border)] dark:border-[var(--border)]',
                 hasEntries ? 'cursor-pointer hover:border-[var(--brand)]/40 hover:bg-[var(--background)] dark:hover:bg-[var(--surface-raised-hover)]' : 'cursor-default',
               ].join(' ')}

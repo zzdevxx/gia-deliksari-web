@@ -40,7 +40,7 @@ Portal web resmi dan platform operasional digital terpadu untuk Gereja Isa Almas
   - `/info`: Warta jemaat berkategori dengan hitung mundur hari-H, agenda ibadah sepekan, jadwal roster pelayan dengan format salin WhatsApp 1-klik, dan rute cetak buletin mandiri A4 (`/info/print`).
   - `/media`: Pemutar video khotbah YouTube Data API v3 (mode hemat kuota) dan galeri dokumentasi foto Google Drive.
   - `/layanan`: Formulir permohonan doa, konseling pastoral, pendaftaran sakramen baptisan/anak, komsel Ekklesia, dan relawan (dengan normalisasi format nomor WhatsApp otomatis `628xx`).
-  - `/persembahan`: Transparansi 4 pos persembahan, 3 kotak offline di lobi, salin rekening bank BCA & BRI 1-klik, dan modal dialog QRIS digital nasional.
+  - `/persembahan`: Transparansi 4 pos persembahan, 3 kotak offline di lobi, salin rekening bank BCA & BRI 1-klik, dan keterangan bahwa QRIS hanya tersedia fisik di gedung.
 - **Portal Terproteksi (RBAC Multi-Role)**:
   - `/admin`: CMS operasional warta, roster pelayan, inventaris kesiapan ibadah, permohonan jemaat (`super` | `admin`).
   - `/super`: Manajemen user multi-role dan soft-deactivation (`super` only).

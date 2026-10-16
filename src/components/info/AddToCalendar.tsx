@@ -45,18 +45,26 @@ export function AddToCalendar({
       aria-label={label}
       title="Simpan ke kalender"
       className={cn(
-        'inline-flex min-h-11 items-center gap-1.5 rounded-md font-mono font-bold',
+        // rounded-lg is the DESIGN.md `control` step (8px), the one for a small
+        // screen control. rounded-md (6px) is the print bulletin's step, which
+        // DESIGN.md says no screen component uses.
+        'inline-flex min-h-11 items-center gap-1.5 rounded-lg font-mono font-bold',
         'transition-colors hover:underline decoration-2 underline-offset-4',
         'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
-        'focus-visible:outline-[var(--brand)]',
+        'focus-visible:outline-[var(--ring)]',
         className,
       )}
     >
       <span className="inline-flex items-center gap-1">
         {children}
       </span>
+      {/* 60%, not 45%. At 45% the icon composites to 2.48:1 against a light
+          card, below the 3:1 floor for a non-text indicator, and hover was the
+          only way to full strength, which a phone cannot do. 60% clears 3.5:1
+          on every card colour in both themes, and the hover step now adds
+          emphasis rather than being the only way to see it. */}
       <CalendarPlus
-        className="h-3.5 w-3.5 shrink-0 opacity-45 transition-opacity group-hover/card:opacity-100"
+        className="h-3.5 w-3.5 shrink-0 opacity-60 transition-opacity group-hover/card:opacity-100"
         aria-hidden="true"
       />
     </a>

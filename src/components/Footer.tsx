@@ -90,7 +90,7 @@ export default function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="email@contoh.com"
-                  className="w-full rounded-full border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--card)] pl-10 pr-4 py-3 text-sm text-[var(--foreground)] dark:text-[var(--foreground)] placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]/30 focus:border-[var(--brand)]"
+                  className="w-full rounded-full border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--card)] pl-10 pr-4 py-3 text-sm text-[var(--foreground)] dark:text-[var(--foreground)] placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-[var(--ring)]/30 focus:border-[var(--brand)]"
                 />
               </div>
               <button

@@ -260,7 +260,7 @@ Warta jemaat **diinput oleh admin melalui Portal Admin** (`/admin` → tab **War
 | **Warta & Jadwal** | `/info` | publik | Papan warta jemaat mingguan, jadwal roster ibadah, cetak buletin A4, dan salin format WhatsApp. |
 | **Khotbah & Galeri** | `/media` | publik | Video khotbah YouTube Data API v3 & arsip galeri foto dokumentasi. |
 | **Layanan Jemaat** | `/layanan` | publik | Formulir permohonan doa, konseling pastoral, pendaftaran sakramen, komsel, dan volunteer. |
-| **Persembahan Kasih** | `/persembahan` | publik | 4 pos persembahan, salin rekening BCA/BRI 1-klik, dan modal QRIS digital nasional. |
+| **Persembahan Kasih** | `/persembahan` | publik | 4 pos persembahan, salin rekening BCA/BRI 1-klik, dan keterangan QRIS fisik di gedung. |
 | **Admin / Operator** | `/admin` | `super` \| `admin` | CMS warta, plotting roster pelayan, inventaris gereja, dan kelola khotbah. |
 | **Superuser** | `/super` | `super` only | Manajemen user multi-role (create, edit role, soft-delete). |
 | **Kas Youth** | `/kas` | `super` \| `treasurer` | Buku kas pemuda Grow Generation (transaksi pemasukan/pengeluaran & saldo realtime). |

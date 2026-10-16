@@ -148,7 +148,7 @@ export default function MinistriesSection() {
                     href={ministry.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-11 items-center gap-2 rounded-md px-2 text-sm font-semibold text-[var(--muted-foreground)] hover:text-[var(--brand-text)] dark:text-[var(--muted-foreground)] dark:hover:text-[var(--brand-text)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand)] dark:focus-visible:outline-[var(--brand)] transition-colors"
+                    className="inline-flex min-h-11 items-center gap-2 rounded-md px-2 text-sm font-semibold text-[var(--muted-foreground)] hover:text-[var(--brand-text)] dark:text-[var(--muted-foreground)] dark:hover:text-[var(--brand-text)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ring)] dark:focus-visible:outline-[var(--ring)] transition-colors"
                   >
                     <InstagramIcon className="w-4 h-4 text-[var(--brand-text)] dark:text-[var(--brand-text)]" />
                     <span>Instagram</span>

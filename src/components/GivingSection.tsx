@@ -251,7 +251,7 @@ export default function GivingSection() {
  </p>
  </div>
 
- {/* 3. QRIS Digital Payment */}
+ {/* 3. QRIS (in person only) */}
  <div className="p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] transition-all flex flex-col justify-between space-y-6">
  <div className="space-y-4">
  <div className="flex items-center gap-3">
@@ -268,7 +268,7 @@ export default function GivingSection() {
  QRIS Semua E-Wallet
  </h3>
  <p className="text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] mt-0.5">
- BCA, Mandiri, GoPay, OVO, Dana, ShopeePay
+ Semua m-banking &amp; dompet digital, di gedung gereja
  </p>
  </div>
 
@@ -283,13 +283,13 @@ export default function GivingSection() {
  </p>
  <p className="text-xs text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)] leading-relaxed">
  Barcode QRIS resmi terpasang fisik di meja penerimaan dan lobi
- ibadah. Untuk memberi dari rumah, gunakan transfer bank di
- samping, atau{" "}
+ ibadah. Untuk memberi dari rumah, gunakan kartu transfer bank
+ di halaman ini, atau{" "}
  <a
  href="https://api.whatsapp.com/send?phone=6289620961103"
  target="_blank"
  rel="noopener noreferrer"
- className="font-semibold text-[var(--brand-text)] dark:text-[var(--brand-text)] underline decoration-1 underline-offset-2 hover:decoration-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand)] rounded-sm"
+ className="font-semibold text-[var(--brand-text)] dark:text-[var(--brand-text)] underline decoration-1 underline-offset-2 hover:decoration-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ring)] rounded-sm"
  >
  hubungi WhatsApp pastoral
  </a>

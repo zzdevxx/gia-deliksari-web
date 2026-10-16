@@ -29,7 +29,7 @@ type Size = 'sm' | 'md' | 'lg';
 const BASE =
   'group/btn relative inline-flex items-center justify-center gap-2 rounded-full font-semibold ' +
   'transition-all duration-200 ease-out ' +
-  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-text)] focus-visible:ring-offset-2 ' +
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] focus-visible:ring-offset-2 ' +
   'active:scale-[0.97] active:translate-y-0 ' +
   'disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:active:scale-100';
 

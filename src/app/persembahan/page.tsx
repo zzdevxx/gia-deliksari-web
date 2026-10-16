@@ -6,9 +6,9 @@ import GivingSection from '@/components/GivingSection';
 import { Heart, ShieldCheck, CreditCard, QrCode } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Persembahan Kasih & QRIS Digital',
+  title: 'Persembahan Kasih & Transfer Bank',
   description:
-    'Dukungan pelayanan pekerjaan rumah Tuhan GIA Deliksari Semarang melalui persembahan umum, persepuluhan, pembangunan, dan diakonia via transfer bank dan QRIS digital.',
+    'Dukungan pelayanan pekerjaan rumah Tuhan GIA Deliksari Semarang melalui persembahan umum, persepuluhan, pembangunan, dan diakonia. Transfer bank BCA/BRI, atau QRIS resmi di gedung gereja.',
   alternates: {
     canonical: '/persembahan',
   },

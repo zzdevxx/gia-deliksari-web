@@ -85,7 +85,7 @@ const UserModal: React.FC<UserModalProps> = ({ initial, editingId, onSave, onClo
  value={form.username}
  onChange={(e) => setForm({ ...form, username: e.target.value })}
  placeholder="contoh: noel"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--brand)]/30 dark:focus:ring-[var(--brand)]/30 disabled:opacity-60 disabled:cursor-not-allowed"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ring)]/30 dark:focus:ring-[var(--ring)]/30 disabled:opacity-60 disabled:cursor-not-allowed"
  />
  {editingId && (
  <p className="text-[10px] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
@@ -105,7 +105,7 @@ const UserModal: React.FC<UserModalProps> = ({ initial, editingId, onSave, onClo
  onChange={(e) => setForm({ ...form, password: e.target.value })}
  placeholder="••••"
  minLength={4}
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--brand)]/30 dark:focus:ring-[var(--brand)]/30"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ring)]/30 dark:focus:ring-[var(--ring)]/30"
  />
  <p className="text-[10px] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
  Minimal 4 karakter. Disimpan dengan bcrypt (tidak bisa dibaca plain).
@@ -133,7 +133,7 @@ const UserModal: React.FC<UserModalProps> = ({ initial, editingId, onSave, onClo
  type="checkbox"
  checked={isChecked}
  onChange={() => toggleRole(r)}
- className="mt-0.5 rounded text-[var(--brand-text)] dark:text-[var(--brand-text)] focus:ring-[var(--brand)] dark:focus:ring-[var(--brand)]"
+ className="mt-0.5 rounded text-[var(--brand-text)] dark:text-[var(--brand-text)] focus:ring-[var(--ring)] dark:focus:ring-[var(--ring)]"
  />
  <div className="text-xs font-bold text-[var(--foreground)] dark:text-[var(--foreground)] leading-tight">
  {meta.emoji} {meta.label}
@@ -159,7 +159,7 @@ const UserModal: React.FC<UserModalProps> = ({ initial, editingId, onSave, onClo
  value={form.display_name}
  onChange={(e) => setForm({ ...form, display_name: e.target.value })}
  placeholder="contoh: Noel Yosan (Admin)"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--brand)]/30 dark:focus:ring-[var(--brand)]/30"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ring)]/30 dark:focus:ring-[var(--ring)]/30"
  />
  </div>
 

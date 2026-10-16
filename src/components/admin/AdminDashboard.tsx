@@ -705,7 +705,7 @@ export default function AdminDashboard() {
  value={username}
  onChange={(e) => setUsername(e.target.value)}
  placeholder="nama pengurus"
- className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm focus:ring-2 focus:ring-[var(--brand)]/30 dark:focus:ring-[var(--brand)]/30 focus:border-[var(--brand)] dark:focus:border-[var(--brand)] outline-none transition-all placeholder:text-stone-400"
+ className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm focus:ring-2 focus:ring-[var(--ring)]/30 dark:focus:ring-[var(--ring)]/30 focus:border-[var(--brand)] dark:focus:border-[var(--brand)] outline-none transition-all placeholder:text-stone-400"
  />
  </div>
 
@@ -720,7 +720,7 @@ export default function AdminDashboard() {
  value={password}
  onChange={(e) => setPassword(e.target.value)}
  placeholder="Masukkan password admin..."
- className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm focus:ring-2 focus:ring-[var(--brand)]/30 dark:focus:ring-[var(--brand)]/30 focus:border-[var(--brand)] dark:focus:border-[var(--brand)] outline-none transition-all placeholder:text-stone-400"
+ className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-[var(--foreground)] dark:text-[var(--foreground)] text-sm focus:ring-2 focus:ring-[var(--ring)]/30 dark:focus:ring-[var(--ring)]/30 focus:border-[var(--brand)] dark:focus:border-[var(--brand)] outline-none transition-all placeholder:text-stone-400"
  />
  </div>
 
@@ -1466,7 +1466,7 @@ export default function AdminDashboard() {
  placeholder="Cari kode / nama barang..."
  value={invSearchQuery}
  onChange={(e) => setInvSearchQuery(e.target.value)}
- className="w-full pl-10 pr-4 py-2 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--brand)]/30 dark:focus:ring-[var(--brand)]/30"
+ className="w-full pl-10 pr-4 py-2 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ring)]/30 dark:focus:ring-[var(--ring)]/30"
  />
  </div>
  </div>
@@ -1595,7 +1595,7 @@ export default function AdminDashboard() {
  value={annForm.title}
  onChange={(e) => setAnnForm({ ...annForm, title: e.target.value })}
  placeholder="Contoh: Ibadah Padang Pemuda & Remaja"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--brand)]/30 dark:focus:ring-[var(--brand)]/30"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ring)]/30 dark:focus:ring-[var(--ring)]/30"
  />
  </div>
 
@@ -1669,7 +1669,7 @@ export default function AdminDashboard() {
  type="checkbox"
  checked={annForm.isPinned}
  onChange={(e) => setAnnForm({ ...annForm, isPinned: e.target.checked })}
- className="rounded text-[var(--brand-text)] dark:text-[var(--brand-text)] focus:ring-[var(--brand)] dark:focus:ring-[var(--brand)]"
+ className="rounded text-[var(--brand-text)] dark:text-[var(--brand-text)] focus:ring-[var(--ring)] dark:focus:ring-[var(--ring)]"
  />
  <span>Sematkan ke Paling Atas (Pinned)</span>
  </label>
@@ -1679,7 +1679,7 @@ export default function AdminDashboard() {
  type="checkbox"
  checked={annForm.isPublished}
  onChange={(e) => setAnnForm({ ...annForm, isPublished: e.target.checked })}
- className="rounded text-[var(--brand-text)] dark:text-[var(--brand-text)] focus:ring-[var(--brand)] dark:focus:ring-[var(--brand)]"
+ className="rounded text-[var(--brand-text)] dark:text-[var(--brand-text)] focus:ring-[var(--ring)] dark:focus:ring-[var(--ring)]"
  />
  <span>Tayangkan Langsung (Publish)</span>
  </label>

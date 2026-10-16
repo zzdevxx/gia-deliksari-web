@@ -351,7 +351,7 @@ export default function InfoPage() {
  <div
  key={item.id}
  className={`p-7 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] transition-all flex flex-col justify-between space-y-6 ${
- item.isPinned ? 'ring-2 ring-[var(--brand)]/40' : ''
+ item.isPinned ? 'ring-2 ring-[var(--ring)]/40' : ''
  }`}
  >
  <div className="space-y-4">
@@ -492,8 +492,8 @@ export default function InfoPage() {
  </div>
  <div className="pt-3 border-t border-[var(--border)]/60 dark:border-[var(--border)]/60 flex items-center justify-between text-xs font-semibold text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
  <AddToCalendar
-                    serviceIds={["grow-generation"]}
-                    label="Unduh jadwal Grow Generation Youth ke kalender: Sabtu 18.00 WIB"
+                    serviceIds={["grow-generation", "komsel-generasi-muda"]}
+                    label="Unduh jadwal Grow Generation Youth dan Komsel Generasi Muda ke kalender: Sabtu 18.00 WIB"
                     className="text-[var(--ink-strong)]"
                   >
                     <span className="inline-flex items-center gap-1">

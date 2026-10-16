@@ -33,7 +33,7 @@ GIA Deliksari Web Portal adalah platform pelayanan digital terintegrasi untuk je
 | `/info` | static | — | Papan warta jemaat mingguan, jadwal roster ibadah, cetak buletin A4, salin format WA |
 | `/media` | static | — | Arsip video khotbah YouTube Data API v3 & galeri foto dokumentasi |
 | `/layanan` | static | — | Formulir doa, konseling pastoral, pendaftaran sakramen, komsel, volunteer |
-| `/persembahan` | static | — | 4 pos persembahan, salin rekening bank BCA & BRI 1-klik, modal QRIS digital |
+| `/persembahan` | static | — | 4 pos persembahan, salin rekening bank BCA & BRI 1-klik, keterangan QRIS fisik di gedung |
 | `/admin` | client | super / admin | Portal admin/operator (5 tab CRUD) |
 | `/super` | client | super only | Portal superuser (user management) |
 | `/kas` | client | super / treasurer | Portal kas youth (transaksi + saldo) |

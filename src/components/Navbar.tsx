@@ -178,7 +178,7 @@ export default function Navbar() {
  <button
  type="button"
  onClick={() => setIsOpen(!isOpen)}
- className="lg:hidden shrink-0 p-2.5 rounded-xl text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)]"
+ className="lg:hidden shrink-0 p-2.5 rounded-xl text-[var(--foreground)] dark:text-[var(--foreground)] hover:bg-[var(--surface-raised)] dark:hover:bg-[var(--surface-raised-hover)] border border-[var(--border)] dark:border-[var(--border)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]"
  aria-label={isOpen ? 'Tutup navigasi' : 'Buka navigasi'}
  aria-expanded={isOpen}
  >

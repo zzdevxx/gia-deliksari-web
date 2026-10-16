@@ -33,7 +33,7 @@ Website telah resmi aktif dan ter-deploy secara langsung di **Cloudflare Workers
 | 🖨️ **Buletin Cetak** | [`/info/print`](/info/print) | publik | Format buletin warta dan roster mingguan siap cetak A4. |
 | 🎥 **Media & Galeri** | [`/media`](/media) | publik | Arsip video khotbah YouTube Data API v3 & galeri foto dokumentasi kegiatan. |
 | 🤝 **Layanan Jemaat** | [`/layanan`](/layanan) | publik | Formulir permohonan doa, konseling, sakramen baptisan/anak, komsel, dan volunteer. |
-| 💝 **Persembahan Kasih** | [`/persembahan`](/persembahan) | publik | Panduan 4 pos persembahan, salin rekening BCA/BRI 1-klik, dan modal QRIS digital. |
+| 💝 **Persembahan Kasih** | [`/persembahan`](/persembahan) | publik | Panduan 4 pos persembahan, salin rekening BCA/BRI 1-klik, dan keterangan QRIS fisik di gedung. |
 | 🛡️ **Admin / Operator** | [`/admin`](/admin) | `super` / `admin` | 5 tab: Warta, Roster, Layanan Jemaat, Khotbah & Galeri, Inventaris. |
 | 👑 **Superuser** | [`/super`](/super) | `super` only | User management (create, edit roles, soft-delete) & Audit Log. |
 | 💰 **Kas Youth** | [`/kas`](/kas) | `super` / `treasurer` | Catat pemasukan/pengeluaran kas Grow Generation + saldo realtime. |
@@ -121,7 +121,7 @@ gia-deliksari-web/
 │   │   ├── info/               # Warta jemaat + agenda & roster (+ print buletin A4)
 │   │   ├── media/page.tsx      # Arsip khotbah video & galeri foto
 │   │   ├── layanan/page.tsx    # Layanan jemaat & permohonan doa
-│   │   ├── persembahan/page.tsx# Persembahan kasih & QRIS digital
+│   │   ├── persembahan/page.tsx# Persembahan kasih & transfer bank
 │   │   ├── admin/              # Portal majelis & admin (5 tab CRUD)
 │   │   ├── super/              # Portal superuser (user management & audit log)
 │   │   ├── kas/                # Portal kas youth (treasury Grow Generation)
