@@ -86,14 +86,38 @@ test.describe('Public surface', () => {
     expect(swScript.headers()['content-type']).toMatch(/javascript/);
   });
 
-  test('OG image endpoint serves a PNG', async ({ request }) => {
+  test('link previews point at a PNG a crawler can fetch', async ({ request }) => {
     const res = await request.get('/info', { headers: { Accept: 'text/html' } });
     expect(res.status()).toBe(200);
 
-    // Next.js auto-exposes the OG image at /info/opengraph-image
-    const ogRes = await request.get('/info/opengraph-image');
-    expect(ogRes.status()).toBe(200);
-    expect(ogRes.headers()['content-type']).toMatch(/^image\/png/);
+    // What this used to assert was `/info/opengraph-image`, a generated PNG.
+    // That route was removed, and this asserts the promise that replaced it:
+    // whatever the page's og:image points at must actually be fetchable as an
+    // image. Reading it from the page rather than hardcoding it means the test
+    // follows a future change instead of going stale.
+    //
+    // Why the generated image went away: rendering a 1200x630 PNG costs ~3.9s
+    // in this Worker, OpenNext's incremental cache here is `dummy` (no KV or
+    // R2 — R2 is deliberately unused on this account), and Cloudflare's edge
+    // does not cache a response carrying `max-age=0`. So every crawler that
+    // peeked at an /info link re-rendered the image, and one request in three
+    // returned 503 during measurement. The static logo below was already the
+    // preview for every other page.
+    const html = await res.text();
+    // Attribute order is not guaranteed by the renderer, so match the tag and
+    // then pull the content out of it rather than assuming an order.
+    const tag = html.match(/<meta[^>]+property=["']og:image["'][^>]*>/i);
+    expect(tag, 'page must declare an og:image').toBeTruthy();
+
+    const content = tag![0].match(/content=["']([^"']+)["']/i);
+    expect(content, 'og:image must carry a URL').toBeTruthy();
+
+    const rawUrl = content![1].replace(/&amp;/g, '&');
+    const path = new URL(rawUrl, 'https://giadeliksari.my.id').pathname;
+
+    const img = await request.get(path);
+    expect(img.status(), `${path} should be fetchable`).toBe(200);
+    expect(img.headers()['content-type']).toMatch(/^image\//);
   });
 });
 
