@@ -31,6 +31,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
+      # Required before the snapshot freshness check: without a checkout the
+      # runner has no backups/d1/ directory, so `ls` finds nothing and the step
+      # fails on every run regardless of whether backups are actually current.
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
       - name: Probe public routes and API
         id: probe
         run: |
@@ -98,6 +106,12 @@ jobs:
       # Reading the newest committed snapshot makes staleness observable without
       # touching Cloudflare credentials. The window is 30h rather than 24h so a
       # delayed run does not page anyone, while a genuinely missed day does.
+      # The age is read from the filename, not the file's mtime. Git does not
+      # preserve mtimes: every checkout stamps the working tree with "now", so
+      # an mtime-based check passes forever once a snapshot is committed —
+      # including when the nightly backup stopped months ago. The backup script
+      # names each file YYYYMMDDHHMMSS in UTC, which is the only durable
+      # timestamp available without Cloudflare credentials.
       - name: Check the D1 backup is still fresh
         id: backup-age
         run: |
@@ -105,14 +119,36 @@ jobs:
           LATEST=$(ls -t backups/d1/*.json 2>/dev/null | head -1 || true)
           if [ -z "$LATEST" ]; then
             echo "FAIL no D1 snapshot found in backups/d1/"
-            echo "failed<<EOF\n- no D1 snapshot exists in backups/d1/\nEOF" >> "$GITHUB_OUTPUT"
+            {
+              echo 'failed<<EOF'
+              echo '- no D1 snapshot exists in backups/d1/'
+              echo 'EOF'
+            } >> "$GITHUB_OUTPUT"
             exit 1
           fi
-          AGE_H=$(( ( $(date -u +%s) - $(date -u -r "$LATEST" +%s) ) / 3600 ))
+
+          STAMP=$(basename "$LATEST" .json)
+          if ! [[ "$STAMP" =~ ^[0-9]{14}$ ]]; then
+            echo "FAIL snapshot name is not YYYYMMDDHHMMSS: $LATEST"
+            {
+              echo 'failed<<EOF'
+              echo "- snapshot \`$LATEST\` does not carry a parsable timestamp in its name"
+              echo 'EOF'
+            } >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
+          SNAP_EPOCH=$(date -u -d "${STAMP:0:4}-${STAMP:4:2}-${STAMP:6:2} ${STAMP:8:2}:${STAMP:10:2}:${STAMP:12:2}" +%s)
+          AGE_H=$(( ( $(date -u +%s) - SNAP_EPOCH ) / 3600 ))
           echo "Newest snapshot: $LATEST age=${AGE_H}h"
+
           if [ "$AGE_H" -gt 30 ]; then
             echo "FAIL newest D1 snapshot is ${AGE_H}h old (limit 30h)"
-            echo "failed<<EOF\n- newest D1 snapshot ($LATEST) is ${AGE_H}h old — the nightly backup has stopped running\nEOF" >> "$GITHUB_OUTPUT"
+            {
+              echo 'failed<<EOF'
+              echo "- newest D1 snapshot (\`$LATEST\`) is ${AGE_H}h old — the nightly backup has stopped running"
+              echo 'EOF'
+            } >> "$GITHUB_OUTPUT"
             exit 1
           fi
           echo "OK   D1 backup is current (${AGE_H}h old)"
