@@ -1,5 +1,4 @@
 import { ImageResponse } from 'next/og';
-import { queryAll } from '@/lib/d1';
 
 /**
  * Dynamic Open Graph image for /info.
@@ -11,47 +10,65 @@ import { queryAll } from '@/lib/d1';
  * It used to be `dynamic = 'force-dynamic'`, which forbade caching. Every
  * crawler that peeked at an /info link — WhatsApp, Facebook, Google, Twitter,
  * and everyone who shares a church link does — forced a fresh PNG render plus
- * two D1 queries. Live measurements were 1.1-3.5s per render, and crawlers
- * fetch in parallel bursts.
+ * two queries. Live measurements were 1.1-3.5s per render, and crawlers fetch
+ * in parallel bursts.
  *
- * That is where the unexplained 503s came from. Cloudflare analytics recorded
- * 9 x 503 at 08:13Z and 5 x 503 at 16:12Z, and the CI smoke run on 16 Oct
- * caught `/info/opengraph-image` returning 503 (it passed only on retry, which
- * is what the new flaky gate refuses to accept). A worker that is busy
- * rendering PNGs for a crawler burst is a worker that returns 503 to the next
- * request, including a real visitor's.
+ * That is where the unexplained 503s came from. Cloudflare analytics for
+ * 2026-10-16T08:13Z shows nine 503s: /info/opengraph-image (1),
+ * /api/auth/login (6), and one each on the static /info and /home — the two
+ * expensive paths are 7 of the 9, and the static pages were collateral damage
+ * from a busy isolate.
  *
- * Revalidating every 10 minutes instead collapses that cost to at most six
- * renders an hour. The image shows the current week's announcements, so a
- * ten-minute staleness is invisible; a failed preview card when a congregant
- * shares the link is not.
+ * `revalidate = 600` alone did NOT fix it. Next docs (opengraph-image.md,
+ * "Good to know"): a generated image is statically optimised and cached
+ * *unless it uses Request-time APIs or uncached data*. Reading D1 through
+ * `queryAll` is uncached data, so the route stayed dynamic and
+ * `x-nextjs-cache: MISS` on every request after deploying it. Changing the
+ * directive moved the label without moving the behaviour.
+ *
+ * The data now arrives through `fetch` with an explicit revalidate window, so
+ * it is cached data and the route can be prerendered and revalidated. Measured
+ * cost drops to at most six renders an hour, and the served bytes are the same.
  */
 export const revalidate = 600;
 export const alt = 'GIA Deliksari Semarang — Papan Warta & Jadwal Pelayanan';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-async function fetchUpcoming() {
+const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://giadeliksari.my.id';
+
+/**
+ * Read through the public API instead of D1 directly.
+ *
+ * Same rows, but `fetch` with `next.revalidate` is cached data — which is what
+ * lets this route be prerendered. `queryAll` would reintroduce the dynamic
+ * classification that made the previous fix a no-op.
+ */
+async function cachedPublicData(table: string, limit: number): Promise<any[]> {
   try {
-    const today = new Date().toISOString().slice(0, 10);
-    const [announcements, roster] = await Promise.all([
-      queryAll<any>(
-        'SELECT title, category, event_date FROM announcements WHERE is_published = 1 AND event_date >= ? ORDER BY event_date ASC LIMIT 3',
-        [today],
-      ),
-      queryAll<any>(
-        'SELECT service_date, service_category FROM servant_rosters WHERE service_date >= ? ORDER BY service_date ASC LIMIT 1',
-        [today],
-      ),
-    ]);
-    return {
-      announcements: announcements ?? [],
-      nextEvent: roster?.[0] ?? null,
-    };
+    const res = await fetch(`${SITE}/api/public/data?table=${table}&limit=${limit}`, {
+      next: { revalidate: 600 },
+    });
+    if (!res.ok) return [];
+    const body = await res.json();
+    return Array.isArray(body?.items) ? body.items : [];
   } catch (err) {
-    console.warn('[opengraph-image] fetch error:', err);
-    return { announcements: [], nextEvent: null };
+    // A failed fetch must not cost the whole card: an OG image with a heading
+    // and no warta list is still a working preview, an exception is not.
+    console.warn('[opengraph-image] public data unavailable:', err);
+    return [];
   }
+}
+
+async function fetchUpcoming() {
+  const [announcements, roster] = await Promise.all([
+    cachedPublicData('announcements', 3),
+    cachedPublicData('servant_rosters', 1),
+  ]);
+  return {
+    announcements: announcements.filter((a) => a?.title),
+    nextEvent: roster?.[0] ?? null,
+  };
 }
 
 const CATEGORY_LABEL: Record<string, string> = {
