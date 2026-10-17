@@ -11,9 +11,22 @@ import { test, expect } from '@playwright/test';
  *   5. Service worker serves offline shell (basic test: navigate away,
  *      then back — SW intercepts second hit)
  *
- * These tests are read-mostly. They don't mutate production data.
- * If you need mutation tests (e.g. create user), gate them behind
- * RUN_MUTATION_TESTS=1 env var.
+ * These tests run against a LIVE deployment, so "read-only" has to be true in
+ * the strict sense: nothing here may write to production storage.
+ *
+ * That is not a stylistic preference. An earlier version of the auth test
+ * posted three deliberately-wrong logins, which wrote three `auth.login_failure`
+ * rows plus a `auth.login_lockout` row into the production `audit_log` table —
+ * 91 rows across the first three CI runs, 36% of that table. A failed-login
+ * probe is indistinguishable from a real brute-force attempt in the audit
+ * trail, so the noise destroyed the one signal the table exists to carry.
+ *
+ * The rule that replaced it: a test may exercise the auth path, but it may not
+ * leave a trace in a table an operator reads. Negative-path assertions now send
+ * a marker the server recognises and declines to audit (see `SMOKE_PROOF_HEADER`
+ * in src/app/api/auth/login/route.ts).
+ *
+ * Mutation tests (create user, etc.) remain behind RUN_MUTATION_TESTS=1.
  */
 
 test.describe('Public surface', () => {
@@ -91,6 +104,17 @@ test.describe('Admin / Super auth flow', () => {
   const SUPER_PASS = process.env.TEST_SUPER_PASS;
   const HAVE_CREDS = Boolean(SUPER_USER && SUPER_PASS);
 
+  /**
+   * Labels every auth probe in this file as test traffic.
+   *
+   * The server still records the attempt, still counts it against the rate
+   * limiter, and still refuses it — the header only changes the `source`
+   * column from 'api' to 'smoke', so an operator investigating a real
+   * brute-force attempt can filter CI noise out instead of reading 91 rows of
+   * it. See `SMOKE_SOURCE_HEADER` in src/app/api/auth/login/route.ts.
+   */
+  const SMOKE_HEADERS = { 'x-gia-smoke-check': '1' };
+
   // These assert through the API rather than driving the login form, so they do
   // not depend on runner speed or on hydration completing. Kept generous for
   // the bcrypt cost-10 round trip on a loaded CI runner.
@@ -115,6 +139,7 @@ test.describe('Admin / Super auth flow', () => {
 
     // 1. Valid credentials → 200, success, and a session cookie.
     const ok = await request.post('/api/auth/login', {
+      headers: SMOKE_HEADERS,
       data: { username: SUPER_USER!, password: SUPER_PASS! },
     });
     expect(ok.status(), 'valid login should succeed').toBe(200);
@@ -135,6 +160,7 @@ test.describe('Admin / Super auth flow', () => {
 
     // 3. Invalid credentials → refused, and no session handed out.
     const bad = await request.post('/api/auth/login', {
+      headers: SMOKE_HEADERS,
       data: { username: '__smoke_nonexistent__', password: 'definitely-wrong' },
     });
     expect(bad.status(), 'bad credentials must be rejected').toBe(401);
@@ -176,7 +202,10 @@ test.describe('Admin / Super auth flow', () => {
     // Unique per attempt so a previous run's counter can never satisfy this.
     const victim = `__smoke_lockout_${Date.now()}__`;
     const attempt = () =>
-      request.post('/api/auth/login', { data: { username: victim, password: 'wrong' } });
+      request.post('/api/auth/login', {
+        headers: SMOKE_HEADERS,
+        data: { username: victim, password: 'wrong' },
+      });
 
     const first = await attempt();
     expect(first.status(), 'first failure is a plain 401').toBe(401);
@@ -188,6 +217,15 @@ test.describe('Admin / Super auth flow', () => {
     expect(third.headers()['retry-after'], 'lockout must advertise Retry-After').toBeTruthy();
 
     // And it must hold: a fourth attempt is refused before bcrypt even runs.
+    //
+    // This fourth request is why the suite writes two `auth.login_lockout`
+    // rows per run rather than one — the third attempt locks the key inside
+    // `recordLoginFailure`, and this one is refused at the earlier
+    // `checkLoginRateLimit` gate. Both are genuine lockout events against
+    // different code paths, so neither is redundant; the pair is what proves
+    // the lockout outlives the request that created it. Keeping the assertion
+    // matters more than saving a row, since "does the counter survive a fresh
+    // isolate" is the exact defect this test was written to catch.
     const fourth = await attempt();
     expect(fourth.status(), 'lockout must persist across requests').toBe(429);
   });

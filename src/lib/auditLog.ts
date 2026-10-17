@@ -59,8 +59,17 @@ export type AuditAction =
   | 'auth.logout';
 
 export interface AuditContext {
-  /** Origin identifier — useful when the same action runs from multiple surfaces. */
-  source?: 'web' | 'api' | 'cron';
+  /**
+   * Origin identifier — useful when the same action runs from multiple surfaces.
+   *
+   * 'smoke' marks traffic produced by the CI smoke suite probing production.
+   * Those attempts are real requests against the real server and are recorded
+   * like any other, because a test must not be able to switch the audit trail
+   * off. The label exists so an operator investigating a suspected brute-force
+   * attempt can separate test probes from an actual attacker instead of
+   * reading 85 rows of CI noise per day of logs.
+   */
+  source?: 'web' | 'api' | 'cron' | 'smoke';
   /** IP extracted from request headers (already-resolved). */
   ip?: string | null;
   /** UA header if relevant. */
