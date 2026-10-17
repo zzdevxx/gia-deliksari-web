@@ -2,11 +2,31 @@ import { ImageResponse } from 'next/og';
 import { queryAll } from '@/lib/d1';
 
 /**
- * Dynamic Open Graph image for /info page.
- * Rendered on-demand, cached at edge.
+ * Dynamic Open Graph image for /info.
+ *
+ * This is the only route in the app that runs the Worker for a plain GET: every
+ * page is a static prerender served from the asset binding, but an OG image has
+ * to be generated. That makes its cost profile uniquely important.
+ *
+ * It used to be `dynamic = 'force-dynamic'`, which forbade caching. Every
+ * crawler that peeked at an /info link — WhatsApp, Facebook, Google, Twitter,
+ * and everyone who shares a church link does — forced a fresh PNG render plus
+ * two D1 queries. Live measurements were 1.1-3.5s per render, and crawlers
+ * fetch in parallel bursts.
+ *
+ * That is where the unexplained 503s came from. Cloudflare analytics recorded
+ * 9 x 503 at 08:13Z and 5 x 503 at 16:12Z, and the CI smoke run on 16 Oct
+ * caught `/info/opengraph-image` returning 503 (it passed only on retry, which
+ * is what the new flaky gate refuses to accept). A worker that is busy
+ * rendering PNGs for a crawler burst is a worker that returns 503 to the next
+ * request, including a real visitor's.
+ *
+ * Revalidating every 10 minutes instead collapses that cost to at most six
+ * renders an hour. The image shows the current week's announcements, so a
+ * ten-minute staleness is invisible; a failed preview card when a congregant
+ * shares the link is not.
  */
-
-export const dynamic = 'force-dynamic';
+export const revalidate = 600;
 export const alt = 'GIA Deliksari Semarang — Papan Warta & Jadwal Pelayanan';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
