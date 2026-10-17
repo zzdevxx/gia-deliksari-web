@@ -4,6 +4,7 @@ import { execute } from '@/lib/d1';
 import { requireRole } from '@/lib/auth';
 import { uploadToGoogleDrive } from '@/lib/googleDrive';
 import { logAudit, auditContextFromRequest } from '@/lib/auditLog';
+import { driveUnavailable } from '@/lib/httpErrors';
 import { GalleryItem } from '@/types';
 
 export async function POST(req: NextRequest) {
@@ -93,12 +94,9 @@ export async function POST(req: NextRequest) {
         imageUrl = `https://lh3.googleusercontent.com/d/${id}=w2000`;
         thumbUrl = `https://lh3.googleusercontent.com/d/${id}=w800`;
       } else {
-        return NextResponse.json(
-          {
-            error:
-              'Arsip Google Drive gagal menerima berkas, dan tidak ada penyimpanan cadangan. Hubungi pengurus teknis.',
-          },
-          { status: 503 },
+        return driveUnavailable(
+          'drive_rejected_and_no_fallback',
+          'Arsip Google Drive gagal menerima berkas, dan tidak ada penyimpanan cadangan. Hubungi pengurus teknis.',
         );
       }
     }

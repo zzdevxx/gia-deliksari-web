@@ -5,6 +5,7 @@ import { queryAll, execute } from '@/lib/d1';
 import { getDriveClient } from '@/lib/googleDrive';
 import { requireRole, type User } from '@/lib/auth';
 import { logAudit, auditContextFromRequest } from '@/lib/auditLog';
+import { driveUnavailable } from '@/lib/httpErrors';
 
 export async function POST(req: NextRequest) {
   const syncSecret = process.env.GALLERY_SYNC_SECRET;
@@ -37,18 +38,12 @@ export async function POST(req: NextRequest) {
 
   const folderId = process.env.GOOGLE_DRIVE_PUBLIC_FOLDER_ID;
   if (!folderId) {
-    return NextResponse.json(
-      { error: 'GOOGLE_DRIVE_PUBLIC_FOLDER_ID belum di-set di environment.' },
-      { status: 503 },
-    );
+    return driveUnavailable('folder_id_unset', 'GOOGLE_DRIVE_PUBLIC_FOLDER_ID belum di-set di environment.');
   }
 
   const client = getDriveClient();
   if (!client) {
-    return NextResponse.json(
-      { error: 'Google Drive client belum dikonfigurasi.' },
-      { status: 503 },
-    );
+    return driveUnavailable('drive_client_unconfigured', 'Google Drive client belum dikonfigurasi.');
   }
 
   const { drive } = client;
