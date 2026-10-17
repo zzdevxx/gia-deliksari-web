@@ -12,10 +12,12 @@
  *
  * Versioning:
  *   Bump CACHE_VERSION to invalidate all old caches after significant deploys.
- *   Currently gia-v2.
+ *   Currently gia-v3 — bumped when the synthetic 503 was replaced with an
+ *   offline envelope, because a client holding the v2 script would keep
+ *   inventing server errors until its cache was cleared.
  */
 
-const CACHE_VERSION = 'gia-v2';
+const CACHE_VERSION = 'gia-v3';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const HTML_CACHE = `${CACHE_VERSION}-html`;
 const API_CACHE = `${CACHE_VERSION}-api`;
@@ -89,6 +91,41 @@ function isCacheableAPIGET(req, urlObj) {
   return p === '/api/public/data' || p === '/api/youtube/latest';
 }
 
+/**
+ * The answer to "no cache and no network" for a public read-only API call.
+ *
+ * This used to be `new Response('Offline', { status: 503 })`. That invented a
+ * server status code inside the browser, and the consequence was worse than
+ * cosmetic: a 503 in DevTools is indistinguishable from the origin being down,
+ * so a congregation member on a weak mobile connection — the exact audience
+ * this site serves, and the exact condition where cache and network both miss —
+ * saw what looked like a broken church website. It also made the app's own
+ * 503s impossible to triage, because client-invented 503s and real upstream
+ * 503s were sitting in the same Network panel with nothing to tell them apart.
+ * The 16 Oct 2026 investigation into "/media returns 503" burned hours on this
+ * before the source turned out to be here, in the browser.
+ *
+ * A synthetic failure is not this layer's to make. The page already renders
+ * curated fallback content when a fetch fails (every public page seeds state
+ * from src/lib/seedData.ts and only replaces it if the request returns rows),
+ * so the honest answer is an empty success: the request completed, the origin
+ * simply had nothing to add. 200 + `offline: true` lets a caller that cares
+ * distinguish it, and everything else degrades to the seed data it already has.
+ */
+function offlineEnvelope() {
+  return new Response(
+    JSON.stringify({ offline: true, items: [], sermons: [], announcements: [], rosters: [] }),
+    {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Served-By': 'gia-service-worker',
+        'Cache-Control': 'no-store',
+      },
+    },
+  );
+}
+
 function u(req) {
   return new URL(req.url);
 }
@@ -152,7 +189,7 @@ self.addEventListener('fetch', (event) => {
             return res;
           })
           .catch(() => null);
-        return cached || (await network) || new Response('Offline', { status: 503 });
+        return cached || (await network) || offlineEnvelope();
       })(),
     );
     return;
