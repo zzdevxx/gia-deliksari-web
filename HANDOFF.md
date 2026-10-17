@@ -1,12 +1,17 @@
 # 🤝 HANDOFF BRIEFING — GIA DELIKSARI WEB PORTAL
 
-**Tanggal Update**: 16 Oktober 2026
-**Status**: 100% HIJAU · LIVE · 3 LAPISAN BACKUP AKTIF · OBSERVABILITAS AKTIF
+**Tanggal Update**: 17 Oktober 2026
+**Status**: `main` hijau (`d74d24d`) · **BELUM TERDEPLOY** — produksi masih `3813bab4`
 **URL Live**: [giadeliksari.my.id](https://giadeliksari.my.id) (fallback: `gia-deliksari-web.zzdree.workers.dev`)
 **Git Branch**: `main` (in-sync dengan `origin/main`)
 
 > Sebelum mengubah kode, baca **`RUNBOOK.md`** — itu panduan operasional lengkap.
 > Dokumen ini adalah ringkasan status untuk agent penerus.
+>
+> 🔴 **`main` sudah memuat 10 commit perbaikan yang BELUM ada di produksi.**
+> Jalankan `npm run deploy` (cek RAM dulu, lihat RUNBOOK §5). Sampai itu terjadi,
+> CI smoke **terus menulis ~5 baris sampah per run** ke `audit_log` produksi, dan
+> service worker di HP jemaat **masih mengarang 503**.
 
 ---
 
@@ -33,7 +38,7 @@
 | Runtime | Cloudflare Workers via `@opennextjs/cloudflare` (`nodejs_compat`) |
 | Database | Cloudflare D1 `gia-deliksari-db` (`0f8a9e42-…`) |
 | Deploy | `npm run deploy` |
-| Test | `npm test` (**35/35**) · `npm run typecheck` (0 error) · `npm run lint:design` (0 anti-pattern) |
+| Test | `npm test` (**86/86**, 13 file) · `npm run typecheck` (0 error) · `npm run lint:design` (0 anti-pattern) · `npm run lint:slop` (0 Slop Error) |
 
 ---
 
@@ -159,6 +164,41 @@ sudah dua kali menghasilkan bug berbeda dalam satu hari:**
   **Kalau ingin `/home` jauh lebih pendek, yang harus dipangkas adalah KONTEN,
   bukan margin** — dan itu keputusan pengurus, bukan keputusan teknis. Lihat
   `docs/REKOMENDASI-UIUX.md` untuk perbandingan dengan situs gereja lain.
+
+---
+
+## 📋 Audit 17 Okt 2026 — 6 cacat nyata (semua di `main`, belum deploy)
+
+Dipicu oleh **CI `b2d1ee7` MERAH** padahal handoff sebelumnya bilang "100% HIJAU".
+
+| # | Cacat | Bukti |
+|---|---|---|
+| 1 | `audit_log` produksi **36% tercemar CI** (91 baris) | 55 fail + 36 lockout dari 20 IP runner |
+| 2 | `public/sw.js` **mengarang 503 di browser jemaat** | `new Response('Offline',{status:503})` |
+| 3 | **`error.tsx`/`loading.tsx` tidak ada** di 10 halaman | boundary root hanya menangkap error klien |
+| 4 | Zero-guard backup **menjumlah semua tabel** | `users:[]` + `audit_log:198` = 222 → lolos |
+| 5 | **Pass-on-retry dianggap lulus** | `/media` 503 lolos sebagai "1 flaky" |
+| 6 | **503 tidak bisa diatribusi** | edge / upstream / Worker / SW, semua identik di DevTools |
+
+**Penemuan paling berguna:** 503 `/info/opengraph-image` **7 dari 9** kejadian 503
+pada `08:13Z`. Endpoint itu `force-dynamic` sehingga **setiap crawler** memicu
+render PNG + 2 query D1 (1,1–3,5 dtk). Kini `revalidate = 600`.
+
+### ❌ 5 hipotesis yang TERBUKTI SALAH — jangan diulang
+
+1. **"D1 mati saat 503"** — D1 hidup; audit menulis `login_success` 51 detik sesudahnya.
+2. **"Uji lockout mengunci akun nyata"** — key = `ip::username`, victim pakai `Date.now()`.
+3. **"User-Agent bisa memisahkan runner dari manusia"** — **TIDAK BISA.** Playwright
+   meniru `Windows NT 10.0; Win64; x64` di runner Linux; UA-nya **identik** dengan
+   pengunjung Windows sungguhan. Pasangan dengan CIDR resmi `api.github.com/meta`.
+4. **"Cache expire → thundering herd"** — `stale-while-revalidate=300` sudah ada.
+5. **"Halaman publik query D1 saat render"** — semua prerender statis
+   (`compute:"static"`), Worker tak pernah dipanggil untuk `/media`.
+
+**Jebakan baca output:** `npm test` yang terlihat "gagal" itu ternyata **LULUS
+86/86** — yang kubaca adalah *warning* Vite (`configLoader:'native'`) di stderr.
+Formatter terminal juga meringkas output; cara andal = `base64` atau `python3`
+yang menggabung jadi satu baris sebelum membaca.
 
 ---
 
