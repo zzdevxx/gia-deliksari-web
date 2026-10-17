@@ -52,6 +52,12 @@ jobs:
       # that the church has no data. Committing it would put a fake "backup" in
       # permanent git history and hide the outage, so this step fails the job —
       # and because the commit step below never runs, history stays clean.
+      #
+      # The total is not enough on its own. A token scoped to one table, or a
+      # query that fails on one table while others succeed, still sums well above
+      # zero while the snapshot is quietly missing data. `users` is the one that
+      # matters — it is what a restore needs before anyone can log in — so the
+      # check below asserts it directly rather than trusting the sum.
       - name: Verify snapshot is not empty
         run: |
           LATEST=$(ls -t backups/d1/*.json 2>/dev/null | head -1)
@@ -59,17 +65,26 @@ jobs:
             echo "::error::Tidak ada file snapshot yang dihasilkan."
             exit 1
           fi
-          ROWS=$(node -e "
+          node -e "
             const s = require('./$LATEST');
             const t = s.tables || {};
-            const n = Object.values(t).reduce((a, v) => a + (Array.isArray(v) ? v.length : 0), 0);
-            process.stdout.write(String(n));
-          ")
-          echo "Snapshot $LATEST berisi $ROWS baris."
-          if [ "$ROWS" = "0" ]; then
-            echo "::error::Snapshot kosong. Kemungkinan CLOUDFLARE_API_TOKEN atau CLOUDFLARE_ACCOUNT_ID salah/tidak diset."
-            exit 1
-          fi
+            const total = Object.values(t).reduce((a, v) => a + (Array.isArray(v) ? v.length : 0), 0);
+            console.log('Snapshot $LATEST berisi ' + total + ' baris.');
+            if (total === 0) {
+              console.error('::error::Snapshot kosong. Kemungkinan CLOUDFLARE_API_TOKEN atau CLOUDFLARE_ACCOUNT_ID salah/tidak diset.');
+              process.exit(1);
+            }
+            // Tables that are never empty in a healthy production DB. If one of
+            // these comes back empty, the query failed or the token lost scope —
+            // and a snapshot without users is not a restorable backup.
+            const required = ['users', 'announcements'];
+            const missing = required.filter((k) => !Array.isArray(t[k]) || t[k].length === 0);
+            if (missing.length) {
+              console.error('::error::Tabel kritis kosong: ' + missing.join(', ') + '. Snapshot cacat, tidak di-commit.');
+              process.exit(1);
+            }
+            console.log('  users=' + (t.users||[]).length + ' announcements=' + (t.announcements||[]).length + ' (tabel kritis terisi)');
+          "
 
       - name: Commit & push local D1 snapshot
         run: |

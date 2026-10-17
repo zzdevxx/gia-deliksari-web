@@ -161,6 +161,36 @@ async function main() {
     process.exit(1);
   }
 
+  // The check above only fires when EVERY table is empty, which is the least
+  // likely shape of the real failure. A token scoped to one table, or a query
+  // that errors on one table while the rest succeed, produces a snapshot that
+  // is mostly fine — and the sum stays comfortably above zero.
+  //
+  // That is not hypothetical: commit a5893c0 fixed a backup that wrote
+  // all-empty snapshots for weeks and exited 0. The global-sum guard closes the
+  // all-empty case and leaves the partial case open. A snapshot missing `users`
+  // is the dangerous one — it is the table a restore needs to let anyone log
+  // back in — and it would be committed nightly while every count looked busy.
+  //
+  // These tables must never be empty in a healthy database and are small enough
+  // that their being empty always means something is wrong. Tables like
+  // `gallery` and `youth_treasury_transactions` are legitimately empty today,
+  // so they are deliberately not listed: a guard that cries wolf gets ignored.
+  const MUST_NOT_BE_EMPTY = [
+    ['users', users.length],
+    ['announcements', announcements.length],
+  ];
+  const empties = MUST_NOT_BE_EMPTY.filter(([, n]) => n === 0).map(([name]) => name);
+  if (empties.length > 0) {
+    console.error(
+      `FATAL: tabel kritis kosong pada snapshot: ${empties.join(', ')}. ` +
+        'Database produksi tidak pernah kosong di tabel ini, jadi ini menandakan ' +
+        'query gagal atau token kehilangan scope — bukan data yang benar-benar kosong. ' +
+        'Backup dibatalkan supaya snapshot cacat tidak ter-commit.',
+    );
+    process.exit(1);
+  }
+
   // 1. Simpan snapshot file lokal
   const fileDate = timestamp.replace(/[-:T.Z]/g, '').slice(0, 14);
   const filePath = path.join(OUT_DIR, `${fileDate}.json`);

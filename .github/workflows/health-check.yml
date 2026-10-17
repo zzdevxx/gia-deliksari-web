@@ -87,6 +87,36 @@ jobs:
             exit 1
           fi
 
+      # The backup job is the one thing whose failure is invisible from outside:
+      # the site keeps serving, so nothing looks wrong while the safety net
+      # quietly stops being refreshed. That is exactly what happened — the last
+      # snapshot was 2026-10-15T22:47Z, the 16 Oct run never fired, and nothing
+      # reported it. A dropped scheduler dispatch is not a hypothetical; GitHub
+      # documents that scheduled workflows are delayed and can be skipped under
+      # load.
+      #
+      # Reading the newest committed snapshot makes staleness observable without
+      # touching Cloudflare credentials. The window is 30h rather than 24h so a
+      # delayed run does not page anyone, while a genuinely missed day does.
+      - name: Check the D1 backup is still fresh
+        id: backup-age
+        run: |
+          set -uo pipefail
+          LATEST=$(ls -t backups/d1/*.json 2>/dev/null | head -1 || true)
+          if [ -z "$LATEST" ]; then
+            echo "FAIL no D1 snapshot found in backups/d1/"
+            echo "failed<<EOF\n- no D1 snapshot exists in backups/d1/\nEOF" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+          AGE_H=$(( ( $(date -u +%s) - $(date -u -r "$LATEST" +%s) ) / 3600 ))
+          echo "Newest snapshot: $LATEST age=${AGE_H}h"
+          if [ "$AGE_H" -gt 30 ]; then
+            echo "FAIL newest D1 snapshot is ${AGE_H}h old (limit 30h)"
+            echo "failed<<EOF\n- newest D1 snapshot ($LATEST) is ${AGE_H}h old — the nightly backup has stopped running\nEOF" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+          echo "OK   D1 backup is current (${AGE_H}h old)"
+
       - name: Open or update an issue when unhealthy
         if: failure()
         uses: actions/github-script@v7
