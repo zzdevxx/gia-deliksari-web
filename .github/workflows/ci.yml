@@ -110,6 +110,20 @@ jobs:
           TEST_SUPER_USER: ${{ secrets.TEST_SUPER_USER }}
           TEST_SUPER_PASS: ${{ secrets.TEST_SUPER_PASS }}
 
+      # A test that passes only on retry is not a pass.
+      #
+      # On 16 Oct 2026 an auth test failed twice and passed on retry #2; the job
+      # reported success and the deploy stood. The same window contained real
+      # 503s on /media that reached visitors. Playwright's default behaviour is
+      # to call that "1 flaky" and exit 0 — which makes retries a way to hide an
+      # intermittent defect rather than absorb a flaky network.
+      #
+      # This step reads the JSON report and fails the job if ANY test needed a
+      # retry to pass, so the signal cannot be lost in the log.
+      - name: Fail if any test passed only on retry
+        if: always()
+        run: node scripts/check-flaky-tests.mjs
+
       - name: Upload Playwright report on failure
         if: failure()
         uses: actions/upload-artifact@v4
