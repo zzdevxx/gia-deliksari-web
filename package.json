@@ -27,7 +27,9 @@
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
     "lint:slop": "node scripts/check-anti-slop.js src/ --summary",
-    "lint:contrast": "python3 scripts/contrast-check.py"
+    "lint:contrast": "python3 scripts/contrast-check.py",
+    "audit:prune": "node scripts/prune-audit-log.mjs",
+    "audit:purge-smoke": "node scripts/purge-smoke-audit-rows.mjs"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

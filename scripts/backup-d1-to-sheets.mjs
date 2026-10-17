@@ -111,7 +111,13 @@ async function main() {
     queryD1('SELECT * FROM gallery_items ORDER BY created_at DESC'),
     queryD1('SELECT * FROM ministry_requests ORDER BY created_at DESC'),
     queryD1('SELECT id, username, roles, display_name, active, last_login_at, created_at FROM users ORDER BY created_at ASC'),
-    queryD1('SELECT * FROM audit_log ORDER BY created_at DESC LIMIT 1000'),
+    // No LIMIT. This was `LIMIT 1000`, which is not a backup — it is a backup
+    // with a silent expiry date. The table grows by roughly 5 rows per CI run
+    // and there is no retention yet, so within weeks the oldest rows would
+    // start disappearing from each new snapshot with no warning: the same
+    // fail-silent shape as the empty-snapshot bug this script already fixed.
+    // A snapshot is either the whole table or it is not a restore point.
+    queryD1('SELECT * FROM audit_log ORDER BY created_at DESC'),
   ]);
 
   const balance = balanceArr[0] || { total_income: 0, total_expense: 0, balance: 0 };
