@@ -1,0 +1,135 @@
+important information, buat markdown khusus, INFO.md di project
+masukkan semua informasi berikut ke INFO.md dan ke project (website)
+
+web sebelumnya, scrape
+https://giadeliksarisemarang.co.site/
+https://69a2506495d38.site123.me/
+
+gereja
+
+GIA Deliksari Semarang
+Gereja Isa Almasih Deliksari Semarang
+
+slogan, growing church
+
+google maps
+https://maps.app.goo.gl/CZt65yeXt7hqxiup6
+alamat
+Jl. Kolonel HR Hadijanto, Sekaran, Kec. Gn. Pati, Kota Semarang, Jawa Tengah 50229
+kontak WhatsApp
+089620961103
+kontak email giadeliksarichurch@gmail.com
+
+media sosial official
+https://www.instagram.com/giadeliksari/ (gereja)
+https://www.instagram.com/growgeneration_/ (youth)
+https://www.instagram.com/cockidz/ (sekolah minggu)
+
+media sosial personal
+https://www.instagram.com/ps.yohanessutono/ (bapak gembala)
+https://www.instagram.com/santinilidyawati/ (ibu gembala)
+https://www.instagram.com/noelloveano_/ (youth pastor)
+https://www.instagram.com/pwkhana_/ (wanita hana)
+
+ada beberapa tempat
+pastori, gedung utama, ruang bethel, ruang gembala, halaman
+
+jadwal ibadah / kegiatan
+
+ibadah raya minggu, jam 09.00 - 11.00, tempat di gedung utama
+
+ibadah youth (prbk/grow generation), jam 18.00 - 20.00
+ibadah komsel (prbk/grow generation), jam 18.00 - 20.00
+tempat di gedung utama atau ruang bethel
+
+logic youth dan komsel nya, 1 bulan 4 minggu, selang seling, minggu pertama, dan ketiga, ibadah youth, minggu kedua, dan keempat, ibadah komsel, sabtu, 29 agustus 2026, ibadah youth, pakai data itu
+
+ibadah sekolah minggu (kaa/coc kidz), jam 09.30 - 10.30
+tempat di ruang bethel
+
+ibadah wanita (hana), setiap jumat, jam 17.30 - 19.00
+ibadah komsel (ekklesia sel), selasa, jam 18.30 - 20.00
+tempat di gedung utama
+
+logic wanita dan komsel nya, 1 bulan 4 minggu, selang seling, minggu pertama, dan ketiga, ibadah hana, minggu kedua, dan keempat, ibadah komsel, jumat, 4 september 2026, ibadah wanita, pakai data itu
+
+latihan musik umum, setiap sabtu, jam 10.00 - 12.00, kadang jam fleksibel
+latihan musik umum, setiap sabtu, jam 20.00 - 22.00, kadang jam fleksibel
+tempat di gedung utama
+
+ibadah doa pagi, setiap selasa-jumat, jam 05.00 - 05.30
+tempat di gedung utama (onsite) dan zoom (online)
+link sementara https://us06web.zoom.us/j/83715591277?pwd=Qc52Xla9k68ZjD3rViMRIaDiXgaWkf.1, nanti ada link baru
+
+visitasi/kunjungan jemaat, setiap selasa, jam fleksibel
+
+kegiatan kantor, selasa - sabtu, jam 08.00 - 15.00
+tempat di ruang gembala
+
+hamba tuhan (tim penggembalaan dan pelayanan)
+
+bapak gembala/senior pastor, pdt. yohanes sutono, s.th., m.ag.
+ibu gembala, ibu santini lidyawati
+youth pastor, sdr noel yosan loveano, s.th.
+
+ketua youth, sdri lara tampubolon
+ketua sekolah minggu, sdri yemima purnamasari
+ketua wanita (hana), ibu penskilla
+
+struktur youth
+ketua, sdri lara tampubolon
+sekretaris, sdr ravael
+bendahara, sdri mara
+sie liturgi, sdr irel dan sdri bethany
+sie komsel, sdr yosua dan sdri shalom
+sie akomodasi, sdr kevin dan sdr nando
+
+struktur komsel
+ketua komsel (ekklesia sel), bpk sidik
+ketua komsel (amethyst), sdri yemima
+ketua komsel (daughter of grace), sdri lara
+ketua komsel (nazareth), sdr elang
+ketua komsel (domba perjuangan), sdr yosua
+
+struktur sekolah minggu
+ketua, sdri yemima purnamasari
+sekretaris, sdri kesya
+bendahara, ibu septi
+
+struktur wanita (hana)
+ketua, ibu penskilla
+sekretaris, ibu siska
+bendahara, ibu sulistya
+
+selain itu jangan masukkan
+
+papan pengumumuman atau warta gereja, yang sudah berlalu, di sembunyikan saja, dan datanya dipisah, antara yg sudah dan yg akan datang gitu, kasih countdown sekalian
+
+alat musik dan lainnya
+keyboard medeli, filler
+keyboard korg, primary
+bass
+gitar visioner
+drum akustik visioner
+drum pad
+2 kajon
+2 mic wl
+2 mic singer
+mixer newbaxs ct80s
+mixer hardwell slk8
+power amplifier new xys sq7200h
+yg lainnya menyusul
+
+template layout pelayan full band
+pembicara, 1 wl atau 2wl, 2 singer, keyboard utama, filler optional, kadang ada kadang tidak, bass dan gitar, drum akustik dan pad jadi 1 ekosistem
+template layout pelayan akustik
+pembicara, 1 wl, 1 singer, gitar dan kajon
+
+itu akan masuk di jadwal pelayan
+
+persembahan, bisa langsung ke kotak persembahan, ada 3, persembahan 1, persembahan 2, dan persembahan khusus
+ada rekening tapi nnti, belum dikasih tahu, ada qris juga btw, cuma 3 method sih berarti, offline, rek, dan qris
+
+mungkin itu saja
+
+untuk admin/operator, kalau bisa easy use
