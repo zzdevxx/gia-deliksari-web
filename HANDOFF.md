@@ -230,7 +230,7 @@ Semua perbaikan di sesi ini bermuara pada satu prinsip: **FAIL LOUD, NOT SILENT.
 
 ## 🔑 Akses & kredensial
 
-**GitHub secrets** (repo `zzdree/gia-deliksari-web`):
+**GitHub secrets** (repo `zzdevxx/gia-deliksari-web`):
 ```
 CLOUDFLARE_ACCOUNT_ID · CLOUDFLARE_API_TOKEN (D1 Read saja)
 GOOGLE_SHEETS_WEBHOOK_URL · GOOGLE_SHEETS_WEBHOOK_SECRET

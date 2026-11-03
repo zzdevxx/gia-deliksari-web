@@ -99,8 +99,8 @@ https://script.google.com/macros/s/AKfycb...../exec
 **Kirim URL ini + SECRET yang kamu pilih ke Claude**, atau pasang sendiri:
 
 ```bash
-gh secret set GOOGLE_SHEETS_WEBHOOK_URL --repo zzdree/gia-deliksari-web
-gh secret set GOOGLE_SHEETS_WEBHOOK_SECRET --repo zzdree/gia-deliksari-web
+gh secret set GOOGLE_SHEETS_WEBHOOK_URL --repo zzdevxx/gia-deliksari-web
+gh secret set GOOGLE_SHEETS_WEBHOOK_SECRET --repo zzdevxx/gia-deliksari-web
 ```
 
 ---
@@ -123,7 +123,7 @@ Berarti webhook hidup. ✅
 ### Tes penuh
 
 ```bash
-gh workflow run "D1 Backup and Google Sheets Sync" --repo zzdree/gia-deliksari-web
+gh workflow run "D1 Backup and Google Sheets Sync" --repo zzdevxx/gia-deliksari-web
 ```
 
 Buka spreadsheet-nya setelah ~1 menit. Harus muncul sheet:
@@ -161,8 +161,8 @@ masalah. Inilah gunanya: masalah jadi **terlihat tanpa membuka terminal**.
 1. Apps Script → **Deploy** → **Manage deployments** → **Archive**
 2. Hapus secret GitHub:
    ```bash
-   gh secret delete GOOGLE_SHEETS_WEBHOOK_URL --repo zzdree/gia-deliksari-web
-   gh secret delete GOOGLE_SHEETS_WEBHOOK_SECRET --repo zzdree/gia-deliksari-web
+   gh secret delete GOOGLE_SHEETS_WEBHOOK_URL --repo zzdevxx/gia-deliksari-web
+   gh secret delete GOOGLE_SHEETS_WEBHOOK_SECRET --repo zzdevxx/gia-deliksari-web
    ```
 
 Backup harian tetap jalan — hanya lapisan Sheets yang berhenti.

@@ -201,7 +201,7 @@ Keamanan: Hanya published rows yang bisa diakses publik via API sanitized. Mutas
 
 ### 1. Clone Repository & Masuk Direktori
 ```bash
-git clone https://gitlab.com/zzdree/gia-deliksari-web.git
+git clone https://gitlab.com/zzdevxx/gia-deliksari-web.git
 cd gia-deliksari-web
 ```
 

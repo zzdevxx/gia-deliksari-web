@@ -36,8 +36,8 @@
  *      Cara cek: buka URL di browser — harus ada "kode_versi":"v4-final".
  *
  *  8. Kirim URL itu + SECRET yang kamu pilih ke Claude, atau pasang sendiri:
- *       gh secret set GOOGLE_SHEETS_WEBHOOK_URL --repo zzdree/gia-deliksari-web
- *       gh secret set GOOGLE_SHEETS_WEBHOOK_SECRET --repo zzdree/gia-deliksari-web
+ *       gh secret set GOOGLE_SHEETS_WEBHOOK_URL --repo zzdevxx/gia-deliksari-web
+ *       gh secret set GOOGLE_SHEETS_WEBHOOK_SECRET --repo zzdevxx/gia-deliksari-web
  *
  *  SELESAI. Setiap malam backup akan menulis ke spreadsheet ini.
  * ═══════════════════════════════════════════════════════════════════════════

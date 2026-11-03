@@ -18,7 +18,7 @@ The `mutations` job in `.github/workflows/ci.yml`:
 
 ## Step 1 — Set the GitHub secrets
 
-1. Go to https://github.com/zzdree/gia-deliksari-web/settings/secrets/actions
+1. Go to https://github.com/zzdevxx/gia-deliksari-web/settings/secrets/actions
 2. Ensure both secrets are configured:
    - `TEST_SUPER_USER`: username superuser
    - `TEST_SUPER_PASS`: password superuser
@@ -33,7 +33,7 @@ The `mutations` job in `.github/workflows/ci.yml`:
 
 ### Option A — Manual trigger (recommended)
 
-1. Go to https://github.com/zzdree/gia-deliksari-web/actions/workflows/ci.yml
+1. Go to https://github.com/zzdevxx/gia-deliksari-web/actions/workflows/ci.yml
 2. Click **Run workflow**
 3. (Optional) Branch selector — default to `main`
 4. Click green **Run workflow** button
