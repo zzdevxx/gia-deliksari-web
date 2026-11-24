@@ -5,7 +5,7 @@
 **URL Live**: [giadeliksari.my.id](https://giadeliksari.my.id) (fallback: `gia-deliksari-web.zzdree.workers.dev`)
 **Git Branch**: `main` (in-sync dengan `origin/main`)
 
-> Sebelum mengubah kode, baca **`RUNBOOK.md`** — itu panduan operasional lengkap.
+> Sebelum mengubah kode, baca **`docs/RUNBOOK.md`** — itu panduan operasional lengkap.
 > Dokumen ini adalah ringkasan status untuk agent penerus.
 >
 > 🔴 **`main` sudah memuat 10 commit perbaikan yang BELUM ada di produksi.**
@@ -21,7 +21,7 @@
 2. **DILARANG mengaktifkan R2.** Keputusan sadar: operator memilih prinsip
    "full free tanpa kartu". R2 butuh metode pembayaran. Galeri pakai Google Drive.
 3. **DILARANG warna coklat/krem/sepia.** Palet = **Crimson Field** (hue kanonik
-   14.1°, `#8E1533`). Lihat `DESIGN.md` (frontmatter = kontrak mesin `lint:design`).
+   14.1°, `#8E1533`). Lihat `docs/DESIGN.md` (frontmatter = kontrak mesin `lint:design`).
 4. **Glassmorphism hanya untuk Navbar.** Flat di semua tempat lain.
 5. **JANGAN percaya HTTP status code untuk verifikasi Apps Script.** Google selalu
    membalas `302` sebelum script jalan. Bukti sah = sheet `Log`.
@@ -54,7 +54,7 @@
 
 - **Script restore ada dan teruji**: `scripts/restore-d1-from-snapshot.mjs`
 - **Drill restore pernah dijalankan** ke DB sementara (izin anak gembala diberikan).
-  Hasil: semua tabel cocok persis. Lihat `RUNBOOK.md` §1.
+  Hasil: semua tabel cocok persis. Lihat `docs/RUNBOOK.md` §1.
 - **⚠️ Akun hasil restore MATI** — `password_hash` diisi placeholder inert.
   Harus direset operator setelah restore. Ini perilaku yang benar.
 

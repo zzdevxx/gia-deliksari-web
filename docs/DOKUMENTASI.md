@@ -9,10 +9,10 @@ Bingung harus baca yang mana? Mulai dari sini.
 | Situasi | Baca ini |
 |---|---|
 | **Operator gereja**, mau tahu cara pakai / klik-klik | [`PANDUAN-MANUAL.md`](PANDUAN-MANUAL.md) |
-| **Developer/agent baru**, mau lanjut kerja | [`HANDOFF.md`](HANDOFF.md) → [`RUNBOOK.md`](RUNBOOK.md) |
+| **Developer/agent baru**, mau lanjut kerja | [`HANDOFF.md`](../HANDOFF.md) → [`RUNBOOK.md`](RUNBOOK.md) |
 | **Ada masalah teknis**, perlu repair/pemulihan | [`RUNBOOK.md`](RUNBOOK.md) |
 | Mau tahu **kenapa** sesuatu diputuskan begitu | [`CHANGELOG.md`](CHANGELOG.md) |
-| Mau **setup backup ke Google Sheets** | [`docs/PANDUAN-BACKUP-SHEETS.md`](docs/PANDUAN-BACKUP-SHEETS.md) |
+| Mau **setup backup ke Google Sheets** | [`PANDUAN-BACKUP-SHEETS.md`](PANDUAN-BACKUP-SHEETS.md) |
 | Mau tahu **isi data gereja** (jadwal, pengurus) | [`INFO.md`](INFO.md) |
 | Mau ubah **tampilan/warna** | [`DESIGN.md`](DESIGN.md) (frontmatter = kontrak mesin) |
 | Mau tahu **rencana produk** | [`PRD.md`](PRD.md) |
@@ -29,7 +29,7 @@ Buku manual utama. Isinya:
 - **§4 UU PDP** — status data pribadi jemaat
 - **§5-8** — gate verifikasi, deployment, migrasi, kredensial
 
-### [`HANDOFF.md`](HANDOFF.md) — briefing penerus
+### [`HANDOFF.md`](../HANDOFF.md) — briefing penerus
 Aturan yang wajib dipatuhi, status terkini, dan **pelajaran penting** dari audit
 15-16 Okt 2026 (tiga bug besar yang tidak akan ketemu lewat linter/CI).
 
@@ -46,11 +46,11 @@ dibuat begini?".
 
 | File | Isi |
 |---|---|
-| [`apps-script-backup.gs`](docs/apps-script-backup.gs) | **Kode Apps Script** — 9 sheet + Log. Tempel ke Google Apps Script. |
-| [`PANDUAN-BACKUP-SHEETS.md`](docs/PANDUAN-BACKUP-SHEETS.md) | Cara pasang Apps Script (±5 menit) |
-| [`CLOUDFLARE-MIGRATION.md`](docs/CLOUDFLARE-MIGRATION.md) | Arsitektur Cloudflare (dari migrasi Vercel/Supabase) |
-| [`MUTATION-TESTS-SETUP.md`](docs/MUTATION-TESTS-SETUP.md) | Setup test yang mengubah data |
-| [`PLAN-FLAT-MINIMAL.md`](docs/PLAN-FLAT-MINIMAL.md) | Rencana desain lama (arsip) |
+| [`apps-script-backup.gs`](apps-script-backup.gs) | **Kode Apps Script** — 9 sheet + Log. Tempel ke Google Apps Script. |
+| [`PANDUAN-BACKUP-SHEETS.md`](PANDUAN-BACKUP-SHEETS.md) | Cara pasang Apps Script (±5 menit) |
+| [`CLOUDFLARE-MIGRATION.md`](CLOUDFLARE-MIGRATION.md) | Arsitektur Cloudflare (dari migrasi Vercel/Supabase) |
+| [`MUTATION-TESTS-SETUP.md`](MUTATION-TESTS-SETUP.md) | Setup test yang mengubah data |
+| [`PLAN-FLAT-MINIMAL.md`](PLAN-FLAT-MINIMAL.md) | Rencana desain lama (arsip) |
 
 ---
 

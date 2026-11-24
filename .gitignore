@@ -38,10 +38,17 @@ yarn-error.log*
 tsconfig.tsbuildinfo
 
 # Backup / log artifacts (do not commit)
-/backups/*.json
-/backups/*.sql
-!/backups/README.md
+#
+# `backups/` is where GitHub Actions writes daily D1 snapshots (and deletes
+# them after 30 days); `archive/` holds retired snapshots and audit reports.
+# Both directories hold machine-written JSON/SQL, so ignore those extensions
+# everywhere while still tracking the human-authored markdown.
+/archive/**/*.json
+/archive/**/*.sql
+backups/**/*.json
+backups/**/*.sql
 backups/old-images-backup/
+!/backups/README.md
 *.log
 sync-env.log
 prod-deploy-final.log

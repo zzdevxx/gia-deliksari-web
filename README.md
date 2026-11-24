@@ -38,7 +38,7 @@ Website telah resmi aktif dan ter-deploy secara langsung di **Cloudflare Workers
 | 👑 **Superuser** | [`/super`](/super) | `super` only | User management (create, edit roles, soft-delete) & Audit Log. |
 | 💰 **Kas Youth** | [`/kas`](/kas) | `super` / `treasurer` | Catat pemasukan/pengeluaran kas Grow Generation + saldo realtime. |
 
-Akun & kredensial production **tidak didokumentasikan di repo ini** — dikelola via `/super` dan disimpan di vault pengurus (detail: INFO.md §10.2).
+Akun & kredensial production **tidak didokumentasikan di repo ini** — dikelola via `/super` dan disimpan di vault pengurus (detail: `docs/INFO.md` §10.2).
 
 ---
 
@@ -155,22 +155,28 @@ gia-deliksari-web/
 ├── scripts/                    # Ops tooling
 │   ├── backup-d1-to-sheets.mjs # Snapshot D1 → git + Google Sheets
 │   └── restore-d1-from-snapshot.mjs  # Snapshot JSON → SQL restore
-├── docs/
-│   ├── apps-script-backup.gs   # Kode Apps Script (9 sheet + Log)
+├── docs/                        # Seluruh dokumen proyek (lihat docs/DOKUMENTASI.md)
+│   ├── INFO.md                  # Single source of truth (identitas, jadwal, struktur)
+│   ├── PRD.md                   # Product Requirements Document
+│   ├── PRODUCT.md               # Product schema (impeccable init)
+│   ├── DESIGN.md                # Design system & token (frontmatter = kontrak lint:design)
+│   ├── CHANGELOG.md             # Riwayat versi
+│   ├── DOKUMENTASI.md           # ⭐ INDEKS: mulai dari sini kalau bingung baca yang mana
+│   ├── RUNBOOK.md               # ⭐ Panduan operasional: backup, pemulihan, R2
+│   ├── PANDUAN-MANUAL.md        # Panduan klik-klik untuk operator non-teknis
+│   ├── apps-script-backup.gs    # Kode Apps Script (9 sheet + Log)
 │   └── PANDUAN-BACKUP-SHEETS.md # Panduan pasang lapisan Sheets
+├── archive/                     # Arsip: snapshot lama & laporan audit (bukan kerja aktif)
+│   ├── backups-snapshots/       # Snapshot SQL pra-deploy 2026-10-09
+│   └── anti-slop-audits/        # Laporan audit anti-slop 2026-10-16
 ├── .github/workflows/
 │   ├── backup-d1-to-sheets.yml # Harian 03:00 WIB → Sheets
 │   ├── health-check.yml        # Probe produksi tiap 2 jam → buka issue
 │   ├── ci.yml                  # TypeScript + Vitest + Playwright CI
 │   └── lighthouse.yml          # Lighthouse CI audit
-├── backups/                    # Snapshot JSON (auto-generated)
-├── INFO.md                     # Single source of truth (identitas, jadwal, struktur)
-├── PRD.md                      # Product Requirements Document
-├── DESIGN.md                   # Design System & Token Specification (Crimson Field, mesin-kontrak lint:design)
-├── DOKUMENTASI.md              # ⭐ INDEKS: mulai dari sini kalau bingung baca yang mana
-├── RUNBOOK.md                  # ⭐ Panduan operasional: backup, pemulihan, R2, observabilitas
+├── backups/                    # Snapshot JSON D1 harian (dibaca CI, auto-generated)
+├── README.md                   # Ringkasan repo & peta struktur
 ├── HANDOFF.md                  # Briefing untuk agent/developer penerus
-├── PANDUAN-MANUAL.md           # Panduan klik-klik untuk operator non-teknis
 ├── LICENSE                     # Proprietary & Private
 └── package.json
 ```
@@ -253,7 +259,7 @@ npm run start
 
 ### 7. Gate Kualitas
 
-Semua gate ini harus lulus sebelum rilis. Ada juga di `RUNBOOK.md` §5.
+Semua gate ini harus lulus sebelum rilis. Ada juga di `docs/RUNBOOK.md` §5.
 
 ```bash
 npm run typecheck     # 0 error
@@ -285,7 +291,7 @@ ketiga yang bukan milik kita.
 
 **Baca temuan pemindai, jangan langsung percaya.** Pada audit 16 Okt 2026, pemindai
 melewatkan 2 focus ring yang benar-benar hilang sambil menandai 2 yang sudah aman.
-Hasilnya di `anti-slop/audit-001-2026-10-16.md`.
+Hasilnya di `archive/anti-slop-audits/audit-001-2026-10-16.md`.
 
 ---
 
