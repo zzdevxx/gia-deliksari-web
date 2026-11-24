@@ -1,6 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+/* Entrance/exit animation family (animate-in / fade-in / zoom-in-95 /
+   slide-in-from-*). This replaces the v3 `tailwindcss-animate` plugin. It must
+   come AFTER the @theme block below: it registers `--animate-in`, which is a
+   theme namespace, and a CSS @import is hoisted above every rule in this file,
+   so declaring it earlier silently drops those utilities from the output. */
+@import "tw-animate-css";
 
 /* ============================================================================
    GIA Deliksari — Crimson Field design tokens
@@ -15,6 +19,143 @@
      --brand-text → text/icon on tinted or dark surfaces (needs ≥ 4.5:1 as fg)
    One hex cannot serve both jobs.
    ========================================================================== */
+
+/* `inline` is required because every value below references a runtime var().
+   Without it Tailwind resolves the reference at build time, where :root has no
+   definition yet, and emits the fallback instead of the token. */
+@theme inline {
+  /* Shadcn-compatible semantic layer. These map one-to-one onto the old
+     tailwind.config.ts colour tree, so `bg-primary`, `text-muted-foreground`,
+     `border-border` and friends keep resolving unchanged. */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Canonical flat semantic layer. Each has a light and a dark value in the
+     semantic block at the end of this file, so a theme switch needs no
+     per-component edits. --brand is the CTA fill; --brand-text is the brand
+     used as text/icon. */
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-text: var(--brand-text);
+  --color-brand-text-hover: var(--brand-text-hover);
+  --color-brand-text-on-brand: var(--brand-text-on-brand);
+  --color-brand-tint: var(--brand-tint);
+  --color-brand-tint-border: var(--brand-tint-border);
+  --color-brand-tint-ink: var(--brand-tint-ink);
+  --color-border-strong: var(--border-strong);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-raised-hover: var(--surface-raised-hover);
+  --color-ink-strong: var(--ink-strong);
+  --color-inverted-bg: var(--card-inverted-bg);
+  --color-inverted-fg: var(--card-inverted-fg);
+  --color-inverted-border: var(--card-inverted-border);
+  --color-status-success: var(--status-success);
+  --color-status-success-fg: var(--status-success-fg);
+  --color-status-danger: var(--status-danger);
+  --color-status-danger-fg: var(--status-danger-fg);
+  --color-status-info: var(--status-info);
+  --color-status-info-fg: var(--status-info-fg);
+
+  /* Warm palette retired in commit 8d50985. No component consumes these; kept
+     so nothing can silently stop resolving if a reference survives. */
+  --color-sacred-wine: #8b1e28;
+  --color-sacred-wine-dark: #b8323d;
+  --color-sacred-gold: #4b5563;
+  --color-sacred-gold-dark: #9ca3af;
+  --color-sacred-stone: #ffffff;
+  --color-sacred-charcoal: #0f1115;
+  --color-sacred-slate: #171a21;
+  --color-church-amber-50: #fffbeb;
+  --color-church-amber-100: #fef3c7;
+  --color-church-amber-200: #fde68a;
+  --color-church-amber-300: #fcd34d;
+  --color-church-amber-400: #fbbf24;
+  --color-church-amber-500: #f59e0b;
+  --color-church-amber-600: #d97706;
+  --color-church-amber-700: #b45309;
+  --color-church-amber-800: #92400e;
+  --color-church-amber-900: #78350f;
+  --color-church-navy-50: #f0f4f8;
+  --color-church-navy-100: #d9e2ec;
+  --color-church-navy-800: #102a43;
+  --color-church-navy-900: #0b1d3a;
+  --color-church-navy-950: #071224;
+
+  --font-sans: var(--font-sans), system-ui, sans-serif;
+  --font-display: var(--font-display), var(--font-sans), system-ui, sans-serif;
+
+  /* Keyframes live inside @theme so they are emitted with the animation
+     utility that references them. */
+  --animate-shake: shake 320ms cubic-bezier(0.23, 1, 0.32, 1);
+  --animate-shimmer: shimmer 1.8s ease-in-out infinite;
+
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    20% {
+      transform: translateX(-4px);
+    }
+    40% {
+      transform: translateX(4px);
+    }
+    60% {
+      transform: translateX(-3px);
+    }
+    80% {
+      transform: translateX(3px);
+    }
+  }
+
+  /* Sweeps the 200%-wide skeleton gradient. */
+  @keyframes shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  /* Strong easing curves. The CSS built-ins (ease, ease-in-out) are too weak
+     to read as intentional; ease-in delays the first frame, which is exactly
+     the moment the user is watching. */
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* `tw-animate-css` ships `@property` registrations whose initial values are
+     `none`, and an `@import` is hoisted above this block, so those declarations
+     would win and every entrance animation in the app would never run. This
+     re-declares the token after them.
+
+     The easing MUST be written with its `var()` indirection rather than as a
+     bare keyword. Tailwind only emits the parts of the shorthand that resolve,
+     and a bare keyword can drop out when the `--tw-ease` custom property it
+     reads from has no initial value in the `@theme` namespace; what then
+     reaches the browser is `animation: .15s enter`, which puts the keyframe
+     name where the spec expects a time and silently kills the animation. */
+
+  --animate-in: enter var(--tw-duration, 150ms) var(--tw-ease, ease);
+  --animate-out: exit var(--tw-duration, 150ms) var(--tw-ease, ease);
+}
 
 @layer base {
   :root {
@@ -321,10 +462,10 @@
     filter: blur(var(--field-blur)) saturate(0.85);
   }
 
-  /* `tailwindcss-animate` now powers 67 entrance animations (modals, toasts,
-     dropdowns, step reveals). Without this block, a user who has asked their OS
-     for reduced motion would get every single one of them at once, which is the
-     opposite of the accommodation they requested.
+  /* The entrance family (`animate-in`, `fade-in`, `zoom-in-95`) covers 31
+     mounts across modals, toasts and tab bodies. Without this block, a user who
+     has asked their OS for reduced motion would get every single one of them at
+     once, which is the opposite of the accommodation they requested.
 
      The animations are collapsed rather than removed: `animation-duration: 0.01ms`
      lets the keyframe sit at its final state instantly, so the element still ends
@@ -386,3 +527,17 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--brand);
 }
+
+/* ── Dark mode variant ─────────────────────────────────────────────────────
+   ThemeProvider and the inline script in layout.tsx toggle a class named
+   "dark" on <html>. v4 ships its dark variant bound to prefers-color-scheme,
+   so it must be re-declared; without this every `dark:*` utility in the app is
+   dead.
+
+   Deliberately placed LAST. Tests/unit/focus-contrast.test.ts reads this
+   stylesheet positionally: it takes the first `--ring` in the file as the light
+   value, then the first `--ring` after the first occurrence of the dark class
+   as the dark value. Declaring the variant earlier puts that selector literal
+   above :root, so both reads resolve to the same light token and the test
+   reports a failure that has nothing to do with the tokens themselves. */
+@custom-variant dark (&:where(.dark, .dark *));

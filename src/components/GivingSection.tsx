@@ -289,7 +289,7 @@ export default function GivingSection() {
  href="https://api.whatsapp.com/send?phone=6289620961103"
  target="_blank"
  rel="noopener noreferrer"
- className="font-semibold text-[var(--brand-text)] dark:text-[var(--brand-text)] underline decoration-1 underline-offset-2 hover:decoration-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ring)] rounded-sm"
+ className="font-semibold text-[var(--brand-text)] dark:text-[var(--brand-text)] underline decoration-1 underline-offset-2 hover:decoration-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ring)] rounded-xs"
  >
  hubungi WhatsApp pastoral
  </a>

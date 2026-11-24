@@ -346,7 +346,7 @@ export default function KasDashboard() {
  value={username}
  onChange={(e) => setUsername(e.target.value)}
  placeholder="namabendahara"
- className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[var(--ring)]/30 dark:focus:ring-[var(--ring)]/30 focus:border-[var(--brand)] dark:focus:border-[var(--brand)] outline-none transition-all placeholder:text-stone-400"
+ className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[var(--ring)]/30 dark:focus:ring-[var(--ring)]/30 focus:border-[var(--brand)] dark:focus:border-[var(--brand)] outline-hidden transition-all placeholder:text-stone-400"
  />
  </div>
 
@@ -361,7 +361,7 @@ export default function KasDashboard() {
  value={password}
  onChange={(e) => setPassword(e.target.value)}
  placeholder="••••"
- className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[var(--ring)]/30 dark:focus:ring-[var(--ring)]/30 focus:border-[var(--brand)] dark:focus:border-[var(--brand)] outline-none transition-all placeholder:text-stone-400 tracking-widest"
+ className="w-full px-4 py-3.5 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] focus:ring-2 focus:ring-[var(--ring)]/30 dark:focus:ring-[var(--ring)]/30 focus:border-[var(--brand)] dark:focus:border-[var(--brand)] outline-hidden transition-all placeholder:text-stone-400 tracking-widest"
  />
  </div>
 
@@ -575,7 +575,7 @@ export default function KasDashboard() {
  placeholder="Cari kategori / deskripsi..."
  value={searchQuery}
  onChange={(e) => setSearchQuery(e.target.value)}
- className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ink-strong)]/30"
+ className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-hidden focus:ring-2 focus:ring-[var(--ink-strong)]/30"
  />
  </div>
  </div>
@@ -673,7 +673,7 @@ export default function KasDashboard() {
 
  {/* ============== MODAL: ADD / EDIT TRANSACTION ============== */}
  {isModalOpen && (
- <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
+ <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in">
  <div className="w-full max-w-lg bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] rounded-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
  <div className="flex items-center justify-between">
  <h3 className="text-xl font-extrabold text-[var(--foreground)] dark:text-white">
@@ -695,7 +695,7 @@ export default function KasDashboard() {
  required
  value={form.transaction_date}
  onChange={(e) => setForm({ ...form, transaction_date: e.target.value })}
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ink-strong)]/30"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-hidden focus:ring-2 focus:ring-[var(--ink-strong)]/30"
  />
  </div>
  <div className="space-y-1">
@@ -705,7 +705,7 @@ export default function KasDashboard() {
  <select
  value={form.type}
  onChange={(e) => setForm({ ...form, type: e.target.value as any })}
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-hidden"
  >
  <option value="income">📈 Pemasukan</option>
  <option value="expense">📉 Pengeluaran</option>
@@ -724,7 +724,7 @@ export default function KasDashboard() {
  value={form.category}
  onChange={(e) => setForm({ ...form, category: e.target.value })}
  placeholder="contoh: iuran_anggota"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm font-mono text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ink-strong)]/30"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm font-mono text-[var(--foreground)] dark:text-[var(--foreground)] outline-hidden focus:ring-2 focus:ring-[var(--ink-strong)]/30"
  />
  <datalist id="kas-categories">
  {SUGGESTED_CATEGORIES.map((c) => (
@@ -748,7 +748,7 @@ export default function KasDashboard() {
  value={form.amount}
  onChange={(e) => setForm({ ...form, amount: e.target.value })}
  placeholder="50000"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm font-mono text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ink-strong)]/30"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm font-mono text-[var(--foreground)] dark:text-[var(--foreground)] outline-hidden focus:ring-2 focus:ring-[var(--ink-strong)]/30"
  />
  </div>
 
@@ -761,7 +761,7 @@ export default function KasDashboard() {
  value={form.description}
  onChange={(e) => setForm({ ...form, description: e.target.value })}
  placeholder="Detail tambahan: nama penyetor, sumber dana, dll."
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ink-strong)]/30 resize-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-hidden focus:ring-2 focus:ring-[var(--ink-strong)]/30 resize-none"
  />
  </div>
 

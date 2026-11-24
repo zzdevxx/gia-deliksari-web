@@ -75,7 +75,7 @@ export default function InfoPrintPage() {
             <button
               type="button"
               onClick={() => window.print()}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--brand)] dark:bg-[var(--brand)] text-white text-xs font-bold hover:bg-[var(--brand-hover)] shadow-sm transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--brand)] dark:bg-[var(--brand)] text-white text-xs font-bold hover:bg-[var(--brand-hover)] shadow-xs transition-all"
             >
               <Printer className="w-4 h-4" />
               <span>Cetak Sekarang / Simpan PDF</span>

@@ -400,7 +400,7 @@ export default function AnnouncementBoard() {
 
  {/* Print Bulletin Modal */}
  {isPrintModalOpen && (
- <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+ <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
  <div className="relative w-full max-w-3xl bg-white dark:bg-[var(--card)] rounded-2xl border border-[var(--border)] dark:border-[var(--border)] p-6 sm:p-10 max-h-[90vh] overflow-y-auto space-y-6">
  
  {/* Modal Header */}

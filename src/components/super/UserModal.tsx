@@ -58,7 +58,7 @@ const UserModal: React.FC<UserModalProps> = ({ initial, editingId, onSave, onClo
  aria-modal="true"
  aria-labelledby="user-modal-title"
  tabIndex={-1}
- className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
+ className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in">
  <div className="w-full max-w-lg bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] rounded-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
  <div className="flex items-center justify-between">
  <h3 id="user-modal-title" className="text-xl font-extrabold text-[var(--foreground)] dark:text-white">
@@ -85,7 +85,7 @@ const UserModal: React.FC<UserModalProps> = ({ initial, editingId, onSave, onClo
  value={form.username}
  onChange={(e) => setForm({ ...form, username: e.target.value })}
  placeholder="contoh: noel"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ring)]/30 dark:focus:ring-[var(--ring)]/30 disabled:opacity-60 disabled:cursor-not-allowed"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-hidden focus:ring-2 focus:ring-[var(--ring)]/30 dark:focus:ring-[var(--ring)]/30 disabled:opacity-60 disabled:cursor-not-allowed"
  />
  {editingId && (
  <p className="text-[10px] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
@@ -105,7 +105,7 @@ const UserModal: React.FC<UserModalProps> = ({ initial, editingId, onSave, onClo
  onChange={(e) => setForm({ ...form, password: e.target.value })}
  placeholder="••••"
  minLength={4}
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ring)]/30 dark:focus:ring-[var(--ring)]/30"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-hidden focus:ring-2 focus:ring-[var(--ring)]/30 dark:focus:ring-[var(--ring)]/30"
  />
  <p className="text-[10px] text-[var(--muted-foreground)] dark:text-[var(--muted-foreground)]">
  Minimal 4 karakter. Disimpan dengan bcrypt (tidak bisa dibaca plain).
@@ -159,7 +159,7 @@ const UserModal: React.FC<UserModalProps> = ({ initial, editingId, onSave, onClo
  value={form.display_name}
  onChange={(e) => setForm({ ...form, display_name: e.target.value })}
  placeholder="contoh: Noel Yosan (Admin)"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ring)]/30 dark:focus:ring-[var(--ring)]/30"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-hidden focus:ring-2 focus:ring-[var(--ring)]/30 dark:focus:ring-[var(--ring)]/30"
  />
  </div>
 

@@ -240,7 +240,7 @@ export default function GallerySection() {
  <div
  key={item.id}
  onClick={() => setSelectedPhotoIndex(index)}
- className="group relative aspect-square rounded-2xl overflow-hidden bg-[var(--surface-raised)] dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] hover:shadow-sm cursor-pointer transition-all"
+ className="group relative aspect-square rounded-2xl overflow-hidden bg-[var(--surface-raised)] dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] hover:shadow-xs cursor-pointer transition-all"
  >
  <Image
  src={item.thumbUrl || item.image || '/images/logo.png'}

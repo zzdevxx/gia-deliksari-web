@@ -109,7 +109,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  aria-modal="true"
  aria-labelledby="upload-modal-title"
  tabIndex={-1}
- className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in">
+ className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs animate-in fade-in">
  <div
  onClick={(e) => e.stopPropagation()}
  className="w-full max-w-lg bg-white dark:bg-[var(--card)] border border-[var(--border)] dark:border-[var(--border)] rounded-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto"
@@ -222,7 +222,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  value={title}
  onChange={(e) => setTitle(e.target.value)}
  placeholder="Contoh: Persekutuan Pemuda Youth Camp 2026"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs sm:text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ring)]/30"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs sm:text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-hidden focus:ring-2 focus:ring-[var(--ring)]/30"
  />
  </div>
 
@@ -233,7 +233,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  <select
  value={category}
  onChange={(e) => setCategory(e.target.value as any)}
- className="w-full px-3 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ring)]/30 focus:border-[var(--brand)]"
+ className="w-full px-3 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-hidden focus:ring-2 focus:ring-[var(--ring)]/30 focus:border-[var(--brand)]"
  >
  <option value="ibadah">Ibadah Raya</option>
  <option value="worship">Praise & Worship</option>
@@ -250,7 +250,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  value={date}
  onChange={(e) => setDate(e.target.value)}
  placeholder="Agustus 2026"
- className="w-full px-3 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-none focus:ring-2 focus:ring-[var(--ring)]/30 focus:border-[var(--brand)]"
+ className="w-full px-3 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs text-[var(--foreground)] dark:text-[var(--foreground)] outline-hidden focus:ring-2 focus:ring-[var(--ring)]/30 focus:border-[var(--brand)]"
  />
  </div>
  </div>
@@ -265,7 +265,7 @@ export default function UploadPhotoModal({ isOpen, onClose, onUploadSuccess }: U
  value={uploaderName}
  onChange={(e) => setUploaderName(e.target.value)}
  placeholder="Contoh: Tim Multimedia / Andreas"
- className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs sm:text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-none"
+ className="w-full px-4 py-3 rounded-2xl bg-[var(--surface-raised)] dark:bg-[var(--surface-raised)] border border-[var(--border)] dark:border-[var(--border)] text-xs sm:text-sm text-[var(--foreground)] dark:text-[var(--foreground)] outline-hidden"
  />
  </div>
 

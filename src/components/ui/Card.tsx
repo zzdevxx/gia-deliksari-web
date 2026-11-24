@@ -47,7 +47,7 @@ const VARIANT_MAP: Record<Variant, string> = {
  */
 const ELEVATION_MAP: Record<Elevation, string> = {
   ground: '',
-  floating: 'shadow-sm',
+  floating: 'shadow-xs',
 };
 
 const BASE_CLASSES =
