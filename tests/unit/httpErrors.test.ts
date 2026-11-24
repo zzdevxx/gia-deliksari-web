@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
-import { resolve, join } from 'node:path';
+import { resolve, join, relative } from 'node:path';
 
 /**
  * Pins the rule that a 503 this codebase emits on purpose identifies itself.
@@ -39,7 +39,7 @@ describe('deliberate 503s identify themselves', () => {
       // Strip comments so documentation mentioning 503 does not count.
       const code = src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
       if (/status:\s*503/.test(code)) {
-        offenders.push(file.replace(process.cwd() + '/', ''));
+        offenders.push(relative(process.cwd(), file).replace(/\\/g, '/'));
       }
     }
 
